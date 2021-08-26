@@ -1,11 +1,14 @@
 package com.transport.mall.ui.home.dhabalist
 
 import android.app.Activity
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentHomeBinding
+import com.transport.mall.ui.addnewdhaba.NewDhabaActivity
+import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.HomeActivityListener
@@ -45,7 +48,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, BaseVM>() {
     }
 
     override fun initListeners() {
+        binding.tvAddNew.setOnClickListener {
+            startAddDhabaActivity()
+        }
+    }
 
+    private fun startAddDhabaActivity() {
+        val intent = Intent(activity, NewDhabaActivity::class.java)
+        activity?.startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

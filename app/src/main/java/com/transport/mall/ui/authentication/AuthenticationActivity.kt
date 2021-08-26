@@ -1,9 +1,6 @@
 package com.transport.mall.ui.authentication
 
 import android.content.Context
-import com.afollestad.assent.Permission
-import com.afollestad.assent.askForPermissions
-import com.afollestad.assent.isAllGranted
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAuthenticationBinding
 import com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionFragment
@@ -29,17 +26,6 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding, BaseV
         get() = this
 
     override fun bindData() {
-        if (!isAllGranted(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)) {
-            askForPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) { result ->
-                // Check the result, see the Using Results section
-                if (result.isAllGranted(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)) {
-
-                } else {
-
-                }
-            }
-        }
-
         openFragmentReplaceNoAnim(R.id.authContainer, LanguageSelectionFragment(), "", true)
     }
 
