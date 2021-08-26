@@ -1,4 +1,4 @@
-package com.transport.mall.ui.authentication.pre_login
+package com.transport.mall.ui.authentication.pre_login.splash
 
 import android.content.Context
 import android.content.Intent

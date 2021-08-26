@@ -20,7 +20,7 @@
             android:theme="@style/AppTheme"
             tools:replace="allowBackup">
 
-        <activity android:name="com.transport.mall.ui.authentication.pre_login.SplashActivity"
+        <activity android:name="com.transport.mall.ui.authentication.pre_login.splash.SplashActivity"
                 android:theme="@style/Transparenttheme">
 
             <intent-filter>

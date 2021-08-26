@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import java.util.*
 
 // common adapter for all view pager in your project.
-class ViewPagerAdapter(manager: FragmentManager?) : FragmentStatePagerAdapter(
+class HomeViewPagerAdapter(manager: FragmentManager?) : FragmentStatePagerAdapter(
     manager!!
 ) {
     private val mFragmentList: MutableList<Fragment> = ArrayList()

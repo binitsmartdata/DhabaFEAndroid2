@@ -4,13 +4,11 @@ import android.app.Activity
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentHomeBinding
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.HomeActivityListener
-import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
 /**
  * Created by Vishal Sharma on 2020-01-24.
@@ -34,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, BaseVM>() {
 
     private fun setupViewPager() {
         binding.tabLayout.setupWithViewPager(binding.viewPager)
-        val adapter = ViewPagerAdapter(childFragmentManager)
+        val adapter = HomeViewPagerAdapter(childFragmentManager)
 
         // add your fragments
         adapter.addFrag(DhabaListFragment(), getString(R.string.pending))

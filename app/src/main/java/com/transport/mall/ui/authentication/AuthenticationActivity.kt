@@ -6,7 +6,7 @@ import com.afollestad.assent.askForPermissions
 import com.afollestad.assent.isAllGranted
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAuthenticationBinding
-import com.transport.mall.ui.authentication.pre_login.LanguageSelectionFragment
+import com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionFragment
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 

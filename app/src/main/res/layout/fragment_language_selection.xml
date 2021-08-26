@@ -9,7 +9,7 @@
 
         <variable
                 name="vm"
-                type="com.transport.mall.ui.authentication.pre_login.LanguageSelectionVM" />
+                type="com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionVM" />
 
         <variable
                 name="context"

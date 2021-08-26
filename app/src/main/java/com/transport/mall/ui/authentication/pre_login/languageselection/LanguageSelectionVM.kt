@@ -1,4 +1,4 @@
-package com.transport.mall.ui.authentication.pre_login
+package com.transport.mall.ui.authentication.pre_login.languageselection
 
 import android.app.Application
 import com.transport.mall.utils.base.BaseVM
