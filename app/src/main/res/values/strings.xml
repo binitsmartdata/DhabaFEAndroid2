@@ -56,6 +56,29 @@
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="notifications_will_appear_here">Notifications will appear here</string>
     <string name="search_dhaba">Search Dhaba</string>
+    <string name="dhaba_name">Dhaba Name</string>
+    <string name="dhaba_address">Dhaba address</string>
+    <string name="fetch_location">Fetch Location</string>
+    <string name="landmark">Landmark</string>
+    <string name="area">Area</string>
+    <string name="pin_code">Pin code</string>
+
+    <string-array name="select_highway_number">
+        <item>Select National Highway Number</item>
+
+    </string-array>
+
+    <string-array name="select_state">
+        <item>Select State</item>
+
+    </string-array>
+
+
+    <string-array name="select_city">
+        <item>Select City</item>
+
+    </string-array>
+
 
 
     <string-array name="menu_array">
