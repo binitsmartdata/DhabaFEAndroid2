@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="vm"
+                type="com.transport.mall.ui.authentication.login.LoginVM" />
+
+    </data>
+
+    <LinearLayout
+            android:id="@+id/parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:paddingTop="@dimen/_15sdp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_15sdp"
+            tools:context=".ui.main.MainActivity">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginVertical="20dp"
+                android:src="@drawable/ic_app_icon" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login"
+                android:textSize="@dimen/_18ssp"
+                android:layout_margin="10dp"
+                android:textColor="@color/black" />
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_til"
+                android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:hint="@string/email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:text="@={vm.emailObservable}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_til"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:text="@={vm.passwordObservable}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp">
+
+            <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:text="@string/login"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false" />
+
+
+        </FrameLayout>
+    </LinearLayout>
+
+
+</layout>

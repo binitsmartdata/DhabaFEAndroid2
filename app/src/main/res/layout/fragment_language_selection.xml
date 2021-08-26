@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="vm"
+                type="com.transport.mall.ui.authentication.pre_login.LanguageSelectionVM" />
+
+        <variable
+                name="context"
+                type="android.content.Context" />
+
+        <variable
+                name="english"
+                type="java.lang.Boolean" />
+
+        <variable
+                name="hindi"
+                type="java.lang.Boolean" />
+
+        <variable
+                name="punjabi"
+                type="java.lang.Boolean" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingBottom="30dp"
+            android:orientation="vertical">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginVertical="20dp"
+                android:src="@drawable/ic_app_icon" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_language"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp" />
+
+        <FrameLayout
+                android:id="@+id/flEnglish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/stroke_btn_selector"
+                android:layout_marginTop="20dp">
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:clickable="false"
+                    android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center"
+                    android:text="@string/english" />
+
+            <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_tick"
+                    android:id="@+id/ivEnglishTick"
+                    android:visibility="@{english ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginHorizontal="10dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+                android:id="@+id/flHindi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/stroke_btn_selector"
+                android:layout_marginTop="20dp">
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:text="@string/hindi" />
+
+            <ImageView
+                    android:id="@+id/ivHindiTick"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_tick"
+                    android:visibility="@{hindi ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginHorizontal="10dp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+                android:id="@+id/flPunjabi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/stroke_btn_selector"
+                android:layout_marginTop="20dp">
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:clickable="false"
+                    android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center"
+                    android:text="@string/punjabi" />
+
+            <ImageView
+                    android:id="@+id/icPunjabiTick"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_tick"
+                    android:visibility="@{punjabi ? View.VISIBLE : View.GONE}"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginHorizontal="10dp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

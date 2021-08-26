@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="list"
+                type="com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList" />
+
+        <variable
+                name="click"
+                type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
+
+        <variable
+                name="toolbarModel"
+                type="com.transport.mall.model.Toolbar" />
+
+    </data>
+
+    <LinearLayout
+            android:id="@+id/parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dhaba Management"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add New"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_12ssp"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="5dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/primary_color_btn_selector" />
+
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                app:tabTextColor="@color/tabs_text_selector"
+                android:background="@color/white">
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/pending" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/in_progress" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/active" />
+
+            <com.google.android.material.tabs.TabItem
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/inactive" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</layout>

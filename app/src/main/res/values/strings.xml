@@ -1,0 +1,116 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="appName">Transport Mall</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="invalid_email">Please enter valid email</string>
+    <string name="enter_password">Please enter password</string>
+    <string name="invalid_password">Password length should be between 6 to 20 characters</string>
+    <string name="ok">OK</string>
+    <string name="home">Home</string>
+    <string name="graph">Graph</string>
+    <string name="alarm">Alarm</string>
+    <string name="music">Music</string>
+    <string name="version">Version</string>
+    <string name="post_request">Post Request</string>
+
+    <string name="server_taking_too_long_to_respond">Server is taking too long to respond OR something is wrong with your internet connection. Please try again later.</string>
+    <string name="unable_to_connect">Unable to connect with server</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="get_request">Get Request</string>
+    <string name="db_retrieve">Get data from DB</string>
+    <string name="delete_record_from_db">Delete record from DB</string>
+    <string name="no_record_found">No record found</string>
+    <string name="list_items">List Items</string>
+    <string name="back">Back</string>
+
+    <integer-array name="home_tab_items_drawable">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_graph</item>
+        <item>@drawable/ic_alarm</item>
+        <item>@drawable/ic_tab_music</item>
+    </integer-array>
+
+    <string-array name="home_tab_items_name">
+        <item>@string/home</item>
+        <item>@string/graph</item>
+        <item>@string/alarm</item>
+        <item>@string/music</item>
+        <item>@string/version</item>
+    </string-array>
+
+
+    <string name="menu">Menu</string>
+    <string name="choose_language" tools:ignore="MissingTranslation">Choose Language</string>
+    <string name="english" tools:ignore="MissingTranslation">English</string>
+    <string name="hindi" tools:ignore="MissingTranslation">हिंदी</string>
+    <string name="punjabi" tools:ignore="ExtraTranslation">ਪੰਜਾਬੀ</string>
+    <string name="email_cannot_be_empty">Email field cannot be empty</string>
+    <string name="password_cannot_be_empty">Password field cannot be empty</string>
+    <string name="pending">Pending</string>
+    <string name="in_progress">In Progress</string>
+    <string name="active">Active</string>
+    <string name="inactive">Inactive</string>
+    <string name="notifications">Notifications</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="notifications_will_appear_here">Notifications will appear here</string>
+    <string name="search_dhaba">Search Dhaba</string>
+
+
+    <string-array name="menu_array">
+        <item>Dhaba Management</item>
+        <item>Add New Dhaba</item>
+        <item>Notifications</item>
+        <item>Hepline</item>
+        <item>Settings</item>
+    </string-array>
+
+    <integer-array name="menu_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_add_dhaba</item>
+        <item>@drawable/ic_notification</item>
+        <item>@drawable/ic_helpline</item>
+        <item>@drawable/ic_settings</item>
+    </integer-array>
+
+    <integer-array name="menu_icons_hilighted">
+        <item>@drawable/ic_home_hilighted</item>
+        <item>@drawable/ic_add_dhaba_hilighted</item>
+        <item>@drawable/ic_notification_hilighted</item>
+        <item>@drawable/ic_helpline_hilighted</item>
+        <item>@drawable/ic_settings_hilighted</item>
+    </integer-array>
+
+    <string-array name="dhaba_list">
+        <item>Dhaba 1</item>
+        <item>Dhaba 2</item>
+        <item>Dhaba 3</item>
+        <item>Dhaba 4</item>
+        <item>Dhaba 5</item>
+        <item>Dhaba 6</item>
+        <item>Dhaba 7</item>
+        <item>Dhaba 8</item>
+        <item>Dhaba 9</item>
+        <item>Dhaba 10</item>
+    </string-array>
+    <string-array name="notification_list_demo">
+        <item>New dhaba request.</item>
+        <item>New dhaba request.</item>
+        <item>New dhaba request.</item>
+        <item>New dhaba request.</item>
+        <item>New dhaba request.</item>
+        <item>New dhaba request.</item>
+        <item>New dhaba request.</item>
+    </string-array>
+    <string-array name="cities_list_dummy">
+        <item>City</item>
+        <item>Amritsar</item>
+        <item>Jalandhar</item>
+        <item>Kapurthala</item>
+        <item>Mohali</item>
+        <item>Nawashehar</item>
+        <item>Chandigarh</item>
+    </string-array>
+
+</resources>

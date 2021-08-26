@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.getdishout.trxpay.ui.slingshot.SlingshotProcessActivity">
+
+    <item
+        android:id="@+id/actionNotification"
+        android:enabled="true"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/notifications"
+        app:showAsAction="always" />
+
+</menu>
