@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,17 +13,329 @@
                 type="android.content.Context" />
     </data>
 
-    <LinearLayout
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Step 3" />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    </LinearLayout>
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_3sdp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/white">
 
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/food"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No Amenities Selected"
+                                android:textColor="@color/grey"
+                                android:paddingHorizontal="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="@dimen/_10sdp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_3sdp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/parking"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No Amenities Selected"
+                                android:textColor="@color/grey"
+                                android:paddingHorizontal="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="@dimen/_10sdp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_3sdp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sleeping"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No Amenities Selected"
+                                android:textColor="@color/grey"
+                                android:paddingHorizontal="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="@dimen/_10sdp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_3sdp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/washroom_cleaning"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No Amenities Selected"
+                                android:textColor="@color/grey"
+                                android:paddingHorizontal="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="@dimen/_10sdp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_3sdp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/security"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No Amenities Selected"
+                                android:textColor="@color/grey"
+                                android:paddingHorizontal="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="@dimen/_10sdp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_3sdp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal">
+
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/other"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:padding="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="No Amenities Selected"
+                                android:textColor="@color/grey"
+                                android:paddingHorizontal="5dp"
+                                android:textSize="@dimen/_14ssp" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:src="@drawable/ic_arrow_right"
+                            android:padding="@dimen/_10sdp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                    android:id="@+id/btnSaveDhaba"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:textColor="@color/white"
+                    android:text="Save Dhaba"
+                    android:textAllCaps="false"
+                    android:layout_margin="10dp" />
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/default_btn_selector"
+                    android:textColor="@color/black"
+                    android:text="Save as Draft"
+                    android:textAllCaps="false"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="@dimen/_30sdp" />
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

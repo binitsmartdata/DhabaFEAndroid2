@@ -1,8 +1,7 @@
 package com.transport.mall.utils.base
 
 import android.content.Context
-import android.content.res.Configuration
-import android.content.res.Resources
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -21,6 +20,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.androidadvance.topsnackbar.TSnackbar
 import com.transport.mall.R
+import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import java.util.*
 
@@ -266,6 +266,11 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         }
     }
 
-
+    fun goToHomeScreen() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
 }
 

@@ -1,11 +1,13 @@
 package com.transport.mall.ui.addnewdhaba
 
 import android.content.Context
+import android.view.MenuItem
 import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.ViewPager
 import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
 import com.afollestad.assent.isAllGranted
-import com.baoyachi.stepview.bean.StepBean
+import com.shuhart.stepview.StepView
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityNewDhabaBinding
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1Fragment
@@ -43,7 +45,51 @@ class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
             }
         }
 
+        setupToolbar()
         setupStepsFragments()
+        setupStepsIndicator()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setTitle(getString(R.string.add_new_dhaba))
+    }
+
+    private fun setupStepsIndicator() {
+        binding.stepView.getState()
+            .selectedTextColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .animationType(StepView.ANIMATION_CIRCLE)
+            .selectedCircleColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .selectedCircleRadius(resources.getDimensionPixelSize(R.dimen.dimen_14))
+            .selectedStepNumberColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.colorPrimary
+                )
+            ) // You should specify only stepsNumber or steps array of strings.
+            // In case you specify both steps array is chosen.
+            .steps(object : ArrayList<String?>() {
+                init {
+                    add("Dhaba Details")
+                    add("Owner Details")
+                    add("Amenities")
+                }
+            }) // You should specify only steps number or steps array of strings.
+            // In case you specify both steps array is chosen.
+//            .stepsNumber(4)
+            .animationDuration(resources.getInteger(android.R.integer.config_shortAnimTime))
+            .stepLineWidth(resources.getDimensionPixelSize(R.dimen.dimen_1))
+            .textSize(resources.getDimensionPixelSize(R.dimen.font_14))
+            .stepNumberTextSize(resources.getDimensionPixelSize(R.dimen.font_16))
+            .doneCircleColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .doneStepLineColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .doneTextColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .doneStepMarkColor(ContextCompat.getColor(this, R.color.white))
+            .commit()
+
     }
 
     private fun setupStepsFragments() {
@@ -56,60 +102,40 @@ class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
-        val stepsBeanList: MutableList<StepBean> = ArrayList()
-        stepsBeanList.add(StepBean("1", 1));
-        stepsBeanList.add(StepBean("2", 2));
-        stepsBeanList.add(StepBean("3", 3));
-        binding.stepView
-            .setStepViewTexts(stepsBeanList)//总步骤
-            .setTextSize(12)//set textSize
-            .setStepsViewIndicatorCompletedLineColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.colorPrimary
-                )
-            )//设置StepsViewIndicator完成线的颜色
-            .setStepsViewIndicatorUnCompletedLineColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.black
-                )
-            )//设置StepsViewIndicator未完成线的颜色
-            .setStepViewComplectedTextColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.colorPrimary
-                )
-            )//设置StepsView text完成线的颜色
-            .setStepViewUnComplectedTextColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.black
-                )
-            )//设置StepsView text未完成线的颜色
-            .setStepsViewIndicatorCompleteIcon(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.ic_tick_step
-                )
-            )//设置StepsViewIndicator CompleteIcon
-            .setStepsViewIndicatorDefaultIcon(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.ic_circle_black
-                )
-            )//设置StepsViewIndicator DefaultIcon
-            .setStepsViewIndicatorAttentionIcon(
-                ContextCompat.getDrawable(
-                    this,
-                    R.drawable.attention
-                )
-            );//设置StepsViewIndicator AttentionIcon
+            override fun onPageScrollStateChanged(state: Int) {
+            }
 
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                binding.stepView.go(position, true)
+                if (position == 2) {
+                    binding.stepView.done(true)
+                }
+            }
+
+            override fun onPageSelected(position: Int) {
+
+            }
+
+        })
     }
 
     override fun initListeners() {
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.getItemId()) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

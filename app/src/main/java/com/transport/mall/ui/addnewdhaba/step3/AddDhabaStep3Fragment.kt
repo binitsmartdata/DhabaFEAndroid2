@@ -1,10 +1,11 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
-import android.os.Handler
+import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentAddDhabaStep3Binding
-import com.transport.mall.ui.authentication.login.LoginFragment
+import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
+import com.transport.mall.utils.common.GenericCallBack
 
 /**
  * Created by Vishal Sharma on 2019-12-06.
@@ -21,22 +22,24 @@ class AddDhabaStep3Fragment :
         set(value) {}
 
     override fun bindData() {
-//        binding.vm = viewModel
         binding.context = activity
     }
 
     override fun initListeners() {
+        binding.btnSaveDhaba.setOnClickListener {
+            DialogAddDhabaSuccess(
+                activity as Context,
+                "#LKJ534LK5J3L54J3L45",
+                GenericCallBack {
+                    when (it) {
+                        DialogAddDhabaSuccess.SELECTED_ACTION.GO_HOME -> {
+                            goToHomeScreen()
+                        }
+                        DialogAddDhabaSuccess.SELECTED_ACTION.VIEW_DHABA -> {
 
-    }
-
-    private fun goToLogin() {
-        Handler().postDelayed(Runnable {
-            openFragmentReplaceNoAnim(
-                R.id.authContainer,
-                LoginFragment(),
-                "",
-                true
-            )
-        }, 500)
+                        }
+                    }
+                }).show()
+        }
     }
 }

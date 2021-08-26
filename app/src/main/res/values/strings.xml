@@ -56,11 +56,20 @@
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="notifications_will_appear_here">Notifications will appear here</string>
     <string name="search_dhaba">Search Dhaba</string>
+    <string name="add_new_dhaba">Add New Dhaba</string>
+    <string name="view_dhaba">View Dhaba</string>
+    <string name="go_to_home">Go To Home</string>
+    <string name="food">Food</string>
+    <string name="parking">Parking</string>
+    <string name="sleeping">Sleeping</string>
+    <string name="washroom_cleaning"><![CDATA[Washroom & Cleaning]]></string>
+    <string name="security">Security</string>
+    <string name="other">Other</string>
 
 
     <string-array name="menu_array">
         <item>Dhaba Management</item>
-        <item>Add New Dhaba</item>
+        <item>@string/add_new_dhaba</item>
         <item>Notifications</item>
         <item>Hepline</item>
         <item>Settings</item>

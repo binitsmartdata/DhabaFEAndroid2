@@ -3,6 +3,7 @@ package com.transport.mall.utils.base
 import android.R
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel> : Fragment() {
@@ -188,4 +190,10 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
         }
     }
 
+    fun goToHomeScreen() {
+        val intent = Intent(activity, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        activity?.startActivity(intent)
+        activity?.finish()
+    }
 }

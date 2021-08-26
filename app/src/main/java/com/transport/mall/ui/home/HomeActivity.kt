@@ -30,6 +30,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
     override val context: Context
         get() = this
 
+
+
     private var mDrawerToggle: ActionBarDrawerToggle? = null
     private val toolbar = Toolbar()
     var list = ArrayList<SideMenu>()

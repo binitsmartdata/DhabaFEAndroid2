@@ -1,5 +1,7 @@
 <resources>
 
+    <dimen name="dimen_14">14dp</dimen>
+    <dimen name="dimen_1">1dp</dimen>
     <dimen name="dimen_20">20dp</dimen>
 
     <dimen name="dimen_50">50dp</dimen>
@@ -7,5 +9,6 @@
     <dimen name="dimen_100">100dp</dimen>
 
     <dimen name="font_16">16sp</dimen>
+    <dimen name="font_14">14sp</dimen>
 
 </resources>

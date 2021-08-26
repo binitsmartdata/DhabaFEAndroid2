@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="dhabaId"
+                type="String" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_20sdp"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/ivTick"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:visibility="gone"
+                android:src="@drawable/animated_check" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:text="Dhaba Added Succesfully" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDhabaId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{dhabaId}"
+                android:padding="10dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/light_red" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:text="This is the id number of added dhaba." />
+
+        <Button
+                android:id="@+id/btnViewDhaba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/primary_color_btn_selector"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/view_dhaba" />
+
+        <Button
+                android:id="@+id/btnGoHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/default_btn_selector"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/go_to_home" />
+
+    </LinearLayout>
+</layout>
