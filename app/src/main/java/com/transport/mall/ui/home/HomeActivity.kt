@@ -9,7 +9,9 @@ import com.transport.mall.model.SideMenu
 import com.transport.mall.model.Toolbar
 import com.transport.mall.ui.addnewdhaba.NewDhabaActivity
 import com.transport.mall.ui.home.dhabalist.HomeFragment
+import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
+import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
@@ -118,8 +120,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
                 return
             }
             2 -> fragment = NotificationsFragment()
-            3 -> fragment = HomeFragment()
-            4 -> fragment = HomeFragment()
+            3 -> fragment = HelplineFragment()
+            4 -> fragment = SettingsFragment()
         }
 
         fragment?.let {
@@ -143,8 +145,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
                 refreshSideMenu(0) // SHOW SELECTED FRAGMENT TITLE SELECTED
             } else if (myFragment is NotificationsFragment) {
                 refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
-            } else if (myFragment is NotificationsFragment) {
-                refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
+            } else if (myFragment is HelplineFragment) {
+                refreshSideMenu(3) // SHOW SELECTED FRAGMENT TITLE SELECTED
+            } else if (myFragment is SettingsFragment) {
+                refreshSideMenu(4) // SHOW SELECTED FRAGMENT TITLE SELECTED
             }
         }
     }

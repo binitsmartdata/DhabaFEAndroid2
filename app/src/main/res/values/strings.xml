@@ -52,10 +52,13 @@
     <string name="active">Active</string>
     <string name="inactive">Inactive</string>
     <string name="notifications">Notifications</string>
+    <string name="hepline">Helpline</string>
+    <string name="settings">Settings</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="notifications_will_appear_here">Notifications will appear here</string>
     <string name="search_dhaba">Search Dhaba</string>
+    <string name="dhaba_mnagement">Dhaba Management</string>
     <string name="add_new_dhaba">Add New Dhaba</string>
     <string name="view_dhaba">View Dhaba</string>
     <string name="go_to_home">Go To Home</string>
@@ -126,7 +129,7 @@
     <string name="security_amen_title">Add Security Amenities</string>
     <string name="other_amen_title">Add Other Amenities</string>
     <string name="amen_title">Add Amenities</string>
-    <string name="upload_dhaba_pictures">Upload Dhaba Pictures</string>
+    <string name="upload_dhaba_pictures">Upload Dhaba Picture</string>
     <string name="save_as_draft">Save as Draft</string>
     <string name="owner_name">Owner name</string>
     <string name="phone_number">Phone number</string>
@@ -142,6 +145,7 @@
     <string name="next">Next</string>
     <string name="update_profile">Update Profile</string>
     <string name="notifications_settings">Notifications Settings</string>
+    <string name="clear_all">Clear All</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>
@@ -162,11 +166,11 @@
 
 
     <string-array name="menu_array">
-        <item>Dhaba Management</item>
+        <item>@string/dhaba_mnagement</item>
         <item>@string/add_new_dhaba</item>
-        <item>Notifications</item>
-        <item>Hepline</item>
-        <item>Settings</item>
+        <item>@string/notifications</item>
+        <item>@string/hepline</item>
+        <item>@string/settings</item>
     </string-array>
 
     <integer-array name="menu_icons">
@@ -198,13 +202,15 @@
         <item>Dhaba 10</item>
     </string-array>
     <string-array name="notification_list_demo">
-        <item>New dhaba request.</item>
-        <item>New dhaba request.</item>
-        <item>New dhaba request.</item>
-        <item>New dhaba request.</item>
-        <item>New dhaba request.</item>
-        <item>New dhaba request.</item>
-        <item>New dhaba request.</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
+        <item>A new dhaba is added in pending dhaba list..</item>
     </string-array>
     <string-array name="cities_list_dummy">
         <item>City</item>

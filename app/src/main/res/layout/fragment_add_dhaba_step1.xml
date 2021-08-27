@@ -11,8 +11,8 @@
         android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="@dimen/_20sdp">
 
 
@@ -137,33 +137,33 @@
                 android:id="@+id/selectHighwayLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/areaTil"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/grey_stroke">
+                android:background="@drawable/grey_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/areaTil">
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:gravity="center_vertical"
                     android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@null"
                     android:entries="@array/select_highway_number"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/spinnerArrowImage"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/spinnerArrowImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/ic_spinner_dropdown"/>
+                    android:background="@drawable/ic_spinner_dropdown"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -171,66 +171,66 @@
                 android:id="@+id/selectStateLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectHighwayLayout"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/grey_stroke">
+                android:background="@drawable/grey_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/selectHighwayLayout">
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:gravity="center_vertical"
                     android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@null"
                     android:entries="@array/select_state"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/spinnerArrowImage1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/spinnerArrowImage1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/ic_spinner_dropdown"/>
+                    android:background="@drawable/ic_spinner_dropdown"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/selectCityLayout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectStateLayout"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/grey_stroke">
+                android:background="@drawable/grey_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/selectStateLayout">
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:gravity="center_vertical"
                     android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@null"
                     android:entries="@array/select_city"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/spinnerArrowImage2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/spinnerArrowImage2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/ic_spinner_dropdown"/>
+                    android:background="@drawable/ic_spinner_dropdown"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -260,41 +260,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pinCodeTil">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/uploadPictureLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/uploadVideoLayout"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@drawable/grey_fill_bg"
                     android:padding="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp">
+                    app:layout_constraintEnd_toStartOf="@+id/uploadVideoLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/picImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_upload_picture"
                         android:layout_marginTop="@dimen/_10sdp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:src="@drawable/ic_upload_picture"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_semibold"
+                        android:gravity="center"
                         android:text="@string/upload_dhaba_pictures"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/picImage" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -303,33 +304,34 @@
                     android:id="@+id/uploadVideoLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@+id/uploadPictureLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:background="@drawable/grey_fill_bg"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:padding="@dimen/_10sdp">
+                    android:background="@drawable/grey_fill_bg"
+                    android:padding="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/uploadPictureLayout"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/videoImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_video"
                         android:layout_marginTop="@dimen/_10sdp"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:src="@drawable/ic_video"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_semibold"
+                        android:gravity="center"
                         android:text="@string/upload_dhaba_pictures"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12ssp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/videoImage" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -341,40 +343,39 @@
                 android:id="@+id/uploadedImageRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/uploadLayout"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/uploadLayout" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/uploadedImageRecycler"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="@string/next"
+                android:fontFamily="@font/opensans_bold"
+                android:gravity="center"
                 android:padding="@dimen/_10sdp"
+                android:text="@string/next"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16ssp"
-                android:gravity="center"
-                android:fontFamily="@font/opensans_bold"
-                android:textAllCaps="false" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/uploadedImageRecycler" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/opensans_bold"
                 android:text="@string/save_as_draft"
                 android:textColor="@color/colorRed"
                 android:textSize="@dimen/_16ssp"
-                android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnNext" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,5 +5,7 @@ package com.transport.mall.model
  */
 data class NotificationModel(
     val title: String,
+    val sender: String,
+    val dateTime: String,
     val icon: Int
 )

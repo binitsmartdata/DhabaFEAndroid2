@@ -1,6 +1,6 @@
 package com.transport.mall.ui.home.notifications
 
-import android.app.Activity
+import android.content.Context
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -11,7 +11,7 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.NotificationModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
-import com.transport.mall.utils.common.HomeActivityListener
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
@@ -44,16 +44,21 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding, BaseVM>
         val list = ArrayList<NotificationModel>()
         val menuArray = resources.getStringArray(R.array.notification_list_demo)
         for (i in menuArray.indices) {
-            list.add(NotificationModel(menuArray[i], R.drawable.ic_notification))
+            list.add(
+                NotificationModel(
+                    menuArray[i],
+                    "Administrator",
+                    "30 Minutes",
+                    R.drawable.ic_message
+                )
+            )
         }
-/*
         binding.recyclerView.adapter =
             NotificationsAdapter(activity as Context, list, GenericCallBack {
 
             })
-*/
-        binding.recyclerView.visibility = View.GONE
-        binding.tvNoData.visibility = View.VISIBLE
+        binding.recyclerView.visibility = View.VISIBLE
+        binding.tvNoData.visibility = View.GONE
     }
 
     override fun onItemClick(view: View?, position: Int) {
