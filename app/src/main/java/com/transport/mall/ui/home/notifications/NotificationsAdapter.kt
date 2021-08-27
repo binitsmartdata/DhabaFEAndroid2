@@ -24,7 +24,6 @@ class NotificationsAdapter(
         myViewHolderG?.binding?.data = dataList[position]
         myViewHolderG?.binding?.position = position
         myViewHolderG?.binding?.containerLayout?.setOnClickListener { callBack.onResponse(position) }
-
         myViewHolderG?.binding?.executePendingBindings()
     }
 

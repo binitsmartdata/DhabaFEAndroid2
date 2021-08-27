@@ -13,4 +13,6 @@
     <color name="gold">#F7BA00</color>
     <color name="light_red">#FFECED</color>
     <color name="colorRed">#EE000F</color>
+    <color name="colorLightGrey">#F8F8F8</color>
+    <color name="colorGrey1">#DADADA</color>
 </resources>

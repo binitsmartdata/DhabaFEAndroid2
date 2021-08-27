@@ -71,6 +71,22 @@
     <string name="landmark">Landmark</string>
     <string name="area">Area</string>
     <string name="pin_code">Pin code</string>
+    <string name="upload_dhaba_pictures">Upload Dhaba Pictures</string>
+    <string name="save_as_draft">Save as Draft</string>
+    <string name="owner_name">Owner name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="email_address">Email address</string>
+    <string name="address">Address</string>
+    <string name="pan_number">Pan Number</string>
+    <string name="aadhar_card_number">Aadhar Card Number</string>
+    <string name="upload_owner_picture">Upload Owner Picture</string>
+    <string name="upload_id_proof">Upload Id proof</string>
+    <string name="we_accept_aadhar_card_pan_card_or_driving_license">We accept aadhar card, pan card or driving license</string>
+    <string name="front_side">Front Side</string>
+    <string name="back_side">Back Side</string>
+    <string name="next">Next</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="notifications_settings">Notifications Settings</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>
