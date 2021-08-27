@@ -65,6 +65,29 @@
     <string name="washroom_cleaning"><![CDATA[Washroom & Cleaning]]></string>
     <string name="security">Security</string>
     <string name="other">Other</string>
+    <string name="dhaba_name">Dhaba Name</string>
+    <string name="dhaba_address">Dhaba address</string>
+    <string name="fetch_location">Fetch Location</string>
+    <string name="landmark">Landmark</string>
+    <string name="area">Area</string>
+    <string name="pin_code">Pin code</string>
+
+    <string-array name="select_highway_number">
+        <item>Select National Highway Number</item>
+
+    </string-array>
+
+    <string-array name="select_state">
+        <item>Select State</item>
+
+    </string-array>
+
+
+    <string-array name="select_city">
+        <item>Select City</item>
+
+    </string-array>
+
 
 
     <string-array name="menu_array">

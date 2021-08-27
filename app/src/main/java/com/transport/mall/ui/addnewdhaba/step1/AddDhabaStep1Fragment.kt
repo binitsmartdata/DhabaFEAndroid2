@@ -22,7 +22,7 @@ class AddDhabaStep1Fragment :
 
     override fun bindData() {
 //        binding.vm = viewModel
-        binding.context = activity
+//        binding.context = activity
     }
 
     override fun initListeners() {
