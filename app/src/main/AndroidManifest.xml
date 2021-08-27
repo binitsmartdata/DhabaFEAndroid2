@@ -35,6 +35,7 @@
 
         <activity android:name="com.transport.mall.ui.authentication.AuthenticationActivity"></activity>
         <activity android:name="com.transport.mall.ui.addnewdhaba.NewDhabaActivity"></activity>
+        <activity android:name="com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity"></activity>
 
         <provider
                 android:name="androidx.core.content.FileProvider"

@@ -66,13 +66,13 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         this.mViewBinding = DataBindingUtil.setContentView(this, layoutId)
         this.mContext = context
         this.mViewModel = viewModel
+        bindData()
+        initListeners()
     }
 
     override fun onStart() {
         super.onStart()
         refreshLanguagePreference()
-        bindData()
-        initListeners()
     }
 
     override fun onRestart() {

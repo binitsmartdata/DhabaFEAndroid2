@@ -1,6 +1,7 @@
 package com.transport.mall.ui.addnewdhaba
 
 import android.content.Context
+import android.content.Intent
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
@@ -34,6 +35,13 @@ class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
         set(value) {}
     override val context: Context
         get() = this
+
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, NewDhabaActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     override fun bindData() {
         if (!isAllGranted(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)) {
@@ -123,6 +131,7 @@ class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
             }
 
         })
+        binding.viewPager.offscreenPageLimit = 3
     }
 
     override fun initListeners() {

@@ -7,6 +7,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
@@ -25,6 +26,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.transport.mall.R
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -32,7 +34,6 @@ import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import com.transport.mall.R
 
 object GlobalUtils {
     private var mDialog: Dialog? = null
@@ -382,6 +383,23 @@ object GlobalUtils {
         val displayMetrics: DisplayMetrics = context.resources.displayMetrics
         val screenWidthDp: Float = displayMetrics.widthPixels / displayMetrics.density
         return (screenWidthDp / columnWidthDp + 0.5).toInt()
+    }
+
+    fun isScreenLarge(context: Context): Boolean {
+        val dm = context.resources.displayMetrics
+        val screenWidth = dm.widthPixels / dm.density
+        val screenHeight = dm.heightPixels / dm.density
+        return screenWidth >= 600 && isTabletSize(context)!!
+    }
+
+    private fun isTabletSize(context: Context): Boolean? {
+        var screenLayout = context.resources.configuration.screenLayout
+        screenLayout = screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
+        return when (screenLayout) {
+            Configuration.SCREENLAYOUT_SIZE_SMALL, Configuration.SCREENLAYOUT_SIZE_NORMAL -> false
+            Configuration.SCREENLAYOUT_SIZE_LARGE, Configuration.SCREENLAYOUT_SIZE_XLARGE -> true
+            else -> false
+        }
     }
 
 

@@ -7,6 +7,7 @@ import com.transport.mall.R
 import com.transport.mall.databinding.ActivityHomeBinding
 import com.transport.mall.model.SideMenu
 import com.transport.mall.model.Toolbar
+import com.transport.mall.ui.addnewdhaba.NewDhabaActivity
 import com.transport.mall.ui.home.dhabalist.HomeFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
@@ -29,7 +30,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
         set(value) {}
     override val context: Context
         get() = this
-
 
 
     private var mDrawerToggle: ActionBarDrawerToggle? = null
@@ -112,7 +112,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
 
         when (position) {
             0 -> fragment = HomeFragment()
-            1 -> fragment = HomeFragment()
+            1 -> {
+                binding.drawerLayout.closeDrawer(binding.leftDrawer)
+                NewDhabaActivity.start(this)
+                return
+            }
             2 -> fragment = NotificationsFragment()
             3 -> fragment = HomeFragment()
             4 -> fragment = HomeFragment()
@@ -128,5 +132,20 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
 
     override fun openNotificationFragment() {
         displayView(2)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val myFragment: Fragment? =
+            supportFragmentManager.findFragmentById(binding.dashboardContainer.id)
+        if (myFragment != null && myFragment.isVisible()) {
+            if (myFragment is HomeFragment) {
+                refreshSideMenu(0) // SHOW SELECTED FRAGMENT TITLE SELECTED
+            } else if (myFragment is NotificationsFragment) {
+                refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
+            } else if (myFragment is NotificationsFragment) {
+                refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
+            }
+        }
     }
 }

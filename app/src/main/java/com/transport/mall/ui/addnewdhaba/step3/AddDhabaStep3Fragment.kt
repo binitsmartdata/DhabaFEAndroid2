@@ -3,6 +3,7 @@ package com.transport.mall.ui.addnewdhaba.step1
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentAddDhabaStep3Binding
+import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -23,6 +24,24 @@ class AddDhabaStep3Fragment :
 
     override fun bindData() {
         binding.context = activity
+        binding.cardFood.setOnClickListener {
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.FOOD)
+        }
+        binding.cardParking.setOnClickListener {
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.PARKING)
+        }
+        binding.cardSleeping.setOnClickListener {
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.SLEEPING)
+        }
+        binding.cardWashroom.setOnClickListener {
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.WASHROOM)
+        }
+        binding.cardSecurity.setOnClickListener {
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.SECURITY)
+        }
+        binding.cardOther.setOnClickListener {
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.OTHER)
+        }
     }
 
     override fun initListeners() {

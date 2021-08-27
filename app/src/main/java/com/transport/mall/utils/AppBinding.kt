@@ -6,6 +6,7 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
+import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
@@ -173,6 +174,11 @@ fun concatData(view: TextView, concatData: String) {
 @BindingAdapter("imageResource")
 fun setImageResource(imageView: ImageView, resource: Int) {
     imageView.setImageResource(resource)
+}
+
+@BindingAdapter("setImageURI")
+fun setImageURI(imageView: ImageView, resource: Uri) {
+    imageView.setImageURI(resource)
 }
 
 
