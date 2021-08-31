@@ -25,22 +25,25 @@ class AddDhabaStep3Fragment :
     override fun bindData() {
         binding.context = activity
         binding.cardFood.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.FOOD)
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.FOOD)
         }
         binding.cardParking.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.PARKING)
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.PARKING)
         }
         binding.cardSleeping.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.SLEEPING)
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.SLEEPING)
         }
         binding.cardWashroom.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.WASHROOM)
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.WASHROOM)
         }
         binding.cardSecurity.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.SECURITY)
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.SECURITY)
         }
         binding.cardOther.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.Companion.OTHER)
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.OTHER)
+        }
+        binding.cardLights.setOnClickListener {
+            AmenitiesActivity.start(activity as Context, AmenitiesActivity.LIGHT)
         }
     }
 

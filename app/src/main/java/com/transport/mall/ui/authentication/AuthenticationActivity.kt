@@ -3,9 +3,11 @@ package com.transport.mall.ui.authentication
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAuthenticationBinding
+import com.transport.mall.ui.authentication.login.LoginFragment
 import com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionFragment
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
@@ -26,7 +28,17 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding, BaseV
         get() = this
 
     override fun bindData() {
-        openFragmentReplaceNoAnim(R.id.authContainer, LanguageSelectionFragment(), "", true)
+        if (!SharedPrefsHelper.getInstance(this).getSelectedLanguage().isEmpty()) {
+            openFragmentReplaceNoAnim(R.id.authContainer, LoginFragment(), "LOGIN", true)
+        } else {
+            openFragmentReplaceNoAnim(
+                R.id.authContainer,
+                LanguageSelectionFragment(),
+                "LANGUAGE",
+                true
+            )
+
+        }
     }
 
     override fun initListeners() {

@@ -1,29 +1,29 @@
 package com.transport.mall.repository.networkoperator
 
 
-import io.reactivex.Observable
-import okhttp3.ResponseBody
+import CityModel
+import com.transport.mall.model.ApiResponseModel
+import com.transport.mall.model.user.UserModel
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
-    @GET("GetCompanyForSetupAsync")
-    suspend fun getCompanyDetails(): String
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun login(
+        @Field("email") email: String,
+        @Field("password") deviceId: String
+    ): Response<ApiResponseModel<UserModel>>
 
-    @GET("Items/GetItemByID")
-    suspend fun getItemById2(
-        @Query("id") id: String,
-        @Query("deviceId") deviceId: String,
-        @Header("X-ZUMO-AUTH") token: String
-    ): Response<ResponseBody>
-
-    @GET("Items/GetItemByID")
-    fun getItemById(
-        @Query("id") id: String,
-        @Query("deviceId") deviceId: String,
-        @Header("X-ZUMO-AUTH") token: String
-    ): Observable<String>
+    @GET("/api/v1/city/getAllCities")
+    suspend fun getAllCities(
+        @Header("Authorization") token: String,
+        @Query("count") count: String,
+        @Query("search") search: String,
+        @Query("sortBy") sortBy: String,
+        @Query("page") page: String,
+        @Query("sort") sort: String,
+        @Query("status") status: String
+    ): Response<ApiResponseModel<CityModel>>
 }

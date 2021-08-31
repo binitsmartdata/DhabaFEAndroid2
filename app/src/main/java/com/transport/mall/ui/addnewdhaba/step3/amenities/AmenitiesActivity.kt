@@ -9,10 +9,7 @@ import com.afollestad.assent.isAllGranted
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAmenitiesBinding
 import com.transport.mall.ui.addnewdhaba.step3.amenities.food.FoodAmenitiesFragment
-import com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping.OtherAmenitiesFragment
-import com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping.SecurityAmenitiesFragment
-import com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping.SleepingAmenitiesFragment
-import com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping.WashroomAmenitiesFragment
+import com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping.*
 import com.transport.mall.ui.addnewdhaba.step3.foodamenities.ParkingAmenitiesFragment
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
@@ -45,6 +42,7 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
         const val SLEEPING = "sleeping"
         const val WASHROOM = "washroom"
         const val SECURITY = "security"
+        const val LIGHT = "LIGHT"
         const val OTHER = "other"
 
         fun start(context: Context, amenityType: String) {
@@ -93,42 +91,49 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 ParkingAmenitiesFragment(),
-                "",
+                PARKING,
                 true
             )
         } else if (amanityType == FOOD) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 FoodAmenitiesFragment(),
-                "",
+                FOOD,
                 true
             )
         } else if (amanityType == SLEEPING) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 SleepingAmenitiesFragment(),
-                "",
+                SLEEPING,
                 true
             )
         } else if (amanityType == WASHROOM) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 WashroomAmenitiesFragment(),
-                "",
+                WASHROOM,
                 true
             )
         } else if (amanityType == SECURITY) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 SecurityAmenitiesFragment(),
-                "",
+                SECURITY,
+                true
+            )
+        } else if (amanityType == LIGHT) {
+            openFragmentReplaceNoAnim(
+                R.id.authContainer,
+                LightAmenitiesFragment(),
+                LIGHT,
                 true
             )
         } else if (amanityType == OTHER) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 OtherAmenitiesFragment(),
-                "",
+                OTHER,
                 true
             )
         }

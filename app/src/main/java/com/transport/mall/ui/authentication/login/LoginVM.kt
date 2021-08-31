@@ -1,12 +1,20 @@
 package com.transport.mall.ui.authentication.login
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.healthiex.naha.repository.networkoperator.Result
+import com.transport.mall.R
+import com.transport.mall.model.ApiResponseModel
+import com.transport.mall.model.user.UserModel
 import com.transport.mall.repository.networkoperator.NetworkAdapter
+import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +22,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
 
 /**
  * Created by Vishal Sharma on 2019-12-06.
@@ -45,8 +52,7 @@ class LoginVM(application: Application) : BaseVM(application) {
         return progressObserver
     }
 
-/*
-    fun doLoginProcess() {
+    fun doLoginProcess(callBak: GenericCallBackTwoParams<Result.Status, String>) {
         Log.e("doLoginProcess", "-------------------")
         var email = ""
         var password = ""
@@ -61,54 +67,57 @@ class LoginVM(application: Application) : BaseVM(application) {
         when (email.isNotEmpty() && password.isNotEmpty()) {
             true -> {
                 GlobalScope.launch(Dispatchers.Main) {
-                    getItemById2().collect {
+                    login(email, password).collect {
                         when (it.status) {
                             Result.Status.LOADING -> {
-                                progressObservable.set(true)
+                                callBak.onResponse(it.status, "")
                             }
                             Result.Status.ERROR -> {
-                                progressObservable.set(false)
-                                it.message
+                                try {
+                                    val response =
+                                        Gson().fromJson(
+                                            it.error?.string(),
+                                            ApiResponseModel::class.java
+                                        )
+                                    callBak.onResponse(it.status, response.message)
+                                } catch (e: Exception) {
+                                    callBak.onResponse(it.status, it.message)
+                                }
                             }
                             Result.Status.SUCCESS -> {
-                                progressObservable.set(false)
-                                it.data
+                                SharedPrefsHelper.getInstance(app as Context)
+                                    .setUserData(it.data?.data!!)
+
+                                HomeActivity.start(app?.applicationContext!!)
+                                callBak.onResponse(it.status, it.data.message)
                             }
                         }
                     }
                 }
-                */
-/*val intent = Intent(
-                    app?.applicationContext,
-                    HomeActivity::class.java
-                )
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                app?.applicationContext?.startActivity(
-                    intent
-                )*//*
-
             }
             else -> {
                 when {
-                    email.isEmpty() -> errorResponse?.value = "Email field cannot be empty"
-                    password.isEmpty() -> errorResponse?.value = "Password field cannot be empty"
+                    email.isEmpty() -> errorResponse?.value =
+                        app?.getString(R.string.email_empty_validation)
+                    !isValidEmail(email) -> errorResponse?.value =
+                        app?.getString(R.string.valid_email_validation)
+                    password.isEmpty() -> errorResponse?.value =
+                        app?.getString(R.string.password_validation)
                 }
             }
         }
         progressObserver?.value = true
     }
-*/
 
-    suspend fun getItemById2(): Flow<Result<ResponseBody>> {
+    suspend fun login(email: String, password: String): Flow<Result<ApiResponseModel<UserModel>>> {
         return flow {
             emit(Result.loading())
             emit(
                 getResponse(
                     request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.getItemById2(
-                            "2388",
-                            "503093073187838034316115",
-                            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEZXZpY2VfNTAzMDkzMDczMTg3ODM4MDM0MyIsImdyb3VwcyI6IjA4MzBjMGFkLTVjYjItNDkzZi04MDg3LTY5OWY5ODdhNDYyMiIsIndlYnNpdGUiOiJTbGluZ3Nob3QiLCJyb2xlIjoibWVyY2hhbnQsQU9CIiwidmVyIjoiMyIsImlzcyI6Imh0dHBzOi8vZG9nYXRld2F5djItZGV2LmF6dXJld2Vic2l0ZXMubmV0LyIsImF1ZCI6Imh0dHBzOi8vZG9nYXRld2F5djItZGV2LmF6dXJld2Vic2l0ZXMubmV0LyIsImV4cCI6MTY2MTIyODg4MywibmJmIjoxNjI5NjkyODgzfQ.xzKeGyibop0ViEmo8pH92dqTrjs1A8ZFZq_HgG5jNRA"
+                        NetworkAdapter.getInstance().getNetworkServices()?.login(
+                            email,
+                            password
                         )
                     }
                 )

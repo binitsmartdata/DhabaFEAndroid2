@@ -1,10 +1,11 @@
 package com.transport.mall.utils.base
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.healthiex.naha.repository.networkoperator.Result
+import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import retrofit2.Response
 
 open class BaseVM(context: Application) : AndroidViewModel(context) {
@@ -17,12 +18,16 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         return showProgressDialog
     }
 
-    fun showProgressDialog() {
-        showProgressDialog?.value = true
+    fun showProgressDialog(context: Application) {
+        GlobalUtils.showProgressDialog(context)
     }
 
     fun hideProgressDialog() {
-        showProgressDialog?.value = false
+        GlobalUtils.hideProgressDialog()
+    }
+
+    fun isValidEmail(str: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
     }
 
     suspend fun <T> getResponse(request: suspend () -> Response<T>?): Result<T> {
@@ -31,10 +36,18 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             if (result?.isSuccessful!!) {
                 return Result.success(result.body())
             } else {
-                Result.error(result?.message(), result?.errorBody())
+                return Result.error(result.message(), result.errorBody())
             }
         } catch (e: Throwable) {
-            Result.error("SERVER_ERROR", null)
+            Result.error(e.message, null)
         }
+    }
+
+    fun getPrefs(context: Application): SharedPrefsHelper {
+        return SharedPrefsHelper.getInstance(context)
+    }
+
+    fun getAccessToken(context: Application): String {
+        return SharedPrefsHelper.getInstance(context).getUserData().accessToken
     }
 }

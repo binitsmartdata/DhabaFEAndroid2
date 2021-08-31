@@ -1,9 +1,11 @@
 package com.transport.mall.ui.authentication.login
 
 import androidx.lifecycle.Observer
+import com.healthiex.naha.repository.networkoperator.Result
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentLoginBinding
 import com.transport.mall.utils.base.BaseFragment
+import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 
 /**
@@ -36,51 +38,27 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 GlobalUtils.hideProgressDialog()
             }
         })
-
+        viewModel.emailObservable.set("ashish@mail.com")
+        viewModel.passwordObservable.set("123456")
     }
 
     override fun initListeners() {
         binding.btnLogin.setOnClickListener {
-            goToHomeScreen()
-            /*
-                when (binding.etEmail.text.toString().isNotEmpty() && binding.edPwd.text.toString()
-                    .isNotEmpty()) {
-                    true -> {
-                        startHomeActivity()
-
-                        lifecycleScope.launch {
-                            viewModel.getItemById2().collect {
-                                when (it.status) {
-                                    Result.Status.LOADING -> {
-                                        showProgressDialog()
-                                    }
-                                    Result.Status.ERROR -> {
-                                        hideProgressDialog()
-                                        Log.i("ERROR ::", it.message)
-                                    }
-                                    Result.Status.SUCCESS -> {
-                                        hideProgressDialog()
-                                        startHomeActivity()
-
-                                        Log.i("RESPONSE ::", it.data?.string())
-                                    }
-                                }
-                            }
-                        }
-
+            viewModel.doLoginProcess(GenericCallBackTwoParams { output, output2 ->
+                when (output) {
+                    Result.Status.LOADING -> {
+                        showProgressDialog()
                     }
-                    else -> {
-                        when {
-                            binding.etEmail.text.toString()
-                                .isEmpty() -> viewModel.errorResponse?.value =
-                                "Email field cannot be empty"
-                            binding.edPwd.text.toString().isEmpty() -> viewModel.errorResponse?.value =
-                                "Password field cannot be empty"
-                        }
+                    Result.Status.ERROR -> {
+                        hideProgressDialog()
+                        showToastInCenter(output2)
+                    }
+                    Result.Status.SUCCESS -> {
+                        hideProgressDialog()
+                        activity?.finish()
                     }
                 }
-    */
-
+            })
         }
     }
 }

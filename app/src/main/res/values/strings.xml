@@ -146,6 +146,18 @@
     <string name="update_profile">Update Profile</string>
     <string name="notifications_settings">Notifications Settings</string>
     <string name="clear_all">Clear All</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="email_empty_validation">Email field cannot be empty</string>
+    <string name="valid_email_validation">Please enter a valid Email Address</string>
+    <string name="password_validation">Password field cannot be empty</string>
+    <string name="truck_show_clean">Truck Show Clean</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="indoor_cameras">Indoor Cameras</string>
+    <string name="outdoor_cameras">Outdoor Cameras</string>
+    <string name="light">Light</string>
+    <string name="tower_bright_light">Tower Bright Light</string>
+    <string name="bulb_light">Bulb light</string>
+    <string name="_24x7_back_up_of_electricity">24X7 Back up of electricity</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

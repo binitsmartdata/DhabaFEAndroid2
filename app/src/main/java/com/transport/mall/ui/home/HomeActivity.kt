@@ -1,6 +1,7 @@
 package com.transport.mall.ui.home
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import com.transport.mall.R
@@ -9,7 +10,7 @@ import com.transport.mall.model.SideMenu
 import com.transport.mall.model.Toolbar
 import com.transport.mall.ui.addnewdhaba.NewDhabaActivity
 import com.transport.mall.ui.home.dhabalist.HomeFragment
-import com.transport.mall.ui.home.helpline.HelplineFragment
+import com.transport.mall.ui.home.helpline.EditProfileFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
 import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
@@ -17,6 +18,7 @@ import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.HomeActivityListener
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
@@ -38,9 +40,32 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
     private val toolbar = Toolbar()
     var list = ArrayList<SideMenu>()
 
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+        }
+    }
+
     override fun bindData() {
         setUpToolbar()
         setUpSideMenu()
+        setUserData()
+    }
+
+    private fun setUserData() {
+        binding.userModel = SharedPrefsHelper.getInstance(this).getUserData()
+        binding.user.ivEdit.setOnClickListener {
+            openFragmentReplaceNoAnim(
+                binding.dashboardContainer.id,
+                EditProfileFragment(),
+                "editProfile",
+                false
+            )
+            toolbar.title = getString(R.string.edit_profile)
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
+        }
     }
 
     /**
@@ -120,7 +145,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
                 return
             }
             2 -> fragment = NotificationsFragment()
-            3 -> fragment = HelplineFragment()
+            3 -> fragment = EditProfileFragment()
             4 -> fragment = SettingsFragment()
         }
 
@@ -145,7 +170,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityLi
                 refreshSideMenu(0) // SHOW SELECTED FRAGMENT TITLE SELECTED
             } else if (myFragment is NotificationsFragment) {
                 refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
-            } else if (myFragment is HelplineFragment) {
+            } else if (myFragment is EditProfileFragment) {
                 refreshSideMenu(3) // SHOW SELECTED FRAGMENT TITLE SELECTED
             } else if (myFragment is SettingsFragment) {
                 refreshSideMenu(4) // SHOW SELECTED FRAGMENT TITLE SELECTED

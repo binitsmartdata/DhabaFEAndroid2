@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        package="com.transport.mall">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.transport.mall">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,19 +9,21 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-            android:largeHeap="true"
-            android:name="com.transport.mall.utils.base.BaseApplication"
-            android:allowBackup="false"
-            android:icon="@drawable/ic_app_icon"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:allowClearUserData="true"
-            android:theme="@style/AppTheme"
-            tools:replace="allowBackup">
+        android:name="com.transport.mall.utils.base.BaseApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@drawable/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="allowBackup">
 
-        <activity android:name="com.transport.mall.ui.authentication.pre_login.splash.SplashActivity"
-                android:theme="@style/Transparenttheme">
+        <activity
+            android:name="com.transport.mall.ui.authentication.pre_login.splash.SplashActivity"
+            android:theme="@style/Transparenttheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,26 +35,28 @@
 
         <activity android:name="com.transport.mall.ui.home.HomeActivity"></activity>
 
-        <activity android:name="com.transport.mall.ui.authentication.AuthenticationActivity"></activity>
+        <activity
+            android:name="com.transport.mall.ui.authentication.AuthenticationActivity"
+            android:windowSoftInputMode="stateAlwaysVisible"></activity>
         <activity android:name="com.transport.mall.ui.addnewdhaba.NewDhabaActivity"></activity>
         <activity android:name="com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity"></activity>
 
         <provider
-                android:name="androidx.core.content.FileProvider"
-                android:authorities="${applicationId}.provider"
-                android:exported="false"
-                android:grantUriPermissions="true">
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/provider_paths" />
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
         </provider>
 
 
         <!-- Define your service, make sure to add the permission! -->
         <service
-                android:name="com.transport.mall.repository.networkcheck.NetworkSchedulerService"
-                android:exported="true"
-                android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:name="com.transport.mall.repository.networkcheck.NetworkSchedulerService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
     </application>
 

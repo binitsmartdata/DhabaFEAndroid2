@@ -8,6 +8,7 @@ import com.transport.mall.databinding.ActivitySplashBinding
 import com.transport.mall.ui.authentication.AuthenticationActivity
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
@@ -36,10 +37,14 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
     }
 
     private fun startAuthActivity() {
-        val intent = Intent(this, AuthenticationActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        finish()
+        if (SharedPrefsHelper.getInstance(this).getUserData().id.isNotEmpty()) {
+            goToHomeScreen()
+        } else {
+            val intent = Intent(this, AuthenticationActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 
 }

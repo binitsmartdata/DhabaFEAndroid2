@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,56 +9,62 @@
         <import type="android.view.View" />
 
         <variable
-                name="vm"
-                type="com.transport.mall.ui.authentication.login.LoginVM" />
+            name="vm"
+            type="com.transport.mall.ui.authentication.login.LoginVM" />
 
     </data>
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:id="@+id/parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:animateLayoutChanges="true"
-            android:paddingTop="@dimen/_15sdp"
             android:gravity="center"
             android:orientation="vertical"
+            android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
             tools:context=".ui.main.MainActivity">
 
-        <ImageView
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginVertical="20dp"
-                android:src="@drawable/ic_app_icon" />
+                android:src="@drawable/ic_launcher" />
 
-        <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
-                android:textSize="@dimen/_18ssp"
                 android:layout_margin="10dp"
-                android:textColor="@color/black" />
+                android:text="@string/login"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_til"
-                android:layout_width="match_parent"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:hint="@string/email">
 
-            <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:text="@={vm.emailObservable}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="@dimen/_14ssp"
+                    />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_til"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -67,7 +73,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/password">
 
-            <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edPwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,26 +82,26 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <FrameLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginHorizontal="@dimen/_15sdp">
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp">
 
-            <Button
+                <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@string/login"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
 
 
-        </FrameLayout>
-    </LinearLayout>
-
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </layout>
