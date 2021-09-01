@@ -1,9 +1,7 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
-import android.os.Handler
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentAddDhabaStep1Binding
-import com.transport.mall.ui.authentication.login.LoginFragment
 import com.transport.mall.utils.base.BaseFragment
 
 /**
@@ -27,16 +25,5 @@ class AddDhabaStep1Fragment :
 
     override fun initListeners() {
 
-    }
-
-    private fun goToLogin() {
-        Handler().postDelayed(Runnable {
-            openFragmentReplaceNoAnim(
-                R.id.authContainer,
-                LoginFragment(),
-                "",
-                true
-            )
-        }, 500)
     }
 }

@@ -7,7 +7,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.R
-import com.transport.mall.model.ApiResponseModel
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.UserModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.repository.networkoperator.NetworkAdapter

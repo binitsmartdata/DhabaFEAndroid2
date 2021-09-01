@@ -135,6 +135,7 @@ dependencies {
     implementation 'com.afollestad.assent:core:3.0.0-RC4'
     implementation 'com.shuhart.stepview:stepview:1.5.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

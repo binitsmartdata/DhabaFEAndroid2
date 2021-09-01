@@ -153,6 +153,11 @@
     <string name="tower_bright_light">Tower Bright Light</string>
     <string name="bulb_light">Bulb light</string>
     <string name="_24x7_back_up_of_electricity">24X7 Back up of electricity</string>
+    <string name="search_city">Search City</string>
+    <string name="city_name">City Name</string>
+    <string name="continue_text">Continue</string>
+    <string name="city">City</string>
+    <string name="loading_cities">Loading Cities..</string>
     <!--<string name="choose_language">Choose Language</string>
     <string name="english">English</string>
     <string name="hindi">हिंदी</string>

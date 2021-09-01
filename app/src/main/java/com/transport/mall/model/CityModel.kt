@@ -1,8 +1,8 @@
 package com.transport.mall.model
 
 import androidx.room.*
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 @Entity(
 	tableName = "cities",
@@ -12,19 +12,20 @@ import com.google.gson.annotations.SerializedName
 	)]
 )
 data class CityModel(
+	@ColumnInfo(name = "uid")
 	@PrimaryKey(autoGenerate = true) var uid: Int,
 
 	@ColumnInfo(name = "slug")
 	@SerializedName("slug") var slug: String,
 
 	@ColumnInfo(name = "countryCode")
-	@SerializedName("countryCode") var countryCode: Int,
+	@SerializedName("countryCode") var countryCode: String,
 
 	@ColumnInfo(name = "stateCode")
-	@SerializedName("stateCode") var stateCode: Int,
+	@SerializedName("stateCode") var stateCode: String,
 
 	@ColumnInfo(name = "cityCode")
-	@SerializedName("cityCode") var cityCode: Int,
+	@SerializedName("cityCode") var cityCode: String,
 
 	@ColumnInfo(name = "isDeleted")
 	@SerializedName("isDeleted") var isDeleted: Boolean,
@@ -40,8 +41,15 @@ data class CityModel(
 
 	@ColumnInfo(name = "updatedAt")
 	@SerializedName("updatedAt") var updatedAt: String
-) {
+) : Serializable {
     @Ignore
     @SerializedName("name")
     var name: LangModel? = null
+
+    @Ignore
+    var isChecked: Boolean = false
+
+    override fun toString(): String {
+        return name?.en!!
+    }
 }

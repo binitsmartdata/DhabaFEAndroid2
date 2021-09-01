@@ -1,8 +1,9 @@
 package com.transport.mall.repository.networkoperator
 
 
+import com.transport.mall.database.InternalDataListModel
 import com.transport.mall.model.CityModel
-import com.transport.mall.model.ApiResponseModel
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.UserModel
 import retrofit2.Response
 import retrofit2.http.*
@@ -25,5 +26,5 @@ interface ApiService {
         @Query("page") page: String,
         @Query("sort") sort: String,
         @Query("status") status: String
-    ): Response<ApiResponseModel<ArrayList<CityModel>>>
+    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityModel>>>>
 }

@@ -5,10 +5,11 @@ import android.view.View
 import android.widget.ArrayAdapter
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentDhabaListBinding
+import com.transport.mall.model.CityModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
-import com.transport.mall.utils.base.BaseVM
-import com.transport.mall.utils.common.HomeActivityListener
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
@@ -16,22 +17,50 @@ import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 /**
  * Created by Vishal Sharma on 2020-01-24.
  */
-class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, BaseVM>(), RecyclerCallback {
+class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), RecyclerCallback {
     override val layoutId: Int
         get() = R.layout.fragment_dhaba_list
-    override var viewModel: BaseVM
-        get() = setUpVM(this, BaseVM(baseActivity.application))
+    override var viewModel: DhabaListVM
+        get() = setUpVM(this, DhabaListVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentDhabaListBinding
         get() = setUpBinding()
         set(value) {}
 
     private val bindList = RecyclerBindingList<DhabaModel>()
-    var mActivityListener: HomeActivityListener? = null
+    var cityList: ArrayList<CityModel> = ArrayList()
 
     override fun bindData() {
+        binding.lifecycleOwner = this
         setupDhabaList()
         setHasOptionsMenu(true)
+        setupCitySelectionViews()
+    }
+
+    private fun setupCitySelectionViews() {
+        viewModel.getCitiesList(GenericCallBack {
+            cityList = it
+
+            var adapter = ArrayAdapter<CityModel>(
+                activity as Context,
+                android.R.layout.simple_list_item_1, cityList
+            )
+            binding.autoTextSearch.setAdapter(adapter)
+            binding.autoTextSearch.setOnItemClickListener { adapterView, view, i, l ->
+//                cityList[i].toString()
+            }
+        })
+
+        binding.tvCitySelection.setOnClickListener {
+            DialogCitySelection(activity as Context, cityList, GenericCallBack {
+                var selectedNames: String = ""
+                cityList.forEach {
+                    selectedNames =
+                        if (selectedNames.isEmpty()) it.name?.en!! else selectedNames + ", " + it.name?.en
+                }
+                binding.autoTextSearch.setText(selectedNames)
+            }).show()
+        }
     }
 
     override fun initListeners() {

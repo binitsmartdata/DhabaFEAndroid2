@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="data"
+            type="com.transport.mall.model.CityModel" />
+
+        <variable
+            name="callback"
+            type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
+
+        <variable
+            name="selectedPosition"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_5sdp">
+
+        <ImageView
+            imageResource="@{data.isChecked() ? R.drawable.ic_checked : R.drawable.ic_unchecked}"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:padding="@dimen/_7sdp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMenuTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:text="@{data.name.en}"
+            android:fontFamily="@font/opensans_semibold"
+            android:textColor="@{data.isChecked() ? context.getColor(R.color.colorPrimary) : context.getColor(R.color.black)}"
+            android:textSize="@dimen/_14ssp"
+            tools:text="@string/city_name" />
+
+    </LinearLayout>
+</layout>

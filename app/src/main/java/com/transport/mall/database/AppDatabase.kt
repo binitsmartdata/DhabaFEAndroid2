@@ -9,10 +9,10 @@ import com.transport.mall.model.CityModel
 /**
  * Created by parambir.singh on 1/09/21.
  */
-@Database(entities = [CityModel::class], version = 1)
+@Database(entities = [CityModel::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
 
-//    abstract fun userDao(): CityDao
+    abstract fun cityDao(): CityDao
 
     companion object {
         @Volatile

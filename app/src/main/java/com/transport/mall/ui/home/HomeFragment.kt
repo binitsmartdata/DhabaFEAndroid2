@@ -5,13 +5,14 @@ import android.content.Context
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentHomeBinding
 import com.transport.mall.ui.addnewdhaba.NewDhabaActivity
+import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.ui.home.dhabalist.DhabaListFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseFragment
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.HomeActivityListener
 
 /**
@@ -34,7 +35,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
         binding.viewModel = viewModel
         setupViewPager()
         setHasOptionsMenu(true)
-        viewModel.getCitiesList()
     }
 
     private fun setupViewPager() {

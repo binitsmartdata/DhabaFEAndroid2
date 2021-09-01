@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -9,67 +9,77 @@
         <import type="android.view.View" />
 
         <variable
-                name="list"
-                type="com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList" />
+            name="list"
+            type="com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList" />
 
         <variable
-                name="click"
-                type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
+            name="click"
+            type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
 
         <variable
-                name="toolbarModel"
-                type="com.transport.mall.model.Toolbar" />
+            name="toolbarModel"
+            type="com.transport.mall.model.Toolbar" />
+
+        <variable
+            name="viewModel"
+            type="com.transport.mall.ui.home.dhabalist.DhabaListVM" />
 
     </data>
 
     <LinearLayout
-            android:id="@+id/parent"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/grey_stroke"
-                android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/grey_stroke"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                    android:id="@+id/autoTextSearch"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:padding="@dimen/_10sdp"
-                    android:hint="@string/search_dhaba"
-                    android:textSize="@dimen/_12ssp"
-                    android:singleLine="true"
-                    android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/ic_search"
-                    android:layout_weight="1" />
+                android:id="@+id/autoTextSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="5dp"
+                android:hint="@string/search_dhaba"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_12ssp" />
 
             <View
-                    android:layout_width="@dimen/_1sdp"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey" />
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="match_parent"
+                android:background="@color/grey" />
 
-            <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:entries="@array/cities_list_dummy" />
+            <TextView
+                android:id="@+id/tvCitySelection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/default_btn_selector"
+                android:drawableRight="@drawable/ic_spinner_dropdown"
+                android:drawablePadding="@dimen/_10sdp"
+                android:entries="@array/cities_list_dummy"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="@string/city" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                itemDecor="@{false}"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:layout="@{R.layout.row_dhaba_list}"
-                app:onItemClickListener="@{click}"
-                app:recyclerLinearAdapter="@{list}" />
+            android:id="@+id/recyclerView"
+            itemDecor="@{false}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout="@{R.layout.row_dhaba_list}"
+            app:onItemClickListener="@{click}"
+            app:recyclerLinearAdapter="@{list}" />
 
     </LinearLayout>
 

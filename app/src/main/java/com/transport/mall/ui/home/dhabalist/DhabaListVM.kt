@@ -1,4 +1,4 @@
-package com.transport.mall.ui.home
+package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 /**
  * Created by Vishal Sharma on 2019-12-06.
  */
-class HomeVM(application: Application) : BaseVM(application) {
+class DhabaListVM(application: Application) : BaseVM(application) {
     var errorResponse: MutableLiveData<String>? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
 
