@@ -101,12 +101,12 @@
     <string name="night_guard">Night Guard</string>
     <string name="police_verification">Police Verification</string>
     <string name="submit_police_verification_document">Submit Police Verification Document</string>
-    <string name="mechanic_shop">Mechanic Shop</string>
+    <string name="mechanic_shop">Mechanic Shop 24 x 7</string>
     <string name="_24_x_7">24 x 7</string>
     <string name="day">Day</string>
     <string name="no_shop">No Shop</string>
-    <string name="puncture_shop">Puncture Shop</string>
-    <string name="daily_utility_shop">Daily Utility Shop</string>
+    <string name="puncture_shop">Puncture Shop 24x7</string>
+    <string name="daily_utility_shop">Daily Utility Shop 24x7</string>
     <string name="barber">Barber</string>
     <string name="in_premises">IN Premises</string>
     <string name="_1_200_m">1-200 M</string>
@@ -157,6 +157,31 @@
     <string name="english">English</string>
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>-->
+    <string name="offers">Offers</string>
+    <string name="discount">Discount (%)</string>
+    <string name="offer_start_date">Offer Start Date</string>
+    <string name="offer_end_date">Offer End Date</string>
+    <string name="onboarded_by">Onboarded By</string>
+    <string name="name">Name</string>
+    <string name="onboarding_date">Onboarding Date</string>
+    <string name="sales_executive">Sales Executive</string>
+    <string name="area_head">Area Head</string>
+    <string name="head">Head</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="bank">Bank</string>
+    <string name="gst_number">GST Number</string>
+    <string name="ifsc_code">IFSC Code</string>
+    <string name="account_holder_name">Account Holder Name</string>
+    <string name="upload_pan_photo">Upload Pan Photo</string>
+    <string name="blocking_system_for">Blocking System For</string>
+    <string name="choose_months">Choose Months</string>
+    <string name="property_status">Property Status</string>
+    <string name="_15_days">15 Days</string>
+    <string name="month">Month</string>
+    <string name="delisted">Delisted</string>
+    <string name="mechanic_shop_day">Mechanic Shop Day</string>
+    <string name="puncture_shop_day">Puncture Shop Day</string>
+    <string name="daily_utility_shop_day">Daily Utility Shop Day</string>
 
 
     <string-array name="menu_array">
