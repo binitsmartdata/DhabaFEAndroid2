@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.transport.mall.model.user.LangModel
-import com.transport.mall.model.user.UserModel
+import com.transport.mall.model.LangModel
+import com.transport.mall.model.UserModel
 
 class SharedPrefsHelper {
     private val SELECTED_LANGUAGE = "selectedLanguage"

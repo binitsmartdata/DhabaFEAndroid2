@@ -6,10 +6,10 @@ import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
-import com.healthiex.naha.repository.networkoperator.Result
 import com.transport.mall.R
 import com.transport.mall.model.ApiResponseModel
-import com.transport.mall.model.user.UserModel
+import com.transport.mall.model.UserModel
+import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
@@ -52,7 +52,7 @@ class LoginVM(application: Application) : BaseVM(application) {
         return progressObserver
     }
 
-    fun doLoginProcess(callBak: GenericCallBackTwoParams<Result.Status, String>) {
+    fun doLoginProcess(callBak: GenericCallBackTwoParams<com.transport.mall.repository.networkoperator.ApiResult.Status, String>) {
         Log.e("doLoginProcess", "-------------------")
         var email = ""
         var password = ""
@@ -69,10 +69,10 @@ class LoginVM(application: Application) : BaseVM(application) {
                 GlobalScope.launch(Dispatchers.Main) {
                     login(email, password).collect {
                         when (it.status) {
-                            Result.Status.LOADING -> {
+                            ApiResult.Status.LOADING -> {
                                 callBak.onResponse(it.status, "")
                             }
-                            Result.Status.ERROR -> {
+                            ApiResult.Status.ERROR -> {
                                 try {
                                     val response =
                                         Gson().fromJson(
@@ -84,7 +84,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                                     callBak.onResponse(it.status, it.message)
                                 }
                             }
-                            Result.Status.SUCCESS -> {
+                            ApiResult.Status.SUCCESS -> {
                                 SharedPrefsHelper.getInstance(app as Context)
                                     .setUserData(it.data?.data!!)
 
@@ -109,9 +109,12 @@ class LoginVM(application: Application) : BaseVM(application) {
         progressObserver?.value = true
     }
 
-    suspend fun login(email: String, password: String): Flow<Result<ApiResponseModel<UserModel>>> {
+    suspend fun login(
+        email: String,
+        password: String
+    ): Flow<ApiResult<ApiResponseModel<UserModel>>> {
         return flow {
-            emit(Result.loading())
+            emit(ApiResult.loading())
             emit(
                 getResponse(
                     request = {

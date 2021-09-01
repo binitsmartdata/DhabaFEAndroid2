@@ -1,25 +1,27 @@
-package com.transport.mall.ui.home.dhabalist
+package com.transport.mall.ui.home
 
 import android.app.Activity
 import android.content.Context
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentHomeBinding
 import com.transport.mall.ui.addnewdhaba.NewDhabaActivity
+import com.transport.mall.ui.home.dhabalist.DhabaListFragment
+import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseFragment
-import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.HomeActivityListener
 
 /**
  * Created by Vishal Sharma on 2020-01-24.
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding, BaseVM>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_home
-    override var viewModel: BaseVM
-        get() = setUpVM(this, BaseVM(baseActivity.application))
+    override var viewModel: HomeVM
+        get() = setUpVM(this, HomeVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentHomeBinding
         get() = setUpBinding()
@@ -28,8 +30,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, BaseVM>() {
     var mActivityListener: HomeActivityListener? = null
 
     override fun bindData() {
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         setupViewPager()
         setHasOptionsMenu(true)
+        viewModel.getCitiesList()
     }
 
     private fun setupViewPager() {

@@ -1,4 +1,4 @@
-package com.transport.mall.model.user
+package com.transport.mall.model
 
 import com.google.gson.annotations.SerializedName
 

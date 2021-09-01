@@ -1,9 +1,9 @@
 package com.transport.mall.repository.networkoperator
 
 
-import CityModel
+import com.transport.mall.model.CityModel
 import com.transport.mall.model.ApiResponseModel
-import com.transport.mall.model.user.UserModel
+import com.transport.mall.model.UserModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -16,7 +16,7 @@ interface ApiService {
         @Field("password") deviceId: String
     ): Response<ApiResponseModel<UserModel>>
 
-    @GET("/api/v1/city/getAllCities")
+    @GET("city/getAllCities")
     suspend fun getAllCities(
         @Header("Authorization") token: String,
         @Query("count") count: String,
@@ -25,5 +25,5 @@ interface ApiService {
         @Query("page") page: String,
         @Query("sort") sort: String,
         @Query("status") status: String
-    ): Response<ApiResponseModel<CityModel>>
+    ): Response<ApiResponseModel<ArrayList<CityModel>>>
 }

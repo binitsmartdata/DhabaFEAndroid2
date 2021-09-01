@@ -23,7 +23,7 @@
 
         <variable
             name="userModel"
-            type="com.transport.mall.model.user.UserModel" />
+            type="com.transport.mall.model.UserModel" />
 
     </data>
 

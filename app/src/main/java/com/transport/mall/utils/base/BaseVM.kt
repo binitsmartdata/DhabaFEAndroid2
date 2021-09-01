@@ -3,10 +3,10 @@ package com.transport.mall.utils.base
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.healthiex.naha.repository.networkoperator.Result
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import retrofit2.Response
+import com.transport.mall.repository.networkoperator.ApiResult
 
 open class BaseVM(context: Application) : AndroidViewModel(context) {
 
@@ -30,16 +30,16 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches()
     }
 
-    suspend fun <T> getResponse(request: suspend () -> Response<T>?): Result<T> {
+    suspend fun <T> getResponse(request: suspend () -> Response<T>?): ApiResult<T> {
         return try {
             val result = request.invoke()
             if (result?.isSuccessful!!) {
-                return Result.success(result.body())
+                return ApiResult.success(result.body())
             } else {
-                return Result.error(result.message(), result.errorBody())
+                return ApiResult.error(result.message(), result.errorBody())
             }
         } catch (e: Throwable) {
-            Result.error(e.message, null)
+            ApiResult.error(e.message, null)
         }
     }
 

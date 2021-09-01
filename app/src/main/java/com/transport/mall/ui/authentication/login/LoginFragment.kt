@@ -1,12 +1,12 @@
 package com.transport.mall.ui.authentication.login
 
 import androidx.lifecycle.Observer
-import com.healthiex.naha.repository.networkoperator.Result
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentLoginBinding
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.repository.networkoperator.ApiResult
 
 /**
  * Created by Vishal Sharma on 2019-12-06.
@@ -46,14 +46,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
         binding.btnLogin.setOnClickListener {
             viewModel.doLoginProcess(GenericCallBackTwoParams { output, output2 ->
                 when (output) {
-                    Result.Status.LOADING -> {
+                    ApiResult.Status.LOADING -> {
                         showProgressDialog()
                     }
-                    Result.Status.ERROR -> {
+                    ApiResult.Status.ERROR -> {
                         hideProgressDialog()
                         showToastInCenter(output2)
                     }
-                    Result.Status.SUCCESS -> {
+                    ApiResult.Status.SUCCESS -> {
                         hideProgressDialog()
                         activity?.finish()
                     }
