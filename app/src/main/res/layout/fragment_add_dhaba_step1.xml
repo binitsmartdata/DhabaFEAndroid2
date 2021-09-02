@@ -3,6 +3,13 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1VM" />
+
+        <variable
+            name="data"
+            type="com.transport.mall.model.DhabaDetailsModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,8 +37,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:text=""
+                    android:id="@+id/edDhabaName"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -49,10 +57,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/dhabaNameTil">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edDhabaAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text|textMultiLine"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
@@ -104,8 +113,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:text=""
+                    android:id="@+id/edLandmark"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -126,46 +136,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:text=""
+                    android:id="@+id/edArea"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/selectHighwayLayout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/grey_stroke"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/areaTil">
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/highwayTil"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:background="@null"
-                    android:entries="@array/select_highway_number"
-                    android:gravity="center_vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/spinnerArrowImage"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/spinnerArrowImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/ic_spinner_dropdown"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:hint="@string/highway_number"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/areaTil">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:inputType="text"
+                        android:text=""
+                        android:id="@+id/edHighway"
+                        android:maxLength="10"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/selectStateLayout"
@@ -175,9 +177,10 @@
                 android:background="@drawable/grey_stroke"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectHighwayLayout">
+                app:layout_constraintTop_toBottomOf="@+id/highwayTil">
 
                 <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnrState"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_5sdp"
@@ -211,6 +214,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/selectStateLayout">
 
                 <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnrCity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_5sdp"
@@ -248,7 +252,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
+                    android:maxLength="6"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />

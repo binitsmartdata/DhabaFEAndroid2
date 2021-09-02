@@ -63,7 +63,7 @@ class SharedPrefsHelper {
     }
 
     fun getSelectedLanguage(): String {
-        return prefs?.getString(SELECTED_LANGUAGE, "en")!!
+        return prefs?.getString(SELECTED_LANGUAGE, "")!!
     }
 
     public fun setLanguageToHindi() {

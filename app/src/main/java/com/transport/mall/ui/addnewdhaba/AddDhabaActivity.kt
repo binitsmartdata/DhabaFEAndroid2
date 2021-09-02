@@ -22,7 +22,7 @@ import com.transport.mall.utils.base.BaseVM
 /**
  * Created by Vishal Sharma on 2019-12-06.
  */
-class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
+class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
     override val binding: ActivityNewDhabaBinding
         get() = setUpBinding()
     override val layoutId: Int
@@ -38,7 +38,7 @@ class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
 
     companion object {
         fun start(context: Context) {
-            val intent = Intent(context, NewDhabaActivity::class.java)
+            val intent = Intent(context, AddDhabaActivity::class.java)
             context.startActivity(intent)
         }
     }
@@ -47,19 +47,25 @@ class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
         if (!isAllGranted(
                 Permission.CAMERA,
                 Permission.WRITE_EXTERNAL_STORAGE,
-                Permission.READ_EXTERNAL_STORAGE
+                Permission.READ_EXTERNAL_STORAGE,
+                Permission.ACCESS_FINE_LOCATION,
+                Permission.ACCESS_COARSE_LOCATION
             )
         ) {
             askForPermissions(
                 Permission.CAMERA,
                 Permission.WRITE_EXTERNAL_STORAGE,
-                Permission.READ_EXTERNAL_STORAGE
+                Permission.READ_EXTERNAL_STORAGE,
+                Permission.ACCESS_FINE_LOCATION,
+                Permission.ACCESS_COARSE_LOCATION
             ) { result ->
                 // Check the result, see the Using Results section
                 if (!result.isAllGranted(
                         Permission.CAMERA,
                         Permission.WRITE_EXTERNAL_STORAGE,
-                        Permission.READ_EXTERNAL_STORAGE
+                        Permission.READ_EXTERNAL_STORAGE,
+                        Permission.ACCESS_FINE_LOCATION,
+                        Permission.ACCESS_COARSE_LOCATION
                     )
                 ) {
                     finish()

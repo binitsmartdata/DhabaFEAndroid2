@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.Camera"
         android:required="true" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name="com.transport.mall.utils.base.BaseApplication"
@@ -42,7 +44,7 @@
         <activity
             android:name="com.transport.mall.ui.authentication.AuthenticationActivity"
             android:windowSoftInputMode="stateAlwaysVisible"></activity>
-        <activity android:name="com.transport.mall.ui.addnewdhaba.NewDhabaActivity"></activity>
+        <activity android:name="com.transport.mall.ui.addnewdhaba.AddDhabaActivity"></activity>
         <activity android:name="com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity"></activity>
 
         <provider

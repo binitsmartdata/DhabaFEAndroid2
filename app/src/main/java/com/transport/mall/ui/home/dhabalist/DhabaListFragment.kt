@@ -5,8 +5,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentDhabaListBinding
-import com.transport.mall.model.CityModel
-import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.CityAndStateModel
+import com.transport.mall.model.DhabaDetailsModel
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -27,8 +27,8 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
         get() = setUpBinding()
         set(value) {}
 
-    private val bindList = RecyclerBindingList<DhabaModel>()
-    var cityList: ArrayList<CityModel> = ArrayList()
+    private val bindList = RecyclerBindingList<DhabaDetailsModel>()
+    var cityAndStateList: ArrayList<CityAndStateModel> = ArrayList()
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -39,11 +39,11 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
 
     private fun setupCitySelectionViews() {
         viewModel.getCitiesList(GenericCallBack {
-            cityList = it
+            cityAndStateList = it
 
-            var adapter = ArrayAdapter<CityModel>(
+            var adapter = ArrayAdapter<CityAndStateModel>(
                 activity as Context,
-                android.R.layout.simple_list_item_1, cityList
+                android.R.layout.simple_list_item_1, cityAndStateList
             )
             binding.autoTextSearch.setAdapter(adapter)
             binding.autoTextSearch.setOnItemClickListener { adapterView, view, i, l ->
@@ -52,9 +52,9 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
         })
 
         binding.tvCitySelection.setOnClickListener {
-            DialogCitySelection(activity as Context, cityList, GenericCallBack {
+            DialogCitySelection(activity as Context, cityAndStateList, GenericCallBack {
                 var selectedNames: String = ""
-                cityList.forEach {
+                cityAndStateList.forEach {
                     selectedNames =
                         if (selectedNames.isEmpty()) it.name?.en!! else selectedNames + ", " + it.name?.en
                 }
@@ -77,10 +77,12 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
     }
 
     private fun setupDhabaList() {
-        val list = ArrayList<DhabaModel>()
+        val list = ArrayList<DhabaDetailsModel>()
         val menuArray = resources.getStringArray(R.array.dhaba_list)
         for (i in menuArray.indices) {
-            list.add(DhabaModel(menuArray[i]))
+            var dhaba = DhabaDetailsModel()
+            dhaba.name = menuArray[i]
+            list.add(dhaba)
         }
         bindList.itemsList = list
         binding.list = bindList

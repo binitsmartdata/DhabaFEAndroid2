@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,226 +9,226 @@
         <import type="android.view.View" />
 
         <variable
-                name="position"
-                type="Integer" />
+            name="position"
+            type="Integer" />
 
         <variable
-                name="model"
-                type="com.transport.mall.model.DhabaModel" />
+            name="model"
+            type="com.transport.mall.model.DhabaDetailsModel" />
 
         <variable
-                name="callback"
-                type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
+            name="callback"
+            type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
 
     </data>
 
     <LinearLayout
-            android:id="@+id/parentItem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="vertical">
+        android:id="@+id/parentItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:src="@drawable/ic_profile_pic_placeholder" />
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_profile_pic_placeholder" />
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textColor="@color/gold"
-                        android:layout_marginTop="5dp"
-                        android:paddingHorizontal="7dp"
-                        android:paddingVertical="3dp"
-                        android:background="@drawable/light_gold_shape"
-                        android:text="@string/pending" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/light_gold_shape"
+                    android:paddingHorizontal="7dp"
+                    android:paddingVertical="3dp"
+                    android:text="@string/pending"
+                    android:textColor="@color/gold" />
 
             </LinearLayout>
 
             <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingHorizontal="5dp"
-                    android:orientation="vertical">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingHorizontal="5dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvMenuTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> callback.onItemClick(tvMenuTitle, position)}"
-                        android:orientation="vertical"
-                        android:text="@{model.title}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
-                        tools:text="Pehalwan Dhaba" />
+                    android:id="@+id/tvMenuTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> callback.onItemClick(tvMenuTitle, position)}"
+                    android:orientation="vertical"
+                    android:text="@{model.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    tools:text="Pehalwan Dhaba" />
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gold"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/_12ssp"
-                        android:paddingHorizontal="15dp"
-                        android:paddingVertical="2dp"
-                        android:textColor="@color/white"
-                        android:background="@drawable/ic_gold_hotel_type" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_gold_hotel_type"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="2dp"
+                    android:text="Gold"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvCity"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:text="Chandigarh"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp" />
+                    android:id="@+id/tvCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Chandigarh"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:text="Near Surgical Complex"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp" />
+                    android:id="@+id/tvAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Near Surgical Complex"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvOpeningTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:text="Open 5 am to 2 am"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp" />
+                    android:id="@+id/tvOpeningTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Open 5 am to 2 am"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
 
                 <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <RatingBar
-                            android:id="@+id/ratingBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="?android:attr/ratingBarStyleSmall"
-                            android:rating="4.2" />
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:rating="4.2" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvRating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:text="4.0"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
+                        android:id="@+id/tvRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical"
+                        android:text="4.0"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp" />
 
 
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <ImageView
-                        android:id="@+id/ivEdit"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_edit" />
+                    android:id="@+id/ivEdit"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_edit" />
 
                 <ImageView
-                        android:id="@+id/ivLocation"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_location" />
+                    android:id="@+id/ivLocation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_location" />
 
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp">
 
             <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
 
                 <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/demo_profile_pic" />
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/demo_profile_pic" />
 
                 <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:text="Owner"
+                        android:textColor="@color/grey" />
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Owner"
-                            android:textColor="@color/grey" />
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jarnail Singh"
-                            android:textColor="@color/black" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jarnail Singh"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="1">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
 
                 <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/demo_profile_pic_2" />
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:src="@drawable/demo_profile_pic_2" />
 
                 <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:text="Assigned To"
+                        android:textColor="@color/grey" />
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Assigned To"
-                            android:textColor="@color/grey" />
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rajinder Kumar"
-                            android:textColor="@color/black" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rajinder Kumar"
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -237,10 +237,10 @@
         </LinearLayout>
 
         <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/black" />
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/black" />
 
     </LinearLayout>
 </layout>

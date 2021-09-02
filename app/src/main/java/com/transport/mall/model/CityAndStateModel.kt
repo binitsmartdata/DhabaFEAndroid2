@@ -11,7 +11,7 @@ import java.io.Serializable
 		unique = true
 	)]
 )
-data class CityModel(
+data class CityAndStateModel(
 	@ColumnInfo(name = "uid")
 	@PrimaryKey(autoGenerate = true) var uid: Int,
 

@@ -2,19 +2,13 @@ package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.transport.mall.database.ApiResponseModel
-import com.transport.mall.database.InternalDataListModel
-import com.transport.mall.model.CityModel
+import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 /**
@@ -36,9 +30,9 @@ class DhabaListVM(application: Application) : BaseVM(application) {
         return errorResponse
     }
 
-    fun getCitiesList(callBack: GenericCallBack<ArrayList<CityModel>>) {
+    fun getCitiesList(callBack: GenericCallBack<ArrayList<CityAndStateModel>>) {
         GlobalScope.launch(Dispatchers.Main) {
-            getAllCities().collect {
+            getAllCities(app!!).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         progressObserver.value = true
@@ -54,22 +48,5 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                 }
             }
         }
-    }
-
-    suspend fun getAllCities(): Flow<ApiResult<ApiResponseModel<InternalDataListModel<ArrayList<CityModel>>>>> {
-        return flow {
-            emit(ApiResult.loading())
-            emit(
-                getResponse(
-                    request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.getAllCities(
-                            getAccessToken(app!!),
-                            "10",
-                            "", "", "999", "ASC", "true"
-                        )
-                    }
-                )
-            )
-        }.flowOn(Dispatchers.IO)
     }
 }

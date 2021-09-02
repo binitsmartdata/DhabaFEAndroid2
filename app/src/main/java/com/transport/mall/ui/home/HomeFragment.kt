@@ -7,12 +7,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentHomeBinding
-import com.transport.mall.ui.addnewdhaba.NewDhabaActivity
-import com.transport.mall.ui.customdialogs.DialogCitySelection
+import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.home.dhabalist.DhabaListFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseFragment
-import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.HomeActivityListener
 
 /**
@@ -58,7 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     }
 
     private fun startAddDhabaActivity() {
-        NewDhabaActivity.start(activity as Context)
+        AddDhabaActivity.start(activity as Context)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

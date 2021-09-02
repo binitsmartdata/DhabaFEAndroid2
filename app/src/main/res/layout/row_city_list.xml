@@ -14,7 +14,7 @@
 
         <variable
             name="data"
-            type="com.transport.mall.model.CityModel" />
+            type="com.transport.mall.model.CityAndStateModel" />
 
         <variable
             name="callback"

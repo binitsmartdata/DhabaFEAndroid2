@@ -12,7 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.databinding.DialogCitySelectionBinding
-import com.transport.mall.model.CityModel
+import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.utils.common.GenericCallBack
 import java.util.*
 import kotlin.collections.ArrayList
@@ -20,12 +20,12 @@ import kotlin.collections.ArrayList
 
 class DialogCitySelection constructor(
     context: Context,
-    dataList: ArrayList<CityModel>,
-    callBack: GenericCallBack<ArrayList<CityModel>>
+    dataList: ArrayList<CityAndStateModel>,
+    callBack: GenericCallBack<ArrayList<CityAndStateModel>>
 ) : Dialog(context) {
 
     var binding: DialogCitySelectionBinding
-    var filterDataList: ArrayList<CityModel> = ArrayList()
+    var filterDataList: ArrayList<CityAndStateModel> = ArrayList()
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -40,7 +40,7 @@ class DialogCitySelection constructor(
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = CityListAdapter(context, dataList)
         binding.btnContinue.setOnClickListener {
-            val selectedCities = ArrayList<CityModel>()
+            val selectedCities = ArrayList<CityAndStateModel>()
             for (model in if (filterDataList.isNotEmpty()) filterDataList else dataList) {
                 if (model.isChecked) {
                     selectedCities.add(model)
