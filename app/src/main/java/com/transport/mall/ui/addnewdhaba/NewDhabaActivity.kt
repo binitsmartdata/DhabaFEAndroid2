@@ -44,10 +44,24 @@ class NewDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
     }
 
     override fun bindData() {
-        if (!isAllGranted(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)) {
-            askForPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) { result ->
+        if (!isAllGranted(
+                Permission.CAMERA,
+                Permission.WRITE_EXTERNAL_STORAGE,
+                Permission.READ_EXTERNAL_STORAGE
+            )
+        ) {
+            askForPermissions(
+                Permission.CAMERA,
+                Permission.WRITE_EXTERNAL_STORAGE,
+                Permission.READ_EXTERNAL_STORAGE
+            ) { result ->
                 // Check the result, see the Using Results section
-                if (!result.isAllGranted(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)) {
+                if (!result.isAllGranted(
+                        Permission.CAMERA,
+                        Permission.WRITE_EXTERNAL_STORAGE,
+                        Permission.READ_EXTERNAL_STORAGE
+                    )
+                ) {
                     finish()
                 }
             }

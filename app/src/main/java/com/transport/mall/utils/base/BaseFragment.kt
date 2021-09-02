@@ -4,7 +4,10 @@ import android.R
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +20,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.deepakkumardk.videopickerlib.EasyVideoPicker
+import com.deepakkumardk.videopickerlib.model.SelectionMode
+import com.deepakkumardk.videopickerlib.model.SelectionStyle
+import com.deepakkumardk.videopickerlib.model.VideoPickerItem
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
@@ -195,5 +202,36 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         activity?.startActivity(intent)
         activity?.finish()
+    }
+
+    var INTENT_VIDEO_CAMERA = 111
+    var INTENT_VIDEO_GALLERY = 222
+    fun captureVideo(fragment: Fragment) {
+        Intent(MediaStore.ACTION_VIDEO_CAPTURE).also { takeVideoIntent ->
+            takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 1000);
+            takeVideoIntent.resolveActivity(activity?.getPackageManager()!!)?.also {
+                startActivityForResult(takeVideoIntent, INTENT_VIDEO_CAMERA)
+            }
+        }
+    }
+
+    fun pickVideoFromGallery(fragment: Fragment) {
+        val item = VideoPickerItem().apply {
+            showIcon = true
+            sizeLimit = 100 * 1024 * 1024       // max. size in Bytes
+            selectionMode = SelectionMode.Single  //Other modes are Single & Custom(limit:Int)
+            gridDecoration = Triple(2, 20, true)    //(spanCount,spacing,includeEdge)
+            showDuration = true
+            selectionStyle = SelectionStyle.Large
+        }
+        EasyVideoPicker().startPickerForResult(this, item, INTENT_VIDEO_GALLERY)
+    }
+
+    open fun getRealPathFromURI(contentUri: Uri?): String? {
+        val proj = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor: Cursor = activity?.managedQuery(contentUri, proj, null, null, null)!!
+        val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        cursor.moveToFirst()
+        return cursor.getString(column_index)
     }
 }

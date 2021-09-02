@@ -195,6 +195,7 @@
     <string name="or">OR</string>
     <string name="chat">Chat</string>
     <string name="request_for_call">Request for Call</string>
+    <string name="upload_dhaba_video">Upload Dhaba Video</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>
