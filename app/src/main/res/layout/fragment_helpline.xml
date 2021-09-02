@@ -145,7 +145,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:src="@drawable/ic_chat_red" />
+                        android:src="@drawable/ic_call_red" />
 
 
                     <androidx.appcompat.widget.AppCompatTextView

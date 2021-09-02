@@ -182,7 +182,14 @@
     <string name="mechanic_shop_day">Mechanic Shop Day</string>
     <string name="puncture_shop_day">Puncture Shop Day</string>
     <string name="daily_utility_shop_day">Daily Utility Shop Day</string>
-
+    <string name="profile">Profile</string>
+    <string name="change_language">Change Language</string>
+    <string name="logout">Logout</string>
+    <string name="helpline">Helpline</string>
+    <string name="or">OR</string>
+    <string name="chat">Chat</string>
+    <string name="request_for_call">Request for Call</string>
+    <string name="save">Save</string>
 
     <string-array name="menu_array">
         <item>@string/dhaba_mnagement</item>

@@ -13,7 +13,7 @@ import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
  */
 class SettingsFragment : BaseFragment<FragmentNotificationsBinding, BaseVM>() {
     override val layoutId: Int
-        get() = R.layout.fragment_notification_settings
+        get() = R.layout.fragment_settings
     override var viewModel: BaseVM
         get() = setUpVM(this, BaseVM(baseActivity.application))
         set(value) {}
