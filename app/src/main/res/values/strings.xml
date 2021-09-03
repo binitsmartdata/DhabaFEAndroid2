@@ -198,6 +198,9 @@
     <string name="upload_dhaba_video">Upload Dhaba Video</string>
     <string name="highway_number">National Highway Number</string>
     <string name="loading_cities_states">Loading Cities and States..</string>
+    <string name="save">Save</string>
+    <string name="enter_your_phone_number_where_we_can_call_you">Enter your phone number where we can call you</string>
+    <string name="call_me_now">Call me now</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

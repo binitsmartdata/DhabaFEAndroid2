@@ -361,7 +361,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_20sdp"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="Save"
+                android:text="@string/save"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
