@@ -9,5 +9,5 @@ data class ApiResponseModel<T>(
     @SerializedName("message")
     var message: String,
     @SerializedName("data")
-    var data: T
+    var data: T?
 ) : Serializable

@@ -10,23 +10,21 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
 import com.deepakkumardk.videopickerlib.EasyVideoPicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
+import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAddDhabaStep1Binding
 import com.transport.mall.model.CityAndStateModel
-import com.transport.mall.model.DhabaDetailsModel
-import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.createVideoThumbnail
 import com.transport.mall.utils.xloadImages
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import java.io.File
 
 
 /**
@@ -43,25 +41,64 @@ class AddDhabaStep1Fragment :
         get() = setUpBinding()
         set(value) {}
 
-    var selectedCity: CityAndStateModel? = null
-    var selectedState: CityAndStateModel? = null
-    var selectedPhoto: String? = null
-    var selectedVideo: String? = null
+    var mListener: AddDhabaListener? = null
 
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.data = DhabaDetailsModel()
-        viewModel.progressObserver.observeForever{
+        mListener = activity as AddDhabaListener
+        viewModel.progressObserver.observe(this, Observer {
             if (it) {
-                showProgressDialog("dhinak")
+                showProgressDialog()
             } else {
                 hideProgressDialog()
             }
-        }
+        })
+
+        binding.spnrPropertyStatus.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val menuArray = resources.getStringArray(R.array.property_status)
+                viewModel.propertyStatus.set(if (p2 == 0) "" else menuArray[p2])
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        })
 
         binding.btnNext.setOnClickListener {
-
+            viewModel.getDhabaModel().hasEverything(GenericCallBackTwoParams { status, message ->
+                if (status) {
+                    viewModel.addDhaba(
+                        viewModel.getDhabaModel().name,
+                        viewModel.getDhabaModel().address,
+                        viewModel.getDhabaModel().landmark,
+                        viewModel.getDhabaModel().area,
+                        viewModel.getDhabaModel().highway,
+                        viewModel.getDhabaModel().state,
+                        viewModel.getDhabaModel().city,
+                        viewModel.getDhabaModel().pincode,
+                        viewModel.getDhabaModel().address,
+                        "",
+                        viewModel.getDhabaModel().propertyStatus,
+                        File(viewModel.getDhabaModel().images),
+                        File(viewModel.getDhabaModel().videos),
+                        SharedPrefsHelper.getInstance(activity as Context).getUserData().id,
+                        SharedPrefsHelper.getInstance(activity as Context).getUserData().id,
+                        GenericCallBack {
+                            if (it.data != null) {
+                                showToastInCenter(it.message)
+                                mListener?.showNextScreen()
+                            } else {
+                                showToastInCenter(it.message)
+                            }
+                        }
+                    )
+                } else {
+                    showToastInCenter(message)
+                }
+            })
         }
     }
 
@@ -85,7 +122,7 @@ class AddDhabaStep1Fragment :
             binding.spnrState.setOnItemSelectedListener(object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    selectedState = StateList.get(p2)
+                    viewModel.state.set(StateList.get(p2).name?.en)
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -103,7 +140,7 @@ class AddDhabaStep1Fragment :
             binding.spnrCity.setOnItemSelectedListener(object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    selectedCity = cityList.get(p2)
+                    viewModel.city.set(cityList.get(p2).name?.en)
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -174,23 +211,27 @@ class AddDhabaStep1Fragment :
             if (requestCode == INTENT_VIDEO_GALLERY) {
                 val list = EasyVideoPicker.getSelectedVideos(data)
 
-                selectedVideo = list?.get(0)?.videoPath!!
-                var thumbPath = createVideoThumbnail(activity as Context, selectedVideo!!)
+                viewModel.videos.set(list?.get(0)?.videoPath!!)
+                var thumbPath =
+                    createVideoThumbnail(activity as Context, viewModel.getDhabaModel().videos)
                 var uri = Uri.fromFile(thumbPath)
                 binding.ivVideoThumb.setImageURI(uri)
                 binding.frameVideoThumb.visibility = View.VISIBLE
             } else if (requestCode == INTENT_VIDEO_CAMERA) {
                 val videoUri: Uri = data?.data!!
-                selectedVideo = getRealPathFromURI(videoUri)
+                viewModel.videos.set(getRealPathFromURI(videoUri))
                 xloadImages(
                     binding.ivVideoThumb,
-                    createVideoThumbnail(activity as Context, selectedVideo!!).absolutePath,
+                    createVideoThumbnail(
+                        activity as Context,
+                        viewModel.getDhabaModel().videos
+                    ).absolutePath,
                     R.drawable.ic_image_placeholder
                 )
                 binding.frameVideoThumb.visibility = View.VISIBLE
             } else {
                 val uri: Uri = data?.data!!
-                selectedPhoto = getRealPathFromURI(uri)
+                viewModel.images.set(if (uri.isAbsolute) uri.path else getRealPathFromURI(uri))
                 binding.ivImageThumb.setImageURI(uri)
             }
         }

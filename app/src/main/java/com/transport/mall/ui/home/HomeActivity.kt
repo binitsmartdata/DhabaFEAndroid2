@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import com.transport.mall.R
+import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.ActivityHomeBinding
 import com.transport.mall.model.SideMenu
 import com.transport.mall.model.Toolbar
@@ -16,14 +17,14 @@ import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.HomeActivityListener
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
  * Created by Vishal Sharma on 2019-12-06.
  */
-class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(), HomeActivityListener {
+class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
+    CommonActivityListener {
     override val binding: ActivityHomeBinding
         get() = setUpBinding()
     override val layoutId: Int

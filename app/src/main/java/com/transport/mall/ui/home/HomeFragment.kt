@@ -11,7 +11,7 @@ import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.home.dhabalist.DhabaListFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseFragment
-import com.transport.mall.utils.common.HomeActivityListener
+import com.transport.mall.callback.CommonActivityListener
 
 /**
  * Created by Vishal Sharma on 2020-01-24.
@@ -26,7 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
         get() = setUpBinding()
         set(value) {}
 
-    var mActivityListener: HomeActivityListener? = null
+    var mCommonActivityListener: CommonActivityListener? = null
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -67,7 +67,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.actionNotification -> {
-                mActivityListener?.openNotificationFragment()
+                mCommonActivityListener?.openNotificationFragment()
                 return true
             }
         }
@@ -77,7 +77,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         try {
-            mActivityListener = activity as HomeActivityListener
+            mCommonActivityListener = activity as CommonActivityListener
         } catch (e: ClassCastException) {
             throw ClassCastException(
                 activity.toString()
@@ -88,6 +88,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
 
     override fun onDetach() {
         super.onDetach()
-        mActivityListener = null
+        mCommonActivityListener = null
     }
 }

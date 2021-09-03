@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentNotificationsBinding
-import com.transport.mall.model.DhabaDetailsModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.NotificationModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
@@ -29,7 +29,7 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding, BaseVM>
         get() = setUpBinding()
         set(value) {}
 
-    private val bindList = RecyclerBindingList<DhabaDetailsModel>()
+    private val bindList = RecyclerBindingList<DhabaModel>()
 
     override fun bindData() {
         setupNotificationList()

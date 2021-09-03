@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2021-08-25.
  */
 class LoginVM(application: Application) : BaseVM(application) {
     val emailObservable = ObservableField<String>()

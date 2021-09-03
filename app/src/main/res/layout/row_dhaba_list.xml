@@ -14,7 +14,7 @@
 
         <variable
             name="model"
-            type="com.transport.mall.model.DhabaDetailsModel" />
+            type="com.transport.mall.model.DhabaModel" />
 
         <variable
             name="callback"

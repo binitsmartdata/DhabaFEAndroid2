@@ -7,9 +7,6 @@
             name="viewModel"
             type="com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1VM" />
 
-        <variable
-            name="data"
-            type="com.transport.mall.model.DhabaDetailsModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,12 +31,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edDhabaName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
-                    android:id="@+id/edDhabaName"
+                    android:text="@={viewModel.name}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -62,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text|textMultiLine"
-                    android:text=""
+                    android:text="@={viewModel.address}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -110,12 +107,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/fetchLocationLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edLandmark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
-                    android:id="@+id/edLandmark"
+                    android:text="@={viewModel.landmark}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -133,41 +130,75 @@
                 app:layout_constraintTop_toBottomOf="@+id/landmarkTil">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edArea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
-                    android:id="@+id/edArea"
+                    android:text="@={viewModel.area}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/highwayTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/highwayTil"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/highway_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/areaTil">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edHighway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:hint="@string/highway_number"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:text="@={viewModel.highway}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ctlPropertyStatus"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/grey_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/highwayTil">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnrPropertyStatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@null"
+                    android:entries="@array/property_status"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/spinnerProperty"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/areaTil">
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="text"
-                        android:text=""
-                        android:id="@+id/edHighway"
-                        android:maxLength="10"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/spinnerProperty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/ic_spinner_dropdown"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/selectStateLayout"
@@ -177,7 +208,7 @@
                 android:background="@drawable/grey_stroke"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/highwayTil">
+                app:layout_constraintTop_toBottomOf="@+id/ctlPropertyStatus">
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnrState"
@@ -249,12 +280,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/selectCityLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPinCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
                     android:maxLength="6"
-                    android:text=""
+                    android:text="@={viewModel.pincode}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -263,7 +295,7 @@
             <LinearLayout
                 android:id="@+id/uploadLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_130sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -271,6 +303,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/pinCodeTil">
 
                 <FrameLayout
+                    android:id="@+id/photoParentFrame"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
@@ -392,7 +425,7 @@
                 android:text="@string/next"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="@dimen/_14ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/uploadedImageRecycler" />

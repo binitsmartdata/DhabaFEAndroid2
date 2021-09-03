@@ -63,14 +63,14 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
     ): View? {
         this.mViewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         this.mViewModel = viewModel
+        bindData()
+        initListeners()
         return mViewDataBinding.root
     }
 
 
     override fun onStart() {
         super.onStart()
-        bindData()
-        initListeners()
     }
 
     protected abstract fun bindData()

@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentDhabaListBinding
 import com.transport.mall.model.CityAndStateModel
-import com.transport.mall.model.DhabaDetailsModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -27,7 +27,7 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
         get() = setUpBinding()
         set(value) {}
 
-    private val bindList = RecyclerBindingList<DhabaDetailsModel>()
+    private val bindList = RecyclerBindingList<DhabaModel>()
     var cityAndStateList: ArrayList<CityAndStateModel> = ArrayList()
 
     override fun bindData() {
@@ -77,10 +77,10 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
     }
 
     private fun setupDhabaList() {
-        val list = ArrayList<DhabaDetailsModel>()
+        val list = ArrayList<DhabaModel>()
         val menuArray = resources.getStringArray(R.array.dhaba_list)
         for (i in menuArray.indices) {
-            var dhaba = DhabaDetailsModel()
+            var dhaba = DhabaModel()
             dhaba.name = menuArray[i]
             list.add(dhaba)
         }

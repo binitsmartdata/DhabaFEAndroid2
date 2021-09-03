@@ -8,8 +8,8 @@ import androidx.viewpager.widget.ViewPager
 import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
 import com.afollestad.assent.isAllGranted
-import com.shuhart.stepview.StepView
 import com.transport.mall.R
+import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.ActivityNewDhabaBinding
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1Fragment
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep2Fragment
@@ -22,7 +22,8 @@ import com.transport.mall.utils.base.BaseVM
 /**
  * Created by Vishal Sharma on 2019-12-06.
  */
-class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
+class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
+    AddDhabaListener {
     override val binding: ActivityNewDhabaBinding
         get() = setUpBinding()
     override val layoutId: Int
@@ -44,6 +45,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
     }
 
     override fun bindData() {
+        binding.context = this
         if (!isAllGranted(
                 Permission.CAMERA,
                 Permission.WRITE_EXTERNAL_STORAGE,
@@ -87,36 +89,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
     }
 
     private fun setupStepsIndicator() {
-        binding.stepView.getState()
-            .selectedTextColor(ContextCompat.getColor(this, R.color.colorAccent))
-            .animationType(StepView.ANIMATION_CIRCLE)
-            .selectedCircleColor(ContextCompat.getColor(this, R.color.colorAccent))
-            .selectedCircleRadius(resources.getDimensionPixelSize(R.dimen.dimen_14))
-            .selectedStepNumberColor(
-                ContextCompat.getColor(
-                    this,
-                    R.color.colorPrimary
-                )
-            ) // You should specify only stepsNumber or steps array of strings.
-            // In case you specify both steps array is chosen.
-            .steps(object : ArrayList<String?>() {
-                init {
-                    add("Dhaba Details")
-                    add("Owner Details")
-                    add("Amenities")
-                }
-            }) // You should specify only steps number or steps array of strings.
-            // In case you specify both steps array is chosen.
-//            .stepsNumber(4)
-            .animationDuration(resources.getInteger(android.R.integer.config_shortAnimTime))
-            .stepLineWidth(resources.getDimensionPixelSize(R.dimen.dimen_1))
-            .textSize(resources.getDimensionPixelSize(R.dimen.font_14))
-            .stepNumberTextSize(resources.getDimensionPixelSize(R.dimen.font_16))
-            .doneCircleColor(ContextCompat.getColor(this, R.color.colorAccent))
-            .doneStepLineColor(ContextCompat.getColor(this, R.color.colorAccent))
-            .doneTextColor(ContextCompat.getColor(this, R.color.colorAccent))
-            .doneStepMarkColor(ContextCompat.getColor(this, R.color.white))
-            .commit()
 
     }
 
@@ -140,10 +112,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                binding.stepView.go(position, true)
-                if (position == 2) {
-                    binding.stepView.done(true)
-                }
+                binding.stepnumber = position+1
             }
 
             override fun onPageSelected(position: Int) {
@@ -166,5 +135,9 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun showNextScreen() {
+        binding.viewPager.currentItem = binding.viewPager.currentItem + 1
     }
 }

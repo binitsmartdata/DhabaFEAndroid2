@@ -9,6 +9,7 @@ import android.media.ThumbnailUtils
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -180,7 +181,6 @@ fun setImageResource(imageView: ImageView, resource: Int) {
 fun setImageURI(imageView: ImageView, resource: Uri) {
     imageView.setImageURI(resource)
 }
-
 
 
 

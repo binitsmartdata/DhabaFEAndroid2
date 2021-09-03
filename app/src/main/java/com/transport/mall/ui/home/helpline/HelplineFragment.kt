@@ -2,7 +2,7 @@ package com.transport.mall.ui.home.helpline
 
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentHelplineBinding
-import com.transport.mall.model.DhabaDetailsModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
@@ -20,7 +20,7 @@ class HelplineFragment : BaseFragment<FragmentHelplineBinding, BaseVM>(){
         get() = setUpBinding()
         set(value) {}
 
-    private val bindList = RecyclerBindingList<DhabaDetailsModel>()
+    private val bindList = RecyclerBindingList<DhabaModel>()
 
     override fun bindData() {
 
