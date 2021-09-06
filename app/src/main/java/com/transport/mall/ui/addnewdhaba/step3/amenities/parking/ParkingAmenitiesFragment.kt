@@ -16,7 +16,7 @@ import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class ParkingAmenitiesFragment :
     BaseFragment<FragmentParkingAmenitiesBinding, ParkingAmenitiesVM>() {

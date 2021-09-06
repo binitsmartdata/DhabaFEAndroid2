@@ -2,19 +2,24 @@ package com.transport.mall.ui.home
 
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import com.transport.mall.R
+import com.transport.mall.callback.CommonActivityListener
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentHomeBinding
+import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.home.dhabalist.DhabaListFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseFragment
-import com.transport.mall.callback.CommonActivityListener
+
 
 /**
- * Created by Vishal Sharma on 2020-01-24.
+ * Created by Parambir Singh on 2020-01-24.
  */
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     override val layoutId: Int

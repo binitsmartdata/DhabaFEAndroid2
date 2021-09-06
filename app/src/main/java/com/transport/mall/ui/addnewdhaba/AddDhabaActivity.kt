@@ -3,7 +3,6 @@ package com.transport.mall.ui.addnewdhaba
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
-import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
@@ -11,16 +10,20 @@ import com.afollestad.assent.isAllGranted
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.ActivityNewDhabaBinding
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1Fragment
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep2Fragment
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep3Fragment
+import com.transport.mall.ui.addnewdhaba.step1.Step4BankDetailsFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     AddDhabaListener {
@@ -36,6 +39,8 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
         set(value) {}
     override val context: Context
         get() = this
+
+    var mDhabaModelMain = DhabaModelMain()
 
     companion object {
         fun start(context: Context) {
@@ -96,9 +101,10 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
         val adapter = HomeViewPagerAdapter(supportFragmentManager)
 
         // add your fragments
-        adapter.addFrag(AddDhabaStep1Fragment(), getString(R.string.pending))
-        adapter.addFrag(AddDhabaStep2Fragment(), getString(R.string.pending))
-        adapter.addFrag(AddDhabaStep3Fragment(), getString(R.string.pending))
+        adapter.addFrag(AddDhabaStep1Fragment(), getString(R.string.dhaba_details))
+        adapter.addFrag(AddDhabaStep2Fragment(), getString(R.string.owner_details))
+        adapter.addFrag(AddDhabaStep3Fragment(), getString(R.string.amenities))
+        adapter.addFrag(Step4BankDetailsFragment(), getString(R.string.bank_details))
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter
@@ -112,7 +118,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                binding.stepnumber = position+1
+                binding.stepnumber = position + 1
             }
 
             override fun onPageSelected(position: Int) {
@@ -130,7 +136,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.getItemId()) {
             android.R.id.home -> {
-                finish()
+                onBackPressed()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -139,5 +145,29 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
 
     override fun showNextScreen() {
         binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+    }
+
+    override fun getDhabaId(): String {
+        mDhabaModelMain.dhabaModel?.let {
+            return it._id
+        }
+        return ""
+    }
+
+    override fun getDhabaModelMain(): DhabaModelMain {
+        return mDhabaModelMain
+    }
+
+    override fun onBackPressed() {
+        if (binding.viewPager.currentItem > 0) {
+            binding.viewPager.currentItem = binding.viewPager.currentItem - 1
+        } else {
+            GlobalUtils.showConfirmationDialogYesNo(this, "Do you want to discard Dhaba Details?",
+                GenericCallBack {
+                    if (it!!) {
+                        finish()
+                    }
+                })
+        }
     }
 }

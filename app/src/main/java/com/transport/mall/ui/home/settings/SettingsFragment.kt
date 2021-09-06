@@ -1,29 +1,35 @@
 package com.transport.mall.ui.home.settings
 
+import android.content.Context
 import com.transport.mall.R
-import com.transport.mall.databinding.FragmentNotificationsBinding
-import com.transport.mall.model.DhabaModel
+import com.transport.mall.callback.CommonActivityListener
+import com.transport.mall.databinding.FragmentSettingsBinding
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
-import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 /**
- * Created by Vishal Sharma on 2020-01-24.
+ * Created by Parambir Singh on 2020-01-24.
  */
-class SettingsFragment : BaseFragment<FragmentNotificationsBinding, BaseVM>() {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_settings
     override var viewModel: BaseVM
         get() = setUpVM(this, BaseVM(baseActivity.application))
         set(value) {}
-    override var binding: FragmentNotificationsBinding
+    override var binding: FragmentSettingsBinding
         get() = setUpBinding()
         set(value) {}
 
-    private val bindList = RecyclerBindingList<DhabaModel>()
+    var mListener: CommonActivityListener? = null
 
     override fun bindData() {
-
+        mListener = activity as CommonActivityListener
+        binding.profileLayout.setOnClickListener { mListener?.openProfileScreen() }
+        binding.llLogout.setOnClickListener {
+            SharedPrefsHelper.getInstance(activity as Context).clearData()
+            mListener?.startOver()
+        }
     }
 
     override fun initListeners() {

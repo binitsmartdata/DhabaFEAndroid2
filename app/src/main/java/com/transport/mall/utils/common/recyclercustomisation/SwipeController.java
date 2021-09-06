@@ -1,7 +1,7 @@
 package com.transport.mall.utils.common.recyclercustomisation;
 
 /**
- * Created by Vishal Sharma on 15/11/17.
+ * Created by Parambir Singh on 15/11/17.
  */
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;

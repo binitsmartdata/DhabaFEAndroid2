@@ -51,8 +51,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/_40sdp">
+                    android:layout_height="match_parent">
 
                     <TextView
                         style="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"
@@ -63,7 +62,16 @@
                         android:gravity="start"
                         android:text="@{toolbarModel.title}"
                         android:textColor="@color/black"
+                        android:visibility="@{toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) ? View.GONE : View.VISIBLE}"
                         tools:text="Title" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/ic_logo_splash"
+                        android:visibility="@{toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) ? View.VISIBLE : View.GONE}" />
 
                 </RelativeLayout>
 
@@ -125,7 +133,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_logo_transport_mall" />
+                android:src="@drawable/ic_logo_splash" />
 
             <LinearLayout
                 android:layout_width="match_parent"

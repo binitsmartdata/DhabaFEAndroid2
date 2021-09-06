@@ -16,7 +16,7 @@ import com.transport.mall.utils.base.BaseVM
 
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
     override val binding: ActivityAmenitiesBinding
@@ -36,6 +36,7 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
 
     companion object {
         private const val AMENITY_TYPE = "amenityType"
+        private const val DHABA_ID = "dhabaId"
 
         const val FOOD = "food"
         const val PARKING = "parking"
@@ -45,9 +46,10 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
         const val LIGHT = "LIGHT"
         const val OTHER = "other"
 
-        fun start(context: Context, amenityType: String) {
+        fun start(context: Context, amenityType: String, dhabaId: String) {
             val starter = Intent(context, AmenitiesActivity::class.java)
             starter.putExtra(AMENITY_TYPE, amenityType)
+            starter.putExtra(DHABA_ID, dhabaId)
             context.startActivity(starter)
         }
     }

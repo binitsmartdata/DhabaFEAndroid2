@@ -2,6 +2,7 @@ package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
@@ -12,7 +13,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class DhabaListVM(application: Application) : BaseVM(application) {
     var errorResponse: MutableLiveData<String>? = null
@@ -41,7 +42,7 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                         progressObserver.value = false
                     }
                     ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
+                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityAndStateModel>)
                         progressObserver.value = false
                         callBack.onResponse(it.data?.data?.data)
                     }

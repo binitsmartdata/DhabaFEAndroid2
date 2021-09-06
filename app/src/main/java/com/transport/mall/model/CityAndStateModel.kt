@@ -13,7 +13,7 @@ import java.io.Serializable
 )
 data class CityAndStateModel(
 	@ColumnInfo(name = "uid")
-	@PrimaryKey(autoGenerate = true) var uid: Int,
+	@PrimaryKey(autoGenerate = true) val id: Int? = null,
 
 	@ColumnInfo(name = "slug")
 	@SerializedName("slug") var slug: String,

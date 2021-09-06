@@ -8,7 +8,7 @@ import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 /**
- * Created by Vishal Sharma on 2020-01-24.
+ * Created by Parambir Singh on 2020-01-24.
  */
 class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, BaseVM>() {
     override val layoutId: Int

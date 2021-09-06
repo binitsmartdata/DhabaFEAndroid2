@@ -201,6 +201,11 @@
     <string name="save">Save</string>
     <string name="enter_your_phone_number_where_we_can_call_you">Enter your phone number where we can call you</string>
     <string name="call_me_now">Call me now</string>
+    <string name="dhaba_details">Dhaba Details</string>
+    <string name="owner_details">Owner Details</string>
+    <string name="amenities">Amenities</string>
+    <string name="save_dhaba">Save Dhaba</string>
+
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

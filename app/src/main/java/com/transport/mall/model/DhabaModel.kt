@@ -4,7 +4,7 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 /**
- * Created by Vishal Sharma on 2020-01-24.
+ * Created by Parambir Singh on 2020-01-24.
  */
 class DhabaModel : Serializable {
     var _id: String = ""

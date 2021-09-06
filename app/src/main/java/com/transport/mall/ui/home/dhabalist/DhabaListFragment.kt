@@ -15,7 +15,7 @@ import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
 
 /**
- * Created by Vishal Sharma on 2020-01-24.
+ * Created by Parambir Singh on 2020-01-24.
  */
 class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), RecyclerCallback {
     override val layoutId: Int

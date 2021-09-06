@@ -2,6 +2,7 @@ package com.transport.mall.ui.addnewdhaba.step1
 
 import android.content.Context
 import com.transport.mall.R
+import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAddDhabaStep3Binding
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
@@ -9,7 +10,7 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class AddDhabaStep3Fragment :
     BaseFragment<FragmentAddDhabaStep3Binding, AddDhabaStep2VM>() {
@@ -22,28 +23,67 @@ class AddDhabaStep3Fragment :
         get() = setUpBinding()
         set(value) {}
 
+    var mlistener: AddDhabaListener? = null
+
     override fun bindData() {
+        mlistener = activity as AddDhabaListener
         binding.context = activity
         binding.cardFood.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.FOOD)
+            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context,
+                    AmenitiesActivity.FOOD,
+                    it._id
+                )
+            }
         }
         binding.cardParking.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.PARKING)
+            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.PARKING,
+                    it._id
+                )
+            }
         }
         binding.cardSleeping.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.SLEEPING)
+            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.SLEEPING,
+                    it._id
+                )
+            }
         }
         binding.cardWashroom.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.WASHROOM)
+            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.WASHROOM,
+                    it._id
+                )
+            }
         }
         binding.cardSecurity.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.SECURITY)
+            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.SECURITY,
+                    it._id
+                )
+            }
         }
         binding.cardOther.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.OTHER)
+            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.OTHER,
+                    it._id
+                )
+            }
         }
         binding.cardLights.setOnClickListener {
-            AmenitiesActivity.start(activity as Context, AmenitiesActivity.LIGHT)
+            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.LIGHT,
+                    it._id
+                )
+            }
         }
     }
 

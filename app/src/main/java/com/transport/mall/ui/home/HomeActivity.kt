@@ -10,7 +10,9 @@ import com.transport.mall.databinding.ActivityHomeBinding
 import com.transport.mall.model.SideMenu
 import com.transport.mall.model.Toolbar
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
+import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
 import com.transport.mall.ui.home.helpline.EditProfileFragment
+import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
 import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
@@ -21,7 +23,7 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     CommonActivityListener {
@@ -57,15 +59,19 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     private fun setUserData() {
         binding.userModel = SharedPrefsHelper.getInstance(this).getUserData()
         binding.user.ivEdit.setOnClickListener {
-            openFragmentReplaceNoAnim(
-                binding.dashboardContainer.id,
-                EditProfileFragment(),
-                "editProfile",
-                false
-            )
-            toolbar.title = getString(R.string.edit_profile)
-            binding.drawerLayout.closeDrawer(binding.leftDrawer)
+            openProfileFragment()
         }
+    }
+
+    public fun openProfileFragment() {
+        openFragmentReplaceNoAnim(
+            binding.dashboardContainer.id,
+            EditProfileFragment(),
+            "editProfile",
+            false
+        )
+        toolbar.title = getString(R.string.edit_profile)
+        binding.drawerLayout.closeDrawer(binding.leftDrawer)
     }
 
     /**
@@ -145,7 +151,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 return
             }
             2 -> fragment = NotificationsFragment()
-            3 -> fragment = EditProfileFragment()
+            3 -> fragment = HelplineFragment()
             4 -> fragment = SettingsFragment()
         }
 
@@ -159,6 +165,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 
     override fun openNotificationFragment() {
         displayView(2)
+    }
+
+    override fun openProfileScreen() {
+        openProfileFragment()
+    }
+
+    override fun startOver() {
+        val intent = Intent(context, SplashActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+        finish()
     }
 
     override fun onResume() {

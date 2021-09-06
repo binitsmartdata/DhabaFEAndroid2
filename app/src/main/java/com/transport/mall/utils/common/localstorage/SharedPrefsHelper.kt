@@ -77,4 +77,9 @@ class SharedPrefsHelper {
     public fun setLanguageToEnglish() {
         setSelectedLanguage("en")
     }
+
+    fun clearData() {
+        editor?.clear()
+        editor?.apply()
+    }
 }

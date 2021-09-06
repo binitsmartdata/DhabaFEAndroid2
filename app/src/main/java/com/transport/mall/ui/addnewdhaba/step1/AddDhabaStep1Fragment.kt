@@ -21,14 +21,13 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
-import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.createVideoThumbnail
 import com.transport.mall.utils.xloadImages
-import java.io.File
+import java.util.*
 
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class AddDhabaStep1Fragment :
     BaseFragment<FragmentAddDhabaStep1Binding, AddDhabaStep1VM>() {
@@ -71,27 +70,16 @@ class AddDhabaStep1Fragment :
             viewModel.getDhabaModel().hasEverything(GenericCallBackTwoParams { status, message ->
                 if (status) {
                     viewModel.addDhaba(
-                        viewModel.getDhabaModel().name,
-                        viewModel.getDhabaModel().address,
-                        viewModel.getDhabaModel().landmark,
-                        viewModel.getDhabaModel().area,
-                        viewModel.getDhabaModel().highway,
-                        viewModel.getDhabaModel().state,
-                        viewModel.getDhabaModel().city,
-                        viewModel.getDhabaModel().pincode,
-                        viewModel.getDhabaModel().address,
-                        "",
-                        viewModel.getDhabaModel().propertyStatus,
-                        File(viewModel.getDhabaModel().images),
-                        File(viewModel.getDhabaModel().videos),
-                        SharedPrefsHelper.getInstance(activity as Context).getUserData().id,
-                        SharedPrefsHelper.getInstance(activity as Context).getUserData().id,
-                        GenericCallBack {
-                            if (it.data != null) {
-                                showToastInCenter(it.message)
-                                mListener?.showNextScreen()
+                        GenericCallBack { response ->
+                            if (response.data != null) {
+                                showToastInCenter(response.message)
+                                mListener?.let {
+                                    it.getDhabaModelMain().dhabaModel = response.data
+                                    mListener?.showNextScreen()
+                                }
+
                             } else {
-                                showToastInCenter(it.message)
+                                showToastInCenter(response.message)
                             }
                         }
                     )
@@ -112,41 +100,51 @@ class AddDhabaStep1Fragment :
     }
 
     private fun setupCitiesAndStateView() {
-        viewModel.getCitiesList(GenericCallBackTwoParams { cityList, StateList ->
+        viewModel.getStatesList(GenericCallBack { StateList ->
             //SET STATES ADAPTER ON SPINNER
-            var statesAdapter = ArrayAdapter<CityAndStateModel>(
-                activity as Context,
-                android.R.layout.simple_list_item_1, StateList
-            )
-            binding.spnrState.setAdapter(statesAdapter)
-            binding.spnrState.setOnItemSelectedListener(object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    viewModel.state.set(StateList.get(p2).name?.en)
-                }
+            setStatesAdapter(StateList)
+        })
+    }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {
+    private fun setStatesAdapter(StateList: ArrayList<CityAndStateModel>) {
+        var statesAdapter = ArrayAdapter<CityAndStateModel>(
+            activity as Context,
+            android.R.layout.simple_list_item_1, StateList
+        )
+        binding.spnrState.setAdapter(statesAdapter)
+        binding.spnrState.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.state.set(StateList.get(p2).name?.en)
+                //GET LIST OF CITIES UNDER SELECTED STATE
+                viewModel.getCitiesByStateId(StateList.get(p2)._id, GenericCallBack {
+                    setCitiesAdapter(it)
+                })
+            }
 
-                }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
 
-            })
+            }
 
-            //SET CITIES ADAPTER ON SPINNER
-            var citiesAdapter = ArrayAdapter<CityAndStateModel>(
-                activity as Context,
-                android.R.layout.simple_list_item_1, cityList
-            )
-            binding.spnrCity.setAdapter(citiesAdapter)
-            binding.spnrCity.setOnItemSelectedListener(object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    viewModel.city.set(cityList.get(p2).name?.en)
-                }
+        })
+    }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {
+    private fun setCitiesAdapter(cityList: ArrayList<CityAndStateModel>) {
+        //SET CITIES ADAPTER ON SPINNER
+        var citiesAdapter = ArrayAdapter<CityAndStateModel>(
+            activity as Context,
+            android.R.layout.simple_list_item_1, cityList
+        )
+        binding.spnrCity.setAdapter(citiesAdapter)
+        binding.spnrCity.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.city.set(cityList.get(p2).name?.en)
+            }
 
-                }
-            })
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
         })
     }
 

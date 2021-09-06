@@ -402,10 +402,9 @@ object GlobalUtils {
         }
     }
 
-
-    fun CharSequence?.isValidEmail() =
-        !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
-
+    fun isValidEmail(str: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(str).matches()
+    }
 
     @JvmStatic
     fun dpToPx(dp: Int, context: Context): Int {

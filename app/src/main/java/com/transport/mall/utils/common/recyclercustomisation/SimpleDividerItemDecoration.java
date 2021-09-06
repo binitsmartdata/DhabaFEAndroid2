@@ -12,7 +12,7 @@ import com.transport.mall.R;
 
 
 /**
- * Created by Vishal Sharma on 15/11/17.
+ * Created by Parambir Singh on 15/11/17.
  */
 
 public class SimpleDividerItemDecoration extends RecyclerView.ItemDecoration  {

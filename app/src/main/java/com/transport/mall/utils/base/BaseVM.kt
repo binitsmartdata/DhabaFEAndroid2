@@ -76,6 +76,19 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getCitiesByState(stateId: String): Flow<ApiResult<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>> {
+        return flow {
+            emit(ApiResult.loading())
+            emit(
+                getResponse(
+                    request = {
+                        NetworkAdapter.getInstance().getNetworkServices()?.getCitiesByState(stateId)
+                    }
+                )
+            )
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun getAllStates(app: Application): Flow<ApiResult<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>> {
         return flow {
             emit(ApiResult.loading())

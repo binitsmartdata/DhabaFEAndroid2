@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Created by Vishal Sharma on 2020-01-15.
+ * Created by Parambir Singh on 2020-01-15.
  */
 
 @BindingAdapter(

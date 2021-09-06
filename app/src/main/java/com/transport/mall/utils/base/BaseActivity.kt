@@ -272,5 +272,18 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         startActivity(intent)
         finish()
     }
+
+    /*Avoid showing blank activity when pressing back button.
+    Take care while implementing onbackpressed in child activities*/
+    override fun onBackPressed() {
+        val fragments = supportFragmentManager.backStackEntryCount
+        if (fragments == 1) {
+            finish()
+        } else if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }
 

@@ -10,7 +10,7 @@ import com.transport.mall.databinding.FragmentSleepingAmenitiesBinding
 import com.transport.mall.utils.base.BaseFragment
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class SleepingAmenitiesFragment :
     BaseFragment<FragmentSleepingAmenitiesBinding, SleepingAmenitiesVM>() {

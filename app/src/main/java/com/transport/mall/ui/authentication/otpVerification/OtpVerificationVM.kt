@@ -10,7 +10,7 @@ import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
 
 /**
- * Created by Vishal Sharma on 2019-12-06.
+ * Created by Parambir Singh on 2019-12-06.
  */
 class OtpVerificationVM(application: Application) : BaseVM(application) {
     val emailObservable = ObservableField<String>()

@@ -5,6 +5,7 @@ import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.InternalDataListModel
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.model.UserModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -30,6 +31,11 @@ interface ApiService {
         @Query("page") page: String,
         @Query("sort") sort: String,
         @Query("status") status: String
+    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
+
+    @GET("city/getCityByState")
+    suspend fun getCitiesByState(
+        @Query("state_id") status: String
     ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
 
     @GET("state/getAllStates")
@@ -62,5 +68,19 @@ interface ApiService {
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody
     ): Response<ApiResponseModel<DhabaModel>>
-//    var ItemId = RequestBody.create(MultipartBody., "22")
+
+    @Multipart
+    @POST("dhaba/addOwner")
+    suspend fun addOwner(
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("ownerName") ownerName: RequestBody,
+        @Part("mobile") mobile: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("panNumber") panNumber: RequestBody,
+        @Part("adharCard") adharCard: RequestBody,
+        @Part ownerPic: MultipartBody.Part,
+        @Part idproofFront: MultipartBody.Part,
+        @Part idproofBack: MultipartBody.Part
+    ): Response<ApiResponseModel<DhabaOwnerModel>>
 }

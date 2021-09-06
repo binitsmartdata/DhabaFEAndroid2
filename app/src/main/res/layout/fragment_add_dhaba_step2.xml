@@ -11,6 +11,10 @@
         <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="viewModel"
+            type="com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep2VM" />
     </data>
 
     <ScrollView
@@ -21,7 +25,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_20sdp">
+            android:padding="@dimen/_15sdp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ownerNameTil"
@@ -38,7 +42,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:singleLine="true"
+                    android:text="@={viewModel.ownerName}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -60,7 +65,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="phone"
-                    android:text=""
+                    android:maxLength="13"
+                    android:text="@={viewModel.mobile}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -82,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="textEmailAddress"
-                    android:text=""
+                    android:text="@={viewModel.email}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -103,8 +109,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textEmailAddress"
-                    android:text=""
+                    android:inputType="textPostalAddress"
+                    android:text="@={viewModel.address}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +131,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:maxLength="10"
+                    android:text="@={viewModel.panNumber}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -145,8 +152,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="text"
-                    android:text=""
+                    android:inputType="number"
+                    android:maxLength="12"
+                    android:text="@={viewModel.adharCard}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -163,9 +171,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/aadharCardTil">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/picImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/ivOwnerImage"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
                     android:src="@drawable/ic_profile"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -222,38 +230,48 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/uploadProofText" />
 
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/uploadFrontSideLayout"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_100sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/uploadBackSideLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/acceptText"
-                    android:background="@drawable/grey1_fill_bg"
-                    android:padding="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp">
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/grey1_fill_bg"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/uploadBackSideLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/acceptText">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_add_red"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivFrontId"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:clickable="false"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:text="@string/front_side"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp"
-                    android:layout_marginTop="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="@+id/uploadFrontSideLayout"
                     app:layout_constraintStart_toStartOf="@+id/uploadFrontSideLayout"
                     app:layout_constraintTop_toBottomOf="@+id/uploadFrontSideLayout" />
@@ -262,21 +280,32 @@
                     android:id="@+id/uploadBackSideLayout"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_100sdp"
-                    app:layout_constraintStart_toEndOf="@+id/uploadFrontSideLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/acceptText"
-                    android:background="@drawable/grey1_fill_bg"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:padding="@dimen/_10sdp">
+                    android:background="@drawable/grey1_fill_bg"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/uploadFrontSideLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/acceptText">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_add_red"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBackId"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:clickable="false"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -284,11 +313,11 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:text="@string/back_side"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp"
-                    android:layout_marginTop="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="@+id/uploadBackSideLayout"
                     app:layout_constraintStart_toStartOf="@+id/uploadBackSideLayout"
                     app:layout_constraintTop_toBottomOf="@+id/uploadBackSideLayout" />
@@ -300,29 +329,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/uploadProofLayout"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="@string/next"
+                android:fontFamily="@font/opensans_bold"
+                android:gravity="center"
                 android:padding="@dimen/_10sdp"
+                android:text="@string/next"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16ssp"
-                android:gravity="center"
-                android:fontFamily="@font/opensans_bold"
-                android:textAllCaps="false" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/uploadProofLayout" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/opensans_bold"
                 android:text="@string/save_as_draft"
                 android:textColor="@color/colorRed"
                 android:textSize="@dimen/_16ssp"
-                android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnNext" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
