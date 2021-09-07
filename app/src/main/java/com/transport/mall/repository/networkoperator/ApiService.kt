@@ -3,12 +3,10 @@ package com.transport.mall.repository.networkoperator
 
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.InternalDataListModel
-import com.transport.mall.model.CityAndStateModel
-import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.DhabaOwnerModel
-import com.transport.mall.model.UserModel
+import com.transport.mall.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -33,10 +31,11 @@ interface ApiService {
         @Query("status") status: String
     ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
 
-    @GET("city/getCityByState")
+    @FormUrlEncoded
+    @POST("city/getCityByState")
     suspend fun getCitiesByState(
-        @Query("state_id") status: String
-    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
+        @Field("state_id") status: String
+    ): Response<ApiResponseModel<ArrayList<CityAndStateModel>>>
 
     @GET("state/getAllStates")
     suspend fun getAllStates(
@@ -83,4 +82,19 @@ interface ApiService {
         @Part idproofFront: MultipartBody.Part,
         @Part idproofBack: MultipartBody.Part
     ): Response<ApiResponseModel<DhabaOwnerModel>>
+
+    @Multipart
+    @POST("dhaba/addFoodAmenities")
+    suspend fun addFoodAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("foodAt100") foodAt100: RequestBody,
+        @Part("roCleanWater") roCleanWater: RequestBody,
+        @Part("normalWater") normalWater: RequestBody,
+        @Part("Food") food: RequestBody,
+        @Part("foodLisence") foodLisence: RequestBody,
+        @Part foodLisenceFile: MultipartBody.Part,
+        @Part images: Array<MultipartBody.Part?>
+    ): Response<ApiResponseModel<FoodAmenitiesModel>>
 }

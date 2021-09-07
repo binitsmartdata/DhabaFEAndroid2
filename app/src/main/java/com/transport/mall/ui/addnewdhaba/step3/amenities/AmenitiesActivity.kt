@@ -1,5 +1,6 @@
 package com.transport.mall.ui.addnewdhaba.step3.amenities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
@@ -7,7 +8,9 @@ import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
 import com.afollestad.assent.isAllGranted
 import com.transport.mall.R
+import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.ActivityAmenitiesBinding
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.step3.amenities.food.FoodAmenitiesFragment
 import com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping.*
 import com.transport.mall.ui.addnewdhaba.step3.foodamenities.ParkingAmenitiesFragment
@@ -18,7 +21,7 @@ import com.transport.mall.utils.base.BaseVM
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
+class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddDhabaListener {
     override val binding: ActivityAmenitiesBinding
         get() = setUpBinding()
     override val layoutId: Int
@@ -32,30 +35,32 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
     override val context: Context
         get() = this
 
-    private lateinit var amanityType: String
+    private var amanityType: Int = 0
+    private lateinit var dhabaModelMain: DhabaModelMain
 
     companion object {
         private const val AMENITY_TYPE = "amenityType"
-        private const val DHABA_ID = "dhabaId"
+        private const val DHABA_MODEL = "dhabaId"
 
-        const val FOOD = "food"
-        const val PARKING = "parking"
-        const val SLEEPING = "sleeping"
-        const val WASHROOM = "washroom"
-        const val SECURITY = "security"
-        const val LIGHT = "LIGHT"
-        const val OTHER = "other"
+        const val FOOD = 1
+        const val PARKING = 2
+        const val SLEEPING = 3
+        const val WASHROOM = 4
+        const val SECURITY = 5
+        const val LIGHT = 6
+        const val OTHER = 7
 
-        fun start(context: Context, amenityType: String, dhabaId: String) {
+        fun start(context: Context, amenityType: Int, dhabaModel: DhabaModelMain) {
             val starter = Intent(context, AmenitiesActivity::class.java)
             starter.putExtra(AMENITY_TYPE, amenityType)
-            starter.putExtra(DHABA_ID, dhabaId)
-            context.startActivity(starter)
+            starter.putExtra(DHABA_MODEL, dhabaModel)
+            (context as Activity).startActivityForResult(starter, amenityType)
         }
     }
 
     override fun bindData() {
-        amanityType = intent.getStringExtra(AMENITY_TYPE)
+        dhabaModelMain = intent.getSerializableExtra(DHABA_MODEL) as DhabaModelMain
+        amanityType = intent.getIntExtra(AMENITY_TYPE, 0)
         if (!isAllGranted(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)) {
             askForPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) { result ->
                 // Check the result, see the Using Results section
@@ -93,49 +98,49 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 ParkingAmenitiesFragment(),
-                PARKING,
+                "PARKING",
                 true
             )
         } else if (amanityType == FOOD) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 FoodAmenitiesFragment(),
-                FOOD,
+                "FOOD",
                 true
             )
         } else if (amanityType == SLEEPING) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 SleepingAmenitiesFragment(),
-                SLEEPING,
+                "SLEEPING",
                 true
             )
         } else if (amanityType == WASHROOM) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 WashroomAmenitiesFragment(),
-                WASHROOM,
+                "WASHROOM",
                 true
             )
         } else if (amanityType == SECURITY) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 SecurityAmenitiesFragment(),
-                SECURITY,
+                "SECURITY",
                 true
             )
         } else if (amanityType == LIGHT) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 LightAmenitiesFragment(),
-                LIGHT,
+                "LIGHT",
                 true
             )
         } else if (amanityType == OTHER) {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 OtherAmenitiesFragment(),
-                OTHER,
+                "OTHER",
                 true
             )
         }
@@ -149,5 +154,17 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun showNextScreen() {
+        // NOT APPLICABLE
+    }
+
+    override fun getDhabaId(): String {
+        return dhabaModelMain.dhabaModel?._id!!
+    }
+
+    override fun getDhabaModelMain(): DhabaModelMain {
+        return dhabaModelMain
     }
 }

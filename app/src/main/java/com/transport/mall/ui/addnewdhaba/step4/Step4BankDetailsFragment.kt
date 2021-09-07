@@ -1,14 +1,16 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentStep4BankDetailsBinding
+import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.GenericCallBack
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -39,7 +41,21 @@ class Step4BankDetailsFragment :
     }
 
     override fun initListeners() {
+        binding.btnNext.setOnClickListener {
+            DialogAddDhabaSuccess(
+                activity as Context,
+                "#LKJ534LK5J3L54J3L45",
+                GenericCallBack {
+                    when (it) {
+                        DialogAddDhabaSuccess.SELECTED_ACTION.GO_HOME -> {
+                            goToHomeScreen()
+                        }
+                        DialogAddDhabaSuccess.SELECTED_ACTION.VIEW_DHABA -> {
 
+                        }
+                    }
+                }).show()
+        }
     }
 
     private fun launchImagePicker() {

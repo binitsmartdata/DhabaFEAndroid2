@@ -4,15 +4,19 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
+import android.view.View
+import android.widget.RadioButton
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
+import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentFoodAmenitiesBinding
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 
 /**
@@ -31,6 +35,7 @@ class FoodAmenitiesFragment :
 
     lateinit var SELECTED_IMAGE_INTENT_TYPE: IMAGE_INTENT_TYPE
     var imageList = ArrayList<PhotosModel>()
+    var mListener: AddDhabaListener? = null
 
     enum class IMAGE_INTENT_TYPE {
         FOOD_LICENSE,
@@ -38,10 +43,30 @@ class FoodAmenitiesFragment :
     }
 
     override fun bindData() {
+        mListener = activity as AddDhabaListener
+        viewModel.dhabaModelMain = mListener?.getDhabaModelMain()!!
         binding.context = activity
         refreshGalleryImages()
         setupLicensePhotoViews()
         setupFoodPhotosView()
+        setupOptionsListener()
+    }
+
+    private fun setupOptionsListener() {
+        binding.rgFoodLicense.setOnCheckedChangeListener { radioGroup, i ->
+            viewModel.model.foodLisence =
+                activity?.findViewById<RadioButton>(i)?.isChecked.toString()
+        }
+        binding.rgFoodAt100.setOnCheckedChangeListener { radioGroup, i ->
+            viewModel.model.foodAt100 = activity?.findViewById<RadioButton>(i)?.isChecked.toString()
+        }
+        binding.rgRoWater.setOnCheckedChangeListener { radioGroup, i ->
+            viewModel.model.roCleanWater =
+                activity?.findViewById<RadioButton>(i)?.isChecked.toString()
+        }
+        binding.rgFoodType.setOnCheckedChangeListener { radioGroup, i ->
+            viewModel.model.food = activity?.findViewById<RadioButton>(i)?.getTag().toString()
+        }
     }
 
     private fun setupLicensePhotoViews() {
@@ -73,7 +98,13 @@ class FoodAmenitiesFragment :
     }
 
     private fun addImageToGallery(uri: Uri) {
-        imageList.add(PhotosModel(uri))
+        imageList.add(
+            PhotosModel(
+                "0", uri, if (uri.isAbsolute) uri.path!! else getRealPathFromURI(
+                    uri
+                )!!
+            )
+        )
         refreshGalleryImages()
     }
 
@@ -84,14 +115,40 @@ class FoodAmenitiesFragment :
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
         binding.recyclerView.adapter =
-            ImageGalleryAdapter(activity as Context, imageList, GenericCallBack { })
+            ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+                viewModel.model.images = imageList
+            })
         binding.recyclerView.setHasFixedSize(true)
     }
 
     override fun initListeners() {
         binding.btnSaveDhaba.setOnClickListener {
-
+            viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
+                if (allOk) {
+                    viewModel.addFoodAmenities(GenericCallBack {
+                        if (it.data != null) {
+                            showToastInCenter(getString(R.string.food_amen_saved))
+                            var intent = Intent()
+                            intent.putExtra("data", it.data)
+                            activity?.setResult(Activity.RESULT_OK, intent)
+                            activity?.finish()
+                        } else {
+                            showToastInCenter(it.message)
+                        }
+                    })
+                } else {
+                    showToastInCenter(message)
+                }
+            })
         }
+
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -103,13 +160,15 @@ class FoodAmenitiesFragment :
             if (SELECTED_IMAGE_INTENT_TYPE == IMAGE_INTENT_TYPE.FOOD_LICENSE) {
                 // Use Uri object instead of File to avoid storage permissions
                 binding.ivLicenseImg.setImageURI(uri)
+                binding.ivLicenseImg.visibility = View.VISIBLE
+                viewModel.model.foodLisenceFile =
+                    if (uri.isAbsolute) uri.path!! else getRealPathFromURI(uri)!!
             } else {
                 addImageToGallery(uri)
+                viewModel.model.images = imageList
             }
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(activity, "Task Cancelled", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 }

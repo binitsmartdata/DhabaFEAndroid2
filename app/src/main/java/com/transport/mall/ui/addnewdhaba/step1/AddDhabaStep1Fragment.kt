@@ -72,7 +72,7 @@ class AddDhabaStep1Fragment :
                     viewModel.addDhaba(
                         GenericCallBack { response ->
                             if (response.data != null) {
-                                showToastInCenter(response.message)
+                                showToastInCenter(getString(R.string.dhaba_created_successfully))
                                 mListener?.let {
                                     it.getDhabaModelMain().dhabaModel = response.data
                                     mListener?.showNextScreen()
@@ -117,7 +117,7 @@ class AddDhabaStep1Fragment :
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 viewModel.state.set(StateList.get(p2).name?.en)
                 //GET LIST OF CITIES UNDER SELECTED STATE
-                viewModel.getCitiesByStateId(StateList.get(p2)._id, GenericCallBack {
+                viewModel.getCitiesByStateId(StateList.get(p2).stateCode, GenericCallBack {
                     setCitiesAdapter(it)
                 })
             }

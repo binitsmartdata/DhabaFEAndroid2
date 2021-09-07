@@ -10,6 +10,10 @@
         <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="viewModel"
+            type="com.transport.mall.ui.addnewdhaba.step3.amenities.food.FoodAmenitiesVM" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -40,6 +44,7 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgFoodLicense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -49,12 +54,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbFoodLicenseNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="0"
                         android:text="@string/no" />
 
                 </RadioGroup>
@@ -62,14 +70,14 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_150sdp"
+                android:background="@color/grey_light"
                 android:visibility="@{rbFoodLicenseYes.checked ? View.VISIBLE : View.GONE}">
 
                 <LinearLayout
                     android:id="@+id/llLicensePhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_light"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">
@@ -95,7 +103,9 @@
                     android:id="@+id/ivLicenseImg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
+                    android:background="@color/grey_light"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -115,20 +125,25 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgFoodAt100"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbFoodAt100Yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbFoodAt100No"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="0"
                         android:text="@string/no" />
 
                 </RadioGroup>
@@ -149,20 +164,25 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgRoWater"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/roWaterYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/roWaterNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="0"
                         android:text="@string/no" />
 
                 </RadioGroup>
@@ -183,26 +203,33 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgFoodType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbVeg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/veg" />
 
                     <RadioButton
+                        android:id="@+id/rbNonVeg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/non_veg" />
 
                     <RadioButton
+                        android:id="@+id/rbBothFood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/both" />
 
                 </RadioGroup>
@@ -247,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_20sdp"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="Save"
+                android:text="@string/save"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 

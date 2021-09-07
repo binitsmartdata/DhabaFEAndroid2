@@ -1,5 +1,6 @@
 package com.transport.mall.ui.addnewdhaba
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
@@ -11,10 +12,12 @@ import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.ActivityNewDhabaBinding
 import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.model.FoodAmenitiesModel
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1Fragment
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep2Fragment
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep3Fragment
 import com.transport.mall.ui.addnewdhaba.step1.Step4BankDetailsFragment
+import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
@@ -168,6 +171,30 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
                         finish()
                     }
                 })
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                AmenitiesActivity.FOOD -> {
+                    var model = data?.getSerializableExtra("data") as FoodAmenitiesModel
+                    model.let { getDhabaModelMain().foodAmenitiesModel = model }
+                }
+                AmenitiesActivity.PARKING -> {
+                }
+                AmenitiesActivity.SLEEPING -> {
+                }
+                AmenitiesActivity.WASHROOM -> {
+                }
+                AmenitiesActivity.SECURITY -> {
+                }
+                AmenitiesActivity.LIGHT -> {
+                }
+                AmenitiesActivity.OTHER -> {
+                }
+            }
         }
     }
 }

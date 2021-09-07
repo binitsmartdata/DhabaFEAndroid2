@@ -36,13 +36,14 @@
             android:layout_gravity="center">
 
             <ImageView
-                setImageURI="@{data.path}"
+                setImageURI="@{data.uri}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:scaleType="centerCrop" />
 
             <ImageView
+                android:id="@+id/ivCross"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_gravity="right|top"

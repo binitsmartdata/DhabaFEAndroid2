@@ -8,7 +8,7 @@ import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 
 class ImageGalleryAdapter(
-    val context: Context, val dataList: List<PhotosModel>, val callBack: GenericCallBack<Int>
+    val context: Context, val dataList: ArrayList<PhotosModel>, val callBack: GenericCallBack<Int>
 ) : InfiniteAdapter<RowPhotosBinding>() {
 
     init {
@@ -18,8 +18,12 @@ class ImageGalleryAdapter(
     override fun bindData(position: Int, myViewHolderG: MyViewHolderG?) {
         myViewHolderG?.binding?.context = context
         myViewHolderG?.binding?.position = position
-        myViewHolderG?.binding?.containerLayout?.setOnClickListener { callBack.onResponse(position) }
         myViewHolderG?.binding?.data = dataList.get(position)
+        myViewHolderG?.binding?.ivCross?.setOnClickListener {
+            dataList.removeAt(position)
+            callBack.onResponse(position)
+            notifyDataSetChanged()
+        }
 
         myViewHolderG?.binding?.executePendingBindings()
     }

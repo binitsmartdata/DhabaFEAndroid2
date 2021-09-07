@@ -132,7 +132,7 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
                     }
                     ApiResult.Status.SUCCESS -> {
                         cityProgressObservable.value = false
-                        callBack.onResponse(it.data?.data?.data)
+                        callBack.onResponse(it.data?.data)
                     }
                 }
             }
