@@ -38,6 +38,7 @@ class AddDhabaStep2Fragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
+        mListener?.getDhabaModelMain()?.dhabaModel.let { viewModel.ownerName.set(it?.ownerName) }
     }
 
     override fun initListeners() {
@@ -75,7 +76,7 @@ class AddDhabaStep2Fragment :
             viewModel.ownerModel.hasEverything(GenericCallBackTwoParams { hasEverything, message ->
                 if (hasEverything) {
                     viewModel.addDhabaOwner(GenericCallBack {
-
+                        mListener?.showNextScreen()
                     })
                 } else {
                     showToastInCenter(message)

@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <import type="com.transport.mall.R" />
 
         <import type="android.view.View" />
-
-        <variable
-            name="list"
-            type="com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList" />
-
-        <variable
-            name="click"
-            type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
 
         <variable
             name="toolbarModel"
@@ -71,15 +62,26 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            itemDecor="@{false}"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layout="@{R.layout.row_dhaba_list}"
-            app:onItemClickListener="@{click}"
-            app:recyclerLinearAdapter="@{list}" />
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                itemDecor="@{false}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tvNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:text="@string/no_data_found" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

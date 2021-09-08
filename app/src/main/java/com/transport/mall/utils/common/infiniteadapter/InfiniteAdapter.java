@@ -128,7 +128,7 @@ public abstract class InfiniteAdapter<B extends ViewDataBinding> extends Recycle
      * @return integer threshold
      */
     public int getVisibleThreshold() {
-        return 5;
+        return 1;
     }
 
     /**

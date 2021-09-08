@@ -3,6 +3,8 @@ package com.transport.mall.ui.home.dhabalist
 import android.content.Context
 import android.view.View
 import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentDhabaListBinding
 import com.transport.mall.model.CityAndStateModel
@@ -10,7 +12,6 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
 
@@ -27,14 +28,33 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
         get() = setUpBinding()
         set(value) {}
 
-    private val bindList = RecyclerBindingList<DhabaModel>()
+    private val dhabaList = ArrayList<DhabaModel>()
     var cityAndStateList: ArrayList<CityAndStateModel> = ArrayList()
+    var dhabaListAdapter: DhabaListAdapter? = null
+
+    val limit = "5"
+    var page = 1
 
     override fun bindData() {
         binding.lifecycleOwner = this
-        setupDhabaList()
+        initDhabaListAdapter()
+        refreshDhabaList()
         setHasOptionsMenu(true)
         setupCitySelectionViews()
+    }
+
+    private fun initDhabaListAdapter() {
+        dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
+            GenericCallBack {
+
+            })
+        dhabaListAdapter?.setOnLoadMoreListener {
+            page++
+            refreshDhabaList()
+        }
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(activity as Context, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerView.adapter = dhabaListAdapter
     }
 
     private fun setupCitySelectionViews() {
@@ -64,6 +84,14 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
     }
 
     override fun initListeners() {
+        viewModel.progressObserver.observe(this, Observer {
+            binding.swipeRefreshLayout.isRefreshing = it
+        })
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            page = 1
+            refreshDhabaList()
+        }
+
         var list: Array<String> = resources.getStringArray(R.array.cities_list_dummy)
         var adapter = ArrayAdapter<String>(
             activity as Context,
@@ -76,17 +104,24 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
 
     }
 
-    private fun setupDhabaList() {
-        val list = ArrayList<DhabaModel>()
-        val menuArray = resources.getStringArray(R.array.dhaba_list)
-        for (i in menuArray.indices) {
-            var dhaba = DhabaModel()
-            dhaba.name = menuArray[i]
-            list.add(dhaba)
-        }
-        bindList.itemsList = list
-        binding.list = bindList
-        binding.click = this
+    private fun refreshDhabaList() {
+        viewModel.getAllDhabaList(limit, page.toString(), GenericCallBack {
+            dhabaListAdapter?.removeLoadingView(dhabaList.size)
+            if (it != null && it.isNotEmpty()) {
+                binding.tvNoData.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+                if (page == 1) {
+                    dhabaList.clear()
+                }
+                dhabaList.addAll(it)
+                dhabaListAdapter?.notifyDataSetChanged()
+            } else {
+                if (page == 1) {
+                    binding.tvNoData.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
+                }
+            }
+        })
     }
 
     override fun onItemClick(view: View?, position: Int) {

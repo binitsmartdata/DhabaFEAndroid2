@@ -30,6 +30,8 @@ class DhabaModel : Serializable {
     fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.isEmpty()) {
             callback.onResponse(false, "Please Enter Dhaba Name")
+        } else if (ownerName.isEmpty()) {
+            callback.onResponse(false, "Please Enter Owner Name")
         } else if (address.isEmpty()) {
             callback.onResponse(false, "Please Enter Address")
         } else if (landmark.isEmpty()) {

@@ -129,7 +129,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
             }
 
         })
-        binding.viewPager.offscreenPageLimit = 3
+        binding.viewPager.offscreenPageLimit = 4
     }
 
     override fun initListeners() {

@@ -3,10 +3,10 @@ package com.transport.mall.repository.networkoperator
 
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.InternalDataListModel
+import com.transport.mall.database.InternalDocsListModel
 import com.transport.mall.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -30,6 +30,13 @@ interface ApiService {
         @Query("sort") sort: String,
         @Query("status") status: String
     ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
+
+    //limit=10&page=1
+    @GET("dhaba/getAllDhabaList")
+    suspend fun getAllDhabaList(
+        @Query("limit") limit: String,
+        @Query("page") page: String
+    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModel>>>>
 
     @FormUrlEncoded
     @POST("city/getCityByState")
@@ -92,7 +99,7 @@ interface ApiService {
         @Part("foodAt100") foodAt100: RequestBody,
         @Part("roCleanWater") roCleanWater: RequestBody,
         @Part("normalWater") normalWater: RequestBody,
-        @Part("Food") food: RequestBody,
+        @Part("food") food: RequestBody,
         @Part("foodLisence") foodLisence: RequestBody,
         @Part foodLisenceFile: MultipartBody.Part,
         @Part images: Array<MultipartBody.Part?>

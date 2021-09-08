@@ -5,7 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.InternalDataListModel
+import com.transport.mall.database.InternalDocsListModel
 import com.transport.mall.model.CityAndStateModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.common.GlobalUtils
@@ -100,6 +102,24 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                             "999",
                             "", "", "1", "ASC", "true"
                         )
+                    }
+                )
+            )
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getAllDhabaList(
+        app: Application,
+        limit: String,
+        page: String
+    ): Flow<ApiResult<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModel>>>>> {
+        return flow {
+            emit(ApiResult.loading())
+            emit(
+                getResponse(
+                    request = {
+                        NetworkAdapter.getInstance().getNetworkServices()
+                            ?.getAllDhabaList(limit, page)
                     }
                 )
             )

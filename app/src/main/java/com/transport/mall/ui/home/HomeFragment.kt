@@ -41,6 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
     }
 
     private fun setupViewPager() {
+        binding.viewPager.offscreenPageLimit = 4
         binding.tabLayout.setupWithViewPager(binding.viewPager)
         val adapter = HomeViewPagerAdapter(childFragmentManager)
 

@@ -1,12 +1,9 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAddDhabaStep3Binding
-import com.transport.mall.model.FoodAmenitiesModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseFragment
 
@@ -32,6 +29,10 @@ class AddDhabaStep3Fragment :
     }
 
     override fun initListeners() {
+        binding.btnNext.setOnClickListener {
+            mlistener?.showNextScreen()
+        }
+
         binding.cardFood.setOnClickListener {
 //            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
             AmenitiesActivity.start(
@@ -90,4 +91,4 @@ class AddDhabaStep3Fragment :
             }
         }
     }
-    }
+}

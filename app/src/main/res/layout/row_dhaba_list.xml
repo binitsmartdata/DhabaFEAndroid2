@@ -7,6 +7,9 @@
         <import type="com.transport.mall.R" />
 
         <import type="android.view.View" />
+        <variable
+            name="context"
+            type="android.content.Context" />
 
         <variable
             name="position"
@@ -15,6 +18,10 @@
         <variable
             name="model"
             type="com.transport.mall.model.DhabaModel" />
+
+        <variable
+            name="user"
+            type="com.transport.mall.model.UserModel" />
 
         <variable
             name="callback"
@@ -30,6 +37,7 @@
         android:padding="10dp">
 
         <LinearLayout
+            android:id="@+id/dhabaContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -91,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:text="Chandigarh"
+                    android:text="@{model.address}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
@@ -195,7 +203,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jarnail Singh"
+                        android:text="@{model.ownerName}"
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -227,7 +235,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rajinder Kumar"
+                        android:text="@{user.fname.en}"
                         android:textColor="@color/black" />
 
                 </LinearLayout>

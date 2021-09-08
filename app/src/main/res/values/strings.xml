@@ -207,6 +207,7 @@
     <string name="save_dhaba">Save Dhaba</string>
     <string name="dhaba_created_successfully">Dhaba Created successfully</string>
     <string name="food_amen_saved">Food Amenities Saved Successfully</string>
+    <string name="no_data_found">No Data Found</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>
