@@ -66,6 +66,7 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                     }
                     ApiResult.Status.ERROR -> {
                         progressObserver.value = false
+                        callBack.onResponse(ArrayList())
                     }
                     ApiResult.Status.SUCCESS -> {
                         progressObserver.value = false
