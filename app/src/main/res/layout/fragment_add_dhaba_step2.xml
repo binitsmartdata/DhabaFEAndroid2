@@ -111,6 +111,7 @@
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="textPostalAddress"
                     android:text="@={viewModel.address}"
+                    android:singleLine="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -11,6 +11,7 @@ import com.google.android.gms.location.*
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.LocationAddressModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.base.BaseVM
@@ -93,7 +94,7 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
             }
     }
 
-    fun getAddressUsingLatLong(latitude: Double, longitude: Double): String {
+    fun getAddressUsingLatLong(latitude: Double, longitude: Double): LocationAddressModel {
         val geocoder: Geocoder
         val addresses: List<Address>
         geocoder = Geocoder(app, Locale.getDefault())
@@ -113,8 +114,8 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
         val postalCode: String = addresses[0].getPostalCode()
         val knownName: String = addresses[0].getFeatureName() // Only if available else return NULL
 
-//        return LocationAddressModel(city, state, country, postalCode, knownName)
-        return address
+        return LocationAddressModel(address, city, state, country, postalCode, knownName)
+//        return address
     }
 
     fun getCitiesByStateId(
@@ -201,6 +202,7 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
                             RequestBody.create(MultipartBody.FORM, getDhabaModel().location),
                             RequestBody.create(MultipartBody.FORM, getDhabaModel().mobile),
                             RequestBody.create(MultipartBody.FORM, getDhabaModel().propertyStatus),
+                            RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
                             MultipartBody.Part.createFormData(
                                 "images",
                                 File(getDhabaModel().images).getName(),
@@ -208,13 +210,13 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
                                     MediaType.parse("image/*"), getDhabaModel().images
                                 )
                             ),
-                            MultipartBody.Part.createFormData(
+                            if (getDhabaModel().videos.isNotEmpty()) MultipartBody.Part.createFormData(
                                 "videos",
                                 File(getDhabaModel().videos).getName(),
                                 RequestBody.create(
                                     MediaType.parse("video/*"), getDhabaModel().videos
                                 )
-                            ),
+                            ) else null,
                             RequestBody.create(
                                 MultipartBody.FORM,
                                 SharedPrefsHelper.getInstance(app!!).getUserData().id

@@ -547,4 +547,8 @@ object GlobalUtils {
             return true;
         }
     }
+
+    fun getCurrentDate(): String {
+        return SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+    }
 }

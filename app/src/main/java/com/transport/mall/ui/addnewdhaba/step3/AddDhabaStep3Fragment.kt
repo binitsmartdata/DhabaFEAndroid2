@@ -43,52 +43,56 @@ class AddDhabaStep3Fragment :
 //            }
         }
         binding.cardParking.setOnClickListener {
-            mlistener?.getDhabaModelMain()?.let {
+//            mlistener?.getDhabaModelMain()?.let {
                 AmenitiesActivity.start(
                     activity as Context, AmenitiesActivity.PARKING,
-                    it
+                    mlistener?.getDhabaModelMain()!!
                 )
-            }
+//            }
         }
         binding.cardSleeping.setOnClickListener {
-            mlistener?.getDhabaModelMain()?.let {
+//            mlistener?.getDhabaModelMain()?.let {
                 AmenitiesActivity.start(
                     activity as Context, AmenitiesActivity.SLEEPING,
-                    it
+                    mlistener?.getDhabaModelMain()!!
                 )
-            }
+//            }
         }
         binding.cardWashroom.setOnClickListener {
-            mlistener?.getDhabaModelMain()?.let {
+//            mlistener?.getDhabaModelMain()?.let {
                 AmenitiesActivity.start(
                     activity as Context, AmenitiesActivity.WASHROOM,
-                    it
+                    mlistener?.getDhabaModelMain()!!
                 )
-            }
+//            }
         }
         binding.cardSecurity.setOnClickListener {
-            mlistener?.getDhabaModelMain()?.let {
+//            mlistener?.getDhabaModelMain()?.let {
                 AmenitiesActivity.start(
                     activity as Context, AmenitiesActivity.SECURITY,
-                    it
+                    mlistener?.getDhabaModelMain()!!
                 )
-            }
+//            }
         }
         binding.cardOther.setOnClickListener {
-            mlistener?.getDhabaModelMain()?.let {
+//            mlistener?.getDhabaModelMain()?.let {
                 AmenitiesActivity.start(
                     activity as Context, AmenitiesActivity.OTHER,
-                    it
+                    mlistener?.getDhabaModelMain()!!
                 )
-            }
+//            }
         }
         binding.cardLights.setOnClickListener {
-            mlistener?.getDhabaModelMain()?.let {
+//            mlistener?.getDhabaModelMain()?.let {
                 AmenitiesActivity.start(
                     activity as Context, AmenitiesActivity.LIGHT,
-                    it
+                    mlistener?.getDhabaModelMain()!!
                 )
-            }
+//            }
         }
+    }
+
+    fun youAreInFocus() {
+
     }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.InternalDataListModel
 import com.transport.mall.database.InternalDocsListModel
+import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.repository.networkoperator.ApiResult
@@ -16,7 +17,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
+import java.io.File
 
 open class BaseVM(context: Application) : AndroidViewModel(context) {
 
@@ -69,7 +74,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                     request = {
                         NetworkAdapter.getInstance().getNetworkServices()?.getAllCities(
                             getAccessToken(app),
-                            "999",
+                            "4100",
                             "", "", "1", "ASC", "true"
                         )
                     }
@@ -120,6 +125,33 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                     request = {
                         NetworkAdapter.getInstance().getNetworkServices()
                             ?.getAllDhabaList(limit, page)
+                    }
+                )
+            )
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun addBankDetail(bankModel: BankDetailsModel): Flow<ApiResult<ApiResponseModel<BankDetailsModel>>> {
+        return flow {
+            emit(ApiResult.loading())
+            emit(
+                getResponse(
+                    request = {
+                        NetworkAdapter.getInstance().getNetworkServices()?.addBankDetail(
+                            RequestBody.create(MultipartBody.FORM, bankModel.user_id),
+                            RequestBody.create(MultipartBody.FORM, bankModel.bankName),
+                            RequestBody.create(MultipartBody.FORM, bankModel.gstNumber),
+                            RequestBody.create(MultipartBody.FORM, bankModel.ifscCode),
+                            RequestBody.create(MultipartBody.FORM, bankModel.accountName),
+                            RequestBody.create(MultipartBody.FORM, bankModel.panNumber),
+                            MultipartBody.Part.createFormData(
+                                "foodLisenceFile",
+                                File(bankModel.panPhoto).getName(),
+                                RequestBody.create(
+                                    MediaType.parse("image/*"), bankModel.panPhoto
+                                )
+                            )
+                        )
                     }
                 )
             )

@@ -69,8 +69,9 @@ interface ApiService {
         @Part("location") location: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("propertyStatus") propertyStatus: RequestBody,
+        @Part("status") status: RequestBody,
         @Part images: MultipartBody.Part,
-        @Part videos: MultipartBody.Part,
+        @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody
     ): Response<ApiResponseModel<DhabaModel>>
@@ -104,4 +105,16 @@ interface ApiService {
         @Part foodLisenceFile: MultipartBody.Part,
         @Part images: Array<MultipartBody.Part?>
     ): Response<ApiResponseModel<FoodAmenitiesModel>>
+
+    @Multipart
+    @POST("bank/addBankDetail")
+    suspend fun addBankDetail(
+        @Part("user_id") service_id: RequestBody,
+        @Part("bankName") bankName: RequestBody,
+        @Part("gstNumber") gstNumber: RequestBody,
+        @Part("ifscCode") ifscCode: RequestBody,
+        @Part("accountName") accountName: RequestBody,
+        @Part("panNumber") panNumber: RequestBody,
+        @Part panPhoto: MultipartBody.Part
+    ): Response<ApiResponseModel<BankDetailsModel>>
 }

@@ -9,8 +9,23 @@
         <import type="android.view.View" />
 
         <variable
+            name="currentDate"
+            type="String" />
+
+        <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="viewModel"
+            type="com.transport.mall.ui.addnewdhaba.step1.Step4BankDetailsVM" />
+        <variable
+            name="dhabaModelMain"
+            type="com.transport.mall.model.DhabaModelMain" />
+
+        <variable
+            name="executiveModel"
+            type="com.transport.mall.model.UserModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -49,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@={viewModel.bankName}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -71,7 +86,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@={viewModel.gstNumber}"
+                    android:maxLength="15"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -93,7 +109,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@={viewModel.ifscCode}"
+                    android:maxLength="11"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -116,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@={viewModel.accountName}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -138,41 +155,57 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@={viewModel.panNumber}"
+                    android:maxLength="10"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:id="@+id/llPanPhoto"
+            <FrameLayout
+                android:id="@+id/framePanCardPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/grey_light"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/panNumberTil">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/ic_add_round" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/llPanPhoto"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_regular"
-                    android:text="@string/upload_pan_photo"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/ic_add_round" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@string/upload_pan_photo"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivPanPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_light"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
             <View
                 android:id="@+id/divider1"
@@ -180,7 +213,7 @@
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:background="@color/colorGrey1"
-                app:layout_constraintBottom_toBottomOf="@id/llPanPhoto"
+                app:layout_constraintBottom_toBottomOf="@id/framePanCardPhoto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -210,9 +243,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@{executiveModel.fname.en}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -230,11 +264,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/nameTil">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edOnboardingDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@{currentDate}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -276,9 +312,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@{executiveModel.fname.en}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -298,30 +335,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="phone"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/areaHeadTil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:hint="@string/area_head"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneNumberTil">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="text"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
@@ -336,7 +352,7 @@
                 android:background="@color/colorGrey1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/areaHeadTil" />
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberTil" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/areaHeadText"
@@ -364,9 +380,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text=""
+                    android:text="@{executiveModel.fname.en}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -386,30 +403,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="phone"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/headTil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:hint="@string/head"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/areaHeadPhoneNumberTil">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="text"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
@@ -424,7 +420,7 @@
                 android:background="@color/colorGrey1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headTil" />
+                app:layout_constraintTop_toBottomOf="@+id/areaHeadPhoneNumberTil" />
 
             <View
                 android:id="@+id/divider5"
@@ -434,7 +430,7 @@
                 android:background="@color/colorGrey1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headTil" />
+                app:layout_constraintTop_toBottomOf="@+id/areaHeadPhoneNumberTil" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/blockingSystemLayout"

@@ -103,11 +103,15 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     private fun setupStepsFragments() {
         val adapter = HomeViewPagerAdapter(supportFragmentManager)
 
-        // add your fragments
-        adapter.addFrag(AddDhabaStep1Fragment(), getString(R.string.dhaba_details))
-        adapter.addFrag(AddDhabaStep2Fragment(), getString(R.string.owner_details))
-        adapter.addFrag(AddDhabaStep3Fragment(), getString(R.string.amenities))
-        adapter.addFrag(Step4BankDetailsFragment(), getString(R.string.bank_details))
+        var fragment1 = AddDhabaStep2Fragment()
+        var fragment2 = AddDhabaStep1Fragment()
+        var fragment3 = AddDhabaStep3Fragment()
+        var fragment4 = Step4BankDetailsFragment()
+
+        adapter.addFrag(fragment1, getString(R.string.owner_details))
+        adapter.addFrag(fragment2, getString(R.string.dhaba_details))
+        adapter.addFrag(fragment3, getString(R.string.amenities))
+        adapter.addFrag(fragment4, getString(R.string.bank_details))
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter
@@ -122,6 +126,12 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
                 positionOffsetPixels: Int
             ) {
                 binding.stepnumber = position + 1
+                when (position) {
+                    0 -> fragment1.youAreInFocus()
+                    1 -> fragment2.youAreInFocus()
+                    2 -> fragment3.youAreInFocus()
+                    3 -> fragment4.youAreInFocus()
+                }
             }
 
             override fun onPageSelected(position: Int) {
@@ -148,6 +158,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
 
     override fun showNextScreen() {
         binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+
     }
 
     override fun getDhabaId(): String {

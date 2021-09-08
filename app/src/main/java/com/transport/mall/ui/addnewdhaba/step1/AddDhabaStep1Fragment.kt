@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -46,6 +45,7 @@ class AddDhabaStep1Fragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
+        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.ownerName.set(it?.ownerName) }
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog()
@@ -158,14 +158,14 @@ class AddDhabaStep1Fragment :
                         viewModel.getAddressUsingLatLong(
                             location.latitude,
                             location.longitude
-                        )
+                        ).fullAddress
                     )
-                    Log.e(
-                        "Location :::: ",
-                        location.latitude.toString() + " : " + location.longitude.toString()
+                    binding.edPinCode.setText(
+                        viewModel.getAddressUsingLatLong(
+                            location.latitude,
+                            location.longitude
+                        ).postalCode
                     )
-                } else {
-                    Log.e("Location :::: ", "<---- NULL --- >")
                 }
             })
         }
@@ -233,5 +233,9 @@ class AddDhabaStep1Fragment :
                 binding.ivImageThumb.setImageURI(uri)
             }
         }
+    }
+
+    fun youAreInFocus() {
+        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.ownerName.set(it?.ownerName) }
     }
 }

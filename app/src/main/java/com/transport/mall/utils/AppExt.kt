@@ -3,14 +3,14 @@ package com.transport.mall.utils
 import android.app.Activity
 import android.content.Intent
 import android.os.Handler
-import android.view.ViewGroup
-import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import android.view.Gravity
 import android.view.View
-import android.widget.TextView
+import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -85,24 +85,3 @@ fun Fragment.popBackFragment(fragment: Fragment) {
         e.printStackTrace()
     }
 }
-
-/*
-fun AppCompatActivity.handleApiError(
-    t: Throwable?,
-    coordinatorLayout: ViewGroup,
-    appHelper: AppHelper
-) {
-    if (t is SocketTimeoutException) {
-        val message = getString(R.string.server_taking_too_long_to_respond)
-        appHelper.showSnackBarToast(message, coordinatorLayout)
-    } else {
-        val errorMessage: String = t!!.message as String
-        if (errorMessage.isNotEmpty()
-            && (errorMessage.contains("Failed to connect to") || errorMessage.contains("failed to connect to"))
-        ) {
-            appHelper.showSnackBarToast(getString(R.string.unable_to_connect), coordinatorLayout)
-        } else {
-            appHelper.showSnackBarToast(errorMessage, coordinatorLayout)
-        }
-    }
-}*/

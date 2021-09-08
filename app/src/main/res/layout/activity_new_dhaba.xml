@@ -131,7 +131,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="start"
-                    android:text="Dhaba Details"
+                    android:singleLine="true"
+                    android:text="@string/owner_details"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_10sdp" />
 
@@ -151,7 +152,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="start"
-                    android:text="Owner Details"
+                    android:singleLine="true"
+                    android:text="Dhaba Details"
                     android:textColor="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
                     android:textSize="@dimen/_10sdp" />
 
@@ -171,7 +173,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="start"
-                    android:text="Amenities"
+                    android:singleLine="true"
+                    android:text="@string/amenities"
                     android:textColor="@{(stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
                     android:textSize="@dimen/_10sdp" />
 
@@ -190,7 +193,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="start"
-                    android:text="Bank Details"
+                    android:singleLine="true"
+                    android:text="@string/bank_details"
                     android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
                     android:textSize="@dimen/_10sdp" />
 

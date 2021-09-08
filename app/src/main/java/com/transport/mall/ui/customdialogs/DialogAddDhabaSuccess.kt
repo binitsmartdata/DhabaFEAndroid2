@@ -1,7 +1,10 @@
 package com.transport.mall.ui.customdialogs
 
 import android.app.Dialog
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.graphics.drawable.Animatable
 import android.os.Handler
 import android.view.LayoutInflater
@@ -12,6 +15,7 @@ import androidx.databinding.DataBindingUtil
 import com.transport.mall.R
 import com.transport.mall.databinding.DialogAddDhabaSuccessBinding
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 
 
 class DialogAddDhabaSuccess constructor(
@@ -47,5 +51,14 @@ class DialogAddDhabaSuccess constructor(
             Runnable { (binding.ivTick.getDrawable() as Animatable).start() },
             300
         )
+
+        binding.tvDhabaId.setOnClickListener {
+            val clipboard: ClipboardManager? =
+                context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager?
+            val clip = ClipData.newPlainText("DHABA_ID", id)
+            clipboard?.setPrimaryClip(clip)
+
+            GlobalUtils.showToastInCenter(context, context.getString(R.string.copied_to_clipboard))
+        }
     }
 }

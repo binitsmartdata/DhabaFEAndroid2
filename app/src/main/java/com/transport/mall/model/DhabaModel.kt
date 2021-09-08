@@ -8,6 +8,7 @@ import java.io.Serializable
  */
 class DhabaModel : Serializable {
     var _id: String = ""
+    var status: String = ""
     var name: String = ""
     var ownerName: String = ""
     var address: String = ""
@@ -46,12 +47,17 @@ class DhabaModel : Serializable {
             callback.onResponse(false, "Please Select Property Status")
         } else if (images.isEmpty()) {
             callback.onResponse(false, "Please Select Dhaba Image")
-        } else if (videos.isEmpty()) {
+        } /*else if (videos.isEmpty()) {
             callback.onResponse(false, "Please Select Dhaba Video")
-        } else if (videos.isEmpty()) {
-            callback.onResponse(false, "Please Select Dhaba Video")
-        } else {
+        } */else {
             callback.onResponse(true, "")
         }
+    }
+
+    companion object {
+        val STATUS_PENDING = "Pending"
+        val STATUS_INPROGRESS = "InProgress"
+        val STATUS_ACTIVE = "Active"
+        val STATUS_INACTIVE = "InActive"
     }
 }
