@@ -33,4 +33,33 @@ class FoodAmenitiesModel : Serializable {
             callback.onResponse(true, "")
         }
     }
+
+    fun getNoOfAmenities(): Int {
+        var count = 0
+        if (name.isNotEmpty()) {
+            count += 1
+        }
+        if (foodLisence.isNotEmpty()) {
+            count += 1
+        }
+        if (foodAt100.isNotEmpty()) {
+            count += 1
+        }
+        if (roCleanWater.isNotEmpty()) {
+            count += 1
+        }
+        if (normalWater.isNotEmpty()) {
+            count += 1
+        }
+        if (food.isNotEmpty()) {
+            count += 1
+        }
+        if (images.isNotEmpty()) {
+            count += 1
+        }
+        if (foodLisenceFile.isNotEmpty()) {
+            count += 1
+        }
+        return count
+    }
 }

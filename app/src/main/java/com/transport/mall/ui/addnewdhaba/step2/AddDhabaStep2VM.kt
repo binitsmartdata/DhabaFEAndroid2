@@ -17,10 +17,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
 
 
 /**
@@ -53,7 +51,7 @@ class AddDhabaStep2VM(application: Application) : BaseVM(application) {
         })
         mobile.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                mobile.get()?.let { ownerModel.mobile = it }
+                mobile.get()?.let { ownerModel.mobile = it.replace("[^\\d]", "") }
             }
         })
         email.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
@@ -135,25 +133,9 @@ class AddDhabaStep2VM(application: Application) : BaseVM(application) {
                             RequestBody.create(MultipartBody.FORM, ownerModel.address),
                             RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
                             RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
-                            MultipartBody.Part.createFormData(
-                                "ownerPic", File(ownerModel.ownerPic).getName(), RequestBody.create(
-                                    MediaType.parse("image/*"), ownerModel.ownerPic
-                                )
-                            ),
-                            MultipartBody.Part.createFormData(
-                                "idproofFront",
-                                File(ownerModel.idproofFront).getName(),
-                                RequestBody.create(
-                                    MediaType.parse("video/*"), ownerModel.idproofFront
-                                )
-                            ),
-                            MultipartBody.Part.createFormData(
-                                "idproofBack",
-                                File(ownerModel.idproofFront).getName(),
-                                RequestBody.create(
-                                    MediaType.parse("video/*"), ownerModel.idproofFront
-                                )
-                            )
+                            getMultipartImageFile(ownerModel.ownerPic, "ownerPic"),
+                            getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
+                            getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
                         )
                     }
                 )

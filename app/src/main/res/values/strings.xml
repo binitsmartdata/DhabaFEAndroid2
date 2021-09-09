@@ -209,6 +209,8 @@
     <string name="food_amen_saved">Food Amenities Saved Successfully</string>
     <string name="no_data_found">No Data Found</string>
     <string name="copied_to_clipboard">Dhaba ID Copied to clipboard</string>
+    <string name="parking_amen_saved">Parking Amenities Saved Successfully</string>
+    <string name="amenities_selected">Amenities Selected</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

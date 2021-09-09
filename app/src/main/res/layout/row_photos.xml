@@ -36,7 +36,8 @@
             android:layout_gravity="center">
 
             <ImageView
-                setImageURI="@{data.uri}"
+                loadImage="@{data.path}"
+                placeholder="@{R.drawable.ic_image_placeholder}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"

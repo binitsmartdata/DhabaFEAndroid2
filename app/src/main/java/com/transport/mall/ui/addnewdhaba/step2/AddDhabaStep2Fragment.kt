@@ -3,6 +3,7 @@ package com.transport.mall.ui.addnewdhaba.step1
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.telephony.PhoneNumberFormattingTextWatcher
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
@@ -42,7 +43,7 @@ class AddDhabaStep2Fragment :
 
     override fun initListeners() {
         mListener?.getDhabaModelMain()?.dhabaModel?.let { viewModel.dhaba_id.set(it._id) }
-
+        binding.edPhoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog()

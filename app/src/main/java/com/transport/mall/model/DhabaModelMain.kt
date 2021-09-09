@@ -7,4 +7,5 @@ class DhabaModelMain : Serializable {
     var ownerModel: DhabaOwnerModel? = null
     var foodAmenitiesModel: FoodAmenitiesModel? = null
     var bankDetailsModel: BankDetailsModel? = null
+    var parkingAmenitiesModel: ParkingAmenitiesModel? = null
 }

@@ -234,7 +234,6 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
 
     fun getDhabaModel(): DhabaModel {
         name.get()?.let { dhabaModel.name = it }
-        ownerName.get()?.let { dhabaModel.ownerName = it }
         address.get()?.let { dhabaModel.address = it }
         landmark.get()?.let { dhabaModel.landmark = it }
         area.get()?.let { dhabaModel.area = it }

@@ -9,6 +9,7 @@ import com.transport.mall.database.InternalDocsListModel
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.PhotosModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.common.GlobalUtils
@@ -157,4 +158,50 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             )
         }.flowOn(Dispatchers.IO)
     }
+
+    fun getMultipartImagesList(
+        imageList: ArrayList<PhotosModel>,
+        parameterName: String
+    ): Array<MultipartBody.Part?> {
+        val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(
+            imageList.size
+        )
+
+        for (index in 0 until imageList.size) {
+            val file = File(imageList.get(index).path)
+            val surveyBody = RequestBody.create(MediaType.parse("image/*"), file)
+            surveyImagesParts[index] =
+                MultipartBody.Part.createFormData(parameterName, file.name, surveyBody)
+        }
+        return surveyImagesParts
+    }
+
+    fun getMultipartVideoFile(path: String, parameterName: String): MultipartBody.Part? {
+        if (path == null || path.isEmpty()) {
+            return null
+        } else {
+            return MultipartBody.Part.createFormData(
+                parameterName,
+                File(path).getName(),
+                RequestBody.create(
+                    MediaType.parse("video/*"), path
+                )
+            )
+        }
+    }
+
+    fun getMultipartImageFile(path: String, parameterName: String): MultipartBody.Part? {
+        if (path == null || path.isEmpty()) {
+            return null
+        } else {
+            return MultipartBody.Part.createFormData(
+                parameterName,
+                File(path).getName(),
+                RequestBody.create(
+                    MediaType.parse("image/*"), path
+                )
+            )
+        }
+    }
+
 }

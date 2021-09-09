@@ -61,6 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ownerNameTil">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
@@ -109,9 +110,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textPostalAddress"
-                    android:text="@={viewModel.address}"
+                    android:inputType="text|textMultiLine"
                     android:singleLine="false"
+                    android:text="@={viewModel.address}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>

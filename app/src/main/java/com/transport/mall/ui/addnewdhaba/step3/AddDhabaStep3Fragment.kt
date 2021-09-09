@@ -44,51 +44,63 @@ class AddDhabaStep3Fragment :
         }
         binding.cardParking.setOnClickListener {
 //            mlistener?.getDhabaModelMain()?.let {
-                AmenitiesActivity.start(
-                    activity as Context, AmenitiesActivity.PARKING,
-                    mlistener?.getDhabaModelMain()!!
-                )
+            AmenitiesActivity.start(
+                activity as Context, AmenitiesActivity.PARKING,
+                mlistener?.getDhabaModelMain()!!
+            )
 //            }
         }
         binding.cardSleeping.setOnClickListener {
 //            mlistener?.getDhabaModelMain()?.let {
-                AmenitiesActivity.start(
-                    activity as Context, AmenitiesActivity.SLEEPING,
-                    mlistener?.getDhabaModelMain()!!
-                )
+            AmenitiesActivity.start(
+                activity as Context, AmenitiesActivity.SLEEPING,
+                mlistener?.getDhabaModelMain()!!
+            )
 //            }
         }
         binding.cardWashroom.setOnClickListener {
 //            mlistener?.getDhabaModelMain()?.let {
-                AmenitiesActivity.start(
-                    activity as Context, AmenitiesActivity.WASHROOM,
-                    mlistener?.getDhabaModelMain()!!
-                )
+            AmenitiesActivity.start(
+                activity as Context, AmenitiesActivity.WASHROOM,
+                mlistener?.getDhabaModelMain()!!
+            )
 //            }
         }
         binding.cardSecurity.setOnClickListener {
 //            mlistener?.getDhabaModelMain()?.let {
-                AmenitiesActivity.start(
-                    activity as Context, AmenitiesActivity.SECURITY,
-                    mlistener?.getDhabaModelMain()!!
-                )
+            AmenitiesActivity.start(
+                activity as Context, AmenitiesActivity.SECURITY,
+                mlistener?.getDhabaModelMain()!!
+            )
 //            }
         }
         binding.cardOther.setOnClickListener {
 //            mlistener?.getDhabaModelMain()?.let {
-                AmenitiesActivity.start(
-                    activity as Context, AmenitiesActivity.OTHER,
-                    mlistener?.getDhabaModelMain()!!
-                )
+            AmenitiesActivity.start(
+                activity as Context, AmenitiesActivity.OTHER,
+                mlistener?.getDhabaModelMain()!!
+            )
 //            }
         }
         binding.cardLights.setOnClickListener {
 //            mlistener?.getDhabaModelMain()?.let {
-                AmenitiesActivity.start(
-                    activity as Context, AmenitiesActivity.LIGHT,
-                    mlistener?.getDhabaModelMain()!!
-                )
+            AmenitiesActivity.start(
+                activity as Context, AmenitiesActivity.LIGHT,
+                mlistener?.getDhabaModelMain()!!
+            )
 //            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mlistener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
+            binding.tvFoodAmens.text =
+                it.getNoOfAmenities().toString() + " " + getString(R.string.amenities_selected)
+        }
+        mlistener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
+            binding.tvParkingAmens.text =
+                it.getNoOfAmenities().toString() + " " + getString(R.string.amenities_selected)
         }
     }
 

@@ -1,8 +1,6 @@
 package com.transport.mall.ui.addnewdhaba.step3.amenities.food
 
 import android.app.Application
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModelMain
@@ -18,10 +16,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -80,64 +76,12 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
                             RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                             RequestBody.create(MultipartBody.FORM, model.food),
                             RequestBody.create(MultipartBody.FORM, model.foodLisence),
-                            MultipartBody.Part.createFormData(
-                                "foodLisenceFile",
-                                File(model.foodLisenceFile).getName(),
-                                RequestBody.create(
-                                    MediaType.parse("image/*"), model.foodLisenceFile
-                                )
-                            ),
-                            getFoodImagesAsMultipart()
+                            getMultipartImageFile(model.foodLisenceFile, "foodLisenceFile"),
+                            getMultipartImagesList(model.images, "images")
                         )
                     }
                 )
             )
         }.flowOn(Dispatchers.IO)
-    }
-
-    fun getFoodImagesAsMultipart(): Array<MultipartBody.Part?> {
-        val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(
-            model.images.size
-        )
-
-        for (index in 0 until
-                model.images
-                    .size) {
-            Log.d(
-                "FOOD IMAGES :::",
-                "requestUploadSurvey: survey image " +
-                        index +
-                        "  " +
-                        model.images
-                            .get(index)
-                            .path
-            )
-            val file: File = File(
-                model.images
-                    .get(index)
-                    .path
-            )
-            val surveyBody = RequestBody.create(
-                MediaType.parse("image/*"),
-                file
-            )
-            surveyImagesParts[index] = MultipartBody.Part.createFormData(
-                "images",
-                file.name,
-                surveyBody
-            )
-        }
-        return surveyImagesParts
-    }
-
-    private fun prepareFilePart(partName: String, filePath: String): MultipartBody.Part? {
-        val file: File = File(filePath)
-        val requestBody =
-            RequestBody.create(
-                MediaType.parse(
-                    app?.getContentResolver()?.getType(Uri.fromFile(file))
-                ), file
-            )
-        return MultipartBody.Part.createFormData(partName, file.name, requestBody)
     }
 }

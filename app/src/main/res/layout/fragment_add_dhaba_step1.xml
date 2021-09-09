@@ -47,30 +47,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tlOwnerName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:hint="@string/owner_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dhabaNameTil">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edOwnerName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="text"
-                    android:enabled="false"
-                    android:text="@={viewModel.ownerName}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dhabaAddressTil"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -79,7 +55,7 @@
                 android:hint="@string/dhaba_address"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tlOwnerName">
+                app:layout_constraintTop_toBottomOf="@+id/dhabaNameTil">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edDhabaAddress"

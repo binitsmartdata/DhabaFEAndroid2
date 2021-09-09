@@ -56,11 +56,11 @@ class DhabaOwnerModel : Serializable {
             callback.onResponse(false, "Please Aadhar Card Number")
         } else if (ownerPic.isEmpty()) {
             callback.onResponse(false, "Please Select Owner Picture")
-        } else if (idproofFront.isEmpty()) {
+        } /*else if (idproofFront.isEmpty()) {
             callback.onResponse(false, "Please Select ID proof front image")
         } else if (idproofBack.isEmpty()) {
             callback.onResponse(false, "Please Select ID proof back image")
-        } else {
+        } */else {
             callback.onResponse(true, "")
         }
     }

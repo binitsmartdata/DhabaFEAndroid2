@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentSleepingAmenitiesBinding
+import com.transport.mall.ui.addnewdhaba.step3.foodamenities.SleepingAmenitiesVM
 import com.transport.mall.utils.base.BaseFragment
 
 /**
@@ -70,10 +71,6 @@ class SleepingAmenitiesFragment :
             // Use Uri object instead of File to avoid storage permissions
             binding.ivSleepingImg.setImageURI(uri)
 
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(activity, "Task Cancelled", Toast.LENGTH_SHORT).show()
         }
     }
 }

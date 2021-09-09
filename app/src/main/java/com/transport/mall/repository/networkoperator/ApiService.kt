@@ -86,9 +86,9 @@ interface ApiService {
         @Part("address") address: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
         @Part("adharCard") adharCard: RequestBody,
-        @Part ownerPic: MultipartBody.Part,
-        @Part idproofFront: MultipartBody.Part,
-        @Part idproofBack: MultipartBody.Part
+        @Part ownerPic: MultipartBody.Part?,
+        @Part idproofFront: MultipartBody.Part?,
+        @Part idproofBack: MultipartBody.Part?
     ): Response<ApiResponseModel<DhabaOwnerModel>>
 
     @Multipart
@@ -102,9 +102,35 @@ interface ApiService {
         @Part("normalWater") normalWater: RequestBody,
         @Part("food") food: RequestBody,
         @Part("foodLisence") foodLisence: RequestBody,
-        @Part foodLisenceFile: MultipartBody.Part,
+        @Part foodLisenceFile: MultipartBody.Part?,
         @Part images: Array<MultipartBody.Part?>
     ): Response<ApiResponseModel<FoodAmenitiesModel>>
+
+    @Multipart
+    @POST("dhaba/addParkingAmenities")
+    suspend fun addParkingAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("concreteParking") concreteParking: RequestBody,
+        @Part("flatHardParking") flatHardParking: RequestBody,
+        @Part("kachaFlatParking") kachaFlatParking: RequestBody,
+        @Part("parkingSpace") parkingSpace: RequestBody,
+        @Part images: Array<MultipartBody.Part?>
+    ): Response<ApiResponseModel<ParkingAmenitiesModel>>
+
+    @Multipart
+    @POST("dhaba/addSleepingAmenities")
+    suspend fun addSleepingAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("sleeping") sleeping: RequestBody,
+        @Part("fan") fan: RequestBody,
+        @Part("enclosed") enclosed: RequestBody,
+        @Part("open") open: RequestBody,
+        @Part("hotWater") hotWater: RequestBody
+    ): Response<ApiResponseModel<SleepingAmenitiesModel>>
 
     @Multipart
     @POST("bank/addBankDetail")

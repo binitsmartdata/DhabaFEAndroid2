@@ -18,6 +18,7 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.xloadImages
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -50,19 +51,62 @@ class FoodAmenitiesFragment :
         setupLicensePhotoViews()
         setupFoodPhotosView()
         setupOptionsListener()
+
+        //SETTING EXISTING DATA ON SCREEN
+        mListener?.getDhabaModelMain()?.foodAmenitiesModel.let {
+
+            it?.foodLisence?.toBoolean()?.let {
+                binding.rbFoodLicenseYes.isChecked = it
+                binding.rbFoodLicenseNo.isChecked = !it
+            }
+
+            it?.foodAt100?.toBoolean()?.let {
+                binding.rbFoodAt100Yes.isChecked = it
+                binding.rbFoodAt100No.isChecked = !it
+            }
+
+            it?.roCleanWater?.toBoolean()?.let {
+                binding.roWaterYes.isChecked = it
+                binding.roWaterNo.isChecked = !it
+            }
+
+            when (it?.food) {
+                "1" -> binding.rbVeg.isChecked = true
+                "2" -> binding.rbNonVeg.isChecked = true
+                "3" -> binding.rbBothFood.isChecked = true
+            }
+
+            it?.foodLisenceFile?.let {
+                if (it.isNotEmpty()) {
+                    xloadImages(
+                        binding.ivLicenseImg,
+                        it,
+                        R.drawable.ic_image_placeholder
+                    )
+                    binding.ivLicenseImg.visibility = View.VISIBLE
+                }
+            }
+            it?.images?.let {
+                if (it.isNotEmpty()) {
+                    imageList.addAll(it)
+                    refreshGalleryImages()
+                }
+            }
+        }
     }
 
     private fun setupOptionsListener() {
         binding.rgFoodLicense.setOnCheckedChangeListener { radioGroup, i ->
             viewModel.model.foodLisence =
-                activity?.findViewById<RadioButton>(i)?.isChecked.toString()
+                activity?.findViewById<RadioButton>(R.id.rbFoodLicenseYes)?.isChecked.toString()
         }
         binding.rgFoodAt100.setOnCheckedChangeListener { radioGroup, i ->
-            viewModel.model.foodAt100 = activity?.findViewById<RadioButton>(i)?.isChecked.toString()
+            viewModel.model.foodAt100 =
+                activity?.findViewById<RadioButton>(R.id.rbFoodAt100Yes)?.isChecked.toString()
         }
         binding.rgRoWater.setOnCheckedChangeListener { radioGroup, i ->
             viewModel.model.roCleanWater =
-                activity?.findViewById<RadioButton>(i)?.isChecked.toString()
+                activity?.findViewById<RadioButton>(R.id.roWaterYes)?.isChecked.toString()
         }
         binding.rgFoodType.setOnCheckedChangeListener { radioGroup, i ->
             viewModel.model.food = activity?.findViewById<RadioButton>(i)?.getTag().toString()

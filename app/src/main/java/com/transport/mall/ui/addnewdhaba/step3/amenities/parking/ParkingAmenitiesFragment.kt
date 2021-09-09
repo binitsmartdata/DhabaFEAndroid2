@@ -4,7 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
+import android.widget.RadioButton
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
@@ -13,6 +14,7 @@ import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 
 /**
@@ -33,6 +35,7 @@ class ParkingAmenitiesFragment :
 
     override fun bindData() {
         binding.context = activity
+        binding.viewmodel = viewModel
         refreshGalleryImages()
         setupFoodPhotosView()
     }
@@ -68,13 +71,57 @@ class ParkingAmenitiesFragment :
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
         binding.recyclerView.adapter =
-            ImageGalleryAdapter(activity as Context, imageList, GenericCallBack { })
+            ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+                viewModel.model.images = imageList
+            })
         binding.recyclerView.setHasFixedSize(true)
     }
 
     override fun initListeners() {
-        binding.btnSaveDhaba.setOnClickListener {
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
 
+        binding.rgConcreteParking.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.concreteParking =
+                activity?.findViewById<RadioButton>(id)?.getTag().toString()
+        }
+        binding.rgFlatHardParking.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.flatHardParking =
+                activity?.findViewById<RadioButton>(id)?.getTag().toString()
+
+        }
+        binding.rgKachaFlatParking.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.kachaFlatParking =
+                activity?.findViewById<RadioButton>(id)?.getTag().toString()
+        }
+        binding.rgSpace.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.parkingSpace =
+                activity?.findViewById<RadioButton>(id)?.getTag().toString()
+        }
+
+        binding.btnSaveDhaba.setOnClickListener {
+            viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
+                if (allOk) {
+                    viewModel.addParkingAmenities(GenericCallBack {
+                        if (it.data != null) {
+                            showToastInCenter(getString(R.string.parking_amen_saved))
+                            var intent = Intent()
+                            intent.putExtra("data", it.data)
+                            activity?.setResult(Activity.RESULT_OK, intent)
+                            activity?.finish()
+                        } else {
+                            showToastInCenter(it.message)
+                        }
+                    })
+                } else {
+                    showToastInCenter(message)
+                }
+            })
         }
     }
 
@@ -85,10 +132,7 @@ class ParkingAmenitiesFragment :
             val uri: Uri = data?.data!!
 
             addImageToGallery(uri)
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(activity, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            viewModel.model.images = imageList
         }
     }
 }

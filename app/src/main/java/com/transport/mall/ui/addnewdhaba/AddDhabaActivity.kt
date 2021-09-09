@@ -13,6 +13,7 @@ import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.ActivityNewDhabaBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.FoodAmenitiesModel
+import com.transport.mall.model.ParkingAmenitiesModel
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1Fragment
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep2Fragment
 import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep3Fragment
@@ -194,6 +195,8 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
                     model.let { getDhabaModelMain().foodAmenitiesModel = model }
                 }
                 AmenitiesActivity.PARKING -> {
+                    var model = data?.getSerializableExtra("data") as ParkingAmenitiesModel
+                    model.let { getDhabaModelMain().parkingAmenitiesModel = model }
                 }
                 AmenitiesActivity.SLEEPING -> {
                 }

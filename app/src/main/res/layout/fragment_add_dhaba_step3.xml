@@ -11,6 +11,7 @@
         <variable
             name="context"
             type="android.content.Context" />
+
     </data>
 
     <ScrollView
@@ -20,8 +21,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_5sdp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardFood"
@@ -54,6 +55,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvFoodAmens"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
@@ -104,6 +106,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvParkingAmens"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
