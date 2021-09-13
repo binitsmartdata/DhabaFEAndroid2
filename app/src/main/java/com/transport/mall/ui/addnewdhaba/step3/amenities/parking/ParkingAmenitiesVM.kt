@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Response
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -31,8 +32,20 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
     }
 
     fun addParkingAmenities(callBack: GenericCallBack<ApiResponseModel<ParkingAmenitiesModel>>) {
+        progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            uploadParkingAmenities().collect {
+            executeApi(
+                getApiService()?.addParkingAmenities(
+                    RequestBody.create(MultipartBody.FORM, "1"),
+                    RequestBody.create(MultipartBody.FORM, "1"),
+                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.concreteParking),
+                    RequestBody.create(MultipartBody.FORM, model.flatHardParking),
+                    RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
+                    RequestBody.create(MultipartBody.FORM, model.parkingSpace),
+                    getMultipartImagesList(model.images, "images")
+                )
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         progressObserver.value =
@@ -56,27 +69,5 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
                 }
             }
         }
-    }
-
-    suspend fun uploadParkingAmenities(): Flow<ApiResult<ApiResponseModel<ParkingAmenitiesModel>>> {
-        return flow {
-            emit(ApiResult.loading())
-            emit(
-                getResponse(
-                    request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.addParkingAmenities(
-                            RequestBody.create(MultipartBody.FORM, "1"),
-                            RequestBody.create(MultipartBody.FORM, "1"),
-                            RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
-                            RequestBody.create(MultipartBody.FORM, model.concreteParking),
-                            RequestBody.create(MultipartBody.FORM, model.flatHardParking),
-                            RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
-                            RequestBody.create(MultipartBody.FORM, model.parkingSpace),
-                            getMultipartImagesList(model.images, "images")
-                        )
-                    }
-                )
-            )
-        }.flowOn(Dispatchers.IO)
     }
 }

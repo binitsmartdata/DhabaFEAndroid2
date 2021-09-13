@@ -34,61 +34,47 @@ class AddDhabaStep3Fragment :
         }
 
         binding.cardFood.setOnClickListener {
-//            mlistener?.getDhabaModelMain()?.dhabaModel?.let {
             AmenitiesActivity.start(
                 activity as Context,
                 AmenitiesActivity.FOOD,
                 mlistener?.getDhabaModelMain()!!
             )
-//            }
         }
         binding.cardParking.setOnClickListener {
-//            mlistener?.getDhabaModelMain()?.let {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.PARKING,
                 mlistener?.getDhabaModelMain()!!
             )
-//            }
         }
         binding.cardSleeping.setOnClickListener {
-//            mlistener?.getDhabaModelMain()?.let {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SLEEPING,
                 mlistener?.getDhabaModelMain()!!
             )
-//            }
         }
         binding.cardWashroom.setOnClickListener {
-//            mlistener?.getDhabaModelMain()?.let {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.WASHROOM,
                 mlistener?.getDhabaModelMain()!!
             )
-//            }
         }
         binding.cardSecurity.setOnClickListener {
-//            mlistener?.getDhabaModelMain()?.let {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SECURITY,
                 mlistener?.getDhabaModelMain()!!
             )
-//            }
         }
         binding.cardOther.setOnClickListener {
-//            mlistener?.getDhabaModelMain()?.let {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.OTHER,
                 mlistener?.getDhabaModelMain()!!
             )
-//            }
         }
         binding.cardLights.setOnClickListener {
-//            mlistener?.getDhabaModelMain()?.let {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.LIGHT,
                 mlistener?.getDhabaModelMain()!!
             )
-//            }
         }
     }
 

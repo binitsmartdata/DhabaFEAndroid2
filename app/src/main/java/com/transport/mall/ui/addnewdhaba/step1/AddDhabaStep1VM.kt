@@ -13,16 +13,12 @@ import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.LocationAddressModel
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -123,7 +119,9 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
         callBack: GenericCallBack<ArrayList<CityAndStateModel>>
     ) {
         GlobalScope.launch(Dispatchers.Main) {
-            getCitiesByState(stateId).collect {
+            executeApi(
+                getApiService()?.getCitiesByState(stateId)
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         cityProgressObservable.value = true
@@ -144,7 +142,13 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
         callBack: GenericCallBack<ArrayList<CityAndStateModel>>
     ) {
         GlobalScope.launch(Dispatchers.Main) {
-            getAllStates(app!!).collect {
+            executeApi(
+                getApiService()?.getAllStates(
+                    getAccessToken(app!!),
+                    "999",
+                    "", "", "1", "ASC", "true"
+                )
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         stateProgressObservable.value = true
@@ -163,8 +167,46 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
     }
 
     fun addDhaba(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
+        progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            uploadDhabaDetails().collect {
+            executeApi(
+                getApiService()?.uploadDhabaDetails(
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().name),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().address),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().landmark),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().area),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().highway),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().state),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().city),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().pincode),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().location),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().mobile),
+                    RequestBody.create(MultipartBody.FORM, getDhabaModel().propertyStatus),
+                    RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
+                    MultipartBody.Part.createFormData(
+                        "images",
+                        File(getDhabaModel().images).getName(),
+                        RequestBody.create(
+                            MediaType.parse("image/*"), getDhabaModel().images
+                        )
+                    ),
+                    if (getDhabaModel().videos.isNotEmpty()) MultipartBody.Part.createFormData(
+                        "videos",
+                        File(getDhabaModel().videos).getName(),
+                        RequestBody.create(
+                            MediaType.parse("video/*"), getDhabaModel().videos
+                        )
+                    ) else null,
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        SharedPrefsHelper.getInstance(app!!).getUserData().id
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        SharedPrefsHelper.getInstance(app!!).getUserData().id
+                    )
+                )
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         progressObserver.value =
@@ -182,54 +224,6 @@ class AddDhabaStep1VM(application: Application) : BaseVM(application) {
                 }
             }
         }
-    }
-
-    suspend fun uploadDhabaDetails(): Flow<ApiResult<ApiResponseModel<DhabaModel>>> {
-        return flow {
-            emit(ApiResult.loading())
-            emit(
-                getResponse(
-                    request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.uploadDhabaDetails(
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().name),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().address),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().landmark),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().area),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().highway),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().state),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().city),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().pincode),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().location),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().mobile),
-                            RequestBody.create(MultipartBody.FORM, getDhabaModel().propertyStatus),
-                            RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
-                            MultipartBody.Part.createFormData(
-                                "images",
-                                File(getDhabaModel().images).getName(),
-                                RequestBody.create(
-                                    MediaType.parse("image/*"), getDhabaModel().images
-                                )
-                            ),
-                            if (getDhabaModel().videos.isNotEmpty()) MultipartBody.Part.createFormData(
-                                "videos",
-                                File(getDhabaModel().videos).getName(),
-                                RequestBody.create(
-                                    MediaType.parse("video/*"), getDhabaModel().videos
-                                )
-                            ) else null,
-                            RequestBody.create(
-                                MultipartBody.FORM,
-                                SharedPrefsHelper.getInstance(app!!).getUserData().id
-                            ),
-                            RequestBody.create(
-                                MultipartBody.FORM,
-                                SharedPrefsHelper.getInstance(app!!).getUserData().id
-                            )
-                        )
-                    }
-                )
-            )
-        }.flowOn(Dispatchers.IO)
     }
 
     fun getDhabaModel(): DhabaModel {

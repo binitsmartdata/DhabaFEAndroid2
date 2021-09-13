@@ -8,19 +8,14 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.R
 import com.transport.mall.database.ApiResponseModel
-import com.transport.mall.model.UserModel
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 /**
@@ -66,8 +61,9 @@ class LoginVM(application: Application) : BaseVM(application) {
 
         when (email.isNotEmpty() && password.isNotEmpty()) {
             true -> {
+                progressObserver?.value = true
                 GlobalScope.launch(Dispatchers.Main) {
-                    login(email, password).collect {
+                    executeApi(getApiService()?.login(email, password)).collect {
                         when (it.status) {
                             ApiResult.Status.LOADING -> {
                                 callBak.onResponse(it.status, "")
@@ -107,24 +103,5 @@ class LoginVM(application: Application) : BaseVM(application) {
             }
         }
         progressObserver?.value = true
-    }
-
-    suspend fun login(
-        email: String,
-        password: String
-    ): Flow<ApiResult<ApiResponseModel<UserModel>>> {
-        return flow {
-            emit(ApiResult.loading())
-            emit(
-                getResponse(
-                    request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.login(
-                            email,
-                            password
-                        )
-                    }
-                )
-            )
-        }.flowOn(Dispatchers.IO)
     }
 }

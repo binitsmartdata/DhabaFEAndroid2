@@ -11,10 +11,7 @@ import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -34,12 +31,25 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
     }
 
     fun addFoodAmenities(callBack: GenericCallBack<ApiResponseModel<FoodAmenitiesModel>>) {
+        progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            uploadFoodAmenities().collect {
+            executeApi(
+                getApiService()?.addFoodAmenities(
+                    RequestBody.create(MultipartBody.FORM, "1"),
+                    RequestBody.create(MultipartBody.FORM, "1"),
+                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.foodAt100),
+                    RequestBody.create(MultipartBody.FORM, model.roCleanWater),
+                    RequestBody.create(MultipartBody.FORM, model.roCleanWater),
+                    RequestBody.create(MultipartBody.FORM, model.food),
+                    RequestBody.create(MultipartBody.FORM, model.foodLisence),
+                    getMultipartImageFile(model.foodLisenceFile, "foodLisenceFile"),
+                    getMultipartImagesList(model.images, "images")
+                )
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        progressObserver.value =
-                            true
+                        progressObserver.value = true
                     }
                     ApiResult.Status.ERROR -> {
                         progressObserver.value = false
@@ -59,29 +69,5 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
                 }
             }
         }
-    }
-
-    suspend fun uploadFoodAmenities(): Flow<ApiResult<ApiResponseModel<FoodAmenitiesModel>>> {
-        return flow {
-            emit(ApiResult.loading())
-            emit(
-                getResponse(
-                    request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.addFoodAmenities(
-                            RequestBody.create(MultipartBody.FORM, "1"),
-                            RequestBody.create(MultipartBody.FORM, "1"),
-                            RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
-                            RequestBody.create(MultipartBody.FORM, model.foodAt100),
-                            RequestBody.create(MultipartBody.FORM, model.roCleanWater),
-                            RequestBody.create(MultipartBody.FORM, model.roCleanWater),
-                            RequestBody.create(MultipartBody.FORM, model.food),
-                            RequestBody.create(MultipartBody.FORM, model.foodLisence),
-                            getMultipartImageFile(model.foodLisenceFile, "foodLisenceFile"),
-                            getMultipartImagesList(model.images, "images")
-                        )
-                    }
-                )
-            )
-        }.flowOn(Dispatchers.IO)
     }
 }

@@ -18,7 +18,7 @@ import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), RecyclerCallback {
+class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_dhaba_list
     override var viewModel: DhabaListVM
@@ -122,17 +122,5 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
                 }
             }
         })
-    }
-
-    override fun onItemClick(view: View?, position: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onChildItemClick(view: View?, parentIndex: Int, childIndex: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun itemAction(type: String?, position: Int) {
-        TODO("Not yet implemented")
     }
 }

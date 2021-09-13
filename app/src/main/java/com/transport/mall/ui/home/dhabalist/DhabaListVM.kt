@@ -33,8 +33,15 @@ class DhabaListVM(application: Application) : BaseVM(application) {
     }
 
     fun getCitiesList(callBack: GenericCallBack<ArrayList<CityAndStateModel>>) {
+        progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            getAllCities(app!!).collect {
+            executeApi(
+                getApiService()?.getAllCities(
+                    getAccessToken(app!!),
+                    "4100",
+                    "", "", "1", "ASC", "true"
+                )
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         progressObserver.value = true
@@ -58,8 +65,11 @@ class DhabaListVM(application: Application) : BaseVM(application) {
         page: String,
         callBack: GenericCallBack<ArrayList<DhabaModel>>
     ) {
+        progressObserver.value = page == "1"
         GlobalScope.launch(Dispatchers.Main) {
-            super.getAllDhabaList(app!!, limit, page).collect {
+            executeApi(
+                getApiService()?.getAllDhabaList(limit, page)
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         progressObserver.value = page == "1"

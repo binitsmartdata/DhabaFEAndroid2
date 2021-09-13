@@ -12,10 +12,7 @@ import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -92,8 +89,22 @@ class AddDhabaStep2VM(application: Application) : BaseVM(application) {
     }
 
     fun addDhabaOwner(callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>) {
+        progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            uploadDhabaDetails().collect {
+            executeApi(
+                getApiService()?.addOwner(
+                    RequestBody.create(MultipartBody.FORM, ownerModel._id),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.email),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.address),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
+                    getMultipartImageFile(ownerModel.ownerPic, "ownerPic"),
+                    getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
+                    getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
+                )
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         progressObserver.value =
@@ -118,29 +129,4 @@ class AddDhabaStep2VM(application: Application) : BaseVM(application) {
             }
         }
     }
-
-    suspend fun uploadDhabaDetails(): Flow<ApiResult<ApiResponseModel<DhabaOwnerModel>>> {
-        return flow {
-            emit(ApiResult.loading())
-            emit(
-                getResponse(
-                    request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.addOwner(
-                            RequestBody.create(MultipartBody.FORM, ownerModel._id),
-                            RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
-                            RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
-                            RequestBody.create(MultipartBody.FORM, ownerModel.email),
-                            RequestBody.create(MultipartBody.FORM, ownerModel.address),
-                            RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
-                            RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
-                            getMultipartImageFile(ownerModel.ownerPic, "ownerPic"),
-                            getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
-                            getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
-                        )
-                    }
-                )
-            )
-        }.flowOn(Dispatchers.IO)
-    }
-
 }

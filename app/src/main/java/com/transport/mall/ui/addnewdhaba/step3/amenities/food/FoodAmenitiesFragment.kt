@@ -12,6 +12,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentFoodAmenitiesBinding
+import com.transport.mall.model.FoodAmenitiesModel
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.utils.base.BaseFragment
@@ -53,46 +54,51 @@ class FoodAmenitiesFragment :
         setupOptionsListener()
 
         //SETTING EXISTING DATA ON SCREEN
-        mListener?.getDhabaModelMain()?.foodAmenitiesModel.let {
+        mListener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
+            setData(it)
+        }
+    }
 
-            it?.foodLisence?.toBoolean()?.let {
-                binding.rbFoodLicenseYes.isChecked = it
-                binding.rbFoodLicenseNo.isChecked = !it
-            }
+    private fun setData(it: FoodAmenitiesModel) {
+        it.foodLisence.toBoolean().let {
+            binding.rbFoodLicenseYes.isChecked = it
+            binding.rbFoodLicenseNo.isChecked = !it
+        }
 
-            it?.foodAt100?.toBoolean()?.let {
-                binding.rbFoodAt100Yes.isChecked = it
-                binding.rbFoodAt100No.isChecked = !it
-            }
+        it.foodAt100.toBoolean().let {
+            binding.rbFoodAt100Yes.isChecked = it
+            binding.rbFoodAt100No.isChecked = !it
+        }
 
-            it?.roCleanWater?.toBoolean()?.let {
-                binding.roWaterYes.isChecked = it
-                binding.roWaterNo.isChecked = !it
-            }
+        it.roCleanWater.toBoolean().let {
+            binding.roWaterYes.isChecked = it
+            binding.roWaterNo.isChecked = !it
+        }
 
-            when (it?.food) {
-                "1" -> binding.rbVeg.isChecked = true
-                "2" -> binding.rbNonVeg.isChecked = true
-                "3" -> binding.rbBothFood.isChecked = true
-            }
+        when (it.food) {
+            "1" -> binding.rbVeg.isChecked = true
+            "2" -> binding.rbNonVeg.isChecked = true
+            "3" -> binding.rbBothFood.isChecked = true
+        }
 
-            it?.foodLisenceFile?.let {
-                if (it.isNotEmpty()) {
-                    xloadImages(
-                        binding.ivLicenseImg,
-                        it,
-                        R.drawable.ic_image_placeholder
-                    )
-                    binding.ivLicenseImg.visibility = View.VISIBLE
-                }
-            }
-            it?.images?.let {
-                if (it.isNotEmpty()) {
-                    imageList.addAll(it)
-                    refreshGalleryImages()
-                }
+        it.foodLisenceFile.let {
+            if (it.isNotEmpty()) {
+                xloadImages(
+                    binding.ivLicenseImg,
+                    it,
+                    R.drawable.ic_image_placeholder
+                )
+                binding.ivLicenseImg.visibility = View.VISIBLE
             }
         }
+        it.images.let {
+            if (it.isNotEmpty()) {
+                imageList.addAll(it)
+                refreshGalleryImages()
+            }
+        }
+
+        binding.btnSaveDhaba.visibility = View.GONE
     }
 
     private fun setupOptionsListener() {

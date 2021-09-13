@@ -10,10 +10,7 @@ import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -30,9 +27,21 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
         app = application
     }
 
-    fun addParkingAmenities(callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>) {
+    fun addSleeping(callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>) {
+        progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            uploadSleepingAmenities().collect {
+            executeApi(
+                getApiService()?.addSleepingAmenities(
+                    RequestBody.create(MultipartBody.FORM, "1"),
+                    RequestBody.create(MultipartBody.FORM, "1"),
+                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.sleeping),
+                    RequestBody.create(MultipartBody.FORM, model.fan),
+                    RequestBody.create(MultipartBody.FORM, model.enclosed),
+                    RequestBody.create(MultipartBody.FORM, model.open),
+                    RequestBody.create(MultipartBody.FORM, model.hotWater)
+                )
+            ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
                         progressObserver.value =
@@ -56,27 +65,5 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
                 }
             }
         }
-    }
-
-    suspend fun uploadSleepingAmenities(): Flow<ApiResult<ApiResponseModel<SleepingAmenitiesModel>>> {
-        return flow {
-            emit(ApiResult.loading())
-            emit(
-                getResponse(
-                    request = {
-                        NetworkAdapter.getInstance().getNetworkServices()?.addSleepingAmenities(
-                            RequestBody.create(MultipartBody.FORM, "1"),
-                            RequestBody.create(MultipartBody.FORM, "1"),
-                            RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
-                            RequestBody.create(MultipartBody.FORM, model.sleeping),
-                            RequestBody.create(MultipartBody.FORM, model.fan),
-                            RequestBody.create(MultipartBody.FORM, model.enclosed),
-                            RequestBody.create(MultipartBody.FORM, model.open),
-                            RequestBody.create(MultipartBody.FORM, model.hotWater)
-                        )
-                    }
-                )
-            )
-        }.flowOn(Dispatchers.IO)
     }
 }
