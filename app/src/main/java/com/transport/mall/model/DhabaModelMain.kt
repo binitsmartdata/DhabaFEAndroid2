@@ -8,4 +8,6 @@ class DhabaModelMain : Serializable {
     var foodAmenitiesModel: FoodAmenitiesModel? = null
     var bankDetailsModel: BankDetailsModel? = null
     var parkingAmenitiesModel: ParkingAmenitiesModel? = null
+    var sleepingAmenitiesModel: SleepingAmenitiesModel? = null
+    var washroomAmenitiesModel: WashroomAmenitiesModel? = null
 }

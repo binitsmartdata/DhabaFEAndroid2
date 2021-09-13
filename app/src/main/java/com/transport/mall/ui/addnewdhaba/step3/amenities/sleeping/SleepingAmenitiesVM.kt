@@ -27,7 +27,7 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
         app = application
     }
 
-    fun addSleeping(callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>) {
+    fun addSleepingAmenities(callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(

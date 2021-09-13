@@ -35,6 +35,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -59,7 +60,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
-                            android:text="No Amenities Selected"
+                            android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 
@@ -86,6 +87,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -110,7 +112,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
-                            android:text="No Amenities Selected"
+                            android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 
@@ -137,6 +139,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -157,10 +160,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvSleepingAmen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
-                            android:text="No Amenities Selected"
+                            android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 
@@ -187,6 +191,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -207,10 +212,11 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvWashroomAmen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
-                            android:text="No Amenities Selected"
+                            android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 
@@ -237,6 +243,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -260,7 +267,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
-                            android:text="No Amenities Selected"
+                            android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 
@@ -287,6 +294,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -310,7 +318,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
-                            android:text="No Amenities Selected"
+                            android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 
@@ -337,6 +345,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="10dp">
 
@@ -360,7 +369,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
-                            android:text="No Amenities Selected"
+                            android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 

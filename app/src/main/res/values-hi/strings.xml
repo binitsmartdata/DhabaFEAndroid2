@@ -212,6 +212,17 @@
     <string name="copied_to_clipboard">Dhaba ID Copied to clipboard</string>
     <string name="parking_amen_saved">Parking Amenities Saved Successfully</string>
     <string name="amenities_selected">Amenities Selected</string>
+    <string name="sleeping_amen_saved">Sleeping Amenities Saved Successfully.</string>
+    <string name="upload_photos">Upload Photos</string>
+    <string name="no_amenities_selected">No Amenities Selected</string>
+
+
+    <string-array name="menu_array_fiels_ex">
+        <item>@string/dhaba_mnagement</item>
+        <item>@string/add_new_dhaba</item>
+        <item>@string/notifications</item>
+        <item>@string/settings</item>
+    </string-array>
 
     <string-array name="menu_array">
         <item>@string/dhaba_mnagement</item>

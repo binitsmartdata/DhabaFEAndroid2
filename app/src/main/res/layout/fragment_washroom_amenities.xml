@@ -26,14 +26,15 @@
             android:paddingVertical="20dp">
 
             <FrameLayout
+                android:id="@+id/flWashroomPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/grey_light">
 
                 <LinearLayout
-                    android:id="@+id/llSleepingAmanPhoto"
+                    android:id="@+id/llWashroomPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/grey_light"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">
@@ -56,10 +57,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/ivSleepingImg"
+                    android:id="@+id/ivWashroomPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
+                    android:background="@color/grey_light"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -79,18 +82,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgOpen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rbBedCharpaiYes"
+                        android:id="@+id/rbOpenYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbOpenNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -114,17 +119,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgHotColdWater"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbHotWaterYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbHotWaterNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -132,6 +140,7 @@
 
                 </RadioGroup>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,18 +156,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgCleaner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rbShowClean"
+                        android:id="@+id/rbCleanerYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbCleanerNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -166,46 +177,6 @@
 
                 </RadioGroup>
             </LinearLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="@{rbShowClean.checked ? View.VISIBLE : View.GONE}">
-
-                <LinearLayout
-                    android:id="@+id/llLicensePhoto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_light"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:src="@drawable/ic_add_round" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/upload_photo"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/ivPoliceVerification"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
-
-            </FrameLayout>
-
-
 
             <Button
                 android:id="@+id/btnSaveDhaba"

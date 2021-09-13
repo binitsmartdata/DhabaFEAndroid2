@@ -40,6 +40,7 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgBedCharpai"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -52,6 +53,7 @@
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbBedCharpaiNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -77,23 +79,27 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgNoOfCharpai"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbBed1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/_1_2" />
 
                     <RadioButton
+                        android:id="@+id/rbBed5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/_2_5" />
 
                     <RadioButton
+                        android:id="@+id/rbBedAbove5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -156,17 +162,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgFan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbFanYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbFanNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -190,17 +199,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgCooler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbCoolerYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbCoolerNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -224,17 +236,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgExposed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbExposedYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbExposedNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -258,17 +273,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgOpen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbOpenYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbOpenNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -292,17 +310,20 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgHotWater"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbWaterYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbWaterNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"

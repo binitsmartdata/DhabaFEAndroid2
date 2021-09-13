@@ -81,12 +81,16 @@ class AddDhabaStep3Fragment :
     override fun onResume() {
         super.onResume()
         mlistener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
-            binding.tvFoodAmens.text =
-                it.getNoOfAmenities().toString() + " " + getString(R.string.amenities_selected)
+            binding.tvFoodAmens.text = getString(R.string.amenities_selected)
         }
         mlistener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
-            binding.tvParkingAmens.text =
-                it.getNoOfAmenities().toString() + " " + getString(R.string.amenities_selected)
+            binding.tvParkingAmens.text = getString(R.string.amenities_selected)
+        }
+        mlistener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
+            binding.tvSleepingAmen.text = getString(R.string.amenities_selected)
+        }
+        mlistener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
+            binding.tvWashroomAmen.text = getString(R.string.amenities_selected)
         }
     }
 

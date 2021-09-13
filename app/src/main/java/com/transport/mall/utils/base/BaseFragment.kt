@@ -234,4 +234,8 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
         cursor.moveToFirst()
         return cursor.getString(column_index)
     }
+
+    fun getmContext(): Context {
+        return activity as Context
+    }
 }

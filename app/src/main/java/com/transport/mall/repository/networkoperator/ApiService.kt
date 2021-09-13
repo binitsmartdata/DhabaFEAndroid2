@@ -133,6 +133,17 @@ interface ApiService {
     ): Response<ApiResponseModel<SleepingAmenitiesModel>>
 
     @Multipart
+    @POST("dhaba/addWashroomAmenities")
+    suspend fun addWashroomAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("washroomStatus") washroomStatus: RequestBody,
+        @Part("water") water: RequestBody,
+        @Part("cleaner") cleaner: RequestBody
+    ): Response<ApiResponseModel<SleepingAmenitiesModel>>
+
+    @Multipart
     @POST("bank/addBankDetail")
     suspend fun addBankDetail(
         @Part("user_id") service_id: RequestBody,

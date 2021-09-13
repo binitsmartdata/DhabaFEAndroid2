@@ -3,11 +3,14 @@ package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
+import android.view.View
+import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentWashroomAmenitiesBinding
 import com.transport.mall.utils.base.BaseFragment
+import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GenericCallBackTwoParams
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -30,7 +33,7 @@ class WashroomAmenitiesFragment :
     }
 
     private fun setupLicensePhotoViews() {
-        binding.llSleepingAmanPhoto.setOnClickListener {
+        binding.llWashroomPhoto.setOnClickListener {
             ImagePicker.with(this)
                 .crop()                    //Crop image(Optional), Check Customization for more option
                 .compress(1024)            //Final image size will be less than 1 MB(Optional)
@@ -43,7 +46,7 @@ class WashroomAmenitiesFragment :
     }
 
     private fun setupFoodPhotosView() {
-        binding.llSleepingAmanPhoto.setOnClickListener {
+        binding.llWashroomPhoto.setOnClickListener {
             ImagePicker.with(this)
                 .crop()                    //Crop image(Optional), Check Customization for more option
                 .compress(1024)            //Final image size will be less than 1 MB(Optional)
@@ -56,8 +59,53 @@ class WashroomAmenitiesFragment :
     }
 
     override fun initListeners() {
-        binding.btnSaveDhaba.setOnClickListener {
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
 
+        binding.rgOpen.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbOpenYes -> viewModel.model.washroomStatus = "true"
+                R.id.rbOpenNo -> viewModel.model.washroomStatus = "false"
+            }
+        }
+        binding.rgHotColdWater.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbHotWaterYes -> viewModel.model.water = "true"
+                R.id.rbHotWaterNo -> viewModel.model.water = "false"
+            }
+        }
+        binding.rgCleaner.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbCleanerYes -> viewModel.model.cleaner = "true"
+                R.id.rbCleanerNo -> viewModel.model.cleaner = "false"
+            }
+        }
+
+        binding.btnSaveDhaba.setOnClickListener {
+            viewModel.model.hasEverything(
+                getmContext(),
+                GenericCallBackTwoParams { allOk, message ->
+                    if (allOk) {
+                        viewModel.addWashroomAmenities(GenericCallBack {
+                            if (it.data != null) {
+                                showToastInCenter(getString(R.string.sleeping_amen_saved))
+                                var intent = Intent()
+                                intent.putExtra("data", it.data)
+                                activity?.setResult(Activity.RESULT_OK, intent)
+                                activity?.finish()
+                            } else {
+                                showToastInCenter(it.message)
+                            }
+                        })
+                    } else {
+                        showToastInCenter(message)
+                    }
+                })
         }
     }
 
@@ -68,12 +116,9 @@ class WashroomAmenitiesFragment :
             val uri: Uri = data?.data!!
 
             // Use Uri object instead of File to avoid storage permissions
-            binding.ivSleepingImg.setImageURI(uri)
-
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(activity, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            binding.ivWashroomPhoto.setImageURI(uri)
+            binding.ivWashroomPhoto.visibility = View.VISIBLE
+            viewModel.model.images = if (uri.isAbsolute) uri.path!! else getRealPathFromURI(uri)!!
         }
     }
 }

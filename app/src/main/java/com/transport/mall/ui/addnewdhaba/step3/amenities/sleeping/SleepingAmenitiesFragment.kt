@@ -3,12 +3,13 @@ package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentSleepingAmenitiesBinding
 import com.transport.mall.ui.addnewdhaba.step3.foodamenities.SleepingAmenitiesVM
 import com.transport.mall.utils.base.BaseFragment
+import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GenericCallBackTwoParams
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -58,7 +59,23 @@ class SleepingAmenitiesFragment :
 
     override fun initListeners() {
         binding.btnSaveDhaba.setOnClickListener {
-
+            viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
+                if (allOk) {
+                    viewModel.addSleepingAmenities(GenericCallBack {
+                        if (it.data != null) {
+                            showToastInCenter(getString(R.string.sleeping_amen_saved))
+                            var intent = Intent()
+                            intent.putExtra("data", it.data)
+                            activity?.setResult(Activity.RESULT_OK, intent)
+                            activity?.finish()
+                        } else {
+                            showToastInCenter(it.message)
+                        }
+                    })
+                } else {
+                    showToastInCenter(message)
+                }
+            })
         }
     }
 
