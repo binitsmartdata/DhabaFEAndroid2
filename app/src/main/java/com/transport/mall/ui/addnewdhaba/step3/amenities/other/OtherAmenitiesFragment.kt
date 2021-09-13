@@ -3,6 +3,7 @@ package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.view.View
 import android.widget.Toast
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
@@ -56,6 +57,7 @@ class OtherAmenitiesFragment :
 
             // Use Uri object instead of File to avoid storage permissions
             binding.ivPoliceVerification.setImageURI(uri)
+            binding.ivPoliceVerification.visibility = View.VISIBLE
 
         } else if (resultCode == ImagePicker.RESULT_ERROR) {
             Toast.makeText(activity, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()

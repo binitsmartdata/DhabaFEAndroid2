@@ -1,5 +1,6 @@
 package com.transport.mall.model
 
+import android.content.Context
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -8,16 +9,31 @@ class SleepingAmenitiesModel : Serializable {
     var module_id = ""
     var dhaba_id = ""
     var sleeping = ""
+    var noOfBeds = ""
     var fan = ""
+    var cooler = ""
     var enclosed = ""
     var open = ""
     var hotWater = ""
+    var images = ""
 
-    fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
+    fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (sleeping.isEmpty()) {
             callback.onResponse(false, "Please Choose Bed/Charpai option")
+        } else if (sleeping.isNotEmpty() && noOfBeds.isEmpty()) {
+            callback.onResponse(false, "Please Choose number of beds")
+        } else if (images.isEmpty()) {
+            callback.onResponse(false, "Please Choose a photo")
         } else if (fan.isEmpty()) {
             callback.onResponse(false, "Please Choose fan option")
+        } else if (cooler.isEmpty()) {
+            callback.onResponse(false, "Please Choose cooler option")
+        } else if (enclosed.isEmpty()) {
+            callback.onResponse(false, "Please Choose enclosed option")
+        } else if (open.isEmpty()) {
+            callback.onResponse(false, "Please Choose if it is open")
+        } else if (hotWater.isEmpty()) {
+            callback.onResponse(false, "Please Choose Hot Water Bag option")
         } else {
             callback.onResponse(true, "")
         }

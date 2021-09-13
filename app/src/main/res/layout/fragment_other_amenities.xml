@@ -43,24 +43,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/in_premises" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -84,24 +85,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/in_premises" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -126,24 +128,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/in_premises" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -167,24 +170,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/in_premises" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -209,24 +213,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/in_premises" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -250,24 +255,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/in_premises" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -292,22 +298,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_10sdp">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/in_premises" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -315,13 +324,13 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:background="@color/grey_light"
+                android:layout_height="@dimen/_130sdp">
 
                 <LinearLayout
                     android:id="@+id/llLicensePhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_light"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">
@@ -334,7 +343,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
+                        android:layout_marginVertical="@dimen/_110sdp"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="Upload Photo If Available"
@@ -346,6 +355,8 @@
                 <ImageView
                     android:id="@+id/ivPoliceVerification"
                     android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:background="@color/grey_light"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter" />
 

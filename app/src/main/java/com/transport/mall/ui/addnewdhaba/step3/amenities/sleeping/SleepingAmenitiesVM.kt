@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.SleepingAmenitiesModel
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
@@ -39,7 +38,8 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
                     RequestBody.create(MultipartBody.FORM, model.fan),
                     RequestBody.create(MultipartBody.FORM, model.enclosed),
                     RequestBody.create(MultipartBody.FORM, model.open),
-                    RequestBody.create(MultipartBody.FORM, model.hotWater)
+                    RequestBody.create(MultipartBody.FORM, model.hotWater),
+                    getMultipartImageFile(model.images, "images")!!
                 )
             ).collect {
                 when (it.status) {

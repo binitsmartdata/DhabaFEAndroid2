@@ -180,6 +180,7 @@
                         android:layout_marginVertical="10dp"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
+                        android:gravity="center"
                         android:text="@string/submit_police_verification_document"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />

@@ -129,7 +129,8 @@ interface ApiService {
         @Part("fan") fan: RequestBody,
         @Part("enclosed") enclosed: RequestBody,
         @Part("open") open: RequestBody,
-        @Part("hotWater") hotWater: RequestBody
+        @Part("hotWater") hotWater: RequestBody,
+        @Part images: MultipartBody.Part
     ): Response<ApiResponseModel<SleepingAmenitiesModel>>
 
     @Multipart
@@ -140,7 +141,8 @@ interface ApiService {
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("washroomStatus") washroomStatus: RequestBody,
         @Part("water") water: RequestBody,
-        @Part("cleaner") cleaner: RequestBody
+        @Part("cleaner") cleaner: RequestBody,
+        @Part images: MultipartBody.Part
     ): Response<ApiResponseModel<SleepingAmenitiesModel>>
 
     @Multipart

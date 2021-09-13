@@ -3,6 +3,8 @@ package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.view.View
+import android.widget.RadioButton
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentSleepingAmenitiesBinding
@@ -58,24 +60,69 @@ class SleepingAmenitiesFragment :
     }
 
     override fun initListeners() {
+        binding.rgBedCharpai.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbBedCharpaiYes -> viewModel.model.sleeping = "true"
+                R.id.rbBedCharpaiNo -> viewModel.model.sleeping = "false"
+            }
+        }
+
+        binding.rgNoOfCharpai.setOnCheckedChangeListener { radioGroup, i ->
+            viewModel.model.noOfBeds = (activity?.findViewById<RadioButton>(i))?.getTag().toString()
+        }
+
+        binding.rgFan.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbFanYes -> viewModel.model.fan = "true"
+                R.id.rbFanNo -> viewModel.model.fan = "false"
+            }
+        }
+
+        binding.rgCooler.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbCoolerYes -> viewModel.model.cooler = "true"
+                R.id.rbCoolerNo -> viewModel.model.cooler = "false"
+            }
+        }
+        binding.rgExposed.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbExposedYes -> viewModel.model.enclosed = "true"
+                R.id.rbExposedNo -> viewModel.model.enclosed = "false"
+            }
+        }
+        binding.rgOpen.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbOpenYes -> viewModel.model.open = "true"
+                R.id.rbOpenNo -> viewModel.model.open = "false"
+            }
+        }
+        binding.rgHotColdWater.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbHotWaterYes -> viewModel.model.hotWater = "true"
+                R.id.rbHotWaterNo -> viewModel.model.hotWater = "false"
+            }
+        }
+
         binding.btnSaveDhaba.setOnClickListener {
-            viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
-                if (allOk) {
-                    viewModel.addSleepingAmenities(GenericCallBack {
-                        if (it.data != null) {
-                            showToastInCenter(getString(R.string.sleeping_amen_saved))
-                            var intent = Intent()
-                            intent.putExtra("data", it.data)
-                            activity?.setResult(Activity.RESULT_OK, intent)
-                            activity?.finish()
-                        } else {
-                            showToastInCenter(it.message)
-                        }
-                    })
-                } else {
-                    showToastInCenter(message)
-                }
-            })
+            viewModel.model.hasEverything(
+                getmContext(),
+                GenericCallBackTwoParams { allOk, message ->
+                    if (allOk) {
+                        viewModel.addSleepingAmenities(GenericCallBack {
+                            if (it.data != null) {
+                                showToastInCenter(getString(R.string.sleeping_amen_saved))
+                                var intent = Intent()
+                                intent.putExtra("data", it.data)
+                                activity?.setResult(Activity.RESULT_OK, intent)
+                                activity?.finish()
+                            } else {
+                                showToastInCenter(it.message)
+                            }
+                        })
+                    } else {
+                        showToastInCenter(message)
+                    }
+                })
         }
     }
 
@@ -87,7 +134,8 @@ class SleepingAmenitiesFragment :
 
             // Use Uri object instead of File to avoid storage permissions
             binding.ivSleepingImg.setImageURI(uri)
-
+            binding.ivSleepingImg.visibility = View.VISIBLE
+            viewModel.model.images = if (uri.isAbsolute) uri.path!! else getRealPathFromURI(uri)!!
         }
     }
 }
