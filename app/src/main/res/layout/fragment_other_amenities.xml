@@ -41,27 +41,34 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgMerch27_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbMerch27_7_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/in_premises" />
 
                     <RadioButton
+                        android:id="@+id/rbMerch27_7_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
+                        android:id="@+id/rbMerch27_7_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -83,27 +90,34 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgMechDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbMechDay_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/in_premises" />
 
                     <RadioButton
+                        android:id="@+id/rbMechDay_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
+                        android:id="@+id/rbMechDay_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -126,27 +140,34 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgPuncture_24_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbPuncture24_7_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/in_premises" />
 
                     <RadioButton
+                        android:id="@+id/rbPuncture24_7_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
+                        android:id="@+id/rbPuncture24_7_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -168,27 +189,34 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgPunctureDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbPunctureDay1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/in_premises" />
 
                     <RadioButton
+                        android:id="@+id/rbPunctureDay2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
+                        android:id="@+id/rbPunctureDay3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -211,27 +239,34 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgUtility24_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbUtility24_7_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/in_premises" />
 
                     <RadioButton
+                        android:id="@+id/rbUtility24_7_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
+                        android:id="@+id/rbUtility24_7_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -253,27 +288,34 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgUtilityDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbUtilityDay_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/in_premises" />
 
                     <RadioButton
+                        android:id="@+id/rbUtilityDay_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
+                        android:id="@+id/rbUtilityDay_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
@@ -296,36 +338,44 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgBarber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbBarber1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/in_premises" />
 
                     <RadioButton
+                        android:id="@+id/rbBarber2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_1_200_m" />
 
                     <RadioButton
+                        android:id="@+id/rbBarber3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingVertical="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/_200_400_m" />
 
                 </RadioGroup>
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/flBarberImg"
                 android:layout_width="match_parent"
-                android:background="@color/grey_light"
-                android:layout_height="@dimen/_130sdp">
+                android:layout_height="@dimen/_150sdp"
+                android:background="@color/grey_light">
 
                 <LinearLayout
                     android:id="@+id/llLicensePhoto"
@@ -343,110 +393,109 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_110sdp"
+                        android:layout_marginVertical="10dp"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
-                        android:text="Upload Photo If Available"
+                        android:text="@string/upload_food_license_photo"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/ivPoliceVerification"
+                    android:id="@+id/ivBarberImg"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
-                    android:background="@color/grey_light"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
+                    android:background="@color/grey_light"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
+            <!-- <View
+                 android:id="@+id/divider"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/_1sdp"
+                 android:layout_marginTop="@dimen/_15sdp"
+                 android:background="@color/colorGrey1" />
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@color/colorGrey1" />
+             <androidx.appcompat.widget.AppCompatTextView
+                 android:id="@+id/offerText"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/_15sdp"
+                 android:fontFamily="@font/opensans_semibold"
+                 android:text="@string/offers"
+                 android:textColor="@color/black"
+                 android:textSize="@dimen/_14ssp" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/offerText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:fontFamily="@font/opensans_semibold"
-                android:text="@string/offers"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/discountTil"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="@dimen/_10sdp"
+                 android:hint="@string/discount">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/discountTil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:hint="@string/discount">
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:fontFamily="@font/opensans_regular"
+                     android:inputType="text"
+                     android:text=""
+                     android:textColor="@color/black"
+                     android:textSize="@dimen/_14ssp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="text"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+             </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                 <com.google.android.material.textfield.TextInputLayout
+                     android:id="@+id/offerStartDateTil"
+                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="@dimen/_10sdp"
+                     android:layout_marginEnd="@dimen/_5sdp"
+                     android:layout_weight="1"
+                     android:hint="@string/offer_start_date">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/offerStartDateTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:hint="@string/offer_start_date">
+                     <com.google.android.material.textfield.TextInputEditText
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/opensans_regular"
+                         android:inputType="text"
+                         android:text=""
+                         android:textColor="@color/black"
+                         android:textSize="@dimen/_14ssp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="text"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                 </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+                 <com.google.android.material.textfield.TextInputLayout
+                     android:id="@+id/offerEndDateTil"
+                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="@dimen/_5sdp"
+                     android:layout_marginTop="@dimen/_10sdp"
+                     android:layout_weight="1"
+                     android:hint="@string/offer_end_date">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/offerEndDateTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:hint="@string/offer_end_date">
+                     <com.google.android.material.textfield.TextInputEditText
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/opensans_regular"
+                         android:inputType="text"
+                         android:text=""
+                         android:textColor="@color/black"
+                         android:textSize="@dimen/_14ssp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="text"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                 </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
+             </LinearLayout>-->
 
             <Button
                 android:id="@+id/btnSaveDhaba"

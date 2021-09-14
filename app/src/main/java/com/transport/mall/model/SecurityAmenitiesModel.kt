@@ -10,7 +10,7 @@ class SecurityAmenitiesModel : Serializable {
     var dhaba_id = ""
     var dayGuard: Int = 0
     var nightGuard: Int = 0
-    var policVerification: Int = 0
+    var policVerification: Boolean = false
     var verificationImg: String = ""
     var indoorCamera: Int = 0
     var indoorCameraImage: ArrayList<PhotosModel> = ArrayList()
@@ -18,7 +18,7 @@ class SecurityAmenitiesModel : Serializable {
     var outdoorCameraImage: ArrayList<PhotosModel> = ArrayList()
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (policVerification == 1 && verificationImg.isEmpty()) {
+        if (policVerification && verificationImg.isEmpty()) {
             callback.onResponse(false, "Please choose police verification photo.")
         } else if (indoorCamera > 0 && indoorCameraImage.isEmpty()) {
             callback.onResponse(false, "Please choose photos of indoor camera(s).")

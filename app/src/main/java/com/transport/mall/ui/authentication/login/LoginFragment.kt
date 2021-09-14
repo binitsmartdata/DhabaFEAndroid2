@@ -3,10 +3,10 @@ package com.transport.mall.ui.authentication.login
 import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentLoginBinding
+import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
-import com.transport.mall.repository.networkoperator.ApiResult
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -29,7 +29,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
         })
 
         viewModel.observerProgress()?.observe(this, Observer {
-
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
         })
 
         viewModel.toggleProgressDialog()?.observe(this, Observer {

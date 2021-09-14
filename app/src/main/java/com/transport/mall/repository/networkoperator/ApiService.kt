@@ -7,6 +7,7 @@ import com.transport.mall.database.InternalDocsListModel
 import com.transport.mall.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -162,6 +163,35 @@ interface ApiService {
     ): Response<ApiResponseModel<SecurityAmenitiesModel>>
 
     @Multipart
+    @POST("dhaba/addOtherAmenities")
+    suspend fun addOtherAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("mechanicShop") mechanicShop: RequestBody,
+        @Part("mechanicShopDay") mechanicShopDay: RequestBody,
+        @Part("punctureshop") punctureshop: RequestBody,
+        @Part("punctureshopDay") punctureshopDay: RequestBody,
+        @Part("dailyutilityshop") dailyutilityshop: RequestBody,
+        @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
+        @Part("barber") barber: RequestBody,
+        @Part images: MultipartBody.Part
+    ): Response<ApiResponseModel<OtherAmenitiesModel>>
+
+    @Multipart
+    @POST("dhaba/addLightAmenities")
+    suspend fun addLightAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("tower_light") tower_light: RequestBody,
+        @Part tower_image: MultipartBody.Part?,
+        @Part("bulb_light") bulb_light: RequestBody,
+        @Part buld_image: MultipartBody.Part?,
+        @Part("twentyfour_seven_electricity") puncture_24_7: RequestBody
+    ): Response<ApiResponseModel<LightAmenitiesModel>>
+
+    @Multipart
     @POST("bank/addBankDetail")
     suspend fun addBankDetail(
         @Part("user_id") service_id: RequestBody,
@@ -172,4 +202,10 @@ interface ApiService {
         @Part("panNumber") panNumber: RequestBody,
         @Part panPhoto: MultipartBody.Part
     ): Response<ApiResponseModel<BankDetailsModel>>
+
+    @Multipart
+    @POST("common/s3imgUpload")
+    suspend fun uploadImg(
+        @Part images: MultipartBody.Part?
+    ): Response<ResponseBody>
 }

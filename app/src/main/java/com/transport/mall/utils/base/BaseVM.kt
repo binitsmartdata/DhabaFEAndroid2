@@ -83,7 +83,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
 
         for (index in 0 until imageList.size) {
             val file = File(imageList.get(index).path)
-            val surveyBody = RequestBody.create(MediaType.parse("image/*"), file)
+            val surveyBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
             surveyImagesParts[index] =
                 MultipartBody.Part.createFormData(parameterName, file.name, surveyBody)
         }
@@ -108,13 +108,11 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         if (path == null || path.isEmpty()) {
             return null
         } else {
-            return MultipartBody.Part.createFormData(
-                parameterName,
-                File(path).getName(),
-                RequestBody.create(
-                    MediaType.parse("image/*"), path
-                )
-            )
+            val requestFile: RequestBody =
+                RequestBody.create(MediaType.parse("multipart/form-data"), File(path))
+            val body =
+                MultipartBody.Part.createFormData(parameterName, File(path).getName(), requestFile)
+            return body
         }
     }
 

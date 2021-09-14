@@ -67,26 +67,31 @@ class DhabaDetailsFragment :
         })
 
         binding.btnNext.setOnClickListener {
-            viewModel.getDhabaModel().hasEverything(GenericCallBackTwoParams { status, message ->
-                if (status) {
-                    viewModel.addDhaba(
-                        GenericCallBack { response ->
-                            if (response.data != null) {
-                                showToastInCenter(getString(R.string.dhaba_created_successfully))
-                                mListener?.let {
-                                    it.getDhabaModelMain().dhabaModel = response.data
-                                    mListener?.showNextScreen()
-                                }
+            if (mListener?.getDhabaModelMain()?.ownerModel == null) {
+                showToastInCenter(getString(R.string.enter_owner_details))
+            } else {
+                viewModel.getDhabaModel()
+                    .hasEverything(GenericCallBackTwoParams { status, message ->
+                        if (status) {
+                            viewModel.addDhaba(
+                                GenericCallBack { response ->
+                                    if (response.data != null) {
+                                        showToastInCenter(getString(R.string.dhaba_created_successfully))
+                                        mListener?.let {
+                                            it.getDhabaModelMain().dhabaModel = response.data
+                                            mListener?.showNextScreen()
+                                        }
 
-                            } else {
-                                showToastInCenter(response.message)
-                            }
+                                    } else {
+                                        showToastInCenter(response.message)
+                                    }
+                                }
+                            )
+                        } else {
+                            showToastInCenter(message)
                         }
-                    )
-                } else {
-                    showToastInCenter(message)
-                }
-            })
+                    })
+            }
         }
     }
 

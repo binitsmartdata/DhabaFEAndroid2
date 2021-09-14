@@ -75,8 +75,8 @@ class SecurityAmenitiesFragment :
         }
         it.policVerification.let {
             when (it) {
-                0 -> binding.rbPoliceVerificationNo.isChecked = true
-                1 -> binding.rbPoliceVerificationYes.isChecked = true
+                true -> binding.rbPoliceVerificationNo.isChecked = true
+                false -> binding.rbPoliceVerificationYes.isChecked = true
             }
         }
         it.verificationImg.let {
@@ -168,7 +168,7 @@ class SecurityAmenitiesFragment :
         }
         binding.rbPoliceVerification.setOnCheckedChangeListener { _, i ->
             viewModel.model.policVerification =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+                (activity?.findViewById<RadioButton>(i))?.tag.toString().toBoolean()
         }
         binding.rgIndoorCameras.setOnCheckedChangeListener { _, i ->
             viewModel.model.indoorCamera =

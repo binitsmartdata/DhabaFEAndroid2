@@ -4,6 +4,7 @@ import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentSettingsBinding
+import com.transport.mall.ui.customdialogs.DialogLanguageSelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -25,10 +26,15 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
 
     override fun bindData() {
         mListener = activity as CommonActivityListener
-        binding.profileLayout.setOnClickListener { mListener?.openProfileScreen() }
+        binding.profileLayout.setOnClickListener {
+            mListener?.openProfileScreen()
+        }
         binding.llLogout.setOnClickListener {
             SharedPrefsHelper.getInstance(activity as Context).clearData()
             mListener?.startOver()
+        }
+        binding.llLanguage.setOnClickListener {
+            DialogLanguageSelection(getmContext(), this).show()
         }
     }
 

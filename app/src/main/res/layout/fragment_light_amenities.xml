@@ -41,18 +41,21 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgTower"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbTowerNo"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rbTowerLight"
+                        android:id="@+id/rbTowerYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbTowerNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -62,15 +65,15 @@
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/frameTowerPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="@{rbTowerLight.checked ? View.VISIBLE : View.GONE}">
+                android:background="@color/grey_light"
+                android:visibility="@{rbTowerYes.checked ? View.VISIBLE : View.GONE}">
 
                 <LinearLayout
-                    android:id="@+id/llSleepingAmanPhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_light"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">
@@ -93,10 +96,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/ivSleepingImg"
+                    android:id="@+id/ivTowerImg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
+                    android:background="@color/grey_light"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -115,18 +120,21 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgBulb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbBulbNo"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rbBulb"
+                        android:id="@+id/rbBulbYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbBulbNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
@@ -136,14 +144,14 @@
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/frameBulbPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="@{rbBulb.checked ? View.VISIBLE : View.GONE}">
+                android:layout_height="@dimen/_130sdp"
+                android:visibility="@{rbBulbYes.checked ? View.VISIBLE : View.GONE}">
 
                 <LinearLayout
-                    android:id="@+id/llLicensePhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@color/grey_light"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -167,10 +175,12 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/ivPoliceVerification"
+                    android:id="@+id/ivBulbImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
+                    android:background="@color/grey_light"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -190,18 +200,21 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgElectricity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbElectricityNo"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/rbShowClean"
+                        android:id="@+id/rbElectricityYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbElectricityNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"

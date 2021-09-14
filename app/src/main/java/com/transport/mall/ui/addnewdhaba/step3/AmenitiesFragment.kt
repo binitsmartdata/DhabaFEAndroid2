@@ -21,78 +21,100 @@ class AmenitiesFragment :
         get() = setUpBinding()
         set(value) {}
 
-    var mlistener: AddDhabaListener? = null
+    var mListener: AddDhabaListener? = null
 
     override fun bindData() {
         binding.lifecycleOwner = this
-        mlistener = activity as AddDhabaListener
+        mListener = activity as AddDhabaListener
         binding.context = activity
     }
 
     override fun initListeners() {
         binding.btnNext.setOnClickListener {
-            mlistener?.showNextScreen()
+            if (isHavingPreviousData()) {
+                mListener?.showNextScreen()
+            }
         }
 
         binding.cardFood.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context,
                 AmenitiesActivity.FOOD,
-                mlistener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!
             )
         }
         binding.cardParking.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.PARKING,
-                mlistener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!
             )
         }
         binding.cardSleeping.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SLEEPING,
-                mlistener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!
             )
         }
         binding.cardWashroom.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.WASHROOM,
-                mlistener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!
             )
         }
         binding.cardSecurity.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SECURITY,
-                mlistener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!
             )
         }
         binding.cardOther.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.OTHER,
-                mlistener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!
             )
         }
         binding.cardLights.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.LIGHT,
-                mlistener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!
             )
         }
     }
 
     override fun onResume() {
         super.onResume()
-        mlistener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
+        mListener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
             binding.tvFoodAmens.text = getString(R.string.amenities_selected)
         }
-        mlistener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
+        mListener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
             binding.tvParkingAmens.text = getString(R.string.amenities_selected)
         }
-        mlistener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
+        mListener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
             binding.tvSleepingAmen.text = getString(R.string.amenities_selected)
         }
-        mlistener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
+        mListener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
             binding.tvWashroomAmen.text = getString(R.string.amenities_selected)
         }
+        mListener?.getDhabaModelMain()?.securityAmenitiesModel?.let {
+            binding.tvSecurityAmen.text = getString(R.string.amenities_selected)
+        }
+        mListener?.getDhabaModelMain()?.lightAmenitiesModel?.let {
+            binding.tvLightAmen.text = getString(R.string.amenities_selected)
+        }
+        mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {
+            binding.tvOtherAmen.text = getString(R.string.amenities_selected)
+        }
+    }
+
+    private fun isHavingPreviousData(): Boolean {
+        if (mListener?.getDhabaModelMain()?.ownerModel == null) {
+            showToastInCenter(getString(R.string.enter_owner_details))
+            return false
+        } else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
+            showToastInCenter(getString(R.string.enter_dhaba_details))
+            return false
+        }
+        return true
     }
 
     fun youAreInFocus() {

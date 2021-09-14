@@ -11,13 +11,11 @@ import com.afollestad.assent.isAllGranted
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.ActivityNewDhabaBinding
-import com.transport.mall.model.DhabaModelMain
-import com.transport.mall.model.FoodAmenitiesModel
-import com.transport.mall.model.ParkingAmenitiesModel
-import com.transport.mall.ui.addnewdhaba.step1.DhabaDetailsFragment
-import com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsFragment
+import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.step1.AmenitiesFragment
 import com.transport.mall.ui.addnewdhaba.step1.BankDetailsFragment
+import com.transport.mall.ui.addnewdhaba.step1.DhabaDetailsFragment
+import com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsFragment
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseActivity
@@ -104,10 +102,10 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     private fun setupStepsFragments() {
         val adapter = HomeViewPagerAdapter(supportFragmentManager)
 
-        var fragment1 = OwnerDetailsFragment()
-        var fragment2 = DhabaDetailsFragment()
-        var fragment3 = AmenitiesFragment()
-        var fragment4 = BankDetailsFragment()
+        val fragment1 = OwnerDetailsFragment()
+        val fragment2 = DhabaDetailsFragment()
+        val fragment3 = AmenitiesFragment()
+        val fragment4 = BankDetailsFragment()
 
         adapter.addFrag(fragment1, getString(R.string.owner_details))
         adapter.addFrag(fragment2, getString(R.string.dhaba_details))
@@ -148,7 +146,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.getItemId()) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 true
@@ -191,22 +189,32 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 AmenitiesActivity.FOOD -> {
-                    var model = data?.getSerializableExtra("data") as FoodAmenitiesModel
+                    val model = data?.getSerializableExtra("data") as FoodAmenitiesModel
                     model.let { getDhabaModelMain().foodAmenitiesModel = model }
                 }
                 AmenitiesActivity.PARKING -> {
-                    var model = data?.getSerializableExtra("data") as ParkingAmenitiesModel
+                    val model = data?.getSerializableExtra("data") as ParkingAmenitiesModel
                     model.let { getDhabaModelMain().parkingAmenitiesModel = model }
                 }
                 AmenitiesActivity.SLEEPING -> {
+                    val model = data?.getSerializableExtra("data") as SleepingAmenitiesModel
+                    model.let { getDhabaModelMain().sleepingAmenitiesModel = model }
                 }
                 AmenitiesActivity.WASHROOM -> {
+                    val model = data?.getSerializableExtra("data") as WashroomAmenitiesModel
+                    model.let { getDhabaModelMain().washroomAmenitiesModel = model }
                 }
                 AmenitiesActivity.SECURITY -> {
+                    val model = data?.getSerializableExtra("data") as SecurityAmenitiesModel
+                    model.let { getDhabaModelMain().securityAmenitiesModel = model }
                 }
                 AmenitiesActivity.LIGHT -> {
+                    val model = data?.getSerializableExtra("data") as LightAmenitiesModel
+                    model.let { getDhabaModelMain().lightAmenitiesModel = model }
                 }
                 AmenitiesActivity.OTHER -> {
+                    val model = data?.getSerializableExtra("data") as OtherAmenitiesModel
+                    model.let { getDhabaModelMain().otherAmenitiesModel = model }
                 }
             }
         }

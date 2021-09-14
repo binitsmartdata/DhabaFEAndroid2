@@ -215,6 +215,9 @@
     <string name="upload_photos">Upload Photos</string>
     <string name="no_amenities_selected">Amenities Not Selected</string>
     <string name="security_amen_saved">Security amenities saved successfully</string>
+    <string name="amen_saved">Amenities Saved Successfully</string>
+    <string name="enter_owner_details">Please fill owner details form first.</string>
+    <string name="enter_dhaba_details">Please fill Dhaba Details form first.</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

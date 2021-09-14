@@ -220,7 +220,6 @@
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_14ssp" />
 
-
                     </LinearLayout>
 
                     <ImageView
@@ -264,6 +263,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvSecurityAmen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
@@ -315,6 +315,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvLightAmen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"
@@ -366,6 +367,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvOtherAmen"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="5dp"

@@ -9,7 +9,6 @@ import android.media.ThumbnailUtils
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -62,7 +61,7 @@ fun xloadImages(
         Picasso.get()
             .load(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
-            .placeholder(R.drawable.ic_launcher_background)
+            .placeholder(R.drawable.ic_image_placeholder)
             .into(view)
     }
 }

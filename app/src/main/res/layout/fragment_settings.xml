@@ -73,6 +73,7 @@
                     android:background="@color/colorGrey1" />
 
                 <LinearLayout
+                    android:id="@+id/llLanguage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
