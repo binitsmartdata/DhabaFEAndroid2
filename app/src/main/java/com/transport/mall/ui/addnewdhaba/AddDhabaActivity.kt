@@ -14,10 +14,10 @@ import com.transport.mall.databinding.ActivityNewDhabaBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.FoodAmenitiesModel
 import com.transport.mall.model.ParkingAmenitiesModel
-import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep1Fragment
-import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep2Fragment
-import com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep3Fragment
-import com.transport.mall.ui.addnewdhaba.step1.Step4BankDetailsFragment
+import com.transport.mall.ui.addnewdhaba.step1.DhabaDetailsFragment
+import com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsFragment
+import com.transport.mall.ui.addnewdhaba.step1.AmenitiesFragment
+import com.transport.mall.ui.addnewdhaba.step1.BankDetailsFragment
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseActivity
@@ -104,10 +104,10 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     private fun setupStepsFragments() {
         val adapter = HomeViewPagerAdapter(supportFragmentManager)
 
-        var fragment1 = AddDhabaStep2Fragment()
-        var fragment2 = AddDhabaStep1Fragment()
-        var fragment3 = AddDhabaStep3Fragment()
-        var fragment4 = Step4BankDetailsFragment()
+        var fragment1 = OwnerDetailsFragment()
+        var fragment2 = DhabaDetailsFragment()
+        var fragment3 = AmenitiesFragment()
+        var fragment4 = BankDetailsFragment()
 
         adapter.addFrag(fragment1, getString(R.string.owner_details))
         adapter.addFrag(fragment2, getString(R.string.dhaba_details))

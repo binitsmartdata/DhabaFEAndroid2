@@ -10,12 +10,12 @@ import com.transport.mall.utils.base.BaseFragment
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AddDhabaStep3Fragment :
-    BaseFragment<FragmentAddDhabaStep3Binding, AddDhabaStep2VM>() {
+class AmenitiesFragment :
+    BaseFragment<FragmentAddDhabaStep3Binding, OwnerDetailsVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_add_dhaba_step3
-    override var viewModel: AddDhabaStep2VM
-        get() = setUpVM(this, AddDhabaStep2VM(baseActivity.application))
+    override var viewModel: OwnerDetailsVM
+        get() = setUpVM(this, OwnerDetailsVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentAddDhabaStep3Binding
         get() = setUpBinding()
@@ -24,6 +24,7 @@ class AddDhabaStep3Fragment :
     var mlistener: AddDhabaListener? = null
 
     override fun bindData() {
+        binding.lifecycleOwner = this
         mlistener = activity as AddDhabaListener
         binding.context = activity
     }

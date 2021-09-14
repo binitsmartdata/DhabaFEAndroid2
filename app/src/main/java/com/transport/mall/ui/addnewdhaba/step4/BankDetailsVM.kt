@@ -22,7 +22,7 @@ import java.io.File
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class Step4BankDetailsVM(application: Application) : BaseVM(application) {
+class BankDetailsVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
 

@@ -14,7 +14,7 @@
 
         <variable
             name="viewModel"
-            type="com.transport.mall.ui.addnewdhaba.step1.AddDhabaStep2VM" />
+            type="com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsVM" />
     </data>
 
     <ScrollView

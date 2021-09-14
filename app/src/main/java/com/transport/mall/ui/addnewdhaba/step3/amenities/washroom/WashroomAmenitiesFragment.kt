@@ -7,10 +7,13 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
+import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentWashroomAmenitiesBinding
+import com.transport.mall.model.WashroomAmenitiesModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.xloadImages
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -25,11 +28,59 @@ class WashroomAmenitiesFragment :
     override var binding: FragmentWashroomAmenitiesBinding
         get() = setUpBinding()
         set(value) {}
+    var mListener: AddDhabaListener? = null
 
     override fun bindData() {
+        mListener = activity as AddDhabaListener
         binding.context = activity
         setupLicensePhotoViews()
         setupFoodPhotosView()
+        //SETTING EXISTING DATA ON SCREEN
+        mListener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
+            setData(it)
+        }
+    }
+
+    private fun setData(it: WashroomAmenitiesModel) {
+        it.washroomStatus.let {
+            val value = it.toBoolean()
+            if (value) {
+                binding.rbOpenYes.isChecked = true
+            } else {
+                binding.rbOpenNo.isChecked = true
+            }
+        }
+
+        it.water.let {
+            val value = it.toBoolean()
+            if (value) {
+                binding.rbHotWaterYes.isChecked = true
+            } else {
+                binding.rbHotWaterNo.isChecked = true
+            }
+        }
+
+        it.cleaner.let {
+            val value = it.toBoolean()
+            if (value) {
+                binding.rbCleanerYes.isChecked = true
+            } else {
+                binding.rbCleanerNo.isChecked = true
+            }
+        }
+
+        it.images.let {
+            if (it.isNotEmpty()) {
+                xloadImages(
+                    binding.ivWashroomPhoto,
+                    it,
+                    R.drawable.ic_image_placeholder
+                )
+                binding.ivWashroomPhoto.visibility = View.VISIBLE
+            }
+        }
+
+        binding.btnSaveDhaba.visibility = View.GONE
     }
 
     private fun setupLicensePhotoViews() {

@@ -227,12 +227,16 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
         EasyVideoPicker().startPickerForResult(this, item, INTENT_VIDEO_GALLERY)
     }
 
-    open fun getRealPathFromURI(contentUri: Uri?): String? {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor: Cursor = activity?.managedQuery(contentUri, proj, null, null, null)!!
-        val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        cursor.moveToFirst()
-        return cursor.getString(column_index)
+    open fun getRealPathFromURI(contentUri: Uri?): String {
+        if (contentUri?.isAbsolute == true) {
+            return contentUri.path!!
+        } else {
+            val proj = arrayOf(MediaStore.Images.Media.DATA)
+            val cursor: Cursor = activity?.managedQuery(contentUri, proj, null, null, null)!!
+            val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            cursor.moveToFirst()
+            return cursor.getString(column_index)
+        }
     }
 
     fun getmContext(): Context {

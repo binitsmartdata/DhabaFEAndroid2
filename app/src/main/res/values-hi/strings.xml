@@ -215,6 +215,7 @@
     <string name="sleeping_amen_saved">Sleeping Amenities Saved Successfully.</string>
     <string name="upload_photos">Upload Photos</string>
     <string name="no_amenities_selected">No Amenities Selected</string>
+    <string name="security_amen_saved">Security amenities saved successfully</string>
 
 
     <string-array name="menu_array_fiels_ex">

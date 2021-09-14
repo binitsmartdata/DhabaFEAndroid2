@@ -16,12 +16,12 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AddDhabaStep2Fragment :
-    BaseFragment<FragmentAddDhabaStep2Binding, AddDhabaStep2VM>() {
+class OwnerDetailsFragment :
+    BaseFragment<FragmentAddDhabaStep2Binding, OwnerDetailsVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_add_dhaba_step2
-    override var viewModel: AddDhabaStep2VM
-        get() = setUpVM(this, AddDhabaStep2VM(baseActivity.application))
+    override var viewModel: OwnerDetailsVM
+        get() = setUpVM(this, OwnerDetailsVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentAddDhabaStep2Binding
         get() = setUpBinding()

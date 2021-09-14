@@ -21,7 +21,7 @@ import okhttp3.RequestBody
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AddDhabaStep2VM(application: Application) : BaseVM(application) {
+class OwnerDetailsVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
 

@@ -28,12 +28,12 @@ import java.util.*
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AddDhabaStep1Fragment :
-    BaseFragment<FragmentAddDhabaStep1Binding, AddDhabaStep1VM>() {
+class DhabaDetailsFragment :
+    BaseFragment<FragmentAddDhabaStep1Binding, DhabaDetailsVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_add_dhaba_step1
-    override var viewModel: AddDhabaStep1VM
-        get() = setUpVM(this, AddDhabaStep1VM(baseActivity.application))
+    override var viewModel: DhabaDetailsVM
+        get() = setUpVM(this, DhabaDetailsVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentAddDhabaStep1Binding
         get() = setUpBinding()

@@ -20,12 +20,12 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class Step4BankDetailsFragment :
-    BaseFragment<FragmentStep4BankDetailsBinding, Step4BankDetailsVM>() {
+class BankDetailsFragment :
+    BaseFragment<FragmentStep4BankDetailsBinding, BankDetailsVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_step4_bank_details
-    override var viewModel: Step4BankDetailsVM
-        get() = setUpVM(this, Step4BankDetailsVM(baseActivity.application))
+    override var viewModel: BankDetailsVM
+        get() = setUpVM(this, BankDetailsVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentStep4BankDetailsBinding
         get() = setUpBinding()

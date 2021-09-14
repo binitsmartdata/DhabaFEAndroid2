@@ -6,7 +6,7 @@ import com.transport.mall.utils.base.BaseVM
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AddDhabaStep3VM(application: Application) : BaseVM(application) {
+class AmenititesVM(application: Application) : BaseVM(application) {
     var app: Application? = null
 
     init {

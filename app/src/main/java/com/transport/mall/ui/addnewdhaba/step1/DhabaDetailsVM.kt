@@ -29,7 +29,7 @@ import java.util.*
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AddDhabaStep1VM(application: Application) : BaseVM(application) {
+class DhabaDetailsVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
     var stateProgressObservable: MutableLiveData<Boolean> = MutableLiveData()

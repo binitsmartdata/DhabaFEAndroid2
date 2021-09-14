@@ -18,7 +18,7 @@
 
         <variable
             name="viewModel"
-            type="com.transport.mall.ui.addnewdhaba.step1.Step4BankDetailsVM" />
+            type="com.transport.mall.ui.addnewdhaba.step1.BankDetailsVM" />
         <variable
             name="dhabaModelMain"
             type="com.transport.mall.model.DhabaModelMain" />

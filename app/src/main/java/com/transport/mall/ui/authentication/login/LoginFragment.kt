@@ -22,6 +22,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
         set(value) {}
 
     override fun bindData() {
+        binding.lifecycleOwner = this
         binding.vm = viewModel
         viewModel.observerError()?.observe(this, Observer {
             showSnackBar(binding.root, it.toString(), true)

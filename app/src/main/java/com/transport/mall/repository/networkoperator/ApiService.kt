@@ -146,6 +146,22 @@ interface ApiService {
     ): Response<ApiResponseModel<SleepingAmenitiesModel>>
 
     @Multipart
+    @POST("dhaba/addsecurityAmenities")
+    suspend fun addSecurityAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("dayGuard") dayGuard: RequestBody,
+        @Part("nightGuard") nightGuard: RequestBody,
+        @Part("policVerification") policVerification: RequestBody,
+        @Part verificationImg: MultipartBody.Part,
+        @Part("indoorCamera") indoorCamera: RequestBody,
+        @Part indoorCameraImage: Array<MultipartBody.Part?>,
+        @Part("outdoorCamera") outdoorCamera: RequestBody,
+        @Part outdoorCameraImage: Array<MultipartBody.Part?>
+    ): Response<ApiResponseModel<SecurityAmenitiesModel>>
+
+    @Multipart
     @POST("bank/addBankDetail")
     suspend fun addBankDetail(
         @Part("user_id") service_id: RequestBody,

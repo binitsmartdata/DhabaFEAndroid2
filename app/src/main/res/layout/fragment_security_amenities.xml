@@ -10,6 +10,10 @@
         <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="viewmodel"
+            type="com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping.SecurityAmenitiesVM" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -41,32 +45,42 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgDayGuard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbDayGuard0"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbDayGuard0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="0"
                         android:text="@string/no" />
 
                     <RadioButton
+                        android:id="@+id/rbDayGuard1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/_1_2" />
 
                     <RadioButton
+                        android:id="@+id/rbDayGuard2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_2_5" />
 
                     <RadioButton
+                        android:id="@+id/rbDayGuard3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/above_5" />
 
                 </RadioGroup>
@@ -88,32 +102,42 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgNightGuard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbNightGuard0"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/rbNightGuard0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="0"
                         android:text="@string/no" />
 
                     <RadioButton
+                        android:id="@+id/rbNightGuard1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/_1_2" />
 
                     <RadioButton
+                        android:id="@+id/rbNightGuard2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_2_5" />
 
                     <RadioButton
+                        android:id="@+id/rbNightGuard3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/above_5" />
 
                 </RadioGroup>
@@ -135,8 +159,10 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rbPoliceVerification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbPoliceVerificationNo"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -144,27 +170,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/yes" />
 
                     <RadioButton
+                        android:id="@+id/rbPoliceVerificationNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="0"
                         android:text="@string/no" />
 
                 </RadioGroup>
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/llLicensePhoto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_130sdp"
+                android:background="@color/grey_light"
                 android:visibility="@{rbPoliceVerificationYes.checked ? View.VISIBLE : View.GONE}">
 
                 <LinearLayout
-                    android:id="@+id/llLicensePhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_light"
+                    android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">
@@ -191,7 +220,9 @@
                     android:id="@+id/ivPoliceVerification"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter" />
+                    android:background="@color/grey_light"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -214,6 +245,7 @@
                     android:id="@+id/rgIndoorCameras"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbNoIndCam"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -221,13 +253,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
+                        android:tag="0"
+                        android:text="0" />
 
                     <RadioButton
                         android:id="@+id/rb12IndCam"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/_1_2" />
 
                     <RadioButton
@@ -235,6 +269,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_2_5" />
 
                     <RadioButton
@@ -242,21 +277,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/above_5" />
 
                 </RadioGroup>
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/frameIndoorCamera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/grey_light"
                 android:visibility="@{(rb12IndCam.checked || rb25IndCam.checked || rb5aboveIndCam.checked) ? View.VISIBLE : View.GONE}">
 
                 <LinearLayout
-                    android:id="@+id/llIndoorCameras"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/grey_light"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">
@@ -286,6 +322,12 @@
 
             </FrameLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewIndoorCameras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -302,8 +344,10 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <RadioGroup
+                    android:id="@+id/rgOutdoorCameras"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbNoOutCam"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -311,13 +355,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
+                        android:tag="0"
+                        android:text="0" />
 
                     <RadioButton
                         android:id="@+id/rb12OutCam"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="1"
                         android:text="@string/_1_2" />
 
                     <RadioButton
@@ -325,6 +371,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="2"
                         android:text="@string/_2_5" />
 
                     <RadioButton
@@ -332,12 +379,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
+                        android:tag="3"
                         android:text="@string/above_5" />
 
                 </RadioGroup>
             </LinearLayout>
 
             <FrameLayout
+                android:id="@+id/frameOutDoorCamera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{(rb12OutCam.checked || rb25OutCam.checked || rb5AboveOutCam.checked) ? View.VISIBLE : View.GONE}">
@@ -374,6 +423,12 @@
                     android:scaleType="fitCenter" />
 
             </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewOutdoorCameras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp" />
 
             <Button
                 android:id="@+id/btnSaveDhaba"

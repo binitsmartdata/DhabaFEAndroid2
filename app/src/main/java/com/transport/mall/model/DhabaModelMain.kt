@@ -10,4 +10,5 @@ class DhabaModelMain : Serializable {
     var parkingAmenitiesModel: ParkingAmenitiesModel? = null
     var sleepingAmenitiesModel: SleepingAmenitiesModel? = null
     var washroomAmenitiesModel: WashroomAmenitiesModel? = null
+    var securityAmenitiesModel: SecurityAmenitiesModel? = null
 }
