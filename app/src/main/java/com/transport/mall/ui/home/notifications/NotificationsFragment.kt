@@ -57,8 +57,8 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding, BaseVM>
             NotificationsAdapter(activity as Context, list, GenericCallBack {
 
             })
-        binding.recyclerView.visibility = View.VISIBLE
-        binding.tvNoData.visibility = View.GONE
+        binding.llMainData.visibility = View.GONE
+        binding.llNoData.visibility = View.VISIBLE
     }
 
     override fun onItemClick(view: View?, position: Int) {

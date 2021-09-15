@@ -178,6 +178,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         finish()
     }
 
+    override fun openAddDhabaActivity() {
+        AddDhabaActivity.start(this)
+    }
+
     override fun onResume() {
         super.onResume()
         val myFragment: Fragment? =

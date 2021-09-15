@@ -48,18 +48,34 @@
                 android:layout_height="match_parent"
                 android:background="@color/grey" />
 
-            <TextView
-                android:id="@+id/tvCitySelection"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/default_btn_selector"
-                android:drawableRight="@drawable/ic_spinner_dropdown"
-                android:drawablePadding="@dimen/_10sdp"
-                android:entries="@array/cities_list_dummy"
-                android:gravity="center"
-                android:padding="@dimen/_5sdp"
-                android:text="@string/city" />
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tvCitySelection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/default_btn_selector"
+                    android:drawableRight="@drawable/ic_spinner_dropdown"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:entries="@array/cities_list_dummy"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/city" />
+
+                <View
+                    android:id="@+id/viewCityIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:visibility="gone"
+                    android:layout_gravity="bottom"
+                    android:background="@color/colorPrimary" />
+
+
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -78,13 +94,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <TextView
-                    android:id="@+id/tvNoData"
+                <LinearLayout
+                    android:id="@+id/llNoData"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/no_data_found"
-                    android:visibility="gone" />
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:src="@drawable/ic_no_dhaba" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@string/no_dhaba_added"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAddDhaba"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:background="@drawable/btn_red_stroke"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_20sdp"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:text="@string/add_new_dhaba"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                </LinearLayout>
             </FrameLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

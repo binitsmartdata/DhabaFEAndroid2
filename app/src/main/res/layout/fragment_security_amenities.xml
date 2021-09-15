@@ -170,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
-                        android:tag="1"
+                        android:tag="true"
                         android:text="@string/yes" />
 
                     <RadioButton
@@ -178,7 +178,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp"
-                        android:tag="0"
+                        android:tag="false"
                         android:text="@string/no" />
 
                 </RadioGroup>

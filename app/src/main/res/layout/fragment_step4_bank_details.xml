@@ -19,6 +19,7 @@
         <variable
             name="viewModel"
             type="com.transport.mall.ui.addnewdhaba.step1.BankDetailsVM" />
+
         <variable
             name="dhabaModelMain"
             type="com.transport.mall.model.DhabaModelMain" />
@@ -86,8 +87,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text="@={viewModel.gstNumber}"
                     android:maxLength="15"
+                    android:text="@={viewModel.gstNumber}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -109,8 +110,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text="@={viewModel.ifscCode}"
                     android:maxLength="11"
+                    android:text="@={viewModel.ifscCode}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -155,8 +156,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text="@={viewModel.panNumber}"
                     android:maxLength="10"
+                    android:text="@={viewModel.panNumber}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -566,14 +567,15 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveDraft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
                 android:background="@drawable/default_btn_selector"
                 android:fontFamily="@font/opensans_bold"
-                android:gravity="center"
                 android:text="@string/save_as_draft"
+                android:textAllCaps="false"
                 android:textColor="@color/colorRed"
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"

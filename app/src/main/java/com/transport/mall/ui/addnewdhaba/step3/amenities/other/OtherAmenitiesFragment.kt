@@ -78,6 +78,20 @@ class OtherAmenitiesFragment :
                 3 -> binding.rbUtility2473.isChecked = true
             }
         }
+        it.dailyutilityshopDay.let {
+            when (it) {
+                1 -> binding.rbUtilityDay1.isChecked = true
+                2 -> binding.rbUtilityDay2.isChecked = true
+                3 -> binding.rbUtilityDay3.isChecked = true
+            }
+        }
+        it.barber.let {
+            when (it) {
+                1 -> binding.rbBarber1.isChecked = true
+                2 -> binding.rbBarber2.isChecked = true
+                3 -> binding.rbBarber3.isChecked = true
+            }
+        }
         it.barber.let {
             when (it) {
                 1 -> binding.rbBarber1.isChecked = true
@@ -86,8 +100,8 @@ class OtherAmenitiesFragment :
             }
         }
 
-        it.images.let {
-            xloadImages(binding.ivBarberImg, it, R.drawable.ic_image_placeholder)
+        it.barberImages.let {
+            xloadImages(binding.ivBarberImg, it, R.drawable.ic_placeholder_outliner)
             binding.ivBarberImg.visibility = View.VISIBLE
         }
 
@@ -169,6 +183,7 @@ class OtherAmenitiesFragment :
             // Use Uri object instead of File to avoid storage permissions
             binding.ivBarberImg.setImageURI(uri)
             binding.ivBarberImg.visibility = View.VISIBLE
+            viewModel.model.barberImages = getRealPathFromURI(uri)
         }
     }
 }

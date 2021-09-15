@@ -163,7 +163,7 @@ interface ApiService {
     ): Response<ApiResponseModel<SecurityAmenitiesModel>>
 
     @Multipart
-    @POST("dhaba/addOtherAmenities")
+    @POST("dhaba/addotherAmenities")
     suspend fun addOtherAmenities(
         @Part("service_id") service_id: RequestBody,
         @Part("module_id") module_id: RequestBody,
@@ -175,7 +175,7 @@ interface ApiService {
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
         @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
         @Part("barber") barber: RequestBody,
-        @Part images: MultipartBody.Part
+        @Part barberImages: MultipartBody.Part
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
     @Multipart

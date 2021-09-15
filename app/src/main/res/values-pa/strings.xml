@@ -64,8 +64,8 @@
     <string name="security">Security</string>
     <string name="other">Other</string>
     <string name="food_license">Food License</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="yes">ਹਾਂ</string>
+    <string name="no">ਨਹੀਂ</string>
     <string name="food_at_100_inr">Food at 100 INR</string>
     <string name="ro_clean_water">RO Clean Water</string>
     <string name="veg_food_non_veg">Veg Food | Non Veg</string>
@@ -218,6 +218,15 @@
     <string name="amen_saved">Amenities Saved Successfully</string>
     <string name="enter_owner_details">Please fill owner details form first.</string>
     <string name="enter_dhaba_details">Please fill Dhaba Details form first.</string>
+    <string name="no_dhaba_added">No Dhaba Added</string>
+    <string name="fill_amenities_first">Please fill all the amenities first</string>
+    <string name="no_notifications">No Notifications</string>
+    <string name="saved_as_draft">Details Saved as draft.</string>
+    <string name="owner_saved">Owner details saved successfully.</string>
+    <string name="add_light_amenities">Add Light Amenities</string>
+    <string name="cancel">ਰੱਦ ਕਰੋ</string>
+    <string name="please_confirm">ਕ੍ਰਿਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ</string>
+    <string name="want_to_discard">ਕੀ ਤੁਸੀਂ ਢਾਬਾ ਵੇਰਵੇ ਰੱਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
 
     <string-array name="menu_array">
         <item>@string/dhaba_mnagement</item>

@@ -205,7 +205,7 @@
     <string name="owner_details">Owner Details</string>
     <string name="amenities">Amenities</string>
     <string name="save_dhaba">Save Dhaba</string>
-    <string name="dhaba_created_successfully">Dhaba Created successfully</string>
+    <string name="dhaba_created_successfully">Dhaba details saved successfully</string>
     <string name="food_amen_saved">Food Amenities Saved Successfully</string>
     <string name="no_data_found">No Data Found</string>
     <string name="copied_to_clipboard">Dhaba ID Copied to clipboard</string>
@@ -218,6 +218,15 @@
     <string name="amen_saved">Amenities Saved Successfully</string>
     <string name="enter_owner_details">Please fill owner details form first.</string>
     <string name="enter_dhaba_details">Please fill Dhaba Details form first.</string>
+    <string name="no_dhaba_added">No Dhaba Added</string>
+    <string name="fill_amenities_first">Please fill all the amenities first</string>
+    <string name="no_notifications">No Notifications</string>
+    <string name="saved_as_draft">Details Saved as draft.</string>
+    <string name="owner_saved">Owner details saved successfully.</string>
+    <string name="add_light_amenities">Add Light Amenities</string>
+    <string name="cancel">Cancel</string>
+    <string name="please_confirm">Please Confirm</string>
+    <string name="want_to_discard">Do you want to discard Dhaba Details?</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

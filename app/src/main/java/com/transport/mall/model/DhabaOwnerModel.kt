@@ -26,7 +26,7 @@ class DhabaOwnerModel : Serializable {
     @SerializedName(value = "panNumber")
     var panNumber: String = ""
 
-    @SerializedName(value = "adharCard")
+    @SerializedName(value = "adharCard", alternate = ["aadharNumber"])
     var adharCard: String = ""
 
     @SerializedName(value = "ownerPic", alternate = ["profileImage"])
@@ -60,7 +60,7 @@ class DhabaOwnerModel : Serializable {
             callback.onResponse(false, "Please Select ID proof front image")
         } else if (idproofBack.isEmpty()) {
             callback.onResponse(false, "Please Select ID proof back image")
-        } */else {
+        } */ else {
             callback.onResponse(true, "")
         }
     }

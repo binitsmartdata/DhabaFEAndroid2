@@ -42,8 +42,8 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
                     RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
                     RequestBody.create(MultipartBody.FORM, model.barber.toString()),
                     getMultipartImageFile(
-                        model.images,
-                        "images"
+                        model.barberImages,
+                        "barberImages"
                     )!!
                 )
             ).collect {

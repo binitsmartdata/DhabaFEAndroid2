@@ -37,7 +37,7 @@
 
             <ImageView
                 loadImage="@{data.path}"
-                placeholder="@{R.drawable.ic_image_placeholder}"
+                placeholder="@{R.drawable.ic_placeholder_outliner}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"

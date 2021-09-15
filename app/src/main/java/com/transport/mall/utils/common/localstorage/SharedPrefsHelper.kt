@@ -4,6 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import android.util.Log
+import com.google.gson.Gson
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.LangModel
 import com.transport.mall.model.UserModel
 
@@ -15,6 +18,7 @@ class SharedPrefsHelper {
     private val email = "email"
     private val lastLogin = "lastLogin"
     private val accessToken = "accessToken"
+    private val draftDhaba = "draftDhaba"
 
     var context: Context? = null
 
@@ -66,6 +70,20 @@ class SharedPrefsHelper {
         return prefs?.getString(SELECTED_LANGUAGE, "")!!
     }
 
+    fun getDraftDhaba(): DhabaModelMain? {
+        try {
+            return Gson().fromJson(prefs?.getString(draftDhaba, "")!!, DhabaModelMain::class.java)
+        } catch (e: Exception) {
+            Log.e("GET DHABA DRAFT ::", e.toString())
+            return null
+        }
+    }
+
+    fun setDraftDhaba(dhabaModelMain: DhabaModelMain) {
+        editor?.putString(draftDhaba, Gson().toJson(dhabaModelMain).toString())
+        editor?.apply()
+    }
+
     public fun setLanguageToHindi() {
         setSelectedLanguage("hi")
     }
@@ -80,6 +98,11 @@ class SharedPrefsHelper {
 
     fun clearData() {
         editor?.clear()
+        editor?.apply()
+    }
+
+    fun deleteDraftDhaba() {
+        editor?.putString(draftDhaba, "")
         editor?.apply()
     }
 }

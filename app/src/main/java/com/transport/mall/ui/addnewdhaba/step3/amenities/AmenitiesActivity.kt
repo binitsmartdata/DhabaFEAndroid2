@@ -88,6 +88,7 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
             SLEEPING -> return getString(R.string.sleeping_amen_title)
             WASHROOM -> return getString(R.string.washroom_amen_title)
             SECURITY -> return getString(R.string.security_amen_title)
+            LIGHT -> return getString(R.string.add_light_amenities)
             OTHER -> return getString(R.string.other_amen_title)
         }
         return getString(R.string.amen_title)
@@ -157,6 +158,10 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
     }
 
     override fun showNextScreen() {
+        // NOT APPLICABLE
+    }
+
+    override fun saveAsDraft() {
         // NOT APPLICABLE
     }
 

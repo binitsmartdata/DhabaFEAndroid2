@@ -16,6 +16,7 @@ import com.transport.mall.R
 import com.transport.mall.databinding.DialogAddDhabaSuccessBinding
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 class DialogAddDhabaSuccess constructor(
@@ -36,6 +37,8 @@ class DialogAddDhabaSuccess constructor(
         )
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        SharedPrefsHelper.getInstance(context).deleteDraftDhaba()
 
         binding.dhabaId = id
         binding.btnGoHome.setOnClickListener {

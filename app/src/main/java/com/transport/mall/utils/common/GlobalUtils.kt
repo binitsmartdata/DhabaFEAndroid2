@@ -94,16 +94,25 @@ object GlobalUtils {
     }
 
     @JvmStatic
-    fun showConfirmationDialog(
+    fun showDhabaDiscardAlert(
         context: Context,
         message: String?,
-        callBack: GenericCallBack<Boolean?>
+        callBack: GenericCallBack<Int>
     ) {
         val dialog = AlertDialog.Builder(context)
-        dialog.setTitle("Please Confirm")
+        dialog.setTitle(context.getString(R.string.please_confirm))
         dialog.setMessage(message)
-        dialog.setPositiveButton("Yes") { _, _ -> callBack.onResponse(true) }
-        dialog.setNegativeButton("Cancel") { _, _ -> callBack.onResponse(false) }
+        dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(1) }
+        dialog.setNegativeButton(context.getString(R.string.save_as_draft)) { _, _ ->
+            callBack.onResponse(
+                2
+            )
+        }
+        dialog.setNeutralButton(context.getString(R.string.cancel)) { _, _ ->
+            callBack.onResponse(
+                3
+            )
+        }
         alertDialog = dialog.show()
     }
 
@@ -117,8 +126,12 @@ object GlobalUtils {
         val dialog = AlertDialog.Builder(context)
         dialog.setTitle(title)
         dialog.setMessage(message)
-        dialog.setPositiveButton("Yes") { _, _ -> callBack.onResponse(true) }
-        dialog.setNegativeButton("Cancel") { _, _ -> callBack.onResponse(false) }
+        dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
+        dialog.setNegativeButton(context.getString(R.string.cancel)) { _, _ ->
+            callBack.onResponse(
+                false
+            )
+        }
         alertDialog = dialog.show()
     }
 
@@ -131,17 +144,21 @@ object GlobalUtils {
         val dialog = AlertDialog.Builder(context)
         dialog.setCancelable(false)
         dialog.setTitle(message)
-        dialog.setPositiveButton("Yes") { _, _ -> callBack.onResponse(true) }
-        dialog.setNegativeButton("Cancel") { _, _ -> callBack.onResponse(false) }
+        dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
+        dialog.setNegativeButton(context.getString(R.string.cancel)) { _, _ ->
+            callBack.onResponse(
+                false
+            )
+        }
         alertDialog = dialog.show()
     }
 
     @JvmStatic
     fun showInfoDialog(context: Context, message: String?, callBack: GenericCallBack<Boolean?>) {
         val dialog = AlertDialog.Builder(context)
-        dialog.setTitle("Transport Mall")
+        dialog.setTitle(context.getString(R.string.appName))
         dialog.setMessage(message)
-        dialog.setPositiveButton("Ok") { _, _ -> callBack.onResponse(true) }
+        dialog.setPositiveButton(context.getString(R.string.ok)) { _, _ -> callBack.onResponse(true) }
         alertDialog = dialog.show()
     }
 
@@ -150,7 +167,7 @@ object GlobalUtils {
         val dialog = AlertDialog.Builder(context)
         dialog.setTitle(title)
         dialog.setMessage(message)
-        dialog.setPositiveButton("Ok") { _, _ -> }
+        dialog.setPositiveButton(context.getString(R.string.ok)) { _, _ -> }
         alertDialog = dialog.show()
     }
 

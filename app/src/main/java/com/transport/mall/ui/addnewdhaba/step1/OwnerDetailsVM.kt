@@ -73,12 +73,12 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
         })
         ownerPic.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                adharCard.get()?.let { ownerModel.ownerPic = it }
+                ownerPic.get()?.let { ownerModel.ownerPic = it }
             }
         })
         idproofFront.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                adharCard.get()?.let { ownerModel.idproofFront = it }
+                idproofFront.get()?.let { ownerModel.idproofFront = it }
             }
         })
         idproofBack.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {

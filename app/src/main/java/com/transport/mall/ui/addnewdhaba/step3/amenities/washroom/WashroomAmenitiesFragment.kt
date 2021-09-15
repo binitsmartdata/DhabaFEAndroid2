@@ -74,7 +74,7 @@ class WashroomAmenitiesFragment :
                 xloadImages(
                     binding.ivWashroomPhoto,
                     it,
-                    R.drawable.ic_image_placeholder
+                    R.drawable.ic_placeholder_outliner
                 )
                 binding.ivWashroomPhoto.visibility = View.VISIBLE
             }

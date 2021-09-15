@@ -14,14 +14,15 @@ import com.transport.mall.databinding.ActivityNewDhabaBinding
 import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.step1.AmenitiesFragment
 import com.transport.mall.ui.addnewdhaba.step1.BankDetailsFragment
-import com.transport.mall.ui.addnewdhaba.step1.DhabaDetailsFragment
 import com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsFragment
+import com.transport.mall.ui.addnewdhaba.step2.DhabaDetailsFragment
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
@@ -53,6 +54,11 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
 
     override fun bindData() {
         binding.context = this
+
+        SharedPrefsHelper.getInstance(this).getDraftDhaba()?.let {
+            mDhabaModelMain = it
+        }
+
         if (!isAllGranted(
                 Permission.CAMERA,
                 Permission.WRITE_EXTERNAL_STORAGE,
@@ -156,8 +162,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     }
 
     override fun showNextScreen() {
-        binding.viewPager.currentItem = binding.viewPager.currentItem + 1
+        if (binding.viewPager.currentItem < 3) {
+            binding.viewPager.currentItem += 1
+        }
+    }
 
+    override fun saveAsDraft() {
+        SharedPrefsHelper.getInstance(this).setDraftDhaba(getDhabaModelMain())
+        showToastInCenter(getString(R.string.saved_as_draft))
     }
 
     override fun getDhabaId(): String {
@@ -172,16 +184,16 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
     }
 
     override fun onBackPressed() {
-        if (binding.viewPager.currentItem > 0) {
-            binding.viewPager.currentItem = binding.viewPager.currentItem - 1
-        } else {
-            GlobalUtils.showConfirmationDialogYesNo(this, "Do you want to discard Dhaba Details?",
-                GenericCallBack {
-                    if (it!!) {
+        GlobalUtils.showDhabaDiscardAlert(this, getString(R.string.want_to_discard),
+            GenericCallBack {
+                when (it) {
+                    1 -> finish()
+                    2 -> {
+                        saveAsDraft()
                         finish()
                     }
-                })
-        }
+                }
+            })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

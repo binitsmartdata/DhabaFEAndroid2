@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.RadioButton
+import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -35,6 +36,7 @@ class SleepingAmenitiesFragment :
     override fun bindData() {
         mListener = activity as AddDhabaListener
         binding.context = activity
+        binding.lifecycleOwner = this
         setupLicensePhotoViews()
         setupFoodPhotosView()
         //SETTING EXISTING DATA ON SCREEN
@@ -64,7 +66,7 @@ class SleepingAmenitiesFragment :
                 xloadImages(
                     binding.ivSleepingImg,
                     it,
-                    R.drawable.ic_image_placeholder
+                    R.drawable.ic_placeholder_outliner
                 )
                 binding.ivSleepingImg.visibility = View.VISIBLE
             }
@@ -141,6 +143,13 @@ class SleepingAmenitiesFragment :
     }
 
     override fun initListeners() {
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
         binding.rgBedCharpai.setOnCheckedChangeListener { _, i ->
             when (i) {
                 R.id.rbBedCharpaiYes -> viewModel.model.sleeping = "true"

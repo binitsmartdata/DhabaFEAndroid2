@@ -15,7 +15,7 @@ class OtherAmenitiesModel : Serializable {
     var dailyutilityshop: Int = 0
     var dailyutilityshopDay: Int = 0
     var barber: Int = 0
-    var images: String = ""
+    var barberImages: String = ""
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
 //        if (policVerification == 1 && verificationImg.isEmpty()) {

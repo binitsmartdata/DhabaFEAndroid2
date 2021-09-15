@@ -387,7 +387,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -397,15 +397,19 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveDraft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_30sdp"
                 android:background="@drawable/default_btn_selector"
+                android:fontFamily="@font/opensans_bold"
                 android:text="@string/save_as_draft"
                 android:textAllCaps="false"
-                android:textColor="@color/black" />
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/_14ssp" />
 
         </LinearLayout>
     </ScrollView>

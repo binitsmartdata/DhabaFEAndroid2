@@ -6,4 +6,6 @@ public interface CommonActivityListener {
     void openProfileScreen();
 
     void startOver();
+
+    void openAddDhabaActivity();
 }

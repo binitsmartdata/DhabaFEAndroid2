@@ -6,13 +6,13 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
+import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentDhabaListBinding
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
 
 /**
@@ -32,18 +32,20 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
     var cityAndStateList: ArrayList<CityAndStateModel> = ArrayList()
     var dhabaListAdapter: DhabaListAdapter? = null
 
-    val limit = "5"
+    val limit = "20"
     var page = 1
+
+    var mListener: CommonActivityListener? = null
 
     override fun bindData() {
         binding.lifecycleOwner = this
-        initDhabaListAdapter()
-        refreshDhabaList()
+        mListener = activity as CommonActivityListener
+        showOriginalList()
         setHasOptionsMenu(true)
         setupCitySelectionViews()
     }
 
-    private fun initDhabaListAdapter() {
+    private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModel>) {
         dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
             GenericCallBack {
 
@@ -73,17 +75,32 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
 
         binding.tvCitySelection.setOnClickListener {
             DialogCitySelection(activity as Context, cityAndStateList, GenericCallBack {
-                var selectedNames: String = ""
+                var filteredCities: ArrayList<CityAndStateModel> = ArrayList()
                 cityAndStateList.forEach {
-                    selectedNames =
-                        if (selectedNames.isEmpty()) it.name?.en!! else selectedNames + ", " + it.name?.en
+                    if (it.isChecked) {
+                        filteredCities.add(it)
+                    }
                 }
-                binding.autoTextSearch.setText(selectedNames)
+                if (filteredCities.isNotEmpty()) {
+                    binding.viewCityIndicator.visibility = View.VISIBLE
+                    showFilteredDhabas(filteredCities)
+                } else {
+                    binding.viewCityIndicator.visibility = View.GONE
+                    showOriginalList()
+                }
             }).show()
         }
     }
 
+    private fun showOriginalList() {
+        initDhabaListAdapter(dhabaList)
+        refreshDhabaList()
+    }
+
     override fun initListeners() {
+        binding.btnAddDhaba.setOnClickListener {
+            mListener?.openAddDhabaActivity()
+        }
         viewModel.progressObserver.observe(this, Observer {
             binding.swipeRefreshLayout.isRefreshing = it
         })
@@ -108,19 +125,49 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
         viewModel.getAllDhabaList(limit, page.toString(), GenericCallBack {
             dhabaListAdapter?.removeLoadingView(dhabaList.size)
             if (it != null && it.isNotEmpty()) {
-                binding.tvNoData.visibility = View.GONE
-                binding.recyclerView.visibility = View.VISIBLE
                 if (page == 1) {
+                    dhabaListAdapter?.setShouldLoadMore(true)
                     dhabaList.clear()
+                    dhabaList.addAll(it)
+                    initDhabaListAdapter(dhabaList)
+                } else {
+                    dhabaList.addAll(it)
                 }
-                dhabaList.addAll(it)
                 dhabaListAdapter?.notifyDataSetChanged()
+                refreshListAndNoDataView()
             } else {
                 if (page == 1) {
-                    binding.tvNoData.visibility = View.VISIBLE
-                    binding.recyclerView.visibility = View.GONE
+                    refreshListAndNoDataView()
+                } else {
+                    dhabaListAdapter?.setShouldLoadMore(false)
                 }
             }
         })
+    }
+
+    private fun showFilteredDhabas(filteredCities: ArrayList<CityAndStateModel>) {
+        var filteredDhabaList = ArrayList<DhabaModel>()
+        dhabaList.forEach { dhaba ->
+            filteredCities.forEach { city ->
+                if (dhaba.city.contains(city.name?.en.toString(), true)) {
+                    filteredDhabaList.add(dhaba)
+                }
+            }
+        }
+        if (filteredDhabaList.isNotEmpty()) {
+            initDhabaListAdapter(filteredDhabaList)
+        }
+    }
+
+    fun refreshListAndNoDataView() {
+        dhabaListAdapter?.dataList?.let {
+            if (it.isNotEmpty()) {
+                binding.llNoData.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+            } else {
+                binding.llNoData.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
+            }
+        }
     }
 }

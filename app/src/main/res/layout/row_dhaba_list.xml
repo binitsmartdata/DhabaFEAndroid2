@@ -50,7 +50,7 @@
 
                 <ImageView
                     loadImage="@{model.images}"
-                    placeholder="@{R.drawable.ic_profile_pic_placeholder}"
+                    placeholder="@{R.drawable.ic_placeholder_outliner}"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
                     android:scaleType="centerCrop" />
@@ -112,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:text="@{model.landmark}"
+                    android:text="@{model.city}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
 

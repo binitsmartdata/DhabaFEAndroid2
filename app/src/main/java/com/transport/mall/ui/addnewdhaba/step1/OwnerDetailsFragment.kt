@@ -9,9 +9,11 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAddDhabaStep2Binding
+import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.xloadImages
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -39,6 +41,44 @@ class OwnerDetailsFragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
+
+        //SETTING EXISTING DATA ON SCREEN
+        mListener?.getDhabaModelMain()?.ownerModel?.let {
+            setData(it)
+        }
+    }
+
+    private fun setData(it: DhabaOwnerModel) {
+        it.ownerName.let {
+            viewModel.ownerName.set(it)
+        }
+        it.mobile.let {
+            viewModel.mobile.set(it)
+        }
+        it.email.let {
+            viewModel.email.set(it)
+        }
+        it.address.let {
+            viewModel.address.set(it)
+        }
+        it.panNumber.let {
+            viewModel.panNumber.set(it)
+        }
+        it.adharCard.let {
+            viewModel.adharCard.set(it)
+        }
+        it.ownerPic.let {
+            xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
+            viewModel.ownerPic.set(it)
+        }
+        it.idproofFront.let {
+            xloadImages(binding.ivFrontId, it, R.drawable.ic_placeholder_outliner)
+            viewModel.idproofFront.set(it)
+        }
+        it.idproofBack.let {
+            xloadImages(binding.ivBackId, it, R.drawable.ic_placeholder_outliner)
+            viewModel.idproofBack.set(it)
+        }
     }
 
     override fun initListeners() {
@@ -73,17 +113,34 @@ class OwnerDetailsFragment :
             launchImagePicker()
         }
         binding.btnNext.setOnClickListener {
-            viewModel.ownerModel.hasEverything(GenericCallBackTwoParams { hasEverything, message ->
-                if (hasEverything) {
-                    viewModel.addDhabaOwner(GenericCallBack {
-                        mListener?.getDhabaModelMain()?.ownerModel = it.data
-                        mListener?.showNextScreen()
-                    })
-                } else {
-                    showToastInCenter(message)
-                }
-            })
+            if (mListener?.getDhabaModelMain()?.ownerModel != null) {
+                mListener?.showNextScreen()
+            } else {
+                saveDetails(false)
+            }
         }
+        binding.btnSaveDraft.setOnClickListener {
+            saveDetails(true)
+        }
+    }
+
+    private fun saveDetails(isDraft: Boolean) {
+        viewModel.ownerModel.hasEverything(GenericCallBackTwoParams { hasEverything, message ->
+            if (hasEverything) {
+                viewModel.addDhabaOwner(GenericCallBack {
+                    mListener?.getDhabaModelMain()?.ownerModel = it.data
+                    if (isDraft) {
+                        mListener?.saveAsDraft()
+                        activity?.finish()
+                    } else {
+                        showToastInCenter(getString(R.string.owner_saved))
+                        mListener?.showNextScreen()
+                    }
+                })
+            } else {
+                showToastInCenter(message)
+            }
+        })
     }
 
     private fun launchImagePicker() {

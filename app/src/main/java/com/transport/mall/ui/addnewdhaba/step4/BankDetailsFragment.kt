@@ -10,12 +10,14 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentStep4BankDetailsBinding
+import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
+import com.transport.mall.utils.xloadImages
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -42,6 +44,34 @@ class BankDetailsFragment :
         binding.executiveModel = SharedPrefsHelper.getInstance(activity as Context).getUserData()
         binding.dhabaModelMain = mListener?.getDhabaModelMain()
         binding.currentDate = GlobalUtils.getCurrentDate()
+
+        //SETTING EXISTING DATA ON SCREEN
+        mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
+            setData(it)
+        }
+    }
+
+    private fun setData(it: BankDetailsModel) {
+        it.bankName.let {
+            viewModel.bankName.set(it)
+        }
+        it.gstNumber.let {
+            viewModel.gstNumber.set(it)
+        }
+        it.ifscCode.let {
+            viewModel.ifscCode.set(it)
+        }
+        it.accountName.let {
+            viewModel.accountName.set(it)
+        }
+        it.panNumber.let {
+            viewModel.panNumber.set(it)
+        }
+        it.panPhoto.let {
+            viewModel.panPhoto.set(it)
+            xloadImages(binding.ivPanPhoto, it, R.drawable.ic_placeholder_outliner)
+            binding.ivPanPhoto.visibility = View.VISIBLE
+        }
     }
 
     override fun initListeners() {
@@ -54,12 +84,34 @@ class BankDetailsFragment :
         })
 
         binding.btnNext.setOnClickListener {
+            if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
+                showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+            } else {
+                saveDetails(false)
+            }
+        }
+        binding.btnSaveDraft.setOnClickListener {
+            saveDetails(true)
+        }
+
+        binding.llPanPhoto.setOnClickListener {
+            launchImagePicker()
+        }
+    }
+
+    private fun saveDetails(isDraft: Boolean) {
+        if (isDraft || (!isDraft && isHavingPreviousData())) {
             viewModel.bankModel.hasEverything(GenericCallBackTwoParams() { allOk, message ->
                 if (allOk) {
                     viewModel.addBankDetail(GenericCallBack {
                         if (it.data != null) {
                             mListener?.getDhabaModelMain()?.bankDetailsModel = it.data
-                            showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                            if (isDraft) {
+                                mListener?.saveAsDraft()
+                                activity?.finish()
+                            } else {
+                                showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                            }
                         } else {
                             showToastInCenter(it.message)
                         }
@@ -68,10 +120,6 @@ class BankDetailsFragment :
                     showToastInCenter(message)
                 }
             })
-        }
-
-        binding.llPanPhoto.setOnClickListener {
-            launchImagePicker()
         }
     }
 
@@ -114,6 +162,27 @@ class BankDetailsFragment :
                 )
             )
         }
+    }
+
+    private fun isHavingPreviousData(): Boolean {
+        if (mListener?.getDhabaModelMain()?.ownerModel == null) {
+            showToastInCenter(getString(R.string.enter_owner_details))
+            return false
+        } else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
+            showToastInCenter(getString(R.string.enter_dhaba_details))
+            return false
+        } /*else if (mListener?.getDhabaModelMain()?.foodAmenitiesModel == null
+            || mListener?.getDhabaModelMain()?.parkingAmenitiesModel == null
+            || mListener?.getDhabaModelMain()?.sleepingAmenitiesModel == null
+            || mListener?.getDhabaModelMain()?.washroomAmenitiesModel == null
+            || mListener?.getDhabaModelMain()?.securityAmenitiesModel == null
+            || mListener?.getDhabaModelMain()?.lightAmenitiesModel == null
+            || mListener?.getDhabaModelMain()?.otherAmenitiesModel == null
+        ) {
+            showToastInCenter(getString(R.string.fill_amenities_first))
+            return false
+        }*/
+        return true
     }
 
     fun youAreInFocus() {

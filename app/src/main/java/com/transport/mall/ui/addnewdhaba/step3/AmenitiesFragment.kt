@@ -35,6 +35,10 @@ class AmenitiesFragment :
                 mListener?.showNextScreen()
             }
         }
+        binding.btnSaveDraft.setOnClickListener {
+            mListener?.saveAsDraft()
+            activity?.finish()
+        }
 
         binding.cardFood.setOnClickListener {
             AmenitiesActivity.start(

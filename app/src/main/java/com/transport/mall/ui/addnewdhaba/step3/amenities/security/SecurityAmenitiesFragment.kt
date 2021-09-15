@@ -75,12 +75,12 @@ class SecurityAmenitiesFragment :
         }
         it.policVerification.let {
             when (it) {
-                true -> binding.rbPoliceVerificationNo.isChecked = true
-                false -> binding.rbPoliceVerificationYes.isChecked = true
+                true -> binding.rbPoliceVerificationYes.isChecked = true
+                false -> binding.rbPoliceVerificationNo.isChecked = true
             }
         }
         it.verificationImg.let {
-            xloadImages(binding.ivPoliceVerification, it, R.drawable.ic_image_placeholder)
+            xloadImages(binding.ivPoliceVerification, it, R.drawable.ic_placeholder_outliner)
             binding.ivPoliceVerification.visibility = View.VISIBLE
         }
         it.indoorCamera.let {
