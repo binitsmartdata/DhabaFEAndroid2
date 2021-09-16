@@ -31,25 +31,25 @@ class SecurityAmenitiesVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.addSecurityAmenities(
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.service_id),
+                    RequestBody.create(MultipartBody.FORM, model.module_id),
+                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                     RequestBody.create(MultipartBody.FORM, model.dayGuard.toString()),
                     RequestBody.create(MultipartBody.FORM, model.nightGuard.toString()),
                     RequestBody.create(MultipartBody.FORM, model.policVerification.toString()),
                     getMultipartImageFile(
                         model.verificationImg,
-                        "police_verification_document"
+                        "verificationImg"
                     )!!,
                     RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
                     getMultipartImagesList(
                         model.indoorCameraImage,
-                        "indoor_cameras_photos"
+                        "indoorCameraImage"
                     ),
                     RequestBody.create(MultipartBody.FORM, model.outdoorCamera.toString()),
                     getMultipartImagesList(
                         model.outdoorCameraImage,
-                        "outdoor_cameras_photos"
+                        "outdoorCameraImage"
                     )
                 )
             ).collect {

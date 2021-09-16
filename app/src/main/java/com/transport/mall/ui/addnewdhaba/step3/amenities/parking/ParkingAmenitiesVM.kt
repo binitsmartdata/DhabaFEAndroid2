@@ -36,9 +36,9 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.addParkingAmenities(
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.service_id),
+                    RequestBody.create(MultipartBody.FORM, model.module_id),
+                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                     RequestBody.create(MultipartBody.FORM, model.concreteParking),
                     RequestBody.create(MultipartBody.FORM, model.flatHardParking),
                     RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),

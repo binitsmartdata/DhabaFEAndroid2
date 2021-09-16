@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import android.widget.RadioButton
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
@@ -15,7 +14,6 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.xloadImages
-import org.json.JSONObject
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -41,6 +39,9 @@ class LightAmenitiesFragment :
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            viewModel.model.dhaba_id = it._id
+        }
         setupLicensePhotoViews()
         setupFoodPhotosView()
 
@@ -52,31 +53,29 @@ class LightAmenitiesFragment :
 
     private fun showData(it: LightAmenitiesModel) {
         viewModel.model = it
-        it.tower_light.let {
+        it.towerLight.let {
             when (it) {
-                true -> (activity?.findViewById<RadioButton>(R.id.rbTowerYes))?.isChecked = true
-                false -> (activity?.findViewById<RadioButton>(R.id.rbTowerNo))?.isChecked = true
+                true -> binding.rbTowerYes.isChecked = true
+                false -> binding.rbTowerNo.isChecked = true
             }
         }
-        it.bulb_light.let {
+        it.bulbLight.let {
             when (it) {
-                true -> (activity?.findViewById<RadioButton>(R.id.rbBulbYes))?.isChecked = true
-                false -> (activity?.findViewById<RadioButton>(R.id.rbBulbNo))?.isChecked = true
+                true -> binding.rbBulbYes.isChecked = true
+                false -> binding.rbBulbNo.isChecked = true
             }
         }
-        it.twentyfour_seven_electricity.let {
+        it.electricityBackup.let {
             when (it) {
-                true -> (activity?.findViewById<RadioButton>(R.id.rbElectricityYes))?.isChecked =
-                    true
-                false -> (activity?.findViewById<RadioButton>(R.id.rbElectricityNo))?.isChecked =
-                    true
+                true -> binding.rbElectricityYes.isChecked = true
+                false -> binding.rbElectricityNo.isChecked = true
             }
         }
-        it.tower_image.let {
+        it.towerLightImage.let {
             xloadImages(binding.ivTowerImg, it, R.drawable.ic_placeholder_outliner)
             binding.ivTowerImg.visibility = View.VISIBLE
         }
-        it.bulb_image.let {
+        it.bulbLightImage.let {
             xloadImages(binding.ivBulbImage, it, R.drawable.ic_placeholder_outliner)
             binding.ivBulbImage.visibility = View.VISIBLE
         }
@@ -121,16 +120,13 @@ class LightAmenitiesFragment :
             }
         })
         binding.rgTower.setOnCheckedChangeListener { _, i ->
-            viewModel.model.tower_light =
-                (activity?.findViewById<RadioButton>(R.id.rbTowerYes))?.isChecked!!
+            viewModel.model.towerLight = binding.rbTowerYes.isChecked
         }
         binding.rgBulb.setOnCheckedChangeListener { _, i ->
-            viewModel.model.bulb_light =
-                (activity?.findViewById<RadioButton>(R.id.rbBulbYes))?.isChecked!!
+            viewModel.model.bulbLight = binding.rbBulbYes.isChecked
         }
         binding.rgElectricity.setOnCheckedChangeListener { _, i ->
-            viewModel.model.twentyfour_seven_electricity =
-                (activity?.findViewById<RadioButton>(R.id.rbElectricityYes))?.isChecked!!
+            viewModel.model.electricityBackup = binding.rbElectricityYes.isChecked
         }
         binding.btnSaveDhaba.setOnClickListener {
             viewModel.model.hasEverything(
@@ -166,25 +162,12 @@ class LightAmenitiesFragment :
                 INTENT_TOWER -> {
                     binding.ivTowerImg.setImageURI(uri)
                     binding.ivTowerImg.visibility = View.VISIBLE
-                    viewModel.model.tower_image = getRealPathFromURI(uri)
-
-                    /*viewModel.uploadImage(getRealPathFromURI(uri), GenericCallBack {
-                        try {
-                            var mainobj: JSONObject = JSONObject(it)
-                            xloadImages(
-                                binding.ivTowerImg,
-                                mainobj.optJSONObject("data").optString("messageToshow"),
-                                R.drawable.ic_image_placeholder
-                            )
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    })*/
+                    viewModel.model.towerLightImage = getRealPathFromURI(uri)
                 }
                 INTENT_BULB -> {
                     binding.ivBulbImage.setImageURI(uri)
                     binding.ivBulbImage.visibility = View.VISIBLE
-                    viewModel.model.bulb_image = getRealPathFromURI(uri)
+                    viewModel.model.bulbLightImage = getRealPathFromURI(uri)
                 }
             }
         }

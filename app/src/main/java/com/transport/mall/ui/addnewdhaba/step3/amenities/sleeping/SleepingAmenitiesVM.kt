@@ -31,9 +31,9 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.addSleepingAmenities(
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.service_id),
+                    RequestBody.create(MultipartBody.FORM, model.module_id),
+                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                     RequestBody.create(MultipartBody.FORM, model.sleeping),
                     RequestBody.create(MultipartBody.FORM, model.fan),
                     RequestBody.create(MultipartBody.FORM, model.enclosed),

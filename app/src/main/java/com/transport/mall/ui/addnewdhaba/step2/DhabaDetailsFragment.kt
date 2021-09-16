@@ -17,10 +17,16 @@ import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAddDhabaStep1Binding
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.HighwayModel
+import com.transport.mall.model.LocationAddressModel
+import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.GlobalUtils.getAddressUsingLatLong
+import com.transport.mall.utils.common.GlobalUtils.getCurrentLocation
+import com.transport.mall.utils.common.GlobalUtils.refreshLocation
 import com.transport.mall.utils.createVideoThumbnail
 import com.transport.mall.utils.xloadImages
 
@@ -42,7 +48,9 @@ class DhabaDetailsFragment :
     var mListener: AddDhabaListener? = null
 
     var StateList = ArrayList<CityAndStateModel>()
+    var highwayList = ArrayList<HighwayModel>()
     var statesAdapter: ArrayAdapter<CityAndStateModel>? = null
+    var highwayAdapter: ArrayAdapter<HighwayModel>? = null
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -68,6 +76,12 @@ class DhabaDetailsFragment :
         }
         it.address.let {
             viewModel.address.set(it)
+        }
+        it.latitude.let {
+            viewModel.latitude.set(it)
+        }
+        it.longitude.let {
+            viewModel.longitude.set(it)
         }
         it.landmark.let {
             viewModel.landmark.set(it)
@@ -102,7 +116,7 @@ class DhabaDetailsFragment :
     override fun initListeners() {
         setupVideoPickerViews()
         setupImagePicker()
-        viewModel.refreshLocation()
+        refreshLocation(activity as Context)
         setupLocationViews()
         setupCitiesAndStateView()
 
@@ -141,7 +155,6 @@ class DhabaDetailsFragment :
             }
         }
 
-
         binding.btnNext.setOnClickListener {
             if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
                 mListener?.showNextScreen()
@@ -158,7 +171,7 @@ class DhabaDetailsFragment :
         if (!isDraft && mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
         } else {
-            viewModel.getDhabaModel()
+            viewModel.dhabaModel
                 .hasEverything(GenericCallBackTwoParams { status, message ->
                     if (status) {
                         viewModel.addDhaba(
@@ -190,6 +203,11 @@ class DhabaDetailsFragment :
             //SET STATES ADAPTER ON SPINNER
             setStatesAdapter(StateList)
         })
+
+        viewModel.getAllHighway(GenericCallBack {
+            highwayList = it
+            setHighwayAdapter(highwayList)
+        })
     }
 
     private fun setStatesAdapter(StateList: ArrayList<CityAndStateModel>) {
@@ -220,6 +238,37 @@ class DhabaDetailsFragment :
                 for (i in StateList) {
                     if (i.name?.en?.equals(it)!!) {
                         binding.spnrState.setSelection(index)
+                        break
+                    }
+                    index += 1
+                }
+            }
+        }
+    }
+
+    private fun setHighwayAdapter(StateList: ArrayList<HighwayModel>) {
+        highwayAdapter = ArrayAdapter(
+            activity as Context,
+            android.R.layout.simple_list_item_1, StateList
+        )
+        binding.spnrHighway.setAdapter(highwayAdapter)
+        binding.spnrHighway.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.state.set(StateList.get(p2).highwayNumber)
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        })
+
+        viewModel.highway.get()?.let {
+            if (it.isNotEmpty()) {
+                var index = 0
+                for (i in StateList) {
+                    if (i.highwayNumber.equals(it)) {
+                        binding.spnrHighway.setSelection(index)
                         break
                     }
                     index += 1
@@ -261,19 +310,22 @@ class DhabaDetailsFragment :
     }
 
     private fun setupLocationViews() {
-        binding.fetchLocationLayout.setOnClickListener {
-            showProgressDialog("Fetching Location...")
-            viewModel.getCurrentLocation(GenericCallBack { location ->
-                hideProgressDialog()
+        binding.tvMapPicker.setOnClickListener {
+            GoogleMapsActivity.start(this)
+        }
+        binding.tvCurrLocation.setOnClickListener {
+            getCurrentLocation(activity as Context, GenericCallBack { location ->
                 if (location != null) {
                     binding.edDhabaAddress.setText(
-                        viewModel.getAddressUsingLatLong(
+                        getAddressUsingLatLong(
+                            activity as Context,
                             location.latitude,
                             location.longitude
                         ).fullAddress
                     )
                     binding.edPinCode.setText(
-                        viewModel.getAddressUsingLatLong(
+                        getAddressUsingLatLong(
+                            activity as Context,
                             location.latitude,
                             location.longitude
                         ).postalCode
@@ -323,7 +375,7 @@ class DhabaDetailsFragment :
 
                 viewModel.videos.set(list?.get(0)?.videoPath!!)
                 var thumbPath =
-                    createVideoThumbnail(activity as Context, viewModel.getDhabaModel().videos)
+                    createVideoThumbnail(activity as Context, viewModel.dhabaModel.videos)
                 var uri = Uri.fromFile(thumbPath)
                 binding.ivVideoThumb.setImageURI(uri)
                 binding.frameVideoThumb.visibility = View.VISIBLE
@@ -334,11 +386,18 @@ class DhabaDetailsFragment :
                     binding.ivVideoThumb,
                     createVideoThumbnail(
                         activity as Context,
-                        viewModel.getDhabaModel().videos
+                        viewModel.dhabaModel.videos
                     ).absolutePath,
                     R.drawable.ic_placeholder_outliner
                 )
                 binding.frameVideoThumb.visibility = View.VISIBLE
+            } else if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
+                val location = data?.getSerializableExtra("data") as LocationAddressModel?
+                location.let {
+                    viewModel.address.set(it?.fullAddress)
+                    viewModel.latitude.set(it?.latitude.toString())
+                    viewModel.longitude.set(it?.longitude.toString())
+                }
             } else {
                 val uri: Uri = data?.data!!
                 viewModel.images.set(if (uri.isAbsolute) uri.path else getRealPathFromURI(uri))

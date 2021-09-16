@@ -46,6 +46,10 @@ class SecurityAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.viewmodel = viewModel
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            viewModel.model.dhaba_id = it._id
+        }
+
         setupLicensePhotoViews()
         refreshIndoorCameraImages()
         refreshOutdoorCameraImages()

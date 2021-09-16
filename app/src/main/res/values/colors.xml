@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
 
     <color name="black_transparent">#33000000</color>
+    <color name="black_transparent_dark">#66000000</color>
     <color name="divider">#BDBDBD</color>
     <color name="black">#000000</color>
     <color name="grey">#9A9A9A</color>

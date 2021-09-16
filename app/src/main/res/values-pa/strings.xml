@@ -120,7 +120,7 @@
     <string name="amen_title">Add Amenities</string>
     <string name="dhaba_name">ਢਾਬੇ ਦਾ ਨਾਮ</string>
     <string name="dhaba_address">ਢਾਬੇ ਦਾ ਪਤਾ</string>
-    <string name="fetch_location">ਸਥਾਨ ਪ੍ਰਾਪਤ ਕਰੋ</string>
+    <string name="fetch_location">ਮੌਜੂਦਾ ਸਥਾਨ</string>
     <string name="landmark">ਲੈਂਡਮਾਰਕ</string>
     <string name="area">ਖੇਤਰ</string>
     <string name="pin_code">ਪਿੰਨ ਕੋਡ</string>
@@ -227,6 +227,10 @@
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
     <string name="please_confirm">ਕ੍ਰਿਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <string name="want_to_discard">ਕੀ ਤੁਸੀਂ ਢਾਬਾ ਵੇਰਵੇ ਰੱਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="pick_from_map">| ਨਕਸ਼ੇ ਤੋਂ ਚੁਣੋ</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="use_location">Use Location</string>
+    <string name="click_on_map_to_get_address">Click on map to get address</string>
 
     <string-array name="menu_array">
         <item>@string/dhaba_mnagement</item>

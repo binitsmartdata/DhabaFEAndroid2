@@ -4,8 +4,8 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 class FoodAmenitiesModel : Serializable {
-    var service_id: String = ""
-    var module_id: String = ""
+    var service_id: String = "1"
+    var module_id: String = "1"
     var dhaba_id: String = ""
     var name: String = ""
     var foodLisence: String = ""

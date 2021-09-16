@@ -34,6 +34,10 @@ class OtherAmenitiesFragment :
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            viewModel.model.dhaba_id = it._id
+        }
+
         setupLicensePhotoViews()
         //SETTING EXISTING DATA ON SCREEN
         mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {

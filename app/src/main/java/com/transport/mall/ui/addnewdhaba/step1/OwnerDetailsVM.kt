@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
@@ -31,12 +30,15 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
     var mobile: ObservableField<String> = ObservableField()
     var email: ObservableField<String> = ObservableField()
     var address: ObservableField<String> = ObservableField()
+    var location: ObservableField<String> = ObservableField()
     var panNumber: ObservableField<String> = ObservableField()
     var adharCard: ObservableField<String> = ObservableField()
     var ownerPic: ObservableField<String> = ObservableField()
     var idproofFront: ObservableField<String> = ObservableField()
     var idproofBack: ObservableField<String> = ObservableField()
     var dhaba_id: ObservableField<String> = ObservableField()
+    var latitude: ObservableField<String> = ObservableField()
+    var longitude: ObservableField<String> = ObservableField()
 
     init {
         app = application
@@ -59,6 +61,21 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
         address.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 address.get()?.let { ownerModel.address = it }
+            }
+        })
+        location.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                location.get()?.let { ownerModel.location = it }
+            }
+        })
+        latitude.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                latitude.get()?.let { ownerModel.latitude = it }
+            }
+        })
+        longitude.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                longitude.get()?.let { ownerModel.longitude = it }
             }
         })
         panNumber.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {

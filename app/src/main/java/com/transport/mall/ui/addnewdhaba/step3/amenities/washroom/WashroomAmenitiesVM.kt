@@ -32,9 +32,9 @@ class WashroomAmenitiesVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.addWashroomAmenities(
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.service_id),
+                    RequestBody.create(MultipartBody.FORM, model.module_id),
+                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                     RequestBody.create(MultipartBody.FORM, model.washroomStatus),
                     RequestBody.create(MultipartBody.FORM, model.water),
                     RequestBody.create(MultipartBody.FORM, model.cleaner),

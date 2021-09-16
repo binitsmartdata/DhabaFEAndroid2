@@ -5,19 +5,19 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 class LightAmenitiesModel : Serializable {
-    var service_id = ""
-    var module_id = ""
+    var service_id = "1"
+    var module_id = "1"
     var dhaba_id = ""
-    var tower_light: Boolean = false
-    var tower_image: String = ""
-    var bulb_light: Boolean = false
-    var bulb_image: String = ""
-    var twentyfour_seven_electricity: Boolean = false
+    var towerLight: Boolean = false
+    var towerLightImage: String = ""
+    var bulbLight: Boolean = false
+    var bulbLightImage: String = ""
+    var electricityBackup: Boolean = false
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (tower_light && tower_image.isEmpty()) {
+        if (towerLight && towerLightImage.isEmpty()) {
             callback.onResponse(false, "Please choose Tower Light photo")
-        } else if (bulb_light && bulb_image.isEmpty()) {
+        } else if (bulbLight && bulbLightImage.isEmpty()) {
             callback.onResponse(false, "Please choose Bulb Light photo")
         } else {
             callback.onResponse(true, "")

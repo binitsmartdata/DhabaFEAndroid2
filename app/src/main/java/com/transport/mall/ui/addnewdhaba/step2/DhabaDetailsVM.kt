@@ -1,17 +1,13 @@
 package com.transport.mall.ui.addnewdhaba.step2
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.location.Address
-import android.location.Geocoder
-import android.location.Location
+import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.location.*
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.CityAndStateModel
 import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.LocationAddressModel
+import com.transport.mall.model.HighwayModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -34,8 +30,9 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
     var stateProgressObservable: MutableLiveData<Boolean> = MutableLiveData()
     var cityProgressObservable: MutableLiveData<Boolean> = MutableLiveData()
+    var highwayProgressObservable: MutableLiveData<Boolean> = MutableLiveData()
 
-    private var dhabaModel: DhabaModel = DhabaModel()
+    var dhabaModel: DhabaModel = DhabaModel()
 
     var name: ObservableField<String> = ObservableField()
     var ownerName: ObservableField<String> = ObservableField()
@@ -51,67 +48,109 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     var propertyStatus: ObservableField<String> = ObservableField()
     var images: ObservableField<String> = ObservableField()
     var videos: ObservableField<String> = ObservableField()
+    var latitude: ObservableField<String> = ObservableField()
+    var longitude: ObservableField<String> = ObservableField()
 
     init {
         app = application
+
+        name.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                name.get()?.let { dhabaModel.name = it }
+            }
+        })
+        address.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                address.get()?.let { dhabaModel.address = it }
+            }
+        })
+        landmark.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                landmark.get()?.let { dhabaModel.landmark = it }
+            }
+        })
+        area.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                area.get()?.let { dhabaModel.area = it }
+            }
+        })
+        highway.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                highway.get()?.let { dhabaModel.highway = it }
+            }
+        })
+        state.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                state.get()?.let { dhabaModel.state = it }
+            }
+        })
+        city.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                city.get()?.let { dhabaModel.city = it }
+            }
+        })
+        pincode.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                pincode.get()?.let { dhabaModel.pincode = it }
+            }
+        })
+        location.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                location.get()?.let { dhabaModel.location = it }
+            }
+        })
+        mobile.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                mobile.get()?.let { dhabaModel.mobile = it }
+            }
+        })
+        propertyStatus.addOnPropertyChangedCallback(object :
+            Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                propertyStatus.get()?.let { dhabaModel.propertyStatus = it }
+            }
+        })
+        images.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                images.get()?.let { dhabaModel.images = it }
+            }
+        })
+        videos.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                videos.get()?.let { dhabaModel.videos = it }
+            }
+        })
+        latitude.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                latitude.get()?.let { dhabaModel.latitude = it }
+            }
+        })
+        longitude.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                longitude.get()?.let { dhabaModel.longitude = it }
+            }
+        })
     }
 
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-    @SuppressLint("MissingPermission")
-    fun refreshLocation() {
-        val mLocationRequest = LocationRequest.create()
-        mLocationRequest.interval = 60000
-        mLocationRequest.fastestInterval = 5000
-        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        val mLocationCallback: LocationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                if (locationResult == null) {
-                    return
-                }
-                for (location in locationResult.locations) {
-                    if (location != null) {
-                        //TODO: UI updates.
+    fun getAllHighway(callBack: GenericCallBack<ArrayList<HighwayModel>>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.getAllHighway()
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+                        cityProgressObservable.value = true
+                    }
+                    ApiResult.Status.ERROR -> {
+                        cityProgressObservable.value = false
+                    }
+                    ApiResult.Status.SUCCESS -> {
+                        cityProgressObservable.value = false
+                        callBack.onResponse(it.data?.data)
                     }
                 }
             }
         }
-        LocationServices.getFusedLocationProviderClient(app)
-            .requestLocationUpdates(mLocationRequest, mLocationCallback, null)
-    }
-
-    @SuppressLint("MissingPermission")
-    fun getCurrentLocation(callBack: GenericCallBack<Location>) {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(app)
-
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                callBack.onResponse(location)
-            }
-    }
-
-    fun getAddressUsingLatLong(latitude: Double, longitude: Double): LocationAddressModel {
-        val geocoder: Geocoder
-        val addresses: List<Address>
-        geocoder = Geocoder(app, Locale.getDefault())
-
-        addresses = geocoder.getFromLocation(
-            latitude,
-            longitude,
-            1
-        ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
-        val address: String =
-            addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-
-        val city: String = addresses[0].getLocality()
-        val state: String = addresses[0].getAdminArea()
-        val country: String = addresses[0].getCountryName()
-        val postalCode: String = addresses[0].getPostalCode()
-        val knownName: String = addresses[0].getFeatureName() // Only if available else return NULL
-
-        return LocationAddressModel(address, city, state, country, postalCode, knownName)
-//        return address
     }
 
     fun getCitiesByStateId(
@@ -171,30 +210,30 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.uploadDhabaDetails(
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().name),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().address),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().landmark),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().area),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().highway),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().state),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().city),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().pincode),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().location),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().mobile),
-                    RequestBody.create(MultipartBody.FORM, getDhabaModel().propertyStatus),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.name),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.address),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.area),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.highway),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.state),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.city),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.pincode),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.location),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
                     RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
                     MultipartBody.Part.createFormData(
                         "images",
-                        File(getDhabaModel().images).getName(),
+                        File(dhabaModel.images).getName(),
                         RequestBody.create(
-                            MediaType.parse("image/*"), getDhabaModel().images
+                            MediaType.parse("image/*"), dhabaModel.images
                         )
                     ),
-                    if (getDhabaModel().videos.isNotEmpty()) MultipartBody.Part.createFormData(
+                    if (dhabaModel.videos.isNotEmpty()) MultipartBody.Part.createFormData(
                         "videos",
-                        File(getDhabaModel().videos).getName(),
+                        File(dhabaModel.videos).getName(),
                         RequestBody.create(
-                            MediaType.parse("video/*"), getDhabaModel().videos
+                            MediaType.parse("video/*"), dhabaModel.videos
                         )
                     ) else null,
                     RequestBody.create(
@@ -225,23 +264,4 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
             }
         }
     }
-
-    fun getDhabaModel(): DhabaModel {
-        name.get()?.let { dhabaModel.name = it }
-        address.get()?.let { dhabaModel.address = it }
-        landmark.get()?.let { dhabaModel.landmark = it }
-        area.get()?.let { dhabaModel.area = it }
-        highway.get()?.let { dhabaModel.highway = it }
-        state.get()?.let { dhabaModel.state = it }
-        city.get()?.let { dhabaModel.city = it }
-        pincode.get()?.let { dhabaModel.pincode = it }
-        location.get()?.let { dhabaModel.location = it }
-        mobile.get()?.let { dhabaModel.mobile = it }
-        propertyStatus.get()?.let { dhabaModel.propertyStatus = it }
-        images.get()?.let { dhabaModel.images = it }
-        videos.get()?.let { dhabaModel.videos = it }
-
-        return dhabaModel
-    }
-
 }

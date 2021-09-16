@@ -23,6 +23,9 @@ class DhabaOwnerModel : Serializable {
     @SerializedName(value = "address")
     var address: String = ""
 
+    @SerializedName(value = "location")
+    var location: String = ""
+
     @SerializedName(value = "panNumber")
     var panNumber: String = ""
 
@@ -37,6 +40,12 @@ class DhabaOwnerModel : Serializable {
 
     @SerializedName(value = "idproofBack")
     var idproofBack: String = ""
+
+    @SerializedName(value = "latitude")
+    var latitude: String = ""
+
+    @SerializedName(value = "longitude")
+    var longitude: String = ""
 
 
     fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {

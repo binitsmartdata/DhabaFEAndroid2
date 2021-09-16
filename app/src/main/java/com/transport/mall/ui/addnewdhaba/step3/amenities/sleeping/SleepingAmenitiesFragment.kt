@@ -37,6 +37,10 @@ class SleepingAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.lifecycleOwner = this
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            viewModel.model.dhaba_id = it._id
+        }
+
         setupLicensePhotoViews()
         setupFoodPhotosView()
         //SETTING EXISTING DATA ON SCREEN

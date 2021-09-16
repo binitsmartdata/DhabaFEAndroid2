@@ -31,16 +31,16 @@ class LightAmenitiesVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.addLightAmenities(
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
-                    RequestBody.create(MultipartBody.FORM, model.tower_light.toString()),
-                    getMultipartImageFile(model.tower_image, "tower_image"),
-                    RequestBody.create(MultipartBody.FORM, model.bulb_light.toString()),
-                    getMultipartImageFile(model.bulb_image, "buld_image"),
+                    RequestBody.create(MultipartBody.FORM, model.service_id),
+                    RequestBody.create(MultipartBody.FORM, model.module_id),
+                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                    RequestBody.create(MultipartBody.FORM, model.towerLight.toString()),
+                    getMultipartImageFile(model.towerLightImage, "towerLightImage"),
+                    RequestBody.create(MultipartBody.FORM, model.bulbLight.toString()),
+                    getMultipartImageFile(model.bulbLightImage, "bulbLightImage"),
                     RequestBody.create(
                         MultipartBody.FORM,
-                        model.twentyfour_seven_electricity.toString()
+                        model.electricityBackup.toString()
                     )
                 )
             ).collect {

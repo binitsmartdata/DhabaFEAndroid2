@@ -1,6 +1,7 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.telephony.PhoneNumberFormattingTextWatcher
@@ -10,9 +11,12 @@ import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAddDhabaStep2Binding
 import com.transport.mall.model.DhabaOwnerModel
+import com.transport.mall.model.LocationAddressModel
+import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.xloadImages
 
 /**
@@ -61,6 +65,12 @@ class OwnerDetailsFragment :
         it.address.let {
             viewModel.address.set(it)
         }
+        it.latitude.let {
+            viewModel.latitude.set(it)
+        }
+        it.longitude.let {
+            viewModel.longitude.set(it)
+        }
         it.panNumber.let {
             viewModel.panNumber.set(it)
         }
@@ -82,6 +92,7 @@ class OwnerDetailsFragment :
     }
 
     override fun initListeners() {
+        setupLocationViews()
         mListener?.getDhabaModelMain()?.dhabaModel?.let { viewModel.dhaba_id.set(it._id) }
         binding.edPhoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         viewModel.progressObserver.observe(this, Observer {
@@ -124,6 +135,25 @@ class OwnerDetailsFragment :
         }
     }
 
+    private fun setupLocationViews() {
+        binding.tvMapPicker.setOnClickListener {
+            GoogleMapsActivity.start(this)
+        }
+        binding.tvCurrLocation.setOnClickListener {
+            GlobalUtils.getCurrentLocation(activity as Context, GenericCallBack { location ->
+                if (location != null) {
+                    viewModel.address.set(
+                        GlobalUtils.getAddressUsingLatLong(
+                            activity as Context,
+                            location.latitude,
+                            location.longitude
+                        ).fullAddress
+                    )
+                }
+            })
+        }
+    }
+
     private fun saveDetails(isDraft: Boolean) {
         viewModel.ownerModel.hasEverything(GenericCallBackTwoParams { hasEverything, message ->
             if (hasEverything) {
@@ -157,27 +187,40 @@ class OwnerDetailsFragment :
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            val uri: Uri = data?.data!!
-            when (INTENT_TYPE) {
-                PICKER_OWNER_IMAGE -> {
-                    binding.ivOwnerImage.setImageURI(uri)
-                    viewModel.ownerPic.set(if (uri.isAbsolute) uri.path else getRealPathFromURI(uri))
+            if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
+                val location = data?.getSerializableExtra("data") as LocationAddressModel?
+                location.let {
+                    viewModel.address.set(it?.fullAddress)
+                    viewModel.latitude.set(it?.latitude.toString())
+                    viewModel.longitude.set(it?.longitude.toString())
                 }
-                PICKER_ID_FRONT -> {
-                    binding.ivFrontId.setImageURI(uri)
-                    viewModel.idproofFront.set(
-                        if (uri.isAbsolute) uri.path else getRealPathFromURI(
-                            uri
+            } else {
+                val uri: Uri = data?.data!!
+                when (INTENT_TYPE) {
+                    PICKER_OWNER_IMAGE -> {
+                        binding.ivOwnerImage.setImageURI(uri)
+                        viewModel.ownerPic.set(
+                            if (uri.isAbsolute) uri.path else getRealPathFromURI(
+                                uri
+                            )
                         )
-                    )
-                }
-                PICKER_ID_BACK -> {
-                    binding.ivBackId.setImageURI(uri)
-                    viewModel.idproofBack.set(
-                        if (uri.isAbsolute) uri.path else getRealPathFromURI(
-                            uri
+                    }
+                    PICKER_ID_FRONT -> {
+                        binding.ivFrontId.setImageURI(uri)
+                        viewModel.idproofFront.set(
+                            if (uri.isAbsolute) uri.path else getRealPathFromURI(
+                                uri
+                            )
                         )
-                    )
+                    }
+                    PICKER_ID_BACK -> {
+                        binding.ivBackId.setImageURI(uri)
+                        viewModel.idproofBack.set(
+                            if (uri.isAbsolute) uri.path else getRealPathFromURI(
+                                uri
+                            )
+                        )
+                    }
                 }
             }
         }

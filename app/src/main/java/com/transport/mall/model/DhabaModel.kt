@@ -7,7 +7,7 @@ import java.io.Serializable
  * Created by Parambir Singh on 2020-01-24.
  */
 class DhabaModel : Serializable {
-    var _id: String = ""
+    var _id: String = "6137443bb5828a682d08ecf1"
     var status: String = ""
     var name: String = ""
     var ownerName: String = ""
@@ -27,6 +27,8 @@ class DhabaModel : Serializable {
     var updatedBy: String = ""
     var isDeleted: Boolean = false
     var isActive: Boolean = true
+    var latitude: String = ""
+    var longitude: String = ""
 
     fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.isEmpty()) {

@@ -48,6 +48,10 @@ class FoodAmenitiesFragment :
         mListener = activity as AddDhabaListener
         viewModel.dhabaModelMain = mListener?.getDhabaModelMain()!!
         binding.context = activity
+
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            viewModel.model.dhaba_id = it._id
+        }
         refreshGalleryImages()
         setupLicensePhotoViews()
         setupFoodPhotosView()

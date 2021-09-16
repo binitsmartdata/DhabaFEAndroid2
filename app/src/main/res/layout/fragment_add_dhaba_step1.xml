@@ -69,35 +69,43 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/fetchLocationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dhabaAddressTil">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/locationImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_location"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCurrLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
+                    android:background="@drawable/default_btn_selector"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="@dimen/_5sdp"
                     android:fontFamily="@font/opensans_semibold"
+                    android:paddingVertical="@dimen/_5sdp"
                     android:text="@string/fetch_location"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/_14ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/locationImage"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMapPicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="@drawable/default_btn_selector"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:text="@string/pick_from_map"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/landmarkTil"
@@ -145,29 +153,47 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/highwayTil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:hint="@string/highway_number"
+                android:background="@drawable/grey_stroke"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/areaTil">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edHighway"
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnrHighway"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:text="@={viewModel.highway}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/spnrImgDropdown"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/spnrImgDropdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/ic_spinner_dropdown"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:visibility="@{viewModel.highwayProgressObservable.booleanValue() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

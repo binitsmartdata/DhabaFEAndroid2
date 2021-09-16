@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers

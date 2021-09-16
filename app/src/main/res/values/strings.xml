@@ -70,7 +70,7 @@
     <string name="other">Other</string>
     <string name="dhaba_name">Dhaba Name</string>
     <string name="dhaba_address">Dhaba address</string>
-    <string name="fetch_location">Fetch Location</string>
+    <string name="fetch_location">Current Location</string>
     <string name="landmark">Landmark</string>
     <string name="area">Area</string>
     <string name="pin_code">Pin code</string>
@@ -227,6 +227,10 @@
     <string name="cancel">Cancel</string>
     <string name="please_confirm">Please Confirm</string>
     <string name="want_to_discard">Do you want to discard Dhaba Details?</string>
+    <string name="pick_from_map">| Pick From Map</string>
+    <string name="choose_location">Choose Location</string>
+    <string name="use_location">Use Location</string>
+    <string name="click_on_map_to_get_address">Click on map to get address</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

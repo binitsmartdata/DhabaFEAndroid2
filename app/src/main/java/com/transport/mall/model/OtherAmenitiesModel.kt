@@ -5,8 +5,8 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 class OtherAmenitiesModel : Serializable {
-    var service_id = ""
-    var module_id = ""
+    var service_id = "1"
+    var module_id = "1"
     var dhaba_id = ""
     var mechanicShop: Int = 0
     var mechanicShopDay: Int = 0

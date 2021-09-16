@@ -33,6 +33,10 @@ class WashroomAmenitiesFragment :
     override fun bindData() {
         mListener = activity as AddDhabaListener
         binding.context = activity
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            viewModel.model.dhaba_id = it._id
+        }
+
         setupLicensePhotoViews()
         setupFoodPhotosView()
         //SETTING EXISTING DATA ON SCREEN

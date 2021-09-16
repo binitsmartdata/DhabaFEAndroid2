@@ -56,6 +56,9 @@ interface ApiService {
         @Query("status") status: String
     ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
 
+    @GET("dhaba/getAllHighway")
+    suspend fun getAllHighway(): Response<ApiResponseModel<ArrayList<HighwayModel>>>
+
     @Multipart
     @POST("dhaba/addDhaba")
     suspend fun uploadDhabaDetails(
@@ -184,11 +187,11 @@ interface ApiService {
         @Part("service_id") service_id: RequestBody,
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,
-        @Part("tower_light") tower_light: RequestBody,
-        @Part tower_image: MultipartBody.Part?,
-        @Part("bulb_light") bulb_light: RequestBody,
-        @Part buld_image: MultipartBody.Part?,
-        @Part("twentyfour_seven_electricity") puncture_24_7: RequestBody
+        @Part("towerLight") towerLight: RequestBody,
+        @Part towerLightImage: MultipartBody.Part?,
+        @Part("bulbLight") bulbLight: RequestBody,
+        @Part bulbLightImage: MultipartBody.Part?,
+        @Part("electricityBackup") electricityBackup: RequestBody
     ): Response<ApiResponseModel<LightAmenitiesModel>>
 
     @Multipart

@@ -6,7 +6,6 @@ import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.FoodAmenitiesModel
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.repository.networkoperator.NetworkAdapter
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
@@ -35,9 +34,9 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.addFoodAmenities(
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "1"),
-                    RequestBody.create(MultipartBody.FORM, "6137443bb5828a682d08ecf1"),
+                    RequestBody.create(MultipartBody.FORM, model.service_id),
+                    RequestBody.create(MultipartBody.FORM, model.module_id),
+                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                     RequestBody.create(MultipartBody.FORM, model.foodAt100),
                     RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                     RequestBody.create(MultipartBody.FORM, model.roCleanWater),

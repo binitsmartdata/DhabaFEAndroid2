@@ -13,6 +13,9 @@ import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
@@ -26,7 +29,9 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.google.android.gms.location.*
 import com.transport.mall.R
+import com.transport.mall.model.LocationAddressModel
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -568,4 +573,78 @@ object GlobalUtils {
     fun getCurrentDate(): String {
         return SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
     }
+
+    lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    @SuppressLint("MissingPermission")
+    fun getCurrentLocation(context: Context, callBack: GenericCallBack<Location>) {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                callBack.onResponse(location)
+            }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun refreshLocation(context: Context) {
+        val mLocationRequest = LocationRequest.create()
+        mLocationRequest.interval = 60000
+        mLocationRequest.fastestInterval = 5000
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        val mLocationCallback: LocationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                if (locationResult == null) {
+                    return
+                }
+                for (location in locationResult.locations) {
+                    if (location != null) {
+                        //TODO: UI updates.
+                    }
+                }
+            }
+        }
+        LocationServices.getFusedLocationProviderClient(context)
+            .requestLocationUpdates(mLocationRequest, mLocationCallback, null)
+    }
+
+    fun getAddressUsingLatLong(
+        context: Context,
+        latitude: Double,
+        longitude: Double
+    ): LocationAddressModel {
+        val geocoder: Geocoder
+        val addresses: List<Address>
+        geocoder = Geocoder(context, Locale.getDefault())
+
+        addresses = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+        val address: String =
+            addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+        val city: String = getNonNullString(addresses[0].getLocality(), "")
+        val state: String = getNonNullString(addresses[0].getAdminArea(), "")
+        val country: String = getNonNullString(addresses[0].getCountryName(), "")
+        val postalCode: String = getNonNullString(addresses[0].getPostalCode(), "")
+        val knownName: String = getNonNullString(
+            addresses[0].getFeatureName(),
+            ""
+        ) // Only if available else return NULL
+
+        return LocationAddressModel(
+            address,
+            city,
+            state,
+            country,
+            postalCode,
+            knownName,
+            latitude,
+            longitude
+        )
+    }
+
 }
