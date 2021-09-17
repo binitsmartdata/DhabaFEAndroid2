@@ -13,10 +13,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -86,13 +84,7 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
                     RequestBody.create(MultipartBody.FORM, bankModel.ifscCode),
                     RequestBody.create(MultipartBody.FORM, bankModel.accountName),
                     RequestBody.create(MultipartBody.FORM, bankModel.panNumber),
-                    MultipartBody.Part.createFormData(
-                        "foodLisenceFile",
-                        File(bankModel.panPhoto).getName(),
-                        RequestBody.create(
-                            MediaType.parse("image/*"), bankModel.panPhoto
-                        )
-                    )
+                    getMultipartImageFile(bankModel.panPhoto, "panPhoto")
                 )
             ).collect {
                 when (it.status) {

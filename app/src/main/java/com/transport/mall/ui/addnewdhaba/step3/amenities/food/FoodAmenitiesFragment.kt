@@ -152,13 +152,7 @@ class FoodAmenitiesFragment :
     }
 
     private fun addImageToGallery(uri: Uri) {
-        imageList.add(
-            PhotosModel(
-                "0", uri, if (uri.isAbsolute) uri.path!! else getRealPathFromURI(
-                    uri
-                )!!
-            )
-        )
+        imageList.add(PhotosModel("0", uri, getRealPathFromURI(uri)))
         refreshGalleryImages()
     }
 
@@ -215,8 +209,7 @@ class FoodAmenitiesFragment :
                 // Use Uri object instead of File to avoid storage permissions
                 binding.ivLicenseImg.setImageURI(uri)
                 binding.ivLicenseImg.visibility = View.VISIBLE
-                viewModel.model.foodLisenceFile =
-                    if (uri.isAbsolute) uri.path!! else getRealPathFromURI(uri)!!
+                viewModel.model.foodLisenceFile = getRealPathFromURI(uri)
             } else {
                 addImageToGallery(uri)
                 viewModel.model.images = imageList

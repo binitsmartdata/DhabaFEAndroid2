@@ -173,7 +173,7 @@ class WashroomAmenitiesFragment :
             // Use Uri object instead of File to avoid storage permissions
             binding.ivWashroomPhoto.setImageURI(uri)
             binding.ivWashroomPhoto.visibility = View.VISIBLE
-            viewModel.model.images = if (uri.isAbsolute) uri.path!! else getRealPathFromURI(uri)!!
+            viewModel.model.images = getRealPathFromURI(uri)
         }
     }
 }

@@ -200,25 +200,19 @@ class OwnerDetailsFragment :
                     PICKER_OWNER_IMAGE -> {
                         binding.ivOwnerImage.setImageURI(uri)
                         viewModel.ownerPic.set(
-                            if (uri.isAbsolute) uri.path else getRealPathFromURI(
-                                uri
-                            )
+                            getRealPathFromURI(uri)
                         )
                     }
                     PICKER_ID_FRONT -> {
                         binding.ivFrontId.setImageURI(uri)
                         viewModel.idproofFront.set(
-                            if (uri.isAbsolute) uri.path else getRealPathFromURI(
-                                uri
-                            )
+                            getRealPathFromURI(uri)
                         )
                     }
                     PICKER_ID_BACK -> {
                         binding.ivBackId.setImageURI(uri)
                         viewModel.idproofBack.set(
-                            if (uri.isAbsolute) uri.path else getRealPathFromURI(
-                                uri
-                            )
+                            getRealPathFromURI(uri)
                         )
                     }
                 }

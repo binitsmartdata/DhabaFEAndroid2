@@ -74,7 +74,7 @@ interface ApiService {
         @Part("mobile") mobile: RequestBody,
         @Part("propertyStatus") propertyStatus: RequestBody,
         @Part("status") status: RequestBody,
-        @Part images: MultipartBody.Part,
+        @Part images: MultipartBody.Part?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody
@@ -130,6 +130,7 @@ interface ApiService {
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("sleeping") sleeping: RequestBody,
+        @Part("noOfBeds") noOfBeds: RequestBody,
         @Part("fan") fan: RequestBody,
         @Part("enclosed") enclosed: RequestBody,
         @Part("open") open: RequestBody,
@@ -147,7 +148,7 @@ interface ApiService {
         @Part("water") water: RequestBody,
         @Part("cleaner") cleaner: RequestBody,
         @Part images: MultipartBody.Part
-    ): Response<ApiResponseModel<SleepingAmenitiesModel>>
+    ): Response<ApiResponseModel<WashroomAmenitiesModel>>
 
     @Multipart
     @POST("dhaba/addsecurityAmenities")
@@ -203,7 +204,7 @@ interface ApiService {
         @Part("ifscCode") ifscCode: RequestBody,
         @Part("accountName") accountName: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
-        @Part panPhoto: MultipartBody.Part
+        @Part panPhoto: MultipartBody.Part?
     ): Response<ApiResponseModel<BankDetailsModel>>
 
     @Multipart

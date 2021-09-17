@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.RadioButton
+import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -126,6 +127,13 @@ class OtherAmenitiesFragment :
     }
 
     override fun initListeners() {
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
         binding.rgMerch277.setOnCheckedChangeListener { _, i ->
             viewModel.model.mechanicShop =
                 (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()

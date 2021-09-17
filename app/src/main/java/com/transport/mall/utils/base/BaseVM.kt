@@ -77,15 +77,11 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         imageList: ArrayList<PhotosModel>,
         parameterName: String
     ): Array<MultipartBody.Part?> {
-        val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(
-            imageList.size
-        )
+        val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(imageList.size)
 
         for (index in 0 until imageList.size) {
-            val file = File(imageList.get(index).path)
-            val surveyBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
             surveyImagesParts[index] =
-                MultipartBody.Part.createFormData(parameterName, file.name, surveyBody)
+                getMultipartImageFile(imageList.get(index).path, parameterName)
         }
         return surveyImagesParts
     }
@@ -94,13 +90,11 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         if (path == null || path.isEmpty()) {
             return null
         } else {
-            return MultipartBody.Part.createFormData(
-                parameterName,
-                File(path).getName(),
-                RequestBody.create(
-                    MediaType.parse("video/*"), path
-                )
-            )
+            val requestFile: RequestBody =
+                RequestBody.create(MediaType.parse("multipart/form-data"), File(path))
+            val body =
+                MultipartBody.Part.createFormData(parameterName, File(path).getName(), requestFile)
+            return body
         }
     }
 

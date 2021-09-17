@@ -16,10 +16,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
 import java.util.*
 
 /**
@@ -222,20 +220,8 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                     RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
                     RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
-                    MultipartBody.Part.createFormData(
-                        "images",
-                        File(dhabaModel.images).getName(),
-                        RequestBody.create(
-                            MediaType.parse("image/*"), dhabaModel.images
-                        )
-                    ),
-                    if (dhabaModel.videos.isNotEmpty()) MultipartBody.Part.createFormData(
-                        "videos",
-                        File(dhabaModel.videos).getName(),
-                        RequestBody.create(
-                            MediaType.parse("video/*"), dhabaModel.videos
-                        )
-                    ) else null,
+                    getMultipartImageFile(dhabaModel.images, "images"),
+                    getMultipartVideoFile(dhabaModel.videos, "videos"),
                     RequestBody.create(
                         MultipartBody.FORM,
                         SharedPrefsHelper.getInstance(app!!).getUserData().id

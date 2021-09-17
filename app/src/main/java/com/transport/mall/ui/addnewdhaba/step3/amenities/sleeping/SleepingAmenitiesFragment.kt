@@ -229,7 +229,7 @@ class SleepingAmenitiesFragment :
             // Use Uri object instead of File to avoid storage permissions
             binding.ivSleepingImg.setImageURI(uri)
             binding.ivSleepingImg.visibility = View.VISIBLE
-            viewModel.model.images = if (uri.isAbsolute) uri.path!! else getRealPathFromURI(uri)!!
+            viewModel.model.images = getRealPathFromURI(uri)
         }
     }
 }

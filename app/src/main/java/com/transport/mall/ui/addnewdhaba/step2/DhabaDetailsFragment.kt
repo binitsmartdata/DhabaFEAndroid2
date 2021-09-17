@@ -26,7 +26,10 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.GlobalUtils.getAddressUsingLatLong
 import com.transport.mall.utils.common.GlobalUtils.getCurrentLocation
+import com.transport.mall.utils.common.GlobalUtils.getThumbnailFromVideo
 import com.transport.mall.utils.common.GlobalUtils.refreshLocation
+import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
+import com.transport.mall.utils.common.VideoUtils.saveVideoToAppScopeStorage
 import com.transport.mall.utils.createVideoThumbnail
 import com.transport.mall.utils.xloadImages
 
@@ -106,9 +109,15 @@ class DhabaDetailsFragment :
         }
         it.images.let {
             xloadImages(binding.ivImageThumb, it, R.drawable.ic_placeholder_outliner)
+            viewModel.images.set(it)
         }
         it.videos.let {
-            xloadImages(binding.ivVideoThumb, it, R.drawable.ic_placeholder_outliner)
+            val bitmap = getThumbnailFromVideo(it)
+            if (bitmap != null) {
+                binding.ivVideoThumb.setImageBitmap(bitmap)
+                binding.frameVideoThumb.visibility = View.VISIBLE
+            }
+            viewModel.videos.set(it)
         }
     }
 
@@ -255,7 +264,7 @@ class DhabaDetailsFragment :
         binding.spnrHighway.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.state.set(StateList.get(p2).highwayNumber)
+                viewModel.highway.set(StateList.get(p2).highwayNumber)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -381,15 +390,14 @@ class DhabaDetailsFragment :
                 binding.frameVideoThumb.visibility = View.VISIBLE
             } else if (requestCode == INTENT_VIDEO_CAMERA) {
                 val videoUri: Uri = data?.data!!
-                viewModel.videos.set(getRealPathFromURI(videoUri))
-                xloadImages(
-                    binding.ivVideoThumb,
-                    createVideoThumbnail(
-                        activity as Context,
-                        viewModel.dhabaModel.videos
-                    ).absolutePath,
-                    R.drawable.ic_placeholder_outliner
-                )
+
+                val bitmap = getVideoThumbnail(activity as Context, videoUri, 200, 200)
+                val mimeType: String = activity?.contentResolver?.getType(videoUri)!!
+                //Save file to upload on server
+                val file = saveVideoToAppScopeStorage(activity as Context, videoUri, mimeType)
+
+                viewModel.videos.set(file?.absolutePath)
+                binding.ivVideoThumb.setImageBitmap(bitmap)
                 binding.frameVideoThumb.visibility = View.VISIBLE
             } else if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
                 val location = data?.getSerializableExtra("data") as LocationAddressModel?
@@ -400,7 +408,7 @@ class DhabaDetailsFragment :
                 }
             } else {
                 val uri: Uri = data?.data!!
-                viewModel.images.set(if (uri.isAbsolute) uri.path else getRealPathFromURI(uri))
+                viewModel.images.set(getRealPathFromURI(uri))
                 binding.ivImageThumb.setImageURI(uri)
             }
         }

@@ -2,6 +2,7 @@ package com.transport.mall.utils.base
 
 import android.R
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -25,6 +26,7 @@ import com.deepakkumardk.videopickerlib.model.SelectionMode
 import com.deepakkumardk.videopickerlib.model.SelectionStyle
 import com.deepakkumardk.videopickerlib.model.VideoPickerItem
 import com.transport.mall.ui.home.HomeActivity
+import com.transport.mall.utils.common.FilePath
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel> : Fragment() {
@@ -207,11 +209,12 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
     var INTENT_VIDEO_CAMERA = 111
     var INTENT_VIDEO_GALLERY = 222
     fun captureVideo(fragment: Fragment) {
-        Intent(MediaStore.ACTION_VIDEO_CAPTURE).also { takeVideoIntent ->
-            takeVideoIntent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 1000);
-            takeVideoIntent.resolveActivity(activity?.getPackageManager()!!)?.also {
-                startActivityForResult(takeVideoIntent, INTENT_VIDEO_CAMERA)
-            }
+        val takePictureIntent =
+            Intent(MediaStore.ACTION_VIDEO_CAPTURE).putExtra(MediaStore.EXTRA_DURATION_LIMIT, 1000)
+        try {
+            startActivityForResult(takePictureIntent, INTENT_VIDEO_CAMERA)
+        } catch (e: ActivityNotFoundException) {
+            // display error state to the user
         }
     }
 
@@ -237,6 +240,10 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
             cursor.moveToFirst()
             return cursor.getString(column_index)
         }
+    }
+
+    open fun getRealVideoPathFromURI(context: Context, contentUri: Uri): String? {
+        return FilePath.getPath(context, contentUri)
     }
 
     fun getmContext(): Context {

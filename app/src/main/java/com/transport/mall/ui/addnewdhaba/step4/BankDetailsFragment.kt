@@ -156,11 +156,7 @@ class BankDetailsFragment :
             val uri: Uri = data?.data!!
             binding.ivPanPhoto.setImageURI(uri)
             binding.ivPanPhoto.visibility = View.VISIBLE
-            viewModel.panPhoto.set(
-                if (uri.isAbsolute) uri.path else getRealPathFromURI(
-                    uri
-                )
-            )
+            viewModel.panPhoto.set(getRealPathFromURI(uri))
         }
     }
 

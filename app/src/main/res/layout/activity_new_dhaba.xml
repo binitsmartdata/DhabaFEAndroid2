@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -32,175 +33,213 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
+            android:id="@+id/llSteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="0.5" />
-
-            <TextView
-                android:id="@+id/step1"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="match_parent"
-                android:background="@drawable/red_circle"
-                android:fontFamily="@font/opensans_bold"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="1"
-                android:textColor="@color/white" />
+                android:orientation="horizontal">
 
-            <View
-                android:id="@+id/viewStep2"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="1"
-                android:background="@{(stepnumber == 2||stepnumber == 3||stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="0.5" />
 
-            <TextView
-                android:id="@+id/step2"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? @drawable/red_circle : @drawable/grey_circle_stroke}"
-                android:fontFamily="@font/opensans_bold"
+                <TextView
+                    android:id="@+id/step1"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/red_circle"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/white" />
+
+                <View
+                    android:id="@+id/viewStep2"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="@{(stepnumber == 2||stepnumber == 3||stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}" />
+
+                <TextView
+                    android:id="@+id/step2"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? @drawable/red_circle : @drawable/grey_circle_stroke}"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.grey)}" />
+
+                <View
+                    android:id="@+id/viewStep3"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="@{(stepnumber == 3||stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}" />
+
+
+                <TextView
+                    android:id="@+id/step3"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@{(stepnumber == 3 || stepnumber == 4) ? @drawable/red_circle : @drawable/grey_circle_stroke}"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@{(stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.grey)}" />
+
+                <View
+                    android:id="@+id/viewStep4"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}" />
+
+                <TextView
+                    android:id="@+id/step4"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@{stepnumber == 4 ? @drawable/red_circle : @drawable/grey_circle_stroke}"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.grey)}" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="0.5" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="2"
-                android:textColor="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.grey)}" />
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_3sdp">
 
-            <View
-                android:id="@+id/viewStep3"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="1"
-                android:background="@{(stepnumber == 3||stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/step1Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/owner_details"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/step3"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@{(stepnumber == 3 || stepnumber == 4) ? @drawable/red_circle : @drawable/grey_circle_stroke}"
-                android:fontFamily="@font/opensans_bold"
-                android:gravity="center"
-                android:text="3"
-                android:textColor="@{(stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.grey)}" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            <View
-                android:id="@+id/viewStep4"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="1"
-                android:background="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}" />
+                    <TextView
+                        android:id="@+id/step2Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="Dhaba Details"
+                        android:textColor="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
+                        android:textSize="@dimen/_10sdp" />
 
-            <TextView
-                android:id="@+id/step4"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@{stepnumber == 4 ? @drawable/red_circle : @drawable/grey_circle_stroke}"
-                android:fontFamily="@font/opensans_bold"
-                android:gravity="center"
-                android:text="4"
-                android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.grey)}" />
+                </LinearLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="0.5" />
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/step3Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/amenities"
+                        android:textColor="@{(stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/step4Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:text="@string/bank_details"
+                        android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingVertical="@dimen/_3sdp">
+            app:tabMode="scrollable"
+            android:background="@color/white"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabTextColor="@color/tabs_text_selector">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:text="@string/owner_details" />
 
-                <TextView
-                    android:id="@+id/step1Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/owner_details"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:text="@string/dhaba_details" />
 
-                <TextView
-                    android:id="@+id/step2Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="Dhaba Details"
-                    android:textColor="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:text="@string/amenities" />
 
-                <TextView
-                    android:id="@+id/step3Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/amenities"
-                    android:textColor="@{(stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:text="@string/bank_details" />
 
-                <TextView
-                    android:id="@+id/step4Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:gravity="start"
-                    android:singleLine="true"
-                    android:text="@string/bank_details"
-                    android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
-                    android:textSize="@dimen/_10sdp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"

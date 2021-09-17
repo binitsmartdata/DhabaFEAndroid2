@@ -19,7 +19,6 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
-import com.transport.mall.utils.xloadImages
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -109,9 +108,7 @@ class ParkingAmenitiesFragment :
     private fun addImageToGallery(uri: Uri) {
         imageList.add(
             PhotosModel(
-                "0", uri, if (uri.isAbsolute) uri.path!! else getRealPathFromURI(
-                    uri
-                )!!
+                "0", uri, getRealPathFromURI(uri)
             )
         )
         refreshGalleryImages()

@@ -27,7 +27,7 @@ class WashroomAmenitiesVM(application: Application) : BaseVM(application) {
         app = application
     }
 
-    fun addWashroomAmenities(callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>) {
+    fun addWashroomAmenities(callBack: GenericCallBack<ApiResponseModel<WashroomAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(

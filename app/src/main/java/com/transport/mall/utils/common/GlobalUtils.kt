@@ -5,20 +5,25 @@ import android.app.Activity
 import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.ContentUris
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Configuration
 import android.content.res.Resources
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.Color
-import android.graphics.PorterDuff
+import android.database.Cursor
+import android.graphics.*
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.media.MediaMetadataRetriever
+import android.media.ThumbnailUtils
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.net.Uri
 import android.os.Build
+import android.os.Environment
+import android.provider.DocumentsContract
+import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Patterns
@@ -32,6 +37,9 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.location.*
 import com.transport.mall.R
 import com.transport.mall.model.LocationAddressModel
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -39,6 +47,7 @@ import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 object GlobalUtils {
     private var mDialog: Dialog? = null
@@ -647,4 +656,30 @@ object GlobalUtils {
         )
     }
 
+    fun getThumbnailFromUri(context: Context, uri: Uri): Bitmap {
+        val mMMR = MediaMetadataRetriever()
+        mMMR.setDataSource(context, uri)
+        return mMMR.frameAtTime
+    }
+
+    @Throws(Throwable::class)
+    fun getThumbnailFromVideo(videoPath: String?): Bitmap? {
+        var bitmap: Bitmap? = null
+        var mediaMetadataRetriever: MediaMetadataRetriever? = null
+        try {
+            mediaMetadataRetriever = MediaMetadataRetriever()
+            if (Build.VERSION.SDK_INT >= 14) mediaMetadataRetriever.setDataSource(
+                videoPath,
+                HashMap()
+            ) else mediaMetadataRetriever.setDataSource(videoPath)
+            //   mediaMetadataRetriever.setDataSource(videoPath);
+            bitmap = mediaMetadataRetriever.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            Log.e("ThumbnailFromVideo :::", e.message)
+        } finally {
+            mediaMetadataRetriever?.release()
+        }
+        return bitmap
+    }
 }

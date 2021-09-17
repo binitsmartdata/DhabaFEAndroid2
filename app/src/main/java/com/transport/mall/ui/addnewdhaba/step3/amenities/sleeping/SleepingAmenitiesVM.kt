@@ -35,6 +35,7 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
                     RequestBody.create(MultipartBody.FORM, model.module_id),
                     RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                     RequestBody.create(MultipartBody.FORM, model.sleeping),
+                    RequestBody.create(MultipartBody.FORM, model.noOfBeds),
                     RequestBody.create(MultipartBody.FORM, model.fan),
                     RequestBody.create(MultipartBody.FORM, model.enclosed),
                     RequestBody.create(MultipartBody.FORM, model.open),
