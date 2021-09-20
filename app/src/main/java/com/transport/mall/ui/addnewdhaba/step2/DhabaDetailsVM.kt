@@ -5,9 +5,11 @@ import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
-import com.transport.mall.model.CityAndStateModel
+import com.transport.mall.database.AppDatabase
+import com.transport.mall.model.CityModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.HighwayModel
+import com.transport.mall.model.StateModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -33,7 +35,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     var dhabaModel: DhabaModel = DhabaModel()
 
     var name: ObservableField<String> = ObservableField()
-    var ownerName: ObservableField<String> = ObservableField()
+    var owner_id: ObservableField<String> = ObservableField()
     var address: ObservableField<String> = ObservableField()
     var landmark: ObservableField<String> = ObservableField()
     var area: ObservableField<String> = ObservableField()
@@ -130,84 +132,12 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
         })
     }
 
-    fun getAllHighway(callBack: GenericCallBack<ArrayList<HighwayModel>>) {
-        GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.getAllHighway()
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        cityProgressObservable.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        cityProgressObservable.value = false
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        cityProgressObservable.value = false
-                        callBack.onResponse(it.data?.data)
-                    }
-                }
-            }
-        }
-    }
-
-    fun getCitiesByStateId(
-        stateId: String,
-        callBack: GenericCallBack<ArrayList<CityAndStateModel>>
-    ) {
-        GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.getCitiesByState(stateId)
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        cityProgressObservable.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        cityProgressObservable.value = false
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        cityProgressObservable.value = false
-                        callBack.onResponse(it.data?.data)
-                    }
-                }
-            }
-        }
-    }
-
-    fun getStatesList(
-        callBack: GenericCallBack<ArrayList<CityAndStateModel>>
-    ) {
-        GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.getAllStates(
-                    getAccessToken(app!!),
-                    "999",
-                    "", "", "1", "ASC", "true"
-                )
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        stateProgressObservable.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        stateProgressObservable.value = false
-                    }
-                    ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-                        stateProgressObservable.value = false
-                        callBack.onResponse(it.data?.data?.data)
-                    }
-                }
-            }
-        }
-    }
-
     fun addDhaba(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
                 getApiService()?.uploadDhabaDetails(
+                    RequestBody.create(MultipartBody.FORM, dhabaModel.owner_id),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.name),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.address),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),

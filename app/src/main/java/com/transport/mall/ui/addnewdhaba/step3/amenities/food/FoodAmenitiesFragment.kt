@@ -90,7 +90,7 @@ class FoodAmenitiesFragment :
                 xloadImages(
                     binding.ivLicenseImg,
                     it,
-                    R.drawable.ic_placeholder_outliner
+                    R.drawable.ic_image_placeholder
                 )
                 binding.ivLicenseImg.visibility = View.VISIBLE
             }

@@ -9,6 +9,7 @@ import java.io.Serializable
 class DhabaModel : Serializable {
     var _id: String = "6137443bb5828a682d08ecf1"
     var status: String = ""
+    var owner_id: String = ""
     var name: String = ""
     var ownerName: String = ""
     var address: String = ""

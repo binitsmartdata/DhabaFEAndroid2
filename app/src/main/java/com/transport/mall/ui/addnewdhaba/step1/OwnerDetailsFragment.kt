@@ -82,11 +82,11 @@ class OwnerDetailsFragment :
             viewModel.ownerPic.set(it)
         }
         it.idproofFront.let {
-            xloadImages(binding.ivFrontId, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivFrontId, it, R.drawable.ic_image_placeholder)
             viewModel.idproofFront.set(it)
         }
         it.idproofBack.let {
-            xloadImages(binding.ivBackId, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivBackId, it, R.drawable.ic_image_placeholder)
             viewModel.idproofBack.set(it)
         }
     }

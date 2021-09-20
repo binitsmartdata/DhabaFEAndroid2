@@ -7,4 +7,5 @@ interface AddDhabaListener {
     fun saveAsDraft()
     fun getDhabaId(): String
     fun getDhabaModelMain(): DhabaModelMain
+    fun isUpdate(): Boolean
 }

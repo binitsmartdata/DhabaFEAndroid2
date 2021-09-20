@@ -8,9 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.R
 import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +29,7 @@ class LoginVM(application: Application) : BaseVM(application) {
 
     var errorResponse: MutableLiveData<String>? = null
     var progressObserver: MutableLiveData<Boolean>? = null
-
+    var progressObserverCityStates: MutableLiveData<Boolean>? = null
 
     var app: Application? = null
 
@@ -63,29 +65,31 @@ class LoginVM(application: Application) : BaseVM(application) {
             true -> {
                 progressObserver?.value = true
                 GlobalScope.launch(Dispatchers.Main) {
-                    executeApi(getApiService()?.login(email, password)).collect {
-                        when (it.status) {
+                    executeApi(getApiService()?.login(email, password)).collect { result ->
+                        when (result.status) {
                             ApiResult.Status.LOADING -> {
-                                callBak.onResponse(it.status, "")
+                                callBak.onResponse(result.status, "")
                             }
                             ApiResult.Status.ERROR -> {
                                 try {
                                     val response =
                                         Gson().fromJson(
-                                            it.error?.string(),
+                                            result.error?.string(),
                                             ApiResponseModel::class.java
                                         )
-                                    callBak.onResponse(it.status, response.message)
+                                    callBak.onResponse(result.status, response.message)
                                 } catch (e: Exception) {
-                                    callBak.onResponse(it.status, it.message)
+                                    callBak.onResponse(result.status, result.message)
                                 }
                             }
                             ApiResult.Status.SUCCESS -> {
                                 SharedPrefsHelper.getInstance(app as Context)
-                                    .setUserData(it.data?.data!!)
+                                    .setUserData(result.data?.data!!)
 
-                                HomeActivity.start(app?.applicationContext!!)
-                                callBak.onResponse(it.status, it.data.message)
+                                getCitiesList(GenericCallBack {
+                                    HomeActivity.start(app?.applicationContext!!)
+                                    callBak.onResponse(result.status, result.data.message)
+                                })
                             }
                         }
                     }
@@ -104,4 +108,96 @@ class LoginVM(application: Application) : BaseVM(application) {
         }
         progressObserver?.value = true
     }
+
+    fun getCitiesList(callBack: GenericCallBack<Boolean>) {
+        progressObserverCityStates?.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.getAllCities(
+                    getAccessToken(app!!),
+                    "4100",
+                    "", "", "1", "ASC", "true"
+                )
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+                        progressObserverCityStates?.value = true
+                    }
+                    ApiResult.Status.ERROR -> {
+                        progressObserverCityStates?.value = false
+                    }
+                    ApiResult.Status.SUCCESS -> {
+                        it.data?.data?.data?.let {
+                            for (model in it) {
+                                model.name_en = model.name?.en!!
+                                AppDatabase.getInstance(app!!)?.cityDao()
+                                    ?.insert(model)
+                            }
+                        }
+                        getStatesList(callBack)
+                    }
+                }
+            }
+        }
+    }
+
+    fun getStatesList(callBack: GenericCallBack<Boolean>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.getAllStates(
+                    getAccessToken(app!!),
+                    "999",
+                    "", "", "1", "ASC", "true"
+                )
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+                        progressObserverCityStates?.value = true
+                    }
+                    ApiResult.Status.ERROR -> {
+                        progressObserverCityStates?.value = false
+                        callBack.onResponse(false)
+                    }
+                    ApiResult.Status.SUCCESS -> {
+                        progressObserverCityStates?.value = false
+                        it.data?.data?.data?.let {
+                            for (model in it) {
+                                model.name_en = model.name?.en!!
+                                AppDatabase.getInstance(app!!)?.statesDao()
+                                    ?.insert(model)
+                            }
+                        }
+
+                        getAllHighway(callBack)
+                    }
+                }
+            }
+        }
+    }
+
+    fun getAllHighway(callBack: GenericCallBack<Boolean>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.getAllHighway()
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+                        progressObserverCityStates?.value = true
+                    }
+                    ApiResult.Status.ERROR -> {
+                        progressObserverCityStates?.value = false
+                    }
+                    ApiResult.Status.SUCCESS -> {
+                        progressObserverCityStates?.value = false
+                        it.data?.data?.let {
+                            AppDatabase.getInstance(app!!)?.highwayDao()
+                                ?.insertAll(it)
+                        }
+                        callBack.onResponse(true)
+                    }
+                }
+            }
+        }
+    }
+
 }

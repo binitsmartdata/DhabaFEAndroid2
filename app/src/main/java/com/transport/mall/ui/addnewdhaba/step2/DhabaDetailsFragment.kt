@@ -14,11 +14,9 @@ import com.deepakkumardk.videopickerlib.EasyVideoPicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentAddDhabaStep1Binding
-import com.transport.mall.model.CityAndStateModel
-import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.HighwayModel
-import com.transport.mall.model.LocationAddressModel
+import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -50,18 +48,22 @@ class DhabaDetailsFragment :
 
     var mListener: AddDhabaListener? = null
 
-    var StateList = ArrayList<CityAndStateModel>()
+    var StateList = ArrayList<StateModel>()
     var highwayList = ArrayList<HighwayModel>()
-    var statesAdapter: ArrayAdapter<CityAndStateModel>? = null
+    var statesAdapter: ArrayAdapter<StateModel>? = null
     var highwayAdapter: ArrayAdapter<HighwayModel>? = null
 
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
-        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.ownerName.set(it?.ownerName) }
+        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.owner_id.set(it?._id) }
 
         //SETTING EXISTING DATA ON SCREEN
+        showDataIfHas()
+    }
+
+    private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             setData(it)
         }
@@ -71,8 +73,8 @@ class DhabaDetailsFragment :
         it.name.let {
             viewModel.name.set(it)
         }
-        it.ownerName.let {
-            viewModel.ownerName.set(it)
+        it.owner_id.let {
+            viewModel.owner_id.set(it)
         }
         it.mobile.let {
             viewModel.mobile.set(it)
@@ -108,7 +110,7 @@ class DhabaDetailsFragment :
             viewModel.city.set(it)
         }
         it.images.let {
-            xloadImages(binding.ivImageThumb, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivImageThumb, it, R.drawable.ic_image_placeholder)
             viewModel.images.set(it)
         }
         it.videos.let {
@@ -207,32 +209,38 @@ class DhabaDetailsFragment :
     }
 
     private fun setupCitiesAndStateView() {
-        viewModel.getStatesList(GenericCallBack { it ->
-            StateList = it
-            //SET STATES ADAPTER ON SPINNER
-            setStatesAdapter(StateList)
-        })
+        //SET LOCALLY SAVED STATES
+        AppDatabase.getInstance(getmContext())?.statesDao()
+            ?.getAll()?.observe(this, Observer {
+                StateList = it as ArrayList<StateModel>
+                if (StateList.isNotEmpty()) {
+                    setStatesAdapter(StateList)
+                }
+            })
 
-        viewModel.getAllHighway(GenericCallBack {
-            highwayList = it
+        AppDatabase.getInstance(getmContext())?.highwayDao()?.getAll()?.observe(this, Observer {
+            highwayList = it as ArrayList<HighwayModel>
             setHighwayAdapter(highwayList)
         })
     }
 
-    private fun setStatesAdapter(StateList: ArrayList<CityAndStateModel>) {
+    private fun setStatesAdapter(stateList: ArrayList<StateModel>) {
         statesAdapter = ArrayAdapter(
             activity as Context,
-            android.R.layout.simple_list_item_1, StateList
+            android.R.layout.simple_list_item_1, stateList
         )
         binding.spnrState.setAdapter(statesAdapter)
         binding.spnrState.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.state.set(StateList.get(p2).name?.en)
+                viewModel.state.set(stateList.get(p2).name_en)
                 //GET LIST OF CITIES UNDER SELECTED STATE
-                viewModel.getCitiesByStateId(StateList.get(p2).stateCode, GenericCallBack {
-                    setCitiesAdapter(it)
-                })
+
+                AppDatabase.getInstance(getmContext())?.cityDao()
+                    ?.getAllByState(stateList.get(p2).stateCode!!)
+                    ?.observe(viewLifecycleOwner, Observer {
+                        it?.let { setCitiesAdapter(it as ArrayList<CityModel>) }
+                    })
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -244,8 +252,8 @@ class DhabaDetailsFragment :
         viewModel.state.get()?.let {
             if (it.isNotEmpty()) {
                 var index = 0
-                for (i in StateList) {
-                    if (i.name?.en?.equals(it)!!) {
+                for (i in stateList) {
+                    if (i.name_en?.equals(it)!!) {
                         binding.spnrState.setSelection(index)
                         break
                     }
@@ -286,9 +294,9 @@ class DhabaDetailsFragment :
         }
     }
 
-    private fun setCitiesAdapter(cityList: ArrayList<CityAndStateModel>) {
+    private fun setCitiesAdapter(cityList: ArrayList<CityModel>) {
         //SET CITIES ADAPTER ON SPINNER
-        var citiesAdapter = ArrayAdapter<CityAndStateModel>(
+        var citiesAdapter = ArrayAdapter<CityModel>(
             activity as Context,
             android.R.layout.simple_list_item_1, cityList
         )
@@ -296,7 +304,7 @@ class DhabaDetailsFragment :
         binding.spnrCity.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.city.set(cityList.get(p2).name?.en)
+                viewModel.city.set(cityList.get(p2).name_en)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -308,7 +316,7 @@ class DhabaDetailsFragment :
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in cityList) {
-                    if (i.name?.en?.equals(it)!!) {
+                    if (i.name_en.equals(it)) {
                         binding.spnrCity.setSelection(index)
                         break
                     }
@@ -415,6 +423,6 @@ class DhabaDetailsFragment :
     }
 
     fun youAreInFocus() {
-        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.ownerName.set(it?.ownerName) }
+        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.owner_id.set(it?._id) }
     }
 }

@@ -231,6 +231,8 @@
     <string name="choose_location">Choose Location</string>
     <string name="use_location">Use Location</string>
     <string name="click_on_map_to_get_address">Click on map to get address</string>
+    <string name="update_dhaba">Update Dhaba</string>
+    <string name="fetching_states_cities_highways">Fetching States,Cities and Highways</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

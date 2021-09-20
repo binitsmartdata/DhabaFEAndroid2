@@ -7,9 +7,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaListBinding
-import com.transport.mall.model.CityAndStateModel
+import com.transport.mall.model.CityModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -29,7 +31,7 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
         set(value) {}
 
     private val dhabaList = ArrayList<DhabaModel>()
-    var cityAndStateList: ArrayList<CityAndStateModel> = ArrayList()
+    var cityList: ArrayList<CityModel> = ArrayList()
     var dhabaListAdapter: DhabaListAdapter? = null
 
     val limit = "20"
@@ -47,8 +49,12 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
 
     private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModel>) {
         dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
-            GenericCallBack {
-
+            GenericCallBack { position ->
+                viewModel.getDhabaById(dhabaList.get(position)._id, GenericCallBack {
+                    it.data?.let {
+                        AddDhabaActivity.startForUpdate(activity as Context, it)
+                    }
+                })
             })
         dhabaListAdapter?.setOnLoadMoreListener {
             page++
@@ -60,23 +66,18 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
     }
 
     private fun setupCitySelectionViews() {
-        viewModel.getCitiesList(GenericCallBack {
-            cityAndStateList = it
-
-            var adapter = ArrayAdapter<CityAndStateModel>(
-                activity as Context,
-                android.R.layout.simple_list_item_1, cityAndStateList
-            )
-            binding.autoTextSearch.setAdapter(adapter)
-            binding.autoTextSearch.setOnItemClickListener { adapterView, view, i, l ->
-//                cityList[i].toString()
-            }
-        })
+        AppDatabase.getInstance(getmContext())?.cityDao()
+            ?.getAll()?.observe(this, Observer {
+                cityList = it as ArrayList<CityModel>
+                if (cityList.isNotEmpty()) {
+                    setCitiesAdapter()
+                }
+            })
 
         binding.tvCitySelection.setOnClickListener {
-            DialogCitySelection(activity as Context, cityAndStateList, GenericCallBack {
-                var filteredCities: ArrayList<CityAndStateModel> = ArrayList()
-                cityAndStateList.forEach {
+            DialogCitySelection(activity as Context, cityList, GenericCallBack {
+                var filteredCities: ArrayList<CityModel> = ArrayList()
+                cityList.forEach {
                     if (it.isChecked) {
                         filteredCities.add(it)
                     }
@@ -92,12 +93,30 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
         }
     }
 
+    private fun setCitiesAdapter() {
+        val adapter = ArrayAdapter<CityModel>(
+            activity as Context,
+            android.R.layout.simple_list_item_1, cityList
+        )
+        binding.autoTextSearch.setAdapter(adapter)
+        binding.autoTextSearch.setOnItemClickListener { adapterView, view, i, l ->
+            //                cityList[i].toString()
+        }
+    }
+
     private fun showOriginalList() {
         initDhabaListAdapter(dhabaList)
         refreshDhabaList()
     }
 
     override fun initListeners() {
+        viewModel.dialogProgressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
         binding.btnAddDhaba.setOnClickListener {
             mListener?.openAddDhabaActivity()
         }
@@ -145,11 +164,11 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
         })
     }
 
-    private fun showFilteredDhabas(filteredCities: ArrayList<CityAndStateModel>) {
+    private fun showFilteredDhabas(filteredCities: ArrayList<CityModel>) {
         var filteredDhabaList = ArrayList<DhabaModel>()
         dhabaList.forEach { dhaba ->
             filteredCities.forEach { city ->
-                if (dhaba.city.contains(city.name?.en.toString(), true)) {
+                if (dhaba.city.contains(city.name_en.toString(), true)) {
                     filteredDhabaList.add(dhaba)
                 }
             }

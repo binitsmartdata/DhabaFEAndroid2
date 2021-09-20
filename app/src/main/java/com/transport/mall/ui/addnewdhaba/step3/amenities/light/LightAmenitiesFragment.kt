@@ -72,11 +72,11 @@ class LightAmenitiesFragment :
             }
         }
         it.towerLightImage.let {
-            xloadImages(binding.ivTowerImg, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivTowerImg, it, R.drawable.ic_image_placeholder)
             binding.ivTowerImg.visibility = View.VISIBLE
         }
         it.bulbLightImage.let {
-            xloadImages(binding.ivBulbImage, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivBulbImage, it, R.drawable.ic_image_placeholder)
             binding.ivBulbImage.visibility = View.VISIBLE
         }
 

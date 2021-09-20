@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.databinding.DialogCitySelectionBinding
-import com.transport.mall.model.CityAndStateModel
+import com.transport.mall.model.CityModel
 import com.transport.mall.utils.common.GenericCallBack
 import java.util.*
 import kotlin.collections.ArrayList
@@ -17,12 +17,12 @@ import kotlin.collections.ArrayList
 
 class DialogCitySelection constructor(
     context: Context,
-    dataList: ArrayList<CityAndStateModel>,
-    callBack: GenericCallBack<ArrayList<CityAndStateModel>>
+    dataList: ArrayList<CityModel>,
+    callBack: GenericCallBack<ArrayList<CityModel>>
 ) : Dialog(context) {
 
     var binding: DialogCitySelectionBinding
-    var filterDataList: ArrayList<CityAndStateModel> = ArrayList()
+    var filterDataList: ArrayList<CityModel> = ArrayList()
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -37,7 +37,7 @@ class DialogCitySelection constructor(
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = CityListAdapter(context, dataList)
         binding.btnContinue.setOnClickListener {
-            val selectedCities = ArrayList<CityAndStateModel>()
+            val selectedCities = ArrayList<CityModel>()
             for (model in if (filterDataList.isNotEmpty()) filterDataList else dataList) {
                 if (model.isChecked) {
                     selectedCities.add(model)
@@ -59,7 +59,7 @@ class DialogCitySelection constructor(
                 filterDataList.clear()
                 if (p0.toString().isNotEmpty()) {
                     for (model in dataList) {
-                        if (model.name?.en?.toLowerCase(Locale.getDefault())
+                        if (model.name_en?.toLowerCase(Locale.getDefault())
                                 ?.contains(p0.toString().toLowerCase(Locale.getDefault()))!!
                         ) {
                             filterDataList.add(model)

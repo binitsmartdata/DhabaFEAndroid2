@@ -106,7 +106,7 @@ class OtherAmenitiesFragment :
         }
 
         it.barberImages.let {
-            xloadImages(binding.ivBarberImg, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivBarberImg, it, R.drawable.ic_image_placeholder)
             binding.ivBarberImg.visibility = View.VISIBLE
         }
 

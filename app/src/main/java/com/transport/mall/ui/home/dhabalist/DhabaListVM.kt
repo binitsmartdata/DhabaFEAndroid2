@@ -2,9 +2,11 @@ package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
-import com.transport.mall.model.CityAndStateModel
+import com.transport.mall.model.CityModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -19,6 +21,7 @@ import kotlinx.coroutines.launch
 class DhabaListVM(application: Application) : BaseVM(application) {
     var errorResponse: MutableLiveData<String>? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
+    var dialogProgressObserver: MutableLiveData<Boolean> = MutableLiveData()
 
     var app: Application? = null
 
@@ -30,34 +33,6 @@ class DhabaListVM(application: Application) : BaseVM(application) {
         errorResponse = null
         errorResponse = MutableLiveData()
         return errorResponse
-    }
-
-    fun getCitiesList(callBack: GenericCallBack<ArrayList<CityAndStateModel>>) {
-        progressObserver.value = true
-        GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.getAllCities(
-                    getAccessToken(app!!),
-                    "4100",
-                    "", "", "1", "ASC", "true"
-                )
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        AppDatabase.getInstance(app!!)?.cityDao()
-                            ?.insertAll(it.data?.data?.data as List<CityAndStateModel>)
-                        progressObserver.value = false
-                        callBack.onResponse(it.data?.data?.data)
-                    }
-                }
-            }
-        }
     }
 
     fun getAllDhabaList(
@@ -86,4 +61,36 @@ class DhabaListVM(application: Application) : BaseVM(application) {
             }
         }
     }
+
+    fun getDhabaById(dhabaId: String, callBack: GenericCallBack<ApiResponseModel<DhabaModelMain>>) {
+        dialogProgressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.getDhabaByID(dhabaId)
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+                        dialogProgressObserver.value =
+                            true
+                    }
+                    ApiResult.Status.ERROR -> {
+                        dialogProgressObserver.value = false
+                        callBack.onResponse(
+                            ApiResponseModel<DhabaModelMain>(
+                                0,
+                                it.message!!,
+                                null
+                            )
+                        )
+                    }
+                    ApiResult.Status.SUCCESS -> {
+//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
+                        dialogProgressObserver.value = false
+                        callBack.onResponse(it.data)
+                    }
+                }
+            }
+        }
+    }
+
 }

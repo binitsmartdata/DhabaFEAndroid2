@@ -14,7 +14,7 @@
 
         <variable
             name="data"
-            type="com.transport.mall.model.CityAndStateModel" />
+            type="com.transport.mall.model.CityModel" />
 
         <variable
             name="callback"
@@ -48,9 +48,9 @@
             android:id="@+id/tvMenuTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:text="@{data.name.en}"
             android:fontFamily="@font/opensans_semibold"
+            android:orientation="vertical"
+            android:text="@{data.name_en"
             android:textColor="@{data.isChecked() ? context.getColor(R.color.colorPrimary) : context.getColor(R.color.black)}"
             android:textSize="@dimen/_14ssp"
             tools:text="@string/city_name" />

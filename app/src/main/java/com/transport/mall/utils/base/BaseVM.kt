@@ -62,7 +62,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         return flow {
             emit(ApiResult.loading())
             emit(getResponse(request = { input }))
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(Dispatchers.Main)
     }
 
     fun getPrefs(context: Application): SharedPrefsHelper {

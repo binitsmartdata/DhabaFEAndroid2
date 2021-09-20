@@ -1,11 +1,13 @@
 package com.transport.mall.utils.base
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
@@ -283,6 +285,59 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
             supportFragmentManager.popBackStack()
         } else {
             super.onBackPressed()
+        }
+    }
+
+    private var mDialog: Dialog? = null
+    fun showProgressDialog() {
+        try {
+            if (mDialog == null) {
+                mDialog = Dialog(this, android.R.style.Theme_Translucent_NoTitleBar)
+                var loaderView =
+                    LayoutInflater.from(this)
+                        .inflate(com.transport.mall.R.layout.loader, null)
+                mDialog!!.setContentView(loaderView)
+                mDialog!!.setCancelable(false)
+                var tvProgressMessage =
+                    loaderView.findViewById(com.transport.mall.R.id.tvProgressMessage) as TextView
+                tvProgressMessage.visibility = View.GONE
+                mDialog!!.show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
+    fun showProgressDialog(message: String?) {
+        try {
+            if (mDialog == null) {
+                mDialog = Dialog(this, android.R.style.Theme_Translucent_NoTitleBar)
+                var loaderView: View = LayoutInflater.from(this)
+                    .inflate(com.transport.mall.R.layout.loader, null, false)
+                mDialog!!.setContentView(loaderView)
+                mDialog!!.setCancelable(false)
+
+                var tvProgressMessage =
+                    loaderView.findViewById(com.transport.mall.R.id.tvProgressMessage) as TextView
+                tvProgressMessage.text = message
+                tvProgressMessage.visibility = View.VISIBLE
+
+                mDialog!!.show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun hideProgressDialog() {
+        try {
+            if (mDialog != null && mDialog!!.isShowing) {
+                mDialog!!.dismiss()
+                mDialog = null
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

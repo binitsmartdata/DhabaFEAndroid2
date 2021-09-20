@@ -1,18 +1,12 @@
 package com.transport.mall.ui.home
 
 import android.app.Activity
-import android.content.Context
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
-import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentHomeBinding
-import com.transport.mall.model.CityAndStateModel
-import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.home.dhabalist.DhabaListFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseFragment
@@ -57,12 +51,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
 
     override fun initListeners() {
         binding.tvAddNew.setOnClickListener {
-            startAddDhabaActivity()
+            mCommonActivityListener?.openAddDhabaActivity()
         }
-    }
-
-    private fun startAddDhabaActivity() {
-        AddDhabaActivity.start(activity as Context)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

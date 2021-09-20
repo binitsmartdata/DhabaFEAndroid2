@@ -30,7 +30,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
 
         viewModel.observerProgress()?.observe(this, Observer {
             if (it) {
-                showProgressDialog()
+                showProgressDialog(getString(R.string.please_wait))
+            } else {
+                hideProgressDialog()
+            }
+        })
+
+        viewModel.progressObserverCityStates?.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.fetching_states_cities_highways))
             } else {
                 hideProgressDialog()
             }

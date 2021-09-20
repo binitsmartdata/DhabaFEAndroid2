@@ -84,7 +84,7 @@ class SecurityAmenitiesFragment :
             }
         }
         it.verificationImg.let {
-            xloadImages(binding.ivPoliceVerification, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivPoliceVerification, it, R.drawable.ic_image_placeholder)
             binding.ivPoliceVerification.visibility = View.VISIBLE
         }
         it.indoorCamera.let {

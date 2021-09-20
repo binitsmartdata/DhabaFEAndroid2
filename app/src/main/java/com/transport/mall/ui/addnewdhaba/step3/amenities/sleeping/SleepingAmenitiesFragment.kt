@@ -70,7 +70,7 @@ class SleepingAmenitiesFragment :
                 xloadImages(
                     binding.ivSleepingImg,
                     it,
-                    R.drawable.ic_placeholder_outliner
+                    R.drawable.ic_image_placeholder
                 )
                 binding.ivSleepingImg.visibility = View.VISIBLE
             }

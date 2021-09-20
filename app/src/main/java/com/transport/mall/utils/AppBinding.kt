@@ -59,9 +59,9 @@ fun xloadImages(
         }
     } ?: run {
         Picasso.get()
-            .load(R.drawable.ic_placeholder_outliner)
+            .load(R.drawable.ic_image_placeholder)
             .error(R.drawable.ic_launcher_background)
-            .placeholder(R.drawable.ic_placeholder_outliner)
+            .placeholder(R.drawable.ic_image_placeholder)
             .into(view)
     }
 }

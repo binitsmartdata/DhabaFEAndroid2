@@ -37,6 +37,7 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
 
     private var amanityType: Int = 0
     private lateinit var dhabaModelMain: DhabaModelMain
+    private var isUpdate = false
 
     companion object {
         private const val AMENITY_TYPE = "amenityType"
@@ -56,11 +57,20 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
             starter.putExtra(DHABA_MODEL, dhabaModel)
             (context as Activity).startActivityForResult(starter, amenityType)
         }
+
+        fun startForUpdate(context: Context, amenityType: Int, dhabaModel: DhabaModelMain) {
+            val starter = Intent(context, AmenitiesActivity::class.java)
+            starter.putExtra(AMENITY_TYPE, amenityType)
+            starter.putExtra(DHABA_MODEL, dhabaModel)
+            starter.putExtra("isUpdate", true)
+            (context as Activity).startActivityForResult(starter, amenityType)
+        }
     }
 
     override fun bindData() {
         dhabaModelMain = intent.getSerializableExtra(DHABA_MODEL) as DhabaModelMain
         amanityType = intent.getIntExtra(AMENITY_TYPE, 0)
+        isUpdate = intent.getBooleanExtra("isUpdate", false)
         if (!isAllGranted(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)) {
             askForPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) { result ->
                 // Check the result, see the Using Results section
@@ -171,5 +181,9 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
 
     override fun getDhabaModelMain(): DhabaModelMain {
         return dhabaModelMain
+    }
+
+    override fun isUpdate(): Boolean {
+        return isUpdate
     }
 }

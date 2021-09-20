@@ -50,7 +50,7 @@
 
                 <ImageView
                     loadImage="@{model.images}"
-                    placeholder="@{R.drawable.ic_placeholder_outliner}"
+                    placeholder="@{R.drawable.ic_image_placeholder}"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
                     android:scaleType="centerCrop" />
@@ -123,7 +123,8 @@
                     android:orientation="vertical"
                     android:text="Opening 5am to 10pm"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -187,9 +188,12 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical">
 
-                <ImageView
+                <com.transport.mall.utils.custom.CircleImageView
+                    loadImage="@{model.images}"
+                    placeholder="@{R.drawable.ic_profile_pic_placeholder}"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:src="@drawable/demo_profile_pic" />
 
                 <LinearLayout
@@ -219,9 +223,12 @@
                 android:layout_weight="1"
                 android:gravity="center">
 
-                <ImageView
+                <com.transport.mall.utils.custom.CircleImageView
+                    loadImage="@{model.images}"
+                    placeholder="@{R.drawable.ic_image_placeholder}"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:src="@drawable/demo_profile_pic_2" />
 
                 <LinearLayout

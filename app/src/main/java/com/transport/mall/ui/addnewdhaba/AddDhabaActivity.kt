@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
@@ -19,7 +20,6 @@ import com.transport.mall.ui.addnewdhaba.step2.DhabaDetailsFragment
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseActivity
-import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -28,20 +28,22 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
+class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     AddDhabaListener {
     override val binding: ActivityNewDhabaBinding
         get() = setUpBinding()
     override val layoutId: Int
         get() = R.layout.activity_new_dhaba
-    override var viewModel: BaseVM
+    override var viewModel: AddDhabaVM
         get() = setUpVM(
             this,
-            BaseVM(application)
+            AddDhabaVM(application)
         )
         set(value) {}
     override val context: Context
         get() = this
+
+    private var isUpdate = false
 
     var mDhabaModelMain = DhabaModelMain()
 
@@ -50,14 +52,36 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
             val intent = Intent(context, AddDhabaActivity::class.java)
             context.startActivity(intent)
         }
+
+        fun startForUpdate(context: Context, dhabaModelMain: DhabaModelMain) {
+            val intent = Intent(context, AddDhabaActivity::class.java)
+            intent.putExtra("isUpdate", true)
+            intent.putExtra("data", dhabaModelMain)
+            context.startActivity(intent)
+        }
     }
 
     override fun bindData() {
         binding.context = this
 
-        SharedPrefsHelper.getInstance(this).getDraftDhaba()?.let {
-            mDhabaModelMain = it
+        //RECEIVING DATA IN CASE OF UPDATING DHABA
+        isUpdate = intent.getBooleanExtra("isUpdate", false)
+        binding.isUpdate = isUpdate
+        if (isUpdate) {
+            mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
+        } else {
+            SharedPrefsHelper.getInstance(this).getDraftDhaba()?.let {
+                mDhabaModelMain = it
+            }
         }
+
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
 
         if (!isAllGranted(
                 Permission.CAMERA,
@@ -98,7 +122,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setTitle(getString(R.string.add_new_dhaba))
+        supportActionBar?.setTitle(if (isUpdate()) getString(R.string.update_dhaba) else getString(R.string.add_new_dhaba))
     }
 
     private fun setupStepsIndicator() {
@@ -182,6 +206,10 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, BaseVM>(),
 
     override fun getDhabaModelMain(): DhabaModelMain {
         return mDhabaModelMain
+    }
+
+    override fun isUpdate(): Boolean {
+        return isUpdate
     }
 
     override fun onBackPressed() {

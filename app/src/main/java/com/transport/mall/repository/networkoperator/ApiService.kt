@@ -30,7 +30,7 @@ interface ApiService {
         @Query("page") page: String,
         @Query("sort") sort: String,
         @Query("status") status: String
-    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
+    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityModel>>>>
 
     //limit=10&page=1
     @GET("dhaba/getAllDhabaList")
@@ -43,7 +43,7 @@ interface ApiService {
     @POST("city/getCityByState")
     suspend fun getCitiesByState(
         @Field("state_id") status: String
-    ): Response<ApiResponseModel<ArrayList<CityAndStateModel>>>
+    ): Response<ApiResponseModel<ArrayList<CityModel>>>
 
     @GET("state/getAllStates")
     suspend fun getAllStates(
@@ -54,14 +54,18 @@ interface ApiService {
         @Query("page") page: String,
         @Query("sort") sort: String,
         @Query("status") status: String
-    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityAndStateModel>>>>
+    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<StateModel>>>>
 
     @GET("dhaba/getAllHighway")
     suspend fun getAllHighway(): Response<ApiResponseModel<ArrayList<HighwayModel>>>
 
+    @GET("dhaba/getDhabaByID")
+    suspend fun getDhabaByID(@Query("id") id: String): Response<ApiResponseModel<DhabaModelMain>>
+
     @Multipart
     @POST("dhaba/addDhaba")
     suspend fun uploadDhabaDetails(
+        @Part("owner_id") owner_id: RequestBody,
         @Part("name") name: RequestBody,
         @Part("address") address: RequestBody,
         @Part("landmark") landmark: RequestBody,

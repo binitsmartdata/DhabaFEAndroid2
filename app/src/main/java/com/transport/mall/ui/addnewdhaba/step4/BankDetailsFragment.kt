@@ -46,6 +46,10 @@ class BankDetailsFragment :
         binding.currentDate = GlobalUtils.getCurrentDate()
 
         //SETTING EXISTING DATA ON SCREEN
+        showDataIfHas()
+    }
+
+    private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
             setData(it)
         }
@@ -69,7 +73,7 @@ class BankDetailsFragment :
         }
         it.panPhoto.let {
             viewModel.panPhoto.set(it)
-            xloadImages(binding.ivPanPhoto, it, R.drawable.ic_placeholder_outliner)
+            xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
             binding.ivPanPhoto.visibility = View.VISIBLE
         }
     }

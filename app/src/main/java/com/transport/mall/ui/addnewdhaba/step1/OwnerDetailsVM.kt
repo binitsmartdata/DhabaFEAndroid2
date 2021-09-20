@@ -5,6 +5,7 @@ import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM

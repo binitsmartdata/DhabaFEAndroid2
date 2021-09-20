@@ -3,11 +3,11 @@ package com.transport.mall.ui.customdialogs
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.RowCityListBinding
-import com.transport.mall.model.CityAndStateModel
+import com.transport.mall.model.CityModel
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 
 class CityListAdapter(
-    val context: Context, val dataList: List<CityAndStateModel>
+    val context: Context, val dataList: List<CityModel>
 ) : InfiniteAdapter<RowCityListBinding>() {
 
     init {
