@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_semibold"
             android:orientation="vertical"
-            android:text="@{data.name_en"
+            android:text="@{data.name_en}"
             android:textColor="@{data.isChecked() ? context.getColor(R.color.colorPrimary) : context.getColor(R.color.black)}"
             android:textSize="@dimen/_14ssp"
             tools:text="@string/city_name" />

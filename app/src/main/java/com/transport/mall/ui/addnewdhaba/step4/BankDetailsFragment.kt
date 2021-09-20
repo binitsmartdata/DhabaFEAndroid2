@@ -140,6 +140,7 @@ class BankDetailsFragment :
         binding.btnSaveDraft.setOnClickListener {
             if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
                 mListener?.saveAsDraft()
+                activity?.finish()
             } else {
                 saveDetails(true)
             }

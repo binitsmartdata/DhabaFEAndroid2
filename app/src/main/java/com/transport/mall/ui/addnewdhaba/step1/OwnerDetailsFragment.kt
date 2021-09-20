@@ -148,6 +148,7 @@ class OwnerDetailsFragment :
         binding.btnSaveDraft.setOnClickListener {
             if (mListener?.getDhabaModelMain()?.ownerModel != null) {
                 mListener?.saveAsDraft()
+                activity?.finish()
             }else {
                 saveDetails(true)
             }

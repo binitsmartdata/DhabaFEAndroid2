@@ -65,12 +65,12 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         //RECEIVING DATA IN CASE OF UPDATING DHABA
         mIsUpdate = intent.hasExtra("data")
         binding.isUpdate = mIsUpdate
+        binding.viewPager.setPagingEnabled(mIsUpdate)
         if (mIsUpdate) {
-            binding.viewPager.setPagingEnabled(true)
             mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
         } else {
-            binding.viewPager.setPagingEnabled(false)
             SharedPrefsHelper.getInstance(this).getDraftDhaba()?.let {
+                binding.viewPager.setPagingEnabled(true)
                 mDhabaModelMain = it
             }
         }
@@ -114,7 +114,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
 
         setupToolbar()
         setupStepsFragments()
-        setupStepsIndicator()
     }
 
     private fun setupToolbar() {
@@ -123,10 +122,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setTitle(if (isUpdate()) getString(R.string.update_dhaba) else getString(R.string.add_new_dhaba))
-    }
-
-    private fun setupStepsIndicator() {
-
     }
 
     private fun setupStepsFragments() {
@@ -169,7 +164,8 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             }
 
         })
-        binding.viewPager.offscreenPageLimit = 4
+
+        binding.viewPager.offscreenPageLimit = 1
     }
 
     override fun initListeners() {

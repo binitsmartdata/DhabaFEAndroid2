@@ -185,6 +185,7 @@ class DhabaDetailsFragment :
         binding.btnSaveDraft.setOnClickListener {
             if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
                 mListener?.saveAsDraft()
+                activity?.finish()
             } else {
                 saveDetails(true)
             }
