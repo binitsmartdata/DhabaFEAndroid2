@@ -20,7 +20,7 @@ import com.transport.mall.utils.common.GenericCallBack
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() {
+class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_dhaba_list
     override var viewModel: DhabaListVM
@@ -38,6 +38,12 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
     var page = 1
 
     var mListener: CommonActivityListener? = null
+
+    var listType: ListType
+
+    init {
+        listType = type
+    }
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -141,27 +147,31 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
     }
 
     private fun refreshDhabaList() {
-        viewModel.getAllDhabaList(limit, page.toString(), GenericCallBack {
-            dhabaListAdapter?.removeLoadingView(dhabaList.size)
-            if (it != null && it.isNotEmpty()) {
-                if (page == 1) {
-                    dhabaListAdapter?.setShouldLoadMore(true)
-                    dhabaList.clear()
-                    dhabaList.addAll(it)
-                    initDhabaListAdapter(dhabaList)
-                } else {
-                    dhabaList.addAll(it)
-                }
-                dhabaListAdapter?.notifyDataSetChanged()
-                refreshListAndNoDataView()
-            } else {
-                if (page == 1) {
+        if (listType == ListType.PENDING) {
+            viewModel.getAllDhabaList(limit, page.toString(), GenericCallBack {
+                dhabaListAdapter?.removeLoadingView(dhabaList.size)
+                if (it != null && it.isNotEmpty()) {
+                    if (page == 1) {
+                        dhabaListAdapter?.setShouldLoadMore(true)
+                        dhabaList.clear()
+                        dhabaList.addAll(it)
+                        initDhabaListAdapter(dhabaList)
+                    } else {
+                        dhabaList.addAll(it)
+                    }
+                    dhabaListAdapter?.notifyDataSetChanged()
                     refreshListAndNoDataView()
                 } else {
-                    dhabaListAdapter?.setShouldLoadMore(false)
+                    if (page == 1) {
+                        refreshListAndNoDataView()
+                    } else {
+                        dhabaListAdapter?.setShouldLoadMore(false)
+                    }
                 }
-            }
-        })
+            })
+        } else {
+            refreshListAndNoDataView()
+        }
     }
 
     private fun showFilteredDhabas(filteredCities: ArrayList<CityModel>) {

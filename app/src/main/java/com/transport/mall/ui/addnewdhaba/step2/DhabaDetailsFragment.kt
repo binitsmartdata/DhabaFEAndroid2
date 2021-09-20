@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.deepakkumardk.videopickerlib.EasyVideoPicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
@@ -64,11 +65,14 @@ class DhabaDetailsFragment :
 
         binding.btnNext.isEnabled = !mListener?.isUpdate()!!
         binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
+        binding.isUpdate = mListener?.isUpdate()!!
     }
 
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
-            setData(it)
+            lifecycleScope.launchWhenStarted {
+                setData(it)
+            }
         }
     }
 
@@ -117,12 +121,14 @@ class DhabaDetailsFragment :
             viewModel.images.set(it)
         }
         it.videos.let {
-            val bitmap = getThumbnailFromVideo(it)
-            if (bitmap != null) {
-                binding.ivVideoThumb.setImageBitmap(bitmap)
-                binding.frameVideoThumb.visibility = View.VISIBLE
+            if (it.isNotEmpty()) {
+                val bitmap = getThumbnailFromVideo(it)
+                if (bitmap != null) {
+                    binding.ivVideoThumb.setImageBitmap(bitmap)
+                    binding.frameVideoThumb.visibility = View.VISIBLE
+                }
+                viewModel.videos.set(it)
             }
-            viewModel.videos.set(it)
         }
     }
 
@@ -177,7 +183,11 @@ class DhabaDetailsFragment :
             }
         }
         binding.btnSaveDraft.setOnClickListener {
-            saveDetails(true)
+            if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
+                mListener?.saveAsDraft()
+            } else {
+                saveDetails(true)
+            }
         }
     }
 
@@ -427,5 +437,6 @@ class DhabaDetailsFragment :
 
     fun youAreInFocus() {
         mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.owner_id.set(it?._id) }
+        showDataIfHas()
     }
 }

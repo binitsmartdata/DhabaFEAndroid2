@@ -5,11 +5,7 @@ import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
-import com.transport.mall.database.AppDatabase
-import com.transport.mall.model.CityModel
 import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.HighwayModel
-import com.transport.mall.model.StateModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -20,7 +16,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.util.*
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -54,6 +49,11 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     init {
         app = application
 
+        owner_id.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                owner_id.get()?.let { dhabaModel.owner_id = it }
+            }
+        })
         name.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 name.get()?.let { dhabaModel.name = it }

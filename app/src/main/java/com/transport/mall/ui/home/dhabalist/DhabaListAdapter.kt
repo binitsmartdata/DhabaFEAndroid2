@@ -20,6 +20,7 @@ class DhabaListAdapter(
     override fun bindData(position: Int, myViewHolderG: MyViewHolderG?) {
         myViewHolderG?.binding?.context = context
         myViewHolderG?.binding?.model = dataList[position].dhabaModel
+        myViewHolderG?.binding?.owner = dataList[position].ownerModel
         myViewHolderG?.binding?.user = SharedPrefsHelper.getInstance(context).getUserData()
         myViewHolderG?.binding?.dhabaContainer?.setOnClickListener { callBack.onResponse(position) }
 

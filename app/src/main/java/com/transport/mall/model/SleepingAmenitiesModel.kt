@@ -1,20 +1,42 @@
 package com.transport.mall.model
 
 import android.content.Context
+import com.google.gson.annotations.SerializedName
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 class SleepingAmenitiesModel : Serializable {
+    @SerializedName(value = "service_id")
     var service_id = "1"
+
+    @SerializedName(value = "module_id")
     var module_id = "1"
+
+    @SerializedName(value = "dhaba_id")
     var dhaba_id = ""
+
+    @SerializedName(value = "sleeping")
     var sleeping = ""
+
+    @SerializedName(value = "noOfBeds")
     var noOfBeds = ""
+
+    @SerializedName(value = "fan")
     var fan = ""
+
+    @SerializedName(value = "cooler")
     var cooler = ""
+
+    @SerializedName(value = "enclosed")
     var enclosed = ""
+
+    @SerializedName(value = "open")
     var open = ""
+
+    @SerializedName(value = "hotWater")
     var hotWater = ""
+
+    @SerializedName(value = "images")
     var images = ""
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {

@@ -213,19 +213,23 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     override fun onBackPressed() {
-        GlobalUtils.showDhabaDiscardAlert(this, getString(R.string.want_to_discard),
-            GenericCallBack {
-                when (it) {
-                    1 -> { // discard
-                        finish()
-                        SharedPrefsHelper.getInstance(this).deleteDraftDhaba()
+        if (!isUpdate()) {
+            GlobalUtils.showDhabaDiscardAlert(this, getString(R.string.want_to_discard),
+                GenericCallBack {
+                    when (it) {
+                        1 -> { // discard
+                            finish()
+                            SharedPrefsHelper.getInstance(this).deleteDraftDhaba()
+                        }
+                        2 -> { // save as draft
+                            saveAsDraft()
+                            finish()
+                        }
                     }
-                    2 -> { // save as draft
-                        saveAsDraft()
-                        finish()
-                    }
-                }
-            })
+                })
+        } else {
+            finish()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

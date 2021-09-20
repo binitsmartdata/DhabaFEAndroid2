@@ -130,7 +130,7 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
                     dhabaModel._id,
                     dhabaModel.blockDay.toString(),
                     dhabaModel.blockMonth.toString(),
-                    dhabaModel.propertyStatus.toString()
+                    dhabaModel.isActive.toString()
                 )
             ).collect {
                 when (it.status) {

@@ -1,16 +1,32 @@
 package com.transport.mall.model
 
+import com.google.gson.annotations.SerializedName
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 class ParkingAmenitiesModel : Serializable {
+    @SerializedName(value = "service_id")
     var service_id = "1"
+
+    @SerializedName(value = "module_id")
     var module_id = "1"
+
+    @SerializedName(value = "dhaba_id")
     var dhaba_id = ""
+
+    @SerializedName(value = "concreteParking")
     var concreteParking = "0"
+
+    @SerializedName(value = "flatHardParking")
     var flatHardParking = "0"
+
+    @SerializedName(value = "kachaFlatParking")
     var kachaFlatParking = "0"
+
+    @SerializedName(value = "parkingSpace")
     var parkingSpace = "0"
+
+    @SerializedName(value = "images")
     var images = ArrayList<PhotosModel>()
 
     fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {

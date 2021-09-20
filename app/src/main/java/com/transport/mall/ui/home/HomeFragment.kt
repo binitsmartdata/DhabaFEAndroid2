@@ -9,6 +9,7 @@ import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentHomeBinding
 import com.transport.mall.ui.home.dhabalist.DhabaListFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
+import com.transport.mall.ui.home.dhabalist.ListType
 import com.transport.mall.utils.base.BaseFragment
 
 
@@ -40,10 +41,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
         val adapter = HomeViewPagerAdapter(childFragmentManager)
 
         // add your fragments
-        adapter.addFrag(DhabaListFragment(), getString(R.string.pending))
-        adapter.addFrag(DhabaListFragment(), getString(R.string.in_progress))
-        adapter.addFrag(DhabaListFragment(), getString(R.string.active))
-        adapter.addFrag(DhabaListFragment(), getString(R.string.inactive))
+        adapter.addFrag(DhabaListFragment(ListType.PENDING), getString(R.string.pending))
+        adapter.addFrag(DhabaListFragment(ListType.IN_PROGRESS), getString(R.string.in_progress))
+        adapter.addFrag(DhabaListFragment(ListType.ACTIVE), getString(R.string.active))
+        adapter.addFrag(DhabaListFragment(ListType.IN_ACTIVE), getString(R.string.inactive))
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter

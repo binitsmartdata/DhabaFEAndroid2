@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -54,6 +55,7 @@ class BankDetailsFragment :
 
         binding.btnNext.isEnabled = !mListener?.isUpdate()!!
         binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
+        binding.isUpdate = mListener?.isUpdate()!!
     }
 
     private fun showDataIfHas() {
@@ -73,10 +75,10 @@ class BankDetailsFragment :
                 0 -> binding.rbDelisted.isChecked = true
             }
         }
-        viewModel.dhabaModel.propertyStatus.let {
+        viewModel.dhabaModel.isActive.let {
             when (it) {
-                "true" -> binding.rbActive.isChecked = true
-                "false" -> binding.rbInactive.isChecked = true
+                true -> binding.rbActive.isChecked = true
+                false -> binding.rbInactive.isChecked = true
             }
         }
         viewModel.dhabaModel.blockMonth.let {
@@ -85,25 +87,27 @@ class BankDetailsFragment :
     }
 
     private fun setData(it: BankDetailsModel) {
-        it.bankName.let {
-            viewModel.bankName.set(it)
-        }
-        it.gstNumber.let {
-            viewModel.gstNumber.set(it)
-        }
-        it.ifscCode.let {
-            viewModel.ifscCode.set(it)
-        }
-        it.accountName.let {
-            viewModel.accountName.set(it)
-        }
-        it.panNumber.let {
-            viewModel.panNumber.set(it)
-        }
-        it.panPhoto.let {
-            viewModel.panPhoto.set(it)
-            xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
-            binding.ivPanPhoto.visibility = View.VISIBLE
+        lifecycleScope.launchWhenStarted {
+            it.bankName.let {
+                viewModel.bankName.set(it)
+            }
+            it.gstNumber.let {
+                viewModel.gstNumber.set(it)
+            }
+            it.ifscCode.let {
+                viewModel.ifscCode.set(it)
+            }
+            it.accountName.let {
+                viewModel.accountName.set(it)
+            }
+            it.panNumber.let {
+                viewModel.panNumber.set(it)
+            }
+            it.panPhoto.let {
+                viewModel.panPhoto.set(it)
+                xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
+                binding.ivPanPhoto.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -115,7 +119,7 @@ class BankDetailsFragment :
                 (activity?.findViewById<RadioButton>(i))?.getTag().toString().toInt()
         }
         binding.rgPropertyStatus.setOnCheckedChangeListener { radioGroup, i ->
-            viewModel.dhabaModel.propertyStatus = binding.rbActive.isChecked.toString()
+            viewModel.dhabaModel.isActive = binding.rbActive.isChecked
         }
 
         viewModel.progressObserver.observe(this, Observer {
@@ -134,7 +138,11 @@ class BankDetailsFragment :
             }
         }
         binding.btnSaveDraft.setOnClickListener {
-            saveDetails(true)
+            if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
+                mListener?.saveAsDraft()
+            } else {
+                saveDetails(true)
+            }
         }
 
         binding.llPanPhoto.setOnClickListener {

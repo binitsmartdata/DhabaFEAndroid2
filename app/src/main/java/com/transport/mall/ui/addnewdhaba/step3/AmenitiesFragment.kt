@@ -32,6 +32,7 @@ class AmenitiesFragment :
 
         binding.btnNext.isEnabled = !mListener?.isUpdate()!!
         binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
+        binding.isUpdate = mListener?.isUpdate()!!
     }
 
     override fun initListeners() {

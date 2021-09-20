@@ -12,412 +12,431 @@
             name="context"
             type="android.content.Context" />
 
+        <variable
+            name="isUpdate"
+            type="Boolean" />
+
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+<!--    <FrameLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!---->
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/_5sdp">
+            android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardFood"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/white">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFood"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
+                    android:layout_margin="10dp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/food"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="bold" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvFoodAmens"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="5dp"
-                            android:text="@string/no_amenities_selected"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="@string/food"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvFoodAmens"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="5dp"
+                                android:text="@string/no_amenities_selected"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="italic" />
 
 
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardParking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/white">
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardParking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
+                    android:layout_margin="10dp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/parking"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="bold" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvParkingAmens"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="5dp"
-                            android:text="@string/no_amenities_selected"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="@string/parking"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvParkingAmens"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="5dp"
+                                android:text="@string/no_amenities_selected"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="italic" />
 
 
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSleeping"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/white">
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSleeping"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
+                    android:layout_margin="10dp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/sleeping"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="bold" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvSleepingAmen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="5dp"
-                            android:text="@string/no_amenities_selected"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="@string/sleeping"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvSleepingAmen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="5dp"
+                                android:text="@string/no_amenities_selected"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="italic" />
 
 
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardWashroom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/white">
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardWashroom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
+                    android:layout_margin="10dp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/washroom_cleaning"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="bold" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvWashroomAmen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="5dp"
-                            android:text="@string/no_amenities_selected"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="@string/washroom_cleaning"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="bold" />
 
+                            <TextView
+                                android:id="@+id/tvWashroomAmen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="5dp"
+                                android:text="@string/no_amenities_selected"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="italic" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSecurity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/white">
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSecurity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
+                    android:layout_margin="10dp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/security"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="bold" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvSecurityAmen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="5dp"
-                            android:text="@string/no_amenities_selected"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="@string/security"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvSecurityAmen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="5dp"
+                                android:text="@string/no_amenities_selected"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="italic" />
 
 
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardLights"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/white">
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardLights"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
+                    android:layout_margin="10dp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/light"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="bold" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvLightAmen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="5dp"
-                            android:text="@string/no_amenities_selected"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="@string/light"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvLightAmen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="5dp"
+                                android:text="@string/no_amenities_selected"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="italic" />
 
 
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardOther"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/white">
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardOther"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
+                    android:layout_margin="10dp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white">
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
-                            android:text="@string/other"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="bold" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/tvOtherAmen"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingHorizontal="5dp"
-                            android:text="@string/no_amenities_selected"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp"
-                            android:textStyle="italic" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="@string/other"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvOtherAmen"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingHorizontal="5dp"
+                                android:text="@string/no_amenities_selected"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/_14ssp"
+                                android:textStyle="italic" />
 
 
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_arrow_right" />
-                </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnNext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/primary_color_btn_selector"
-                android:text="@string/next"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSaveDraft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:background="@drawable/default_btn_selector"
+                    android:fontFamily="@font/opensans_bold"
+                    android:text="@string/save_as_draft"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSaveDraft"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_30sdp"
-                android:background="@drawable/default_btn_selector"
-                android:fontFamily="@font/opensans_bold"
-                android:text="@string/save_as_draft"
-                android:textAllCaps="false"
-                android:textColor="@color/colorRed"
-                android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
+        </ScrollView>
 
-        </LinearLayout>
-    </ScrollView>
+<!--        <View-->
+<!--            android:id="@+id/viewRestrictor"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:clickable="true"-->
+<!--            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />-->
+
+<!--    </FrameLayout>-->
 </layout>

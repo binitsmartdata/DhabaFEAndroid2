@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.view.View
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -48,11 +50,17 @@ class OwnerDetailsFragment :
 
         //SETTING EXISTING DATA ON SCREEN
         mListener?.getDhabaModelMain()?.ownerModel?.let {
-            setData(it)
+            lifecycleScope.launchWhenStarted {
+                setData(it)
+            }
         }
 
         binding.btnNext.isEnabled = !mListener?.isUpdate()!!
         binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
+        binding.viewRestrictor.visibility =
+            if (!mListener?.isUpdate()!!) View.VISIBLE else View.GONE
+
+        binding.isUpdate = mListener?.isUpdate()!!
     }
 
     private fun setData(it: DhabaOwnerModel) {
@@ -85,12 +93,16 @@ class OwnerDetailsFragment :
             viewModel.ownerPic.set(it)
         }
         it.idproofFront.let {
-            xloadImages(binding.ivFrontId, it, R.drawable.ic_image_placeholder)
-            viewModel.idproofFront.set(it)
+            if (it.isNotEmpty()) {
+                xloadImages(binding.ivFrontId, it, R.drawable.ic_image_placeholder)
+                viewModel.idproofFront.set(it)
+            }
         }
         it.idproofBack.let {
-            xloadImages(binding.ivBackId, it, R.drawable.ic_image_placeholder)
-            viewModel.idproofBack.set(it)
+            if (it.isNotEmpty()) {
+                xloadImages(binding.ivBackId, it, R.drawable.ic_image_placeholder)
+                viewModel.idproofBack.set(it)
+            }
         }
     }
 
@@ -134,7 +146,11 @@ class OwnerDetailsFragment :
             }
         }
         binding.btnSaveDraft.setOnClickListener {
-            saveDetails(true)
+            if (mListener?.getDhabaModelMain()?.ownerModel != null) {
+                mListener?.saveAsDraft()
+            }else {
+                saveDetails(true)
+            }
         }
     }
 
