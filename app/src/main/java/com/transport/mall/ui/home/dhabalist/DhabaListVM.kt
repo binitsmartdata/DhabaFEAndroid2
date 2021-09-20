@@ -38,7 +38,7 @@ class DhabaListVM(application: Application) : BaseVM(application) {
     fun getAllDhabaList(
         limit: String,
         page: String,
-        callBack: GenericCallBack<ArrayList<DhabaModel>>
+        callBack: GenericCallBack<ArrayList<DhabaModelMain>>
     ) {
         progressObserver.value = page == "1"
         GlobalScope.launch(Dispatchers.Main) {

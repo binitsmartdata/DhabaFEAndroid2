@@ -1,6 +1,8 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
 import android.content.Context
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAddDhabaStep3Binding
@@ -27,6 +29,9 @@ class AmenitiesFragment :
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
+
+        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
+        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
     }
 
     override fun initListeners() {
@@ -88,26 +93,31 @@ class AmenitiesFragment :
     override fun onResume() {
         super.onResume()
         mListener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
-            binding.tvFoodAmens.text = getString(R.string.amenities_selected)
+            setSelectectedTextAndStyle(binding.tvFoodAmens)
         }
         mListener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
-            binding.tvParkingAmens.text = getString(R.string.amenities_selected)
+            setSelectectedTextAndStyle(binding.tvParkingAmens)
         }
         mListener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
-            binding.tvSleepingAmen.text = getString(R.string.amenities_selected)
+            setSelectectedTextAndStyle(binding.tvSleepingAmen)
         }
         mListener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
-            binding.tvWashroomAmen.text = getString(R.string.amenities_selected)
+            setSelectectedTextAndStyle(binding.tvWashroomAmen)
         }
         mListener?.getDhabaModelMain()?.securityAmenitiesModel?.let {
-            binding.tvSecurityAmen.text = getString(R.string.amenities_selected)
+            setSelectectedTextAndStyle(binding.tvSecurityAmen)
         }
         mListener?.getDhabaModelMain()?.lightAmenitiesModel?.let {
-            binding.tvLightAmen.text = getString(R.string.amenities_selected)
+            setSelectectedTextAndStyle(binding.tvLightAmen)
         }
         mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {
-            binding.tvOtherAmen.text = getString(R.string.amenities_selected)
+            setSelectectedTextAndStyle(binding.tvOtherAmen)
         }
+    }
+
+    private fun setSelectectedTextAndStyle(tv: TextView) {
+        tv.text = getString(R.string.amenities_selected)
+        tv.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
     }
 
     private fun isHavingPreviousData(): Boolean {

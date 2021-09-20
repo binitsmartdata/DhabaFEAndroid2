@@ -62,7 +62,8 @@
                             android:paddingHorizontal="5dp"
                             android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="italic" />
 
 
                     </LinearLayout>
@@ -114,7 +115,8 @@
                             android:paddingHorizontal="5dp"
                             android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="italic" />
 
 
                     </LinearLayout>
@@ -166,7 +168,8 @@
                             android:paddingHorizontal="5dp"
                             android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="italic" />
 
 
                     </LinearLayout>
@@ -218,7 +221,8 @@
                             android:paddingHorizontal="5dp"
                             android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="italic" />
 
                     </LinearLayout>
 
@@ -269,7 +273,8 @@
                             android:paddingHorizontal="5dp"
                             android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="italic" />
 
 
                     </LinearLayout>
@@ -321,7 +326,8 @@
                             android:paddingHorizontal="5dp"
                             android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="italic" />
 
 
                     </LinearLayout>
@@ -373,7 +379,8 @@
                             android:paddingHorizontal="5dp"
                             android:text="@string/no_amenities_selected"
                             android:textColor="@color/grey"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="italic" />
 
 
                     </LinearLayout>

@@ -43,8 +43,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     override val context: Context
         get() = this
 
-    private var isUpdate = false
-
+    var mIsUpdate = false
     var mDhabaModelMain = DhabaModelMain()
 
     companion object {
@@ -55,7 +54,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
 
         fun startForUpdate(context: Context, dhabaModelMain: DhabaModelMain) {
             val intent = Intent(context, AddDhabaActivity::class.java)
-            intent.putExtra("isUpdate", true)
             intent.putExtra("data", dhabaModelMain)
             context.startActivity(intent)
         }
@@ -65,11 +63,13 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         binding.context = this
 
         //RECEIVING DATA IN CASE OF UPDATING DHABA
-        isUpdate = intent.getBooleanExtra("isUpdate", false)
-        binding.isUpdate = isUpdate
-        if (isUpdate) {
+        mIsUpdate = intent.hasExtra("data")
+        binding.isUpdate = mIsUpdate
+        if (mIsUpdate) {
+            binding.viewPager.setPagingEnabled(true)
             mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
         } else {
+            binding.viewPager.setPagingEnabled(false)
             SharedPrefsHelper.getInstance(this).getDraftDhaba()?.let {
                 mDhabaModelMain = it
             }
@@ -209,15 +209,18 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     override fun isUpdate(): Boolean {
-        return isUpdate
+        return mIsUpdate
     }
 
     override fun onBackPressed() {
         GlobalUtils.showDhabaDiscardAlert(this, getString(R.string.want_to_discard),
             GenericCallBack {
                 when (it) {
-                    1 -> finish()
-                    2 -> {
+                    1 -> { // discard
+                        finish()
+                        SharedPrefsHelper.getInstance(this).deleteDraftDhaba()
+                    }
+                    2 -> { // save as draft
                         saveAsDraft()
                         finish()
                     }

@@ -6,6 +6,8 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.BankDetailsModel
+import com.transport.mall.model.DhabaBlockingModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -24,6 +26,7 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
 
     var bankModel = BankDetailsModel()
+    var dhabaModel = DhabaModel()
 
     var user_id: ObservableField<String> = ObservableField()
     var bankName: ObservableField<String> = ObservableField()
@@ -32,10 +35,17 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
     var accountName: ObservableField<String> = ObservableField()
     var panNumber: ObservableField<String> = ObservableField()
     var panPhoto: ObservableField<String> = ObservableField()
+    var blockingMonths: ObservableField<String> = ObservableField()
 
     init {
         app = application
 
+        blockingMonths.addOnPropertyChangedCallback(object :
+            Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                blockingMonths.get()?.let { dhabaModel.blockMonth = it.toInt() }
+            }
+        })
         user_id.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 user_id.get()?.let { bankModel.user_id = it }
@@ -96,6 +106,41 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
                         progressObserver.value = false
                         callBack.onResponse(
                             ApiResponseModel<BankDetailsModel>(
+                                0,
+                                it.message!!,
+                                null
+                            )
+                        )
+                    }
+                    ApiResult.Status.SUCCESS -> {
+//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
+                        progressObserver.value = false
+                        callBack.onResponse(it.data!!)
+                    }
+                }
+            }
+        }
+    }
+
+    fun addBlockingInfo(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.savedhabaBlocking(
+                    dhabaModel._id,
+                    dhabaModel.blockDay.toString(),
+                    dhabaModel.blockMonth.toString(),
+                    dhabaModel.propertyStatus.toString()
+                )
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+                        progressObserver.value = true
+                    }
+                    ApiResult.Status.ERROR -> {
+                        progressObserver.value = false
+                        callBack.onResponse(
+                            ApiResponseModel<DhabaModel>(
                                 0,
                                 it.message!!,
                                 null

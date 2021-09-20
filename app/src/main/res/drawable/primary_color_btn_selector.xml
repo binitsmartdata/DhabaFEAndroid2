@@ -7,12 +7,18 @@
             <corners android:radius="@dimen/_2sdp" />
         </shape>
     </item>
-    <item android:state_pressed="true">
+    <item>
         <shape>
             <solid android:color="@color/colorPrimaryDark" />
             <corners android:radius="@dimen/_2sdp" />
         </shape>
     </item>
 
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/grey" />
+            <corners android:radius="@dimen/_2sdp" />
+        </shape>
+    </item>
 
 </selector>

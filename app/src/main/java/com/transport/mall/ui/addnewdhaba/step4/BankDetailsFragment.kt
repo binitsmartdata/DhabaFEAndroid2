@@ -5,12 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.RadioButton
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentStep4BankDetailsBinding
 import com.transport.mall.model.BankDetailsModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -47,11 +51,36 @@ class BankDetailsFragment :
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
+
+        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
+        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
     }
 
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
             setData(it)
+        }
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            setBlockingData(it)
+        }
+    }
+
+    private fun setBlockingData(it: DhabaModel) {
+        viewModel.dhabaModel.blockDay.let {
+            when (it) {
+                15 -> binding.rb15Days.isChecked = true
+                30 -> binding.rb30Days.isChecked = true
+                0 -> binding.rbDelisted.isChecked = true
+            }
+        }
+        viewModel.dhabaModel.propertyStatus.let {
+            when (it) {
+                "true" -> binding.rbActive.isChecked = true
+                "false" -> binding.rbInactive.isChecked = true
+            }
+        }
+        viewModel.dhabaModel.blockMonth.let {
+            viewModel.blockingMonths.set(it.toString())
         }
     }
 
@@ -79,6 +108,16 @@ class BankDetailsFragment :
     }
 
     override fun initListeners() {
+        setupBankNameDropdown()
+
+        binding.rgBlockingFor.setOnCheckedChangeListener { radioGroup, i ->
+            viewModel.dhabaModel.blockDay =
+                (activity?.findViewById<RadioButton>(i))?.getTag().toString().toInt()
+        }
+        binding.rgPropertyStatus.setOnCheckedChangeListener { radioGroup, i ->
+            viewModel.dhabaModel.propertyStatus = binding.rbActive.isChecked.toString()
+        }
+
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog()
@@ -103,6 +142,38 @@ class BankDetailsFragment :
         }
     }
 
+    private fun setupBankNameDropdown() {
+        val list: Array<String> = resources.getStringArray(R.array.bankNames)
+        val adapter = ArrayAdapter<String>(
+            activity as Context,
+            android.R.layout.simple_dropdown_item_1line, list
+        )
+        binding.spnrBanks.adapter = adapter
+        binding.spnrBanks.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.bankName.set(list[p2])
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        })
+
+        viewModel.bankName.get()?.let {
+            if (it.isNotEmpty()) {
+                var index = 0
+                for (i in list) {
+                    if (i.equals(it, true)) {
+                        binding.spnrBanks.setSelection(index)
+                        break
+                    }
+                    index += 1
+                }
+            }
+        }
+    }
+
     private fun saveDetails(isDraft: Boolean) {
         if (isDraft || (!isDraft && isHavingPreviousData())) {
             viewModel.bankModel.hasEverything(GenericCallBackTwoParams() { allOk, message ->
@@ -110,12 +181,14 @@ class BankDetailsFragment :
                     viewModel.addBankDetail(GenericCallBack {
                         if (it.data != null) {
                             mListener?.getDhabaModelMain()?.bankDetailsModel = it.data
-                            if (isDraft) {
-                                mListener?.saveAsDraft()
-                                activity?.finish()
-                            } else {
-                                showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
-                            }
+                            viewModel.addBlockingInfo(GenericCallBack {
+                                if (isDraft) {
+                                    mListener?.saveAsDraft()
+                                    activity?.finish()
+                                } else {
+                                    showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                                }
+                            })
                         } else {
                             showToastInCenter(it.message)
                         }
@@ -188,5 +261,6 @@ class BankDetailsFragment :
     fun youAreInFocus() {
         mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.panNumber.set(it?.panNumber) }
         mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.user_id.set(it?._id) }
+        mListener?.getDhabaModelMain()?.dhabaModel?.let { viewModel.dhabaModel = it }
     }
 }

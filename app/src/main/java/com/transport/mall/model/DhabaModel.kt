@@ -30,6 +30,9 @@ class DhabaModel : Serializable {
     var isActive: Boolean = true
     var latitude: String = ""
     var longitude: String = ""
+    var blockDay: Int = 0
+    var blockMonth: Int = 0
+//    var propertyStatus: Boolean = false
 
     fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.isEmpty()) {

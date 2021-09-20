@@ -29,7 +29,7 @@ class LoginVM(application: Application) : BaseVM(application) {
 
     var errorResponse: MutableLiveData<String>? = null
     var progressObserver: MutableLiveData<Boolean>? = null
-    var progressObserverCityStates: MutableLiveData<Boolean>? = null
+    var progressObserverCityStates: MutableLiveData<Boolean>? = MutableLiveData()
 
     var app: Application? = null
 
@@ -71,6 +71,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                                 callBak.onResponse(result.status, "")
                             }
                             ApiResult.Status.ERROR -> {
+                                progressObserver?.value = false
                                 try {
                                     val response =
                                         Gson().fromJson(
@@ -83,6 +84,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                                 }
                             }
                             ApiResult.Status.SUCCESS -> {
+                                progressObserver?.value = false
                                 SharedPrefsHelper.getInstance(app as Context)
                                     .setUserData(result.data?.data!!)
 

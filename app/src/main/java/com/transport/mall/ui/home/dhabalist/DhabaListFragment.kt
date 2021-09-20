@@ -10,7 +10,7 @@ import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaListBinding
 import com.transport.mall.model.CityModel
-import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
@@ -30,7 +30,7 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
         get() = setUpBinding()
         set(value) {}
 
-    private val dhabaList = ArrayList<DhabaModel>()
+    private val dhabaList = ArrayList<DhabaModelMain>()
     var cityList: ArrayList<CityModel> = ArrayList()
     var dhabaListAdapter: DhabaListAdapter? = null
 
@@ -47,10 +47,10 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
         setupCitySelectionViews()
     }
 
-    private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModel>) {
+    private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModelMain>) {
         dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
             GenericCallBack { position ->
-                viewModel.getDhabaById(dhabaList.get(position)._id, GenericCallBack {
+                viewModel.getDhabaById(dhabaList.get(position).dhabaModel?._id!!, GenericCallBack {
                     it.data?.let {
                         AddDhabaActivity.startForUpdate(activity as Context, it)
                     }
@@ -165,10 +165,10 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() 
     }
 
     private fun showFilteredDhabas(filteredCities: ArrayList<CityModel>) {
-        var filteredDhabaList = ArrayList<DhabaModel>()
+        var filteredDhabaList = ArrayList<DhabaModelMain>()
         dhabaList.forEach { dhaba ->
             filteredCities.forEach { city ->
-                if (dhaba.city.contains(city.name_en.toString(), true)) {
+                if (dhaba.dhabaModel?.city?.contains(city.name_en.toString(), true)!!) {
                     filteredDhabaList.add(dhaba)
                 }
             }

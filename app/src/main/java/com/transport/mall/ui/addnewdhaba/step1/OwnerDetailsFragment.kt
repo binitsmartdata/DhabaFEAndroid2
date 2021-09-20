@@ -50,6 +50,9 @@ class OwnerDetailsFragment :
         mListener?.getDhabaModelMain()?.ownerModel?.let {
             setData(it)
         }
+
+        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
+        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
     }
 
     private fun setData(it: DhabaOwnerModel) {

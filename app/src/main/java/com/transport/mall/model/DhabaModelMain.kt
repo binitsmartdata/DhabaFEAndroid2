@@ -28,7 +28,7 @@ class DhabaModelMain : Serializable {
     @SerializedName("securityAmenities")
     var securityAmenitiesModel: SecurityAmenitiesModel? = null
 
-    @SerializedName("lightAmenities")
+    @SerializedName(value = "lightAmenities", alternate = ["LightAmenities"])
     var lightAmenitiesModel: LightAmenitiesModel? = null
 
     @SerializedName("otherAmenities")

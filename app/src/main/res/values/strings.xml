@@ -335,5 +335,13 @@
         <item>Nawashehar</item>
         <item>Chandigarh</item>
     </string-array>
+    <string-array name="bankNames">
+        <item>Punjab National Bank</item>
+        <item>HDFC Bank</item>
+        <item>ICICI Bank</item>
+        <item>Bank Of India</item>
+        <item>Indian Bank</item>
+        <item>IndusInd Bank</item>
+    </string-array>
 
 </resources>

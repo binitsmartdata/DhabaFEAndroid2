@@ -37,13 +37,22 @@ interface ApiService {
     suspend fun getAllDhabaList(
         @Query("limit") limit: String,
         @Query("page") page: String
-    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModel>>>>
+    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModelMain>>>>
 
     @FormUrlEncoded
     @POST("city/getCityByState")
     suspend fun getCitiesByState(
         @Field("state_id") status: String
     ): Response<ApiResponseModel<ArrayList<CityModel>>>
+
+    @FormUrlEncoded
+    @POST("dhaba/blockDhaba")
+    suspend fun savedhabaBlocking(
+        @Field("_id") status: String,
+        @Field("blockDay") blockDay: String,
+        @Field("blockMonth") blockMonth: String,
+        @Field("propertyStatus") propertyStatus: String
+    ): Response<ApiResponseModel<DhabaModel>>
 
     @GET("state/getAllStates")
     suspend fun getAllStates(

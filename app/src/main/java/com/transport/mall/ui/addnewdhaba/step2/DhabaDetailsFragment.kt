@@ -61,6 +61,9 @@ class DhabaDetailsFragment :
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
+
+        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
+        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
     }
 
     private fun showDataIfHas() {

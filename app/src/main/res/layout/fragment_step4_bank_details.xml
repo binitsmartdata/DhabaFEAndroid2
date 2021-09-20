@@ -49,27 +49,39 @@
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/bankTil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bankView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:hint="@string/bank"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/grey_stroke"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bankDetailsText">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnrBanks"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="text"
-                    android:text="@={viewModel.bankName}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/spnrImgDropdown"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/spnrImgDropdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/ic_spinner_dropdown"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/gstNumberTil"
@@ -80,7 +92,7 @@
                 android:hint="@string/gst_number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bankTil">
+                app:layout_constraintTop_toBottomOf="@+id/bankView">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -456,6 +468,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
+                    android:id="@+id/rgBlockingFor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -464,19 +477,25 @@
                     app:layout_constraintTop_toBottomOf="@+id/blockingSystemText">
 
                     <RadioButton
+                        android:id="@+id/rb15Days"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
+                        android:tag="15"
                         android:text="@string/_15_days" />
 
                     <RadioButton
+                        android:id="@+id/rb30Days"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="30"
                         android:text="@string/month" />
 
                     <RadioButton
+                        android:id="@+id/rbDelisted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tag="0"
                         android:text="@string/delisted" />
 
                 </RadioGroup>
@@ -489,6 +508,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:hint="@string/choose_months"
+                android:visibility="@{rb30Days.checked ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/blockingSystemLayout">
@@ -497,8 +517,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="text"
-                    android:text=""
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="@={viewModel.blockingMonths}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp" />
 
@@ -527,20 +548,24 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
+                    android:id="@+id/rgPropertyStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:checkedButton="@id/rbInactive"
                     android:orientation="horizontal"
                     android:paddingVertical="@dimen/_10sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/propertyStatusText">
 
                     <RadioButton
+                        android:id="@+id/rbActive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/active" />
 
                     <RadioButton
+                        android:id="@+id/rbInactive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/inactive" />
