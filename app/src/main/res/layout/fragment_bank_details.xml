@@ -29,10 +29,6 @@
             type="com.transport.mall.model.UserModel" />
 
         <variable
-            name="bankDetailsModel"
-            type="com.transport.mall.model.BankDetailsModel" />
-
-        <variable
             name="isUpdate"
             type="Boolean" />
     </data>
@@ -112,7 +108,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
                         android:maxLength="15"
-                        android:text="@={bankDetailsModel.gstNumber}"
+                        android:text="@={viewModel.bankModel.gstNumber}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -135,7 +131,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
                         android:maxLength="11"
-                        android:text="@={bankDetailsModel.ifscCode}"
+                        android:text="@={viewModel.bankModel.ifscCode}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -158,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@={bankDetailsModel.accountName}"
+                        android:text="@={viewModel.bankModel.accountName}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -181,7 +177,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
                         android:maxLength="10"
-                        android:text="@={bankDetailsModel.panNumber}"
+                        android:text="@={viewModel.bankModel.panNumber}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 

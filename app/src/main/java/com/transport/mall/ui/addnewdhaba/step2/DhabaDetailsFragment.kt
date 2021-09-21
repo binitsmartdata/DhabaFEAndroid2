@@ -57,7 +57,6 @@ class DhabaDetailsFragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
-        binding.dhabaModel = viewModel.dhabaModel
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
@@ -70,7 +69,6 @@ class DhabaDetailsFragment :
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.dhabaModel = it
-            binding.dhabaModel = viewModel.dhabaModel
             setData(it)
         }
     }

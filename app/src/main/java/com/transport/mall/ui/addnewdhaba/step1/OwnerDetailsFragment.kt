@@ -7,7 +7,6 @@ import android.net.Uri
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -50,9 +49,8 @@ class OwnerDetailsFragment :
 
         //SETTING EXISTING DATA ON SCREEN
         mListener?.getDhabaModelMain()?.ownerModel?.let {
-            lifecycleScope.launchWhenStarted {
-                setData(it)
-            }
+            viewModel.ownerModel = it
+            setData(it)
         }
 
         binding.btnNext.isEnabled = !mListener?.isUpdate()!!
@@ -64,51 +62,23 @@ class OwnerDetailsFragment :
     }
 
     private fun setData(it: DhabaOwnerModel) {
-        it.ownerName.let {
-            viewModel.ownerName.set(it)
-        }
-        it.mobile.let {
-            viewModel.mobile.set(it)
-        }
-        it.email.let {
-            viewModel.email.set(it)
-        }
-        it.address.let {
-            viewModel.address.set(it)
-        }
-        it.latitude.let {
-            viewModel.latitude.set(it)
-        }
-        it.longitude.let {
-            viewModel.longitude.set(it)
-        }
-        it.panNumber.let {
-            viewModel.panNumber.set(it)
-        }
-        it.adharCard.let {
-            viewModel.adharCard.set(it)
-        }
         it.ownerPic.let {
             xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
-            viewModel.ownerPic.set(it)
         }
         it.idproofFront.let {
             if (it.isNotEmpty()) {
                 xloadImages(binding.ivFrontId, it, R.drawable.ic_image_placeholder)
-                viewModel.idproofFront.set(it)
             }
         }
         it.idproofBack.let {
             if (it.isNotEmpty()) {
                 xloadImages(binding.ivBackId, it, R.drawable.ic_image_placeholder)
-                viewModel.idproofBack.set(it)
             }
         }
     }
 
     override fun initListeners() {
         setupLocationViews()
-        mListener?.getDhabaModelMain()?.dhabaModel?.let { viewModel.dhaba_id.set(it._id) }
         binding.edPhoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
@@ -162,13 +132,11 @@ class OwnerDetailsFragment :
         binding.tvCurrLocation.setOnClickListener {
             GlobalUtils.getCurrentLocation(activity as Context, GenericCallBack { location ->
                 if (location != null) {
-                    viewModel.address.set(
-                        GlobalUtils.getAddressUsingLatLong(
-                            activity as Context,
-                            location.latitude,
-                            location.longitude
-                        ).fullAddress
-                    )
+                    viewModel.ownerModel.address = GlobalUtils.getAddressUsingLatLong(
+                        activity as Context,
+                        location.latitude,
+                        location.longitude
+                    ).fullAddress!!
                 }
             })
         }
@@ -210,30 +178,24 @@ class OwnerDetailsFragment :
             if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
                 val location = data?.getSerializableExtra("data") as LocationAddressModel?
                 location.let {
-                    viewModel.address.set(it?.fullAddress)
-                    viewModel.latitude.set(it?.latitude.toString())
-                    viewModel.longitude.set(it?.longitude.toString())
+                    viewModel.ownerModel.address = it?.fullAddress!!
+                    viewModel.ownerModel.latitude = it.latitude.toString()
+                    viewModel.ownerModel.longitude = it.longitude.toString()
                 }
             } else {
                 val uri: Uri = data?.data!!
                 when (INTENT_TYPE) {
                     PICKER_OWNER_IMAGE -> {
                         binding.ivOwnerImage.setImageURI(uri)
-                        viewModel.ownerPic.set(
-                            getRealPathFromURI(uri)
-                        )
+                        viewModel.ownerModel.ownerPic = getRealPathFromURI(uri)
                     }
                     PICKER_ID_FRONT -> {
                         binding.ivFrontId.setImageURI(uri)
-                        viewModel.idproofFront.set(
-                            getRealPathFromURI(uri)
-                        )
+                        viewModel.ownerModel.idproofFront = getRealPathFromURI(uri)
                     }
                     PICKER_ID_BACK -> {
                         binding.ivBackId.setImageURI(uri)
-                        viewModel.idproofBack.set(
-                            getRealPathFromURI(uri)
-                        )
+                        viewModel.ownerModel.idproofBack = getRealPathFromURI(uri)
                     }
                 }
             }

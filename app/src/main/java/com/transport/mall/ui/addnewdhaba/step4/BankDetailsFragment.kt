@@ -47,7 +47,6 @@ class BankDetailsFragment :
         binding.executiveModel = SharedPrefsHelper.getInstance(activity as Context).getUserData()
         binding.dhabaModelMain = mListener?.getDhabaModelMain()
         binding.currentDate = GlobalUtils.getCurrentDate()
-        binding.bankDetailsModel = viewModel.bankModel
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
@@ -60,7 +59,6 @@ class BankDetailsFragment :
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
             viewModel.bankModel = it
-            binding.bankDetailsModel = viewModel.bankModel
             setData(it)
         }
         mListener?.getDhabaModelMain()?.dhabaModel?.let {

@@ -1,5 +1,8 @@
 package com.transport.mall.model
 
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.SerializedName
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
@@ -8,45 +11,104 @@ import java.io.Serializable
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class DhabaOwnerModel : Serializable {
+class DhabaOwnerModel : Serializable, BaseObservable() {
     var _id: String = ""
 
     @SerializedName(value = "ownerName", alternate = ["fname"])
     var ownerName: String = ""
+        @Bindable get() = field
+        set(ownerName) {
+            field = ownerName
+            notifyPropertyChanged(BR.ownerName)
+        }
 
     @SerializedName(value = "mobile")
     var mobile: String = ""
+        @Bindable get() = field
+        set(mobile) {
+            field = mobile
+            notifyPropertyChanged(BR.mobile)
+        }
 
     @SerializedName(value = "email")
     var email: String = ""
+        @Bindable get() = field
+        set(email) {
+            field = email
+            notifyPropertyChanged(BR.email)
+        }
 
     @SerializedName(value = "address")
     var address: String = ""
+        @Bindable get() = field
+        set(address) {
+            field = address
+            notifyPropertyChanged(BR.address)
+        }
 
     @SerializedName(value = "location")
     var location: String = ""
+        @Bindable get() = field
+        set(location) {
+            field = location
+            notifyPropertyChanged(BR.location)
+        }
 
     @SerializedName(value = "panNumber")
     var panNumber: String = ""
+        @Bindable get() = field
+        set(panNumber) {
+            field = panNumber
+            notifyPropertyChanged(BR.panNumber)
+        }
 
     @SerializedName(value = "adharCard", alternate = ["aadharNumber"])
     var adharCard: String = ""
+        @Bindable get() = field
+        set(adharCard) {
+            field = adharCard
+            notifyPropertyChanged(BR.adharCard)
+        }
 
     @SerializedName(value = "ownerPic", alternate = ["profileImage"])
     var ownerPic: String = ""
+        @Bindable get() = field
+        set(ownerPic) {
+            field = ownerPic
+            notifyPropertyChanged(BR.ownerPic)
+        }
 
     @SerializedName(value = "idproofFront")
     var idproofFront: String = ""
+        @Bindable get() = field
+        set(idproofFront) {
+            field = idproofFront
+            notifyPropertyChanged(BR.idproofFront)
+        }
 
     @SerializedName(value = "idproofBack")
     var idproofBack: String = ""
+        @Bindable get() = field
+        set(idproofBack) {
+            field = idproofBack
+            notifyPropertyChanged(BR.idproofBack)
+        }
 
     @SerializedName(value = "latitude")
     var latitude: String = ""
+        @Bindable get() = field
+        set(latitude) {
+            field = latitude
+            notifyPropertyChanged(BR.latitude)
+        }
 
     @SerializedName(value = "longitude")
     var longitude: String = ""
-
+        @Bindable get() = field
+        set(longitude) {
+            field = longitude
+            notifyPropertyChanged(BR.longitude)
+        }
 
     fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
         if (ownerName.isEmpty()) {
