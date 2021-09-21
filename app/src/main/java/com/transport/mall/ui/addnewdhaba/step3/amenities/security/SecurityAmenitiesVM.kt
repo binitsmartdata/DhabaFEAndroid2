@@ -40,7 +40,7 @@ class SecurityAmenitiesVM(application: Application) : BaseVM(application) {
                     getMultipartImageFile(
                         model.verificationImg,
                         "verificationImg"
-                    )!!,
+                    ),
                     RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
                     getMultipartImagesList(
                         model.indoorCameraImage,

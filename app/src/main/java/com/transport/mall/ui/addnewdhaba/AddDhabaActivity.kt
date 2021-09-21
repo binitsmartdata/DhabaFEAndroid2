@@ -44,7 +44,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         get() = this
 
     var mIsUpdate = false
-    var mDhabaModelMain = DhabaModelMain()
 
     companion object {
         fun start(context: Context) {
@@ -65,14 +64,13 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         //RECEIVING DATA IN CASE OF UPDATING DHABA
         mIsUpdate = intent.hasExtra("data")
         binding.isUpdate = mIsUpdate
-//        binding.viewPager.setPagingEnabled(mIsUpdate)
-        binding.viewPager.setPagingEnabled(true)
+        binding.viewPager.setPagingEnabled(mIsUpdate)
         if (mIsUpdate) {
-            mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
+            viewModel.mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
         } else {
             SharedPrefsHelper.getInstance(this).getDraftDhaba()?.let {
                 binding.viewPager.setPagingEnabled(true)
-                mDhabaModelMain = it
+                viewModel.mDhabaModelMain = it
             }
         }
 
@@ -126,6 +124,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     private fun setupStepsFragments() {
+        binding.viewPager.offscreenPageLimit = 4
         val adapter = HomeViewPagerAdapter(supportFragmentManager)
 
         val fragment1 = OwnerDetailsFragment()
@@ -142,7 +141,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-
             override fun onPageScrollStateChanged(state: Int) {
             }
 
@@ -161,12 +159,8 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             }
 
             override fun onPageSelected(position: Int) {
-
             }
-
         })
-
-        binding.viewPager.offscreenPageLimit = 3
     }
 
     override fun initListeners() {
@@ -195,14 +189,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     override fun getDhabaId(): String {
-        mDhabaModelMain.dhabaModel?.let {
+        viewModel.mDhabaModelMain.dhabaModel?.let {
             return it._id
         }
         return ""
     }
 
     override fun getDhabaModelMain(): DhabaModelMain {
-        return mDhabaModelMain
+        return viewModel.mDhabaModelMain
     }
 
     override fun isUpdate(): Boolean {

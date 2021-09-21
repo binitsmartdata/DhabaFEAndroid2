@@ -13,7 +13,6 @@
     <string name="music">Music</string>
     <string name="version">Version</string>
     <string name="post_request">Post Request</string>
-
     <string name="server_taking_too_long_to_respond">Server is taking too long to respond OR something is wrong with your internet connection. Please try again later.</string>
     <string name="unable_to_connect">Unable to connect with server</string>
     <string name="please_wait">Please wait...</string>

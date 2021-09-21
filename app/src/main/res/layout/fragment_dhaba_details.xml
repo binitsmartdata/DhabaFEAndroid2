@@ -16,6 +16,10 @@
             name="isUpdate"
             type="Boolean" />
 
+        <variable
+            name="loadingVideo"
+            type="Boolean" />
+
     </data>
 
 
@@ -458,7 +462,14 @@
                                 android:background="@drawable/white_cicle"
                                 android:padding="@dimen/_10sdp"
                                 android:src="@drawable/ic_play" />
+
                         </FrameLayout>
+
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="@{loadingVideo ?View.VISIBLE :View.GONE}" />
 
                     </FrameLayout>
 

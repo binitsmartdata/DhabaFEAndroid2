@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -93,6 +94,14 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
         provider.createParams(obj)
         return ViewModelProvider(
             fragment, provider
+        ).get(obj::class.java) as viewModel
+    }
+
+    fun setUpVM(activity: AppCompatActivity, obj: ViewModel): viewModel {
+        val provider = AppVMProvider()
+        provider.createParams(obj)
+        return ViewModelProvider(
+            activity, provider
         ).get(obj::class.java) as viewModel
     }
 

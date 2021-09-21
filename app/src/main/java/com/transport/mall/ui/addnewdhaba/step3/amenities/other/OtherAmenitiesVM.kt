@@ -44,7 +44,7 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
                     getMultipartImageFile(
                         model.barberImages,
                         "barberImages"
-                    )!!
+                    )
                 )
             ).collect {
                 when (it.status) {

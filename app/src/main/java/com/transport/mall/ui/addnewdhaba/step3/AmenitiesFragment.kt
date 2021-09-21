@@ -8,16 +8,17 @@ import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAmenitiesBinding
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseFragment
+import com.transport.mall.utils.base.BaseVM
 
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
 class AmenitiesFragment :
-    BaseFragment<FragmentAmenitiesBinding, OwnerDetailsVM>() {
+    BaseFragment<FragmentAmenitiesBinding, BaseVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_amenities
-    override var viewModel: OwnerDetailsVM
-        get() = setUpVM(this, OwnerDetailsVM(baseActivity.application))
+    override var viewModel: BaseVM
+        get() = setUpVM(this, BaseVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentAmenitiesBinding
         get() = setUpBinding()

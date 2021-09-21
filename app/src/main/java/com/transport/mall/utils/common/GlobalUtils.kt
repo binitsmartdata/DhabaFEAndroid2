@@ -5,25 +5,19 @@ import android.app.Activity
 import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.ContentUris
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.Configuration
 import android.content.res.Resources
-import android.database.Cursor
 import android.graphics.*
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.media.MediaMetadataRetriever
-import android.media.ThumbnailUtils
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
-import android.os.Environment
-import android.provider.DocumentsContract
-import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Patterns
@@ -37,9 +31,6 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.location.*
 import com.transport.mall.R
 import com.transport.mall.model.LocationAddressModel
-import java.io.BufferedOutputStream
-import java.io.File
-import java.io.FileOutputStream
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -47,6 +38,7 @@ import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.Executors
 
 
 object GlobalUtils {
@@ -626,24 +618,26 @@ object GlobalUtils {
         val addresses: List<Address>
         geocoder = Geocoder(context, Locale.getDefault())
 
-        addresses = geocoder.getFromLocation(
-            latitude,
-            longitude,
-            1
-        ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+        var address = ""
+        var city = ""
+        var state = ""
+        var country = ""
+        var postalCode = ""
+        var knownName = ""
 
-        val address: String =
-            addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        try {
+            // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            addresses = geocoder.getFromLocation(latitude, longitude, 1)
 
-        val city: String = getNonNullString(addresses[0].getLocality(), "")
-        val state: String = getNonNullString(addresses[0].getAdminArea(), "")
-        val country: String = getNonNullString(addresses[0].getCountryName(), "")
-        val postalCode: String = getNonNullString(addresses[0].getPostalCode(), "")
-        val knownName: String = getNonNullString(
-            addresses[0].getFeatureName(),
-            ""
-        ) // Only if available else return NULL
-
+            address = addresses[0].getAddressLine(0)
+            city = getNonNullString(addresses[0].getLocality(), "")
+            state = getNonNullString(addresses[0].getAdminArea(), "")
+            country = getNonNullString(addresses[0].getCountryName(), "")
+            postalCode = getNonNullString(addresses[0].getPostalCode(), "")
+            knownName = getNonNullString(addresses[0].getFeatureName(), "")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
         return LocationAddressModel(
             address,
             city,
@@ -654,12 +648,6 @@ object GlobalUtils {
             latitude,
             longitude
         )
-    }
-
-    fun getThumbnailFromUri(context: Context, uri: Uri): Bitmap {
-        val mMMR = MediaMetadataRetriever()
-        mMMR.setDataSource(context, uri)
-        return mMMR.frameAtTime
     }
 
     @Throws(Throwable::class)

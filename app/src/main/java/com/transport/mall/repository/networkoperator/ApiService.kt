@@ -148,7 +148,7 @@ interface ApiService {
         @Part("enclosed") enclosed: RequestBody,
         @Part("open") open: RequestBody,
         @Part("hotWater") hotWater: RequestBody,
-        @Part images: MultipartBody.Part
+        @Part images: MultipartBody.Part?
     ): Response<ApiResponseModel<SleepingAmenitiesModel>>
 
     @Multipart
@@ -160,7 +160,7 @@ interface ApiService {
         @Part("washroomStatus") washroomStatus: RequestBody,
         @Part("water") water: RequestBody,
         @Part("cleaner") cleaner: RequestBody,
-        @Part images: MultipartBody.Part
+        @Part images: MultipartBody.Part?
     ): Response<ApiResponseModel<WashroomAmenitiesModel>>
 
     @Multipart
@@ -172,7 +172,7 @@ interface ApiService {
         @Part("dayGuard") dayGuard: RequestBody,
         @Part("nightGuard") nightGuard: RequestBody,
         @Part("policVerification") policVerification: RequestBody,
-        @Part verificationImg: MultipartBody.Part,
+        @Part verificationImg: MultipartBody.Part?,
         @Part("indoorCamera") indoorCamera: RequestBody,
         @Part indoorCameraImage: Array<MultipartBody.Part?>,
         @Part("outdoorCamera") outdoorCamera: RequestBody,
@@ -192,7 +192,7 @@ interface ApiService {
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
         @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
         @Part("barber") barber: RequestBody,
-        @Part barberImages: MultipartBody.Part
+        @Part barberImages: MultipartBody.Part?
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
     @Multipart

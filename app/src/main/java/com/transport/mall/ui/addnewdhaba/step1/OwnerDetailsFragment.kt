@@ -11,7 +11,6 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentOwnerDetailsBinding
-import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.model.LocationAddressModel
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
@@ -48,10 +47,7 @@ class OwnerDetailsFragment :
         mListener = activity as AddDhabaListener
 
         //SETTING EXISTING DATA ON SCREEN
-        mListener?.getDhabaModelMain()?.ownerModel?.let {
-            viewModel.ownerModel = it
-            setData(it)
-        }
+        setDataIfHas()
 
         binding.btnNext.isEnabled = !mListener?.isUpdate()!!
         binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
@@ -61,18 +57,22 @@ class OwnerDetailsFragment :
         binding.isUpdate = mListener?.isUpdate()!!
     }
 
-    private fun setData(it: DhabaOwnerModel) {
-        it.ownerPic.let {
-            xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
-        }
-        it.idproofFront.let {
-            if (it.isNotEmpty()) {
-                xloadImages(binding.ivFrontId, it, R.drawable.ic_image_placeholder)
+    private fun setDataIfHas() {
+        mListener?.getDhabaModelMain()?.ownerModel?.let {
+            viewModel.ownerModel = it
+
+            it.ownerPic?.let {
+                xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
             }
-        }
-        it.idproofBack.let {
-            if (it.isNotEmpty()) {
-                xloadImages(binding.ivBackId, it, R.drawable.ic_image_placeholder)
+            it.idproofFront?.let {
+                if (it.isNotEmpty()) {
+                    xloadImages(binding.ivFrontId, it, R.drawable.ic_transparent_placeholder)
+                }
+            }
+            it.idproofBack?.let {
+                if (it.isNotEmpty()) {
+                    xloadImages(binding.ivBackId, it, R.drawable.ic_transparent_placeholder)
+                }
             }
         }
     }

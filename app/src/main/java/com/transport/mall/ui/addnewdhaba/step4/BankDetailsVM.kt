@@ -6,7 +6,6 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.BankDetailsModel
-import com.transport.mall.model.DhabaBlockingModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM

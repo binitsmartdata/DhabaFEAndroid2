@@ -8,12 +8,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentBankDetailsBinding
-import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
@@ -31,7 +31,7 @@ class BankDetailsFragment :
     override val layoutId: Int
         get() = R.layout.fragment_bank_details
     override var viewModel: BankDetailsVM
-        get() = setUpVM(this, BankDetailsVM(baseActivity.application))
+        get() = setUpVM(activity as AppCompatActivity, BankDetailsVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentBankDetailsBinding
         get() = setUpBinding()
@@ -59,7 +59,11 @@ class BankDetailsFragment :
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
             viewModel.bankModel = it
-            setData(it)
+
+            it.panPhoto.let {
+                xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
+                binding.ivPanPhoto.visibility = View.VISIBLE
+            }
         }
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             setBlockingData(it)
@@ -82,13 +86,6 @@ class BankDetailsFragment :
         }
         viewModel.dhabaModel.blockMonth.let {
             viewModel.blockingMonths.set(it.toString())
-        }
-    }
-
-    private fun setData(it: BankDetailsModel) {
-        it.panPhoto.let {
-            xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
-            binding.ivPanPhoto.visibility = View.VISIBLE
         }
     }
 

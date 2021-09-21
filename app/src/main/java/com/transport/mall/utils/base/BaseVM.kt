@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.flowOn
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import java.io.File
 
@@ -54,7 +55,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                 return ApiResult.error(result.message(), result.errorBody())
             }
         } catch (e: Throwable) {
-            ApiResult.error(e.message, null)
+            ApiResult.error(e.message.toString(), null)
         }
     }
 

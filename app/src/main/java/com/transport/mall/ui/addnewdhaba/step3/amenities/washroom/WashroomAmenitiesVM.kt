@@ -38,7 +38,7 @@ class WashroomAmenitiesVM(application: Application) : BaseVM(application) {
                     RequestBody.create(MultipartBody.FORM, model.washroomStatus),
                     RequestBody.create(MultipartBody.FORM, model.water),
                     RequestBody.create(MultipartBody.FORM, model.cleaner),
-                    getMultipartImageFile(model.images, "images")!!
+                    getMultipartImageFile(model.images, "images")
                 )
             ).collect {
                 when (it.status) {

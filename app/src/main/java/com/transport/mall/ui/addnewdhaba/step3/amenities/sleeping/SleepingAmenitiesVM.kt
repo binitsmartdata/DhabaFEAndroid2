@@ -40,7 +40,7 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
                     RequestBody.create(MultipartBody.FORM, model.enclosed),
                     RequestBody.create(MultipartBody.FORM, model.open),
                     RequestBody.create(MultipartBody.FORM, model.hotWater),
-                    getMultipartImageFile(model.images, "images")!!
+                    getMultipartImageFile(model.images, "images")
                 )
             ).collect {
                 when (it.status) {

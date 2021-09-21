@@ -10,13 +10,17 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.deepakkumardk.videopickerlib.EasyVideoPicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
-import com.transport.mall.model.*
+import com.transport.mall.model.CityModel
+import com.transport.mall.model.HighwayModel
+import com.transport.mall.model.LocationAddressModel
+import com.transport.mall.model.StateModel
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -24,12 +28,13 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.GlobalUtils.getAddressUsingLatLong
 import com.transport.mall.utils.common.GlobalUtils.getCurrentLocation
-import com.transport.mall.utils.common.GlobalUtils.getThumbnailFromVideo
 import com.transport.mall.utils.common.GlobalUtils.refreshLocation
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.saveVideoToAppScopeStorage
 import com.transport.mall.utils.createVideoThumbnail
 import com.transport.mall.utils.xloadImages
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 /**
@@ -69,20 +74,24 @@ class DhabaDetailsFragment :
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.dhabaModel = it
-            setData(it)
-        }
-    }
 
-    private fun setData(it: DhabaModel) {
-        it.images.let {
-            xloadImages(binding.ivImageThumb, it, R.drawable.ic_image_placeholder)
-        }
-        it.videos.let {
-            if (it.isNotEmpty()) {
-                val bitmap = getThumbnailFromVideo(it)
-                if (bitmap != null) {
-                    binding.ivVideoThumb.setImageBitmap(bitmap)
-                    binding.frameVideoThumb.visibility = View.VISIBLE
+            it.images.let {
+                xloadImages(binding.ivImageThumb, it, R.drawable.ic_transparent_placeholder)
+            }
+
+            it.videos.let { path ->
+                if (path.isNotEmpty()) {
+                    binding.loadingVideo = true
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        val bitmap = GlobalUtils.getThumbnailFromVideo(path)
+                        if (bitmap != null) {
+                            activity?.runOnUiThread(Runnable {
+                                binding.loadingVideo = false
+                                binding.ivVideoThumb.setImageBitmap(bitmap)
+                                binding.frameVideoThumb.visibility = View.VISIBLE
+                            })
+                        }
+                    }
                 }
             }
         }

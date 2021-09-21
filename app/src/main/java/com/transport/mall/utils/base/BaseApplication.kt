@@ -6,6 +6,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.transport.mall.repository.networkcheck.ConnectivityReceiver
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 class BaseApplication : Application(), LifecycleObserver,
@@ -14,6 +16,7 @@ class BaseApplication : Application(), LifecycleObserver,
         Log.e("AppApplication", "isConnected : $isConnected")
     }
 
+    val executorService: ExecutorService = Executors.newFixedThreadPool(4)
 
     override fun onCreate() {
         super.onCreate()
@@ -27,7 +30,7 @@ class BaseApplication : Application(), LifecycleObserver,
     }
 
     private fun stopConnectivityService() {
-       // stopService(Intent(applicationContext, NetworkSchedulerService::class.java))
+        // stopService(Intent(applicationContext, NetworkSchedulerService::class.java))
     }
 
 
