@@ -76,10 +76,10 @@ class BankDetailsFragment :
                 0 -> binding.rbDelisted.isChecked = true
             }
         }
-        viewModel.dhabaModel.isActive.let {
+        viewModel.dhabaModel.active.let {
             when (it) {
-                true -> binding.rbActive.isChecked = true
-                false -> binding.rbInactive.isChecked = true
+                "true" -> binding.rbActive.isChecked = true
+                "false" -> binding.rbInactive.isChecked = true
             }
         }
         viewModel.dhabaModel.blockMonth.let {
@@ -102,7 +102,7 @@ class BankDetailsFragment :
                 (activity?.findViewById<RadioButton>(i))?.getTag().toString().toInt()
         }
         binding.rgPropertyStatus.setOnCheckedChangeListener { radioGroup, i ->
-            viewModel.dhabaModel.isActive = binding.rbActive.isChecked
+            viewModel.dhabaModel.active = binding.rbActive.isChecked.toString()
         }
 
         viewModel.progressObserver.observe(this, Observer {

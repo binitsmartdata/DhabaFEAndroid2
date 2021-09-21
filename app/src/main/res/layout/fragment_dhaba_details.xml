@@ -13,6 +13,10 @@
             type="com.transport.mall.ui.addnewdhaba.step2.DhabaDetailsVM" />
 
         <variable
+            name="dhabaModel"
+            type="com.transport.mall.model.DhabaModel" />
+
+        <variable
             name="isUpdate"
             type="Boolean" />
 
@@ -50,7 +54,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@={viewModel.name}"
+                        android:text="@={dhabaModel.name}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -73,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text|textMultiLine"
-                        android:text="@={viewModel.address}"
+                        android:text="@={dhabaModel.address}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -134,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@={viewModel.landmark}"
+                        android:text="@={dhabaModel.landmark}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -157,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@={viewModel.area}"
+                        android:text="@={dhabaModel.area}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -345,7 +349,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
                         android:maxLength="6"
-                        android:text="@={viewModel.pincode}"
+                        android:text="@={dhabaModel.pincode}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 

@@ -1,8 +1,6 @@
 package com.transport.mall.ui.addnewdhaba.step2
 
 import android.app.Application
-import androidx.databinding.Observable
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModel
@@ -29,107 +27,8 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
 
     var dhabaModel: DhabaModel = DhabaModel()
 
-    var name: ObservableField<String> = ObservableField()
-    var owner_id: ObservableField<String> = ObservableField()
-    var address: ObservableField<String> = ObservableField()
-    var landmark: ObservableField<String> = ObservableField()
-    var area: ObservableField<String> = ObservableField()
-    var highway: ObservableField<String> = ObservableField()
-    var state: ObservableField<String> = ObservableField()
-    var city: ObservableField<String> = ObservableField()
-    var pincode: ObservableField<String> = ObservableField()
-    var location: ObservableField<String> = ObservableField()
-    var mobile: ObservableField<String> = ObservableField()
-    var propertyStatus: ObservableField<String> = ObservableField()
-    var images: ObservableField<String> = ObservableField()
-    var videos: ObservableField<String> = ObservableField()
-    var latitude: ObservableField<String> = ObservableField()
-    var longitude: ObservableField<String> = ObservableField()
-
     init {
         app = application
-
-        owner_id.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                owner_id.get()?.let { dhabaModel.owner_id = it }
-            }
-        })
-        name.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                name.get()?.let { dhabaModel.name = it }
-            }
-        })
-        address.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                address.get()?.let { dhabaModel.address = it }
-            }
-        })
-        landmark.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                landmark.get()?.let { dhabaModel.landmark = it }
-            }
-        })
-        area.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                area.get()?.let { dhabaModel.area = it }
-            }
-        })
-        highway.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                highway.get()?.let { dhabaModel.highway = it }
-            }
-        })
-        state.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                state.get()?.let { dhabaModel.state = it }
-            }
-        })
-        city.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                city.get()?.let { dhabaModel.city = it }
-            }
-        })
-        pincode.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                pincode.get()?.let { dhabaModel.pincode = it }
-            }
-        })
-        location.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                location.get()?.let { dhabaModel.location = it }
-            }
-        })
-        mobile.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                mobile.get()?.let { dhabaModel.mobile = it }
-            }
-        })
-        propertyStatus.addOnPropertyChangedCallback(object :
-            Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                propertyStatus.get()?.let { dhabaModel.propertyStatus = it }
-            }
-        })
-        images.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                images.get()?.let { dhabaModel.images = it }
-            }
-        })
-        videos.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                videos.get()?.let { dhabaModel.videos = it }
-            }
-        })
-        latitude.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                latitude.get()?.let { dhabaModel.latitude = it }
-            }
-        })
-        longitude.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                longitude.get()?.let { dhabaModel.longitude = it }
-            }
-        })
     }
 
     fun addDhaba(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {

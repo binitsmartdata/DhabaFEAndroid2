@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.deepakkumardk.videopickerlib.EasyVideoPicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
@@ -58,7 +57,7 @@ class DhabaDetailsFragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
-        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.owner_id.set(it?._id) }
+        binding.dhabaModel = viewModel.dhabaModel
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
@@ -70,55 +69,15 @@ class DhabaDetailsFragment :
 
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
-            lifecycleScope.launchWhenStarted {
-                setData(it)
-            }
+            viewModel.dhabaModel = it
+            binding.dhabaModel = viewModel.dhabaModel
+            setData(it)
         }
     }
 
     private fun setData(it: DhabaModel) {
-        it.name.let {
-            viewModel.name.set(it)
-        }
-        it.owner_id.let {
-            viewModel.owner_id.set(it)
-        }
-        it.mobile.let {
-            viewModel.mobile.set(it)
-        }
-        it.address.let {
-            viewModel.address.set(it)
-        }
-        it.latitude.let {
-            viewModel.latitude.set(it)
-        }
-        it.longitude.let {
-            viewModel.longitude.set(it)
-        }
-        it.landmark.let {
-            viewModel.landmark.set(it)
-        }
-        it.area.let {
-            viewModel.area.set(it)
-        }
-        it.highway.let {
-            viewModel.highway.set(it)
-        }
-        it.pincode.let {
-            viewModel.pincode.set(it)
-        }
-        it.propertyStatus.let {
-            viewModel.propertyStatus.set(it)
-        }
-        it.state.let {
-            viewModel.state.set(it)
-        }
-        it.city.let {
-            viewModel.city.set(it)
-        }
         it.images.let {
             xloadImages(binding.ivImageThumb, it, R.drawable.ic_image_placeholder)
-            viewModel.images.set(it)
         }
         it.videos.let {
             if (it.isNotEmpty()) {
@@ -127,7 +86,6 @@ class DhabaDetailsFragment :
                     binding.ivVideoThumb.setImageBitmap(bitmap)
                     binding.frameVideoThumb.visibility = View.VISIBLE
                 }
-                viewModel.videos.set(it)
             }
         }
     }
@@ -153,7 +111,7 @@ class DhabaDetailsFragment :
         binding.spnrPropertyStatus.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.propertyStatus.set(if (p2 == 0) "" else menuArray[p2])
+                viewModel.dhabaModel.propertyStatus = if (p2 == 0) "" else menuArray[p2]
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -162,7 +120,7 @@ class DhabaDetailsFragment :
         })
 
         //set existing value on property status spinner
-        viewModel.propertyStatus.get()?.let {
+        viewModel.dhabaModel.propertyStatus?.let {
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in menuArray) {
@@ -247,7 +205,7 @@ class DhabaDetailsFragment :
         binding.spnrState.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.state.set(stateList.get(p2).name_en)
+                viewModel.dhabaModel.state = stateList.get(p2).name_en!!
                 //GET LIST OF CITIES UNDER SELECTED STATE
 
                 AppDatabase.getInstance(getmContext())?.cityDao()
@@ -263,7 +221,7 @@ class DhabaDetailsFragment :
 
         })
 
-        viewModel.state.get()?.let {
+        viewModel.dhabaModel.state?.let {
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in stateList) {
@@ -286,7 +244,7 @@ class DhabaDetailsFragment :
         binding.spnrHighway.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.highway.set(StateList.get(p2).highwayNumber)
+                viewModel.dhabaModel.highway = StateList.get(p2).highwayNumber!!
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -294,7 +252,7 @@ class DhabaDetailsFragment :
             }
         })
 
-        viewModel.highway.get()?.let {
+        viewModel.dhabaModel.highway?.let {
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in StateList) {
@@ -318,7 +276,7 @@ class DhabaDetailsFragment :
         binding.spnrCity.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.city.set(cityList.get(p2).name_en)
+                viewModel.dhabaModel.city = cityList.get(p2).name_en!!
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -326,7 +284,7 @@ class DhabaDetailsFragment :
             }
         })
 
-        viewModel.city.get()?.let {
+        viewModel.dhabaModel.city?.let {
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in cityList) {
@@ -404,7 +362,7 @@ class DhabaDetailsFragment :
             if (requestCode == INTENT_VIDEO_GALLERY) {
                 val list = EasyVideoPicker.getSelectedVideos(data)
 
-                viewModel.videos.set(list?.get(0)?.videoPath!!)
+                viewModel.dhabaModel.videos = list?.get(0)?.videoPath!!
                 var thumbPath =
                     createVideoThumbnail(activity as Context, viewModel.dhabaModel.videos)
                 var uri = Uri.fromFile(thumbPath)
@@ -418,25 +376,25 @@ class DhabaDetailsFragment :
                 //Save file to upload on server
                 val file = saveVideoToAppScopeStorage(activity as Context, videoUri, mimeType)
 
-                viewModel.videos.set(file?.absolutePath)
+                viewModel.dhabaModel.videos = file?.absolutePath!!
                 binding.ivVideoThumb.setImageBitmap(bitmap)
                 binding.frameVideoThumb.visibility = View.VISIBLE
             } else if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
                 val location = data?.getSerializableExtra("data") as LocationAddressModel?
                 location.let {
-                    viewModel.address.set(it?.fullAddress)
-                    viewModel.latitude.set(it?.latitude.toString())
-                    viewModel.longitude.set(it?.longitude.toString())
+                    viewModel.dhabaModel.address = it?.fullAddress!!
+                    viewModel.dhabaModel.latitude = it.latitude.toString()
+                    viewModel.dhabaModel.longitude = it.longitude.toString()
                 }
             } else {
                 val uri: Uri = data?.data!!
-                viewModel.images.set(getRealPathFromURI(uri))
+                viewModel.dhabaModel.images = getRealPathFromURI(uri)
                 binding.ivImageThumb.setImageURI(uri)
             }
         }
     }
 
     fun youAreInFocus() {
-        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.owner_id.set(it?._id) }
+        mListener?.getDhabaModelMain()?.ownerModel?.let { viewModel.dhabaModel.owner_id = it._id }
     }
 }
