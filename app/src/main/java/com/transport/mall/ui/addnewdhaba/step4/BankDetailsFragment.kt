@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -45,10 +44,10 @@ class BankDetailsFragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
-        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.panNumber.set(it?.ownerName) }
         binding.executiveModel = SharedPrefsHelper.getInstance(activity as Context).getUserData()
         binding.dhabaModelMain = mListener?.getDhabaModelMain()
         binding.currentDate = GlobalUtils.getCurrentDate()
+        binding.bankDetailsModel = viewModel.bankModel
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
@@ -60,6 +59,8 @@ class BankDetailsFragment :
 
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
+            viewModel.bankModel = it
+            binding.bankDetailsModel = viewModel.bankModel
             setData(it)
         }
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
@@ -87,27 +88,9 @@ class BankDetailsFragment :
     }
 
     private fun setData(it: BankDetailsModel) {
-        lifecycleScope.launchWhenStarted {
-            it.bankName.let {
-                viewModel.bankName.set(it)
-            }
-            it.gstNumber.let {
-                viewModel.gstNumber.set(it)
-            }
-            it.ifscCode.let {
-                viewModel.ifscCode.set(it)
-            }
-            it.accountName.let {
-                viewModel.accountName.set(it)
-            }
-            it.panNumber.let {
-                viewModel.panNumber.set(it)
-            }
-            it.panPhoto.let {
-                viewModel.panPhoto.set(it)
-                xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
-                binding.ivPanPhoto.visibility = View.VISIBLE
-            }
+        it.panPhoto.let {
+            xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
+            binding.ivPanPhoto.visibility = View.VISIBLE
         }
     }
 
@@ -161,7 +144,7 @@ class BankDetailsFragment :
         binding.spnrBanks.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.bankName.set(list[p2])
+                viewModel.bankModel.bankName = list[p2]
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -169,7 +152,7 @@ class BankDetailsFragment :
             }
         })
 
-        viewModel.bankName.get()?.let {
+        viewModel.bankModel.bankName?.let {
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in list) {
@@ -242,7 +225,7 @@ class BankDetailsFragment :
             val uri: Uri = data?.data!!
             binding.ivPanPhoto.setImageURI(uri)
             binding.ivPanPhoto.visibility = View.VISIBLE
-            viewModel.panPhoto.set(getRealPathFromURI(uri))
+            viewModel.bankModel.panPhoto = getRealPathFromURI(uri)
         }
     }
 
@@ -268,8 +251,10 @@ class BankDetailsFragment :
     }
 
     fun youAreInFocus() {
-        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.panNumber.set(it?.panNumber) }
-        mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.user_id.set(it?._id) }
+        mListener?.getDhabaModelMain()?.ownerModel?.let {
+            viewModel.bankModel.panNumber = it.panNumber
+        }
+        mListener?.getDhabaModelMain()?.ownerModel?.let { viewModel.bankModel.user_id = it._id }
         mListener?.getDhabaModelMain()?.dhabaModel?.let { viewModel.dhabaModel = it }
     }
 }

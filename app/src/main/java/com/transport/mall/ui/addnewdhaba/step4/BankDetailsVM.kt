@@ -28,13 +28,6 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
     var bankModel = BankDetailsModel()
     var dhabaModel = DhabaModel()
 
-    var user_id: ObservableField<String> = ObservableField()
-    var bankName: ObservableField<String> = ObservableField()
-    var gstNumber: ObservableField<String> = ObservableField()
-    var ifscCode: ObservableField<String> = ObservableField()
-    var accountName: ObservableField<String> = ObservableField()
-    var panNumber: ObservableField<String> = ObservableField()
-    var panPhoto: ObservableField<String> = ObservableField()
     var blockingMonths: ObservableField<String> = ObservableField()
 
     init {
@@ -44,41 +37,6 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
             Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 blockingMonths.get()?.let { dhabaModel.blockMonth = it.toInt() }
-            }
-        })
-        user_id.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                user_id.get()?.let { bankModel.user_id = it }
-            }
-        })
-        bankName.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                bankName.get()?.let { bankModel.bankName = it }
-            }
-        })
-        gstNumber.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                gstNumber.get()?.let { bankModel.gstNumber = it }
-            }
-        })
-        ifscCode.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                ifscCode.get()?.let { bankModel.ifscCode = it }
-            }
-        })
-        accountName.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                accountName.get()?.let { bankModel.accountName = it }
-            }
-        })
-        panNumber.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                panNumber.get()?.let { bankModel.panNumber = it }
-            }
-        })
-        panPhoto.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                panPhoto.get()?.let { bankModel.panPhoto = it }
             }
         })
     }
