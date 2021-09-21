@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
-import com.transport.mall.databinding.FragmentAddDhabaStep2Binding
+import com.transport.mall.databinding.FragmentOwnerDetailsBinding
 import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.model.LocationAddressModel
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
@@ -25,13 +25,13 @@ import com.transport.mall.utils.xloadImages
  * Created by Parambir Singh on 2019-12-06.
  */
 class OwnerDetailsFragment :
-    BaseFragment<FragmentAddDhabaStep2Binding, OwnerDetailsVM>() {
+    BaseFragment<FragmentOwnerDetailsBinding, OwnerDetailsVM>() {
     override val layoutId: Int
-        get() = R.layout.fragment_add_dhaba_step2
+        get() = R.layout.fragment_owner_details
     override var viewModel: OwnerDetailsVM
         get() = setUpVM(this, OwnerDetailsVM(baseActivity.application))
         set(value) {}
-    override var binding: FragmentAddDhabaStep2Binding
+    override var binding: FragmentOwnerDetailsBinding
         get() = setUpBinding()
         set(value) {}
 
@@ -149,7 +149,7 @@ class OwnerDetailsFragment :
             if (mListener?.getDhabaModelMain()?.ownerModel != null) {
                 mListener?.saveAsDraft()
                 activity?.finish()
-            }else {
+            } else {
                 saveDetails(true)
             }
         }

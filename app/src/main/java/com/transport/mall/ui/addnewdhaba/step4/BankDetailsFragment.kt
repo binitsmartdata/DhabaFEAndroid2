@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
-import com.transport.mall.databinding.FragmentStep4BankDetailsBinding
+import com.transport.mall.databinding.FragmentBankDetailsBinding
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
@@ -28,13 +28,13 @@ import com.transport.mall.utils.xloadImages
  * Created by Parambir Singh on 2019-12-06.
  */
 class BankDetailsFragment :
-    BaseFragment<FragmentStep4BankDetailsBinding, BankDetailsVM>() {
+    BaseFragment<FragmentBankDetailsBinding, BankDetailsVM>() {
     override val layoutId: Int
-        get() = R.layout.fragment_step4_bank_details
+        get() = R.layout.fragment_bank_details
     override var viewModel: BankDetailsVM
         get() = setUpVM(this, BankDetailsVM(baseActivity.application))
         set(value) {}
-    override var binding: FragmentStep4BankDetailsBinding
+    override var binding: FragmentBankDetailsBinding
         get() = setUpBinding()
         set(value) {}
 

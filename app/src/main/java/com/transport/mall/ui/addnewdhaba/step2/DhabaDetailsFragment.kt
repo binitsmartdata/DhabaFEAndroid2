@@ -16,7 +16,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.AppDatabase
-import com.transport.mall.databinding.FragmentAddDhabaStep1Binding
+import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
@@ -37,13 +37,13 @@ import com.transport.mall.utils.xloadImages
  * Created by Parambir Singh on 2019-12-06.
  */
 class DhabaDetailsFragment :
-    BaseFragment<FragmentAddDhabaStep1Binding, DhabaDetailsVM>() {
+    BaseFragment<FragmentDhabaDetailsBinding, DhabaDetailsVM>() {
     override val layoutId: Int
-        get() = R.layout.fragment_add_dhaba_step1
+        get() = R.layout.fragment_dhaba_details
     override var viewModel: DhabaDetailsVM
         get() = setUpVM(this, DhabaDetailsVM(baseActivity.application))
         set(value) {}
-    override var binding: FragmentAddDhabaStep1Binding
+    override var binding: FragmentDhabaDetailsBinding
         get() = setUpBinding()
         set(value) {}
 
@@ -438,6 +438,5 @@ class DhabaDetailsFragment :
 
     fun youAreInFocus() {
         mListener?.getDhabaModelMain()?.ownerModel.let { viewModel.owner_id.set(it?._id) }
-        showDataIfHas()
     }
 }

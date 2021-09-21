@@ -11,6 +11,7 @@ import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaListBinding
 import com.transport.mall.model.CityModel
 import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -55,13 +56,11 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
     private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModelMain>) {
         dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
             GenericCallBack { position ->
-/*
                 viewModel.getDhabaById(dhabaList.get(position).dhabaModel?._id!!, GenericCallBack {
                     it.data?.let {
                         AddDhabaActivity.startForUpdate(activity as Context, it)
                     }
                 })
-*/
             })
         dhabaListAdapter?.setOnLoadMoreListener {
             page++

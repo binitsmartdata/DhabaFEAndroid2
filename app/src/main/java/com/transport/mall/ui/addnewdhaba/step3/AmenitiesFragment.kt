@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
-import com.transport.mall.databinding.FragmentAddDhabaStep3Binding
+import com.transport.mall.databinding.FragmentAmenitiesBinding
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseFragment
 
@@ -13,13 +13,13 @@ import com.transport.mall.utils.base.BaseFragment
  * Created by Parambir Singh on 2019-12-06.
  */
 class AmenitiesFragment :
-    BaseFragment<FragmentAddDhabaStep3Binding, OwnerDetailsVM>() {
+    BaseFragment<FragmentAmenitiesBinding, OwnerDetailsVM>() {
     override val layoutId: Int
-        get() = R.layout.fragment_add_dhaba_step3
+        get() = R.layout.fragment_amenities
     override var viewModel: OwnerDetailsVM
         get() = setUpVM(this, OwnerDetailsVM(baseActivity.application))
         set(value) {}
-    override var binding: FragmentAddDhabaStep3Binding
+    override var binding: FragmentAmenitiesBinding
         get() = setUpBinding()
         set(value) {}
 
