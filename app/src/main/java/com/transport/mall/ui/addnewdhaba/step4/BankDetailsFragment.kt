@@ -15,6 +15,7 @@ import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentBankDetailsBinding
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -202,7 +203,15 @@ class BankDetailsFragment :
                         goToHomeScreen()
                     }
                     DialogAddDhabaSuccess.SELECTED_ACTION.VIEW_DHABA -> {
-
+                        viewModel.progressObserver.value = true
+                        viewModel.getDhabaById(dhabaId, GenericCallBack {
+                            viewModel.progressObserver.value = false
+                            if (it.data != null) {
+                                AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
+                            } else {
+                                showToastInCenter(it.message)
+                            }
+                        })
                     }
                 }
             }).show()

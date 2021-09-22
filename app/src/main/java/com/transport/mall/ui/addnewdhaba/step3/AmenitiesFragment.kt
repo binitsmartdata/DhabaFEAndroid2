@@ -51,43 +51,50 @@ class AmenitiesFragment :
             AmenitiesActivity.start(
                 activity as Context,
                 AmenitiesActivity.FOOD,
-                mListener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!,
+                mListener?.isUpdate()!!
             )
         }
         binding.cardParking.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.PARKING,
-                mListener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!,
+                mListener?.isUpdate()!!
             )
         }
         binding.cardSleeping.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SLEEPING,
-                mListener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!,
+                mListener?.isUpdate()!!
             )
         }
         binding.cardWashroom.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.WASHROOM,
-                mListener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!,
+                mListener?.isUpdate()!!
             )
         }
         binding.cardSecurity.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SECURITY,
-                mListener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!,
+                mListener?.isUpdate()!!
             )
         }
         binding.cardOther.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.OTHER,
-                mListener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!,
+                mListener?.isUpdate()!!
             )
         }
         binding.cardLights.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.LIGHT,
-                mListener?.getDhabaModelMain()!!
+                mListener?.getDhabaModelMain()!!,
+                mListener?.isUpdate()!!
             )
         }
     }

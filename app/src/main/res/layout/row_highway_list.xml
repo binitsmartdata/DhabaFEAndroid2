@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="highway"
+            type="com.transport.mall.model.HighwayModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/containerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/opensans_semibold"
+        android:orientation="vertical"
+        android:background="@drawable/default_btn_selector"
+        android:padding="@dimen/_10sdp"
+        android:text="@{highway.highwayNumber}"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        tools:text="@string/city_name" />
+
+</layout>

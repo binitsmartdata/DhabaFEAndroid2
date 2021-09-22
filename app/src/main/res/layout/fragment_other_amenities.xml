@@ -10,6 +10,10 @@
         <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="isUpdate"
+            type="Boolean" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -503,7 +507,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_20sdp"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="@string/save"
+                android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 

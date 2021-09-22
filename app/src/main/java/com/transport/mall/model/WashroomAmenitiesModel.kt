@@ -6,6 +6,9 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 class WashroomAmenitiesModel : Serializable {
+    @SerializedName(value = "_id")
+    var _id = ""
+
     @SerializedName(value = "service_id")
     var service_id = "1"
 

@@ -7,16 +7,23 @@ import android.view.Gravity
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
+import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.repository.networkoperator.ApiService
 import com.transport.mall.repository.networkoperator.NetworkAdapter
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -139,4 +146,29 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             toast.show()
         }
     }
+
+    fun getDhabaById(dhabaId: String, callBack: GenericCallBack<ApiResponseModel<DhabaModelMain>>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.getDhabaByID(dhabaId)
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+
+                    }
+                    ApiResult.Status.ERROR -> {
+                        try {
+                            callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<DhabaModelMain>?)
+                        } catch (e: Exception) {
+                            callBack.onResponse(ApiResponseModel(0, it.message!!, null))
+                        }
+                    }
+                    ApiResult.Status.SUCCESS -> {
+                        callBack.onResponse(it.data)
+                    }
+                }
+            }
+        }
+    }
+
 }

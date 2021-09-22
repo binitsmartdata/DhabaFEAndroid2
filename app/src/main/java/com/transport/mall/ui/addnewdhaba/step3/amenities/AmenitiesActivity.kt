@@ -51,18 +51,11 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
         const val LIGHT = 6
         const val OTHER = 7
 
-        fun start(context: Context, amenityType: Int, dhabaModel: DhabaModelMain) {
+        fun start(context: Context, amenityType: Int, dhabaModel: DhabaModelMain, isUpdate: Boolean) {
             val starter = Intent(context, AmenitiesActivity::class.java)
             starter.putExtra(AMENITY_TYPE, amenityType)
             starter.putExtra(DHABA_MODEL, dhabaModel)
-            (context as Activity).startActivityForResult(starter, amenityType)
-        }
-
-        fun startForUpdate(context: Context, amenityType: Int, dhabaModel: DhabaModelMain) {
-            val starter = Intent(context, AmenitiesActivity::class.java)
-            starter.putExtra(AMENITY_TYPE, amenityType)
-            starter.putExtra(DHABA_MODEL, dhabaModel)
-            starter.putExtra("isUpdate", true)
+            starter.putExtra("isUpdate", isUpdate)
             (context as Activity).startActivityForResult(starter, amenityType)
         }
     }
@@ -92,16 +85,29 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
     }
 
     private fun getTitleByType(): String {
-        when (amanityType) {
-            FOOD -> return getString(R.string.food_amen_title)
-            PARKING -> return getString(R.string.parking_amen_title)
-            SLEEPING -> return getString(R.string.sleeping_amen_title)
-            WASHROOM -> return getString(R.string.washroom_amen_title)
-            SECURITY -> return getString(R.string.security_amen_title)
-            LIGHT -> return getString(R.string.add_light_amenities)
-            OTHER -> return getString(R.string.other_amen_title)
+        if (isUpdate) {
+            when (amanityType) {
+                FOOD -> return getString(R.string.update_food_amen)
+                PARKING -> return getString(R.string.update_parking_amen)
+                SLEEPING -> return getString(R.string.update_sleeping_amen)
+                WASHROOM -> return getString(R.string.update_washroom_amen)
+                SECURITY -> return getString(R.string.update_security_amen)
+                LIGHT -> return getString(R.string.update_light_amen)
+                OTHER -> return getString(R.string.update_other_amen)
+            }
+            return getString(R.string.update_amen)
+        } else {
+            when (amanityType) {
+                FOOD -> return getString(R.string.food_amen_title)
+                PARKING -> return getString(R.string.parking_amen_title)
+                SLEEPING -> return getString(R.string.sleeping_amen_title)
+                WASHROOM -> return getString(R.string.washroom_amen_title)
+                SECURITY -> return getString(R.string.security_amen_title)
+                LIGHT -> return getString(R.string.add_light_amenities)
+                OTHER -> return getString(R.string.other_amen_title)
+            }
+            return getString(R.string.amen_title)
         }
-        return getString(R.string.amen_title)
     }
 
     override fun initListeners() {

@@ -101,8 +101,6 @@ class FoodAmenitiesFragment :
                 refreshGalleryImages()
             }
         }
-
-        binding.btnSaveDhaba.visibility = View.GONE
     }
 
     private fun setupOptionsListener() {

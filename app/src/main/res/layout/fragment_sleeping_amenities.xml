@@ -10,6 +10,10 @@
         <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="isUpdate"
+            type="Boolean" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -113,8 +117,8 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:background="@color/grey_light"
                 android:layout_height="@dimen/_130sdp"
+                android:background="@color/grey_light"
                 android:visibility="@{rbBedCharpaiYes.checked ? View.VISIBLE : View.GONE}">
 
                 <LinearLayout
@@ -146,9 +150,9 @@
                     android:id="@+id/ivSleepingImg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone"
                     android:background="@color/grey_light"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -343,7 +347,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_20sdp"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="Save"
+                android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 

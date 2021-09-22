@@ -47,26 +47,60 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
                     )
                 )
             ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel(
-                                0,
-                                it.message!!,
-                                null
-                            )
-                        )
-                    }
-                    ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-                        progressObserver.value = false
-                        callBack.onResponse(it.data)
-                    }
-                }
+                handleResponse(it, callBack)
+            }
+        }
+    }
+
+    fun updateOtherAmenities(callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.updateOtherAmenities(
+                    RequestBody.create(MultipartBody.FORM, model._id),
+                    RequestBody.create(MultipartBody.FORM, model.service_id),
+                    RequestBody.create(MultipartBody.FORM, model.module_id),
+                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                    RequestBody.create(MultipartBody.FORM, model.mechanicShop.toString()),
+                    RequestBody.create(MultipartBody.FORM, model.mechanicShopDay.toString()),
+                    RequestBody.create(MultipartBody.FORM, model.punctureshop.toString()),
+                    RequestBody.create(MultipartBody.FORM, model.punctureshopDay.toString()),
+                    RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
+                    RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
+                    RequestBody.create(MultipartBody.FORM, model.barber.toString()),
+                    getMultipartImageFile(
+                        model.barberImages,
+                        "barberImages"
+                    )
+                )
+            ).collect {
+                handleResponse(it, callBack)
+            }
+        }
+    }
+
+    private fun handleResponse(
+        it: ApiResult<ApiResponseModel<OtherAmenitiesModel>>,
+        callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>
+    ) {
+        when (it.status) {
+            ApiResult.Status.LOADING -> {
+                progressObserver.value = true
+            }
+            ApiResult.Status.ERROR -> {
+                progressObserver.value = false
+                callBack.onResponse(
+                    ApiResponseModel(
+                        0,
+                        it.message!!,
+                        null
+                    )
+                )
+            }
+            ApiResult.Status.SUCCESS -> {
+                //                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
+                progressObserver.value = false
+                callBack.onResponse(it.data)
             }
         }
     }

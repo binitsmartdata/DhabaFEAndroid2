@@ -13,16 +13,16 @@
             type="Integer" />
 
         <variable
+            name="highway"
+            type="com.transport.mall.model.HighwayModel" />
+
+        <variable
             name="data"
             type="com.transport.mall.model.CityModel" />
 
         <variable
             name="callback"
             type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
-
-        <variable
-            name="selectedPosition"
-            type="java.lang.Boolean" />
 
         <variable
             name="context"

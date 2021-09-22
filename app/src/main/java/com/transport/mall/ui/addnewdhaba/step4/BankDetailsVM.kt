@@ -58,8 +58,7 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        progressObserver.value =
-                            true
+                        progressObserver.value = true
                     }
                     ApiResult.Status.ERROR -> {
                         progressObserver.value = false

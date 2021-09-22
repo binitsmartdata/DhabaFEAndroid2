@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentWashroomAmenitiesBinding
 import com.transport.mall.model.WashroomAmenitiesModel
 import com.transport.mall.utils.base.BaseFragment
@@ -33,6 +34,7 @@ class WashroomAmenitiesFragment :
     override fun bindData() {
         mListener = activity as AddDhabaListener
         binding.context = activity
+        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -46,6 +48,7 @@ class WashroomAmenitiesFragment :
     }
 
     private fun setData(it: WashroomAmenitiesModel) {
+        viewModel.model = it
         it.washroomStatus.let {
             val value = it.toBoolean()
             if (value) {
@@ -83,8 +86,6 @@ class WashroomAmenitiesFragment :
                 binding.ivWashroomPhoto.visibility = View.VISIBLE
             }
         }
-
-        binding.btnSaveDhaba.visibility = View.GONE
     }
 
     private fun setupLicensePhotoViews() {
@@ -146,21 +147,31 @@ class WashroomAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        viewModel.addWashroomAmenities(GenericCallBack {
-                            if (it.data != null) {
-                                showToastInCenter(getString(R.string.sleeping_amen_saved))
-                                var intent = Intent()
-                                intent.putExtra("data", it.data)
-                                activity?.setResult(Activity.RESULT_OK, intent)
-                                activity?.finish()
-                            } else {
-                                showToastInCenter(it.message)
-                            }
-                        })
+                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                            viewModel.updatewashroomAmenities(GenericCallBack {
+                                handleData(it)
+                            })
+                        } else {
+                            viewModel.addWashroomAmenities(GenericCallBack {
+                                handleData(it)
+                            })
+                        }
                     } else {
                         showToastInCenter(message)
                     }
                 })
+        }
+    }
+
+    private fun handleData(it: ApiResponseModel<WashroomAmenitiesModel>) {
+        if (it.data != null) {
+            showToastInCenter(getString(R.string.amen_saved))
+            var intent = Intent()
+            intent.putExtra("data", it.data)
+            activity?.setResult(Activity.RESULT_OK, intent)
+            activity?.finish()
+        } else {
+            showToastInCenter(it.message)
         }
     }
 

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOtherAmenitiesBinding
 import com.transport.mall.model.OtherAmenitiesModel
 import com.transport.mall.utils.base.BaseFragment
@@ -35,6 +36,7 @@ class OtherAmenitiesFragment :
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
+        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -109,8 +111,6 @@ class OtherAmenitiesFragment :
             xloadImages(binding.ivBarberImg, it, R.drawable.ic_image_placeholder)
             binding.ivBarberImg.visibility = View.VISIBLE
         }
-
-        binding.btnSaveDhaba.visibility = View.GONE
     }
 
     private fun setupLicensePhotoViews() {
@@ -167,22 +167,32 @@ class OtherAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        viewModel.addOtherAmenities(GenericCallBack {
-                            if (it.data != null) {
-                                showToastInCenter(getString(R.string.amen_saved))
-                                val intent = Intent()
-                                intent.putExtra("data", it.data)
-                                activity?.setResult(Activity.RESULT_OK, intent)
-                                activity?.finish()
-                            } else {
-                                showToastInCenter(it.message)
-                            }
-                        })
+                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                            viewModel.updateOtherAmenities(GenericCallBack {
+                                handleData(it)
+                            })
+                        } else {
+                            viewModel.addOtherAmenities(GenericCallBack {
+                                handleData(it)
+                            })
+                        }
                     } else {
                         showToastInCenter(message)
                     }
                 })
 
+        }
+    }
+
+    private fun handleData(it: ApiResponseModel<OtherAmenitiesModel>) {
+        if (it.data != null) {
+            showToastInCenter(getString(R.string.amen_saved))
+            val intent = Intent()
+            intent.putExtra("data", it.data)
+            activity?.setResult(Activity.RESULT_OK, intent)
+            activity?.finish()
+        } else {
+            showToastInCenter(it.message)
         }
     }
 

@@ -56,9 +56,13 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
     private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModelMain>) {
         dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
             GenericCallBack { position ->
+                viewModel.dialogProgressObserver.value = true
                 viewModel.getDhabaById(dhabaList.get(position).dhabaModel?._id!!, GenericCallBack {
-                    it.data?.let {
-                        AddDhabaActivity.startForUpdate(activity as Context, it)
+                    viewModel.dialogProgressObserver.value = false
+                    if (it.data != null) {
+                        AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
+                    } else {
+                        showToastInCenter(it.message)
                     }
                 })
             })

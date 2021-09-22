@@ -175,8 +175,37 @@ interface ApiService {
     ): Response<ApiResponseModel<SleepingAmenitiesModel>>
 
     @Multipart
+    @POST("dhaba/updateSleepingAmenities")
+    suspend fun updateSleepingAmenities(
+        @Part("_id") _id: RequestBody,
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("sleeping") sleeping: RequestBody,
+        @Part("noOfBeds") noOfBeds: RequestBody,
+        @Part("fan") fan: RequestBody,
+        @Part("enclosed") enclosed: RequestBody,
+        @Part("open") open: RequestBody,
+        @Part("hotWater") hotWater: RequestBody,
+        @Part images: MultipartBody.Part?
+    ): Response<ApiResponseModel<SleepingAmenitiesModel>>
+
+    @Multipart
     @POST("dhaba/addWashroomAmenities")
     suspend fun addWashroomAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("washroomStatus") washroomStatus: RequestBody,
+        @Part("water") water: RequestBody,
+        @Part("cleaner") cleaner: RequestBody,
+        @Part images: MultipartBody.Part?
+    ): Response<ApiResponseModel<WashroomAmenitiesModel>>
+
+    @Multipart
+    @POST("dhaba/updatewashroomAmenities")
+    suspend fun updatewashroomAmenities(
+        @Part("_id") _id: RequestBody,
         @Part("service_id") service_id: RequestBody,
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,
@@ -219,8 +248,39 @@ interface ApiService {
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
     @Multipart
+    @POST("dhaba/updateOtherAmenities")
+    suspend fun updateOtherAmenities(
+        @Part("_id") _id: RequestBody,
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("mechanicShop") mechanicShop: RequestBody,
+        @Part("mechanicShopDay") mechanicShopDay: RequestBody,
+        @Part("punctureshop") punctureshop: RequestBody,
+        @Part("punctureshopDay") punctureshopDay: RequestBody,
+        @Part("dailyutilityshop") dailyutilityshop: RequestBody,
+        @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
+        @Part("barber") barber: RequestBody,
+        @Part barberImages: MultipartBody.Part?
+    ): Response<ApiResponseModel<OtherAmenitiesModel>>
+
+    @Multipart
     @POST("dhaba/addLightAmenities")
     suspend fun addLightAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("towerLight") towerLight: RequestBody,
+        @Part towerLightImage: MultipartBody.Part?,
+        @Part("bulbLight") bulbLight: RequestBody,
+        @Part bulbLightImage: MultipartBody.Part?,
+        @Part("electricityBackup") electricityBackup: RequestBody
+    ): Response<ApiResponseModel<LightAmenitiesModel>>
+
+    @Multipart
+    @POST("dhaba/updateLightAmenities")
+    suspend fun updateLightAmenities(
+        @Part("_id") _id: RequestBody,
         @Part("service_id") service_id: RequestBody,
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,

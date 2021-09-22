@@ -181,13 +181,17 @@
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/areaTil">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spnrHighway"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvHighway"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
-                        android:background="@null"
                         android:gravity="center_vertical"
+                        android:hint="@string/highway_number"
+                        android:text="@={viewModel.dhabaModel.highway}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/spnrImgDropdown"
                         app:layout_constraintStart_toStartOf="parent"

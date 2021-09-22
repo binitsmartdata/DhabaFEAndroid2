@@ -47,7 +47,7 @@ class DialogAddDhabaSuccess constructor(
         }
         binding.btnViewDhaba.setOnClickListener {
             callBack.onResponse(SELECTED_ACTION.VIEW_DHABA)
-//            dismiss()
+            dismiss()
         }
         binding.ivTick.visibility = View.VISIBLE
         Handler().postDelayed(

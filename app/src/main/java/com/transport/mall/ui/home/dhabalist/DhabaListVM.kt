@@ -61,36 +61,4 @@ class DhabaListVM(application: Application) : BaseVM(application) {
             }
         }
     }
-
-    fun getDhabaById(dhabaId: String, callBack: GenericCallBack<ApiResponseModel<DhabaModelMain>>) {
-        dialogProgressObserver.value = true
-        GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.getDhabaByID(dhabaId)
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        dialogProgressObserver.value =
-                            true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        dialogProgressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel<DhabaModelMain>(
-                                0,
-                                it.message!!,
-                                null
-                            )
-                        )
-                    }
-                    ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-                        dialogProgressObserver.value = false
-                        callBack.onResponse(it.data)
-                    }
-                }
-            }
-        }
-    }
-
 }

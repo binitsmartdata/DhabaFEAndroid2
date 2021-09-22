@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentSleepingAmenitiesBinding
 import com.transport.mall.model.SleepingAmenitiesModel
 import com.transport.mall.ui.addnewdhaba.step3.foodamenities.SleepingAmenitiesVM
@@ -37,6 +38,7 @@ class SleepingAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.lifecycleOwner = this
+        binding.isUpdate = mListener?.isUpdate()!!
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -50,6 +52,7 @@ class SleepingAmenitiesFragment :
     }
 
     private fun setData(it: SleepingAmenitiesModel) {
+        viewModel.model = it
         it.sleeping.let {
             val value = it.toBoolean()
             if (value) {
@@ -116,8 +119,6 @@ class SleepingAmenitiesFragment :
                 binding.rbHotWaterNo.isChecked = true
             }
         }
-
-        binding.btnSaveDhaba.visibility = View.GONE
     }
 
     private fun setupLicensePhotoViews() {
@@ -202,21 +203,35 @@ class SleepingAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        viewModel.addSleepingAmenities(GenericCallBack {
-                            if (it.data != null) {
-                                showToastInCenter(getString(R.string.sleeping_amen_saved))
-                                val intent = Intent()
-                                intent.putExtra("data", it.data)
-                                activity?.setResult(Activity.RESULT_OK, intent)
-                                activity?.finish()
-                            } else {
-                                showToastInCenter(it.message)
-                            }
-                        })
+                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                            viewModel.updateSleepingAmenities(GenericCallBack {
+                                handleResponse(it)
+                            })
+                        } else {
+                            viewModel.addSleepingAmenities(GenericCallBack {
+                                handleResponse(it)
+                            })
+                        }
                     } else {
                         showToastInCenter(message)
                     }
                 })
+        }
+    }
+
+    private fun handleResponse(it: ApiResponseModel<SleepingAmenitiesModel>) {
+        if (it.data != null) {
+            if (mListener?.isUpdate()!!) {
+                showToastInCenter(getString(R.string.updated_successfully))
+            } else {
+                showToastInCenter(getString(R.string.sleeping_amen_saved))
+            }
+            val intent = Intent()
+            intent.putExtra("data", it.data)
+            activity?.setResult(Activity.RESULT_OK, intent)
+            activity?.finish()
+        } else {
+            showToastInCenter(it.message)
         }
     }
 

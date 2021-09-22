@@ -20,6 +20,7 @@ import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
+import com.transport.mall.ui.customdialogs.DialogHighwaySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
@@ -264,33 +265,12 @@ class DhabaDetailsFragment :
     }
 
     private fun setHighwayAdapter(StateList: ArrayList<HighwayModel>) {
-        highwayAdapter = ArrayAdapter(
-            activity as Context,
-            android.R.layout.simple_list_item_1, StateList
-        )
-        binding.spnrHighway.setAdapter(highwayAdapter)
-        binding.spnrHighway.setOnItemSelectedListener(object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.dhabaModel.highway = StateList.get(p2).highwayNumber!!
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-        })
-
-        viewModel.dhabaModel.highway?.let {
-            if (it.isNotEmpty()) {
-                var index = 0
-                for (i in StateList) {
-                    if (i.highwayNumber.equals(it)) {
-                        binding.spnrHighway.setSelection(index)
-                        break
-                    }
-                    index += 1
-                }
-            }
+        binding.tvHighway.setOnClickListener {
+            AppDatabase.getInstance(getmContext())?.highwayDao()?.getAll()?.observe(this@DhabaDetailsFragment, Observer {
+                DialogHighwaySelection(getmContext(), it as ArrayList<HighwayModel>, GenericCallBack {
+                    viewModel.dhabaModel.highway = it.highwayNumber!!
+                }).show()
+            })
         }
     }
 
