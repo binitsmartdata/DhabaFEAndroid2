@@ -187,7 +187,7 @@
             <FrameLayout
                 android:id="@+id/llLicensePhoto"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_130sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:background="@color/grey_light"
                 android:visibility="@{rbPoliceVerificationYes.checked ? View.VISIBLE : View.GONE}">
 

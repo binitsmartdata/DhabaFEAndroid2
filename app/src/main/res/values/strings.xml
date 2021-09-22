@@ -232,6 +232,13 @@
     <string name="click_on_map_to_get_address">Click on map to get address</string>
     <string name="update_dhaba">Update Dhaba</string>
     <string name="fetching_states_cities_highways">Fetching States,Cities and Highways</string>
+    <string name="update">Update</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="select_video_source">Select Video Source</string>
+    <string name="saving_dhaba_details">Saving Dhaba Details</string>
+    <string name="updating_dhaba_details">Updating Dhaba Details</string>
+    <string name="dhaba_updated_successfully">Dhaba Details Updated Successfully</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

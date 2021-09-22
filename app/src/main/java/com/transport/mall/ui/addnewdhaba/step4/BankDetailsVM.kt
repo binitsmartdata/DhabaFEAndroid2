@@ -10,6 +10,7 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
@@ -35,7 +36,8 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
         blockingMonths.addOnPropertyChangedCallback(object :
             Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                blockingMonths.get()?.let { dhabaModel.blockMonth = it.toInt() }
+                blockingMonths.get()
+                    ?.let { dhabaModel.blockMonth = GlobalUtils.getNonNullString(it, "0").toInt() }
             }
         })
     }

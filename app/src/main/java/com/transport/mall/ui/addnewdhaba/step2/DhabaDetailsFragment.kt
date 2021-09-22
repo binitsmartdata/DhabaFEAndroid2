@@ -15,12 +15,10 @@ import com.deepakkumardk.videopickerlib.EasyVideoPicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
-import com.transport.mall.model.CityModel
-import com.transport.mall.model.HighwayModel
-import com.transport.mall.model.LocationAddressModel
-import com.transport.mall.model.StateModel
+import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -61,14 +59,12 @@ class DhabaDetailsFragment :
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.context = getmContext()
         mListener = activity as AddDhabaListener
+        binding.isUpdate = mListener?.isUpdate()!!
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
-
-        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
-        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
-        binding.isUpdate = mListener?.isUpdate()!!
     }
 
     private fun showDataIfHas() {
@@ -82,9 +78,11 @@ class DhabaDetailsFragment :
             it.videos.let { path ->
                 if (path.isNotEmpty()) {
                     binding.loadingVideo = true
+                    // LOAD VIDEO THUMBNAIL BITMAP IN BACKGROUND
                     lifecycleScope.launch(Dispatchers.IO) {
                         val bitmap = GlobalUtils.getThumbnailFromVideo(path)
                         if (bitmap != null) {
+                            // UPDATE UI ELEMENT FOR SHOWING VIDEO THUMBNAIL
                             activity?.runOnUiThread(Runnable {
                                 binding.loadingVideo = false
                                 binding.ivVideoThumb.setImageBitmap(bitmap)
@@ -107,7 +105,14 @@ class DhabaDetailsFragment :
 
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
-                showProgressDialog()
+                showProgressDialog(getString(R.string.saving_dhaba_details))
+            } else {
+                hideProgressDialog()
+            }
+        })
+        viewModel.progressObserverUpdate.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.updating_dhaba_details))
             } else {
                 hideProgressDialog()
             }
@@ -131,7 +136,7 @@ class DhabaDetailsFragment :
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in menuArray) {
-                    if (i.equals(it)) {
+                    if (i.equals(it, true)) {
                         binding.spnrPropertyStatus.setSelection(index)
                         break
                     }
@@ -141,7 +146,7 @@ class DhabaDetailsFragment :
         }
 
         binding.btnNext.setOnClickListener {
-            if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
+            if (mListener?.getDhabaModelMain()?.dhabaModel != null && !mListener?.isUpdate()!!) {
                 mListener?.showNextScreen()
             } else {
                 saveDetails(false)
@@ -164,26 +169,42 @@ class DhabaDetailsFragment :
             viewModel.dhabaModel
                 .hasEverything(GenericCallBackTwoParams { status, message ->
                     if (status) {
-                        viewModel.addDhaba(
-                            GenericCallBack { response ->
-                                if (response.data != null) {
-                                    mListener?.getDhabaModelMain()?.dhabaModel = response.data
-                                    if (isDraft) {
-                                        mListener?.saveAsDraft()
-                                        activity?.finish()
-                                    } else {
-                                        showToastInCenter(getString(R.string.dhaba_created_successfully))
-                                        mListener?.showNextScreen()
-                                    }
-                                } else {
-                                    showToastInCenter(response.message)
+                        if (mListener?.isUpdate()!!) {
+                            viewModel.updateDhaba(
+                                GenericCallBack { response ->
+                                    handleResponse(response, isDraft)
                                 }
-                            }
-                        )
+                            )
+                        } else {
+                            viewModel.addDhaba(
+                                GenericCallBack { response ->
+                                    handleResponse(response, isDraft)
+                                }
+                            )
+                        }
                     } else {
                         showToastInCenter(message)
                     }
                 })
+        }
+    }
+
+    private fun handleResponse(response: ApiResponseModel<DhabaModel>, isDraft: Boolean) {
+        if (response.data != null) {
+            mListener?.getDhabaModelMain()?.dhabaModel = response.data
+            if (isDraft) {
+                mListener?.saveAsDraft()
+                activity?.finish()
+            } else {
+                if (mListener?.isUpdate()!!) {
+                    showToastInCenter(getString(R.string.dhaba_updated_successfully))
+                } else {
+                    showToastInCenter(getString(R.string.dhaba_created_successfully))
+                    mListener?.showNextScreen()
+                }
+            }
+        } else {
+            showToastInCenter(response.message)
         }
     }
 
@@ -348,8 +369,8 @@ class DhabaDetailsFragment :
     private fun setupVideoPickerViews() {
         binding.llVideoPicker.setOnClickListener {
             GlobalUtils.showOptionsDialog(activity,
-                arrayOf("Gallery", "Camera"),
-                "Select Video Source",
+                arrayOf(getString(R.string.gallery), getString(R.string.camera)),
+                getString(R.string.select_video_source),
                 DialogInterface.OnClickListener { dialogInterface, i ->
                     when (i) {
                         0 -> {

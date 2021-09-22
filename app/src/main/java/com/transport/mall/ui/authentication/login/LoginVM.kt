@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.transport.mall.R
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM

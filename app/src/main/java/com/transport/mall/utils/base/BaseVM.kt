@@ -1,6 +1,10 @@
 package com.transport.mall.utils.base
 
 import android.app.Application
+import android.content.Context
+import android.util.Log
+import android.view.Gravity
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.model.PhotosModel
@@ -16,7 +20,6 @@ import kotlinx.coroutines.flow.flowOn
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Response
 import java.io.File
 
@@ -55,14 +58,20 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                 return ApiResult.error(result.message(), result.errorBody())
             }
         } catch (e: Throwable) {
+            Log.e("ERROR", "::::::::::::::::::::::::: SERVER ERROR : getResponse ::::::::::::::::::::::::")
             ApiResult.error(e.message.toString(), null)
         }
     }
 
     suspend fun <T> executeApi(input: Response<T>?): Flow<ApiResult<T>> {
         return flow {
-            emit(ApiResult.loading())
-            emit(getResponse(request = { input }))
+            try {
+                emit(ApiResult.loading())
+                emit(getResponse(request = { input }))
+            } catch (e: Exception) {
+                Log.e("ERROR", "::::::::::::::::::::::::: SERVER ERROR: executeApi ::::::::::::::::::::::::")
+                emit(ApiResult.error(e.toString(), null))
+            }
         }.flowOn(Dispatchers.Main)
     }
 
@@ -77,18 +86,22 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
     fun getMultipartImagesList(
         imageList: ArrayList<PhotosModel>,
         parameterName: String
-    ): Array<MultipartBody.Part?> {
-        val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(imageList.size)
+    ): Array<MultipartBody.Part?>? {
+        if (imageList.isEmpty()) {
+            return null
+        } else {
+            val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(imageList.size)
 
-        for (index in 0 until imageList.size) {
-            surveyImagesParts[index] =
-                getMultipartImageFile(imageList.get(index).path, parameterName)
+            for (index in 0 until imageList.size) {
+                surveyImagesParts[index] =
+                    getMultipartImageFile(imageList.get(index).path, parameterName)
+            }
+            return surveyImagesParts
         }
-        return surveyImagesParts
     }
 
     fun getMultipartVideoFile(path: String, parameterName: String): MultipartBody.Part? {
-        if (path == null || path.isEmpty()) {
+        if (path == null || path.isEmpty() || path.contains("http")) {
             return null
         } else {
             val requestFile: RequestBody =
@@ -100,7 +113,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
     }
 
     fun getMultipartImageFile(path: String, parameterName: String): MultipartBody.Part? {
-        if (path == null || path.isEmpty()) {
+        if (path == null || path.isEmpty() || path.contains("http")) {
             return null
         } else {
             val requestFile: RequestBody =
@@ -111,4 +124,19 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         }
     }
 
+    fun showToastInCenter(context: Context?, msg: String) {
+        try {
+            val toast = Toast.makeText(
+                context,
+                msg,
+                Toast.LENGTH_LONG
+            )
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
+        } catch (e: Exception) {
+            val toast = Toast.makeText(context, msg.replace("\"".toRegex(), ""), Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
+        }
+    }
 }

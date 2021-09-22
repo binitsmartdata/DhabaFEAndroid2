@@ -169,11 +169,16 @@ class BankDetailsFragment :
                         if (it.data != null) {
                             mListener?.getDhabaModelMain()?.bankDetailsModel = it.data
                             viewModel.addBlockingInfo(GenericCallBack {
-                                if (isDraft) {
-                                    mListener?.saveAsDraft()
-                                    activity?.finish()
+                                if (it.data != null) {
+                                    mListener?.getDhabaModelMain()?.dhabaModel = it.data
+                                    if (isDraft) {
+                                        mListener?.saveAsDraft()
+                                        activity?.finish()
+                                    } else {
+                                        showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                                    }
                                 } else {
-                                    showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                                    showToastInCenter(it.message)
                                 }
                             })
                         } else {

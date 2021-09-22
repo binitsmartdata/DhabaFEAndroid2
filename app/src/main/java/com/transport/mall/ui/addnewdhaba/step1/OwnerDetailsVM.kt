@@ -2,7 +2,9 @@ package com.transport.mall.ui.addnewdhaba.step1
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
@@ -52,13 +54,11 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
                     }
                     ApiResult.Status.ERROR -> {
                         progressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel<DhabaOwnerModel>(
-                                0,
-                                it.message!!,
-                                null
-                            )
-                        )
+                        try {
+                            callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<DhabaOwnerModel>?)
+                        } catch (e: Exception) {
+                            callBack.onResponse(ApiResponseModel(0, it.message!!, null))
+                        }
                     }
                     ApiResult.Status.SUCCESS -> {
 //                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)

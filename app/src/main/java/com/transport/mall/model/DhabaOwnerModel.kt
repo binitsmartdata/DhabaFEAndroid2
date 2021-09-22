@@ -12,7 +12,14 @@ import java.io.Serializable
  * Created by Parambir Singh on 2020-01-24.
  */
 class DhabaOwnerModel : Serializable, BaseObservable() {
-    var _id: String = ""
+
+    @SerializedName(value = "_id")
+    var _id: String = "61388809ac4cc62f3adea1f9"
+        @Bindable get() = field
+        set(_id) {
+            field = _id
+            notifyPropertyChanged(BR._id)
+        }
 
     @SerializedName(value = "ownerName", alternate = ["fname"])
     var ownerName: String = ""

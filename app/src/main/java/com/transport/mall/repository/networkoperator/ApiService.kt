@@ -73,7 +73,30 @@ interface ApiService {
 
     @Multipart
     @POST("dhaba/addDhaba")
-    suspend fun uploadDhabaDetails(
+    suspend fun addDhaba(
+        @Part("owner_id") owner_id: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("landmark") landmark: RequestBody,
+        @Part("area") area: RequestBody,
+        @Part("highway") highway: RequestBody,
+        @Part("state") state: RequestBody,
+        @Part("city") city: RequestBody,
+        @Part("pincode") pincode: RequestBody,
+        @Part("location") location: RequestBody,
+        @Part("mobile") mobile: RequestBody,
+        @Part("propertyStatus") propertyStatus: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part images: MultipartBody.Part?,
+        @Part videos: MultipartBody.Part?,
+        @Part("createdBy") createdBy: RequestBody,
+        @Part("updatedBy") updatedBy: RequestBody
+    ): Response<ApiResponseModel<DhabaModel>>
+
+    @Multipart
+    @POST("dhaba/updateDhaba")
+    suspend fun updateDhaba(
+        @Part("_id") _id: RequestBody,
         @Part("owner_id") owner_id: RequestBody,
         @Part("name") name: RequestBody,
         @Part("address") address: RequestBody,
@@ -120,7 +143,7 @@ interface ApiService {
         @Part("food") food: RequestBody,
         @Part("foodLisence") foodLisence: RequestBody,
         @Part foodLisenceFile: MultipartBody.Part?,
-        @Part images: Array<MultipartBody.Part?>
+        @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<FoodAmenitiesModel>>
 
     @Multipart
@@ -133,7 +156,7 @@ interface ApiService {
         @Part("flatHardParking") flatHardParking: RequestBody,
         @Part("kachaFlatParking") kachaFlatParking: RequestBody,
         @Part("parkingSpace") parkingSpace: RequestBody,
-        @Part images: Array<MultipartBody.Part?>
+        @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<ParkingAmenitiesModel>>
 
     @Multipart
@@ -174,9 +197,9 @@ interface ApiService {
         @Part("policVerification") policVerification: RequestBody,
         @Part verificationImg: MultipartBody.Part?,
         @Part("indoorCamera") indoorCamera: RequestBody,
-        @Part indoorCameraImage: Array<MultipartBody.Part?>,
+        @Part indoorCameraImage: Array<MultipartBody.Part?>?,
         @Part("outdoorCamera") outdoorCamera: RequestBody,
-        @Part outdoorCameraImage: Array<MultipartBody.Part?>
+        @Part outdoorCameraImage: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<SecurityAmenitiesModel>>
 
     @Multipart
