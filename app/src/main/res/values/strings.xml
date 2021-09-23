@@ -251,6 +251,7 @@
     <string name="update_amen">Update Amenities</string>
     <string name="updating_owner">Updating Owner Details</string>
     <string name="photo_deleted">Photo deleted successfully.</string>
+    <string name="_10_digit_mobile_number">10 Digit mobile number</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

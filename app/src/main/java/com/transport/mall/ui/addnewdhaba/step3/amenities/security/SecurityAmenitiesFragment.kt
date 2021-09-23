@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentSecurityAmenitiesBinding
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.model.SecurityAmenitiesModel
@@ -46,6 +47,7 @@ class SecurityAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.viewmodel = viewModel
+        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -185,21 +187,35 @@ class SecurityAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        viewModel.addSecurityAmenities(GenericCallBack {
-                            if (it.data != null) {
-                                showToastInCenter(getString(R.string.security_amen_saved))
-                                val intent = Intent()
-                                intent.putExtra("data", it.data)
-                                activity?.setResult(Activity.RESULT_OK, intent)
-                                activity?.finish()
-                            } else {
-                                showToastInCenter(it.message)
-                            }
-                        })
+                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                            viewModel.updateSecurityAmenities(GenericCallBack {
+                                handleData(it)
+                            })
+                        } else {
+                            viewModel.addSecurityAmenities(GenericCallBack {
+                                handleData(it)
+                            })
+                        }
                     } else {
                         showToastInCenter(message)
                     }
                 })
+        }
+    }
+
+    private fun handleData(it: ApiResponseModel<SecurityAmenitiesModel>) {
+        if (it.data != null) {
+            if (mListener?.isUpdate()!!) {
+                showToastInCenter(getString(R.string.updated_successfully))
+            } else {
+                showToastInCenter(getString(R.string.security_amen_saved))
+            }
+            val intent = Intent()
+            intent.putExtra("data", it.data)
+            activity?.setResult(Activity.RESULT_OK, intent)
+            activity?.finish()
+        } else {
+            showToastInCenter(it.message)
         }
     }
 
@@ -218,13 +234,13 @@ class SecurityAmenitiesFragment :
                 }
                 INTENT_IND_CAMERA -> {
                     viewModel.model.indoorCameraImage.add(
-                        PhotosModel("0", uri, getRealPathFromURI(uri))
+                        PhotosModel("", uri, getRealPathFromURI(uri))
                     )
                     refreshIndoorCameraImages()
                 }
                 INTENT_OUT_CAMERA -> {
                     viewModel.model.outdoorCameraImage.add(
-                        PhotosModel("0", uri, getRealPathFromURI(uri))
+                        PhotosModel("", uri, getRealPathFromURI(uri))
                     )
                     refreshOutdoorCameraImages()
                 }
@@ -238,13 +254,16 @@ class SecurityAmenitiesFragment :
         binding.recyclerViewIndoorCameras.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        binding.recyclerViewIndoorCameras.adapter =
-            ImageGalleryAdapter(
-                activity as Context,
-                viewModel.model.indoorCameraImage,
-                GenericCallBack {
+        val adapter = ImageGalleryAdapter(activity as Context, viewModel.model.indoorCameraImage, GenericCallBack { })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delOutdoorCamImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
+            })
+        })
+        binding.recyclerViewOutdoorCameras.adapter = adapter
 
-                })
         binding.recyclerViewIndoorCameras.setHasFixedSize(true)
     }
 
@@ -254,13 +273,16 @@ class SecurityAmenitiesFragment :
         binding.recyclerViewOutdoorCameras.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        binding.recyclerViewOutdoorCameras.adapter =
-            ImageGalleryAdapter(
-                activity as Context,
-                viewModel.model.outdoorCameraImage,
-                GenericCallBack {
+        val adapter = ImageGalleryAdapter(activity as Context, viewModel.model.outdoorCameraImage, GenericCallBack { })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delOutdoorCamImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
+            })
+        })
+        binding.recyclerViewOutdoorCameras.adapter = adapter
 
-                })
         binding.recyclerViewOutdoorCameras.setHasFixedSize(true)
     }
 

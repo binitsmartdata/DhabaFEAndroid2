@@ -5,11 +5,10 @@ import com.transport.mall.R
 import com.transport.mall.databinding.RowPhotosBinding
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 
-class ImageGalleryAdapter(
-    val context: Context, val dataList: ArrayList<PhotosModel>, val callBack: GenericCallBack<Int>
-) : InfiniteAdapter<RowPhotosBinding>() {
+class ImageGalleryAdapter(val context: Context, val dataList: ArrayList<PhotosModel>, val callBack: GenericCallBack<Int>) : InfiniteAdapter<RowPhotosBinding>() {
 
     var mDeletionListener: GenericCallBack<String>? = null
 
@@ -30,6 +29,9 @@ class ImageGalleryAdapter(
             dataList.removeAt(position)
             callBack.onResponse(position)
             notifyDataSetChanged()
+        }
+        myViewHolderG?.binding?.containerLayout?.setOnClickListener {
+            ImagePagerActivity.start(context, dataList, position)
         }
 
         myViewHolderG?.binding?.executePendingBindings()

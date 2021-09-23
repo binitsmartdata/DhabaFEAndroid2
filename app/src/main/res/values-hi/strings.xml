@@ -252,6 +252,7 @@
     <string name="update_amen">Update Amenities</string>
     <string name="updating_owner">Updating Owner Details</string>
     <string name="photo_deleted">Photo deleted successfully.</string>
+    <string name="_10_digit_mobile_number">10 Digit mobile number</string>
 
     <string-array name="menu_array_fiels_ex">
         <item>@string/dhaba_mnagement</item>

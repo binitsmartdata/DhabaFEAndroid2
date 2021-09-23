@@ -60,6 +60,9 @@
         <activity
             android:name="com.transport.mall.ui.addnewdhaba.GoogleMapsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".utils.common.fullimageview.ImagePagerActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

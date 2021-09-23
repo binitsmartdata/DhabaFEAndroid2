@@ -165,6 +165,22 @@ interface ApiService {
     ): Response<ApiResponseModel<FoodAmenitiesModel>>
 
     @Multipart
+    @POST("dhaba/updateFoodAmenities")
+    suspend fun updateFoodAmenities(
+        @Part("_id") _id: RequestBody,
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("foodAt100") foodAt100: RequestBody,
+        @Part("roCleanWater") roCleanWater: RequestBody,
+        @Part("normalWater") normalWater: RequestBody,
+        @Part("food") food: RequestBody,
+        @Part("foodLisence") foodLisence: RequestBody,
+        @Part foodLisenceFile: MultipartBody.Part?,
+        @Part images: Array<MultipartBody.Part?>?
+    ): Response<ApiResponseModel<FoodAmenitiesModel>>
+
+    @Multipart
     @POST("dhaba/addParkingAmenities")
     suspend fun addParkingAmenities(
         @Part("service_id") service_id: RequestBody,
@@ -190,6 +206,20 @@ interface ApiService {
         @Part("parkingSpace") parkingSpace: RequestBody,
         @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<ParkingAmenitiesModel>>
+
+    @FormUrlEncoded
+    @POST("dhaba/delFoodImg")
+    suspend fun delFoodImg(
+        @Field("_id") amenityId: String,
+        @Field("imgId") imgId: String
+    ): Response<ApiResponseModel<*>>
+
+    @FormUrlEncoded
+    @POST("dhaba/delOutdoorCamImg")
+    suspend fun delOutdoorCamImg(
+        @Field("_id") amenityId: String,
+        @Field("imgId") imgId: String
+    ): Response<ApiResponseModel<*>>
 
     @FormUrlEncoded
     @POST("dhaba/delParkingImg")
@@ -259,6 +289,23 @@ interface ApiService {
     @Multipart
     @POST("dhaba/addsecurityAmenities")
     suspend fun addSecurityAmenities(
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("dayGuard") dayGuard: RequestBody,
+        @Part("nightGuard") nightGuard: RequestBody,
+        @Part("policVerification") policVerification: RequestBody,
+        @Part verificationImg: MultipartBody.Part?,
+        @Part("indoorCamera") indoorCamera: RequestBody,
+        @Part indoorCameraImage: Array<MultipartBody.Part?>?,
+        @Part("outdoorCamera") outdoorCamera: RequestBody,
+        @Part outdoorCameraImage: Array<MultipartBody.Part?>?
+    ): Response<ApiResponseModel<SecurityAmenitiesModel>>
+
+    @Multipart
+    @POST("dhaba/updateSecurityAmenities")
+    suspend fun updateSecurityAmenities(
+        @Part("_id") _id: RequestBody,
         @Part("service_id") service_id: RequestBody,
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,

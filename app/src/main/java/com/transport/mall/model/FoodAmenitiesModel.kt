@@ -5,6 +5,9 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
 class FoodAmenitiesModel : Serializable {
+    @SerializedName(value = "_id")
+    var _id: String = ""
+
     @SerializedName(value = "service_id")
     var service_id: String = "1"
 

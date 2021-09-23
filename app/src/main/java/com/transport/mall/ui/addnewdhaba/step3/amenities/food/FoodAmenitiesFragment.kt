@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentFoodAmenitiesBinding
 import com.transport.mall.model.FoodAmenitiesModel
 import com.transport.mall.model.PhotosModel
@@ -48,6 +49,7 @@ class FoodAmenitiesFragment :
         mListener = activity as AddDhabaListener
         viewModel.dhabaModelMain = mListener?.getDhabaModelMain()!!
         binding.context = activity
+        binding.isUpdate = mListener?.isUpdate()
 
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
@@ -55,15 +57,16 @@ class FoodAmenitiesFragment :
         refreshGalleryImages()
         setupLicensePhotoViews()
         setupFoodPhotosView()
-        setupOptionsListener()
 
         //SETTING EXISTING DATA ON SCREEN
         mListener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
             setData(it)
         }
+        setupOptionsListener()
     }
 
     private fun setData(it: FoodAmenitiesModel) {
+        viewModel.model = it
         it.foodLisence.toBoolean().let {
             binding.rbFoodLicenseYes.isChecked = it
             binding.rbFoodLicenseNo.isChecked = !it
@@ -150,7 +153,7 @@ class FoodAmenitiesFragment :
     }
 
     private fun addImageToGallery(uri: Uri) {
-        imageList.add(PhotosModel("0", uri, getRealPathFromURI(uri)))
+        imageList.add(PhotosModel("", uri, getRealPathFromURI(uri)))
         refreshGalleryImages()
     }
 
@@ -160,10 +163,18 @@ class FoodAmenitiesFragment :
         binding.recyclerView.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        binding.recyclerView.adapter =
-            ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
-                viewModel.model.images = imageList
+        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+            viewModel.model.images = imageList
+        })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delFoodImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
             })
+        })
+
+        binding.recyclerView.adapter = adapter
         binding.recyclerView.setHasFixedSize(true)
     }
 
@@ -171,17 +182,15 @@ class FoodAmenitiesFragment :
         binding.btnSaveDhaba.setOnClickListener {
             viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
                 if (allOk) {
-                    viewModel.addFoodAmenities(GenericCallBack {
-                        if (it.data != null) {
-                            showToastInCenter(getString(R.string.food_amen_saved))
-                            var intent = Intent()
-                            intent.putExtra("data", it.data)
-                            activity?.setResult(Activity.RESULT_OK, intent)
-                            activity?.finish()
-                        } else {
-                            showToastInCenter(it.message)
-                        }
-                    })
+                    if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                        viewModel.updateFoodAmenities(GenericCallBack {
+                            handleData(it)
+                        })
+                    } else {
+                        viewModel.addFoodAmenities(GenericCallBack {
+                            handleData(it)
+                        })
+                    }
                 } else {
                     showToastInCenter(message)
                 }
@@ -195,6 +204,22 @@ class FoodAmenitiesFragment :
                 hideProgressDialog()
             }
         })
+    }
+
+    private fun handleData(it: ApiResponseModel<FoodAmenitiesModel>) {
+        if (it.data != null) {
+            if (mListener?.isUpdate()!!) {
+                showToastInCenter(getString(R.string.updated_successfully))
+            } else {
+                showToastInCenter(getString(R.string.food_amen_saved))
+            }
+            var intent = Intent()
+            intent.putExtra("data", it.data)
+            activity?.setResult(Activity.RESULT_OK, intent)
+            activity?.finish()
+        } else {
+            showToastInCenter(it.message)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
