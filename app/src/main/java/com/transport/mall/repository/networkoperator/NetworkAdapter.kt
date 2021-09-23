@@ -51,8 +51,8 @@ class NetworkAdapter {
             val client = OkHttpClient.Builder().addInterceptor(interceptor)
                 .addInterceptor(HEADER_INTERCEPTOR)
                 .cache(null)
-                .connectTimeout(2, TimeUnit.MINUTES)
-                .readTimeout(2, TimeUnit.MINUTES).build()
+                .connectTimeout(10, TimeUnit.MINUTES)
+                .readTimeout(10, TimeUnit.MINUTES).build()
 
 
             val retrofit = Retrofit.Builder()

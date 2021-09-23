@@ -249,6 +249,8 @@
     <string name="update_sleeping_amen">Update sleeping amenities</string>
     <string name="update_parking_amen">Update parking amenities</string>
     <string name="update_amen">Update Amenities</string>
+    <string name="updating_owner">Updating Owner Details</string>
+    <string name="photo_deleted">Photo deleted successfully.</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

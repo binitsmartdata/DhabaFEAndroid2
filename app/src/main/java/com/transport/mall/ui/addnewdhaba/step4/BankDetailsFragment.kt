@@ -21,7 +21,6 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
-import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.xloadImages
 
 /**
@@ -45,7 +44,6 @@ class BankDetailsFragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
-        binding.executiveModel = SharedPrefsHelper.getInstance(activity as Context).getUserData()
         binding.dhabaModelMain = mListener?.getDhabaModelMain()
         binding.currentDate = GlobalUtils.getCurrentDate()
 
@@ -55,6 +53,13 @@ class BankDetailsFragment :
         binding.btnNext.isEnabled = !mListener?.isUpdate()!!
         binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
         binding.isUpdate = mListener?.isUpdate()!!
+
+        // getexecutive, manager roles and show(read only)
+        viewModel.getUserByRole(GenericCallBack {
+            it.data?.let {
+                binding.executiveModel = it
+            }
+        })
     }
 
     private fun showDataIfHas() {

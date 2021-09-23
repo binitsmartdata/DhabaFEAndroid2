@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
-import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
@@ -23,6 +22,7 @@ import okhttp3.RequestBody
 class OwnerDetailsVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverUpdate: MutableLiveData<Boolean> = MutableLiveData()
 
     var ownerModel = DhabaOwnerModel()
 
@@ -47,25 +47,53 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
                     getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
                 )
             ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value =
-                            true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        try {
-                            callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<DhabaOwnerModel>?)
-                        } catch (e: Exception) {
-                            callBack.onResponse(ApiResponseModel(0, it.message!!, null))
-                        }
-                    }
-                    ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-                        progressObserver.value = false
-                        callBack.onResponse(it.data)
-                    }
+                handleResponse(it, callBack, progressObserver)
+            }
+        }
+    }
+
+    fun updateOwner(callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>) {
+        progressObserverUpdate.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.updateOwner(
+                    RequestBody.create(MultipartBody.FORM, ownerModel._id),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.email),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.address),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
+                    RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
+                    getMultipartImageFile(ownerModel.ownerPic, "profileImage"),
+                    getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
+                    getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
+                )
+            ).collect {
+                handleResponse(it, callBack, progressObserverUpdate)
+            }
+        }
+    }
+
+    private fun handleResponse(
+        it: ApiResult<ApiResponseModel<DhabaOwnerModel>>,
+        callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>,
+        observer: MutableLiveData<Boolean>
+    ) {
+        when (it.status) {
+            ApiResult.Status.LOADING -> {
+                observer.value = true
+            }
+            ApiResult.Status.ERROR -> {
+                observer.value = false
+                try {
+                    callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<DhabaOwnerModel>?)
+                } catch (e: Exception) {
+                    callBack.onResponse(ApiResponseModel(0, it.message!!, null))
                 }
+            }
+            ApiResult.Status.SUCCESS -> {
+                observer.value = false
+                callBack.onResponse(it.data)
             }
         }
     }

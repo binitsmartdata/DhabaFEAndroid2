@@ -7,7 +7,6 @@ import android.preference.PreferenceManager
 import android.util.Log
 import com.google.gson.Gson
 import com.transport.mall.model.DhabaModelMain
-import com.transport.mall.model.LangModel
 import com.transport.mall.model.UserModel
 
 class SharedPrefsHelper {
@@ -45,9 +44,9 @@ class SharedPrefsHelper {
     }
 
     fun setUserData(userData: UserModel) {
-        editor?.putString(id, userData.id)
-        editor?.putString(fname, userData.fname.en)
-        editor?.putString(lname, userData.lname.en)
+        editor?.putString(id, userData._id)
+        editor?.putString(fname, userData.fname)
+        editor?.putString(lname, userData.lname)
         editor?.putString(email, userData.email)
         editor?.putString(lastLogin, userData.lastLogin)
         editor?.putString(accessToken, userData.accessToken)
@@ -55,14 +54,14 @@ class SharedPrefsHelper {
     }
 
     fun getUserData(): UserModel {
-        var userModel = UserModel(
-            prefs?.getString(id, "")!!,
-            LangModel(prefs?.getString(fname, "")!!, "", ""),
-            LangModel(prefs?.getString(lname, "")!!, "", ""),
-            prefs?.getString(email, "")!!,
-            prefs?.getString(lastLogin, "")!!,
-            prefs?.getString(accessToken, "")!!
-        )
+        var userModel = UserModel()
+        userModel._id = prefs?.getString(id, "")!!
+        userModel.fname = prefs?.getString(fname, "")!!
+        userModel.lname = prefs?.getString(lname, "")!!
+        userModel.email = prefs?.getString(email, "")!!
+        userModel.lastLogin = prefs?.getString(lastLogin, "")!!
+        userModel.accessToken = prefs?.getString(accessToken, "")!!
+
         return userModel
     }
 

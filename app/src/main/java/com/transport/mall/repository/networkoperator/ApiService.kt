@@ -71,6 +71,9 @@ interface ApiService {
     @GET("dhaba/getDhabaByID")
     suspend fun getDhabaByID(@Query("id") id: String): Response<ApiResponseModel<DhabaModelMain>>
 
+    @GET("user/getUserByRole")
+    suspend fun getUserByRole(): Response<ApiResponseModel<UserModelMain>>
+
     @Multipart
     @POST("dhaba/addDhaba")
     suspend fun addDhaba(
@@ -132,6 +135,21 @@ interface ApiService {
     ): Response<ApiResponseModel<DhabaOwnerModel>>
 
     @Multipart
+    @POST("dhaba/updateOwner")
+    suspend fun updateOwner(
+        @Part("_id") _id: RequestBody,
+        @Part("fname") ownerName: RequestBody,
+        @Part("mobile") mobile: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("address") address: RequestBody,
+        @Part("panNumber") panNumber: RequestBody,
+        @Part("aadharNumber") adharCard: RequestBody,
+        @Part ownerPic: MultipartBody.Part?,
+        @Part idproofFront: MultipartBody.Part?,
+        @Part idproofBack: MultipartBody.Part?
+    ): Response<ApiResponseModel<DhabaOwnerModel>>
+
+    @Multipart
     @POST("dhaba/addFoodAmenities")
     suspend fun addFoodAmenities(
         @Part("service_id") service_id: RequestBody,
@@ -158,6 +176,27 @@ interface ApiService {
         @Part("parkingSpace") parkingSpace: RequestBody,
         @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<ParkingAmenitiesModel>>
+
+    @Multipart
+    @POST("dhaba/updateParkingAmenities")
+    suspend fun updateParkingAmenities(
+        @Part("_id") _id: RequestBody,
+        @Part("service_id") service_id: RequestBody,
+        @Part("module_id") module_id: RequestBody,
+        @Part("dhaba_id") dhaba_id: RequestBody,
+        @Part("concreteParking") concreteParking: RequestBody,
+        @Part("flatHardParking") flatHardParking: RequestBody,
+        @Part("kachaFlatParking") kachaFlatParking: RequestBody,
+        @Part("parkingSpace") parkingSpace: RequestBody,
+        @Part images: Array<MultipartBody.Part?>?
+    ): Response<ApiResponseModel<ParkingAmenitiesModel>>
+
+    @FormUrlEncoded
+    @POST("dhaba/delParkingImg")
+    suspend fun delParkingImg(
+        @Field("_id") amenityId: String,
+        @Field("imgId") imgId: String
+    ): Response<ApiResponseModel<*>>
 
     @Multipart
     @POST("dhaba/addSleepingAmenities")

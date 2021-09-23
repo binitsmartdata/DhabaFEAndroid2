@@ -26,7 +26,7 @@
 
         <variable
             name="executiveModel"
-            type="com.transport.mall.model.UserModel" />
+            type="com.transport.mall.model.UserModelMain" />
 
         <variable
             name="isUpdate"
@@ -267,7 +267,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@{executiveModel.fname.en}"
+                        android:text="@{executiveModel.executive.fname}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -336,7 +336,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@{executiveModel.fname.en}"
+                        android:text="@{executiveModel.executive.fname}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -359,7 +359,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="phone"
-                        android:text=""
+                        android:text="@{executiveModel.executive.mobile}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -404,7 +404,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@{executiveModel.fname.en}"
+                        android:text="@{executiveModel.manager.fname}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -427,7 +427,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="phone"
-                        android:text=""
+                        android:text="@{executiveModel.manager.mobile}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 

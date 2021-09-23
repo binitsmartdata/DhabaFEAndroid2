@@ -11,6 +11,8 @@ class ImageGalleryAdapter(
     val context: Context, val dataList: ArrayList<PhotosModel>, val callBack: GenericCallBack<Int>
 ) : InfiniteAdapter<RowPhotosBinding>() {
 
+    var mDeletionListener: GenericCallBack<String>? = null
+
     init {
         setShouldLoadMore(false)
     }
@@ -20,6 +22,11 @@ class ImageGalleryAdapter(
         myViewHolderG?.binding?.position = position
         myViewHolderG?.binding?.data = dataList.get(position)
         myViewHolderG?.binding?.ivCross?.setOnClickListener {
+            if (dataList.get(position)._id.isNotEmpty()) {
+                mDeletionListener?.let {
+                    it.onResponse(dataList.get(position)._id)
+                }
+            }
             dataList.removeAt(position)
             callBack.onResponse(position)
             notifyDataSetChanged()
@@ -34,5 +41,9 @@ class ImageGalleryAdapter(
 
     override fun getInflateLayout(type: Int): Int {
         return R.layout.row_photos
+    }
+
+    public fun setDeletionListener(listener: GenericCallBack<String>) {
+        mDeletionListener = listener
     }
 }

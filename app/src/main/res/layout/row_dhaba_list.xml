@@ -247,7 +247,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{user.fname.en}"
+                        android:text="@{user.fname}"
                         android:textColor="@color/black" />
 
                 </LinearLayout>

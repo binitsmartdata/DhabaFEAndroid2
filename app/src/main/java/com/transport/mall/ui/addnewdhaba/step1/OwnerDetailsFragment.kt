@@ -5,12 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.telephony.PhoneNumberFormattingTextWatcher
-import android.view.View
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOwnerDetailsBinding
+import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.model.LocationAddressModel
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.utils.base.BaseFragment
@@ -49,11 +50,7 @@ class OwnerDetailsFragment :
         //SETTING EXISTING DATA ON SCREEN
         setDataIfHas()
 
-        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
         binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
-        binding.viewRestrictor.visibility =
-            if (!mListener?.isUpdate()!!) View.VISIBLE else View.GONE
-
         binding.isUpdate = mListener?.isUpdate()!!
     }
 
@@ -87,6 +84,13 @@ class OwnerDetailsFragment :
                 hideProgressDialog()
             }
         })
+        viewModel.progressObserverUpdate.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.updating_owner))
+            } else {
+                hideProgressDialog()
+            }
+        })
 
         binding.uploadPictureLayout.setOnClickListener {
             INTENT_TYPE = PICKER_OWNER_IMAGE
@@ -109,7 +113,7 @@ class OwnerDetailsFragment :
             launchImagePicker()
         }
         binding.btnNext.setOnClickListener {
-            if (mListener?.getDhabaModelMain()?.ownerModel != null) {
+            if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
                 mListener?.showNextScreen()
             } else {
                 saveDetails(false)
@@ -145,20 +149,38 @@ class OwnerDetailsFragment :
     private fun saveDetails(isDraft: Boolean) {
         viewModel.ownerModel.hasEverything(GenericCallBackTwoParams { hasEverything, message ->
             if (hasEverything) {
-                viewModel.addDhabaOwner(GenericCallBack {
-                    mListener?.getDhabaModelMain()?.ownerModel = it.data
-                    if (isDraft) {
-                        mListener?.saveAsDraft()
-                        activity?.finish()
-                    } else {
-                        showToastInCenter(getString(R.string.owner_saved))
-                        mListener?.showNextScreen()
-                    }
-                })
+                if (mListener?.isUpdate()!! && viewModel.ownerModel._id.isNotEmpty()) {
+                    viewModel.updateOwner(GenericCallBack {
+                        handleData(it, isDraft)
+                    })
+                } else {
+                    viewModel.addDhabaOwner(GenericCallBack {
+                        handleData(it, isDraft)
+                    })
+                }
             } else {
                 showToastInCenter(message)
             }
         })
+    }
+
+    private fun handleData(it: ApiResponseModel<DhabaOwnerModel>, isDraft: Boolean) {
+        if (it.data != null) {
+            mListener?.getDhabaModelMain()?.ownerModel = it.data
+            if (isDraft) {
+                mListener?.saveAsDraft()
+                activity?.finish()
+            } else {
+                if (mListener?.isUpdate()!!) {
+                    showToastInCenter(getString(R.string.updated_successfully))
+                } else {
+                    showToastInCenter(getString(R.string.owner_saved))
+                    mListener?.showNextScreen()
+                }
+            }
+        } else {
+            showToastInCenter(it.message)
+        }
     }
 
     private fun launchImagePicker() {

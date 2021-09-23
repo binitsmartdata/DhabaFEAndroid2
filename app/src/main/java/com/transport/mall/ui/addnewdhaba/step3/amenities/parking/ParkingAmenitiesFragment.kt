@@ -4,13 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import android.widget.RadioButton
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentParkingAmenitiesBinding
 import com.transport.mall.model.ParkingAmenitiesModel
 import com.transport.mall.model.PhotosModel
@@ -41,6 +41,7 @@ class ParkingAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.viewmodel = viewModel
+        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -54,6 +55,7 @@ class ParkingAmenitiesFragment :
     }
 
     private fun setData(it: ParkingAmenitiesModel) {
+        viewModel.model = it
         it.concreteParking.let {
             when (it) {
                 "1" -> binding.rbConcreteFensed.isChecked = true
@@ -87,8 +89,6 @@ class ParkingAmenitiesFragment :
                 refreshGalleryImages()
             }
         }
-
-        binding.btnSaveDhaba.visibility = View.GONE
     }
 
 
@@ -120,10 +120,19 @@ class ParkingAmenitiesFragment :
         binding.recyclerView.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        binding.recyclerView.adapter =
-            ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
-                viewModel.model.images = imageList
+        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+            viewModel.model.images = imageList
+        })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delParkingImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
             })
+        })
+
+        binding.recyclerView.adapter = adapter
+
         binding.recyclerView.setHasFixedSize(true)
     }
 
@@ -157,21 +166,35 @@ class ParkingAmenitiesFragment :
         binding.btnSaveDhaba.setOnClickListener {
             viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
                 if (allOk) {
-                    viewModel.addParkingAmenities(GenericCallBack {
-                        if (it.data != null) {
-                            showToastInCenter(getString(R.string.parking_amen_saved))
-                            var intent = Intent()
-                            intent.putExtra("data", it.data)
-                            activity?.setResult(Activity.RESULT_OK, intent)
-                            activity?.finish()
-                        } else {
-                            showToastInCenter(it.message)
-                        }
-                    })
+                    if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                        viewModel.updateParkingAmenities(GenericCallBack {
+                            handleData(it)
+                        })
+                    } else {
+                        viewModel.addParkingAmenities(GenericCallBack {
+                            handleData(it)
+                        })
+                    }
                 } else {
                     showToastInCenter(message)
                 }
             })
+        }
+    }
+
+    private fun handleData(it: ApiResponseModel<ParkingAmenitiesModel>) {
+        if (it.data != null) {
+            if (mListener?.isUpdate()!!) {
+                showToastInCenter(getString(R.string.updated_successfully))
+            } else {
+                showToastInCenter(getString(R.string.parking_amen_saved))
+            }
+            val intent = Intent()
+            intent.putExtra("data", it.data)
+            activity?.setResult(Activity.RESULT_OK, intent)
+            activity?.finish()
+        } else {
+            showToastInCenter(it.message)
         }
     }
 

@@ -381,11 +381,10 @@
                     android:fontFamily="@font/opensans_bold"
                     android:gravity="center"
                     android:padding="@dimen/_10sdp"
-                    android:text="@string/next"
+                    android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.next)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp"
-                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/uploadProofLayout" />
@@ -408,12 +407,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/viewRestrictor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />
+            <!--
+                        <View
+                            android:id="@+id/viewRestrictor"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="true"
+                            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />
+            -->
         </FrameLayout>
     </ScrollView>
 

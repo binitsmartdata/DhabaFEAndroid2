@@ -14,7 +14,7 @@ import java.io.Serializable
 class DhabaOwnerModel : Serializable, BaseObservable() {
 
     @SerializedName(value = "_id")
-    var _id: String = "61388809ac4cc62f3adea1f9"
+    var _id: String = ""
         @Bindable get() = field
         set(_id) {
             field = _id

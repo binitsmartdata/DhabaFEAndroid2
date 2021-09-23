@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.UserModelMain
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -106,8 +107,32 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
                         )
                     }
                     ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
                         progressObserver.value = false
+                        callBack.onResponse(it.data!!)
+                    }
+                }
+            }
+        }
+    }
+
+    fun getUserByRole(callBack: GenericCallBack<ApiResponseModel<UserModelMain>>) {
+//        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            executeApi(
+                getApiService()?.getUserByRole()
+            ).collect {
+                when (it.status) {
+                    ApiResult.Status.LOADING -> {
+//                        progressObserver.value = true
+                    }
+                    ApiResult.Status.ERROR -> {
+//                        progressObserver.value = false
+                        callBack.onResponse(
+                            ApiResponseModel(0, it.message!!, null)
+                        )
+                    }
+                    ApiResult.Status.SUCCESS -> {
+//                        progressObserver.value = false
                         callBack.onResponse(it.data!!)
                     }
                 }

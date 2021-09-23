@@ -52,11 +52,11 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                     getMultipartVideoFile(dhabaModel.videos, "videos"),
                     RequestBody.create(
                         MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData().id
+                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
                     ),
                     RequestBody.create(
                         MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData().id
+                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
                     )
                 )
             ).collect {
@@ -88,11 +88,11 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                     getMultipartVideoFile(dhabaModel.videos, "videos"),
                     RequestBody.create(
                         MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData().id
+                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
                     ),
                     RequestBody.create(
                         MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData().id
+                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
                     )
                 )
             ).collect {

@@ -34,7 +34,7 @@
             android:hint="@string/owner_name"
             android:inputType="text"
             android:padding="@dimen/_10sdp"
-            android:text="@{userData.fname.en}"
+            android:text="@{userData.fname}"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"

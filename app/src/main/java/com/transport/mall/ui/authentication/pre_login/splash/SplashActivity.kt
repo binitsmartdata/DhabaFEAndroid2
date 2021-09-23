@@ -37,7 +37,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
     }
 
     private fun startAuthActivity() {
-        if (SharedPrefsHelper.getInstance(this).getUserData().id.isNotEmpty()) {
+        if (SharedPrefsHelper.getInstance(this).getUserData()._id.isNotEmpty()) {
             goToHomeScreen()
         } else {
             val intent = Intent(this, AuthenticationActivity::class.java)

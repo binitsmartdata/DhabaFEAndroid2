@@ -137,6 +137,7 @@ dependencies {
     implementation 'com.github.deepakkumardk:EasyVideoPicker:1.0.1'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.hbb20:ccp:2.5.4'
 }
 
 apply plugin: 'com.google.gms.google-services'
