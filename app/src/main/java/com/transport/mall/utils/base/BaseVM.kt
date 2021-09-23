@@ -98,10 +98,8 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             return null
         } else {
             val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(imageList.size)
-
             for (index in 0 until imageList.size) {
-                surveyImagesParts[index] =
-                    getMultipartImageFile(imageList.get(index).path, parameterName)
+                surveyImagesParts[index] = getMultipartImageFile(imageList.get(index).path, parameterName)
             }
             return surveyImagesParts
         }

@@ -114,8 +114,6 @@ class SecurityAmenitiesFragment :
                 refreshOutdoorCameraImages()
             }
         }
-
-        binding.btnSaveDhaba.visibility = View.GONE
     }
 
     private fun setupLicensePhotoViews() {

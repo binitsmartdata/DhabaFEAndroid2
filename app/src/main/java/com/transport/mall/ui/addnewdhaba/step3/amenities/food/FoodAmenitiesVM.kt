@@ -61,7 +61,6 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
                         )
                     }
                     ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
                         progressObserver.value = false
                         callBack.onResponse(it.data)
                     }
