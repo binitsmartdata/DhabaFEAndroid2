@@ -256,13 +256,13 @@ class SecurityAmenitiesFragment :
 
         val adapter = ImageGalleryAdapter(activity as Context, viewModel.model.indoorCameraImage, GenericCallBack { })
         adapter.setDeletionListener(GenericCallBack {
-            viewModel.delOutdoorCamImg(it, GenericCallBack {
+            viewModel.delSecurityImg(it, null, GenericCallBack {
                 if (it) {
                     showToastInCenter(getString(R.string.photo_deleted))
                 }
             })
         })
-        binding.recyclerViewOutdoorCameras.adapter = adapter
+        binding.recyclerViewIndoorCameras.adapter = adapter
 
         binding.recyclerViewIndoorCameras.setHasFixedSize(true)
     }
@@ -275,7 +275,7 @@ class SecurityAmenitiesFragment :
 
         val adapter = ImageGalleryAdapter(activity as Context, viewModel.model.outdoorCameraImage, GenericCallBack { })
         adapter.setDeletionListener(GenericCallBack {
-            viewModel.delOutdoorCamImg(it, GenericCallBack {
+            viewModel.delSecurityImg(null, it, GenericCallBack {
                 if (it) {
                     showToastInCenter(getString(R.string.photo_deleted))
                 }

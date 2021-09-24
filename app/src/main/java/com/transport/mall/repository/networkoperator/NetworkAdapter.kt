@@ -1,6 +1,7 @@
 package com.transport.mall.repository.networkoperator
 
 
+import android.util.Log
 import com.transport.mall.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -11,8 +12,6 @@ import java.util.concurrent.TimeUnit
 
 
 class NetworkAdapter {
-    private val NETWORK_URL = ""
-
     companion object {
         var cInstance: NetworkAdapter? = null
         var apiService: ApiService? = null
@@ -62,9 +61,9 @@ class NetworkAdapter {
                 .build()
             apiService = retrofit.create(ApiService::class.java)
         } catch (e: Exception) {
+            Log.e("NetworkAdapter.kt :::", e.toString())
             throw RuntimeException(e)
         }
-
     }
 
     fun getNetworkServices(): ApiService? {

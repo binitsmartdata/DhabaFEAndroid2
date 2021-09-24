@@ -116,11 +116,11 @@ class SecurityAmenitiesVM(application: Application) : BaseVM(application) {
         }
     }
 
-    fun delOutdoorCamImg(imgId: String, callBack: GenericCallBack<Boolean>) {
+    fun delSecurityImg(indoorCameraImageId: String?, outdoorCameraImageId: String?, callBack: GenericCallBack<Boolean>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             executeApi(
-                getApiService()?.delOutdoorCamImg(model._id, imgId)
+                getApiService()?.delSecurityImg(model._id, indoorCameraImageId, outdoorCameraImageId)
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {

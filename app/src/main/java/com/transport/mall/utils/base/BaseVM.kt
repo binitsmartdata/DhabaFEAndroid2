@@ -33,6 +33,7 @@ import okhttp3.RequestBody
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.File
+import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
@@ -76,14 +77,13 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         }
     }
 
-    private fun getCorrectErrorMessage(t: Throwable): String {
-        Log.e("setUpError statusCode: ", "statusCode " + t.message)
+    fun getCorrectErrorMessage(t: Throwable): String {
         var error_code: Int = 0
         try {
             if (t is SocketTimeoutException) {
-                error_code = ResponseCodes.INTERNET_NOT_AVAILABLE
+                error_code = ResponseCodes.TIMEOUT_EXCEPTION
             } else if (t is TimeoutException) {
-                error_code = ResponseCodes.URL_CONNECTION_ERROR
+                error_code = ResponseCodes.TIMEOUT_EXCEPTION
             } else if (t is ClassCastException) {
                 error_code = ResponseCodes.MODEL_TYPE_CAST_EXCEPTION
             } else if (t is MalformedJsonException) {
@@ -91,6 +91,8 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             } else if (t is ParseException) {
                 error_code = ResponseCodes.MODEL_TYPE_CAST_EXCEPTION
             } else if (t is UnknownHostException) {
+                error_code = ResponseCodes.URL_CONNECTION_ERROR
+            } else if (t is ConnectException) {
                 error_code = ResponseCodes.INTERNET_NOT_AVAILABLE
             } else {
                 val errorMessage = (t as HttpException).response()?.errorBody()!!.string()
@@ -104,7 +106,9 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             ex.printStackTrace()
             error_code = ResponseCodes.UNKNOWN_ERROR
         } finally {
-            Log.e("UNHANDLED EXCEPTION ::", " ----------- ")
+            if (error_code == 0) {
+                return t.message.toString()
+            }
         }
         return ResponseCodes.logErrorMessage(error_code)
     }

@@ -215,10 +215,11 @@ interface ApiService {
     ): Response<ApiResponseModel<*>>
 
     @FormUrlEncoded
-    @POST("dhaba/delOutdoorCamImg")
-    suspend fun delOutdoorCamImg(
+    @POST("dhaba/delSecurityImg")
+    suspend fun delSecurityImg(
         @Field("_id") amenityId: String,
-        @Field("imgId") imgId: String
+        @Field("indoorCameraImageId") indoorCameraImageId: String?,
+        @Field("outdoorCameraImageId") outdoorCameraImageId: String?
     ): Response<ApiResponseModel<*>>
 
     @FormUrlEncoded
@@ -303,7 +304,7 @@ interface ApiService {
     ): Response<ApiResponseModel<SecurityAmenitiesModel>>
 
     @Multipart
-    @POST("dhaba/updateSecurityAmenities")
+    @POST("dhaba/updatesecurityAmenities")
     suspend fun updateSecurityAmenities(
         @Part("_id") _id: RequestBody,
         @Part("service_id") service_id: RequestBody,

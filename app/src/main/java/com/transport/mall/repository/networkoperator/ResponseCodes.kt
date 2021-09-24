@@ -32,6 +32,7 @@ class ResponseCodes {
         val WRONG_METHOD_NAME = 5
         val URL_CONNECTION_ERROR = 6
         val UNKNOWN_ERROR = 10
+        val TIMEOUT_EXCEPTION = 11
 
         val NOT_ALLOWED = 403
 
@@ -39,6 +40,8 @@ class ResponseCodes {
         fun logErrorMessage(code: Int): String {
             var errorMessage = ""
             when (code) {
+                TIMEOUT_EXCEPTION -> errorMessage = "Server is taking too long to respond. Please try again later"
+
                 REQUEST_CANCEL -> errorMessage = "Request Canceled"
 
                 INTERNET_NOT_AVAILABLE -> errorMessage = "Internet connection is not available. Please check it and try again"
@@ -47,13 +50,15 @@ class ResponseCodes {
 
                 WRONG_METHOD_NAME -> errorMessage = "You are passing wrong method name."
 
-                URL_CONNECTION_ERROR -> errorMessage = "Connection is not established, Please try again"
+                URL_CONNECTION_ERROR -> errorMessage = "Connection cannot be established, Please try again"
 
                 RESPONSE_JSON_NOT_VALID -> errorMessage = "Json you are getting is not valid"
 
                 MODEL_TYPE_CAST_EXCEPTION -> errorMessage = "Server is not working. Please try after some time."
 
                 NOT_ALLOWED -> errorMessage = "Server is not working. Please try after some time."
+
+                UNKNOWN_ERROR -> errorMessage = "Unknown server error"
 
                 else -> errorMessage = "Unknown error"
             }
