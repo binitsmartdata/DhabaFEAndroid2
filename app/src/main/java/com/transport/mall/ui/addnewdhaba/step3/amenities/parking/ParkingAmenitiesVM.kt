@@ -29,19 +29,24 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
     fun addParkingAmenities(callBack: GenericCallBack<ApiResponseModel<ParkingAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addParkingAmenities(
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.concreteParking),
-                    RequestBody.create(MultipartBody.FORM, model.flatHardParking),
-                    RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
-                    RequestBody.create(MultipartBody.FORM, model.parkingSpace),
-                    getMultipartImagesList(model.images, "images")
-                )
-            ).collect {
-                handleResponse(it, callBack)
+            try {
+                executeApi(
+                    getApiService()?.addParkingAmenities(
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.concreteParking),
+                        RequestBody.create(MultipartBody.FORM, model.flatHardParking),
+                        RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
+                        RequestBody.create(MultipartBody.FORM, model.parkingSpace),
+                        getMultipartImagesList(model.images, "images")
+                    )
+                ).collect {
+                    handleResponse(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -49,22 +54,27 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
     fun delParkingImg(imgId: String, callBack: GenericCallBack<Boolean>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.delParkingImg(model._id, imgId)
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        callBack.onResponse(false)
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        progressObserver.value = false
-                        callBack.onResponse(true)
+            try {
+                executeApi(
+                    getApiService()?.delParkingImg(model._id, imgId)
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                            callBack.onResponse(false)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            callBack.onResponse(true)
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -72,20 +82,25 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
     fun updateParkingAmenities(callBack: GenericCallBack<ApiResponseModel<ParkingAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.updateParkingAmenities(
-                    RequestBody.create(MultipartBody.FORM, model._id),
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.concreteParking),
-                    RequestBody.create(MultipartBody.FORM, model.flatHardParking),
-                    RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
-                    RequestBody.create(MultipartBody.FORM, model.parkingSpace),
-                    getMultipartImagesList(model.images, "images")
-                )
-            ).collect {
-                handleResponse(it, callBack)
+            try {
+                executeApi(
+                    getApiService()?.updateParkingAmenities(
+                        RequestBody.create(MultipartBody.FORM, model._id),
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.concreteParking),
+                        RequestBody.create(MultipartBody.FORM, model.flatHardParking),
+                        RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
+                        RequestBody.create(MultipartBody.FORM, model.parkingSpace),
+                        getMultipartImagesList(model.images, "images")
+                    )
+                ).collect {
+                    handleResponse(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

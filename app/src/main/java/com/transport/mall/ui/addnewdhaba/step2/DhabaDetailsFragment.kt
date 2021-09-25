@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
+import android.provider.Settings
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -147,14 +148,13 @@ class DhabaDetailsFragment :
         }
 
         binding.btnNext.setOnClickListener {
-            if (mListener?.getDhabaModelMain()?.dhabaModel != null && !mListener?.isUpdate()!!) {
-                mListener?.showNextScreen()
-            } else {
-                saveDetails(false)
-            }
+            viewModel.dhabaModel.isDraft = false.toString()
+            saveDetails(false)
         }
         binding.btnSaveDraft.setOnClickListener {
+            viewModel.dhabaModel.isDraft = true.toString()
             if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
+                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {
@@ -167,35 +167,47 @@ class DhabaDetailsFragment :
         if (!isDraft && mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
         } else {
-            viewModel.dhabaModel
-                .hasEverything(GenericCallBackTwoParams { status, message ->
+            if (isDraft) {
+                if (viewModel.dhabaModel.name.isNotEmpty()) {
+                    proceed(isDraft)
+                } else {
+                    showToastInCenter(getString(R.string.enter_dhaba_name))
+                }
+            } else {
+                viewModel.dhabaModel.hasEverything(GenericCallBackTwoParams { status, message ->
                     if (status) {
-                        if (mListener?.isUpdate()!!) {
-                            viewModel.updateDhaba(
-                                GenericCallBack { response ->
-                                    handleResponse(response, isDraft)
-                                }
-                            )
-                        } else {
-                            viewModel.addDhaba(
-                                GenericCallBack { response ->
-                                    handleResponse(response, isDraft)
-                                }
-                            )
-                        }
+                        proceed(isDraft)
                     } else {
                         showToastInCenter(message)
                     }
                 })
+            }
+        }
+    }
+
+    private fun proceed(isDraft: Boolean) {
+        if (mListener?.isUpdate()!!) {
+            viewModel.updateDhaba(
+                GenericCallBack { response ->
+                    handleResponse(response, isDraft)
+                }
+            )
+        } else {
+            viewModel.addDhaba(
+                GenericCallBack { response ->
+                    handleResponse(response, isDraft)
+                }
+            )
         }
     }
 
     private fun handleResponse(response: ApiResponseModel<DhabaModel>, isDraft: Boolean) {
         if (response.data != null) {
             mListener?.getDhabaModelMain()?.dhabaModel = response.data
+            viewModel.dhabaModel = response.data as DhabaModel
             if (isDraft) {
-                mListener?.saveAsDraft()
-                activity?.finish()
+                // UPDATING DHABA STATUS TO ISDRAFT
+                updateDhabaStatus(isDraft)
             } else {
                 if (mListener?.isUpdate()!!) {
                     showToastInCenter(getString(R.string.dhaba_updated_successfully))
@@ -207,6 +219,20 @@ class DhabaDetailsFragment :
         } else {
             showToastInCenter(response.message)
         }
+    }
+
+    private fun updateDhabaStatus(isDraft: Boolean) {
+        viewModel.updateDhabaStatus(isDraft, viewModel.dhabaModel, viewModel.progressObserver, GenericCallBack {
+            if (it.data != null) {
+                mListener?.getDhabaModelMain()?.dhabaModel = it.data
+
+                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
+                mListener?.saveAsDraft()
+                activity?.finish()
+            } else {
+                showToastInCenter(it.message)
+            }
+        })
     }
 
     private fun setupCitiesAndStateView() {
@@ -308,28 +334,55 @@ class DhabaDetailsFragment :
 
     private fun setupLocationViews() {
         binding.tvMapPicker.setOnClickListener {
-            GoogleMapsActivity.start(this)
+            if (GlobalUtils.isLocationEnabled(getmContext())) {
+                GoogleMapsActivity.start(this)
+            } else {
+                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
+                    if (it!!) {
+                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    } else {
+                        GoogleMapsActivity.start(this)
+                    }
+                })
+            }
         }
         binding.tvCurrLocation.setOnClickListener {
-            getCurrentLocation(activity as Context, GenericCallBack { location ->
-                if (location != null) {
-                    binding.edDhabaAddress.setText(
-                        getAddressUsingLatLong(
-                            activity as Context,
-                            location.latitude,
-                            location.longitude
-                        ).fullAddress
-                    )
-                    binding.edPinCode.setText(
-                        getAddressUsingLatLong(
-                            activity as Context,
-                            location.latitude,
-                            location.longitude
-                        ).postalCode
-                    )
-                }
-            })
+            if (GlobalUtils.isLocationEnabled(getmContext())) {
+                getAddress()
+            } else {
+                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
+                    if (it!!) {
+                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    } else {
+                        showToastInCenter(getString(R.string.unable_to_fetch_address))
+                    }
+                })
+            }
         }
+    }
+
+    private fun getAddress() {
+        getCurrentLocation(activity as Context, GenericCallBack { location ->
+            if (location != null) {
+                viewModel.dhabaModel.latitude = location.latitude.toString()
+                viewModel.dhabaModel.longitude = location.longitude.toString()
+
+                binding.edDhabaAddress.setText(
+                    getAddressUsingLatLong(
+                        activity as Context,
+                        location.latitude,
+                        location.longitude
+                    ).fullAddress
+                )
+                binding.edPinCode.setText(
+                    getAddressUsingLatLong(
+                        activity as Context,
+                        location.latitude,
+                        location.longitude
+                    ).postalCode
+                )
+            }
+        })
     }
 
 

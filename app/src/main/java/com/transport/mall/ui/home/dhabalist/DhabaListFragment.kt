@@ -2,9 +2,12 @@ package com.transport.mall.ui.home.dhabalist
 
 import android.content.Context
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
+import android.widget.TextView.OnEditorActionListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.database.AppDatabase
@@ -15,12 +18,13 @@ import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding, DhabaListVM>() {
+class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), SwipeRefreshLayout.OnRefreshListener {
     override val layoutId: Int
         get() = R.layout.fragment_dhaba_list
     override var viewModel: DhabaListVM
@@ -34,8 +38,9 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
     var cityList: ArrayList<CityModel> = ArrayList()
     var dhabaListAdapter: DhabaListAdapter? = null
 
-    val limit = "20"
+    val limit = "10"
     var page = 1
+    var selectedCities = ""
 
     var mListener: CommonActivityListener? = null
 
@@ -79,38 +84,28 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
         AppDatabase.getInstance(getmContext())?.cityDao()
             ?.getAll()?.observe(this, Observer {
                 cityList = it as ArrayList<CityModel>
-                if (cityList.isNotEmpty()) {
-                    setCitiesAdapter()
-                }
             })
 
         binding.tvCitySelection.setOnClickListener {
             DialogCitySelection(activity as Context, cityList, GenericCallBack {
+                selectedCities = ""
                 var filteredCities: ArrayList<CityModel> = ArrayList()
                 cityList.forEach {
                     if (it.isChecked) {
                         filteredCities.add(it)
+                        selectedCities = if (selectedCities.isEmpty()) it.name_en!! else selectedCities + "," + it.name_en
                     }
                 }
-                if (filteredCities.isNotEmpty()) {
+                if (filteredCities.isNotEmpty() && selectedCities.isNotEmpty()) {
                     binding.viewCityIndicator.visibility = View.VISIBLE
-                    showFilteredDhabas(filteredCities)
+//                    showFilteredDhabas(filteredCities)
+                    binding.edSearch.setText("")
+                    onRefresh()
                 } else {
                     binding.viewCityIndicator.visibility = View.GONE
                     showOriginalList()
                 }
             }).show()
-        }
-    }
-
-    private fun setCitiesAdapter() {
-        val adapter = ArrayAdapter<CityModel>(
-            activity as Context,
-            android.R.layout.simple_list_item_1, cityList
-        )
-        binding.autoTextSearch.setAdapter(adapter)
-        binding.autoTextSearch.setOnItemClickListener { adapterView, view, i, l ->
-            //                cityList[i].toString()
         }
     }
 
@@ -120,6 +115,20 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
     }
 
     override fun initListeners() {
+        binding.edSearch.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                if (binding.edSearch.text.toString().trim().isNotEmpty()) {
+                    cityList.forEach { it.isChecked = false }
+                    binding.viewCityIndicator.visibility = View.GONE
+                    onRefresh()
+                }
+
+                return@OnEditorActionListener true
+            }
+            false
+        })
+
         viewModel.dialogProgressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog()
@@ -133,62 +142,47 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
         viewModel.progressObserver.observe(this, Observer {
             binding.swipeRefreshLayout.isRefreshing = it
         })
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            page = 1
-            refreshDhabaList()
-        }
+        binding.swipeRefreshLayout.setOnRefreshListener(this)
 
         var list: Array<String> = resources.getStringArray(R.array.cities_list_dummy)
         var adapter = ArrayAdapter<String>(
             activity as Context,
             android.R.layout.simple_dropdown_item_1line, list
         )
-
-        binding.autoTextSearch.setThreshold(1)
-        //Set adapter to AutoCompleteTextView
-        binding.autoTextSearch.setAdapter(adapter)
-
     }
 
     private fun refreshDhabaList() {
         if (listType == ListType.PENDING) {
-            viewModel.getAllDhabaList(limit, page.toString(), GenericCallBack {
-                dhabaListAdapter?.removeLoadingView(dhabaList.size)
-                if (it != null && it.isNotEmpty()) {
-                    if (page == 1) {
-                        dhabaListAdapter?.setShouldLoadMore(true)
-                        dhabaList.clear()
-                        dhabaList.addAll(it)
-                        initDhabaListAdapter(dhabaList)
-                    } else {
-                        dhabaList.addAll(it)
-                    }
-                    dhabaListAdapter?.notifyDataSetChanged()
-                    refreshListAndNoDataView()
-                } else {
-                    if (page == 1) {
+            viewModel.getAllDhabaList(
+                SharedPrefsHelper.getInstance(getmContext()).getUserData().accessToken,
+                limit,
+                page.toString(),
+                selectedCities,
+                binding.edSearch.text.toString(),
+                GenericCallBack {
+                    dhabaListAdapter?.removeLoadingView(dhabaList.size)
+                    if (it != null && it.isNotEmpty()) {
+                        if (page == 1) {
+                            dhabaListAdapter?.setShouldLoadMore(true)
+                            dhabaList.clear()
+                            dhabaList.addAll(it)
+                            initDhabaListAdapter(dhabaList)
+                        } else {
+                            dhabaList.addAll(it)
+                        }
+                        dhabaListAdapter?.notifyDataSetChanged()
                         refreshListAndNoDataView()
                     } else {
-                        dhabaListAdapter?.setShouldLoadMore(false)
+                        if (page == 1) {
+                            dhabaList.clear()
+                            refreshListAndNoDataView()
+                        } else {
+                            dhabaListAdapter?.setShouldLoadMore(false)
+                        }
                     }
-                }
-            })
+                })
         } else {
             refreshListAndNoDataView()
-        }
-    }
-
-    private fun showFilteredDhabas(filteredCities: ArrayList<CityModel>) {
-        var filteredDhabaList = ArrayList<DhabaModelMain>()
-        dhabaList.forEach { dhaba ->
-            filteredCities.forEach { city ->
-                if (dhaba.dhabaModel?.city?.contains(city.name_en.toString(), true)!!) {
-                    filteredDhabaList.add(dhaba)
-                }
-            }
-        }
-        if (filteredDhabaList.isNotEmpty()) {
-            initDhabaListAdapter(filteredDhabaList)
         }
     }
 
@@ -202,5 +196,10 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
                 binding.recyclerView.visibility = View.GONE
             }
         }
+    }
+
+    override fun onRefresh() {
+        page = 1
+        refreshDhabaList()
     }
 }

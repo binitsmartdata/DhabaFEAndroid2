@@ -2,11 +2,11 @@ package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.GlobalUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
@@ -33,16 +33,17 @@ class DhabaListVM(application: Application) : BaseVM(application) {
     }
 
     fun getAllDhabaList(
+        token: String,
         limit: String,
         page: String,
+        cities: String,
+        search: String,
         callBack: GenericCallBack<ArrayList<DhabaModelMain>>
     ) {
         progressObserver.value = page == "1"
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                executeApi(
-                    getApiService()?.getAllDhabaList(limit, page)
-                ).collect {
+                executeApi(getApiService()?.getAllDhabaList(token, limit, page, DhabaModel.STATUS_PENDING, cities, search)).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {
                             progressObserver.value = page == "1"
@@ -59,7 +60,8 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                 }
             } catch (e: Exception) {
                 progressObserver.value = false
-                showToastInCenter(app!!, getCorrectErrorMessage(e))
+//                showToastInCenter(app!!, getCorrectErrorMessage(e))
+                callBack.onResponse(ArrayList())
             }
         }
     }

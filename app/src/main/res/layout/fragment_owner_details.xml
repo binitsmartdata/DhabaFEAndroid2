@@ -69,13 +69,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ownerNameTil">
 
-                    <com.hbb20.CountryCodePicker
+                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
                         android:id="@+id/ccpCountryCode"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        app:ccpDialog_backgroundColor="@color/grey"
-                        app:ccp_contentColor="@color/black"
+                        app:ccp_defaultCode="91"
                         app:ccp_textSize="@dimen/_12ssp" />
 
                     <View
@@ -418,7 +417,7 @@
                     android:text="@string/save_as_draft"
                     android:textColor="@color/colorRed"
                     android:textSize="@dimen/_14ssp"
-                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

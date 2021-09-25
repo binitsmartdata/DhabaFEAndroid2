@@ -33,21 +33,29 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
     fun addDhabaOwner(callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addOwner(
-                    RequestBody.create(MultipartBody.FORM, ownerModel._id),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.email),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.address),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
-                    getMultipartImageFile(ownerModel.ownerPic, "ownerPic"),
-                    getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
-                    getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
-                )
-            ).collect {
-                handleResponse(it, callBack, progressObserver)
+            try {
+                executeApi(
+                    getApiService()?.addOwner(
+                        RequestBody.create(MultipartBody.FORM, ownerModel._id),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.mobilePrefix),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.email),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.address),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.latitude),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.longitude),
+                        getMultipartImageFile(ownerModel.ownerPic, "ownerPic"),
+                        getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
+                        getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserver)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -55,21 +63,29 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
     fun updateOwner(callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>) {
         progressObserverUpdate.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.updateOwner(
-                    RequestBody.create(MultipartBody.FORM, ownerModel._id),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.email),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.address),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
-                    RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
-                    getMultipartImageFile(ownerModel.ownerPic, "profileImage"),
-                    getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
-                    getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
-                )
-            ).collect {
-                handleResponse(it, callBack, progressObserverUpdate)
+            try {
+                executeApi(
+                    getApiService()?.updateOwner(
+                        RequestBody.create(MultipartBody.FORM, ownerModel._id),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.mobilePrefix),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.email),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.address),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.panNumber),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.adharCard),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.latitude),
+                        RequestBody.create(MultipartBody.FORM, ownerModel.longitude),
+                        getMultipartImageFile(ownerModel.ownerPic, "profileImage"),
+                        getMultipartImageFile(ownerModel.idproofFront, "idproofFront"),
+                        getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserverUpdate)
+                }
+            } catch (e: Exception) {
+                progressObserverUpdate.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

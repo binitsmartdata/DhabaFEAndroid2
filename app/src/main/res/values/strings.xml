@@ -231,7 +231,7 @@
     <string name="use_location">Use Location</string>
     <string name="click_on_map_to_get_address">Click on map to get address</string>
     <string name="update_dhaba">Update Dhaba</string>
-    <string name="fetching_states_cities_highways">Fetching States,Cities and Highways</string>
+    <string name="fetching_states_cities_highways">Fetching States,Cities, Highways</string>
     <string name="update">Update</string>
     <string name="gallery">Gallery</string>
     <string name="camera">Camera</string>
@@ -252,6 +252,15 @@
     <string name="updating_owner">Updating Owner Details</string>
     <string name="photo_deleted">Photo deleted successfully.</string>
     <string name="_10_digit_mobile_number">10 Digit mobile number</string>
+    <string name="profile_updated">Profile updated successfully</string>
+    <string name="please_enter_name">Please enter your name</string>
+    <string name="enter_email_id">Please enter a valid Email-ID</string>
+    <string name="enter_mobile_number">Please enter mobile number</string>
+    <string name="updating_profile">Updating profile..</string>
+    <string name="enter_dhaba_name">Please enter dhaba name.</string>
+    <string name="location_alert_dialog">Location service is not enabled, do you want to enable it?</string>
+    <string name="unable_to_fetch_address">Unable fetch your current address.</string>
+    <string name="assigned_to">Assigned To</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

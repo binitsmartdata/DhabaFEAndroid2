@@ -32,11 +32,23 @@ interface ApiService {
         @Query("status") status: String
     ): Response<ApiResponseModel<InternalDataListModel<ArrayList<CityModel>>>>
 
+    @GET("bank/getAllBankList")
+    suspend fun getAllBankList(): Response<ApiResponseModel<ArrayList<BankNamesModel>>>
+
+    //For terms and condition change slug
+    //terms_and_condition || privacy_policy
+    @GET("staticPage/getPageContent")
+    suspend fun getTermsAndConditions(@Query("slug") slug: String?): Response<ApiResponseModel<ApiResponseModel<TermsConditionsModel>>>
+
     //limit=10&page=1
     @GET("dhaba/getAllDhabaList")
     suspend fun getAllDhabaList(
-        @Query("limit") limit: String,
-        @Query("page") page: String
+        @Header("Authorization") token: String,
+        @Query("count") count: String,
+        @Query("page") page: String,
+        @Query("status") status: String,
+        @Query("searchCity") searchCity: String,
+        @Query("search") search: String
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModelMain>>>>
 
     @FormUrlEncoded
@@ -46,12 +58,13 @@ interface ApiService {
     ): Response<ApiResponseModel<ArrayList<CityModel>>>
 
     @FormUrlEncoded
-    @POST("dhaba/blockDhaba")
-    suspend fun savedhabaBlocking(
-        @Field("_id") status: String,
+    @POST("dhaba/updateDhabaStatus")
+    suspend fun updateDhabaStatus(
+        @Field("_id") _id: String,
         @Field("blockDay") blockDay: String,
         @Field("blockMonth") blockMonth: String,
-        @Field("propertyStatus") propertyStatus: String
+        @Field("isActive") isActive: String,
+        @Field("isDraft") isDraft: String
     ): Response<ApiResponseModel<DhabaModel>>
 
     @GET("state/getAllStates")
@@ -90,6 +103,8 @@ interface ApiService {
         @Part("mobile") mobile: RequestBody,
         @Part("propertyStatus") propertyStatus: RequestBody,
         @Part("status") status: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
         @Part images: MultipartBody.Part?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
@@ -113,6 +128,8 @@ interface ApiService {
         @Part("mobile") mobile: RequestBody,
         @Part("propertyStatus") propertyStatus: RequestBody,
         @Part("status") status: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
         @Part images: MultipartBody.Part?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
@@ -124,11 +141,14 @@ interface ApiService {
     suspend fun addOwner(
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("ownerName") ownerName: RequestBody,
+        @Part("mobilePrefix") mobilePrefix: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,
         @Part("address") address: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
         @Part("adharCard") adharCard: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
         @Part ownerPic: MultipartBody.Part?,
         @Part idproofFront: MultipartBody.Part?,
         @Part idproofBack: MultipartBody.Part?
@@ -139,15 +159,29 @@ interface ApiService {
     suspend fun updateOwner(
         @Part("_id") _id: RequestBody,
         @Part("fname") ownerName: RequestBody,
+        @Part("mobilePrefix") mobilePrefix: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,
         @Part("address") address: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
         @Part("aadharNumber") adharCard: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
         @Part ownerPic: MultipartBody.Part?,
         @Part idproofFront: MultipartBody.Part?,
         @Part idproofBack: MultipartBody.Part?
     ): Response<ApiResponseModel<DhabaOwnerModel>>
+
+    @Multipart
+    @POST("user/updateUserProfile")
+    suspend fun updateUserProfile(
+        @Part("_id") _id: RequestBody,
+        @Part("name") fname: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("mobile") mobile: RequestBody,
+        @Part("mobilePrefix") mobilePrefix: RequestBody,
+        @Part profileImage: MultipartBody.Part?
+    ): Response<ApiResponseModel<UserModel>>
 
     @Multipart
     @POST("dhaba/addFoodAmenities")
@@ -383,7 +417,20 @@ interface ApiService {
     @Multipart
     @POST("bank/addBankDetail")
     suspend fun addBankDetail(
-        @Part("user_id") service_id: RequestBody,
+        @Part("user_id") user_id: RequestBody,
+        @Part("bankName") bankName: RequestBody,
+        @Part("gstNumber") gstNumber: RequestBody,
+        @Part("ifscCode") ifscCode: RequestBody,
+        @Part("accountName") accountName: RequestBody,
+        @Part("panNumber") panNumber: RequestBody,
+        @Part panPhoto: MultipartBody.Part?
+    ): Response<ApiResponseModel<BankDetailsModel>>
+
+    @Multipart
+    @POST("bank/updateBankDetail")
+    suspend fun updateBankDetail(
+        @Part("_id") _id: RequestBody,
+        @Part("user_id") user_id: RequestBody,
         @Part("bankName") bankName: RequestBody,
         @Part("gstNumber") gstNumber: RequestBody,
         @Part("ifscCode") ifscCode: RequestBody,

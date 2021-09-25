@@ -29,25 +29,30 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
     fun addOtherAmenities(callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addOtherAmenities(
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.mechanicShop.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.mechanicShopDay.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.punctureshop.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.punctureshopDay.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.barber.toString()),
-                    getMultipartImageFile(
-                        model.barberImages,
-                        "barberImages"
+            try {
+                executeApi(
+                    getApiService()?.addOtherAmenities(
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.mechanicShop.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.mechanicShopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.punctureshop.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.punctureshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.barber.toString()),
+                        getMultipartImageFile(
+                            model.barberImages,
+                            "barberImages"
+                        )
                     )
-                )
-            ).collect {
-                handleResponse(it, callBack)
+                ).collect {
+                    handleResponse(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -55,26 +60,31 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
     fun updateOtherAmenities(callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.updateOtherAmenities(
-                    RequestBody.create(MultipartBody.FORM, model._id),
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.mechanicShop.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.mechanicShopDay.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.punctureshop.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.punctureshopDay.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.barber.toString()),
-                    getMultipartImageFile(
-                        model.barberImages,
-                        "barberImages"
+            try {
+                executeApi(
+                    getApiService()?.updateOtherAmenities(
+                        RequestBody.create(MultipartBody.FORM, model._id),
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.mechanicShop.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.mechanicShopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.punctureshop.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.punctureshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.barber.toString()),
+                        getMultipartImageFile(
+                            model.barberImages,
+                            "barberImages"
+                        )
                     )
-                )
-            ).collect {
-                handleResponse(it, callBack)
+                ).collect {
+                    handleResponse(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

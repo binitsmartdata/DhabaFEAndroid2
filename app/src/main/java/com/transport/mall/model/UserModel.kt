@@ -1,17 +1,32 @@
 package com.transport.mall.model
 
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class UserModel : Serializable{
-    @SerializedName("fname")
-    var fname: String = ""
+class UserModel : Serializable, BaseObservable() {
+    @SerializedName(value = "fname", alternate = ["name"])
+    var name: String = ""
+        @Bindable get() = field
+        set(name) {
+            field = name
+            notifyPropertyChanged(BR.name)
+        }
 
+/*
     @SerializedName("lname")
     var lname: String = ""
+*/
 
     @SerializedName("email")
     var email: String = ""
+        @Bindable get() = field
+        set(email) {
+            field = email
+            notifyPropertyChanged(BR.email)
+        }
 
     @SerializedName("lastLogin")
     var lastLogin: String = ""
@@ -61,14 +76,32 @@ class UserModel : Serializable{
     @SerializedName("_id")
     var _id: String = ""
 
+    @SerializedName("mobilePrefix")
+    var mobilePrefix: String = ""
+        @Bindable get() = field
+        set(mobilePrefix) {
+            field = mobilePrefix
+            notifyPropertyChanged(BR.mobilePrefix)
+        }
+
     @SerializedName("mobile")
     var mobile: String = ""
+        @Bindable get() = field
+        set(mobile) {
+            field = mobile
+            notifyPropertyChanged(BR.mobile)
+        }
 
     @SerializedName("address")
     var address: String = ""
 
     @SerializedName("profileImage")
     var profileImage: String = ""
+        @Bindable get() = field
+        set(profileImage) {
+            field = profileImage
+            notifyPropertyChanged(BR.profileImage)
+        }
 
     @SerializedName("idproofFront")
     var idproofFront: String = ""

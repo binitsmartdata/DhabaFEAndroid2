@@ -29,18 +29,23 @@ class WashroomAmenitiesVM(application: Application) : BaseVM(application) {
     fun addWashroomAmenities(callBack: GenericCallBack<ApiResponseModel<WashroomAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addWashroomAmenities(
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.washroomStatus),
-                    RequestBody.create(MultipartBody.FORM, model.water),
-                    RequestBody.create(MultipartBody.FORM, model.cleaner),
-                    getMultipartImageFile(model.images, "images")
-                )
-            ).collect {
-                handleResult(it, callBack)
+            try {
+                executeApi(
+                    getApiService()?.addWashroomAmenities(
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.washroomStatus),
+                        RequestBody.create(MultipartBody.FORM, model.water),
+                        RequestBody.create(MultipartBody.FORM, model.cleaner),
+                        getMultipartImageFile(model.images, "images")
+                    )
+                ).collect {
+                    handleResult(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -48,19 +53,24 @@ class WashroomAmenitiesVM(application: Application) : BaseVM(application) {
     fun updatewashroomAmenities(callBack: GenericCallBack<ApiResponseModel<WashroomAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.updatewashroomAmenities(
-                    RequestBody.create(MultipartBody.FORM, model._id),
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.washroomStatus),
-                    RequestBody.create(MultipartBody.FORM, model.water),
-                    RequestBody.create(MultipartBody.FORM, model.cleaner),
-                    getMultipartImageFile(model.images, "images")
-                )
-            ).collect {
-                handleResult(it, callBack)
+            try {
+                executeApi(
+                    getApiService()?.updatewashroomAmenities(
+                        RequestBody.create(MultipartBody.FORM, model._id),
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.washroomStatus),
+                        RequestBody.create(MultipartBody.FORM, model.water),
+                        RequestBody.create(MultipartBody.FORM, model.cleaner),
+                        getMultipartImageFile(model.images, "images")
+                    )
+                ).collect {
+                    handleResult(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

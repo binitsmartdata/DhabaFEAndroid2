@@ -29,41 +29,46 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
     fun addSleepingAmenities(callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addSleepingAmenities(
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.sleeping),
-                    RequestBody.create(MultipartBody.FORM, model.noOfBeds),
-                    RequestBody.create(MultipartBody.FORM, model.fan),
-                    RequestBody.create(MultipartBody.FORM, model.cooler),
-                    RequestBody.create(MultipartBody.FORM, model.enclosed),
-                    RequestBody.create(MultipartBody.FORM, model.open),
-                    RequestBody.create(MultipartBody.FORM, model.hotWater),
-                    getMultipartImageFile(model.images, "images")
-                )
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value =
-                            true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel(
-                                0,
-                                it.message!!,
-                                null
+            try {
+                executeApi(
+                    getApiService()?.addSleepingAmenities(
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.sleeping),
+                        RequestBody.create(MultipartBody.FORM, model.noOfBeds),
+                        RequestBody.create(MultipartBody.FORM, model.fan),
+                        RequestBody.create(MultipartBody.FORM, model.cooler),
+                        RequestBody.create(MultipartBody.FORM, model.enclosed),
+                        RequestBody.create(MultipartBody.FORM, model.open),
+                        RequestBody.create(MultipartBody.FORM, model.hotWater),
+                        getMultipartImageFile(model.images, "images")
+                    )
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value =
+                                true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                            callBack.onResponse(
+                                ApiResponseModel(
+                                    0,
+                                    it.message!!,
+                                    null
+                                )
                             )
-                        )
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        progressObserver.value = false
-                        callBack.onResponse(it.data)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            callBack.onResponse(it.data)
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -71,42 +76,47 @@ class SleepingAmenitiesVM(application: Application) : BaseVM(application) {
     fun updateSleepingAmenities(callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.updateSleepingAmenities(
-                    RequestBody.create(MultipartBody.FORM, model._id),
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.sleeping),
-                    RequestBody.create(MultipartBody.FORM, model.noOfBeds),
-                    RequestBody.create(MultipartBody.FORM, model.fan),
-                    RequestBody.create(MultipartBody.FORM, model.cooler),
-                    RequestBody.create(MultipartBody.FORM, model.enclosed),
-                    RequestBody.create(MultipartBody.FORM, model.open),
-                    RequestBody.create(MultipartBody.FORM, model.hotWater),
-                    getMultipartImageFile(model.images, "images")
-                )
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value =
-                            true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel(
-                                0,
-                                it.message!!,
-                                null
+            try {
+                executeApi(
+                    getApiService()?.updateSleepingAmenities(
+                        RequestBody.create(MultipartBody.FORM, model._id),
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.sleeping),
+                        RequestBody.create(MultipartBody.FORM, model.noOfBeds),
+                        RequestBody.create(MultipartBody.FORM, model.fan),
+                        RequestBody.create(MultipartBody.FORM, model.cooler),
+                        RequestBody.create(MultipartBody.FORM, model.enclosed),
+                        RequestBody.create(MultipartBody.FORM, model.open),
+                        RequestBody.create(MultipartBody.FORM, model.hotWater),
+                        getMultipartImageFile(model.images, "images")
+                    )
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value =
+                                true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                            callBack.onResponse(
+                                ApiResponseModel(
+                                    0,
+                                    it.message!!,
+                                    null
+                                )
                             )
-                        )
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        progressObserver.value = false
-                        callBack.onResponse(it.data)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            callBack.onResponse(it.data)
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

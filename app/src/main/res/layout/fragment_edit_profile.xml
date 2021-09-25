@@ -3,9 +3,12 @@
 
     <data>
 
+        <import type="com.transport.mall.R" />
+
         <variable
-            name="userData"
+            name="userModel"
             type="com.transport.mall.model.UserModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,37 +16,37 @@
         android:layout_height="match_parent"
         android:padding="@dimen/_15sdp">
 
-
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
+            android:id="@+id/ivProfileImg"
+            loadImage="@{userModel.profileImage}"
+            placeholder="@{R.drawable.ic_profile_pic_placeholder}"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_80sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:src="@drawable/ic_profile_pic_placeholder"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ownerNameEdt"
+            android:id="@+id/edName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/grey_stroke"
             android:fontFamily="@font/opensans_regular"
-            android:hint="@string/owner_name"
+            android:hint="@string/name"
             android:inputType="text"
             android:padding="@dimen/_10sdp"
-            android:text="@{userData.fname}"
+            android:text="@={userModel.name}"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+            app:layout_constraintTop_toBottomOf="@+id/ivProfileImg" />
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailEdt"
+            android:id="@+id/edEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
@@ -52,29 +55,53 @@
             android:hint="@string/email_address"
             android:inputType="textEmailAddress"
             android:padding="@dimen/_10sdp"
-            android:text="@{userData.email}"
+            android:text="@={userModel.email}"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ownerNameEdt" />
+            app:layout_constraintTop_toBottomOf="@+id/edName" />
 
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phoneNoEdt"
+        <LinearLayout
+            android:id="@+id/editlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/grey_stroke"
-            android:fontFamily="@font/opensans_regular"
-            android:hint="@string/phone_number"
-            android:inputType="phone"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailEdt" />
+            app:layout_constraintTop_toBottomOf="@+id/edEmail">
+
+            <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                android:id="@+id/ccpCountryCode"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                app:ccp_defaultCode="91"
+                app:ccp_textSize="@dimen/_12ssp" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:background="@color/grey" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:background="@android:color/transparent"
+                android:hint="@string/_10_digit_mobile_number"
+                android:inputType="number"
+                android:maxLength="10"
+                android:padding="@dimen/_10sdp"
+                android:text="@={userModel.mobile}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/_13ssp" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnUpdateProfile"
@@ -84,14 +111,13 @@
             android:background="@drawable/primary_color_btn_selector"
             android:fontFamily="@font/opensans_bold"
             android:gravity="center"
-            android:padding="@dimen/_10sdp"
             android:text="@string/update_profile"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_16ssp"
+            android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNoEdt" />
+            app:layout_constraintTop_toBottomOf="@+id/editlayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

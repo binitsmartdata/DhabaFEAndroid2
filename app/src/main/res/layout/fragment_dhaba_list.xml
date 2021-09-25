@@ -30,8 +30,8 @@
             android:background="@drawable/grey_stroke"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/autoTextSearch"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edSearch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -39,6 +39,8 @@
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="5dp"
                 android:hint="@string/search_dhaba"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
                 android:padding="@dimen/_5sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_12ssp" />

@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.google.gson.stream.MalformedJsonException
 import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.repository.networkoperator.ApiResult
@@ -82,6 +84,8 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         try {
             if (t is SocketTimeoutException) {
                 error_code = ResponseCodes.TIMEOUT_EXCEPTION
+            } else if (t is JsonSyntaxException) {
+                error_code = ResponseCodes.JSON_SYNTAX_EXCEPTION
             } else if (t is TimeoutException) {
                 error_code = ResponseCodes.TIMEOUT_EXCEPTION
             } else if (t is ClassCastException) {
@@ -190,24 +194,80 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
 
     fun getDhabaById(dhabaId: String, callBack: GenericCallBack<ApiResponseModel<DhabaModelMain>>) {
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.getDhabaByID(dhabaId)
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-
-                    }
-                    ApiResult.Status.ERROR -> {
-                        try {
-                            callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<DhabaModelMain>?)
-                        } catch (e: Exception) {
-                            callBack.onResponse(ApiResponseModel(0, it.message!!, null))
+            try {
+                executeApi(getApiService()?.getDhabaByID(dhabaId)).collect {
+                    when (it.status) {
+                        ApiResult.Status.ERROR -> {
+                            try {
+                                callBack.onResponse(
+                                    Gson().fromJson(
+                                        it.error?.string(),
+                                        ApiResponseModel::class.java
+                                    ) as ApiResponseModel<DhabaModelMain>?
+                                )
+                            } catch (e: Exception) {
+                                callBack.onResponse(ApiResponseModel(0, it.message!!, null))
+                            }
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            callBack.onResponse(it.data)
                         }
                     }
-                    ApiResult.Status.SUCCESS -> {
-                        callBack.onResponse(it.data)
+                }
+            } catch (e: Exception) {
+                callBack.onResponse(ApiResponseModel(0, getCorrectErrorMessage(e), null))
+            }
+        }
+    }
+
+    fun updateDhabaStatus(
+        isDraft: Boolean,
+        dhabaModel: DhabaModel,
+        progressObserver: MutableLiveData<Boolean>,
+        callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
+    ) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.updateDhabaStatus(
+                        dhabaModel._id,
+                        dhabaModel.blockDay.toString(),
+                        dhabaModel.blockMonth.toString(),
+                        dhabaModel.active.toString(),
+                        isDraft.toString()
+                    )
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                            callBack.onResponse(
+                                ApiResponseModel<DhabaModel>(
+                                    0,
+                                    it.message!!,
+                                    null
+                                )
+                            )
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            callBack.onResponse(it.data!!)
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                progressObserver.value = false
+//                showToastInCenter(app!!, getCorrectErrorMessage(e))
+                callBack.onResponse(
+                    ApiResponseModel(
+                        0,
+                        getCorrectErrorMessage(e),
+                        null
+                    )
+                )
             }
         }
     }

@@ -267,7 +267,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@{executiveModel.executive.fname}"
+                        android:text="@{executiveModel.executive.name}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -336,7 +336,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@{executiveModel.executive.fname}"
+                        android:text="@{executiveModel.executive.name}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -404,7 +404,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@{executiveModel.manager.fname}"
+                        android:text="@{executiveModel.manager.name}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -570,12 +570,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/opensans_regular"
+                            android:tag="true"
                             android:text="@string/active" />
 
                         <RadioButton
                             android:id="@+id/rbInactive"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:tag="false"
                             android:text="@string/inactive" />
 
                     </RadioGroup>
@@ -590,11 +592,10 @@
                     android:fontFamily="@font/opensans_bold"
                     android:gravity="center"
                     android:padding="@dimen/_10sdp"
-                    android:text="@string/save_dhaba"
+                    android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save_dhaba)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp"
-                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/propertyStatusLayout" />
@@ -620,12 +621,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/viewRestrictor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />
+            <!--
+                        <View
+                            android:id="@+id/viewRestrictor"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="true"
+                            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />
+            -->
 
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>

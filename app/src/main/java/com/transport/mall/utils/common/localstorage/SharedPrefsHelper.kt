@@ -11,12 +11,7 @@ import com.transport.mall.model.UserModel
 
 class SharedPrefsHelper {
     private val SELECTED_LANGUAGE = "selectedLanguage"
-    private val id = "id"
-    private val fname = "fname"
-    private val lname = "lname"
-    private val email = "email"
-    private val lastLogin = "lastLogin"
-    private val accessToken = "accessToken"
+    private val mUserData = "userData"
     private val draftDhaba = "draftDhaba"
 
     var context: Context? = null
@@ -44,25 +39,17 @@ class SharedPrefsHelper {
     }
 
     fun setUserData(userData: UserModel) {
-        editor?.putString(id, userData._id)
-        editor?.putString(fname, userData.fname)
-        editor?.putString(lname, userData.lname)
-        editor?.putString(email, userData.email)
-        editor?.putString(lastLogin, userData.lastLogin)
-        editor?.putString(accessToken, userData.accessToken)
+        editor?.putString(mUserData, Gson().toJson(userData).toString())
         editor?.apply()
     }
 
     fun getUserData(): UserModel {
-        var userModel = UserModel()
-        userModel._id = prefs?.getString(id, "")!!
-        userModel.fname = prefs?.getString(fname, "")!!
-        userModel.lname = prefs?.getString(lname, "")!!
-        userModel.email = prefs?.getString(email, "")!!
-        userModel.lastLogin = prefs?.getString(lastLogin, "")!!
-        userModel.accessToken = prefs?.getString(accessToken, "")!!
-
-        return userModel
+        try {
+            return Gson().fromJson(prefs?.getString(mUserData, "")!!, UserModel::class.java)
+        } catch (e: Exception) {
+            Log.e("GET DHABA DRAFT ::", e.toString())
+            return UserModel()
+        }
     }
 
     fun getSelectedLanguage(): String {

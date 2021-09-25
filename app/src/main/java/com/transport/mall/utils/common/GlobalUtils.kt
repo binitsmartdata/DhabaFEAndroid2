@@ -7,12 +7,14 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.*
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.location.LocationManager
 import android.media.MediaMetadataRetriever
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
@@ -38,7 +40,6 @@ import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.Executors
 
 
 object GlobalUtils {
@@ -151,7 +152,7 @@ object GlobalUtils {
         dialog.setCancelable(false)
         dialog.setTitle(message)
         dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
-        dialog.setNegativeButton(context.getString(R.string.cancel)) { _, _ ->
+        dialog.setNegativeButton(context.getString(R.string.no)) { _, _ ->
             callBack.onResponse(
                 false
             )
@@ -669,5 +670,20 @@ object GlobalUtils {
             mediaMetadataRetriever?.release()
         }
         return bitmap
+    }
+
+    fun playThisVideo(context: Context, videoPath: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(videoPath), "video/mp4")
+        context.startActivity(intent)
+    }
+
+    fun isLocationEnabled(mContext: Context): Boolean {
+        var isEnabled = false
+        val lm = mContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        isEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER) || lm.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+        return isEnabled
     }
 }

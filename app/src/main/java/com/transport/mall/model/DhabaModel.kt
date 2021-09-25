@@ -5,7 +5,6 @@ import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.SerializedName
 import com.transport.mall.utils.common.GenericCallBackTwoParams
-import kotlinx.coroutines.NonCancellable.isActive
 import java.io.Serializable
 
 /**
@@ -97,12 +96,14 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.pincode)
         }
 
+/*
     var location: String = ""
         @Bindable get() = field
         set(location) {
             field = location
             notifyPropertyChanged(BR.location)
         }
+*/
 
     var mobile: String = ""
         @Bindable get() = field
@@ -111,7 +112,7 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.mobile)
         }
 
-    var propertyStatus: String = ""
+    var propertyStatus: String = "other"
         @Bindable get() = field
         set(propertyStatus) {
             field = propertyStatus
@@ -154,7 +155,7 @@ class DhabaModel : Serializable, BaseObservable() {
         }*/
 
     @SerializedName("isActive")
-    var active: String = "true"
+    var active: String? = "true"
         @Bindable get() = field
         set(active) {
             field = active
@@ -188,6 +189,9 @@ class DhabaModel : Serializable, BaseObservable() {
             field = blockMonth
             notifyPropertyChanged(BR.blockMonth)
         }
+
+    var isDraft: String = ""
+
 
     fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.isEmpty()) {

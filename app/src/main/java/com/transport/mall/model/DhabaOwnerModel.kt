@@ -21,12 +21,20 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR._id)
         }
 
-    @SerializedName(value = "ownerName", alternate = ["fname"])
+    @SerializedName(value = "ownerName", alternate = ["fname", "name"])
     var ownerName: String = ""
         @Bindable get() = field
         set(ownerName) {
             field = ownerName
             notifyPropertyChanged(BR.ownerName)
+        }
+
+    @SerializedName(value = "mobilePrefix")
+    var mobilePrefix: String = ""
+        @Bindable get() = field
+        set(mobilePrefix) {
+            field = mobilePrefix
+            notifyPropertyChanged(BR.mobilePrefix)
         }
 
     @SerializedName(value = "mobile")
@@ -53,6 +61,7 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.address)
         }
 
+/*
     @SerializedName(value = "location")
     var location: String = ""
         @Bindable get() = field
@@ -60,6 +69,7 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             field = location
             notifyPropertyChanged(BR.location)
         }
+*/
 
     @SerializedName(value = "panNumber")
     var panNumber: String = ""

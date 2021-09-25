@@ -14,7 +14,6 @@ import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
-import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -87,19 +86,21 @@ class LoginVM(application: Application) : BaseVM(application) {
                                 }
                                 ApiResult.Status.SUCCESS -> {
                                     progressObserver?.value = false
-                                    SharedPrefsHelper.getInstance(app as Context)
-                                        .setUserData(result.data?.data!!)
+                                    result.data?.let {
+                                        SharedPrefsHelper.getInstance(app as Context)
+                                            .setUserData(result.data.data!!)
 
-                                    getCitiesList(GenericCallBack {
-                                        HomeActivity.start(app?.applicationContext!!)
-                                        callBak.onResponse(result.status, result.data.message)
-                                    })
+                                        getCitiesList(GenericCallBack {
+                                            HomeActivity.start(app?.applicationContext!!)
+                                            callBak.onResponse(result.status, result.data.message)
+                                        })
+                                    }
                                 }
                             }
                         }
                     } catch (e: Exception) {
                         progressObserver?.value = false
-                        showToastInCenter(app!!, GlobalUtils.getNonNullString(e.message, e.toString()))
+                        showToastInCenter(app!!, getCorrectErrorMessage(e))
                     }
                 }
             }
@@ -142,7 +143,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                     }
                 }
             } catch (e: Exception) {
-                progressObserver?.value = false
+                progressObserverCityStates?.value = false
                 showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
@@ -167,13 +168,45 @@ class LoginVM(application: Application) : BaseVM(application) {
                             callBack.onResponse(false)
                         }
                         ApiResult.Status.SUCCESS -> {
-                            progressObserverCityStates?.value = false
+//                            progressObserverCityStates?.value = false
                             it.data?.data?.data?.let {
                                 for (model in it) {
                                     model.name_en = model.name?.en!!
                                     AppDatabase.getInstance(app!!)?.statesDao()
                                         ?.insert(model)
                                 }
+                            }
+
+                            getAllBankList(callBack)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                progressObserverCityStates?.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+
+    fun getAllBankList(callBack: GenericCallBack<Boolean>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.getAllBankList()
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserverCityStates?.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserverCityStates?.value = false
+                            callBack.onResponse(false)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+//                            progressObserverCityStates?.value = false
+                            it.data?.data?.let {
+                                AppDatabase.getInstance(app!!)?.bankDao()
+                                    ?.insertAll(it)
                             }
 
                             getAllHighway(callBack)
@@ -197,6 +230,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                         }
                         ApiResult.Status.ERROR -> {
                             progressObserverCityStates?.value = false
+                            callBack.onResponse(false)
                         }
                         ApiResult.Status.SUCCESS -> {
                             progressObserverCityStates?.value = false

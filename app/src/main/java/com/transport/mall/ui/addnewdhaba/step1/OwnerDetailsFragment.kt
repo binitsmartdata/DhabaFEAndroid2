@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.provider.Settings
 import android.telephony.PhoneNumberFormattingTextWatcher
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -11,6 +12,7 @@ import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOwnerDetailsBinding
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.model.LocationAddressModel
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
@@ -19,6 +21,7 @@ import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.xloadImages
+
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -46,21 +49,30 @@ class OwnerDetailsFragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
+        binding.isUpdate = mListener?.isUpdate()!!
 
         //SETTING EXISTING DATA ON SCREEN
         setDataIfHas()
-
-        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
-        binding.isUpdate = mListener?.isUpdate()!!
     }
 
     private fun setDataIfHas() {
         mListener?.getDhabaModelMain()?.ownerModel?.let {
             viewModel.ownerModel = it
 
+            it.mobilePrefix?.let {
+                if (it.isNotEmpty()) {
+                    try {
+                        binding.ccpCountryCode.setCountryForPhoneCode(it.toInt())
+                    } catch (e: Exception) {
+                        binding.ccpCountryCode.setCountryForPhoneCode(91)
+                    }
+                }
+            }
+
             it.ownerPic?.let {
                 xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
             }
+
             it.idproofFront?.let {
                 if (it.isNotEmpty()) {
                     xloadImages(binding.ivFrontId, it, R.drawable.ic_transparent_placeholder)
@@ -75,8 +87,13 @@ class OwnerDetailsFragment :
     }
 
     override fun initListeners() {
+        binding.ccpCountryCode.setOnCountryChangeListener {
+            viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
+        }
+
         setupLocationViews()
         binding.edPhoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog()
@@ -121,6 +138,7 @@ class OwnerDetailsFragment :
         }
         binding.btnSaveDraft.setOnClickListener {
             if (mListener?.getDhabaModelMain()?.ownerModel != null) {
+                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {
@@ -131,22 +149,50 @@ class OwnerDetailsFragment :
 
     private fun setupLocationViews() {
         binding.tvMapPicker.setOnClickListener {
-            GoogleMapsActivity.start(this)
+            if (GlobalUtils.isLocationEnabled(getmContext())) {
+                GoogleMapsActivity.start(this)
+            } else {
+                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
+                    if (it!!) {
+                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    } else {
+                        GoogleMapsActivity.start(this)
+                    }
+                })
+            }
         }
         binding.tvCurrLocation.setOnClickListener {
-            GlobalUtils.getCurrentLocation(activity as Context, GenericCallBack { location ->
-                if (location != null) {
-                    viewModel.ownerModel.address = GlobalUtils.getAddressUsingLatLong(
-                        activity as Context,
-                        location.latitude,
-                        location.longitude
-                    ).fullAddress!!
-                }
-            })
+            if (GlobalUtils.isLocationEnabled(getmContext())) {
+                getAddress()
+            } else {
+                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
+                    if (it!!) {
+                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    } else {
+                        showToastInCenter(getString(R.string.unable_to_fetch_address))
+                    }
+                })
+            }
         }
     }
 
+    private fun getAddress() {
+        GlobalUtils.getCurrentLocation(activity as Context, GenericCallBack { location ->
+            if (location != null) {
+                viewModel.ownerModel.latitude = location.latitude.toString()
+                viewModel.ownerModel.longitude = location.longitude.toString()
+
+                viewModel.ownerModel.address = GlobalUtils.getAddressUsingLatLong(
+                    activity as Context,
+                    location.latitude,
+                    location.longitude
+                ).fullAddress!!
+            }
+        })
+    }
+
     private fun saveDetails(isDraft: Boolean) {
+//        viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.textView_selectedCountry.text.toString()
         viewModel.ownerModel.hasEverything(GenericCallBackTwoParams { hasEverything, message ->
             if (hasEverything) {
                 if (mListener?.isUpdate()!! && viewModel.ownerModel._id.isNotEmpty()) {
@@ -168,6 +214,7 @@ class OwnerDetailsFragment :
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.ownerModel = it.data
             if (isDraft) {
+                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {
@@ -185,7 +232,7 @@ class OwnerDetailsFragment :
 
     private fun launchImagePicker() {
         ImagePicker.with(this)
-            .crop()
+            .crop(16f, 9f)
             .compress(1024)            //Final image size will be less than 1 MB(Optional)
             .maxResultSize(
                 1080,

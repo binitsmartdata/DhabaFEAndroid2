@@ -46,96 +46,94 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
     fun addBankDetail(callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addBankDetail(
-                    RequestBody.create(MultipartBody.FORM, bankModel.user_id),
-                    RequestBody.create(MultipartBody.FORM, bankModel.bankName),
-                    RequestBody.create(MultipartBody.FORM, bankModel.gstNumber),
-                    RequestBody.create(MultipartBody.FORM, bankModel.ifscCode),
-                    RequestBody.create(MultipartBody.FORM, bankModel.accountName),
-                    RequestBody.create(MultipartBody.FORM, bankModel.panNumber),
-                    getMultipartImageFile(bankModel.panPhoto, "panPhoto")
-                )
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel<BankDetailsModel>(
-                                0,
-                                it.message!!,
-                                null
-                            )
-                        )
-                    }
-                    ApiResult.Status.SUCCESS -> {
-//                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-                        progressObserver.value = false
-                        callBack.onResponse(it.data!!)
-                    }
+            try {
+                executeApi(
+                    getApiService()?.addBankDetail(
+                        RequestBody.create(MultipartBody.FORM, bankModel.user_id),
+                        RequestBody.create(MultipartBody.FORM, bankModel.bankName),
+                        RequestBody.create(MultipartBody.FORM, bankModel.gstNumber),
+                        RequestBody.create(MultipartBody.FORM, bankModel.ifscCode),
+                        RequestBody.create(MultipartBody.FORM, bankModel.accountName),
+                        RequestBody.create(MultipartBody.FORM, bankModel.panNumber),
+                        getMultipartImageFile(bankModel.panPhoto, "panPhoto")
+                    )
+                ).collect {
+                    handleResponse(it, callBack)
                 }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
 
-    fun addBlockingInfo(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
+    fun updateBankDetail(callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.savedhabaBlocking(
-                    dhabaModel._id,
-                    dhabaModel.blockDay.toString(),
-                    dhabaModel.blockMonth.toString(),
-                    dhabaModel.active
-                )
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel<DhabaModel>(
-                                0,
-                                it.message!!,
-                                null
-                            )
-                        )
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        progressObserver.value = false
-                        callBack.onResponse(it.data!!)
-                    }
+            try {
+                executeApi(
+                    getApiService()?.updateBankDetail(
+                        RequestBody.create(MultipartBody.FORM, bankModel._id),
+                        RequestBody.create(MultipartBody.FORM, bankModel.user_id),
+                        RequestBody.create(MultipartBody.FORM, bankModel.bankName),
+                        RequestBody.create(MultipartBody.FORM, bankModel.gstNumber),
+                        RequestBody.create(MultipartBody.FORM, bankModel.ifscCode),
+                        RequestBody.create(MultipartBody.FORM, bankModel.accountName),
+                        RequestBody.create(MultipartBody.FORM, bankModel.panNumber),
+                        getMultipartImageFile(bankModel.panPhoto, "panPhoto")
+                    )
+                ).collect {
+                    handleResponse(it, callBack)
                 }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+
+    private fun handleResponse(
+        it: ApiResult<ApiResponseModel<BankDetailsModel>>,
+        callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>
+    ) {
+        when (it.status) {
+            ApiResult.Status.LOADING -> {
+                progressObserver.value = true
+            }
+            ApiResult.Status.ERROR -> {
+                progressObserver.value = false
+                callBack.onResponse(
+                    ApiResponseModel<BankDetailsModel>(
+                        0,
+                        it.message!!,
+                        null
+                    )
+                )
+            }
+            ApiResult.Status.SUCCESS -> {
+                progressObserver.value = false
+                callBack.onResponse(it.data!!)
             }
         }
     }
 
     fun getUserByRole(callBack: GenericCallBack<ApiResponseModel<UserModelMain>>) {
-//        progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.getUserByRole()
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-//                        progressObserver.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-//                        progressObserver.value = false
-                        callBack.onResponse(
-                            ApiResponseModel(0, it.message!!, null)
-                        )
-                    }
-                    ApiResult.Status.SUCCESS -> {
-//                        progressObserver.value = false
-                        callBack.onResponse(it.data!!)
+            try {
+                executeApi(getApiService()?.getUserByRole()).collect {
+                    when (it.status) {
+                        ApiResult.Status.ERROR -> {
+                            callBack.onResponse(
+                                ApiResponseModel(0, it.message!!, null)
+                            )
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            callBack.onResponse(it.data!!)
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }

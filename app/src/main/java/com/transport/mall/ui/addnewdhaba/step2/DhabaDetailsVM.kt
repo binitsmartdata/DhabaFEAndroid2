@@ -33,34 +33,41 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     fun addDhaba(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addDhaba(
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.owner_id),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.name),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.address),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.area),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.highway),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.state),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.city),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.pincode),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.location),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
-                    RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
-                    getMultipartImageFile(dhabaModel.images, "images"),
-                    getMultipartVideoFile(dhabaModel.videos, "videos"),
-                    RequestBody.create(
-                        MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
-                    ),
-                    RequestBody.create(
-                        MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
+            try {
+                executeApi(
+                    getApiService()?.addDhaba(
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.owner_id),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.name),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.address),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.area),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.highway),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.state),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.city),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.pincode),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.latitude + "," + dhabaModel.longitude),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
+                        RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
+                        getMultipartImageFile(dhabaModel.images, "images"),
+                        getMultipartVideoFile(dhabaModel.videos, "videos"),
+                        RequestBody.create(
+                            MultipartBody.FORM,
+                            SharedPrefsHelper.getInstance(app!!).getUserData()._id
+                        ),
+                        RequestBody.create(
+                            MultipartBody.FORM,
+                            SharedPrefsHelper.getInstance(app!!).getUserData()._id
+                        )
                     )
-                )
-            ).collect {
-                handleResponse(it, callBack, progressObserver)
+                ).collect {
+                    handleResponse(it, callBack, progressObserver)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -68,35 +75,42 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     fun updateDhaba(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
         progressObserverUpdate.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.updateDhaba(
-                    RequestBody.create(MultipartBody.FORM, dhabaModel._id),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.owner_id),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.name),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.address),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.area),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.highway),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.state),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.city),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.pincode),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.location),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
-                    RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
-                    getMultipartImageFile(dhabaModel.images, "images"),
-                    getMultipartVideoFile(dhabaModel.videos, "videos"),
-                    RequestBody.create(
-                        MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
-                    ),
-                    RequestBody.create(
-                        MultipartBody.FORM,
-                        SharedPrefsHelper.getInstance(app!!).getUserData()._id
+            try {
+                executeApi(
+                    getApiService()?.updateDhaba(
+                        RequestBody.create(MultipartBody.FORM, dhabaModel._id),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.owner_id),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.name),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.address),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.area),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.highway),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.state),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.city),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.pincode),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.latitude + "," + dhabaModel.longitude),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
+                        RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
+                        RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
+                        getMultipartImageFile(dhabaModel.images, "images"),
+                        getMultipartVideoFile(dhabaModel.videos, "videos"),
+                        RequestBody.create(
+                            MultipartBody.FORM,
+                            SharedPrefsHelper.getInstance(app!!).getUserData()._id
+                        ),
+                        RequestBody.create(
+                            MultipartBody.FORM,
+                            SharedPrefsHelper.getInstance(app!!).getUserData()._id
+                        )
                     )
-                )
-            ).collect {
-                handleResponse(it, callBack, progressObserverUpdate)
+                ).collect {
+                    handleResponse(it, callBack, progressObserverUpdate)
+                }
+            } catch (e: Exception) {
+                progressObserverUpdate.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

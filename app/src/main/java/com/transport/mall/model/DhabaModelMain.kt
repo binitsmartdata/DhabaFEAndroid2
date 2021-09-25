@@ -13,7 +13,7 @@ class DhabaModelMain : Serializable {
     @SerializedName("foodAmenities")
     var foodAmenitiesModel: FoodAmenitiesModel? = null
 
-    @SerializedName("bankDetails")
+    @SerializedName("bankDeatil")
     var bankDetailsModel: BankDetailsModel? = null
 
     @SerializedName("parkingAmenities")
@@ -33,4 +33,13 @@ class DhabaModelMain : Serializable {
 
     @SerializedName("otherAmenities")
     var otherAmenitiesModel: OtherAmenitiesModel? = null
+
+    var draftedAtScreen: String? = ""
+
+    enum class DraftScreen {
+        DhabaDetailsFragment,
+        OwnerDetailsFragment,
+        AmenitiesFragment,
+        BankDetailsFragment
+    }
 }

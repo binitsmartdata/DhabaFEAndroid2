@@ -228,6 +228,8 @@
                 android:gravity="center">
 
                 <com.transport.mall.utils.custom.CircleImageView
+                    loadImage="@{user.profileImage}"
+                    placeholder="@{R.drawable.ic_profile_pic_placeholder}"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
@@ -241,13 +243,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Assigned To"
+                        android:text="@string/assigned_to"
                         android:textColor="@color/grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{user.fname}"
+                        android:text="@{user.name}"
                         android:textColor="@color/black" />
 
                 </LinearLayout>

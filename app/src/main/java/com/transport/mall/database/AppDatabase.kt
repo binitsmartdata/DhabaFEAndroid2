@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.transport.mall.model.BankNamesModel
 import com.transport.mall.model.CityModel
 import com.transport.mall.model.HighwayModel
 import com.transport.mall.model.StateModel
@@ -11,12 +12,13 @@ import com.transport.mall.model.StateModel
 /**
  * Created by parambir.singh on 1/09/21.
  */
-@Database(entities = [CityModel::class, StateModel::class, HighwayModel::class], version = 8)
+@Database(entities = [CityModel::class, StateModel::class, HighwayModel::class, BankNamesModel::class], version = 9)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun cityDao(): CityDao
     abstract fun statesDao(): StatesDao
     abstract fun highwayDao(): HighwayDao
+    abstract fun bankDao(): BanksDao
 
     companion object {
         @Volatile

@@ -3,12 +3,16 @@ package com.transport.mall.ui.addnewdhaba.step1
 import android.content.Context
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAmenitiesBinding
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.GenericCallBack
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -25,6 +29,7 @@ class AmenitiesFragment :
         set(value) {}
 
     var mListener: AddDhabaListener? = null
+    var progressObserver: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -37,14 +42,30 @@ class AmenitiesFragment :
     }
 
     override fun initListeners() {
+        progressObserver.observe(this, Observer {
+            if (it) showProgressDialog() else hideProgressDialog()
+        })
+
         binding.btnNext.setOnClickListener {
             if (isHavingPreviousData()) {
                 mListener?.showNextScreen()
             }
         }
         binding.btnSaveDraft.setOnClickListener {
-            mListener?.saveAsDraft()
-            activity?.finish()
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                // UPDATING DHABA STATUS TO ISDRAFT
+                viewModel.updateDhabaStatus(true, it, progressObserver, GenericCallBack {
+                    if (it.data != null) {
+                        mListener?.getDhabaModelMain()?.dhabaModel = it.data
+
+                        mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.AmenitiesFragment.toString()
+                        mListener?.saveAsDraft()
+                        activity?.finish()
+                    } else {
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
         }
 
         binding.cardFood.setOnClickListener {

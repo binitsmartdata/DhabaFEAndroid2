@@ -4,11 +4,16 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.getdishout.trxpay.ui.termsofservice.DialogTermsOfService
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.ActivityHomeBinding
 import com.transport.mall.model.SideMenu
+import com.transport.mall.model.TermsConditionsModel
 import com.transport.mall.model.Toolbar
+import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
 import com.transport.mall.ui.home.helpline.EditProfileFragment
@@ -19,6 +24,10 @@ import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 /**
@@ -36,7 +45,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     override val context: Context
         get() = this
 
-
     private var mDrawerToggle: ActionBarDrawerToggle? = null
     private val toolbar = Toolbar()
     var list = ArrayList<SideMenu>()
@@ -48,6 +56,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             context.startActivity(intent)
         }
     }
+
+    val observer = MutableLiveData<Boolean>()
 
     override fun bindData() {
         setUpToolbar()
@@ -118,7 +128,38 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     }
 
     override fun initListeners() {
+        observer.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
 
+        binding.tvPrivacyPolicy.setOnClickListener {
+            getTermsAndConditions("privacy_policy", observer, GenericCallBack {
+                handleData(it)
+            })
+        }
+        binding.tvTermsConditions.setOnClickListener {
+            getTermsAndConditions("terms_and_condition", observer, GenericCallBack {
+                handleData(it)
+            })
+        }
+    }
+
+    private fun handleData(it: TermsConditionsModel) {
+        when (SharedPrefsHelper.getInstance(this@HomeActivity).getSelectedLanguage()) {
+            "en" -> {
+                DialogTermsOfService(this, it.title_en!!, it.content_en!!).show()
+            }
+            "hi" -> {
+                DialogTermsOfService(this, it.title_hi!!, it.content_hi!!).show()
+            }
+            "pa" -> {
+                DialogTermsOfService(this, it.title_pu!!, it.content_pu!!).show()
+            }
+        }
     }
 
     /**
@@ -198,4 +239,32 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             }
         }
     }
+
+    fun getTermsAndConditions(slug: String, progressObserver: MutableLiveData<Boolean>, callBack: GenericCallBack<TermsConditionsModel>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                viewModel.executeApi(viewModel.getApiService()?.getTermsAndConditions(slug)).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            it.data?.data?.data?.let {
+                                callBack.onResponse(it)
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(viewModel.getCorrectErrorMessage(e))
+            }
+        }
+    }
+
 }

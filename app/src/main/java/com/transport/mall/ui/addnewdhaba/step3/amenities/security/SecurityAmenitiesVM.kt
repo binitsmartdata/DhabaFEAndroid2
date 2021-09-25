@@ -29,31 +29,36 @@ class SecurityAmenitiesVM(application: Application) : BaseVM(application) {
     fun addSecurityAmenities(callBack: GenericCallBack<ApiResponseModel<SecurityAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.addSecurityAmenities(
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.dayGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.nightGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.policVerification.toString()),
-                    getMultipartImageFile(
-                        model.verificationImg,
-                        "verificationImg"
-                    ),
-                    RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
-                    getMultipartImagesList(
-                        model.indoorCameraImage,
-                        "indoorCameraImage"
-                    ),
-                    RequestBody.create(MultipartBody.FORM, model.outdoorCamera.toString()),
-                    getMultipartImagesList(
-                        model.outdoorCameraImage,
-                        "outdoorCameraImage"
+            try {
+                executeApi(
+                    getApiService()?.addSecurityAmenities(
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.dayGuard.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.nightGuard.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.policVerification.toString()),
+                        getMultipartImageFile(
+                            model.verificationImg,
+                            "verificationImg"
+                        ),
+                        RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
+                        getMultipartImagesList(
+                            model.indoorCameraImage,
+                            "indoorCameraImage"
+                        ),
+                        RequestBody.create(MultipartBody.FORM, model.outdoorCamera.toString()),
+                        getMultipartImagesList(
+                            model.outdoorCameraImage,
+                            "outdoorCameraImage"
+                        )
                     )
-                )
-            ).collect {
-                handleResponse(it, callBack)
+                ).collect {
+                    handleResponse(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -61,32 +66,37 @@ class SecurityAmenitiesVM(application: Application) : BaseVM(application) {
     fun updateSecurityAmenities(callBack: GenericCallBack<ApiResponseModel<SecurityAmenitiesModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.updateSecurityAmenities(
-                    RequestBody.create(MultipartBody.FORM, model._id),
-                    RequestBody.create(MultipartBody.FORM, model.service_id),
-                    RequestBody.create(MultipartBody.FORM, model.module_id),
-                    RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.dayGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.nightGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.policVerification.toString()),
-                    getMultipartImageFile(
-                        model.verificationImg,
-                        "verificationImg"
-                    ),
-                    RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
-                    getMultipartImagesList(
-                        model.indoorCameraImage,
-                        "indoorCameraImage"
-                    ),
-                    RequestBody.create(MultipartBody.FORM, model.outdoorCamera.toString()),
-                    getMultipartImagesList(
-                        model.outdoorCameraImage,
-                        "outdoorCameraImage"
+            try {
+                executeApi(
+                    getApiService()?.updateSecurityAmenities(
+                        RequestBody.create(MultipartBody.FORM, model._id),
+                        RequestBody.create(MultipartBody.FORM, model.service_id),
+                        RequestBody.create(MultipartBody.FORM, model.module_id),
+                        RequestBody.create(MultipartBody.FORM, model.dhaba_id),
+                        RequestBody.create(MultipartBody.FORM, model.dayGuard.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.nightGuard.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.policVerification.toString()),
+                        getMultipartImageFile(
+                            model.verificationImg,
+                            "verificationImg"
+                        ),
+                        RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
+                        getMultipartImagesList(
+                            model.indoorCameraImage,
+                            "indoorCameraImage"
+                        ),
+                        RequestBody.create(MultipartBody.FORM, model.outdoorCamera.toString()),
+                        getMultipartImagesList(
+                            model.outdoorCameraImage,
+                            "outdoorCameraImage"
+                        )
                     )
-                )
-            ).collect {
-                handleResponse(it, callBack)
+                ).collect {
+                    handleResponse(it, callBack)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }
@@ -119,22 +129,27 @@ class SecurityAmenitiesVM(application: Application) : BaseVM(application) {
     fun delSecurityImg(indoorCameraImageId: String?, outdoorCameraImageId: String?, callBack: GenericCallBack<Boolean>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
-            executeApi(
-                getApiService()?.delSecurityImg(model._id, indoorCameraImageId, outdoorCameraImageId)
-            ).collect {
-                when (it.status) {
-                    ApiResult.Status.LOADING -> {
-                        progressObserver.value = true
-                    }
-                    ApiResult.Status.ERROR -> {
-                        progressObserver.value = false
-                        callBack.onResponse(false)
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        progressObserver.value = false
-                        callBack.onResponse(true)
+            try {
+                executeApi(
+                    getApiService()?.delSecurityImg(model._id, indoorCameraImageId, outdoorCameraImageId)
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                            callBack.onResponse(false)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            callBack.onResponse(true)
+                        }
                     }
                 }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

@@ -51,8 +51,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 GlobalUtils.hideProgressDialog()
             }
         })
-        viewModel.emailObservable.set("ashish@mail.com")
-        viewModel.passwordObservable.set("123456")
     }
 
     override fun initListeners() {

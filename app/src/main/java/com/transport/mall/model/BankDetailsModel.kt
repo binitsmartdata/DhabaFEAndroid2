@@ -11,6 +11,7 @@ import java.io.Serializable
  * Created by Parambir Singh on 2020-01-24.
  */
 class BankDetailsModel : Serializable, BaseObservable() {
+    @SerializedName(value = "_id")
     var _id: String = ""
 
     @SerializedName(value = "user_id")

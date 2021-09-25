@@ -141,15 +141,19 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tvPrivacyPolicy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/default_btn_selector"
                     android:padding="@dimen/_10sdp"
                     android:text="@string/privacy_policy"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
+                    android:id="@+id/tvTermsConditions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/default_btn_selector"
                     android:padding="@dimen/_10sdp"
                     android:text="@string/terms_and_conditions"
                     android:textSize="@dimen/_12ssp" />

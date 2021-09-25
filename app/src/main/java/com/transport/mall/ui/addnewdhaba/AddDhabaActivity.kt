@@ -69,7 +69,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             viewModel.mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
         } else {
             SharedPrefsHelper.getInstance(this).getDraftDhaba()?.let {
-                binding.viewPager.setPagingEnabled(true)
+//                binding.viewPager.setPagingEnabled(true)
                 viewModel.mDhabaModelMain = it
             }
         }
@@ -161,6 +161,17 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             override fun onPageSelected(position: Int) {
             }
         })
+
+        viewModel.mDhabaModelMain.dhabaModel?.let {
+            if (it.isDraft.equals("true")) {
+                when (viewModel.mDhabaModelMain.draftedAtScreen) {
+                    DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString() -> binding.viewPager.currentItem = 0
+                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString() -> binding.viewPager.currentItem = 1
+                    DhabaModelMain.DraftScreen.AmenitiesFragment.toString() -> binding.viewPager.currentItem = 2
+                    DhabaModelMain.DraftScreen.BankDetailsFragment.toString() -> binding.viewPager.currentItem = 3
+                }
+            }
+        }
     }
 
     override fun initListeners() {

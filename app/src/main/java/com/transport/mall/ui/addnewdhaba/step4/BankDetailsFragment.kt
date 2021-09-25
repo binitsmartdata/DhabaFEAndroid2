@@ -13,8 +13,13 @@ import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentBankDetailsBinding
+import com.transport.mall.model.BankDetailsModel
+import com.transport.mall.model.BankNamesModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
@@ -38,21 +43,20 @@ class BankDetailsFragment :
         set(value) {}
 
     var mListener: AddDhabaListener? = null
+    var bankList: ArrayList<BankNamesModel> = ArrayList()
+    var banksAdapter: ArrayAdapter<BankNamesModel>? = null
 
     override fun bindData() {
         binding.context = activity
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
+        binding.isUpdate = mListener?.isUpdate()
         binding.dhabaModelMain = mListener?.getDhabaModelMain()
         binding.currentDate = GlobalUtils.getCurrentDate()
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
-
-        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
-        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
-        binding.isUpdate = mListener?.isUpdate()!!
 
         // getexecutive, manager roles and show(read only)
         viewModel.getUserByRole(GenericCallBack {
@@ -65,13 +69,13 @@ class BankDetailsFragment :
     private fun showDataIfHas() {
         mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
             viewModel.bankModel = it
-
             it.panPhoto.let {
                 xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
                 binding.ivPanPhoto.visibility = View.VISIBLE
             }
         }
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            viewModel.dhabaModel = it
             setBlockingData(it)
         }
     }
@@ -84,7 +88,7 @@ class BankDetailsFragment :
                 0 -> binding.rbDelisted.isChecked = true
             }
         }
-        viewModel.dhabaModel.active.let {
+        viewModel.dhabaModel.active?.let {
             when (it) {
                 "true" -> binding.rbActive.isChecked = true
                 "false" -> binding.rbInactive.isChecked = true
@@ -103,7 +107,7 @@ class BankDetailsFragment :
                 (activity?.findViewById<RadioButton>(i))?.getTag().toString().toInt()
         }
         binding.rgPropertyStatus.setOnCheckedChangeListener { radioGroup, i ->
-            viewModel.dhabaModel.active = binding.rbActive.isChecked.toString()
+            viewModel.dhabaModel.status = activity?.findViewById<RadioButton>(i)?.getTag().toString()
         }
 
         viewModel.progressObserver.observe(this, Observer {
@@ -115,14 +119,13 @@ class BankDetailsFragment :
         })
 
         binding.btnNext.setOnClickListener {
-            if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
-                showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
-            } else {
-                saveDetails(false)
-            }
+            viewModel.dhabaModel.isDraft = false.toString()
+            saveDetails(false)
         }
         binding.btnSaveDraft.setOnClickListener {
+            viewModel.dhabaModel.isDraft = true.toString()
             if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
+                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {
@@ -136,28 +139,36 @@ class BankDetailsFragment :
     }
 
     private fun setupBankNameDropdown() {
-        val list: Array<String> = resources.getStringArray(R.array.bankNames)
-        val adapter = ArrayAdapter<String>(
-            activity as Context,
-            android.R.layout.simple_dropdown_item_1line, list
-        )
-        binding.spnrBanks.adapter = adapter
+        AppDatabase.getInstance(getmContext())?.bankDao()
+            ?.getAll()?.observe(this, Observer {
+                bankList = it as ArrayList<BankNamesModel>
+                if (bankList.isNotEmpty()) {
+                    setBankNamesAdapter(bankList)
+                }
+            })
+    }
+
+    private fun setBankNamesAdapter(bankList: java.util.ArrayList<BankNamesModel>) {
+        banksAdapter = ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
+        binding.spnrBanks.setAdapter(banksAdapter)
         binding.spnrBanks.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.bankModel.bankName = list[p2]
+                viewModel.bankModel.bankName = bankList.get(p2).name!!
+                //GET LIST OF CITIES UNDER SELECTED STATE
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
+
         })
 
-        viewModel.bankModel.bankName?.let {
+        viewModel.bankModel.bankName.let {
             if (it.isNotEmpty()) {
                 var index = 0
-                for (i in list) {
-                    if (i.equals(it, true)) {
+                for (i in bankList) {
+                    if (i.equals(it)) {
                         binding.spnrBanks.setSelection(index)
                         break
                     }
@@ -169,32 +180,55 @@ class BankDetailsFragment :
 
     private fun saveDetails(isDraft: Boolean) {
         if (isDraft || (!isDraft && isHavingPreviousData())) {
-            viewModel.bankModel.hasEverything(GenericCallBackTwoParams() { allOk, message ->
-                if (allOk) {
-                    viewModel.addBankDetail(GenericCallBack {
-                        if (it.data != null) {
-                            mListener?.getDhabaModelMain()?.bankDetailsModel = it.data
-                            viewModel.addBlockingInfo(GenericCallBack {
-                                if (it.data != null) {
-                                    mListener?.getDhabaModelMain()?.dhabaModel = it.data
-                                    if (isDraft) {
-                                        mListener?.saveAsDraft()
-                                        activity?.finish()
-                                    } else {
-                                        showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
-                                    }
-                                } else {
-                                    showToastInCenter(it.message)
-                                }
-                            })
+            if (isDraft) {
+                proceed(isDraft)
+            } else {
+                viewModel.bankModel.hasEverything(GenericCallBackTwoParams() { allOk, message ->
+                    if (allOk) {
+                        proceed(isDraft)
+                    } else {
+                        showToastInCenter(message)
+                    }
+                })
+            }
+        }
+    }
+
+    private fun proceed(isDraft: Boolean) {
+        if (mListener?.isUpdate()!! && viewModel.bankModel._id.isNotEmpty()) {
+            viewModel.updateBankDetail(GenericCallBack {
+                handleData(it, isDraft)
+            })
+        } else {
+            viewModel.addBankDetail(GenericCallBack {
+                handleData(it, isDraft)
+            })
+        }
+    }
+
+    private fun handleData(it: ApiResponseModel<BankDetailsModel>, isDraft: Boolean) {
+        if (it.data != null) {
+            mListener?.getDhabaModelMain()?.bankDetailsModel = it.data
+            viewModel.updateDhabaStatus(isDraft, viewModel.dhabaModel, viewModel.progressObserver, GenericCallBack {
+                if (it.data != null) {
+                    mListener?.getDhabaModelMain()?.dhabaModel = it.data
+                    if (isDraft) {
+                        mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
+                        mListener?.saveAsDraft()
+                        activity?.finish()
+                    } else {
+                        if (mListener?.isUpdate()!!) {
+                            showToastInCenter(getString(R.string.updated_successfully))
                         } else {
-                            showToastInCenter(it.message)
+                            showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
                         }
-                    })
+                    }
                 } else {
-                    showToastInCenter(message)
+                    showToastInCenter(it.message)
                 }
             })
+        } else {
+            showToastInCenter(it.message)
         }
     }
 
@@ -224,7 +258,7 @@ class BankDetailsFragment :
 
     private fun launchImagePicker() {
         ImagePicker.with(this)
-            .crop(74f, 52f)
+            .crop(16f, 9f)
             .compress(1024)            //Final image size will be less than 1 MB(Optional)
             .maxResultSize(
                 1080,
