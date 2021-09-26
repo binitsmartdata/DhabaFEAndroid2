@@ -214,6 +214,8 @@ class BankDetailsFragment :
     private fun handleData(it: ApiResponseModel<BankDetailsModel>, isDraft: Boolean) {
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.bankDetailsModel = it.data
+            viewModel.bankModel = it.data!!
+
             viewModel.updateDhabaStatus(
                 isDraft,
                 viewModel.dhabaModel,

@@ -158,7 +158,7 @@ interface ApiService {
     @POST("dhaba/updateOwner")
     suspend fun updateOwner(
         @Part("_id") _id: RequestBody,
-        @Part("fname") ownerName: RequestBody,
+        @Part("ownerName") ownerName: RequestBody,
         @Part("mobilePrefix") mobilePrefix: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,

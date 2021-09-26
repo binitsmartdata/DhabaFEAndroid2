@@ -12,7 +12,7 @@ import com.transport.mall.model.StateModel
 /**
  * Created by parambir.singh on 1/09/21.
  */
-@Database(entities = [CityModel::class, StateModel::class, HighwayModel::class, BankNamesModel::class], version = 9)
+@Database(entities = [CityModel::class, StateModel::class, HighwayModel::class, BankNamesModel::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun cityDao(): CityDao
