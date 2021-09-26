@@ -36,7 +36,7 @@ class OtherAmenitiesFragment :
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
-        binding.isUpdate = mListener?.isUpdate()
+//        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -50,6 +50,8 @@ class OtherAmenitiesFragment :
 
     private fun showData(it: OtherAmenitiesModel) {
         viewModel.model = it
+        binding.isUpdate = viewModel.model._id.isNotEmpty()
+
         it.mechanicShop.let {
             when (it) {
                 1 -> binding.rbMerch2771.isChecked = true
@@ -99,17 +101,12 @@ class OtherAmenitiesFragment :
                 3 -> binding.rbBarber3.isChecked = true
             }
         }
-        it.barber.let {
-            when (it) {
-                1 -> binding.rbBarber1.isChecked = true
-                2 -> binding.rbBarber2.isChecked = true
-                3 -> binding.rbBarber3.isChecked = true
-            }
-        }
 
         it.barberImages.let {
-            xloadImages(binding.ivBarberImg, it, R.drawable.ic_image_placeholder)
-            binding.ivBarberImg.visibility = View.VISIBLE
+            if (it.isNotEmpty()) {
+                xloadImages(binding.ivBarberImg, it, R.drawable.ic_image_placeholder)
+                binding.ivBarberImg.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -167,7 +164,7 @@ class OtherAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                        if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updateOtherAmenities(GenericCallBack {
                                 handleData(it)
                             })

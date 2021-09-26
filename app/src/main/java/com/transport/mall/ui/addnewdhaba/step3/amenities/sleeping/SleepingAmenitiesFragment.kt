@@ -38,7 +38,7 @@ class SleepingAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.lifecycleOwner = this
-        binding.isUpdate = mListener?.isUpdate()!!
+//        binding.isUpdate = mListener?.isUpdate()!!
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -53,6 +53,8 @@ class SleepingAmenitiesFragment :
 
     private fun setData(it: SleepingAmenitiesModel) {
         viewModel.model = it
+        binding.isUpdate = viewModel.model._id.isNotEmpty()
+
         it.sleeping.let {
             val value = it.toBoolean()
             if (value) {
@@ -203,7 +205,7 @@ class SleepingAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                        if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updateSleepingAmenities(GenericCallBack {
                                 handleResponse(it)
                             })
@@ -221,11 +223,7 @@ class SleepingAmenitiesFragment :
 
     private fun handleResponse(it: ApiResponseModel<SleepingAmenitiesModel>) {
         if (it.data != null) {
-            if (mListener?.isUpdate()!!) {
-                showToastInCenter(getString(R.string.updated_successfully))
-            } else {
-                showToastInCenter(getString(R.string.sleeping_amen_saved))
-            }
+            showToastInCenter(getString(R.string.sleeping_amen_saved))
             val intent = Intent()
             intent.putExtra("data", it.data)
             activity?.setResult(Activity.RESULT_OK, intent)

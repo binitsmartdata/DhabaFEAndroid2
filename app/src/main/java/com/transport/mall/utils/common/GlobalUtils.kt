@@ -110,16 +110,18 @@ object GlobalUtils {
         dialog.setTitle(context.getString(R.string.please_confirm))
         dialog.setMessage(message)
         dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(1) }
-        dialog.setNegativeButton(context.getString(R.string.save_as_draft)) { _, _ ->
+        dialog.setNegativeButton(context.getString(R.string.cancel)) { _, _ ->
             callBack.onResponse(
                 2
             )
         }
-        dialog.setNeutralButton(context.getString(R.string.cancel)) { _, _ ->
+/*
+        dialog.setNeutralButton(context.getString(R.string.save_as_draft)) { _, _ ->
             callBack.onResponse(
                 3
             )
         }
+*/
         alertDialog = dialog.show()
     }
 

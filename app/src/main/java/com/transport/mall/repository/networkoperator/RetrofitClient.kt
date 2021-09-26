@@ -51,8 +51,8 @@ class RetrofitClient {
             })
             httpClient.addInterceptor(loggingInterceptor)
 
-            httpClient.connectTimeout(10, TimeUnit.MINUTES)
-            httpClient.readTimeout(10, TimeUnit.MINUTES)
+            httpClient.connectTimeout(30, TimeUnit.MINUTES)
+            httpClient.readTimeout(30, TimeUnit.MINUTES)
 
             return httpClient.build()
         }

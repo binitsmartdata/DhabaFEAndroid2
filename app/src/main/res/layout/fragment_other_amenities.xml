@@ -400,7 +400,7 @@
                         android:layout_marginVertical="10dp"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
-                        android:text="@string/upload_food_license_photo"
+                        android:text="@string/upload_barber_photo"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 

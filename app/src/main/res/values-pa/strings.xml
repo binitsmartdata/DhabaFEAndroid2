@@ -261,6 +261,7 @@
     <string name="location_alert_dialog">Location service is not enabled, do you want to enable it?</string>
     <string name="unable_to_fetch_address">Unable fetch your current address.</string>
     <string name="assigned_to">Assigned To</string>
+    <string name="upload_barber_photo">Upload Barber Photo</string>
 
     <string-array name="menu_array">
         <item>@string/dhaba_mnagement</item>

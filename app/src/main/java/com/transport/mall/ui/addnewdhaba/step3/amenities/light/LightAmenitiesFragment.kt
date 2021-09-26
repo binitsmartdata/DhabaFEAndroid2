@@ -40,7 +40,7 @@ class LightAmenitiesFragment :
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
-        binding.isUpdate = mListener?.isUpdate()
+//        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -55,6 +55,8 @@ class LightAmenitiesFragment :
 
     private fun showData(it: LightAmenitiesModel) {
         viewModel.model = it
+        binding.isUpdate = viewModel.model._id.isNotEmpty()
+
         it.towerLight.let {
             when (it) {
                 true -> binding.rbTowerYes.isChecked = true
@@ -74,12 +76,16 @@ class LightAmenitiesFragment :
             }
         }
         it.towerLightImage.let {
-            xloadImages(binding.ivTowerImg, it, R.drawable.ic_image_placeholder)
-            binding.ivTowerImg.visibility = View.VISIBLE
+            if (it.isNotEmpty()) {
+                xloadImages(binding.ivTowerImg, it, R.drawable.ic_image_placeholder)
+                binding.ivTowerImg.visibility = View.VISIBLE
+            }
         }
         it.bulbLightImage.let {
-            xloadImages(binding.ivBulbImage, it, R.drawable.ic_image_placeholder)
-            binding.ivBulbImage.visibility = View.VISIBLE
+            if (it.isNotEmpty()) {
+                xloadImages(binding.ivBulbImage, it, R.drawable.ic_image_placeholder)
+                binding.ivBulbImage.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -133,7 +139,7 @@ class LightAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                        if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updateLightAmenities(GenericCallBack {
                                 handleData(it)
                             })

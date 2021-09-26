@@ -7,7 +7,7 @@ import java.io.Serializable
 
 class OtherAmenitiesModel : Serializable {
     @SerializedName(value = "_id")
-    var _id = "1"
+    var _id = ""
 
     @SerializedName(value = "service_id")
     var service_id = "1"

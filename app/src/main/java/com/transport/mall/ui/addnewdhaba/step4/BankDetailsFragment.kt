@@ -70,8 +70,10 @@ class BankDetailsFragment :
         mListener?.getDhabaModelMain()?.bankDetailsModel?.let {
             viewModel.bankModel = it
             it.panPhoto.let {
-                xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
-                binding.ivPanPhoto.visibility = View.VISIBLE
+                if (it.isNotEmpty()) {
+                    xloadImages(binding.ivPanPhoto, it, R.drawable.ic_image_placeholder)
+                    binding.ivPanPhoto.visibility = View.VISIBLE
+                }
             }
         }
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
@@ -107,7 +109,8 @@ class BankDetailsFragment :
                 (activity?.findViewById<RadioButton>(i))?.getTag().toString().toInt()
         }
         binding.rgPropertyStatus.setOnCheckedChangeListener { radioGroup, i ->
-            viewModel.dhabaModel.status = activity?.findViewById<RadioButton>(i)?.getTag().toString()
+            viewModel.dhabaModel.status =
+                activity?.findViewById<RadioButton>(i)?.getTag().toString()
         }
 
         viewModel.progressObserver.observe(this, Observer {
@@ -125,7 +128,8 @@ class BankDetailsFragment :
         binding.btnSaveDraft.setOnClickListener {
             viewModel.dhabaModel.isDraft = true.toString()
             if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
-                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
+                mListener?.getDhabaModelMain()?.draftedAtScreen =
+                    DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {
@@ -149,7 +153,8 @@ class BankDetailsFragment :
     }
 
     private fun setBankNamesAdapter(bankList: java.util.ArrayList<BankNamesModel>) {
-        banksAdapter = ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
+        banksAdapter =
+            ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
         binding.spnrBanks.setAdapter(banksAdapter)
         binding.spnrBanks.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
@@ -209,24 +214,29 @@ class BankDetailsFragment :
     private fun handleData(it: ApiResponseModel<BankDetailsModel>, isDraft: Boolean) {
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.bankDetailsModel = it.data
-            viewModel.updateDhabaStatus(isDraft, viewModel.dhabaModel, viewModel.progressObserver, GenericCallBack {
-                if (it.data != null) {
-                    mListener?.getDhabaModelMain()?.dhabaModel = it.data
-                    if (isDraft) {
-                        mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
-                        mListener?.saveAsDraft()
-                        activity?.finish()
-                    } else {
-                        if (mListener?.isUpdate()!!) {
-                            showToastInCenter(getString(R.string.updated_successfully))
+            viewModel.updateDhabaStatus(
+                isDraft,
+                viewModel.dhabaModel,
+                viewModel.progressObserver,
+                GenericCallBack {
+                    if (it.data != null) {
+                        mListener?.getDhabaModelMain()?.dhabaModel = it.data
+                        if (isDraft) {
+                            mListener?.getDhabaModelMain()?.draftedAtScreen =
+                                DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
+                            mListener?.saveAsDraft()
+                            activity?.finish()
                         } else {
-                            showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                            if (mListener?.isUpdate()!!) {
+                                showToastInCenter(getString(R.string.updated_successfully))
+                            } else {
+                                showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                            }
                         }
+                    } else {
+                        showToastInCenter(it.message)
                     }
-                } else {
-                    showToastInCenter(it.message)
-                }
-            })
+                })
         } else {
             showToastInCenter(it.message)
         }
@@ -246,6 +256,7 @@ class BankDetailsFragment :
                         viewModel.getDhabaById(dhabaId, GenericCallBack {
                             viewModel.progressObserver.value = false
                             if (it.data != null) {
+                                activity?.finish()
                                 AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
                             } else {
                                 showToastInCenter(it.message)

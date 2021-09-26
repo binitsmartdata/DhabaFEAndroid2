@@ -62,7 +62,7 @@
     <string name="go_to_home">घर जाओ</string>
     <string name="food">भोजन</string>
     <string name="parking">पार्किंग</string>
-    <string name="sleeping">Sleeping</string>
+    <string name="sleeping">सोने की सुविधा</string>
     <string name="washroom_cleaning">वाशरूम और क्लीनिंग</string>
     <string name="security">सुरक्षा</string>
     <string name="other">अन्य</string>
@@ -289,4 +289,5 @@
     </integer-array>
     <string name="choose_language">भाषा चुनें</string>
     <string name="update_other_amen">अन्य सुविधाएं अपडेट करें</string>
+    <string name="upload_barber_photo">Upload Barber Photo</string>
 </resources>

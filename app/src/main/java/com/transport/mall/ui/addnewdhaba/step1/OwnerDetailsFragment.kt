@@ -70,7 +70,9 @@ class OwnerDetailsFragment :
             }
 
             it.ownerPic?.let {
-                xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
+                if (it.isNotEmpty()) {
+                    xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
+                }
             }
 
             it.idproofFront?.let {
@@ -138,7 +140,8 @@ class OwnerDetailsFragment :
         }
         binding.btnSaveDraft.setOnClickListener {
             if (mListener?.getDhabaModelMain()?.ownerModel != null) {
-                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()
+                mListener?.getDhabaModelMain()?.draftedAtScreen =
+                    DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {
@@ -152,26 +155,32 @@ class OwnerDetailsFragment :
             if (GlobalUtils.isLocationEnabled(getmContext())) {
                 GoogleMapsActivity.start(this)
             } else {
-                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
-                    if (it!!) {
-                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    } else {
-                        GoogleMapsActivity.start(this)
-                    }
-                })
+                GlobalUtils.showConfirmationDialogYesNo(
+                    getmContext(),
+                    getString(R.string.location_alert_dialog),
+                    GenericCallBack {
+                        if (it!!) {
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                        } else {
+                            GoogleMapsActivity.start(this)
+                        }
+                    })
             }
         }
         binding.tvCurrLocation.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
                 getAddress()
             } else {
-                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
-                    if (it!!) {
-                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    } else {
-                        showToastInCenter(getString(R.string.unable_to_fetch_address))
-                    }
-                })
+                GlobalUtils.showConfirmationDialogYesNo(
+                    getmContext(),
+                    getString(R.string.location_alert_dialog),
+                    GenericCallBack {
+                        if (it!!) {
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                        } else {
+                            showToastInCenter(getString(R.string.unable_to_fetch_address))
+                        }
+                    })
             }
         }
     }
@@ -214,7 +223,8 @@ class OwnerDetailsFragment :
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.ownerModel = it.data
             if (isDraft) {
-                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()
+                mListener?.getDhabaModelMain()?.draftedAtScreen =
+                    DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {

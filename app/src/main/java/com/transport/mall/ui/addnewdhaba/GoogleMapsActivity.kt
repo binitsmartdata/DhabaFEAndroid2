@@ -79,7 +79,12 @@ class GoogleMapsActivity : BaseActivity<ActivityGoogleMapsBinding, BaseVM>(), On
 
     override fun onMapReady(googleMap: GoogleMap) {
         getCurrentLocation(this, GenericCallBack {
-            showAddress(LatLng(it.latitude, it.longitude), googleMap)
+            if (it != null) {
+                showAddress(LatLng(it.latitude, it.longitude), googleMap)
+            } else {
+                //by default show new delhi
+                showAddress(LatLng(28.6139, 77.2090), googleMap)
+            }
         })
         googleMap.setOnMapClickListener {
             showAddress(it, googleMap)

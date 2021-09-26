@@ -74,7 +74,9 @@ class DhabaDetailsFragment :
             viewModel.dhabaModel = it
 
             it.images.let {
-                xloadImages(binding.ivImageThumb, it, R.drawable.ic_transparent_placeholder)
+                if (it.isNotEmpty()) {
+                    xloadImages(binding.ivImageThumb, it, R.drawable.ic_transparent_placeholder)
+                }
             }
 
             it.videos.let { path ->
@@ -154,7 +156,8 @@ class DhabaDetailsFragment :
         binding.btnSaveDraft.setOnClickListener {
             viewModel.dhabaModel.isDraft = true.toString()
             if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
-                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
+                mListener?.getDhabaModelMain()?.draftedAtScreen =
+                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
             } else {
@@ -222,17 +225,22 @@ class DhabaDetailsFragment :
     }
 
     private fun updateDhabaStatus(isDraft: Boolean) {
-        viewModel.updateDhabaStatus(isDraft, viewModel.dhabaModel, viewModel.progressObserver, GenericCallBack {
-            if (it.data != null) {
-                mListener?.getDhabaModelMain()?.dhabaModel = it.data
+        viewModel.updateDhabaStatus(
+            isDraft,
+            viewModel.dhabaModel,
+            viewModel.progressObserver,
+            GenericCallBack {
+                if (it.data != null) {
+                    mListener?.getDhabaModelMain()?.dhabaModel = it.data
 
-                mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
-                mListener?.saveAsDraft()
-                activity?.finish()
-            } else {
-                showToastInCenter(it.message)
-            }
-        })
+                    mListener?.getDhabaModelMain()?.draftedAtScreen =
+                        DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
+                    mListener?.saveAsDraft()
+                    activity?.finish()
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
     }
 
     private fun setupCitiesAndStateView() {
@@ -292,11 +300,15 @@ class DhabaDetailsFragment :
 
     private fun setHighwayAdapter(StateList: ArrayList<HighwayModel>) {
         binding.tvHighway.setOnClickListener {
-            AppDatabase.getInstance(getmContext())?.highwayDao()?.getAll()?.observe(this@DhabaDetailsFragment, Observer {
-                DialogHighwaySelection(getmContext(), it as ArrayList<HighwayModel>, GenericCallBack {
-                    viewModel.dhabaModel.highway = it.highwayNumber!!
-                }).show()
-            })
+            AppDatabase.getInstance(getmContext())?.highwayDao()?.getAll()
+                ?.observe(this@DhabaDetailsFragment, Observer {
+                    DialogHighwaySelection(
+                        getmContext(),
+                        it as ArrayList<HighwayModel>,
+                        GenericCallBack {
+                            viewModel.dhabaModel.highway = it.highwayNumber!!
+                        }).show()
+                })
         }
     }
 
@@ -337,26 +349,32 @@ class DhabaDetailsFragment :
             if (GlobalUtils.isLocationEnabled(getmContext())) {
                 GoogleMapsActivity.start(this)
             } else {
-                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
-                    if (it!!) {
-                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    } else {
-                        GoogleMapsActivity.start(this)
-                    }
-                })
+                GlobalUtils.showConfirmationDialogYesNo(
+                    getmContext(),
+                    getString(R.string.location_alert_dialog),
+                    GenericCallBack {
+                        if (it!!) {
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                        } else {
+                            GoogleMapsActivity.start(this)
+                        }
+                    })
             }
         }
         binding.tvCurrLocation.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
                 getAddress()
             } else {
-                GlobalUtils.showConfirmationDialogYesNo(getmContext(), getString(R.string.location_alert_dialog), GenericCallBack {
-                    if (it!!) {
-                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    } else {
-                        showToastInCenter(getString(R.string.unable_to_fetch_address))
-                    }
-                })
+                GlobalUtils.showConfirmationDialogYesNo(
+                    getmContext(),
+                    getString(R.string.location_alert_dialog),
+                    GenericCallBack {
+                        if (it!!) {
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                        } else {
+                            showToastInCenter(getString(R.string.unable_to_fetch_address))
+                        }
+                    })
             }
         }
     }

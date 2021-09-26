@@ -34,7 +34,7 @@ class WashroomAmenitiesFragment :
     override fun bindData() {
         mListener = activity as AddDhabaListener
         binding.context = activity
-        binding.isUpdate = mListener?.isUpdate()
+//        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -49,6 +49,8 @@ class WashroomAmenitiesFragment :
 
     private fun setData(it: WashroomAmenitiesModel) {
         viewModel.model = it
+        binding.isUpdate = viewModel.model._id.isNotEmpty()
+
         it.washroomStatus.let {
             val value = it.toBoolean()
             if (value) {
@@ -147,7 +149,7 @@ class WashroomAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                        if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updatewashroomAmenities(GenericCallBack {
                                 handleData(it)
                             })

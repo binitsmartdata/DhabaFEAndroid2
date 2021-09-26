@@ -165,10 +165,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         viewModel.mDhabaModelMain.dhabaModel?.let {
             if (it.isDraft.equals("true")) {
                 when (viewModel.mDhabaModelMain.draftedAtScreen) {
-                    DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString() -> binding.viewPager.currentItem = 0
-                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString() -> binding.viewPager.currentItem = 1
-                    DhabaModelMain.DraftScreen.AmenitiesFragment.toString() -> binding.viewPager.currentItem = 2
-                    DhabaModelMain.DraftScreen.BankDetailsFragment.toString() -> binding.viewPager.currentItem = 3
+                    DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString() -> binding.viewPager.currentItem =
+                        0
+                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString() -> binding.viewPager.currentItem =
+                        1
+                    DhabaModelMain.DraftScreen.AmenitiesFragment.toString() -> binding.viewPager.currentItem =
+                        2
+                    DhabaModelMain.DraftScreen.BankDetailsFragment.toString() -> binding.viewPager.currentItem =
+                        3
                 }
             }
         }
@@ -223,7 +227,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
                             finish()
                             SharedPrefsHelper.getInstance(this).deleteDraftDhaba()
                         }
-                        2 -> { // save as draft
+                        3 -> { // save as draft
                             saveAsDraft()
                             finish()
                         }

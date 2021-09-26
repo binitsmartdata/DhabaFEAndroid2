@@ -49,7 +49,7 @@ class FoodAmenitiesFragment :
         mListener = activity as AddDhabaListener
         viewModel.dhabaModelMain = mListener?.getDhabaModelMain()!!
         binding.context = activity
-        binding.isUpdate = mListener?.isUpdate()
+//        binding.isUpdate = mListener?.isUpdate()
 
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
@@ -67,6 +67,8 @@ class FoodAmenitiesFragment :
 
     private fun setData(it: FoodAmenitiesModel) {
         viewModel.model = it
+        binding.isUpdate = viewModel.model._id.isNotEmpty()
+
         it.foodLisence.toBoolean().let {
             binding.rbFoodLicenseYes.isChecked = it
             binding.rbFoodLicenseNo.isChecked = !it
@@ -182,7 +184,7 @@ class FoodAmenitiesFragment :
         binding.btnSaveDhaba.setOnClickListener {
             viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
                 if (allOk) {
-                    if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                    if (viewModel.model._id.isNotEmpty()) {
                         viewModel.updateFoodAmenities(GenericCallBack {
                             handleData(it)
                         })
@@ -208,11 +210,7 @@ class FoodAmenitiesFragment :
 
     private fun handleData(it: ApiResponseModel<FoodAmenitiesModel>) {
         if (it.data != null) {
-            if (mListener?.isUpdate()!!) {
-                showToastInCenter(getString(R.string.updated_successfully))
-            } else {
                 showToastInCenter(getString(R.string.food_amen_saved))
-            }
             var intent = Intent()
             intent.putExtra("data", it.data)
             activity?.setResult(Activity.RESULT_OK, intent)

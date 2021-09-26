@@ -41,7 +41,7 @@ class ParkingAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.viewmodel = viewModel
-        binding.isUpdate = mListener?.isUpdate()
+//        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id
         }
@@ -56,6 +56,8 @@ class ParkingAmenitiesFragment :
 
     private fun setData(it: ParkingAmenitiesModel) {
         viewModel.model = it
+        binding.isUpdate = viewModel.model._id.isNotEmpty()
+
         it.concreteParking.let {
             when (it) {
                 "1" -> binding.rbConcreteFensed.isChecked = true
@@ -166,7 +168,7 @@ class ParkingAmenitiesFragment :
         binding.btnSaveDhaba.setOnClickListener {
             viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
                 if (allOk) {
-                    if (mListener?.isUpdate()!! && viewModel.model._id.isNotEmpty()) {
+                    if (viewModel.model._id.isNotEmpty()) {
                         viewModel.updateParkingAmenities(GenericCallBack {
                             handleData(it)
                         })
@@ -184,11 +186,7 @@ class ParkingAmenitiesFragment :
 
     private fun handleData(it: ApiResponseModel<ParkingAmenitiesModel>) {
         if (it.data != null) {
-            if (mListener?.isUpdate()!!) {
-                showToastInCenter(getString(R.string.updated_successfully))
-            } else {
-                showToastInCenter(getString(R.string.parking_amen_saved))
-            }
+            showToastInCenter(getString(R.string.parking_amen_saved))
             val intent = Intent()
             intent.putExtra("data", it.data)
             activity?.setResult(Activity.RESULT_OK, intent)
