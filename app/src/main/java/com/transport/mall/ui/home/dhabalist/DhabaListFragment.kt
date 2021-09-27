@@ -18,13 +18,14 @@ import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogCitySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), SwipeRefreshLayout.OnRefreshListener {
+class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), SwipeRefreshLayout.OnRefreshListener {
     override val layoutId: Int
         get() = R.layout.fragment_dhaba_list
     override var viewModel: DhabaListVM
@@ -44,10 +45,7 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
 
     var mListener: CommonActivityListener? = null
 
-    var listType: ListType
-
     init {
-        listType = type
     }
 
     override fun bindData() {
@@ -117,13 +115,12 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
     override fun initListeners() {
         binding.edSearch.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
+                GlobalUtils.hideKeyboard(getmContext(), binding.edSearch)
                 if (binding.edSearch.text.toString().trim().isNotEmpty()) {
                     cityList.forEach { it.isChecked = false }
                     binding.viewCityIndicator.visibility = View.GONE
                     onRefresh()
                 }
-
                 return@OnEditorActionListener true
             }
             false
@@ -152,38 +149,35 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
     }
 
     private fun refreshDhabaList() {
-        if (listType == ListType.PENDING) {
-            viewModel.getAllDhabaList(
-                SharedPrefsHelper.getInstance(getmContext()).getUserData().accessToken,
-                limit,
-                page.toString(),
-                selectedCities,
-                binding.edSearch.text.toString(),
-                GenericCallBack {
-                    dhabaListAdapter?.removeLoadingView(dhabaList.size)
-                    if (it != null && it.isNotEmpty()) {
-                        if (page == 1) {
-                            dhabaListAdapter?.setShouldLoadMore(true)
-                            dhabaList.clear()
-                            dhabaList.addAll(it)
-                            initDhabaListAdapter(dhabaList)
-                        } else {
-                            dhabaList.addAll(it)
-                        }
-                        dhabaListAdapter?.notifyDataSetChanged()
+        viewModel.getAllDhabaList(
+            SharedPrefsHelper.getInstance(getmContext()).getUserData().accessToken,
+            limit,
+            page.toString(),
+            selectedCities,
+            binding.edSearch.text.toString(),
+            status,
+            GenericCallBack {
+                dhabaListAdapter?.removeLoadingView(dhabaList.size)
+                if (it != null && it.isNotEmpty()) {
+                    if (page == 1) {
+                        dhabaListAdapter?.setShouldLoadMore(true)
+                        dhabaList.clear()
+                        dhabaList.addAll(it)
+                        initDhabaListAdapter(dhabaList)
+                    } else {
+                        dhabaList.addAll(it)
+                    }
+                    dhabaListAdapter?.notifyDataSetChanged()
+                    refreshListAndNoDataView()
+                } else {
+                    if (page == 1) {
+                        dhabaList.clear()
                         refreshListAndNoDataView()
                     } else {
-                        if (page == 1) {
-                            dhabaList.clear()
-                            refreshListAndNoDataView()
-                        } else {
-                            dhabaListAdapter?.setShouldLoadMore(false)
-                        }
+                        dhabaListAdapter?.setShouldLoadMore(false)
                     }
-                })
-        } else {
-            refreshListAndNoDataView()
-        }
+                }
+            })
     }
 
     fun refreshListAndNoDataView() {
@@ -201,5 +195,10 @@ class DhabaListFragment(type: ListType) : BaseFragment<FragmentDhabaListBinding,
     override fun onRefresh() {
         page = 1
         refreshDhabaList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GlobalUtils.hideKeyboard(getmContext(), binding.edSearch)
     }
 }

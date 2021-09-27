@@ -2,7 +2,6 @@ package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
@@ -38,12 +37,13 @@ class DhabaListVM(application: Application) : BaseVM(application) {
         page: String,
         cities: String,
         search: String,
+        status: String,
         callBack: GenericCallBack<ArrayList<DhabaModelMain>>
     ) {
         progressObserver.value = page == "1"
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                executeApi(getApiService()?.getAllDhabaList(token, limit, page, DhabaModel.STATUS_PENDING, cities, search)).collect {
+                executeApi(getApiService()?.getAllDhabaList(token, limit, page, status, cities, search)).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {
                             progressObserver.value = page == "1"

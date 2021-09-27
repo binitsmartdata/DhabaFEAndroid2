@@ -219,8 +219,8 @@ class DhabaModel : Serializable, BaseObservable() {
 
     companion object {
         val STATUS_PENDING = "Pending"
-        val STATUS_INPROGRESS = "InProgress"
+        val STATUS_INPROGRESS = "InProgess"
         val STATUS_ACTIVE = "Active"
-        val STATUS_INACTIVE = "InActive"
+        val STATUS_INACTIVE = "Inactive"
     }
 }
