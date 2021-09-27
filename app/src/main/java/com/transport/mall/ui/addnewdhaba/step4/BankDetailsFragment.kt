@@ -52,6 +52,7 @@ class BankDetailsFragment :
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
         binding.isUpdate = mListener?.isUpdate()
+        binding.viewOnly = mListener?.viewOnly()
         binding.dhabaModelMain = mListener?.getDhabaModelMain()
         binding.currentDate = GlobalUtils.getCurrentDate()
 
@@ -188,7 +189,7 @@ class BankDetailsFragment :
             if (isDraft) {
                 proceed(isDraft)
             } else {
-                viewModel.bankModel.hasEverything(getmContext(),GenericCallBackTwoParams() { allOk, message ->
+                viewModel.bankModel.hasEverything(getmContext(), GenericCallBackTwoParams() { allOk, message ->
                     if (allOk) {
                         proceed(isDraft)
                     } else {

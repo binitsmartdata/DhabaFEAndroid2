@@ -49,6 +49,7 @@ class FoodAmenitiesFragment :
         mListener = activity as AddDhabaListener
         viewModel.dhabaModelMain = mListener?.getDhabaModelMain()!!
         binding.context = activity
+        binding.viewOnly = mListener?.viewOnly()
 //        binding.isUpdate = mListener?.isUpdate()
 
         mListener?.getDhabaModelMain()?.dhabaModel?.let {

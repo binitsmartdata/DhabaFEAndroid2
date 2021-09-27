@@ -8,4 +8,5 @@ interface AddDhabaListener {
     fun getDhabaId(): String
     fun getDhabaModelMain(): DhabaModelMain
     fun isUpdate(): Boolean
+    fun viewOnly(): Boolean
 }

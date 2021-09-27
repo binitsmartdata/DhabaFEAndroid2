@@ -13,6 +13,7 @@ import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaListBinding
 import com.transport.mall.model.CityModel
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogCitySelection
@@ -63,7 +64,12 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
                 viewModel.getDhabaById(dhabaList.get(position).dhabaModel?._id!!, GenericCallBack {
                     viewModel.dialogProgressObserver.value = false
                     if (it.data != null) {
-                        AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
+                        when (status) {
+                            DhabaModel.STATUS_PENDING -> AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
+                            DhabaModel.STATUS_INPROGRESS -> AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
+                            DhabaModel.STATUS_ACTIVE -> AddDhabaActivity.startViewOnly(activity as Context, it.data!!)
+                            DhabaModel.STATUS_INACTIVE -> AddDhabaActivity.startViewOnly(activity as Context, it.data!!)
+                        }
                     } else {
                         showToastInCenter(it.message)
                     }

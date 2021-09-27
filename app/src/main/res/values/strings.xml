@@ -280,7 +280,6 @@
     <string name="enter_gst_number">Please Enter GST Number</string>
     <string name="enter_ifsc_code">Please Enter IFSC Code</string>
     <string name="enter_account_holder_name">Please Enter Account Holder Name</string>
-    <string name="enter_pan_number">Please Enter Pan Number</string>
     <string name="choose_pan_card_photo">Please Choose Pan Card Photo</string>
     <string name="choose_food_license_option">Please Choose Food License Option</string>
     <string name="select_license_photo">Please Select Food License Photo</string>

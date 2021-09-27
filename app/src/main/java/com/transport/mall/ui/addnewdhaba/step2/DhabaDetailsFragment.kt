@@ -64,6 +64,7 @@ class DhabaDetailsFragment :
         binding.context = getmContext()
         mListener = activity as AddDhabaListener
         binding.isUpdate = mListener?.isUpdate()!!
+        binding.viewOnly = mListener?.viewOnly()!!
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
@@ -177,7 +178,7 @@ class DhabaDetailsFragment :
                     showToastInCenter(getString(R.string.enter_dhaba_name))
                 }
             } else {
-                viewModel.dhabaModel.hasEverything(getmContext(),GenericCallBackTwoParams { status, message ->
+                viewModel.dhabaModel.hasEverything(getmContext(), GenericCallBackTwoParams { status, message ->
                     if (status) {
                         proceed(isDraft)
                     } else {

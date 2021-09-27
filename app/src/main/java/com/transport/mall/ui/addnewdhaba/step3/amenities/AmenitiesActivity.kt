@@ -51,11 +51,12 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
         const val LIGHT = 6
         const val OTHER = 7
 
-        fun start(context: Context, amenityType: Int, dhabaModel: DhabaModelMain, isUpdate: Boolean) {
+        fun start(context: Context, amenityType: Int, dhabaModel: DhabaModelMain, isUpdate: Boolean, viewOnly: Boolean) {
             val starter = Intent(context, AmenitiesActivity::class.java)
             starter.putExtra(AMENITY_TYPE, amenityType)
             starter.putExtra(DHABA_MODEL, dhabaModel)
             starter.putExtra("isUpdate", isUpdate)
+            starter.putExtra("viewOnly", viewOnly)
             (context as Activity).startActivityForResult(starter, amenityType)
         }
     }
@@ -191,5 +192,9 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
 
     override fun isUpdate(): Boolean {
         return isUpdate
+    }
+
+    override fun viewOnly(): Boolean {
+        return intent.getBooleanExtra("viewOnly", false)
     }
 }

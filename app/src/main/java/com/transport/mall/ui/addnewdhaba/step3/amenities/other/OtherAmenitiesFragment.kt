@@ -36,6 +36,7 @@ class OtherAmenitiesFragment :
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
+        binding.viewOnly = mListener?.viewOnly()
 //        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id

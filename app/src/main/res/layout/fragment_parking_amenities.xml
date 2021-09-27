@@ -18,238 +18,256 @@
         <variable
             name="isUpdate"
             type="Boolean" />
+
+        <variable
+            name="viewOnly"
+            type="Boolean" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="20dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/concrete_parking"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgConcreteParking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbConcreteFensed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/fully_fenced" />
-
-                    <RadioButton
-                        android:id="@+id/rbConcreteOpen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/open" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/flat_hard_parking"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgFlatHardParking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbFlatHardFensed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/fully_fenced" />
-
-                    <RadioButton
-                        android:id="@+id/rbFlatHardOpen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/open" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/kacha_flat_parking"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgKachaFlatParking"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbKachaFlatFensed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/fully_fenced" />
-
-                    <RadioButton
-                        android:id="@+id/rbKachaFlatOpen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/open" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/select_parking_space"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgSpace"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rgOnetotwenty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_3sdp"
-                        android:tag="1"
-                        android:text="@string/_1_20" />
-
-                    <RadioButton
-                        android:id="@+id/rgTwentyToFifty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_3sdp"
-                        android:tag="2"
-                        android:text="@string/twenty_to_fifty" />
-
-                    <RadioButton
-                        android:id="@+id/rgFiftyToHundred"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_3sdp"
-                        android:tag="3"
-                        android:text="@string/_50_100" />
-
-                    <RadioButton
-                        android:id="@+id/rgAbove100"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_3sdp"
-                        android:tag="4"
-                        android:text="@string/above_100" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llParkingGallery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@color/grey_light"
-                android:gravity="center"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                android:background="@color/white"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="20dp">
 
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/ic_add_round" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_regular"
-                    android:text="@string/upload_parking_photos"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/concrete_parking"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgConcreteParking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbConcreteFensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/fully_fenced" />
+
+                        <RadioButton
+                            android:id="@+id/rbConcreteOpen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/open" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/flat_hard_parking"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgFlatHardParking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbFlatHardFensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/fully_fenced" />
+
+                        <RadioButton
+                            android:id="@+id/rbFlatHardOpen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/open" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/kacha_flat_parking"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgKachaFlatParking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbKachaFlatFensed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/fully_fenced" />
+
+                        <RadioButton
+                            android:id="@+id/rbKachaFlatOpen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/open" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/select_parking_space"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgSpace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rgOnetotwenty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_3sdp"
+                            android:tag="1"
+                            android:text="@string/_1_20" />
+
+                        <RadioButton
+                            android:id="@+id/rgTwentyToFifty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_3sdp"
+                            android:tag="2"
+                            android:text="@string/twenty_to_fifty" />
+
+                        <RadioButton
+                            android:id="@+id/rgFiftyToHundred"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_3sdp"
+                            android:tag="3"
+                            android:text="@string/_50_100" />
+
+                        <RadioButton
+                            android:id="@+id/rgAbove100"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_3sdp"
+                            android:tag="4"
+                            android:text="@string/above_100" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llParkingGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/ic_add_round" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@string/upload_parking_photos"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp" />
+
+                <Button
+                    android:id="@+id/btnSaveDhaba"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <View
+                android:id="@+id/viewRestrictor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp" />
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
 
-            <Button
-                android:id="@+id/btnSaveDhaba"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_20sdp"
-                android:background="@drawable/primary_color_btn_selector"
-                android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
+        </FrameLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

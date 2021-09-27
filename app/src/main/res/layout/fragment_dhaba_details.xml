@@ -21,6 +21,10 @@
             type="Boolean" />
 
         <variable
+            name="viewOnly"
+            type="Boolean" />
+
+        <variable
             name="loadingVideo"
             type="Boolean" />
 
@@ -479,6 +483,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/uploadedImageRecycler" />
@@ -494,7 +499,7 @@
                     android:text="@string/save_as_draft"
                     android:textColor="@color/colorRed"
                     android:textSize="@dimen/_14ssp"
-                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{(isUpdate || viewOnly) ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -502,14 +507,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--
-                        <View
-                            android:id="@+id/viewRestrictor"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:clickable="true"
-                            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />
-            -->
+            <View
+                android:id="@+id/viewRestrictor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
 
         </FrameLayout>
     </ScrollView>

@@ -47,6 +47,7 @@ class SecurityAmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
         binding.viewmodel = viewModel
+        binding.viewOnly = mListener?.viewOnly()
 //        binding.isUpdate = mListener?.isUpdate()
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.model.dhaba_id = it._id

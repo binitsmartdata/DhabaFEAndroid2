@@ -73,49 +73,56 @@ class AmenitiesFragment :
                 activity as Context,
                 AmenitiesActivity.FOOD,
                 mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!
+                mListener?.isUpdate()!!,
+                mListener?.viewOnly()!!
             )
         }
         binding.cardParking.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.PARKING,
                 mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!
+                mListener?.isUpdate()!!,
+                mListener?.viewOnly()!!
             )
         }
         binding.cardSleeping.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SLEEPING,
                 mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!
+                mListener?.isUpdate()!!,
+                mListener?.viewOnly()!!
             )
         }
         binding.cardWashroom.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.WASHROOM,
                 mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!
+                mListener?.isUpdate()!!,
+                mListener?.viewOnly()!!
             )
         }
         binding.cardSecurity.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.SECURITY,
                 mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!
+                mListener?.isUpdate()!!,
+                mListener?.viewOnly()!!
             )
         }
         binding.cardOther.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.OTHER,
                 mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!
+                mListener?.isUpdate()!!,
+                mListener?.viewOnly()!!
             )
         }
         binding.cardLights.setOnClickListener {
             AmenitiesActivity.start(
                 activity as Context, AmenitiesActivity.LIGHT,
                 mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!
+                mListener?.isUpdate()!!,
+                mListener?.viewOnly()!!
             )
         }
     }

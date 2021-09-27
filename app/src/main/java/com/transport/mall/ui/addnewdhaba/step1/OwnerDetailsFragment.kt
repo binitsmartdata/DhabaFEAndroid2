@@ -50,6 +50,7 @@ class OwnerDetailsFragment :
         binding.viewModel = viewModel
         mListener = activity as AddDhabaListener
         binding.isUpdate = mListener?.isUpdate()!!
+        binding.viewOnly = mListener?.viewOnly()!!
 
         //SETTING EXISTING DATA ON SCREEN
         setDataIfHas()

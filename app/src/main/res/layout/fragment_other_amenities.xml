@@ -14,458 +14,440 @@
         <variable
             name="isUpdate"
             type="Boolean" />
+
+        <variable
+            name="viewOnly"
+            type="Boolean" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="20dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/mechanic_shop"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgMerch27_7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbMerch27_7_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/in_premises" />
-
-                    <RadioButton
-                        android:id="@+id/rbMerch27_7_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_1_200_m" />
-
-                    <RadioButton
-                        android:id="@+id/rbMerch27_7_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/_200_400_m" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/mechanic_shop_day"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgMechDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbMechDay_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/in_premises" />
-
-                    <RadioButton
-                        android:id="@+id/rbMechDay_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_1_200_m" />
-
-                    <RadioButton
-                        android:id="@+id/rbMechDay_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/_200_400_m" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/puncture_shop"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgPuncture_24_7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbPuncture24_7_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/in_premises" />
-
-                    <RadioButton
-                        android:id="@+id/rbPuncture24_7_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_1_200_m" />
-
-                    <RadioButton
-                        android:id="@+id/rbPuncture24_7_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/_200_400_m" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/puncture_shop_day"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgPunctureDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbPunctureDay1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/in_premises" />
-
-                    <RadioButton
-                        android:id="@+id/rbPunctureDay2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_1_200_m" />
-
-                    <RadioButton
-                        android:id="@+id/rbPunctureDay3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/_200_400_m" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/daily_utility_shop"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgUtility24_7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbUtility24_7_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/in_premises" />
-
-                    <RadioButton
-                        android:id="@+id/rbUtility24_7_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_1_200_m" />
-
-                    <RadioButton
-                        android:id="@+id/rbUtility24_7_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/_200_400_m" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/daily_utility_shop_day"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgUtilityDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbUtilityDay_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/in_premises" />
-
-                    <RadioButton
-                        android:id="@+id/rbUtilityDay_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_1_200_m" />
-
-                    <RadioButton
-                        android:id="@+id/rbUtilityDay_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/_200_400_m" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/barber"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgBarber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbBarber1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/in_premises" />
-
-                    <RadioButton
-                        android:id="@+id/rbBarber2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_1_200_m" />
-
-                    <RadioButton
-                        android:id="@+id/rbBarber3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/_200_400_m" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/flBarberImg"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
-                android:background="@color/grey_light">
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="20dp">
 
                 <LinearLayout
-                    android:id="@+id/llLicensePhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:src="@drawable/ic_add_round" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
                         android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/upload_barber_photo"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/mechanic_shop"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
+                    <RadioGroup
+                        android:id="@+id/rgMerch27_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbMerch27_7_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/in_premises" />
+
+                        <RadioButton
+                            android:id="@+id/rbMerch27_7_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_1_200_m" />
+
+                        <RadioButton
+                            android:id="@+id/rbMerch27_7_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/_200_400_m" />
+
+                    </RadioGroup>
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/ivBarberImg"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/grey_light"
-                    android:scaleType="fitCenter"
-                    android:visibility="gone" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
 
-            </FrameLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/mechanic_shop_day"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
 
-            <!-- <View
-                 android:id="@+id/divider"
-                 android:layout_width="match_parent"
-                 android:layout_height="@dimen/_1sdp"
-                 android:layout_marginTop="@dimen/_15sdp"
-                 android:background="@color/colorGrey1" />
+                    <RadioGroup
+                        android:id="@+id/rgMechDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-             <androidx.appcompat.widget.AppCompatTextView
-                 android:id="@+id/offerText"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="@dimen/_15sdp"
-                 android:fontFamily="@font/opensans_semibold"
-                 android:text="@string/offers"
-                 android:textColor="@color/black"
-                 android:textSize="@dimen/_14ssp" />
+                        <RadioButton
+                            android:id="@+id/rbMechDay_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/in_premises" />
 
-             <com.google.android.material.textfield.TextInputLayout
-                 android:id="@+id/discountTil"
-                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="@dimen/_10sdp"
-                 android:hint="@string/discount">
+                        <RadioButton
+                            android:id="@+id/rbMechDay_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_1_200_m" />
 
-                 <com.google.android.material.textfield.TextInputEditText
+                        <RadioButton
+                            android:id="@+id/rbMechDay_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/_200_400_m" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/puncture_shop"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgPuncture_24_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbPuncture24_7_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/in_premises" />
+
+                        <RadioButton
+                            android:id="@+id/rbPuncture24_7_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_1_200_m" />
+
+                        <RadioButton
+                            android:id="@+id/rbPuncture24_7_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/_200_400_m" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/puncture_shop_day"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgPunctureDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbPunctureDay1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/in_premises" />
+
+                        <RadioButton
+                            android:id="@+id/rbPunctureDay2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_1_200_m" />
+
+                        <RadioButton
+                            android:id="@+id/rbPunctureDay3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/_200_400_m" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/daily_utility_shop"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgUtility24_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbUtility24_7_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/in_premises" />
+
+                        <RadioButton
+                            android:id="@+id/rbUtility24_7_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_1_200_m" />
+
+                        <RadioButton
+                            android:id="@+id/rbUtility24_7_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/_200_400_m" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/daily_utility_shop_day"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgUtilityDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityDay_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/in_premises" />
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityDay_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_1_200_m" />
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityDay_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/_200_400_m" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/barber"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgBarber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbBarber1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/in_premises" />
+
+                        <RadioButton
+                            android:id="@+id/rbBarber2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_1_200_m" />
+
+                        <RadioButton
+                            android:id="@+id/rbBarber3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/_200_400_m" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/flBarberImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:background="@color/grey_light">
+
+                    <LinearLayout
+                        android:id="@+id/llLicensePhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:src="@drawable/ic_add_round" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/upload_barber_photo"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivBarberImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_light"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+                <!-- <View
+                     android:id="@+id/divider"
                      android:layout_width="match_parent"
+                     android:layout_height="@dimen/_1sdp"
+                     android:layout_marginTop="@dimen/_15sdp"
+                     android:background="@color/colorGrey1" />
+
+                 <androidx.appcompat.widget.AppCompatTextView
+                     android:id="@+id/offerText"
+                     android:layout_width="wrap_content"
                      android:layout_height="wrap_content"
-                     android:fontFamily="@font/opensans_regular"
-                     android:inputType="text"
-                     android:text=""
+                     android:layout_marginTop="@dimen/_15sdp"
+                     android:fontFamily="@font/opensans_semibold"
+                     android:text="@string/offers"
                      android:textColor="@color/black"
                      android:textSize="@dimen/_14ssp" />
 
-             </com.google.android.material.textfield.TextInputLayout>
-
-             <LinearLayout
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:orientation="horizontal">
-
                  <com.google.android.material.textfield.TextInputLayout
-                     android:id="@+id/offerStartDateTil"
+                     android:id="@+id/discountTil"
                      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                     android:layout_width="0dp"
+                     android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:layout_marginTop="@dimen/_10sdp"
-                     android:layout_marginEnd="@dimen/_5sdp"
-                     android:layout_weight="1"
-                     android:hint="@string/offer_start_date">
+                     android:hint="@string/discount">
 
                      <com.google.android.material.textfield.TextInputEditText
                          android:layout_width="match_parent"
@@ -478,39 +460,75 @@
 
                  </com.google.android.material.textfield.TextInputLayout>
 
-                 <com.google.android.material.textfield.TextInputLayout
-                     android:id="@+id/offerEndDateTil"
-                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                     android:layout_width="0dp"
+                 <LinearLayout
+                     android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-                     android:layout_marginStart="@dimen/_5sdp"
-                     android:layout_marginTop="@dimen/_10sdp"
-                     android:layout_weight="1"
-                     android:hint="@string/offer_end_date">
+                     android:orientation="horizontal">
 
-                     <com.google.android.material.textfield.TextInputEditText
-                         android:layout_width="match_parent"
+                     <com.google.android.material.textfield.TextInputLayout
+                         android:id="@+id/offerStartDateTil"
+                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                         android:layout_width="0dp"
                          android:layout_height="wrap_content"
-                         android:fontFamily="@font/opensans_regular"
-                         android:inputType="text"
-                         android:text=""
-                         android:textColor="@color/black"
-                         android:textSize="@dimen/_14ssp" />
+                         android:layout_marginTop="@dimen/_10sdp"
+                         android:layout_marginEnd="@dimen/_5sdp"
+                         android:layout_weight="1"
+                         android:hint="@string/offer_start_date">
 
-                 </com.google.android.material.textfield.TextInputLayout>
+                         <com.google.android.material.textfield.TextInputEditText
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:fontFamily="@font/opensans_regular"
+                             android:inputType="text"
+                             android:text=""
+                             android:textColor="@color/black"
+                             android:textSize="@dimen/_14ssp" />
 
-             </LinearLayout>-->
+                     </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/btnSaveDhaba"
+                     <com.google.android.material.textfield.TextInputLayout
+                         android:id="@+id/offerEndDateTil"
+                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_marginStart="@dimen/_5sdp"
+                         android:layout_marginTop="@dimen/_10sdp"
+                         android:layout_weight="1"
+                         android:hint="@string/offer_end_date">
+
+                         <com.google.android.material.textfield.TextInputEditText
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:fontFamily="@font/opensans_regular"
+                             android:inputType="text"
+                             android:text=""
+                             android:textColor="@color/black"
+                             android:textSize="@dimen/_14ssp" />
+
+                     </com.google.android.material.textfield.TextInputLayout>
+
+                 </LinearLayout>-->
+
+                <Button
+                    android:id="@+id/btnSaveDhaba"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewRestrictor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_20sdp"
-                android:background="@drawable/primary_color_btn_selector"
-                android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
 
-        </LinearLayout>
+        </FrameLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

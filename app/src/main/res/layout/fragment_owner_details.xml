@@ -13,6 +13,10 @@
             type="Boolean" />
 
         <variable
+            name="viewOnly"
+            type="Boolean" />
+
+        <variable
             name="context"
             type="android.content.Context" />
 
@@ -403,6 +407,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/uploadProofLayout" />
@@ -425,14 +430,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--
-                        <View
-                            android:id="@+id/viewRestrictor"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:clickable="true"
-                            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />
-            -->
+            <View
+                android:id="@+id/viewRestrictor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
         </FrameLayout>
     </ScrollView>
 

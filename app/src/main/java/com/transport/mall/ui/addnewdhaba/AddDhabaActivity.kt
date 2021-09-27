@@ -56,6 +56,13 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             intent.putExtra("data", dhabaModelMain)
             context.startActivity(intent)
         }
+
+        fun startViewOnly(context: Context, dhabaModelMain: DhabaModelMain) {
+            val intent = Intent(context, AddDhabaActivity::class.java)
+            intent.putExtra("data", dhabaModelMain)
+            intent.putExtra("viewOnly", true)
+            context.startActivity(intent)
+        }
     }
 
     override fun bindData() {
@@ -216,6 +223,10 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
 
     override fun isUpdate(): Boolean {
         return mIsUpdate
+    }
+
+    override fun viewOnly(): Boolean {
+        return intent.getBooleanExtra("viewOnly", false)
     }
 
     override fun onBackPressed() {

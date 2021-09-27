@@ -14,343 +14,361 @@
         <variable
             name="isUpdate"
             type="Boolean" />
+
+        <variable
+            name="viewOnly"
+            type="Boolean" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="20dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/bed_charpai"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgBedCharpai"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbBedCharpaiYes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/yes" />
-
-                    <RadioButton
-                        android:id="@+id/rbBedCharpaiNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_height="match_parent"
+                android:animateLayoutChanges="true"
+                android:background="@color/white"
                 android:orientation="vertical"
-                android:visibility="@{rbBedCharpaiYes.checked ? View.VISIBLE : View.GONE}">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/number_of_beds"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
-
-                <RadioGroup
-                    android:id="@+id/rgNoOfCharpai"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbBed1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="1"
-                        android:text="@string/_1_2" />
-
-                    <RadioButton
-                        android:id="@+id/rbBed5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="2"
-                        android:text="@string/_2_5" />
-
-                    <RadioButton
-                        android:id="@+id/rbBedAbove5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:tag="3"
-                        android:text="@string/above_5" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_130sdp"
-                android:background="@color/grey_light"
-                android:visibility="@{rbBedCharpaiYes.checked ? View.VISIBLE : View.GONE}">
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="20dp">
 
                 <LinearLayout
-                    android:id="@+id/llSleepingAmanPhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:src="@drawable/ic_add_round" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
                         android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/upload_sleeping_amenities_photo"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/bed_charpai"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
+                    <RadioGroup
+                        android:id="@+id/rgBedCharpai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbBedCharpaiYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbBedCharpaiNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/ivSleepingImg"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical"
+                    android:visibility="@{rbBedCharpaiYes.checked ? View.VISIBLE : View.GONE}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/number_of_beds"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <RadioGroup
+                        android:id="@+id/rgNoOfCharpai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbBed1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/_1_2" />
+
+                        <RadioButton
+                            android:id="@+id/rbBed5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/_2_5" />
+
+                        <RadioButton
+                            android:id="@+id/rbBedAbove5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/above_5" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
                     android:background="@color/grey_light"
-                    android:scaleType="fitCenter"
-                    android:visibility="gone" />
+                    android:visibility="@{rbBedCharpaiYes.checked ? View.VISIBLE : View.GONE}">
 
-            </FrameLayout>
+                    <LinearLayout
+                        android:id="@+id/llSleepingAmanPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:src="@drawable/ic_add_round" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/fan"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/upload_sleeping_amenities_photo"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
 
-                <RadioGroup
-                    android:id="@+id/rgFan"
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivSleepingImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_light"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rbFanYes"
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/yes" />
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/fan"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
 
-                    <RadioButton
-                        android:id="@+id/rbFanNo"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/rgFan"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
+                        android:orientation="horizontal">
 
-                </RadioGroup>
-            </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/rbFanYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/yes" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                        <RadioButton
+                            android:id="@+id/rbFanNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/no" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/cooler"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    </RadioGroup>
+                </LinearLayout>
 
-                <RadioGroup
-                    android:id="@+id/rgCooler"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rbCoolerYes"
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/yes" />
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/cooler"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
 
-                    <RadioButton
-                        android:id="@+id/rbCoolerNo"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/rgCooler"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
+                        android:orientation="horizontal">
 
-                </RadioGroup>
-            </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/rbCoolerYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/yes" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                        <RadioButton
+                            android:id="@+id/rbCoolerNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/no" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/enclosed"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    </RadioGroup>
+                </LinearLayout>
 
-                <RadioGroup
-                    android:id="@+id/rgExposed"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rbExposedYes"
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/yes" />
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/enclosed"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
 
-                    <RadioButton
-                        android:id="@+id/rbExposedNo"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/rgExposed"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
+                        android:orientation="horizontal">
 
-                </RadioGroup>
-            </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/rbExposedYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/yes" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                        <RadioButton
+                            android:id="@+id/rbExposedNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/no" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/open"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    </RadioGroup>
+                </LinearLayout>
 
-                <RadioGroup
-                    android:id="@+id/rgOpen"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rbOpenYes"
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/yes" />
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/open"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
 
-                    <RadioButton
-                        android:id="@+id/rbOpenNo"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/rgOpen"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
+                        android:orientation="horizontal">
 
-                </RadioGroup>
-            </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/rbOpenYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/yes" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                        <RadioButton
+                            android:id="@+id/rbOpenNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/no" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/hot_water_bag"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    </RadioGroup>
+                </LinearLayout>
 
-                <RadioGroup
-                    android:id="@+id/rgHotColdWater"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/rbHotWaterYes"
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/yes" />
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/hot_water_bag"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
 
-                    <RadioButton
-                        android:id="@+id/rbHotWaterNo"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/rgHotColdWater"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/no" />
+                        android:orientation="horizontal">
 
-                </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/rbHotWaterYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbHotWaterNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnSaveDhaba"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnSaveDhaba"
+            <View
+                android:id="@+id/viewRestrictor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_20sdp"
-                android:background="@drawable/primary_color_btn_selector"
-                android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
 
-        </LinearLayout>
+        </FrameLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
