@@ -1,6 +1,8 @@
 package com.transport.mall.model
 
+import android.content.Context
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -41,19 +43,19 @@ class FoodAmenitiesModel : Serializable {
     @SerializedName(value = "foodLisenceFile")
     var foodLisenceFile: String = ""
 
-    fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
+    fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (foodLisence.isEmpty()) {
-            callback.onResponse(false, "Please Choose Food License Option")
+            callback.onResponse(false, context.getString(R.string.choose_food_license_option))
         } else if (foodLisence.equals("true", true) && foodLisenceFile.isEmpty()) {
-            callback.onResponse(false, "Please Select Food License Photo")
+            callback.onResponse(false, context.getString(R.string.select_license_photo))
         } else if (foodAt100.isEmpty()) {
-            callback.onResponse(false, "Please Choose Food at 100 option")
+            callback.onResponse(false, context.getString(R.string.select_food_at_100))
         } else if (roCleanWater.isEmpty()) {
-            callback.onResponse(false, "Please Choose RO Water option")
+            callback.onResponse(false, context.getString(R.string.select_ro_water_option))
         } else if (food.isEmpty()) {
-            callback.onResponse(false, "Please Choose Food Type option")
+            callback.onResponse(false, context.getString(R.string.select_food_type))
         } else if (images.isEmpty()) {
-            callback.onResponse(false, "Please Choose at lease 1 Food Photo")
+            callback.onResponse(false, context.getString(R.string.choose_atlease_one_photo))
         } else {
             callback.onResponse(true, "")
         }

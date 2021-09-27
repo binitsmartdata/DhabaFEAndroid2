@@ -1,9 +1,11 @@
 package com.transport.mall.model
 
+import android.content.Context
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -193,26 +195,24 @@ class DhabaModel : Serializable, BaseObservable() {
     var isDraft: String = ""
 
 
-    fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
+    fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.isEmpty()) {
-            callback.onResponse(false, "Please Enter Dhaba Name")
+            callback.onResponse(false, context.getString(R.string.enter_dhaba_name))
         } else if (address.isEmpty()) {
-            callback.onResponse(false, "Please Enter Address")
+            callback.onResponse(false, context.getString(R.string.enter_address))
         } else if (landmark.isEmpty()) {
-            callback.onResponse(false, "Please Enter Landmark")
+            callback.onResponse(false, context.getString(R.string.enter_landmark))
         } else if (area.isEmpty()) {
-            callback.onResponse(false, "Please Enter Area Name")
+            callback.onResponse(false, context.getString(R.string.enter_area))
         } else if (highway.isEmpty()) {
-            callback.onResponse(false, "Please Enter Highway Name")
+            callback.onResponse(false, context.getString(R.string.enter_highway))
         } else if (pincode.isEmpty()) {
-            callback.onResponse(false, "Please Enter Pincode")
+            callback.onResponse(false, context.getString(R.string.enter_pincode))
         } else if (propertyStatus.isEmpty()) {
-            callback.onResponse(false, "Please Select Property Status")
+            callback.onResponse(false, context.getString(R.string.select_property_status))
         } else if (images.isEmpty()) {
-            callback.onResponse(false, "Please Select Dhaba Image")
-        } /*else if (videos.isEmpty()) {
-            callback.onResponse(false, "Please Select Dhaba Video")
-        } */ else {
+            callback.onResponse(false, context.getString(R.string.select_dhaba_image))
+        } else {
             callback.onResponse(true, "")
         }
     }

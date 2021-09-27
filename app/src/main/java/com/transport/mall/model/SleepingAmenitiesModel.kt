@@ -2,6 +2,7 @@ package com.transport.mall.model
 
 import android.content.Context
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -44,21 +45,21 @@ class SleepingAmenitiesModel : Serializable {
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (sleeping.isEmpty()) {
-            callback.onResponse(false, "Please Choose Bed/Charpai option")
+            callback.onResponse(false, context.getString(R.string.choose_bed_charpai))
         } else if (sleeping.isNotEmpty() && noOfBeds.isEmpty()) {
-            callback.onResponse(false, "Please Choose number of beds")
+            callback.onResponse(false, context.getString(R.string.choose_no_of_beds))
         } else if (images.isEmpty()) {
-            callback.onResponse(false, "Please Choose a photo")
+            callback.onResponse(false, context.getString(R.string.choose_photo))
         } else if (fan.isEmpty()) {
-            callback.onResponse(false, "Please Choose fan option")
+            callback.onResponse(false, context.getString(R.string.choose_fan))
         } else if (cooler.isEmpty()) {
-            callback.onResponse(false, "Please Choose cooler option")
+            callback.onResponse(false, context.getString(R.string.choose_cooler))
         } else if (enclosed.isEmpty()) {
-            callback.onResponse(false, "Please Choose enclosed option")
+            callback.onResponse(false, context.getString(R.string.choose_enclosed))
         } else if (open.isEmpty()) {
-            callback.onResponse(false, "Please Choose if it is open")
+            callback.onResponse(false, context.getString(R.string.choose_if_open))
         } else if (hotWater.isEmpty()) {
-            callback.onResponse(false, "Please Choose Hot Water Bag option")
+            callback.onResponse(false, context.getString(R.string.choose_hot_water))
         } else {
             callback.onResponse(true, "")
         }

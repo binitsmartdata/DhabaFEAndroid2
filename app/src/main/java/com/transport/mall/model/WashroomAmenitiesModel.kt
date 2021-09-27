@@ -2,6 +2,7 @@ package com.transport.mall.model
 
 import android.content.Context
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -32,13 +33,13 @@ class WashroomAmenitiesModel : Serializable {
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (washroomStatus.isEmpty()) {
-            callback.onResponse(false, "Please choose washroom status.")
+            callback.onResponse(false, context.getString(R.string.choose_washroom_status))
         } else if (water.isEmpty()) {
-            callback.onResponse(false, "Please choose hot and cold water option.")
+            callback.onResponse(false, context.getString(R.string.choose_hot_and_cold_water))
         } else if (cleaner.isEmpty()) {
-            callback.onResponse(false, "Please choose truck show clean option.")
+            callback.onResponse(false, context.getString(R.string.choose_truck_show_clean))
         } else if (images.isEmpty()) {
-            callback.onResponse(false, "Please choose a photo")
+            callback.onResponse(false, context.getString(R.string.choose_photo))
         } else {
             callback.onResponse(true, "")
         }

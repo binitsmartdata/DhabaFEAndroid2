@@ -1,9 +1,11 @@
 package com.transport.mall.model
 
+import android.content.Context
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import java.io.Serializable
@@ -127,28 +129,24 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.longitude)
         }
 
-    fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
+    fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (ownerName.isEmpty()) {
-            callback.onResponse(false, "Please Enter Owner Name")
+            callback.onResponse(false, context.getString(R.string.enter_owner_name))
         } else if (mobile.isEmpty()) {
-            callback.onResponse(false, "Please enter Phone Number")
+            callback.onResponse(false, context.getString(R.string.enter_phone_number))
         } else if (email.isEmpty()) {
-            callback.onResponse(false, "Please Enter Email Id")
+            callback.onResponse(false, context.getString(R.string.enter_email))
         } else if (!GlobalUtils.isValidEmail(email)) {
-            callback.onResponse(false, "Please Enter Valid Email Id")
+            callback.onResponse(false, context.getString(R.string.enter_valid_email))
         } else if (address.isEmpty()) {
-            callback.onResponse(false, "Please Enter Address")
+            callback.onResponse(false, context.getString(R.string.enter_address))
         } else if (panNumber.isEmpty()) {
-            callback.onResponse(false, "Please Enter Pan Number")
+            callback.onResponse(false, context.getString(R.string.enter_pan_number))
         } else if (adharCard.isEmpty()) {
-            callback.onResponse(false, "Please Aadhar Card Number")
+            callback.onResponse(false, context.getString(R.string.enter_adhar_number))
         } else if (ownerPic.isEmpty()) {
-            callback.onResponse(false, "Please Select Owner Picture")
-        } /*else if (idproofFront.isEmpty()) {
-            callback.onResponse(false, "Please Select ID proof front image")
-        } else if (idproofBack.isEmpty()) {
-            callback.onResponse(false, "Please Select ID proof back image")
-        } */ else {
+            callback.onResponse(false, context.getString(R.string.select_owner_picture))
+        } else {
             callback.onResponse(true, "")
         }
     }

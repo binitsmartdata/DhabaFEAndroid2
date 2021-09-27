@@ -182,7 +182,7 @@ class FoodAmenitiesFragment :
 
     override fun initListeners() {
         binding.btnSaveDhaba.setOnClickListener {
-            viewModel.model.hasEverything(GenericCallBackTwoParams { allOk, message ->
+            viewModel.model.hasEverything(getmContext(),GenericCallBackTwoParams { allOk, message ->
                 if (allOk) {
                     if (viewModel.model._id.isNotEmpty()) {
                         viewModel.updateFoodAmenities(GenericCallBack {

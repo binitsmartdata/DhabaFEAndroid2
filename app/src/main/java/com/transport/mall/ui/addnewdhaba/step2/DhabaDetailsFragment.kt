@@ -177,7 +177,7 @@ class DhabaDetailsFragment :
                     showToastInCenter(getString(R.string.enter_dhaba_name))
                 }
             } else {
-                viewModel.dhabaModel.hasEverything(GenericCallBackTwoParams { status, message ->
+                viewModel.dhabaModel.hasEverything(getmContext(),GenericCallBackTwoParams { status, message ->
                     if (status) {
                         proceed(isDraft)
                     } else {

@@ -8,7 +8,7 @@
     <string name="invalid_password">Password length should be between 6 to 20 characters</string>
     <string name="ok">OK</string>
     <string name="home">Home</string>
-    <string name="graph">Graph</string>
+    <string name="graph" translatable="false">Graph</string>
     <string name="alarm">Alarm</string>
     <string name="music">Music</string>
     <string name="version">Version</string>
@@ -41,9 +41,9 @@
 
     <string name="menu">Menu</string>
     <string name="choose_language" tools:ignore="MissingTranslation">Choose Language</string>
-    <string name="english" tools:ignore="MissingTranslation">English</string>
-    <string name="hindi" tools:ignore="MissingTranslation">हिंदी</string>
-    <string name="punjabi" tools:ignore="ExtraTranslation,MissingTranslation">ਪੰਜਾਬੀ</string>
+    <string name="english" tools:ignore="MissingTranslation" translatable="false">English</string>
+    <string name="hindi" tools:ignore="MissingTranslation" translatable="false">हिंदी</string>
+    <string name="punjabi" tools:ignore="ExtraTranslation,MissingTranslation" translatable="false">ਪੰਜਾਬੀ</string>
     <string name="email_cannot_be_empty">Email field cannot be empty</string>
     <string name="password_cannot_be_empty">Password field cannot be empty</string>
     <string name="pending">Pending</string>
@@ -262,6 +262,48 @@
     <string name="unable_to_fetch_address">Unable fetch your current address.</string>
     <string name="assigned_to">Assigned To</string>
     <string name="upload_barber_photo">Upload Barber Photo</string>
+    <string name="enter_owner_name">Please Enter Owner Name</string>
+    <string name="enter_phone_number">Please enter Phone Number</string>
+    <string name="enter_email">Please Enter Email Id</string>
+    <string name="enter_valid_email">Please Enter Valid Email Id</string>
+    <string name="enter_address">Please Enter Address</string>
+    <string name="enter_pan_number">Please Enter Pan Number</string>
+    <string name="enter_adhar_number">Please Aadhar Card Number</string>
+    <string name="select_owner_picture">Please Select Owner Picture</string>
+    <string name="enter_landmark">Please Enter Landmark</string>
+    <string name="enter_area">Please Enter Area Name</string>
+    <string name="enter_highway">Please Enter Highway Name</string>
+    <string name="enter_pincode">Please Enter Pincode</string>
+    <string name="select_property_status">Please Select Property Status</string>
+    <string name="select_dhaba_image">Please Select Dhaba Image</string>
+    <string name="enter_bank_name">Please Enter Bank Name</string>
+    <string name="enter_gst_number">Please Enter GST Number</string>
+    <string name="enter_ifsc_code">Please Enter IFSC Code</string>
+    <string name="enter_account_holder_name">Please Enter Account Holder Name</string>
+    <string name="enter_pan_number">Please Enter Pan Number</string>
+    <string name="choose_pan_card_photo">Please Choose Pan Card Photo</string>
+    <string name="choose_food_license_option">Please Choose Food License Option</string>
+    <string name="select_license_photo">Please Select Food License Photo</string>
+    <string name="select_food_at_100">Please Choose Food at 100 option</string>
+    <string name="select_ro_water_option">Please Choose RO Water option</string>
+    <string name="select_food_type">Please Choose Food Type option</string>
+    <string name="choose_atlease_one_photo">Please Choose at lease 1 Food Photo</string>
+    <string name="choose_bed_charpai">Please Choose Bed/Charpai option</string>
+    <string name="choose_no_of_beds">Please Choose number of beds</string>
+    <string name="choose_photo">Please Choose a photo</string>
+    <string name="choose_fan">Please Choose fan option</string>
+    <string name="choose_cooler">Please Choose cooler option</string>
+    <string name="choose_enclosed">Please Choose enclosed option</string>
+    <string name="choose_if_open">Please Choose if it is open</string>
+    <string name="choose_hot_water">Please Choose Hot Water Bag option</string>
+    <string name="choose_washroom_status">Please choose washroom status.</string>
+    <string name="choose_hot_and_cold_water">Please choose hot and cold water option.</string>
+    <string name="choose_truck_show_clean">Please choose truck show clean option.</string>
+    <string name="choose_verification_photo">Please choose police verification photo.</string>
+    <string name="choose_indoor_camera_photo">Please choose photos of indoor camera(s).</string>
+    <string name="choose_outdoor_camera_photo">Please choose photos of outdoor camera(s).</string>
+    <string name="choose_tower_light_photo">Please choose Tower Light photo</string>
+    <string name="choose_bulb_light_photo">Please choose Bulb Light photo</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

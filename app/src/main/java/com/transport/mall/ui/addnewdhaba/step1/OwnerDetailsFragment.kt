@@ -202,7 +202,7 @@ class OwnerDetailsFragment :
 
     private fun saveDetails(isDraft: Boolean) {
 //        viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.textView_selectedCountry.text.toString()
-        viewModel.ownerModel.hasEverything(GenericCallBackTwoParams { hasEverything, message ->
+        viewModel.ownerModel.hasEverything(getmContext(),GenericCallBackTwoParams { hasEverything, message ->
             if (hasEverything) {
                 if (mListener?.isUpdate()!! && viewModel.ownerModel._id.isNotEmpty()) {
                     viewModel.updateOwner(GenericCallBack {

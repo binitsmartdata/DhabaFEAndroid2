@@ -2,6 +2,7 @@ package com.transport.mall.model
 
 import android.content.Context
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -44,11 +45,11 @@ class SecurityAmenitiesModel : Serializable {
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (policVerification && verificationImg.isEmpty()) {
-            callback.onResponse(false, "Please choose police verification photo.")
+            callback.onResponse(false, context.getString(R.string.choose_verification_photo))
         } else if (indoorCamera > 0 && indoorCameraImage.isEmpty()) {
-            callback.onResponse(false, "Please choose photos of indoor camera(s).")
+            callback.onResponse(false, context.getString(R.string.choose_indoor_camera_photo))
         } else if (outdoorCamera > 0 && outdoorCameraImage.isEmpty()) {
-            callback.onResponse(false, "Please choose photos of outdoor camera(s).")
+            callback.onResponse(false, context.getString(R.string.choose_outdoor_camera_photo))
         } else {
             callback.onResponse(true, "")
         }

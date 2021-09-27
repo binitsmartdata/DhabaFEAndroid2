@@ -188,7 +188,7 @@ class BankDetailsFragment :
             if (isDraft) {
                 proceed(isDraft)
             } else {
-                viewModel.bankModel.hasEverything(GenericCallBackTwoParams() { allOk, message ->
+                viewModel.bankModel.hasEverything(getmContext(),GenericCallBackTwoParams() { allOk, message ->
                     if (allOk) {
                         proceed(isDraft)
                     } else {

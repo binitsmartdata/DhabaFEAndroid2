@@ -2,6 +2,7 @@ package com.transport.mall.model
 
 import android.content.Context
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -35,9 +36,9 @@ class LightAmenitiesModel : Serializable {
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (towerLight && towerLightImage.isEmpty()) {
-            callback.onResponse(false, "Please choose Tower Light photo")
+            callback.onResponse(false, context.getString(R.string.choose_tower_light_photo))
         } else if (bulbLight && bulbLightImage.isEmpty()) {
-            callback.onResponse(false, "Please choose Bulb Light photo")
+            callback.onResponse(false, context.getString(R.string.choose_bulb_light_photo))
         } else {
             callback.onResponse(true, "")
         }

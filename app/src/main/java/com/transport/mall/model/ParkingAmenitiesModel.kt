@@ -1,6 +1,8 @@
 package com.transport.mall.model
 
+import android.content.Context
 import com.google.gson.annotations.SerializedName
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import java.io.Serializable
 
@@ -32,9 +34,9 @@ class ParkingAmenitiesModel : Serializable {
     @SerializedName(value = "images")
     var images = ArrayList<PhotosModel>()
 
-    fun hasEverything(callback: GenericCallBackTwoParams<Boolean, String>) {
+    fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (images.isEmpty()) {
-            callback.onResponse(false, "Please Choose at lease 1 Photo")
+            callback.onResponse(false, context.getString(R.string.choose_atlease_one_photo))
         } else {
             callback.onResponse(true, "")
         }
