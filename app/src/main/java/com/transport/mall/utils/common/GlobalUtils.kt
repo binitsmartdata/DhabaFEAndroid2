@@ -264,6 +264,7 @@ object GlobalUtils {
                 .equals("null", ignoreCase = true) || target.trim { it <= ' ' }
                 .isEmpty()) defValue else target
     }
+
     @JvmStatic
     fun getNullifEmpty(target: String?): String? {
         return if (target == null || target.trim { it <= ' ' }
@@ -604,14 +605,6 @@ object GlobalUtils {
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         val mLocationCallback: LocationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                if (locationResult == null) {
-                    return
-                }
-                for (location in locationResult.locations) {
-                    if (location != null) {
-                        //TODO: UI updates.
-                    }
-                }
             }
         }
         LocationServices.getFusedLocationProviderClient(context)

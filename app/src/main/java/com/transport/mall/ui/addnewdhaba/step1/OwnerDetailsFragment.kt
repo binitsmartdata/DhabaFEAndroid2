@@ -90,6 +90,7 @@ class OwnerDetailsFragment :
     }
 
     override fun initListeners() {
+        GlobalUtils.refreshLocation(activity as Context)
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
         }
@@ -188,7 +189,7 @@ class OwnerDetailsFragment :
 
     private fun getAddress() {
         GlobalUtils.getCurrentLocation(activity as Context, GenericCallBack { location ->
-            if (location != null) {
+            if (location != null) {0
                 viewModel.ownerModel.latitude = location.latitude.toString()
                 viewModel.ownerModel.longitude = location.longitude.toString()
 

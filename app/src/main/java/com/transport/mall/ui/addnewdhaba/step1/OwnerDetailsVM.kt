@@ -37,7 +37,6 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
                 executeApi(
                     getApiService()?.addOwner(
                         RequestBody.create(MultipartBody.FORM, ownerModel._id),
-                        RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
                         RequestBody.create(MultipartBody.FORM, ownerModel.mobilePrefix),
                         RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
                         RequestBody.create(MultipartBody.FORM, ownerModel.email),
@@ -67,7 +66,6 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
                 executeApi(
                     getApiService()?.updateOwner(
                         RequestBody.create(MultipartBody.FORM, ownerModel._id),
-                        RequestBody.create(MultipartBody.FORM, ownerModel.ownerName),
                         RequestBody.create(MultipartBody.FORM, ownerModel.mobilePrefix),
                         RequestBody.create(MultipartBody.FORM, ownerModel.mobile),
                         RequestBody.create(MultipartBody.FORM, ownerModel.email),
