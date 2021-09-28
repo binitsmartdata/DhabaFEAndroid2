@@ -108,7 +108,6 @@ dependencies {
 
     // for marshmallow permissions ...
     implementation "com.karumi:dexter:$project.dexter"
-//    implementation 'com.afollestad:assent:2.3.1'
 
     // Picasso image loader ...
     implementation "com.squareup.picasso:picasso:$project.picasso"
@@ -138,6 +137,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.github.joielechong:countrycodepicker:2.4.2'
+    implementation platform('com.google.firebase:firebase-bom:28.4.1')
+    implementation 'com.google.firebase:firebase-crashlytics'
 }
 
 apply plugin: 'com.google.gms.google-services'

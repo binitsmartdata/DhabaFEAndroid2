@@ -47,8 +47,8 @@ interface ApiService {
         @Query("count") count: String,
         @Query("page") page: String,
         @Query("status") status: String,
-        @Query("searchCity") searchCity: String,
-        @Query("search") search: String
+        @Query("searchCity") searchCity: String?,
+        @Query("search") search: String?
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModelMain>>>>
 
     @FormUrlEncoded

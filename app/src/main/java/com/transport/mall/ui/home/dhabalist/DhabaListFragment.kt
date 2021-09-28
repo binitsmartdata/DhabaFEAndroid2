@@ -3,7 +3,6 @@ package com.transport.mall.ui.home.dhabalist
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.ArrayAdapter
 import android.widget.TextView.OnEditorActionListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -102,7 +101,6 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
                 }
                 if (filteredCities.isNotEmpty() && selectedCities.isNotEmpty()) {
                     binding.viewCityIndicator.visibility = View.VISIBLE
-//                    showFilteredDhabas(filteredCities)
                     binding.edSearch.setText("")
                     onRefresh()
                 } else {
@@ -146,12 +144,6 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
             binding.swipeRefreshLayout.isRefreshing = it
         })
         binding.swipeRefreshLayout.setOnRefreshListener(this)
-
-        var list: Array<String> = resources.getStringArray(R.array.cities_list_dummy)
-        var adapter = ArrayAdapter<String>(
-            activity as Context,
-            android.R.layout.simple_dropdown_item_1line, list
-        )
     }
 
     private fun refreshDhabaList() {

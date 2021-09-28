@@ -2,10 +2,13 @@ package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
+import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
@@ -43,7 +46,16 @@ class DhabaListVM(application: Application) : BaseVM(application) {
         progressObserver.value = page == "1"
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                executeApi(getApiService()?.getAllDhabaList(token, limit, page, status, cities, search)).collect {
+                executeApi(
+                    getApiService()?.getAllDhabaList(
+                        token,
+                        limit,
+                        page,
+                        status,
+                        GlobalUtils.getNullifEmpty(cities),
+                        GlobalUtils.getNullifEmpty(search)
+                    )
+                ).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {
                             progressObserver.value = page == "1"
@@ -51,6 +63,13 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                         ApiResult.Status.ERROR -> {
                             progressObserver.value = false
                             callBack.onResponse(ArrayList())
+                            if (page == "1") {
+                                try {//SHOW ERROR MESSAGE IF OCCURS ON FIRST PAGE
+                                    showToastInCenter(app!!, Gson().fromJson(it.error?.string(), ApiResponseModel::class.java).message)
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+                            }
                         }
                         ApiResult.Status.SUCCESS -> {
                             progressObserver.value = false

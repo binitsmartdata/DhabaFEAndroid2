@@ -61,7 +61,7 @@ class LoginVM(application: Application) : BaseVM(application) {
             password = it
         }
 
-        when (email.isNotEmpty() && password.isNotEmpty()) {
+        when (email.isNotEmpty() && password.isNotEmpty() && isValidEmail(email)) {
             true -> {
                 progressObserver?.value = true
                 GlobalScope.launch(Dispatchers.Main) {

@@ -303,6 +303,7 @@
     <string name="choose_outdoor_camera_photo">Please choose photos of outdoor camera(s).</string>
     <string name="choose_tower_light_photo">Please choose Tower Light photo</string>
     <string name="choose_bulb_light_photo">Please choose Bulb Light photo</string>
+    <string name="add_new">Add New</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

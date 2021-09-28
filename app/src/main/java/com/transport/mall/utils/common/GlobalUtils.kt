@@ -264,6 +264,12 @@ object GlobalUtils {
                 .equals("null", ignoreCase = true) || target.trim { it <= ' ' }
                 .isEmpty()) defValue else target
     }
+    @JvmStatic
+    fun getNullifEmpty(target: String?): String? {
+        return if (target == null || target.trim { it <= ' ' }
+                .equals("null", ignoreCase = true) || target.trim { it <= ' ' }
+                .isEmpty()) null else target
+    }
 
     @JvmStatic
     fun roundTwoDecimals(d: Double): Double {

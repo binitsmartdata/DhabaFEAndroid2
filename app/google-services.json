@@ -1,52 +1,44 @@
 {
   "project_info": {
-    "project_number": "555075808109",
-    "firebase_url": "https://sdeiarchitecture.firebaseio.com",
-    "project_id": "sdeiarchitecture",
-    "storage_bucket": "sdeiarchitecture.appspot.com"
+    "project_number": "848917828653",
+    "project_id": "dhaba-app-326206",
+    "storage_bucket": "dhaba-app-326206.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:555075808109:android:399b16d8db06562c",
+        "mobilesdk_app_id": "1:848917828653:android:680a7f2d9b332a4700d4a4",
         "android_client_info": {
           "package_name": "com.transport.mall"
         }
       },
       "oauth_client": [
         {
-          "client_id": "555075808109-sv3rbbihns7n674k46cpkdjsj709jt7e.apps.googleusercontent.com",
+          "client_id": "848917828653-tdaismh1urjfg14h1528rp1kduqaov4r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.transport.mall",
-            "certificate_hash": "271bcaa63af9f5251c93062180f3b48cee83f349"
+            "certificate_hash": "a98b93db62e9a500f48e7be3df235b49758afac8"
           }
         },
         {
-          "client_id": "555075808109-76cv5e6sfdi39i4463a1toiogb4lkm8v.apps.googleusercontent.com",
+          "client_id": "848917828653-j7vrdl5vkc0e9v2915hdg01tq5vdkbrb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDVQwhpAlEDsW4qHjE76DVnNga400JUupk"
+          "current_key": "AIzaSyAgYvByuc18p7M586ExeHC_DPU60xtjppc"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "555075808109-76cv5e6sfdi39i4463a1toiogb4lkm8v.apps.googleusercontent.com",
+              "client_id": "848917828653-j7vrdl5vkc0e9v2915hdg01tq5vdkbrb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

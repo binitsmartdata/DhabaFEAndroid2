@@ -306,4 +306,5 @@
     <string name="select_dhaba_image">Please Select Dhaba Image</string>
     <string name="enter_bank_name">Please Enter Bank Name</string>
     <string name="enter_gst_number">Please Enter GST Number</string>
+    <string name="add_new">नया जोड़ें</string>
 </resources>
