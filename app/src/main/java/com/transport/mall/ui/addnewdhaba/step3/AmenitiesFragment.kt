@@ -55,7 +55,7 @@ class AmenitiesFragment :
         binding.btnSaveDraft.setOnClickListener {
             mListener?.getDhabaModelMain()?.dhabaModel?.let {
                 // UPDATING DHABA STATUS TO ISDRAFT
-                viewModel.updateDhabaStatus(true, it, DhabaModel.STATUS_PENDING, progressObserver,
+                viewModel.updateDhabaStatus(true, it, progressObserver,
                     GenericCallBack {
                         if (it.data != null) {
                             mListener?.getDhabaModelMain()?.dhabaModel = it.data

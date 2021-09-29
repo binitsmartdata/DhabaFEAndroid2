@@ -687,25 +687,4 @@ object GlobalUtils {
         )
         return isEnabled
     }
-
-
-    var progressDialog: ProgressDialog? = null
-    fun showPercentageProgressDialog(context: Context, progress: Long, message: String) {
-        if (progressDialog == null) {
-            progressDialog = ProgressDialog(context, "$message $progress%")
-            progressDialog?.show()
-        } else {
-            if (progressDialog?.isShowing!!) {
-                progressDialog?.updateMessage("$message $progress%")
-            }
-        }
-    }
-
-    fun hidePercentageProgressDialog() {
-        progressDialog?.let {
-            if (it.isShowing) {
-                it.dismiss()
-            }
-        }
-    }
 }

@@ -12,6 +12,8 @@ import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.text.format.DateUtils
@@ -20,6 +22,7 @@ import com.abedelazizshe.lightcompressorlibrary.CompressionListener
 import com.abedelazizshe.lightcompressorlibrary.VideoCompressor
 import com.abedelazizshe.lightcompressorlibrary.VideoQuality
 import com.abedelazizshe.lightcompressorlibrary.config.Configuration
+import com.transport.mall.utils.custom.ProgressDialog
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -228,10 +231,11 @@ object VideoUtils {
     fun processVideo(
         uri: Uri?,
         context: Context,
-        callBack: GenericCallBackTwoParams<Long, File?>
+        callBack: GenericCallBack<File?>
     ) {
         var streamableFile: File? = null
         uri?.let {
+            showPercentageProgressDialog(context, 0, "Preparing Video")
             GlobalScope.launch {
                 // run in background as it can take a long time if the video is big,
                 // this implementation is not the best way to do it,
@@ -262,7 +266,12 @@ object VideoUtils {
 //                                    progress.text = "${percent.toLong()}%"
 //                                    progressBar.progress = percent.toInt()
 
-                                    callBack.onResponse(percent.toLong(), null)
+//                                    callBack.onResponse(percent.toLong(), null)
+                                    showPercentageProgressDialog(
+                                        context,
+                                        percent.toLong(),
+                                        "Preparing Video"
+                                    )
                                 }
                             }
 
@@ -291,26 +300,21 @@ object VideoUtils {
                                     "DURATION :::",
                                     "Duration: ${DateUtils.formatElapsedTime(time / 1000)}"
                                 )
+                                hidePercentageProgressDialog()
+                                callBack.onResponse(if (streamableFile != null) streamableFile else desFile)
 
-                                callBack.onResponse(
-                                    100,
-                                    if (streamableFile != null) streamableFile else desFile
-                                )
-
-/*
                                 Looper.myLooper()?.let {
                                     Handler(it).postDelayed({
-                                        progress.visibility = View.GONE
-                                        progressBar.visibility = View.GONE
+                                        hidePercentageProgressDialog()
                                     }, 50)
                                 }
-*/
                             }
 
                             override fun onFailure(failureMessage: String) {
+                                hidePercentageProgressDialog()
 //                                progress.text = failureMessage
                                 Log.wtf("failureMessage", failureMessage)
-                                callBack.onResponse(100, null)
+                                callBack.onResponse(null)
                             }
 
                             override fun onCancelled() {
@@ -443,5 +447,25 @@ object VideoUtils {
             }
         }
         return null
+    }
+
+    var progressDialog: ProgressDialog? = null
+    fun showPercentageProgressDialog(context: Context, progress: Long, message: String) {
+        if (progressDialog == null) {
+            progressDialog = ProgressDialog(context, "$message $progress%")
+            progressDialog?.show()
+        } else {
+            if (progressDialog?.isShowing!!) {
+                progressDialog?.updateMessage("$message $progress%")
+            }
+        }
+    }
+
+    fun hidePercentageProgressDialog() {
+        progressDialog?.let {
+            if (it.isShowing) {
+                it.dismiss()
+            }
+        }
     }
 }

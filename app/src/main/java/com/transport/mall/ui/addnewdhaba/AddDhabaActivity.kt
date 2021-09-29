@@ -206,7 +206,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     override fun saveAsDraft() {
-        SharedPrefsHelper.getInstance(this).setDraftDhaba(getDhabaModelMain())
+//        SharedPrefsHelper.getInstance(this).setDraftDhaba(getDhabaModelMain())
         showToastInCenter(getString(R.string.saved_as_draft))
     }
 

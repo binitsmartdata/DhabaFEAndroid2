@@ -3,7 +3,6 @@ package com.transport.mall.utils.base
 import android.app.Application
 import android.content.Context
 import android.net.ParseException
-import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -27,7 +26,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -35,6 +33,7 @@ import okhttp3.RequestBody
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.File
+import java.io.FileNotFoundException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -84,6 +83,8 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         try {
             if (t is SocketTimeoutException) {
                 error_code = ResponseCodes.TIMEOUT_EXCEPTION
+            } else if (t is FileNotFoundException) {
+                error_code = ResponseCodes.TIMEOUT_EXCEPTION
             } else if (t is JsonSyntaxException) {
                 error_code = ResponseCodes.JSON_SYNTAX_EXCEPTION
             } else if (t is TimeoutException) {
@@ -120,13 +121,12 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
     suspend fun <T> executeApi(input: Response<T>?): Flow<ApiResult<T>> {
         return flow {
             try {
-                emit(ApiResult.loading())
+                emit(ApiResult.loading<T>())
                 emit(getResponse(request = { input }))
             } catch (e: Exception) {
-                Log.e("ERROR", "::::::::::::::::::::::::: SERVER ERROR: executeApi ::::::::::::::::::::::::")
-                emit(ApiResult.error(e.toString(), null))
+                emit(ApiResult.error<T>(e.toString(), null))
             }
-        }.flowOn(Dispatchers.Main)
+        }
     }
 
     fun getPrefs(context: Application): SharedPrefsHelper {
@@ -223,7 +223,6 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
     fun updateDhabaStatus(
         isDraft: Boolean,
         dhabaModel: DhabaModel,
-        status: String,
         progressObserver: MutableLiveData<Boolean>,
         callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
     ) {
@@ -237,7 +236,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                         dhabaModel.blockMonth.toString(),
                         dhabaModel.active.toString(),
                         isDraft.toString(),
-                        status
+                        if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS
                     )
                 ).collect {
                     when (it.status) {

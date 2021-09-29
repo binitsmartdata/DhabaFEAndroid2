@@ -32,6 +32,7 @@ class ResponseCodes {
         val WRONG_METHOD_NAME = 5
         val URL_CONNECTION_ERROR = 6
         val JSON_SYNTAX_EXCEPTION = 7
+        val FILE_NOT_FOUND_EXCEPTION = 8
         val UNKNOWN_ERROR = 10
         val TIMEOUT_EXCEPTION = 11
 
@@ -54,6 +55,8 @@ class ResponseCodes {
                 URL_CONNECTION_ERROR -> errorMessage = "Connection cannot be established, Please try again"
 
                 JSON_SYNTAX_EXCEPTION -> errorMessage = "Wrong response data pattern from server."
+
+                FILE_NOT_FOUND_EXCEPTION -> errorMessage = "File does not exists."
 
                 RESPONSE_JSON_NOT_VALID -> errorMessage = "Json you are getting is not valid"
 
