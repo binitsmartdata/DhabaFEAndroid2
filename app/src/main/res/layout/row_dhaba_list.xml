@@ -69,6 +69,7 @@
                     android:paddingVertical="3dp"
                     android:visibility="gone"
                     android:text="@string/pending"
+                    android:visibility="gone"
                     android:textColor="@color/gold" />
 
             </LinearLayout>

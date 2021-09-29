@@ -46,7 +46,7 @@ class SleepingAmenitiesModel : Serializable {
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (sleeping.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_bed_charpai))
-        } else if (sleeping.isNotEmpty() && noOfBeds.isEmpty()) {
+        } else if (sleeping.isNotEmpty() && sleeping.equals("false") && noOfBeds.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_no_of_beds))
         } else if (images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_photo))
