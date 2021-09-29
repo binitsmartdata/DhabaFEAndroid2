@@ -1,14 +1,7 @@
 package com.transport.mall.ui.addnewdhaba.step2
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.abedelazizshe.lightcompressorlibrary.CompressionListener
-import com.abedelazizshe.lightcompressorlibrary.VideoCompressor
-import com.abedelazizshe.lightcompressorlibrary.VideoQuality
-import com.abedelazizshe.lightcompressorlibrary.config.Configuration
 import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModel
@@ -22,7 +15,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -38,7 +30,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
         app = application
     }
 
-    fun addDhaba(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
+    fun addDhaba(status: String, callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -59,7 +51,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
-                        RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
+                        RequestBody.create(MultipartBody.FORM, status),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
                         getMultipartImageFile(dhabaModel.images, "images"),
@@ -83,7 +75,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
         }
     }
 
-    fun updateDhaba(callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
+    fun updateDhaba(status: String, callBack: GenericCallBack<ApiResponseModel<DhabaModel>>) {
         progressObserverUpdate.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -105,7 +97,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
-                        RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
+                        RequestBody.create(MultipartBody.FORM, status),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
                         getMultipartImageFile(dhabaModel.images, "images"),

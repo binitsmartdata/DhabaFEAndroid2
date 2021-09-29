@@ -191,13 +191,13 @@ class DhabaDetailsFragment :
 
     private fun proceed(isDraft: Boolean) {
         if (mListener?.isUpdate()!!) {
-            viewModel.updateDhaba(
+            viewModel.updateDhaba(if (isDraft) DhabaModel.STATUS_INPROGRESS else DhabaModel.STATUS_PENDING,
                 GenericCallBack { response ->
                     handleResponse(response, isDraft)
                 }
             )
         } else {
-            viewModel.addDhaba(
+            viewModel.addDhaba(if (isDraft) DhabaModel.STATUS_INPROGRESS else DhabaModel.STATUS_PENDING,
                 GenericCallBack { response ->
                     handleResponse(response, isDraft)
                 }
@@ -229,6 +229,7 @@ class DhabaDetailsFragment :
         viewModel.updateDhabaStatus(
             isDraft,
             viewModel.dhabaModel,
+            if (isDraft) DhabaModel.STATUS_INPROGRESS else DhabaModel.STATUS_PENDING,
             viewModel.progressObserver,
             GenericCallBack {
                 if (it.data != null) {
