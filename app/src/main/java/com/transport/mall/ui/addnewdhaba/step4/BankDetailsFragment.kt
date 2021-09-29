@@ -26,6 +26,7 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.xloadImages
 
 /**
@@ -55,16 +56,19 @@ class BankDetailsFragment :
         binding.viewOnly = mListener?.viewOnly()
         binding.dhabaModelMain = mListener?.getDhabaModelMain()
         binding.currentDate = GlobalUtils.getCurrentDate()
+        binding.userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
 
         // getexecutive, manager roles and show(read only)
+/*
         viewModel.getUserByRole(GenericCallBack {
             it.data?.let {
                 binding.executiveModel = it
             }
         })
+*/
     }
 
     private fun showDataIfHas() {
@@ -189,13 +193,15 @@ class BankDetailsFragment :
             if (isDraft) {
                 proceed(isDraft)
             } else {
-                viewModel.bankModel.hasEverything(getmContext(), GenericCallBackTwoParams() { allOk, message ->
-                    if (allOk) {
-                        proceed(isDraft)
-                    } else {
-                        showToastInCenter(message)
-                    }
-                })
+                viewModel.bankModel.hasEverything(
+                    getmContext(),
+                    GenericCallBackTwoParams() { allOk, message ->
+                        if (allOk) {
+                            proceed(isDraft)
+                        } else {
+                            showToastInCenter(message)
+                        }
+                    })
             }
         }
     }
@@ -220,6 +226,7 @@ class BankDetailsFragment :
             viewModel.updateDhabaStatus(
                 isDraft,
                 viewModel.dhabaModel,
+                if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
                 viewModel.progressObserver,
                 GenericCallBack {
                     if (it.data != null) {

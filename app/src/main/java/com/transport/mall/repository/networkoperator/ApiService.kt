@@ -64,7 +64,8 @@ interface ApiService {
         @Field("blockDay") blockDay: String,
         @Field("blockMonth") blockMonth: String,
         @Field("isActive") isActive: String,
-        @Field("isDraft") isDraft: String
+        @Field("isDraft") isDraft: String,
+        @Field("status") status: String
     ): Response<ApiResponseModel<DhabaModel>>
 
     @GET("state/getAllStates")
@@ -420,6 +421,7 @@ interface ApiService {
         @Part("user_id") user_id: RequestBody,
         @Part("bankName") bankName: RequestBody,
         @Part("gstNumber") gstNumber: RequestBody,
+        @Part("accountNumber") accountNumber: RequestBody,
         @Part("ifscCode") ifscCode: RequestBody,
         @Part("accountName") accountName: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
@@ -433,6 +435,7 @@ interface ApiService {
         @Part("user_id") user_id: RequestBody,
         @Part("bankName") bankName: RequestBody,
         @Part("gstNumber") gstNumber: RequestBody,
+        @Part("accountNumber") accountNumber: RequestBody,
         @Part("ifscCode") ifscCode: RequestBody,
         @Part("accountName") accountName: RequestBody,
         @Part("panNumber") panNumber: RequestBody,

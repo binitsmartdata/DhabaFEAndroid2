@@ -40,6 +40,14 @@ class BankDetailsModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.gstNumber)
         }
 
+    @SerializedName(value = "accountNumber")
+    var accountNumber: String = ""
+        @Bindable get() = field
+        set(accountNumber) {
+            field = accountNumber
+            notifyPropertyChanged(BR.accountNumber)
+        }
+
     @SerializedName(value = "ifscCode")
     var ifscCode: String = ""
         @Bindable get() = field
@@ -77,7 +85,9 @@ class BankDetailsModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_bank_name))
         } else if (gstNumber.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_gst_number))
-        } else if (ifscCode.isEmpty()) {
+        } else if (accountNumber.isEmpty()) {
+            callback.onResponse(false, context.getString(R.string.enter_bank_account_number))
+        }  else if (ifscCode.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_ifsc_code))
         } else if (accountName.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_account_holder_name))

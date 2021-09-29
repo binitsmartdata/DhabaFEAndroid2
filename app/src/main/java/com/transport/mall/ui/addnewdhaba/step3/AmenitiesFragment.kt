@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAmenitiesBinding
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseFragment
@@ -54,17 +55,19 @@ class AmenitiesFragment :
         binding.btnSaveDraft.setOnClickListener {
             mListener?.getDhabaModelMain()?.dhabaModel?.let {
                 // UPDATING DHABA STATUS TO ISDRAFT
-                viewModel.updateDhabaStatus(true, it, progressObserver, GenericCallBack {
-                    if (it.data != null) {
-                        mListener?.getDhabaModelMain()?.dhabaModel = it.data
+                viewModel.updateDhabaStatus(true, it, DhabaModel.STATUS_PENDING, progressObserver,
+                    GenericCallBack {
+                        if (it.data != null) {
+                            mListener?.getDhabaModelMain()?.dhabaModel = it.data
 
-                        mListener?.getDhabaModelMain()?.draftedAtScreen = DhabaModelMain.DraftScreen.AmenitiesFragment.toString()
-                        mListener?.saveAsDraft()
-                        activity?.finish()
-                    } else {
-                        showToastInCenter(it.message)
-                    }
-                })
+                            mListener?.getDhabaModelMain()?.draftedAtScreen =
+                                DhabaModelMain.DraftScreen.AmenitiesFragment.toString()
+                            mListener?.saveAsDraft()
+                            activity?.finish()
+                        } else {
+                            showToastInCenter(it.message)
+                        }
+                    })
             }
         }
 

@@ -50,7 +50,6 @@ class LoginVM(application: Application) : BaseVM(application) {
     }
 
     fun doLoginProcess(callBak: GenericCallBackTwoParams<com.transport.mall.repository.networkoperator.ApiResult.Status, String>) {
-        Log.e("doLoginProcess", "-------------------")
         var email = ""
         var password = ""
         emailObservable.get()?.let {
@@ -115,7 +114,6 @@ class LoginVM(application: Application) : BaseVM(application) {
                 }
             }
         }
-        progressObserver?.value = true
     }
 
     fun getCitiesList(callBack: GenericCallBack<Boolean>) {

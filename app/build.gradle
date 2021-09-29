@@ -139,6 +139,9 @@ dependencies {
     implementation 'com.github.joielechong:countrycodepicker:2.4.2'
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
     implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.github.AbedElazizShe:LightCompressor:0.9.9'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
 }
 
 apply plugin: 'com.google.gms.google-services'

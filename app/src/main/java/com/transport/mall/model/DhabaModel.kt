@@ -14,7 +14,7 @@ import java.io.Serializable
  */
 class DhabaModel : Serializable, BaseObservable() {
 
-    var _id: String = "6137443bb5828a682d08ecf1"
+    var _id: String = ""
         @Bindable get() = field
         set(_id) {
             field = _id

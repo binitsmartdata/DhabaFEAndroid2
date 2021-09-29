@@ -1,7 +1,14 @@
 package com.transport.mall.ui.addnewdhaba.step2
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.abedelazizshe.lightcompressorlibrary.CompressionListener
+import com.abedelazizshe.lightcompressorlibrary.VideoCompressor
+import com.abedelazizshe.lightcompressorlibrary.VideoQuality
+import com.abedelazizshe.lightcompressorlibrary.config.Configuration
 import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModel
@@ -15,6 +22,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.io.File
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -45,7 +53,10 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, dhabaModel.state),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.city),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.pincode),
-                        RequestBody.create(MultipartBody.FORM, dhabaModel.latitude + "," + dhabaModel.longitude),
+                        RequestBody.create(
+                            MultipartBody.FORM,
+                            dhabaModel.latitude + "," + dhabaModel.longitude
+                        ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
                         RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
@@ -88,7 +99,10 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, dhabaModel.state),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.city),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.pincode),
-                        RequestBody.create(MultipartBody.FORM, dhabaModel.latitude + "," + dhabaModel.longitude),
+                        RequestBody.create(
+                            MultipartBody.FORM,
+                            dhabaModel.latitude + "," + dhabaModel.longitude
+                        ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
                         RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
@@ -116,7 +130,9 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     }
 
     private fun handleResponse(
-        it: ApiResult<ApiResponseModel<DhabaModel>>, callBack: GenericCallBack<ApiResponseModel<DhabaModel>>, observer: MutableLiveData<Boolean>
+        it: ApiResult<ApiResponseModel<DhabaModel>>,
+        callBack: GenericCallBack<ApiResponseModel<DhabaModel>>,
+        observer: MutableLiveData<Boolean>
     ) {
         when (it.status) {
             ApiResult.Status.LOADING -> {
@@ -125,7 +141,12 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
             ApiResult.Status.ERROR -> {
                 observer.value = false
                 try {
-                    callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<DhabaModel>?)
+                    callBack.onResponse(
+                        Gson().fromJson(
+                            it.error?.string(),
+                            ApiResponseModel::class.java
+                        ) as ApiResponseModel<DhabaModel>?
+                    )
                 } catch (e: Exception) {
                     callBack.onResponse(ApiResponseModel(0, it.message!!, null))
                 }

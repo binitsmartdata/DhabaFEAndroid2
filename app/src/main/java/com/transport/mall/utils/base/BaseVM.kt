@@ -223,6 +223,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
     fun updateDhabaStatus(
         isDraft: Boolean,
         dhabaModel: DhabaModel,
+        status: String,
         progressObserver: MutableLiveData<Boolean>,
         callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
     ) {
@@ -235,7 +236,8 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                         dhabaModel.blockDay.toString(),
                         dhabaModel.blockMonth.toString(),
                         dhabaModel.active.toString(),
-                        isDraft.toString()
+                        isDraft.toString(),
+                        status
                     )
                 ).collect {
                     when (it.status) {
