@@ -21,14 +21,14 @@
             app:layout_constraintLeft_toLeftOf="parent">
 
         <ProgressBar
-                android:id="@+id/circular_progress_bar"
+                android:id="@+id/progressBar"
                 android:layout_width="@dimen/dimen_60"
                 android:layout_height="@dimen/dimen_60"
                 android:layout_margin="@dimen/dimen_20"
                 android:indeterminateDrawable="@drawable/progressbar_bg"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/message_tv"
+                android:id="@+id/message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center|bottom"

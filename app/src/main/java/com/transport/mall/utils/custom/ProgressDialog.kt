@@ -11,6 +11,8 @@ import com.transport.mall.R
 
 class ProgressDialog(context: Context, var message: String) : Dialog(context, R.style.DialogTheme) {
 
+    var messageTv: AppCompatTextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_progress)
@@ -18,12 +20,20 @@ class ProgressDialog(context: Context, var message: String) : Dialog(context, R.
         window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
-        val mProgressBar: ProgressBar = findViewById(R.id.circular_progress_bar)
+        val mProgressBar: ProgressBar = findViewById(R.id.progressBar)
         mProgressBar.isIndeterminate = true
-        mProgressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(context, android.R.color.white), android.graphics.PorterDuff.Mode.MULTIPLY)
+        mProgressBar.indeterminateDrawable.setColorFilter(
+            ContextCompat.getColor(
+                context,
+                android.R.color.white
+            ), android.graphics.PorterDuff.Mode.MULTIPLY
+        )
 
-        val messageTv: AppCompatTextView = findViewById(R.id.message_tv)
-        messageTv.text = message
+        messageTv = findViewById(R.id.message)
+        messageTv?.text = message
     }
 
+    public fun updateMessage(message: String) {
+        messageTv?.text = message
+    }
 }

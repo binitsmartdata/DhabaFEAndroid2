@@ -67,7 +67,6 @@
                     android:background="@drawable/light_gold_shape"
                     android:paddingHorizontal="7dp"
                     android:paddingVertical="3dp"
-                    android:visibility="gone"
                     android:text="@string/pending"
                     android:visibility="gone"
                     android:textColor="@color/gold" />

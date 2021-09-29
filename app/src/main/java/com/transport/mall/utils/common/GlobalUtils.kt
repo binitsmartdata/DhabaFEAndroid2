@@ -33,7 +33,8 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.location.*
 import com.transport.mall.R
 import com.transport.mall.model.LocationAddressModel
-import java.io.Serializable
+import com.transport.mall.utils.custom.ProgressDialog
+import java.io.*
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -264,7 +265,6 @@ object GlobalUtils {
                 .equals("null", ignoreCase = true) || target.trim { it <= ' ' }
                 .isEmpty()) defValue else target
     }
-
     @JvmStatic
     fun getNullifEmpty(target: String?): String? {
         return if (target == null || target.trim { it <= ' ' }
@@ -686,5 +686,26 @@ object GlobalUtils {
             LocationManager.NETWORK_PROVIDER
         )
         return isEnabled
+    }
+
+
+    var progressDialog: ProgressDialog? = null
+    fun showPercentageProgressDialog(context: Context, progress: Long, message: String) {
+        if (progressDialog == null) {
+            progressDialog = ProgressDialog(context, "$message $progress%")
+            progressDialog?.show()
+        } else {
+            if (progressDialog?.isShowing!!) {
+                progressDialog?.updateMessage("$message $progress%")
+            }
+        }
+    }
+
+    fun hidePercentageProgressDialog() {
+        progressDialog?.let {
+            if (it.isShowing) {
+                it.dismiss()
+            }
+        }
     }
 }

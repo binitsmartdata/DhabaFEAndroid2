@@ -5,6 +5,8 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.media.MediaScannerConnection
+import android.media.MediaScannerConnection.OnScanCompletedListener
 import android.net.Uri
 import android.provider.Settings
 import android.view.View
@@ -28,13 +30,17 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.GlobalUtils.getAddressUsingLatLong
 import com.transport.mall.utils.common.GlobalUtils.getCurrentLocation
+import com.transport.mall.utils.common.GlobalUtils.hidePercentageProgressDialog
 import com.transport.mall.utils.common.GlobalUtils.refreshLocation
+import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
+import com.transport.mall.utils.common.GlobalUtils.showPercentageProgressDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
-import com.transport.mall.utils.common.VideoUtils.saveVideoToAppScopeStorage
+import com.transport.mall.utils.common.VideoUtils.processVideo
 import com.transport.mall.utils.createVideoThumbnail
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 
 /**
@@ -178,13 +184,15 @@ class DhabaDetailsFragment :
                     showToastInCenter(getString(R.string.enter_dhaba_name))
                 }
             } else {
-                viewModel.dhabaModel.hasEverything(getmContext(), GenericCallBackTwoParams { status, message ->
-                    if (status) {
-                        proceed(isDraft)
-                    } else {
-                        showToastInCenter(message)
-                    }
-                })
+                viewModel.dhabaModel.hasEverything(
+                    getmContext(),
+                    GenericCallBackTwoParams { status, message ->
+                        if (status) {
+                            proceed(isDraft)
+                        } else {
+                            showToastInCenter(message)
+                        }
+                    })
             }
         }
     }
@@ -229,6 +237,7 @@ class DhabaDetailsFragment :
         viewModel.updateDhabaStatus(
             isDraft,
             viewModel.dhabaModel,
+            if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
             viewModel.progressObserver,
             GenericCallBack {
                 if (it.data != null) {
@@ -448,17 +457,28 @@ class DhabaDetailsFragment :
                 var uri = Uri.fromFile(thumbPath)
                 binding.ivVideoThumb.setImageURI(uri)
                 binding.frameVideoThumb.visibility = View.VISIBLE
+
+/*
+                MediaScannerConnection.scanFile(getmContext(), arrayOf(list?.get(0)?.videoPath), null,
+                    OnScanCompletedListener { path: String?, uri: Uri ->
+                        processAndSetVideo(uri)
+                    })
+*/
             } else if (requestCode == INTENT_VIDEO_CAMERA) {
                 val videoUri: Uri = data?.data!!
 
-                val bitmap = getVideoThumbnail(activity as Context, videoUri, 200, 200)
-                val mimeType: String = activity?.contentResolver?.getType(videoUri)!!
-                //Save file to upload on server
-                val file = saveVideoToAppScopeStorage(activity as Context, videoUri, mimeType)
+//                val bitmap = getVideoThumbnail(activity as Context, videoUri, 200, 200)
+//                val mimeType: String = activity?.contentResolver?.getType(videoUri)!!
+//                Save file to upload on server
+//                val file = saveVideoToAppScopeStorage(activity as Context, videoUri, mimeType)
 
-                viewModel.dhabaModel.videos = file?.absolutePath!!
-                binding.ivVideoThumb.setImageBitmap(bitmap)
-                binding.frameVideoThumb.visibility = View.VISIBLE
+//                viewModel.dhabaModel.videos = file?.absolutePath!!
+//                binding.ivVideoThumb.setImageBitmap(bitmap)
+//                binding.frameVideoThumb.visibility = View.VISIBLE
+
+                //showing progress dialog in advance
+                processAndSetVideo(videoUri)
+
             } else if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
                 val location = data?.getSerializableExtra("data") as LocationAddressModel?
                 location.let {
@@ -472,6 +492,36 @@ class DhabaDetailsFragment :
                 binding.ivImageThumb.setImageURI(uri)
             }
         }
+    }
+
+    private fun processAndSetVideo(videoUri: Uri) {
+        showPercentageProgressDialog(getmContext(), 2, "Preparing Video")
+        processVideo(
+            videoUri,
+            getmContext(),
+            GenericCallBackTwoParams { progress, outputFile ->
+                if (progress < 100) {
+                    showPercentageProgressDialog(
+                        getmContext(),
+                        progress,
+                        "Preparing Video"
+                    )
+                } else {
+                    hidePercentageProgressDialog()
+                    if (outputFile == null) {
+                        showInfoDialog(getmContext(), "Unable to process video.",
+                            GenericCallBack {
+
+                            })
+                    } else {
+                        val bitmap =
+                            getVideoThumbnail(activity as Context, videoUri, 200, 200)
+                        binding.ivVideoThumb.setImageBitmap(bitmap)
+                        binding.frameVideoThumb.visibility = View.VISIBLE
+                        viewModel.dhabaModel.videos = outputFile.path
+                    }
+                }
+            })
     }
 
     fun youAreInFocus() {
