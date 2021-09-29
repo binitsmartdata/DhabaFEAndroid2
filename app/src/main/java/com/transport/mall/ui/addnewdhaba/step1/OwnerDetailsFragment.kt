@@ -7,6 +7,7 @@ import android.net.Uri
 import android.provider.Settings
 import android.telephony.PhoneNumberFormattingTextWatcher
 import androidx.lifecycle.Observer
+import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -155,7 +156,7 @@ class OwnerDetailsFragment :
     private fun setupLocationViews() {
         binding.tvMapPicker.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
-                GoogleMapsActivity.start(this)
+                GlobalUtils.selectLocationOnMap(this)
             } else {
                 GlobalUtils.showConfirmationDialogYesNo(
                     getmContext(),
@@ -164,7 +165,7 @@ class OwnerDetailsFragment :
                         if (it!!) {
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         } else {
-                            GoogleMapsActivity.start(this)
+                            GlobalUtils.selectLocationOnMap(this)
                         }
                     })
             }
@@ -189,7 +190,8 @@ class OwnerDetailsFragment :
 
     private fun getAddress() {
         GlobalUtils.getCurrentLocation(activity as Context, GenericCallBack { location ->
-            if (location != null) {0
+            if (location != null) {
+                0
                 viewModel.ownerModel.latitude = location.latitude.toString()
                 viewModel.ownerModel.longitude = location.longitude.toString()
 
@@ -204,7 +206,7 @@ class OwnerDetailsFragment :
 
     private fun saveDetails(isDraft: Boolean) {
 //        viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.textView_selectedCountry.text.toString()
-        viewModel.ownerModel.hasEverything(getmContext(),GenericCallBackTwoParams { hasEverything, message ->
+        viewModel.ownerModel.hasEverything(getmContext(), GenericCallBackTwoParams { hasEverything, message ->
             if (hasEverything) {
                 if (mListener?.isUpdate()!! && viewModel.ownerModel._id.isNotEmpty()) {
                     viewModel.updateOwner(GenericCallBack {
@@ -263,6 +265,10 @@ class OwnerDetailsFragment :
                     viewModel.ownerModel.latitude = it.latitude.toString()
                     viewModel.ownerModel.longitude = it.longitude.toString()
                 }
+            } else if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE) {
+                viewModel.ownerModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
+                viewModel.ownerModel.latitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble()).toString()
+                viewModel.ownerModel.longitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble()).toString()
             } else {
                 val uri: Uri = data?.data!!
                 when (INTENT_TYPE) {

@@ -68,8 +68,8 @@
                     android:paddingHorizontal="7dp"
                     android:paddingVertical="3dp"
                     android:text="@string/pending"
-                    android:visibility="gone"
-                    android:textColor="@color/gold" />
+                    android:textColor="@color/gold"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -97,10 +97,11 @@
                     android:background="@drawable/ic_gold_hotel_type"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="2dp"
-                    android:text="Gold"
+                    android:text="@{model.dhabaCategory}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="@{model.dhabaCategory.isEmpty() ? View.GONE : View.VISIBLE}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvCity"

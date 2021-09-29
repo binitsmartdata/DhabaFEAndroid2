@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.transport.mall.R
 import com.transport.mall.databinding.DialogTermsAndConditionsBinding
 
-class DialogTermsOfService(context: Context, title: String, html: String) : Dialog(context) {
+class DialogTermsAndConditions(context: Context, title: String, html: String) : Dialog(context) {
 
     var binding: DialogTermsAndConditionsBinding
 

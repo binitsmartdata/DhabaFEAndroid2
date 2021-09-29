@@ -83,6 +83,7 @@
                         android:id="@+id/edDhabaAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text|textMultiLine"
                         android:text="@={viewModel.dhabaModel.address}"

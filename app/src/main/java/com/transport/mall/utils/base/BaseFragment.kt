@@ -3,6 +3,7 @@ package com.transport.mall.utils.base
 import android.R
 import android.app.Dialog
 import android.content.ActivityNotFoundException
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -22,10 +23,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.deepakkumardk.videopickerlib.EasyVideoPicker
-import com.deepakkumardk.videopickerlib.model.SelectionMode
-import com.deepakkumardk.videopickerlib.model.SelectionStyle
-import com.deepakkumardk.videopickerlib.model.VideoPickerItem
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.common.FilePath
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -228,7 +225,7 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
     }
 
     fun pickVideoFromGallery(fragment: Fragment) {
-        val item = VideoPickerItem().apply {
+        /*val item = VideoPickerItem().apply {
             showIcon = true
             sizeLimit = 100 * 1024 * 1024       // max. size in Bytes
             selectionMode = SelectionMode.Single  //Other modes are Single & Custom(limit:Int)
@@ -236,7 +233,16 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
             showDuration = true
             selectionStyle = SelectionStyle.Large
         }
-        EasyVideoPicker().startPickerForResult(this, item, INTENT_VIDEO_GALLERY)
+        EasyVideoPicker().startPickerForResult(this, item, INTENT_VIDEO_GALLERY)*/
+
+        val mVideoUri = activity?.getContentResolver()?.insert(
+            MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+            ContentValues()
+        )
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 150)
+        intent.type = "video/*"
+        fragment.startActivityForResult(Intent.createChooser(intent, "Select Video"), INTENT_VIDEO_GALLERY)
     }
 
     open fun getRealPathFromURI(contentUri: Uri?): String {

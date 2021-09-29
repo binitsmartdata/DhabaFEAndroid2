@@ -16,7 +16,6 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import android.text.format.DateUtils
 import android.util.Log
 import com.abedelazizshe.lightcompressorlibrary.CompressionListener
 import com.abedelazizshe.lightcompressorlibrary.VideoCompressor
@@ -231,7 +230,7 @@ object VideoUtils {
     fun processVideo(
         uri: Uri?,
         context: Context,
-        callBack: GenericCallBack<File?>
+        callBack: GenericCallBackTwoParams<File?, String?>
     ) {
         var streamableFile: File? = null
         uri?.let {
@@ -263,10 +262,6 @@ object VideoUtils {
                                 if (percent <= 100 && percent.toInt() % 5 == 0)
                                     Log.d("${percent.toLong()}%", percent.toInt().toString())
                                 (context as Activity).runOnUiThread {
-//                                    progress.text = "${percent.toLong()}%"
-//                                    progressBar.progress = percent.toInt()
-
-//                                    callBack.onResponse(percent.toLong(), null)
                                     showPercentageProgressDialog(
                                         context,
                                         percent.toLong(),
@@ -277,12 +272,6 @@ object VideoUtils {
 
                             override fun onStart() {
                                 time = System.currentTimeMillis()
-                                /*progress.visibility = View.VISIBLE
-                                progressBar.visibility = View.VISIBLE
-                                originalSize.text =
-                                    "Original size: ${getFileSize(File(path).length())}"
-                                progress.text = ""
-                                progressBar.progress = 0*/
                             }
 
                             override fun onSuccess() {
@@ -290,18 +279,12 @@ object VideoUtils {
                                     if (streamableFile != null) streamableFile!!.length()
                                     else desFile.length()
 
-                                Log.d(
-                                    "success :::",
-                                    "Size after compression: ${getFileSize(newSizeValue)}"
-                                )
+//                                Log.d("success :::", "Size after compression: ${getFileSize(newSizeValue)}")
 
                                 time = System.currentTimeMillis() - time
-                                Log.d(
-                                    "DURATION :::",
-                                    "Duration: ${DateUtils.formatElapsedTime(time / 1000)}"
-                                )
+//                                Log.d("DURATION :::", "Duration: ${DateUtils.formatElapsedTime(time / 1000)}")
                                 hidePercentageProgressDialog()
-                                callBack.onResponse(if (streamableFile != null) streamableFile else desFile)
+                                callBack.onResponse(if (streamableFile != null) streamableFile else desFile, null)
 
                                 Looper.myLooper()?.let {
                                     Handler(it).postDelayed({
@@ -312,20 +295,18 @@ object VideoUtils {
 
                             override fun onFailure(failureMessage: String) {
                                 hidePercentageProgressDialog()
-//                                progress.text = failureMessage
-                                Log.wtf("failureMessage", failureMessage)
-                                callBack.onResponse(null)
+//                                Log.wtf("failureMessage", failureMessage)
+                                callBack.onResponse(null, failureMessage)
                             }
 
                             override fun onCancelled() {
-                                Log.wtf("TAG", "compression has been cancelled")
-                                // make UI changes, cleanup, etc
+//                                Log.wtf("TAG", "compression has been cancelled")
                             }
                         },
                         configureWith = Configuration(
                             quality = VideoQuality.VERY_LOW,
                             frameRate = 24,
-                            isMinBitrateCheckEnabled = true,
+                            isMinBitrateCheckEnabled = false,
                         )
                     )
                 }
@@ -455,9 +436,10 @@ object VideoUtils {
             progressDialog = ProgressDialog(context, "$message $progress%")
             progressDialog?.show()
         } else {
-            if (progressDialog?.isShowing!!) {
-                progressDialog?.updateMessage("$message $progress%")
+            if (!progressDialog?.isShowing!!) {
+                progressDialog?.show()
             }
+            progressDialog?.updateMessage("$message $progress%")
         }
     }
 

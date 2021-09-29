@@ -12,7 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.deepakkumardk.videopickerlib.EasyVideoPicker
+import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
@@ -32,11 +32,9 @@ import com.transport.mall.utils.common.GlobalUtils.refreshLocation
 import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
-import com.transport.mall.utils.createVideoThumbnail
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
 
 
 /**
@@ -352,7 +350,8 @@ class DhabaDetailsFragment :
     private fun setupLocationViews() {
         binding.tvMapPicker.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
-                GoogleMapsActivity.start(this)
+//                GoogleMapsActivity.start(this)
+                GlobalUtils.selectLocationOnMap(this)
             } else {
                 GlobalUtils.showConfirmationDialogYesNo(
                     getmContext(),
@@ -361,7 +360,8 @@ class DhabaDetailsFragment :
                         if (it!!) {
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         } else {
-                            GoogleMapsActivity.start(this)
+//                            GoogleMapsActivity.start(this)
+                            GlobalUtils.selectLocationOnMap(this)
                         }
                     })
             }
@@ -444,18 +444,17 @@ class DhabaDetailsFragment :
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             if (requestCode == INTENT_VIDEO_GALLERY) {
-                val list = EasyVideoPicker.getSelectedVideos(data)
-                viewModel.dhabaModel.videos = list?.get(0)?.videoPath!!
-                var thumbPath =
-                    createVideoThumbnail(activity as Context, viewModel.dhabaModel.videos)
-                var uri = Uri.fromFile(thumbPath)
-                binding.ivVideoThumb.setImageURI(uri)
-                binding.frameVideoThumb.visibility = View.VISIBLE
+//                val list = EasyVideoPicker.getSelectedVideos(data)
+//                viewModel.dhabaModel.videos = list?.get(0)?.videoPath!!
+//                var thumbPath =
+//                    createVideoThumbnail(activity as Context, viewModel.dhabaModel.videos)
+//                var uri = Uri.fromFile(thumbPath)
+//                binding.ivVideoThumb.setImageURI(uri)
+//                binding.frameVideoThumb.visibility = View.VISIBLE
 
-//                processAndSetVideo(Uri.fromFile(File(list?.get(0)?.videoPath)))
-
+                processAndSetVideo(data?.data!!)
             } else if (requestCode == INTENT_VIDEO_CAMERA) {
-                val videoUri: Uri = data?.data!!
+//                val videoUri: Uri = data?.data!!
 
 //                val bitmap = getVideoThumbnail(activity as Context, videoUri, 200, 200)
 //                val mimeType: String = activity?.contentResolver?.getType(videoUri)!!
@@ -467,8 +466,7 @@ class DhabaDetailsFragment :
 //                binding.frameVideoThumb.visibility = View.VISIBLE
 
                 //showing progress dialog in advance
-                processAndSetVideo(videoUri)
-
+                processAndSetVideo(data?.data!!)
             } else if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
                 val location = data?.getSerializableExtra("data") as LocationAddressModel?
                 location.let {
@@ -476,6 +474,10 @@ class DhabaDetailsFragment :
                     viewModel.dhabaModel.latitude = it.latitude.toString()
                     viewModel.dhabaModel.longitude = it.longitude.toString()
                 }
+            } else if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE) {
+                viewModel.dhabaModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
+                viewModel.dhabaModel.latitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble()).toString()
+                viewModel.dhabaModel.longitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble()).toString()
             } else {
                 val uri: Uri = data?.data!!
                 viewModel.dhabaModel.images = getRealPathFromURI(uri)
@@ -485,9 +487,9 @@ class DhabaDetailsFragment :
     }
 
     private fun processAndSetVideo(videoUri: Uri) {
-        processVideo(videoUri, getmContext(), GenericCallBack { outputFile ->
+        processVideo(videoUri, getmContext(), GenericCallBackTwoParams { outputFile, message ->
             if (outputFile == null) {
-                showInfoDialog(getmContext(), "Unable to process video.",
+                showInfoDialog(getmContext(), if (message != null) message else "Unable to process video.",
                     GenericCallBack {
 
                     })

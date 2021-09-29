@@ -20,7 +20,8 @@
                 android:padding="10dp"
                 android:text="@string/terms_and_conditions"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
 
             <ImageView
                 android:id="@+id/ivClose"

@@ -70,6 +70,13 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.area)
         }
 
+    var dhabaCategory: String = ""
+        @Bindable get() = field
+        set(dhabaCategory) {
+            field = dhabaCategory
+            notifyPropertyChanged(BR.dhabaCategory)
+        }
+
     var highway: String = ""
         @Bindable get() = field
         set(highway) {
@@ -199,7 +206,7 @@ class DhabaModel : Serializable, BaseObservable() {
         if (name.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_dhaba_name))
         } else if (address.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_address))
+            callback.onResponse(false, context.getString(R.string.please_choose_address))
         } else if (landmark.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_landmark))
         } else if (area.isEmpty()) {

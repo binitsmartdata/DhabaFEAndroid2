@@ -20,6 +20,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Patterns
@@ -30,10 +31,12 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.fragment.app.Fragment
+import com.essam.simpleplacepicker.MapActivity
+import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.google.android.gms.location.*
 import com.transport.mall.R
 import com.transport.mall.model.LocationAddressModel
-import com.transport.mall.utils.custom.ProgressDialog
 import java.io.*
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -265,6 +268,7 @@ object GlobalUtils {
                 .equals("null", ignoreCase = true) || target.trim { it <= ' ' }
                 .isEmpty()) defValue else target
     }
+
     @JvmStatic
     fun getNullifEmpty(target: String?): String? {
         return if (target == null || target.trim { it <= ' ' }
@@ -687,4 +691,14 @@ object GlobalUtils {
         )
         return isEnabled
     }
+
+    fun selectLocationOnMap(fragment: Fragment) {
+        val apiKey = fragment.getString(R.string.googleMapsApiKey)
+        val intent = Intent(fragment.activity, MapActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString(SimplePlacePicker.API_KEY, apiKey)
+        intent.putExtras(bundle)
+        fragment.startActivityForResult(intent, SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE)
+    }
+
 }
