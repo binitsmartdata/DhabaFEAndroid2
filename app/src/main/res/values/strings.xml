@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="appName">Transport Mall</string>
-    <string name="googleMapsApiKey">AIzaSyAYJCariN6djEQQDnt6hy482EeCV4sRVYQ</string>
+<!--    <string name="googleMapsApiKey" translatable="false">AIzaSyAYJCariN6djEQQDnt6hy482EeCV4sRVYQ</string>-->
+    <string name="googleMapsApiKey" translatable="false">AIzaSyDr5x9S74CXeXmex4fwVl24ChLOMIRyt5o</string>
     <string name="email">Email Address</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -260,7 +261,7 @@
     <string name="updating_profile">Updating profile..</string>
     <string name="enter_dhaba_name">Please enter dhaba name.</string>
     <string name="location_alert_dialog">Location service is not enabled, do you want to enable it?</string>
-    <string name="unable_to_fetch_address">Unable fetch your current address.</string>
+    <string name="unable_to_fetch_address">Unable to fetch your current address.</string>
     <string name="assigned_to">Assigned To</string>
     <string name="upload_barber_photo">Upload Barber Photo</string>
     <string name="enter_owner_name">Please Enter Owner Name</string>
@@ -277,7 +278,7 @@
     <string name="enter_pincode">Please Enter Pincode</string>
     <string name="select_property_status">Please Select Property Status</string>
     <string name="select_dhaba_image">Please Select Dhaba Image</string>
-    <string name="enter_bank_name">Please Enter Bank Name</string>
+    <string name="enter_bank_name">Please Select Bank Name</string>
     <string name="enter_gst_number">Please Enter GST Number</string>
     <string name="enter_ifsc_code">Please Enter IFSC Code</string>
     <string name="enter_account_holder_name">Please Enter Account Holder Name</string>
@@ -308,6 +309,12 @@
     <string name="enter_bank_account_number">Please Enter Bank Account Number</string>
     <string name="account_number">Bank Account Number</string>
     <string name="please_choose_address">Please choose address.</string>
+    <string name="enter_valid_mobile">Please enter 10 digit mobile number</string>
+    <string name="choose_indoor_cameras">Please choose indoor cameras.</string>
+    <string name="choose_outdoor_cameras">Please choose outdoor cameras.</string>
+    <string name="enter_valid_pan_number">Please enter a valid Pan Number.</string>
+    <string name="enter_valid_aadhar_number">Please enter a valid Aadhar Card number.</string>
+    <string name="no_cities_found">Please enter valid city name</string>
 
     <string-array name="select_highway_number">
         <item>Select National Highway Number</item>

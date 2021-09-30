@@ -84,6 +84,8 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
                 showToastInCenter(getString(R.string.enter_email_id))
             } else if (viewModel.userModel.mobile.trim().isEmpty()) {
                 showToastInCenter(getString(R.string.enter_mobile_number))
+            } else if (viewModel.userModel.mobile.trim().length < 10) {
+                showToastInCenter(getString(R.string.enter_valid_mobile))
             } else {
                 viewModel.userModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCodeAsInt.toString()
                 viewModel.updateUserProfile(GenericCallBack {

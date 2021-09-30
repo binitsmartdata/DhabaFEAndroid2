@@ -31,6 +31,9 @@ class SecurityAmenitiesModel : Serializable {
     @SerializedName(value = "verificationImg")
     var verificationImg: String = ""
 
+    @SerializedName(value = "indoorCameraEnabled")
+    var indoorCameraEnabled: Boolean = false
+
     @SerializedName(value = "indoorCamera")
     var indoorCamera: Int = 0
 
@@ -40,14 +43,21 @@ class SecurityAmenitiesModel : Serializable {
     @SerializedName(value = "outdoorCamera")
     var outdoorCamera: Int = 0
 
+    @SerializedName(value = "outdoorCameraEnabled")
+    var outdoorCameraEnabled: Boolean = false
+
     @SerializedName(value = "outdoorCameraImage")
     var outdoorCameraImage: ArrayList<PhotosModel> = ArrayList()
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (policVerification && verificationImg.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_verification_photo))
+        } else if (indoorCameraEnabled && indoorCamera == 0) {
+            callback.onResponse(false, context.getString(R.string.choose_indoor_cameras))
         } else if (indoorCamera > 0 && indoorCameraImage.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_indoor_camera_photo))
+        } else if (outdoorCameraEnabled && outdoorCamera == 0) {
+            callback.onResponse(false, context.getString(R.string.choose_outdoor_cameras))
         } else if (outdoorCamera > 0 && outdoorCameraImage.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_outdoor_camera_photo))
         } else {

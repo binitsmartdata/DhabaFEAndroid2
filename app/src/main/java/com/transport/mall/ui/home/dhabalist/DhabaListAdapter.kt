@@ -3,7 +3,6 @@ package com.transport.mall.ui.home.dhabalist
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.RowDhabaListBinding
-import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
@@ -23,6 +22,14 @@ class DhabaListAdapter(
         myViewHolderG?.binding?.owner = dataList[position].ownerModel
         myViewHolderG?.binding?.user = SharedPrefsHelper.getInstance(context).getUserData()
         myViewHolderG?.binding?.dhabaContainer?.setOnClickListener { callBack.onResponse(position) }
+
+        if (dataList[position].dhabaModel?.dhabaCategory.equals(dataList[position].dhabaModel?.CATEGORY_GOLD, true)) {
+            myViewHolderG?.binding?.tvCategory?.setBackgroundResource(R.drawable.ic_gold_hotel_type)
+        } else if (dataList[position].dhabaModel?.dhabaCategory.equals(dataList[position].dhabaModel?.CATEGORY_BRONZE, true)) {
+            myViewHolderG?.binding?.tvCategory?.setBackgroundResource(R.drawable.ic_bronze_hotel_type)
+        } else {
+            myViewHolderG?.binding?.tvCategory?.setBackgroundResource(R.drawable.ic_silver_hotel_type)
+        }
 
         myViewHolderG?.binding?.executePendingBindings()
     }

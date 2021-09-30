@@ -14,6 +14,10 @@ import java.io.Serializable
  */
 class DhabaModel : Serializable, BaseObservable() {
 
+    val CATEGORY_GOLD = "Gold"
+    val CATEGORY_BRONZE = "Bronze"
+    val CATEGORY_SILVER = "Silver"
+
     var _id: String = ""
         @Bindable get() = field
         set(_id) {

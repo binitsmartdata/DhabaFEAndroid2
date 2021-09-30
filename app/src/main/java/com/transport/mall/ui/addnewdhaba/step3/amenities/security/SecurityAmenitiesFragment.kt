@@ -96,10 +96,20 @@ class SecurityAmenitiesFragment :
         }
         it.indoorCamera.let {
             when (it) {
-                0 -> binding.rbNoIndCam.isChecked = true
-                1 -> binding.rb12IndCam.isChecked = true
-                2 -> binding.rb25IndCam.isChecked = true
-                3 -> binding.rb5aboveIndCam.isChecked = true
+                0 -> binding.rbIndoorCameraNo.isChecked = true
+
+                1 -> {
+                    binding.rb12IndCam.isChecked = true
+                    binding.rbIndoorCameraYes.isChecked = true
+                }
+                2 -> {
+                    binding.rb25IndCam.isChecked = true
+                    binding.rbIndoorCameraYes.isChecked = true
+                }
+                3 -> {
+                    binding.rb5aboveIndCam.isChecked = true
+                    binding.rbIndoorCameraYes.isChecked = true
+                }
             }
         }
         it.indoorCameraImage?.let {
@@ -110,10 +120,20 @@ class SecurityAmenitiesFragment :
 
         it.outdoorCamera.let {
             when (it) {
-                0 -> binding.rbNoOutCam.isChecked = true
-                1 -> binding.rb12OutCam.isChecked = true
-                2 -> binding.rb25OutCam.isChecked = true
-                3 -> binding.rb5AboveOutCam.isChecked = true
+                0 -> binding.rbOutdoorCameraNo.isChecked = true
+
+                1 -> {
+                    binding.rb12OutCam.isChecked = true
+                    binding.rbOutdoorCameraYes.isChecked = true
+                }
+                2 -> {
+                    binding.rb25OutCam.isChecked = true
+                    binding.rbOutdoorCameraYes.isChecked = true
+                }
+                3 -> {
+                    binding.rb5AboveOutCam.isChecked = true
+                    binding.rbOutdoorCameraYes.isChecked = true
+                }
             }
         }
         it.outdoorCameraImage?.let {
@@ -186,6 +206,22 @@ class SecurityAmenitiesFragment :
         binding.rgOutdoorCameras.setOnCheckedChangeListener { _, i ->
             viewModel.model.outdoorCamera =
                 (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+        }
+        binding.rgIndoorCameraYesNo.setOnCheckedChangeListener { _, i ->
+            viewModel.model.indoorCameraEnabled = binding.rbIndoorCameraYes.isChecked
+            if (!binding.rbIndoorCameraYes.isChecked) {
+                viewModel.model.indoorCamera = 0 // set default value
+                viewModel.model.indoorCameraImage = ArrayList()
+                refreshIndoorCameraImages()
+            }
+        }
+        binding.rgOutdoorCameraYesNo.setOnCheckedChangeListener { _, i ->
+            viewModel.model.outdoorCameraEnabled = binding.rbOutdoorCameraYes.isChecked
+            if (!binding.rbOutdoorCameraYes.isChecked) {
+                viewModel.model.outdoorCamera = 0// set default value
+                viewModel.model.outdoorCameraImage = ArrayList()
+                refreshOutdoorCameraImages()
+            }
         }
         binding.btnSaveDhaba.setOnClickListener {
             viewModel.model.hasEverything(

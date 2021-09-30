@@ -114,7 +114,7 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
         }
 
     @SerializedName(value = "latitude")
-    var latitude: String = ""
+    var latitude: String? = ""
         @Bindable get() = field
         set(latitude) {
             field = latitude
@@ -122,7 +122,7 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
         }
 
     @SerializedName(value = "longitude")
-    var longitude: String = ""
+    var longitude: String? = ""
         @Bindable get() = field
         set(longitude) {
             field = longitude
@@ -132,18 +132,20 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (ownerName.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_owner_name))
-        } else if (mobile.isEmpty()) {
+        } else if (mobile.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_phone_number))
+        } else if (mobile.trim().length < 10) {
+            callback.onResponse(false, context.getString(R.string.enter_valid_mobile))
         } else if (email.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_email))
         } else if (!GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
         } else if (address.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_address))
-        } else if (panNumber.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_pan_number))
-        } else if (adharCard.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_adhar_number))
+        } else if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
+            callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
+        } else if (adharCard.trim().isEmpty() || adharCard.trim().length < 12) {
+            callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
         } else if (ownerPic.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_owner_picture))
         } else {

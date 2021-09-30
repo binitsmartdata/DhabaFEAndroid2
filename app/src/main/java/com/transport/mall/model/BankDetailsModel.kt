@@ -87,12 +87,12 @@ class BankDetailsModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_gst_number))
         } else if (accountNumber.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_bank_account_number))
-        }  else if (ifscCode.isEmpty()) {
+        } else if (ifscCode.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_ifsc_code))
         } else if (accountName.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_account_holder_name))
-        } else if (panNumber.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_pan_number))
+        } else if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
+            callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
         } else if (panPhoto.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_pan_card_photo))
         } else {

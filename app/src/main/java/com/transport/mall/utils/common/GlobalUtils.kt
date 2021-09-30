@@ -692,11 +692,22 @@ object GlobalUtils {
         return isEnabled
     }
 
-    fun selectLocationOnMap(fragment: Fragment) {
+    fun selectLocationOnMap(fragment: Fragment, latitude: String?, longitude: String?) {
         val apiKey = fragment.getString(R.string.googleMapsApiKey)
         val intent = Intent(fragment.activity, MapActivity::class.java)
+
         val bundle = Bundle()
         bundle.putString(SimplePlacePicker.API_KEY, apiKey)
+
+        try {
+            if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) {
+                bundle.putDouble(SimplePlacePicker.LATITUDE, latitude.toDouble())
+                bundle.putDouble(SimplePlacePicker.LONGITUDE, longitude.toDouble())
+            }
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+
         intent.putExtras(bundle)
         fragment.startActivityForResult(intent, SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE)
     }

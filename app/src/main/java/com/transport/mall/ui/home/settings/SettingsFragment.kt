@@ -36,6 +36,14 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
         binding.llLanguage.setOnClickListener {
             DialogLanguageSelection(getmContext(), this).show()
         }
+
+        val selectedLanguage = SharedPrefsHelper.getInstance(getmContext()).getSelectedLanguage()
+        if (selectedLanguage.equals("hi"))
+            binding.languageText.text = getString(R.string.hindi)
+        else if (selectedLanguage.equals("pa"))
+            binding.languageText.text = getString(R.string.punjabi)
+        else
+            binding.languageText.text = getString(R.string.english)
     }
 
     override fun initListeners() {

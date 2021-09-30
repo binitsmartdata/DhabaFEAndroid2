@@ -4,7 +4,10 @@ import android.app.Dialog
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
@@ -32,6 +35,7 @@ class DialogCitySelection constructor(
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window!!.setGravity(Gravity.BOTTOM)
+        binding.isHavingData = dataList.isNotEmpty()
 
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -66,9 +70,12 @@ class DialogCitySelection constructor(
                         }
                     }
                     binding.recyclerView.adapter = CityListAdapter(context, filterDataList)
+
+                    binding.isHavingData = filterDataList.isNotEmpty()
                 } else {
                     filterDataList.clear()
                     binding.recyclerView.adapter = CityListAdapter(context, dataList)
+                    binding.isHavingData = dataList.isNotEmpty()
                 }
             }
         })

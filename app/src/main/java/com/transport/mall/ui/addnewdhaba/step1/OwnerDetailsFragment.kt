@@ -156,7 +156,7 @@ class OwnerDetailsFragment :
     private fun setupLocationViews() {
         binding.tvMapPicker.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
-                GlobalUtils.selectLocationOnMap(this)
+                GlobalUtils.selectLocationOnMap(this, viewModel.ownerModel.latitude, viewModel.ownerModel.longitude)
             } else {
                 GlobalUtils.showConfirmationDialogYesNo(
                     getmContext(),
@@ -165,7 +165,7 @@ class OwnerDetailsFragment :
                         if (it!!) {
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         } else {
-                            GlobalUtils.selectLocationOnMap(this)
+                            GlobalUtils.selectLocationOnMap(this, viewModel.ownerModel.latitude, viewModel.ownerModel.longitude)
                         }
                     })
             }

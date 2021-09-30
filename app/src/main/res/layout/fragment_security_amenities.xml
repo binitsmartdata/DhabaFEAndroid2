@@ -254,19 +254,36 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
-                        android:id="@+id/rgIndoorCameras"
+                        android:id="@+id/rgIndoorCameraYesNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:checkedButton="@id/rbNoIndCam"
+                        android:checkedButton="@id/rbIndoorCameraNo"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/rbNoIndCam"
+                            android:id="@+id/rbIndoorCameraYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbIndoorCameraNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/_10sdp"
                             android:tag="0"
-                            android:text="0" />
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/rgIndoorCameras"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="@{rbIndoorCameraYes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rb12IndCam"
@@ -300,7 +317,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_light"
-                    android:visibility="@{(rb12IndCam.checked || rb25IndCam.checked || rb5aboveIndCam.checked) ? View.VISIBLE : View.GONE}">
+                    android:visibility="@{rbIndoorCameraYes.checked ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -338,7 +355,8 @@
                     android:id="@+id/recyclerViewIndoorCameras"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp" />
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="@{rbIndoorCameraYes.checked ? View.VISIBLE : View.GONE}" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -356,19 +374,34 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
-                        android:id="@+id/rgOutdoorCameras"
+                        android:id="@+id/rgOutdoorCameraYesNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:checkedButton="@id/rbNoOutCam"
+                        android:checkedButton="@id/rbOutdoorCameraNo"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/rbNoOutCam"
+                            android:id="@+id/rbOutdoorCameraYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/_10sdp"
-                            android:tag="0"
-                            android:text="0" />
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbOutdoorCameraNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/rgOutdoorCameras"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="@{rbOutdoorCameraYes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rb12OutCam"
@@ -401,7 +434,7 @@
                     android:id="@+id/frameOutDoorCamera"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="@{(rb12OutCam.checked || rb25OutCam.checked || rb5AboveOutCam.checked) ? View.VISIBLE : View.GONE}">
+                    android:visibility="@{rbOutdoorCameraYes.checked ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -440,7 +473,8 @@
                     android:id="@+id/recyclerViewOutdoorCameras"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp" />
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="@{rbOutdoorCameraYes.checked ? View.VISIBLE : View.GONE}" />
 
                 <Button
                     android:id="@+id/btnSaveDhaba"

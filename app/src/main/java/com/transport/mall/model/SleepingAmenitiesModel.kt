@@ -48,7 +48,7 @@ class SleepingAmenitiesModel : Serializable {
             callback.onResponse(false, context.getString(R.string.choose_bed_charpai))
         } else if (sleeping.isNotEmpty() && sleeping.equals("true") && noOfBeds.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_no_of_beds))
-        } else if (images.isEmpty()) {
+        } else if (sleeping.equals("true") && images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_photo))
         } else if (fan.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_fan))

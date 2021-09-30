@@ -351,7 +351,7 @@ class DhabaDetailsFragment :
         binding.tvMapPicker.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
 //                GoogleMapsActivity.start(this)
-                GlobalUtils.selectLocationOnMap(this)
+                GlobalUtils.selectLocationOnMap(this, viewModel.dhabaModel.latitude, viewModel.dhabaModel.longitude)
             } else {
                 GlobalUtils.showConfirmationDialogYesNo(
                     getmContext(),
@@ -361,7 +361,7 @@ class DhabaDetailsFragment :
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         } else {
 //                            GoogleMapsActivity.start(this)
-                            GlobalUtils.selectLocationOnMap(this)
+                            GlobalUtils.selectLocationOnMap(this, viewModel.dhabaModel.latitude, viewModel.dhabaModel.longitude)
                         }
                     })
             }
