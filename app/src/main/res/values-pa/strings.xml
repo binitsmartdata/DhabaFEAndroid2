@@ -320,5 +320,12 @@
     <string name="account_number">ਖਾਤਾ ਨੰਬਰ</string>
     <string name="please_choose_address">ਕਿਰਪਾ ਕਰਕੇ ਪਤਾ ਚੁਣੋ.</string>
     <string name="update_other_amen">ਹੋਰ ਸਹੂਲਤਾਂ ਨੂੰ ਅਪਡੇਟ ਕਰੋ</string>
+    <string name="enter_valid_mobile">ਕਿਰਪਾ ਕਰਕੇ 10 ਅੰਕਾਂ ਦਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
+    <string name="choose_indoor_cameras">ਕਿਰਪਾ ਕਰਕੇ ਇਨਡੋਰ ਕੈਮਰੇ ਚੁਣੋ.</string>
+    <string name="choose_outdoor_cameras">ਕਿਰਪਾ ਕਰਕੇ ਬਾਹਰੀ ਕੈਮਰੇ ਚੁਣੋ.</string>
+    <string name="enter_valid_pan_number">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਪੈਨ ਨੰਬਰ ਦਾਖਲ ਕਰੋ.</string>
+    <string name="enter_valid_aadhar_number">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਆਧਾਰ ਕਾਰਡ ਨੰਬਰ ਦਾਖਲ ਕਰੋ.</string>
+    <string name="no_cities_found">ਕਿਰਪਾ ਕਰਕੇ ਵੈਧ ਸ਼ਹਿਰ ਦਾ ਨਾਮ ਦਾਖਲ ਕਰੋ</string>
+    <string name="skip">ਛੱਡੋ</string>
 
 </resources>

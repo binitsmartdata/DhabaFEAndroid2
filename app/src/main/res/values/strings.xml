@@ -315,11 +315,7 @@
     <string name="enter_valid_pan_number">Please enter a valid Pan Number.</string>
     <string name="enter_valid_aadhar_number">Please enter a valid Aadhar Card number.</string>
     <string name="no_cities_found">Please enter valid city name</string>
-
-    <string-array name="select_highway_number">
-        <item>Select National Highway Number</item>
-
-    </string-array>
+    <string name="skip">Skip</string>
 
     <string-array name="select_state">
         <item>Select State</item>

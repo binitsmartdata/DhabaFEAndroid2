@@ -335,4 +335,11 @@
     <string name="account_number">बैंक खाता संख्या</string>
     <string name="please_choose_address">कृपया पता चुनें।</string>
     <string name="select_food_at_100">कृपया 100 विकल्प पर भोजन चुनें</string>
+    <string name="enter_valid_mobile">कृपया 10 अंकों का मोबाइल नंबर दर्ज करें</string>
+    <string name="choose_indoor_cameras">कृपया इनडोर कैमरे चुनें।</string>
+    <string name="choose_outdoor_cameras">कृपया आउटडोर कैमरे चुनें।</string>
+    <string name="enter_valid_pan_number">कृपया एक मान्य पैन नंबर दर्ज करें।</string>
+    <string name="enter_valid_aadhar_number">कृपया एक मान्य आधार कार्ड नंबर दर्ज करें।</string>
+    <string name="no_cities_found">कृपया मान्य शहर का नाम दर्ज करें</string>
+    <string name="skip">छोड़ें</string>
 </resources>

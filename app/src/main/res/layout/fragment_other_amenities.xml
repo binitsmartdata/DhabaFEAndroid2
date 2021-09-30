@@ -513,12 +513,24 @@
                     android:id="@+id/btnSaveDhaba"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
+
+                <Button
+                    android:id="@+id/btnSkip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/default_btn_selector"
+                    android:text="@string/skip"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:visibility="@{viewOnly||isUpdate ? View.GONE : View.VISIBLE}" />
 
             </LinearLayout>
 

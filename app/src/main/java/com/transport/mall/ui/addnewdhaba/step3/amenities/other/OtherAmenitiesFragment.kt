@@ -160,6 +160,9 @@ class OtherAmenitiesFragment :
             viewModel.model.barber =
                 (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
         }
+
+        binding.btnSkip.setOnClickListener { activity?.finish() }
+
         binding.btnSaveDhaba.setOnClickListener {
             viewModel.model.hasEverything(
                 getmContext(),

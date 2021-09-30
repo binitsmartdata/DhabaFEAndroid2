@@ -23,7 +23,7 @@ class SleepingAmenitiesModel : Serializable {
     var sleeping = ""
 
     @SerializedName(value = "noOfBeds")
-    var noOfBeds = ""
+    var noOfBeds = "0"
 
     @SerializedName(value = "fan")
     var fan = ""
