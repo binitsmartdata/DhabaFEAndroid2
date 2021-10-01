@@ -16,16 +16,32 @@
         android:layout_height="match_parent"
         android:padding="@dimen/_15sdp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivProfileImg"
-            loadImage="@{userModel.profileImage}"
-            placeholder="@{R.drawable.ic_profile_pic_placeholder}"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+        <FrameLayout
+            android:id="@+id/frameImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivProfileImg"
+                loadImage="@{userModel.profileImage}"
+                placeholder="@{R.drawable.ic_profile_pic_placeholder}"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="right|top"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/white_cicle"
+                android:onClick="@{()->ivProfileImg.performClick()}"
+                android:src="@drawable/ic_camera" />
+
+        </FrameLayout>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edName"
@@ -42,7 +58,7 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivProfileImg" />
+            app:layout_constraintTop_toBottomOf="@+id/frameImg" />
 
 
         <com.google.android.material.textfield.TextInputEditText

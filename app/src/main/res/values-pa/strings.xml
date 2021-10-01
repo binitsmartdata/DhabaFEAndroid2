@@ -222,7 +222,7 @@
     <string name="cancel">ਰੱਦ ਕਰੋ</string>
     <string name="please_confirm">ਕ੍ਰਿਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <string name="want_to_discard">ਕੀ ਤੁਸੀਂ ਢਾਬਾ ਵੇਰਵੇ ਰੱਦ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
-    <string name="pick_from_map">ਨਕਸ਼ੇ ਤੋਂ ਚੁਣੋ</string>
+    <string name="pick_from_map"> | ਨਕਸ਼ੇ ਤੋਂ ਚੁਣੋ</string>
     <string name="choose_location">ਸਥਾਨ ਦੀ ਚੋਣ ਕਰੋ</string>
     <string name="use_location">ਸਥਾਨ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
     <string name="click_on_map_to_get_address">ਪਤਾ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਨਕਸ਼ੇ \'ਤੇ ਕਲਿਕ ਕਰੋ</string>

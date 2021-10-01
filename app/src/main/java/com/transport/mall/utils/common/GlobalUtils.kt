@@ -711,5 +711,4 @@ object GlobalUtils {
         intent.putExtras(bundle)
         fragment.startActivityForResult(intent, SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE)
     }
-
 }

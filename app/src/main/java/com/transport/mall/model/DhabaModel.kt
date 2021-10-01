@@ -207,21 +207,21 @@ class DhabaModel : Serializable, BaseObservable() {
 
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (name.isEmpty()) {
+        if (name.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_dhaba_name))
-        } else if (address.isEmpty()) {
+        } else if (address.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.please_choose_address))
-        } else if (landmark.isEmpty()) {
+        } else if (landmark.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_landmark))
-        } else if (area.isEmpty()) {
+        } else if (area.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_area))
-        } else if (highway.isEmpty()) {
+        } else if (highway.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_highway))
-        } else if (pincode.isEmpty()) {
+        } else if (pincode.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_pincode))
-        } else if (propertyStatus.isEmpty()) {
+        } else if (propertyStatus.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_property_status))
-        } else if (images.isEmpty()) {
+        } else if (images.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_dhaba_image))
         } else {
             callback.onResponse(true, "")

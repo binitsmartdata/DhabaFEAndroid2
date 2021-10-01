@@ -130,23 +130,23 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
         }
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (ownerName.isEmpty()) {
+        if (ownerName.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_owner_name))
         } else if (mobile.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_phone_number))
         } else if (mobile.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_mobile))
-        } else if (email.isEmpty()) {
+        } else if (email.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_email))
         } else if (!GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
-        } else if (address.isEmpty()) {
+        } else if (address.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_address))
         } else if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
         } else if (adharCard.trim().isEmpty() || adharCard.trim().length < 12) {
             callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
-        } else if (ownerPic.isEmpty()) {
+        } else if (ownerPic.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_owner_picture))
         } else {
             callback.onResponse(true, "")

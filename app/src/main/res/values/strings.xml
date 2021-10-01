@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="appName">Transport Mall</string>
-<!--    <string name="googleMapsApiKey" translatable="false">AIzaSyAYJCariN6djEQQDnt6hy482EeCV4sRVYQ</string>-->
+    <!--    <string name="googleMapsApiKey" translatable="false">AIzaSyAYJCariN6djEQQDnt6hy482EeCV4sRVYQ</string>-->
     <string name="googleMapsApiKey" translatable="false">AIzaSyDr5x9S74CXeXmex4fwVl24ChLOMIRyt5o</string>
     <string name="email">Email Address</string>
     <string name="password">Password</string>
@@ -43,9 +43,9 @@
 
     <string name="menu">Menu</string>
     <string name="choose_language" tools:ignore="MissingTranslation">Choose Language</string>
-    <string name="english" tools:ignore="MissingTranslation" translatable="false">English</string>
-    <string name="hindi" tools:ignore="MissingTranslation" translatable="false">हिंदी</string>
-    <string name="punjabi" tools:ignore="ExtraTranslation,MissingTranslation" translatable="false">ਪੰਜਾਬੀ</string>
+    <string name="english" translatable="false" tools:ignore="MissingTranslation">English</string>
+    <string name="hindi" translatable="false" tools:ignore="MissingTranslation">हिंदी</string>
+    <string name="punjabi" translatable="false" tools:ignore="ExtraTranslation,MissingTranslation">ਪੰਜਾਬੀ</string>
     <string name="email_cannot_be_empty">Email field cannot be empty</string>
     <string name="password_cannot_be_empty">Password field cannot be empty</string>
     <string name="pending">Pending</string>
@@ -288,7 +288,7 @@
     <string name="select_food_at_100">Please Choose Food at 100 option</string>
     <string name="select_ro_water_option">Please Choose RO Water option</string>
     <string name="select_food_type">Please Choose Food Type option</string>
-    <string name="choose_atlease_one_photo">Please Choose at lease 1 Food Photo</string>
+    <string name="choose_atlease_one_photo">Please Choose at least 1 Food Photo</string>
     <string name="choose_bed_charpai">Please Choose Bed/Charpai option</string>
     <string name="choose_no_of_beds">Please Choose number of beds</string>
     <string name="choose_photo">Please Choose a photo</string>
@@ -316,6 +316,8 @@
     <string name="enter_valid_aadhar_number">Please enter a valid Aadhar Card number.</string>
     <string name="no_cities_found">Please enter valid city name</string>
     <string name="skip">Skip</string>
+    <string name="no_highway_found">No Highway Found</string>
+    <string name="choose_parking_photo">Please choose at least one parking Photo</string>
 
     <string-array name="select_state">
         <item>Select State</item>

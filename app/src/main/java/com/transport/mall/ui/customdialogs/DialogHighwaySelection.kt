@@ -37,6 +37,8 @@ class DialogHighwaySelection constructor(
         binding.recyclerView.adapter = HighwayListAdapter(context, dataList, this@DialogHighwaySelection)
         binding.btnContinue.visibility = View.GONE
         binding.edSearch.hint = context.getString(R.string.search_highway)
+        binding.isHavingData = dataList.isNotEmpty()
+        binding.tvNoData.text = context.getString(R.string.no_highway_found)
 
         binding.edSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -56,9 +58,11 @@ class DialogHighwaySelection constructor(
                         }
                     }
                     binding.recyclerView.adapter = HighwayListAdapter(context, filterDataList, this@DialogHighwaySelection)
+                    binding.isHavingData = filterDataList.isNotEmpty()
                 } else {
                     filterDataList.clear()
                     binding.recyclerView.adapter = HighwayListAdapter(context, dataList, this@DialogHighwaySelection)
+                    binding.isHavingData = dataList.isNotEmpty()
                 }
             }
         })

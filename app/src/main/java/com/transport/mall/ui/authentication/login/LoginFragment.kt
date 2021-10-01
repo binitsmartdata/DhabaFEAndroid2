@@ -1,5 +1,6 @@
 package com.transport.mall.ui.authentication.login
 
+import android.app.Activity
 import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentLoginBinding
@@ -24,6 +25,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.vm = viewModel
+
+        GlobalUtils.showKeyboard(activity as Activity)
+        binding.etEmail.requestFocus()
+
         viewModel.observerError()?.observe(this, Observer {
             showSnackBar(binding.root, it.toString(), true)
         })

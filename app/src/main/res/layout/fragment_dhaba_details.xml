@@ -33,7 +33,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/white">
 
         <FrameLayout
@@ -182,6 +182,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/grey_stroke"
+                    android:onClick="@{()->tvHighway.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/areaTil">
@@ -219,6 +220,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/grey_stroke"
+                    android:onClick="@{()->spnrPropertyStatus.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/highwayTil">
@@ -253,6 +255,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/grey_stroke"
+                    android:onClick="@{()->spnrState.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ctlPropertyStatus">
@@ -288,6 +291,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/grey_stroke"
+                    android:onClick="@{()->spnrCity.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/selectStateLayout">
@@ -333,7 +337,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLength="6"
                         android:text="@={viewModel.dhabaModel.pincode}"
                         android:textColor="@color/black"
@@ -447,7 +451,7 @@
                                 android:layout_width="@dimen/_45sdp"
                                 android:layout_height="@dimen/_45sdp"
                                 android:layout_gravity="center"
-                                android:background="@drawable/white_cicle"
+                                android:background="@drawable/white_round_corners"
                                 android:padding="@dimen/_10sdp"
                                 android:src="@drawable/ic_play" />
 

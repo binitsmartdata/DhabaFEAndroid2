@@ -230,7 +230,7 @@
     <string name="cancel">रद्द करें</string>
     <string name="please_confirm">कृपया पुष्टि करें</string>
     <string name="want_to_discard">क्या आप ढाबा विवरण छोड़ना चाहते हैं?</string>
-    <string name="pick_from_map">मानचित्र से चुनें</string>
+    <string name="pick_from_map"> | मानचित्र से चुनें</string>
     <string name="choose_location">स्थान का चयन</string>
     <string name="use_location">स्थान का उपयोग करें</string>
     <string name="click_on_map_to_get_address">पता पाने के लिए मानचित्र पर क्लिक करें</string>

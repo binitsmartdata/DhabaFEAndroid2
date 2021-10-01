@@ -36,7 +36,7 @@ class ParkingAmenitiesModel : Serializable {
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (images.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.choose_atlease_one_photo))
+            callback.onResponse(false, context.getString(R.string.choose_parking_photo))
         } else {
             callback.onResponse(true, "")
         }
