@@ -26,15 +26,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
         binding.lifecycleOwner = this
         binding.vm = viewModel
 
-        GlobalUtils.showKeyboard(activity as Activity)
-        binding.etEmail.requestFocus()
-
         viewModel.observerError()?.observe(this, Observer {
             showSnackBar(binding.root, it.toString(), true)
         })
 
         viewModel.observerProgress()?.observe(this, Observer {
             if (it) {
+                GlobalUtils.hideKeyboard(activity as Activity)
                 showProgressDialog(getString(R.string.please_wait))
             } else {
                 hideProgressDialog()

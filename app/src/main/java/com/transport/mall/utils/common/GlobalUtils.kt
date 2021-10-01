@@ -395,7 +395,7 @@ object GlobalUtils {
     public fun showKeyboard(activity: Activity) {
         val view = activity.currentFocus
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0)
     }
 
     fun hideKeyboard(activity: Activity) {
