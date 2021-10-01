@@ -7,6 +7,7 @@ import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.SerializedName
 import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.common.GlobalUtils.getNonNullString
 import java.io.Serializable
 
 /**
@@ -209,8 +210,13 @@ class DhabaModel : Serializable, BaseObservable() {
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_dhaba_name))
+        } else if ((latitude.trim().isEmpty() || longitude.trim().isEmpty())
+            || (getNonNullString(latitude.trim(), "0").toDouble() == 0.toDouble()
+                    || getNonNullString(longitude.trim(), "0").trim().toDouble() == 0.toDouble())
+        ) {
+            callback.onResponse(false, context.getString(R.string.choose_dhaba_location))
         } else if (address.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.please_choose_address))
+            callback.onResponse(false, context.getString(R.string.enter_address))
         } else if (landmark.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_landmark))
         } else if (area.trim().isEmpty()) {

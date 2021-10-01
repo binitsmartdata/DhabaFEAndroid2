@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="number"
-                        android:maxLength="9"
+                        android:maxLength="18"
                         android:text="@={viewModel.bankModel.accountNumber}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
@@ -182,6 +182,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
+                        android:maxLength="30"
                         android:text="@={viewModel.bankModel.accountName}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
@@ -620,7 +621,7 @@
                     android:fontFamily="@font/opensans_bold"
                     android:gravity="center"
                     android:padding="@dimen/_10sdp"
-                    android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save_dhaba)}"
+                    android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.submit_for_approval)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp"

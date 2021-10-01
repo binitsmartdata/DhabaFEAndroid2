@@ -226,6 +226,8 @@ class OwnerDetailsFragment :
     private fun handleData(it: ApiResponseModel<DhabaOwnerModel>, isDraft: Boolean) {
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.ownerModel = it.data
+            viewModel.ownerModel = it.data!!
+
             if (isDraft) {
                 mListener?.getDhabaModelMain()?.draftedAtScreen =
                     DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()

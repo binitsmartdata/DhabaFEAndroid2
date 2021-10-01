@@ -327,5 +327,12 @@
     <string name="enter_valid_aadhar_number">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਆਧਾਰ ਕਾਰਡ ਨੰਬਰ ਦਾਖਲ ਕਰੋ.</string>
     <string name="no_cities_found">ਕਿਰਪਾ ਕਰਕੇ ਵੈਧ ਸ਼ਹਿਰ ਦਾ ਨਾਮ ਦਾਖਲ ਕਰੋ</string>
     <string name="skip">ਛੱਡੋ</string>
+    <string name="no_highway_found">ਕੋਈ ਹਾਈਵੇਅ ਨਹੀਂ ਮਿਲਿਆ</string>
+    <string name="choose_parking_photo">ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ ਇੱਕ ਪਾਰਕਿੰਗ ਫੋਟੋ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="address_placement_confirmation">ਕੀ ਤੁਸੀਂ ਪਤੇ ਨੂੰ ਮੁੜ ਲਿਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="choose_dhaba_location">ਕਿਰਪਾ ਕਰਕੇ ਢਾਬੇ ਦੀ ਜਗ੍ਹਾ ਚੁਣੋ.</string>
+    <string name="in_review">ਸਮੀਖਿਆ ਵਿੱਚ</string>
+    <string name="submit_for_approval">ਮਨਜ਼ੂਰੀ ਲਈ ਜਮ੍ਹਾਂ ਕਰੋ</string>
+    <string name="select_bank">ਬੈਂਕ ਦੀ ਚੋਣ ਕਰੋ</string>
 
 </resources>

@@ -71,7 +71,8 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         //RECEIVING DATA IN CASE OF UPDATING DHABA
         mIsUpdate = intent.hasExtra("data")
         binding.isUpdate = mIsUpdate
-        binding.viewPager.setPagingEnabled(mIsUpdate)
+//        binding.viewPager.setPagingEnabled(mIsUpdate)
+        binding.viewPager.setPagingEnabled(true)
         if (mIsUpdate) {
             viewModel.mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
         } else {

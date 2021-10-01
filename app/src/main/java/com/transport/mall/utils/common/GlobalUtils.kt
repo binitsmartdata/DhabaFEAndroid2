@@ -152,11 +152,31 @@ object GlobalUtils {
     fun showConfirmationDialogYesNo(
         context: Context,
         message: String?,
-        callBack: GenericCallBack<Boolean?>
+        callBack: GenericCallBack<Boolean>
     ) {
         val dialog = AlertDialog.Builder(context)
         dialog.setCancelable(false)
         dialog.setTitle(message)
+        dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
+        dialog.setNegativeButton(context.getString(R.string.no)) { _, _ ->
+            callBack.onResponse(
+                false
+            )
+        }
+        alertDialog = dialog.show()
+    }
+
+    @JvmStatic
+    fun showConfirmationDialogYesNo(
+        context: Context,
+        title: String?,
+        message: String?,
+        callBack: GenericCallBack<Boolean>
+    ) {
+        val dialog = AlertDialog.Builder(context)
+        dialog.setCancelable(false)
+        dialog.setTitle(title)
+        dialog.setMessage(message)
         dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
         dialog.setNegativeButton(context.getString(R.string.no)) { _, _ ->
             callBack.onResponse(

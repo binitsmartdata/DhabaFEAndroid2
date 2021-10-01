@@ -158,27 +158,30 @@ class BankDetailsFragment :
     }
 
     private fun setBankNamesAdapter(bankList: java.util.ArrayList<BankNamesModel>) {
-        banksAdapter =
-            ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
+        //ADDING DEFAULT PLACEHOLDER
+        bankList.add(0, BankNamesModel(0, "", getString(R.string.select_bank), "", "", ""))
+
+        banksAdapter = ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
         binding.spnrBanks.setAdapter(banksAdapter)
         binding.spnrBanks.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.bankModel.bankName = bankList.get(p2).name!!
-                //GET LIST OF CITIES UNDER SELECTED STATE
+                if (p2 != 0) {
+                    viewModel.bankModel.bankName = bankList.get(p2).name!!
+                    //GET LIST OF CITIES UNDER SELECTED STATE
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
-
         })
 
         viewModel.bankModel.bankName.let {
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in bankList) {
-                    if (i.equals(it)) {
+                    if (i.name.equals(it)) {
                         binding.spnrBanks.setSelection(index)
                         break
                     }

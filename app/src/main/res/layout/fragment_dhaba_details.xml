@@ -45,12 +45,12 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/_15sdp">
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/dhabaNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
                     android:hint="@string/dhaba_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,40 +68,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dhabaAddressTil"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:hint="@string/dhaba_address"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dhabaNameTil">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edDhabaAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="text|textMultiLine"
-                        android:text="@={viewModel.dhabaModel.address}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <LinearLayout
                     android:id="@+id/fetchLocationLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/dhabaAddressTil">
+                    app:layout_constraintTop_toBottomOf="@+id/dhabaNameTil">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvCurrLocation"
@@ -131,6 +107,29 @@
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dhabaAddressTil"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:hint="@string/dhaba_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fetchLocationLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edDhabaAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:inputType="text|textMultiLine"
+                        android:text="@={viewModel.dhabaModel.address}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/landmarkTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -139,7 +138,7 @@
                     android:hint="@string/landmark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fetchLocationLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/dhabaAddressTil">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edLandmark"
