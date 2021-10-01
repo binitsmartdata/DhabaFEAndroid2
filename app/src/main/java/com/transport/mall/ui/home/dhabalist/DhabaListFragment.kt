@@ -58,7 +58,7 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
 
     private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModelMain>) {
         dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
-            GenericCallBack { position ->
+            { position -> // DHABA CLICKED LISTENER
                 viewModel.dialogProgressObserver.value = true
                 viewModel.getDhabaById(dhabaList.get(position).dhabaModel?._id!!, GenericCallBack {
                     viewModel.dialogProgressObserver.value = false
@@ -73,6 +73,15 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
                         showToastInCenter(it.message)
                     }
                 })
+            }, { deletedDhaba -> // dhaba deletion listener
+                viewModel.updateDhabaStatus(
+                    deletedDhaba.isDraft.toBoolean(),
+                    deletedDhaba,
+                    DhabaModel.STATUS_INACTIVE,
+                    viewModel.dialogProgressObserver,
+                    GenericCallBack {
+                        onRefresh()
+                    })
             })
         dhabaListAdapter?.setOnLoadMoreListener {
             page++

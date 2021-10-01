@@ -350,4 +350,5 @@
     <string name="submit_for_approval">अनुमोदन के लिए सबमिट करें</string>
     <string name="select_bank">बैंक चुनें</string>
     <string name="owner">मालिक</string>
+    <string name="deletion_confirmation">क्या आप इस ढाबे को हटाना चाहते हैं?</string>
 </resources>

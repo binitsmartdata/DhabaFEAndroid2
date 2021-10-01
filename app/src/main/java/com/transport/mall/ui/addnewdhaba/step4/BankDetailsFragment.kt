@@ -228,7 +228,7 @@ class BankDetailsFragment :
 
             viewModel.updateDhabaStatus(
                 isDraft,
-                viewModel.dhabaModel,
+                viewModel.dhabaModel, null,
                 viewModel.progressObserver,
                 GenericCallBack {
                     if (it.data != null) {

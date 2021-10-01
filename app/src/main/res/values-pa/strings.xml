@@ -335,5 +335,6 @@
     <string name="submit_for_approval">ਮਨਜ਼ੂਰੀ ਲਈ ਜਮ੍ਹਾਂ ਕਰੋ</string>
     <string name="select_bank">ਬੈਂਕ ਦੀ ਚੋਣ ਕਰੋ</string>
     <string name="owner">ਮਾਲਕ</string>
+    <string name="deletion_confirmation">ਕੀ ਤੁਸੀਂ ਇਸ ਢਾਬੇ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
 
 </resources>

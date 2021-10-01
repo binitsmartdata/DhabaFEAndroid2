@@ -156,7 +156,8 @@ object GlobalUtils {
     ) {
         val dialog = AlertDialog.Builder(context)
         dialog.setCancelable(false)
-        dialog.setTitle(message)
+        dialog.setTitle(context.getString(R.string.please_confirm))
+        dialog.setMessage(message)
         dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
         dialog.setNegativeButton(context.getString(R.string.no)) { _, _ ->
             callBack.onResponse(

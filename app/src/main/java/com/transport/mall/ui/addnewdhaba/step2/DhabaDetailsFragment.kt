@@ -232,6 +232,7 @@ class DhabaDetailsFragment :
         viewModel.updateDhabaStatus(
             isDraft,
             viewModel.dhabaModel,
+            null,
             viewModel.progressObserver,
             GenericCallBack {
                 if (it.data != null) {
