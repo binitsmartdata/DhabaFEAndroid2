@@ -38,6 +38,7 @@
         android:id="@+id/parentItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -65,6 +66,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/light_gold_shape"
+                    android:fontFamily="@font/opensans_regular"
                     android:paddingHorizontal="7dp"
                     android:paddingVertical="3dp"
                     android:text="@string/pending"
@@ -84,6 +86,7 @@
                     android:id="@+id/tvMenuTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
                     android:onClick="@{() -> callback.onItemClick(tvMenuTitle, position)}"
                     android:orientation="vertical"
                     android:text="@{model.name}"
@@ -96,6 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_gold_hotel_type"
+                    android:fontFamily="@font/opensans_regular"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="2dp"
                     android:text="@{model.dhabaCategory}"
@@ -108,11 +112,11 @@
                     android:id="@+id/tvAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
                     android:orientation="vertical"
                     android:text="@{model.address}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_12ssp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -123,6 +127,7 @@
                         android:id="@+id/tvHighway"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
                         android:text="@{model.highway}"
                         android:textColor="@color/black"
@@ -131,6 +136,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
                         android:text="@{model.city.trim().isEmpty() || model.highway.trim().isEmpty() ? `` : `, `}"
                         android:textColor="@color/black"
@@ -140,6 +146,7 @@
                         android:id="@+id/tvCity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
                         android:text="@{model.city}"
                         android:textColor="@color/black"
@@ -164,6 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
                         android:text="4.0"
                         android:textColor="@color/black"
@@ -182,16 +190,17 @@
                     android:id="@+id/ivEdit"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:background="@drawable/default_btn_selector"
                     android:padding="5dp"
                     android:src="@drawable/ic_edit" />
 
                 <ImageView
-                    android:id="@+id/ivLocation"
+                    android:id="@+id/ivDelete"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:background="@drawable/default_btn_selector"
                     android:padding="5dp"
-                    android:src="@drawable/ic_location"
-                    android:visibility="gone" />
+                    android:src="@drawable/ic_delete" />
 
             </LinearLayout>
 
@@ -225,12 +234,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Owner"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@string/owner"
                         android:textColor="@color/grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
                         android:text="@{owner.ownerName}"
                         android:textColor="@color/black" />
 
@@ -260,12 +271,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
                         android:text="@string/assigned_to"
                         android:textColor="@color/grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
                         android:text="@{user.name}"
                         android:textColor="@color/black" />
 
@@ -277,8 +290,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="7dp"
             android:background="@color/black" />
 
     </LinearLayout>

@@ -323,6 +323,7 @@
     <string name="in_review">In Review</string>
     <string name="submit_for_approval">Submit for approval</string>
     <string name="select_bank">Select Bank</string>
+    <string name="owner">Owner</string>
 
     <string-array name="select_state">
         <item>Select State</item>

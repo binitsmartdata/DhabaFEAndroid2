@@ -334,5 +334,6 @@
     <string name="in_review">ਸਮੀਖਿਆ ਵਿੱਚ</string>
     <string name="submit_for_approval">ਮਨਜ਼ੂਰੀ ਲਈ ਜਮ੍ਹਾਂ ਕਰੋ</string>
     <string name="select_bank">ਬੈਂਕ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="owner">ਮਾਲਕ</string>
 
 </resources>
