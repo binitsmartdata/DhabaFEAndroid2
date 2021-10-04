@@ -40,7 +40,7 @@ class OtherAmenitiesModel : Serializable {
     var barber: Int = 0
 
     @SerializedName(value = "barberImages")
-    var barberImages: String = ""
+    var barberImages: ArrayList<PhotosModel> = ArrayList()
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
 //        if (policVerification == 1 && verificationImg.isEmpty()) {

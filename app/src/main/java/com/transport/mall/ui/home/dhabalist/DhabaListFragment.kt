@@ -57,7 +57,7 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
     }
 
     private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModelMain>) {
-        dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList,
+        dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList, status,
             { position -> // DHABA CLICKED LISTENER
                 viewModel.dialogProgressObserver.value = true
                 viewModel.getDhabaById(dhabaList.get(position).dhabaModel?._id!!, GenericCallBack {

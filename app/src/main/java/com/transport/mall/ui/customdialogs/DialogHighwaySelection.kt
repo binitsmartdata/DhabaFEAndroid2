@@ -11,6 +11,7 @@ import com.transport.mall.R
 import com.transport.mall.databinding.DialogCitySelectionBinding
 import com.transport.mall.model.HighwayModel
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -38,7 +39,18 @@ class DialogHighwaySelection constructor(
         binding.btnContinue.visibility = View.GONE
         binding.edSearch.hint = context.getString(R.string.search_highway)
         binding.isHavingData = dataList.isNotEmpty()
+        binding.isHighwaySelection = true
         binding.tvNoData.text = context.getString(R.string.no_highway_found)
+        binding.btnAddNew.setOnClickListener {
+            GlobalUtils.showConfirmationDialogYesNo(context,
+                context.getString(R.string.highway_confirmation) + binding.edSearch.text.toString().trim() + "?",
+                {
+                    if (it) {
+                        callBack.onResponse(HighwayModel(0, binding.edSearch.text.toString().trim(), "", "", "", "", ""))
+                        dismiss()
+                    }
+                })
+        }
 
         binding.edSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

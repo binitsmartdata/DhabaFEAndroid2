@@ -37,46 +37,6 @@
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:paddingVertical="20dp">
 
-                <FrameLayout
-                    android:id="@+id/flWashroomPhoto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_light">
-
-                    <LinearLayout
-                        android:id="@+id/llWashroomPhoto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_50sdp"
-                            android:layout_height="@dimen/_50sdp"
-                            android:src="@drawable/ic_add_round" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="10dp"
-                            android:layout_marginStart="@dimen/_5sdp"
-                            android:fontFamily="@font/opensans_regular"
-                            android:text="@string/upload_washroom_photo"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/ivWashroomPhoto"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/grey_light"
-                        android:scaleType="fitCenter"
-                        android:visibility="gone" />
-
-                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -189,6 +149,44 @@
 
                     </RadioGroup>
                 </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/flWashroomPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey_light">
+
+                    <LinearLayout
+                        android:id="@+id/llWashroomPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:src="@drawable/ic_add_round" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/upload_washroom_photo"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </LinearLayout>
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp" />
 
                 <Button
                     android:id="@+id/btnSaveDhaba"

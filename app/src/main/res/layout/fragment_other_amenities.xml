@@ -414,100 +414,13 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/ivBarberImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/grey_light"
-                        android:scaleType="fitCenter"
-                        android:visibility="gone" />
-
                 </FrameLayout>
 
-                <!-- <View
-                     android:id="@+id/divider"
-                     android:layout_width="match_parent"
-                     android:layout_height="@dimen/_1sdp"
-                     android:layout_marginTop="@dimen/_15sdp"
-                     android:background="@color/colorGrey1" />
-
-                 <androidx.appcompat.widget.AppCompatTextView
-                     android:id="@+id/offerText"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_marginTop="@dimen/_15sdp"
-                     android:fontFamily="@font/opensans_semibold"
-                     android:text="@string/offers"
-                     android:textColor="@color/black"
-                     android:textSize="@dimen/_14ssp" />
-
-                 <com.google.android.material.textfield.TextInputLayout
-                     android:id="@+id/discountTil"
-                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_marginTop="@dimen/_10sdp"
-                     android:hint="@string/discount">
-
-                     <com.google.android.material.textfield.TextInputEditText
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:fontFamily="@font/opensans_regular"
-                         android:inputType="text"
-                         android:text=""
-                         android:textColor="@color/black"
-                         android:textSize="@dimen/_14ssp" />
-
-                 </com.google.android.material.textfield.TextInputLayout>
-
-                 <LinearLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:orientation="horizontal">
-
-                     <com.google.android.material.textfield.TextInputLayout
-                         android:id="@+id/offerStartDateTil"
-                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                         android:layout_width="0dp"
-                         android:layout_height="wrap_content"
-                         android:layout_marginTop="@dimen/_10sdp"
-                         android:layout_marginEnd="@dimen/_5sdp"
-                         android:layout_weight="1"
-                         android:hint="@string/offer_start_date">
-
-                         <com.google.android.material.textfield.TextInputEditText
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:fontFamily="@font/opensans_regular"
-                             android:inputType="text"
-                             android:text=""
-                             android:textColor="@color/black"
-                             android:textSize="@dimen/_14ssp" />
-
-                     </com.google.android.material.textfield.TextInputLayout>
-
-                     <com.google.android.material.textfield.TextInputLayout
-                         android:id="@+id/offerEndDateTil"
-                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                         android:layout_width="0dp"
-                         android:layout_height="wrap_content"
-                         android:layout_marginStart="@dimen/_5sdp"
-                         android:layout_marginTop="@dimen/_10sdp"
-                         android:layout_weight="1"
-                         android:hint="@string/offer_end_date">
-
-                         <com.google.android.material.textfield.TextInputEditText
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:fontFamily="@font/opensans_regular"
-                             android:inputType="text"
-                             android:text=""
-                             android:textColor="@color/black"
-                             android:textSize="@dimen/_14ssp" />
-
-                     </com.google.android.material.textfield.TextInputLayout>
-
-                 </LinearLayout>-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp" />
 
                 <Button
                     android:id="@+id/btnSaveDhaba"

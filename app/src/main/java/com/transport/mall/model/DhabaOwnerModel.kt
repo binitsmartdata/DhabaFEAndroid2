@@ -73,6 +73,38 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
         }
 */
 
+    @SerializedName(value = "alternateContactPerson")
+    var alternateContactPerson: String = ""
+        @Bindable get() = field
+        set(alternateContactPerson) {
+            field = alternateContactPerson
+            notifyPropertyChanged(BR.alternateContactPerson)
+        }
+
+    @SerializedName(value = "alternatePhone")
+    var alternatePhone: String = ""
+        @Bindable get() = field
+        set(alternatePhone) {
+            field = alternatePhone
+            notifyPropertyChanged(BR.alternatePhone)
+        }
+
+    @SerializedName(value = "alternativeMobilePrefix")
+    var alternativeMobilePrefix: String = ""
+        @Bindable get() = field
+        set(alternativeMobilePrefix) {
+            field = alternativeMobilePrefix
+            notifyPropertyChanged(BR.alternativeMobilePrefix)
+        }
+
+    @SerializedName(value = "alternateDesignation")
+    var alternateDesignation: String = ""
+        @Bindable get() = field
+        set(alternateDesignation) {
+            field = alternateDesignation
+            notifyPropertyChanged(BR.alternateDesignation)
+        }
+
     @SerializedName(value = "panNumber")
     var panNumber: String = ""
         @Bindable get() = field
@@ -138,14 +170,16 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_email))
         } else if (!GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
-        }/* else if (address.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_address))
-        } */ else if (panNumber.trim().isNotEmpty() && panNumber.trim().length < 10) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+        } else if (panNumber.trim().isNotEmpty() && panNumber.trim().length < 10) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
             callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
         } else if (adharCard.trim().isNotEmpty() && adharCard.trim().length < 12) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
             callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
-        } /*else if (ownerPic.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.select_owner_picture))
+        } /*else if (alternateContactPerson.trim().isNotEmpty() && alternateContactPerson.trim().length < 12) {
+            callback.onResponse(false, context.getString(R.string.enter_contact_person))
+        } else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 12) {
+            callback.onResponse(false, context.getString(R.string.enter_alternative_number))
+        } else if (alternateDesignation.trim().isNotEmpty() && alternateDesignation.trim().length < 12) {
+            callback.onResponse(false, context.getString(R.string.enter_alternative_contact_designation))
         } */ else {
             callback.onResponse(true, "")
         }

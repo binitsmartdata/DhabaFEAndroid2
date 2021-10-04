@@ -630,6 +630,10 @@ object GlobalUtils {
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         val mLocationCallback: LocationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
+                if (locationResult.lastLocation != null) {
+                    LocationServices.getFusedLocationProviderClient(context)
+                        .removeLocationUpdates(this)
+                }
             }
         }
         LocationServices.getFusedLocationProviderClient(context)

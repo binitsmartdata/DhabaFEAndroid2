@@ -104,7 +104,7 @@ class DhabaDetailsFragment :
     override fun initListeners() {
         setupVideoPickerViews()
         setupImagePicker()
-        refreshLocation(activity as Context)
+//        refreshLocation(activity as Context)
         setupLocationViews()
         setupCitiesAndStateView()
 

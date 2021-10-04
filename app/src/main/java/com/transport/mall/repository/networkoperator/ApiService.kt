@@ -143,13 +143,17 @@ interface ApiService {
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("ownerName") ownerName: RequestBody,
         @Part("mobilePrefix") mobilePrefix: RequestBody,
+        @Part("alternativeMobilePrefix") alternativeMobilePrefix: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,
-        @Part("address") address: RequestBody,
+//        @Part("address") address: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
         @Part("adharCard") adharCard: RequestBody,
-        @Part("latitude") latitude: RequestBody,
-        @Part("longitude") longitude: RequestBody,
+        @Part("alternateContactPerson") alternateContactPerson: RequestBody,
+        @Part("alternatePhone") alternatePhone: RequestBody,
+        @Part("alternateDesignation") alternateDesignation: RequestBody,
+//        @Part("latitude") latitude: RequestBody,
+//        @Part("longitude") longitude: RequestBody,
         @Part ownerPic: MultipartBody.Part?,
         @Part idproofFront: MultipartBody.Part?,
         @Part idproofBack: MultipartBody.Part?
@@ -161,13 +165,17 @@ interface ApiService {
         @Part("_id") _id: RequestBody,
         @Part("ownerName") ownerName: RequestBody,
         @Part("mobilePrefix") mobilePrefix: RequestBody,
+        @Part("alternativeMobilePrefix") alternativeMobilePrefix: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,
-        @Part("address") address: RequestBody,
+//        @Part("address") address: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
         @Part("aadharNumber") adharCard: RequestBody,
-        @Part("latitude") latitude: RequestBody,
-        @Part("longitude") longitude: RequestBody,
+        @Part("alternateContactPerson") alternateContactPerson: RequestBody,
+        @Part("alternatePhone") alternatePhone: RequestBody,
+        @Part("alternateDesignation") alternateDesignation: RequestBody,
+//        @Part("latitude") latitude: RequestBody,
+//        @Part("longitude") longitude: RequestBody,
         @Part ownerPic: MultipartBody.Part?,
         @Part idproofFront: MultipartBody.Part?,
         @Part idproofBack: MultipartBody.Part?
@@ -250,6 +258,20 @@ interface ApiService {
     ): Response<ApiResponseModel<*>>
 
     @FormUrlEncoded
+    @POST("dhaba/delWashroomImg")
+    suspend fun delWashroomImg(
+        @Field("_id") amenityId: String,
+        @Field("imgId") imgId: String
+    ): Response<ApiResponseModel<*>>
+
+    @FormUrlEncoded
+    @POST("dhaba/delBarberImg")
+    suspend fun delBarberImg(
+        @Field("_id") amenityId: String,
+        @Field("imgId") imgId: String
+    ): Response<ApiResponseModel<*>>
+
+    @FormUrlEncoded
     @POST("dhaba/delSecurityImg")
     suspend fun delSecurityImg(
         @Field("_id") amenityId: String,
@@ -306,7 +328,7 @@ interface ApiService {
         @Part("washroomStatus") washroomStatus: RequestBody,
         @Part("water") water: RequestBody,
         @Part("cleaner") cleaner: RequestBody,
-        @Part images: MultipartBody.Part?
+        @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<WashroomAmenitiesModel>>
 
     @Multipart
@@ -319,7 +341,7 @@ interface ApiService {
         @Part("washroomStatus") washroomStatus: RequestBody,
         @Part("water") water: RequestBody,
         @Part("cleaner") cleaner: RequestBody,
-        @Part images: MultipartBody.Part?
+        @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<WashroomAmenitiesModel>>
 
     @Multipart
@@ -368,7 +390,7 @@ interface ApiService {
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
         @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
         @Part("barber") barber: RequestBody,
-        @Part barberImages: MultipartBody.Part?
+        @Part barberImages:  Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
     @Multipart
@@ -385,7 +407,7 @@ interface ApiService {
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
         @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
         @Part("barber") barber: RequestBody,
-        @Part barberImages: MultipartBody.Part?
+        @Part barberImages:  Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
     @Multipart

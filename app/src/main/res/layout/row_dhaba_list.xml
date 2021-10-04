@@ -8,9 +8,15 @@
 
         <import type="android.view.View" />
 
+        <import type="com.transport.mall.model.DhabaModel.Companion" />
+
         <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="isInProgress"
+            type="Boolean" />
 
         <variable
             name="position"
@@ -106,7 +112,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12ssp"
-                    android:visibility="@{model.dhabaCategory.isEmpty() ? View.GONE : View.VISIBLE}" />
+                    android:visibility="@{(model.dhabaCategory.isEmpty() || isInProgress)? View.GONE : View.VISIBLE}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAddress"
@@ -200,7 +206,7 @@
                     android:layout_height="30dp"
                     android:background="@drawable/default_btn_selector"
                     android:padding="5dp"
-                    android:src="@drawable/ic_delete" />
+                    android:src="@drawable/ic_delete"/>
 
             </LinearLayout>
 

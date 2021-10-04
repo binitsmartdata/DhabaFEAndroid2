@@ -1,20 +1,23 @@
 package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentWashroomAmenitiesBinding
+import com.transport.mall.model.PhotosModel
 import com.transport.mall.model.WashroomAmenitiesModel
+import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
-import com.transport.mall.utils.xloadImages
+import com.transport.mall.utils.common.GlobalUtils
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -30,6 +33,7 @@ class WashroomAmenitiesFragment :
         get() = setUpBinding()
         set(value) {}
     var mListener: AddDhabaListener? = null
+    var imageList = ArrayList<PhotosModel>()
 
     override fun bindData() {
         mListener = activity as AddDhabaListener
@@ -40,6 +44,7 @@ class WashroomAmenitiesFragment :
             viewModel.model.dhaba_id = it._id
         }
 
+        refreshGalleryImages()
         setupLicensePhotoViews()
         setupFoodPhotosView()
         //SETTING EXISTING DATA ON SCREEN
@@ -81,12 +86,8 @@ class WashroomAmenitiesFragment :
 
         it.images.let {
             if (it.isNotEmpty()) {
-                xloadImages(
-                    binding.ivWashroomPhoto,
-                    it,
-                    R.drawable.ic_image_placeholder
-                )
-                binding.ivWashroomPhoto.visibility = View.VISIBLE
+                imageList.addAll(it)
+                refreshGalleryImages()
             }
         }
     }
@@ -184,10 +185,34 @@ class WashroomAmenitiesFragment :
             //Image Uri will not be null for RESULT_OK
             val uri: Uri = data?.data!!
 
-            // Use Uri object instead of File to avoid storage permissions
-            binding.ivWashroomPhoto.setImageURI(uri)
-            binding.ivWashroomPhoto.visibility = View.VISIBLE
-            viewModel.model.images = getRealPathFromURI(uri)
+            addImageToGallery(uri)
+            viewModel.model.images = imageList
         }
+    }
+
+    private fun addImageToGallery(uri: Uri) {
+        imageList.add(PhotosModel("", uri, getRealPathFromURI(uri)))
+        refreshGalleryImages()
+    }
+
+    private fun refreshGalleryImages() {
+        var columns = GlobalUtils.calculateNoOfColumns(activity as Context, 100f)
+
+        binding.recyclerView.layoutManager =
+            GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
+
+        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+            viewModel.model.images = imageList
+        })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delWashroomImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
+            })
+        })
+
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.setHasFixedSize(true)
     }
 }

@@ -61,6 +61,15 @@ class OwnerDetailsFragment :
         mListener?.getDhabaModelMain()?.ownerModel?.let {
             viewModel.ownerModel = it
 
+            it.alternativeMobilePrefix?.let {
+                if (it.isNotEmpty()) {
+                    try {
+                        binding.ccpCountryCodeAlt.setCountryForPhoneCode(it.toInt())
+                    } catch (e: Exception) {
+                        binding.ccpCountryCodeAlt.setCountryForPhoneCode(91)
+                    }
+                }
+            }
             it.mobilePrefix?.let {
                 if (it.isNotEmpty()) {
                     try {
@@ -94,6 +103,9 @@ class OwnerDetailsFragment :
         GlobalUtils.refreshLocation(activity as Context)
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
+        }
+        binding.ccpCountryCodeAlt.setOnCountryChangeListener {
+            viewModel.ownerModel.alternativeMobilePrefix = binding.ccpCountryCodeAlt.selectedCountryCode
         }
 
         setupLocationViews()

@@ -1,21 +1,24 @@
 package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import android.widget.RadioButton
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOtherAmenitiesBinding
 import com.transport.mall.model.OtherAmenitiesModel
+import com.transport.mall.model.PhotosModel
+import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
-import com.transport.mall.utils.xloadImages
+import com.transport.mall.utils.common.GlobalUtils
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -30,7 +33,9 @@ class OtherAmenitiesFragment :
     override var binding: FragmentOtherAmenitiesBinding
         get() = setUpBinding()
         set(value) {}
+
     var mListener: AddDhabaListener? = null
+    var imageList = ArrayList<PhotosModel>()
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -42,6 +47,7 @@ class OtherAmenitiesFragment :
             viewModel.model.dhaba_id = it._id
         }
 
+        refreshGalleryImages()
         setupLicensePhotoViews()
         //SETTING EXISTING DATA ON SCREEN
         mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {
@@ -105,8 +111,8 @@ class OtherAmenitiesFragment :
 
         it.barberImages.let {
             if (it.isNotEmpty()) {
-                xloadImages(binding.ivBarberImg, it, R.drawable.ic_image_placeholder)
-                binding.ivBarberImg.visibility = View.VISIBLE
+                imageList.addAll(it)
+                refreshGalleryImages()
             }
         }
     }
@@ -203,10 +209,34 @@ class OtherAmenitiesFragment :
             //Image Uri will not be null for RESULT_OK
             val uri: Uri = data?.data!!
 
-            // Use Uri object instead of File to avoid storage permissions
-            binding.ivBarberImg.setImageURI(uri)
-            binding.ivBarberImg.visibility = View.VISIBLE
-            viewModel.model.barberImages = getRealPathFromURI(uri)
+            addImageToGallery(uri)
+            viewModel.model.barberImages = imageList
         }
+    }
+
+    private fun addImageToGallery(uri: Uri) {
+        imageList.add(PhotosModel("", uri, getRealPathFromURI(uri)))
+        refreshGalleryImages()
+    }
+
+    private fun refreshGalleryImages() {
+        var columns = GlobalUtils.calculateNoOfColumns(activity as Context, 100f)
+
+        binding.recyclerView.layoutManager =
+            GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
+
+        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+            viewModel.model.barberImages = imageList
+        })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delBarberImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
+            })
+        })
+
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.setHasFixedSize(true)
     }
 }
