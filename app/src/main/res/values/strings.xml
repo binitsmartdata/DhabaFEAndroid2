@@ -318,6 +318,7 @@
     <string name="skip">Skip</string>
     <string name="no_highway_found">No Highway Found</string>
     <string name="choose_parking_photo">Please choose at least one parking Photo</string>
+    <string name="sign_up">Sign Up</string>
 
     <string-array name="select_state">
         <item>Select State</item>
