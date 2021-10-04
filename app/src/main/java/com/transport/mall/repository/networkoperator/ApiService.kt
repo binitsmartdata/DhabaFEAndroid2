@@ -149,7 +149,7 @@ interface ApiService {
 //        @Part("address") address: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
         @Part("adharCard") adharCard: RequestBody,
-        @Part("alternateContactPerson") alternateContactPerson: RequestBody,
+        @Part("alternativeContactperson") alternativeContactperson: RequestBody,
         @Part("alternatePhone") alternatePhone: RequestBody,
         @Part("alternateDesignation") alternateDesignation: RequestBody,
 //        @Part("latitude") latitude: RequestBody,
@@ -171,7 +171,7 @@ interface ApiService {
 //        @Part("address") address: RequestBody,
         @Part("panNumber") panNumber: RequestBody,
         @Part("aadharNumber") adharCard: RequestBody,
-        @Part("alternateContactPerson") alternateContactPerson: RequestBody,
+        @Part("alternativeContactperson") alternativeContactperson: RequestBody,
         @Part("alternatePhone") alternatePhone: RequestBody,
         @Part("alternateDesignation") alternateDesignation: RequestBody,
 //        @Part("latitude") latitude: RequestBody,
@@ -390,7 +390,7 @@ interface ApiService {
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
         @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
         @Part("barber") barber: RequestBody,
-        @Part barberImages:  Array<MultipartBody.Part?>?
+        @Part barberImages: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
     @Multipart
@@ -407,7 +407,7 @@ interface ApiService {
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
         @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
         @Part("barber") barber: RequestBody,
-        @Part barberImages:  Array<MultipartBody.Part?>?
+        @Part barberImages: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
     @Multipart

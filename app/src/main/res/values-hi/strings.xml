@@ -129,7 +129,7 @@
     <string name="pin_code">पिन कोड</string>
     <string name="upload_dhaba_pictures">ढाबा चित्र अपलोड करें</string>
     <string name="save_as_draft">ड्राफ्ट के रूप में सेव करें</string>
-    <string name="owner_name">मालिक का नाम</string>
+    <string name="owner_name">मालिक का नाम *</string>
     <string name="phone_number">फ़ोन नंबर</string>
     <string name="email_address">ईमेल पता</string>
     <string name="address">पता</string>

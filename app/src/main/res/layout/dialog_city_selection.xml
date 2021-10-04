@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -27,18 +26,40 @@
         android:orientation="vertical"
         android:padding="@dimen/_10sdp">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edSearch"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/grey_stroke"
-            android:fontFamily="@font/opensans_regular"
-            android:hint="@string/search_city"
-            android:inputType="text"
-            android:maxLength="15"
-            android:padding="@dimen/_7sdp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp" />
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_stroke"
+                android:fontFamily="@font/opensans_regular"
+                android:hint="@string/search_city"
+                android:inputType="text"
+                android:maxLength="15"
+                android:padding="@dimen/_7sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btnAddNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@drawable/grey_stroke"
+                android:fontFamily="@font/opensans_regular"
+                android:gravity="center"
+                android:padding="@dimen/_4sdp"
+                android:text="@string/add_new"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
+                android:visibility="@{(isHighwaySelection &amp;&amp; !edSearch.text.toString().trim().empty) ? View.VISIBLE : View.GONE}" />
+
+        </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -46,41 +67,16 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_10sdp" />
 
-        <LinearLayout
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_semibold"
             android:gravity="center"
-            android:orientation="vertical"
             android:paddingVertical="@dimen/_30sdp"
-            android:visibility="@{isHavingData ? View.GONE : View.VISIBLE}">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvNoData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_semibold"
-                android:gravity="center"
-                android:text="@string/no_cities_found"
-                android:textColor="@color/black" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAddNew"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/stroke_btn_selector"
-                android:fontFamily="@font/opensans_regular"
-                android:gravity="center"
-                android:paddingHorizontal="@dimen/_20sdp"
-                android:paddingVertical="@dimen/_5sdp"
-                android:text="@string/add_highway"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
-                android:visibility="@{isHighwaySelection ? View.VISIBLE : View.GONE}"
-                tools:text="@string/add_highway" />
-
-        </LinearLayout>
+            android:text="@string/no_cities_found"
+            android:textColor="@color/black"
+            android:visibility="@{isHavingData ? View.GONE : View.VISIBLE}" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnContinue"

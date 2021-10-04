@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_4sdp"
                 android:background="@android:color/transparent"
-                android:hint="@string/_10_digit_mobile_number"
+                android:hint="@string/enter_mobile_number_mandatory"
                 android:inputType="number"
                 android:maxLength="10"
                 android:padding="@dimen/_10sdp"

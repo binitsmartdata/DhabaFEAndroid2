@@ -161,7 +161,8 @@ class BankDetailsFragment :
         //ADDING DEFAULT PLACEHOLDER
         bankList.add(0, BankNamesModel(0, "", getString(R.string.select_bank), "", "", ""))
 
-        banksAdapter = ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
+        banksAdapter =
+            ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
         binding.spnrBanks.setAdapter(banksAdapter)
         binding.spnrBanks.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
@@ -196,15 +197,26 @@ class BankDetailsFragment :
             if (isDraft) {
                 proceed(isDraft)
             } else {
-                viewModel.bankModel.hasEverything(
-                    getmContext(),
-                    GenericCallBackTwoParams() { allOk, message ->
-                        if (allOk) {
-                            proceed(isDraft)
-                        } else {
-                            showToastInCenter(message)
-                        }
-                    })
+                val ownerMissingParams =
+                    (mListener?.getDhabaModelMain()?.ownerModel?.getMissingParameters(getmContext())
+                        ?.trim()!!)
+                if (ownerMissingParams.isNotEmpty()!!) {
+                    GlobalUtils.showInfoDialog(getmContext(),
+                        "$ownerMissingParams is missing, please fill those details to submit for approval",
+                        GenericCallBack {
+                            mListener?.showOwnerScreen()
+                        })
+                } else {
+                    viewModel.bankModel.hasEverything(
+                        getmContext(),
+                        GenericCallBackTwoParams() { allOk, message ->
+                            if (allOk) {
+                                proceed(isDraft)
+                            } else {
+                                showToastInCenter(message)
+                            }
+                        })
+                }
             }
         }
     }

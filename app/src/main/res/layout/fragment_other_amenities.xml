@@ -53,14 +53,41 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
-                        android:id="@+id/rgMerch27_7"
+                        android:id="@+id/rgMechYesNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbMechNo"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/rbMerch27_7_1"
+                            android:id="@+id/rbMechYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="true"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbMechNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="false"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/rgMerch27_7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{rbMechYes.checked ? View.VISIBLE : View.GONE}">
+
+                        <RadioButton
+                            android:id="@+id/rbMerch2771"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/_10sdp"
@@ -68,7 +95,7 @@
                             android:text="@string/in_premises" />
 
                         <RadioButton
-                            android:id="@+id/rbMerch27_7_2"
+                            android:id="@+id/rbMerch2772"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/_10sdp"
@@ -76,7 +103,7 @@
                             android:text="@string/_1_200_m" />
 
                         <RadioButton
-                            android:id="@+id/rbMerch27_7_3"
+                            android:id="@+id/rbMerch2773"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingVertical="@dimen/_10sdp"
@@ -102,11 +129,38 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
+                        android:id="@+id/rgMechDayYesNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbMechDayNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbMechDayYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="true"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbMechDayNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="false"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
                         android:id="@+id/rgMechDay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="@{rbMechDayYes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rbMechDay_1"
@@ -152,11 +206,38 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
+                        android:id="@+id/rgPuncture_24_7YesNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbPuncture_24_7No"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbPuncture_24_7Yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="true"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbPuncture_24_7No"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="false"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
                         android:id="@+id/rgPuncture_24_7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="@{rbPuncture247Yes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rbPuncture24_7_1"
@@ -201,11 +282,38 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
+                        android:id="@+id/rgPunctureDayYesNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rPunctureDayNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbPunctureDayYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="true"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rPunctureDayNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="false"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
                         android:id="@+id/rgPunctureDay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="@{rbPunctureDayYes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rbPunctureDay1"
@@ -251,11 +359,38 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
+                        android:id="@+id/rgUtilityYesNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbUtilityNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="true"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="false"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
                         android:id="@+id/rgUtility24_7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="@{rbUtilityYes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rbUtility24_7_1"
@@ -300,11 +435,38 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
+                        android:id="@+id/rgUtilityDayYesNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbUtilityDayNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityDayYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="true"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityDayNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="false"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
                         android:id="@+id/rgUtilityDay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="@{rbUtilityDayYes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rbUtilityDay_1"
@@ -397,7 +559,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <ImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="@dimen/_50sdp"
                             android:layout_height="@dimen/_50sdp"
                             android:src="@drawable/ic_add_round" />
@@ -452,6 +614,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
+                android:focusable="true"
                 android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
 
         </FrameLayout>

@@ -63,22 +63,12 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.address)
         }
 
-/*
-    @SerializedName(value = "location")
-    var location: String = ""
+    @SerializedName(value = "alternativeContactperson", alternate = ["alternativeContactPerson"])
+    var alternativeContactperson: String = ""
         @Bindable get() = field
-        set(location) {
-            field = location
-            notifyPropertyChanged(BR.location)
-        }
-*/
-
-    @SerializedName(value = "alternateContactPerson")
-    var alternateContactPerson: String = ""
-        @Bindable get() = field
-        set(alternateContactPerson) {
-            field = alternateContactPerson
-            notifyPropertyChanged(BR.alternateContactPerson)
+        set(alternativeContactperson) {
+            field = alternativeContactperson
+            notifyPropertyChanged(BR.alternativeContactperson)
         }
 
     @SerializedName(value = "alternatePhone")
@@ -170,10 +160,18 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_email))
         } else if (!GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
-        } else if (panNumber.trim().isNotEmpty() && panNumber.trim().length < 10) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+        } else if (panNumber.trim()
+                .isNotEmpty() && panNumber.trim().length < 10
+        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
             callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
-        } else if (adharCard.trim().isNotEmpty() && adharCard.trim().length < 12) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+        } else if (adharCard.trim()
+                .isNotEmpty() && adharCard.trim().length < 12
+        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
             callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
+        } else if (alternatePhone.trim()
+                .isNotEmpty() && alternatePhone.trim().length < 10
+        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+            callback.onResponse(false, context.getString(R.string.enter_valid_alt_number))
         } /*else if (alternateContactPerson.trim().isNotEmpty() && alternateContactPerson.trim().length < 12) {
             callback.onResponse(false, context.getString(R.string.enter_contact_person))
         } else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 12) {
@@ -183,5 +181,41 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
         } */ else {
             callback.onResponse(true, "")
         }
+    }
+
+    fun getMissingParameters(context: Context): String {
+        var missingParams = ""
+        if (ownerName.trim().isEmpty()) {
+            missingParams = "Owner's Name"
+        }
+        if (mobile.trim().isEmpty() || mobile.trim().length < 10) {
+            val param = "Owner's Mobile Number"
+            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        }
+        if (email.trim().isEmpty() || !GlobalUtils.isValidEmail(email)) {
+            val param = "Owner's Email ID"
+            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        }
+        if (panNumber.trim().isNotEmpty() || panNumber.trim().length < 10) {
+            val param = "Owner's Pan Number"
+            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        }
+        if (adharCard.trim().isNotEmpty() || adharCard.trim().length < 12) {
+            val param = "Owner's Aadhaar Number"
+            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        }
+        if (ownerPic.trim().isEmpty()) {
+            val param = "Owner's Picture"
+            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        }
+        if (idproofFront.trim().isEmpty()) {
+            val param = "Owner's ID Proof(Front)"
+            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        }
+        if (idproofBack.trim().isEmpty()) {
+            val param = "Owner's ID Proof(Back)"
+            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        }
+        return missingParams
     }
 }

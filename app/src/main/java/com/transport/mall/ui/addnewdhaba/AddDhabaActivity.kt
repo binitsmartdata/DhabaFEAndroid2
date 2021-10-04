@@ -206,6 +206,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         }
     }
 
+    override fun showOwnerScreen() {
+        binding.viewPager.currentItem = 0
+    }
+
+    override fun showDhabaScreen() {
+        binding.viewPager.currentItem = 1
+    }
+
     override fun saveAsDraft() {
 //        SharedPrefsHelper.getInstance(this).setDraftDhaba(getDhabaModelMain())
         showToastInCenter(getString(R.string.saved_as_draft))

@@ -124,7 +124,7 @@
     <string name="pin_code">ਪਿੰਨ ਕੋਡ</string>
     <string name="upload_dhaba_pictures">aਾਬੇ ਦੀ ਤਸਵੀਰ ਅਪਲੋਡ ਕਰੋ</string>
     <string name="save_as_draft">ਡਰਾਫਟ ਦੇ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
-    <string name="owner_name">ਮਾਲਕ ਦਾ ਨਾਮ</string>
+    <string name="owner_name">ਮਾਲਕ ਦਾ ਨਾਮ *</string>
     <string name="phone_number">ਫੋਨ ਨੰਬਰ</string>
     <string name="email_address">ਈਮੇਲ ਖਾਤਾ</string>
     <string name="address">ਜਾਣੋ</string>

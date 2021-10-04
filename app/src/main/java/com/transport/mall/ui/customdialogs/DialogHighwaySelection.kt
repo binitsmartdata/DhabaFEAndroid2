@@ -35,7 +35,8 @@ class DialogHighwaySelection constructor(
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-        binding.recyclerView.adapter = HighwayListAdapter(context, dataList, this@DialogHighwaySelection)
+        binding.recyclerView.adapter =
+            HighwayListAdapter(context, dataList, this@DialogHighwaySelection)
         binding.btnContinue.visibility = View.GONE
         binding.edSearch.hint = context.getString(R.string.search_highway)
         binding.isHavingData = dataList.isNotEmpty()
@@ -43,10 +44,21 @@ class DialogHighwaySelection constructor(
         binding.tvNoData.text = context.getString(R.string.no_highway_found)
         binding.btnAddNew.setOnClickListener {
             GlobalUtils.showConfirmationDialogYesNo(context,
-                context.getString(R.string.highway_confirmation) + binding.edSearch.text.toString().trim() + "?",
+                context.getString(R.string.highway_confirmation) + " " + binding.edSearch.text.toString()
+                    .trim() + "?",
                 {
                     if (it) {
-                        callBack.onResponse(HighwayModel(0, binding.edSearch.text.toString().trim(), "", "", "", "", ""))
+                        callBack.onResponse(
+                            HighwayModel(
+                                0,
+                                binding.edSearch.text.toString().trim(),
+                                "",
+                                "",
+                                "",
+                                "",
+                                ""
+                            )
+                        )
                         dismiss()
                     }
                 })
@@ -65,15 +77,19 @@ class DialogHighwaySelection constructor(
                 filterDataList.clear()
                 if (p0.toString().isNotEmpty()) {
                     for (model in dataList) {
-                        if (model.highwayNumber?.toLowerCase(Locale.getDefault())?.contains(p0.toString().toLowerCase(Locale.getDefault()))!!) {
+                        if (model.highwayNumber?.toLowerCase(Locale.getDefault())
+                                ?.contains(p0.toString().toLowerCase(Locale.getDefault()))!!
+                        ) {
                             filterDataList.add(model)
                         }
                     }
-                    binding.recyclerView.adapter = HighwayListAdapter(context, filterDataList, this@DialogHighwaySelection)
+                    binding.recyclerView.adapter =
+                        HighwayListAdapter(context, filterDataList, this@DialogHighwaySelection)
                     binding.isHavingData = filterDataList.isNotEmpty()
                 } else {
                     filterDataList.clear()
-                    binding.recyclerView.adapter = HighwayListAdapter(context, dataList, this@DialogHighwaySelection)
+                    binding.recyclerView.adapter =
+                        HighwayListAdapter(context, dataList, this@DialogHighwaySelection)
                     binding.isHavingData = dataList.isNotEmpty()
                 }
             }
