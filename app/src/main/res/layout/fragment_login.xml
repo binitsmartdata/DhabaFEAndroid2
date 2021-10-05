@@ -137,7 +137,6 @@
                         android:inputType="number"
                         android:maxLength="10"
                         android:padding="@dimen/_10sdp"
-                        android:text="@={userModel.mobile}"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
                         android:textSize="@dimen/_13ssp" />
@@ -158,6 +157,16 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@string/login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btnLoginOwner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:text="@string/continue_text"
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
 
