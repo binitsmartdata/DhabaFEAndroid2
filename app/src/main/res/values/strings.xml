@@ -368,6 +368,7 @@
     <string name="dhaba_photo">Dhaba Photo</string>
     <string name="dhaba_video">Dhaba Video</string>
     <string name="nh">NH</string>
+    <string name="sign_up">Sign Up</string>
 
     <string-array name="select_state">
         <item>Select State</item>
