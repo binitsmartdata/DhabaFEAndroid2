@@ -267,18 +267,16 @@ class DhabaModel : Serializable, BaseObservable() {
             val param = context.getString(R.string.dhaba_pincode)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
-        /*if (mobile.trim().isEmpty()) {
-            val param = context.getString(R.string.dhaba_mobile_number)
-            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
-        }*/
         if (images.trim().isEmpty()) {
             val param = context.getString(R.string.dhaba_photo)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
+/*
         if (videos.trim().isEmpty()) {
             val param = context.getString(R.string.dhaba_video)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
+*/
         return missingParams
     }
 

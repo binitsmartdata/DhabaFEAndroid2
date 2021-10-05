@@ -156,29 +156,15 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_owner_name))
         } else if (mobile.trim().isEmpty() || mobile.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_mobile))
-        } else if (email.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_email))
-        } else if (!GlobalUtils.isValidEmail(email)) {
+        } else if (email.trim().isEmpty() || !GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
-        } else if (panNumber.trim()
-                .isNotEmpty() && panNumber.trim().length < 10
-        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+        } else if (panNumber.trim().isNotEmpty() && panNumber.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
-        } else if (adharCard.trim()
-                .isNotEmpty() && adharCard.trim().length < 12
-        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+        } else if (adharCard.trim().isNotEmpty() && adharCard.trim().length < 12) {
             callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
-        } else if (alternatePhone.trim()
-                .isNotEmpty() && alternatePhone.trim().length < 10
-        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+        } else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_alt_number))
-        } /*else if (alternateContactPerson.trim().isNotEmpty() && alternateContactPerson.trim().length < 12) {
-            callback.onResponse(false, context.getString(R.string.enter_contact_person))
-        } else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 12) {
-            callback.onResponse(false, context.getString(R.string.enter_alternative_number))
-        } else if (alternateDesignation.trim().isNotEmpty() && alternateDesignation.trim().length < 12) {
-            callback.onResponse(false, context.getString(R.string.enter_alternative_contact_designation))
-        } */ else {
+        } else {
             callback.onResponse(true, "")
         }
     }
