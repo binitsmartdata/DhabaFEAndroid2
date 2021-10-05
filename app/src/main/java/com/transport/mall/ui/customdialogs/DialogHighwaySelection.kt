@@ -8,7 +8,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
-import com.transport.mall.databinding.DialogCitySelectionBinding
+import com.transport.mall.databinding.DialogHighwaySelectionBinding
 import com.transport.mall.model.HighwayModel
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
@@ -22,13 +22,13 @@ class DialogHighwaySelection constructor(
     val callBack: GenericCallBack<HighwayModel>
 ) : Dialog(context), GenericCallBack<HighwayModel> {
 
-    var binding: DialogCitySelectionBinding
+    var binding: DialogHighwaySelectionBinding
     var filterDataList: ArrayList<HighwayModel> = ArrayList()
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.dialog_city_selection, null, false
+            LayoutInflater.from(context), R.layout.dialog_highway_selection, null, false
         )
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -45,14 +45,14 @@ class DialogHighwaySelection constructor(
         binding.tvNoData.text = context.getString(R.string.no_highway_found)
         binding.btnAddNew.setOnClickListener {
             GlobalUtils.showConfirmationDialogYesNo(context,
-                context.getString(R.string.highway_confirmation) + " " + binding.edSearch.text.toString()
+                context.getString(R.string.highway_confirmation) + " NH " + binding.edSearch.text.toString()
                     .trim() + "?",
                 {
                     if (it) {
                         callBack.onResponse(
                             HighwayModel(
                                 0,
-                                binding.edSearch.text.toString().trim(),
+                                "NH " + binding.edSearch.text.toString().trim(),
                                 "",
                                 "",
                                 "",
