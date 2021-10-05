@@ -153,7 +153,7 @@ class OwnerDetailsFragment :
         binding.btnNext.setOnClickListener {
            /* if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
                 mListener?.showNextScreen()
-            } else {*/ working onthis , it should not go to next without hitting api
+            } else {*/
                 saveDetails(false)
 //            }
         }

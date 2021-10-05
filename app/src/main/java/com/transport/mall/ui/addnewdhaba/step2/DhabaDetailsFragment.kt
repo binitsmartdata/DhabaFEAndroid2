@@ -309,6 +309,7 @@ class DhabaDetailsFragment :
                 ?.observe(this@DhabaDetailsFragment, Observer {
                     DialogHighwaySelection(
                         getmContext(),
+                        true,
                         it as ArrayList<HighwayModel>,
                         GenericCallBack {
                             viewModel.dhabaModel.highway = it.highwayNumber!!

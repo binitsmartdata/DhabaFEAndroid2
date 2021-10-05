@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
-import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaListBinding
 import com.transport.mall.model.CityModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.model.FiltersModel
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
-import com.transport.mall.ui.customdialogs.DialogCitySelection
+import com.transport.mall.ui.customdialogs.Dialogfilters
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
@@ -44,6 +44,8 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
     var selectedCities = ""
 
     var mListener: CommonActivityListener? = null
+
+    var filterModel = FiltersModel()
 
     init {
     }
@@ -93,28 +95,14 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
     }
 
     private fun setupCitySelectionViews() {
-        AppDatabase.getInstance(getmContext())?.cityDao()
-            ?.getAll()?.observe(this, Observer {
-                cityList = it as ArrayList<CityModel>
-            })
-
         binding.tvCitySelection.setOnClickListener {
-            DialogCitySelection(activity as Context, cityList, GenericCallBack {
-                selectedCities = ""
-                var filteredCities: ArrayList<CityModel> = ArrayList()
-                cityList.forEach {
-                    if (it.isChecked) {
-                        filteredCities.add(it)
-                        selectedCities = if (selectedCities.isEmpty()) it.name_en!! else selectedCities + "," + it.name_en
-                    }
-                }
-                if (filteredCities.isNotEmpty() && selectedCities.isNotEmpty()) {
+            Dialogfilters(this@DhabaListFragment, filterModel, GenericCallBack {
+                filterModel = it
+                onRefresh()
+                if (filterModel.isHaveAnyFilter()) {
                     binding.viewCityIndicator.visibility = View.VISIBLE
-                    binding.edSearch.setText("")
-                    onRefresh()
                 } else {
                     binding.viewCityIndicator.visibility = View.GONE
-                    showOriginalList()
                 }
             }).show()
         }
@@ -130,8 +118,6 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 GlobalUtils.hideKeyboard(getmContext(), binding.edSearch)
                 if (binding.edSearch.text.toString().trim().isNotEmpty()) {
-                    cityList.forEach { it.isChecked = false }
-                    binding.viewCityIndicator.visibility = View.GONE
                     onRefresh()
                 }
                 return@OnEditorActionListener true
@@ -160,7 +146,7 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
             SharedPrefsHelper.getInstance(getmContext()).getUserData().accessToken,
             limit,
             page.toString(),
-            selectedCities,
+            filterModel,
             binding.edSearch.text.toString(),
             status,
             GenericCallBack {

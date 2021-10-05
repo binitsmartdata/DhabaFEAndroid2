@@ -344,6 +344,11 @@
     <string name="enter_valid_alt_number">Please enter valid alternative mobile number</string>
     <string name="enter_mobile_number_mandatory">10 Digit mobile number *</string>
     <string name="alternative_mobile_number">Alternative Mobile number</string>
+    <string name="apply">Apply</string>
+    <string name="filters">Filters</string>
+    <string name="reset">Reset</string>
+    <string name="state">State</string>
+    <string name="searchState">Search State</string>
 
     <string-array name="select_state">
         <item>Select State</item>

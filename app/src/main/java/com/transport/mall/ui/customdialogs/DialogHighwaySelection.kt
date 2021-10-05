@@ -17,6 +17,7 @@ import kotlin.collections.ArrayList
 
 class DialogHighwaySelection constructor(
     context: Context,
+    isCustomHighwayEnabled: Boolean,
     dataList: ArrayList<HighwayModel>,
     val callBack: GenericCallBack<HighwayModel>
 ) : Dialog(context), GenericCallBack<HighwayModel> {
@@ -40,7 +41,7 @@ class DialogHighwaySelection constructor(
         binding.btnContinue.visibility = View.GONE
         binding.edSearch.hint = context.getString(R.string.search_highway)
         binding.isHavingData = dataList.isNotEmpty()
-        binding.isHighwaySelection = true
+        binding.isCustomHighwayEnabled = isCustomHighwayEnabled
         binding.tvNoData.text = context.getString(R.string.no_highway_found)
         binding.btnAddNew.setOnClickListener {
             GlobalUtils.showConfirmationDialogYesNo(context,

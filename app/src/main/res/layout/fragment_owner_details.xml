@@ -248,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:maxLength="12"
+                        android:maxLength="25"
                         android:text="@={viewModel.ownerModel.alternativeContactperson}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
@@ -311,7 +311,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:maxLength="12"
+                        android:maxLength="25"
                         android:text="@={viewModel.ownerModel.alternateDesignation}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />

@@ -48,6 +48,9 @@ interface ApiService {
         @Query("page") page: String,
         @Query("status") status: String,
         @Query("searchCity") searchCity: String?,
+        @Query("searchState") searchState: String?,
+        @Query("searchHighway") searchHighway: String?,
+        @Query("searchPincode") searchPincode: String?,
         @Query("search") search: String?
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModelMain>>>>
 

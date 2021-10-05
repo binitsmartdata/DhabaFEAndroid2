@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.model.FiltersModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -38,7 +39,7 @@ class DhabaListVM(application: Application) : BaseVM(application) {
         token: String,
         limit: String,
         page: String,
-        cities: String,
+        filters: FiltersModel,
         search: String,
         status: String,
         callBack: GenericCallBack<ArrayList<DhabaModelMain>>
@@ -52,7 +53,10 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                         limit,
                         page,
                         status,
-                        GlobalUtils.getNullifEmpty(cities),
+                        GlobalUtils.getNullifEmpty(filters.cities),
+                        GlobalUtils.getNullifEmpty(filters.states),
+                        GlobalUtils.getNullifEmpty(filters.highway),
+                        GlobalUtils.getNullifEmpty(filters.pincode),
                         GlobalUtils.getNullifEmpty(search)
                     )
                 ).collect {

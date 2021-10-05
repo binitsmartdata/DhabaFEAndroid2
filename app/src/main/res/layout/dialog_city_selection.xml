@@ -16,7 +16,7 @@
             type="Boolean" />
 
         <variable
-            name="isHighwaySelection"
+            name="isCustomHighwayEnabled"
             type="Boolean" />
     </data>
 
@@ -57,7 +57,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10ssp"
-                android:visibility="@{(isHighwaySelection &amp;&amp; !edSearch.text.toString().trim().empty) ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{(isCustomHighwayEnabled &amp;&amp; !edSearch.text.toString().trim().empty) ? View.VISIBLE : View.GONE}" />
 
         </FrameLayout>
 

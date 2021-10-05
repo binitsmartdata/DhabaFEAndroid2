@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/grey_stroke"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatEditText
@@ -56,27 +57,22 @@
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
                     android:id="@+id/tvCitySelection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:drawableRight="@drawable/ic_spinner_dropdown"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:entries="@array/cities_list_dummy"
-                    android:gravity="center"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_filters"
                     android:text="@string/city" />
 
                 <View
                     android:id="@+id/viewCityIndicator"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_2sdp"
-                    android:visibility="gone"
                     android:layout_gravity="bottom"
-                    android:background="@color/colorPrimary" />
-
-
+                    android:background="@color/colorPrimary"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
 
@@ -113,8 +109,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/_10sdp"
-                        android:gravity="center"
                         android:fontFamily="@font/opensans_regular"
+                        android:gravity="center"
                         android:text="@string/no_dhaba_added"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16ssp" />
