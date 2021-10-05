@@ -369,6 +369,13 @@
     <string name="dhaba_video">Dhaba Video</string>
     <string name="nh">NH</string>
     <string name="sign_up">Sign Up</string>
+    <string name="login_as_field_executive">Login as Field Executive</string>
+    <string name="login_as_dhaba_owner">Login as Dhaba Owner</string>
+    <string name="verify">Verify</string>
+    <string name="enter_otp_sent_to">Enter OTP sent to</string>
+    <string name="change_phone_number">Change Phone Number</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="enter_valid_phone_number">Please enter a valid phone number</string>
 
     <string-array name="select_state">
         <item>Select State</item>

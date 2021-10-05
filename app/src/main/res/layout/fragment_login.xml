@@ -7,6 +7,10 @@
 
         <import type="com.transport.mall.R" />
 
+        <variable
+            name="context"
+            type="android.content.Context" />
+
         <import type="android.view.View" />
 
         <variable
@@ -19,170 +23,191 @@
 
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/parent"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:animateLayoutChanges="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_15sdp"
-            tools:context=".ui.main.MainActivity">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginVertical="20dp"
-                android:src="@drawable/ic_launcher" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/login"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_18ssp" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
-                android:id="@+id/llExecutiveLogin"
+                android:id="@+id/parent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/email_til"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
-                    android:hint="@string/email">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:text="@={vm.emailObservable}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password_til"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:hint="@string/password">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edPwd"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:text="@={vm.passwordObservable}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llOwnerLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:animateLayoutChanges="true"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_15sdp">
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                tools:context=".ui.main.MainActivity">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginVertical="20dp"
+                    android:src="@drawable/ic_logo_splash" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="@string/login"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp" />
 
                 <LinearLayout
-                    android:id="@+id/editlayout"
+                    android:id="@+id/llExecutiveLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_stroke"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edEmail">
+                    android:orientation="vertical"
+                    android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}">
 
-                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                        android:id="@+id/ccpCountryCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        app:ccp_defaultCode="91"
-                        app:ccp_textSize="@dimen/_12ssp" />
-
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edPhoneNumber"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/email_til"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_4sdp"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/_10_digit_mobile_number"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:padding="@dimen/_10sdp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
-                        android:textSize="@dimen/_13ssp" />
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:hint="@string/email">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:text="@={vm.emailObservable}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/password_til"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:hint="@string/password">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edPwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:text="@={vm.passwordObservable}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/llOwnerLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_15sdp">
+
+                    <LinearLayout
+                        android:id="@+id/editlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/grey_stroke"
+                        android:orientation="horizontal"
+                        android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edEmail">
+
+                        <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                            android:id="@+id/ccpCountryCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            app:ccp_defaultCode="91"
+                            app:ccp_textSize="@dimen/_12ssp" />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:background="@color/grey" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/_10_digit_mobile_number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="@dimen/_13ssp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/primary_color_btn_selector"
+                        android:text="@string/login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}" />
+
+                    <Button
+                        android:id="@+id/btnLoginOwner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/primary_color_btn_selector"
+                        android:text="@string/continue_text"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
+
+                    <Button
+                        android:id="@+id/btnSignup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/default_btn_selector"
+                        android:text="@string/sign_up"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorPrimary"
+                        android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
             </LinearLayout>
+        </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:orientation="vertical">
+        <Button
+            android:id="@+id/btnLoginToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/default_btn_selector"
+            android:text="@{isOwnerLogin ? context.getString(R.string.login_as_field_executive) : context.getString(R.string.login_as_dhaba_owner)}"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
 
-                <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/primary_color_btn_selector"
-                    android:text="@string/login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/btnLoginOwner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/primary_color_btn_selector"
-                    android:text="@string/continue_text"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/btnSignup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:text="@string/sign_up"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary"
-                    android:visibility="@{isOwnerLogin?View.VISIBLE:View.GONE}" />
-
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
+    </LinearLayout>
 </layout>

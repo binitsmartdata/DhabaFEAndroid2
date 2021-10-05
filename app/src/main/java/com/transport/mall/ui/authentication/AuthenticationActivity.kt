@@ -4,6 +4,7 @@ import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAuthenticationBinding
 import com.transport.mall.ui.authentication.login.LoginFragment
+import com.transport.mall.ui.authentication.login.SignUpFragment
 import com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionFragment
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM

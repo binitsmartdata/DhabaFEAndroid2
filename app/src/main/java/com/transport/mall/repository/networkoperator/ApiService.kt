@@ -21,6 +21,15 @@ interface ApiService {
         @Field("password") deviceId: String
     ): Response<ApiResponseModel<UserModel>>
 
+    @FormUrlEncoded
+    @POST("user/signup")
+    suspend fun signup(
+        @Field("name") name: String,
+        @Field("mobile") mobile: String,
+        @Field("mobilePrefix") mobilePrefix: String,
+        @Field("email") email: String,
+    ): Response<ApiResponseModel<UserModel>>
+
     @GET("city/getAllCities")
     suspend fun getAllCities(
         @Header("Authorization") token: String,

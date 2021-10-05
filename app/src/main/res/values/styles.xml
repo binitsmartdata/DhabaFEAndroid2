@@ -24,7 +24,7 @@
     </style>
 
     <!--Custom Themes ...-->
-    <style name="AppMaterialTheme" parent="AppMaterialTheme.Base"/>
+    <style name="AppMaterialTheme" parent="AppMaterialTheme.Base" />
 
     <style name="AppMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowNoTitle">true</item>
@@ -67,7 +67,8 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent
+        </item>
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
     </style>
 
@@ -91,6 +92,11 @@
 
     <style name="Transparenttheme" parent="AppTheme">
         <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="otpTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
     </style>
 
 </resources>

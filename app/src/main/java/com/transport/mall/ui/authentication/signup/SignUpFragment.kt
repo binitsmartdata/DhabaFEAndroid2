@@ -3,9 +3,9 @@ package com.transport.mall.ui.authentication.login
 import android.app.Activity
 import androidx.lifecycle.Observer
 import com.transport.mall.R
-import com.transport.mall.databinding.FragmentLoginBinding
+import com.transport.mall.databinding.FragmentSignUpBinding
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.ui.authentication.otpVerification.OtpVerificationFragment
+import com.transport.mall.ui.authentication.signup.SignUpVM
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
@@ -13,13 +13,13 @@ import com.transport.mall.utils.common.GlobalUtils
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
+class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpVM>() {
     override val layoutId: Int
-        get() = R.layout.fragment_login
-    override var viewModel: LoginVM
-        get() = setUpVM(this, LoginVM(baseActivity.application))
+        get() = R.layout.fragment_sign_up
+    override var viewModel: SignUpVM
+        get() = setUpVM(this, SignUpVM(baseActivity.application))
         set(value) {}
-    override var binding: FragmentLoginBinding
+    override var binding: FragmentSignUpBinding
         get() = setUpBinding()
         set(value) {}
 
@@ -27,7 +27,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
         binding.lifecycleOwner = this
         binding.context = getmContext()
         binding.vm = viewModel
-        binding.isOwnerLogin = true
 
         viewModel.observerError()?.observe(this, Observer {
             showSnackBar(binding.root, it.toString(), true)
@@ -60,7 +59,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
     }
 
     override fun initListeners() {
-        binding.btnLogin.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             viewModel.doLoginProcess(GenericCallBackTwoParams { output, output2 ->
                 when (output) {
                     ApiResult.Status.LOADING -> {
@@ -78,26 +77,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
             })
         }
 
-        binding.btnLoginToggle.setOnClickListener {
-            binding.isOwnerLogin = !binding.isOwnerLogin!!
+        binding.ccpCountryCode.setCountryForPhoneCode(91)
+        binding.ccpCountryCode.setOnCountryChangeListener {
+            viewModel.mobilePrefixObserver.set(binding.ccpCountryCode.selectedCountryCode)
         }
 
-        binding.btnLoginOwner.setOnClickListener {
-            openFragmentReplaceNoAnim(
-                R.id.authContainer,
-                OtpVerificationFragment(),
-                "",
-                true
-            )
-        }
-
-        binding.btnSignup.setOnClickListener {
-            openFragmentReplaceNoAnim(
-                R.id.authContainer,
-                SignUpFragment(),
-                "",
-                true
-            )
+        binding.btnLogin.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStack()
         }
     }
 }
