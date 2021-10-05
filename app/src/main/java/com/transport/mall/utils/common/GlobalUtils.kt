@@ -197,11 +197,11 @@ object GlobalUtils {
     }
 
     @JvmStatic
-    fun showInfoDialog(context: Context, title: String?, message: String?) {
+    fun showInfoDialog(context: Context, title: String?, message: String?, callBack: GenericCallBack<Boolean?>) {
         val dialog = AlertDialog.Builder(context)
         dialog.setTitle(title)
         dialog.setMessage(message)
-        dialog.setPositiveButton(context.getString(R.string.ok)) { _, _ -> }
+        dialog.setPositiveButton(context.getString(R.string.ok)) { _, _ -> callBack.onResponse(true) }
         alertDialog = dialog.show()
     }
 

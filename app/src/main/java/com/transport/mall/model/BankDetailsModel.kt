@@ -15,6 +15,11 @@ import java.io.Serializable
 class BankDetailsModel : Serializable, BaseObservable() {
     @SerializedName(value = "_id")
     var _id: String = ""
+        @Bindable get() = field
+        set(_id) {
+            field = _id
+            notifyPropertyChanged(BR._id)
+        }
 
     @SerializedName(value = "user_id")
     var user_id: String = ""

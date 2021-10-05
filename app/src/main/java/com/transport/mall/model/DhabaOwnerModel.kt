@@ -186,35 +186,35 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
     fun getMissingParameters(context: Context): String {
         var missingParams = ""
         if (ownerName.trim().isEmpty()) {
-            missingParams = "Owner's Name"
+            missingParams = context.getString(R.string.owner_s_name)
         }
         if (mobile.trim().isEmpty() || mobile.trim().length < 10) {
-            val param = "Owner's Mobile Number"
-            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+            val param = context.getString(R.string.owner_mobile_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
         if (email.trim().isEmpty() || !GlobalUtils.isValidEmail(email)) {
-            val param = "Owner's Email ID"
-            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+            val param = context.getString(R.string.owner_email_id)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
-        if (panNumber.trim().isNotEmpty() || panNumber.trim().length < 10) {
-            val param = "Owner's Pan Number"
-            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
+            val param = context.getString(R.string.owner_pan_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
-        if (adharCard.trim().isNotEmpty() || adharCard.trim().length < 12) {
-            val param = "Owner's Aadhaar Number"
-            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+        if (adharCard.trim().isEmpty() || adharCard.trim().length < 12) {
+            val param = context.getString(R.string.owner_aadhaar_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
         if (ownerPic.trim().isEmpty()) {
-            val param = "Owner's Picture"
-            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+            val param = context.getString(R.string.owner_s_picture)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
         if (idproofFront.trim().isEmpty()) {
-            val param = "Owner's ID Proof(Front)"
-            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+            val param = context.getString(R.string.owner_s_id_proof_front)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
         if (idproofBack.trim().isEmpty()) {
-            val param = "Owner's ID Proof(Back)"
-            missingParams = if (missingParams.isEmpty()) param else missingParams + ", " + param
+            val param = context.getString(R.string.owner_s_id_proof_back)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
         return missingParams
     }

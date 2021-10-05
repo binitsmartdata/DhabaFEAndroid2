@@ -234,6 +234,55 @@ class DhabaModel : Serializable, BaseObservable() {
         }
     }
 
+    fun getMissingParameters(context: Context): String {
+        var missingParams = ""
+        if (name.trim().isEmpty()) {
+            missingParams = context.getString(R.string._dhaba_name)
+        }
+        if (address.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_address)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (landmark.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_address_landmark)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (area.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_address_area)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (highway.trim().isEmpty()) {
+            val param = context.getString(R.string.highway)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (state.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_state)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (city.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_city)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (pincode.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_pincode)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        /*if (mobile.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_mobile_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }*/
+        if (images.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_photo)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (videos.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_video)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        return missingParams
+    }
+
+
     companion object {
         public val STATUS_PENDING = "Pending"
         public val STATUS_INPROGRESS = "InProgess"

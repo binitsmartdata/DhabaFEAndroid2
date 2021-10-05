@@ -234,7 +234,7 @@ class OwnerDetailsFragment :
             getmContext(),
             GenericCallBackTwoParams { hasEverything, message ->
                 if (hasEverything) {
-                    if (mListener?.isUpdate()!! && viewModel.ownerModel._id.isNotEmpty()) {
+                    if (viewModel.ownerModel._id.isNotEmpty()) {
                         viewModel.updateOwner(GenericCallBack {
                             handleData(it, isDraft)
                         })

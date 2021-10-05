@@ -27,7 +27,6 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.GlobalUtils.getAddressUsingLatLong
 import com.transport.mall.utils.common.GlobalUtils.getCurrentLocation
-import com.transport.mall.utils.common.GlobalUtils.refreshLocation
 import com.transport.mall.utils.common.GlobalUtils.showConfirmationDialogYesNo
 import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
@@ -192,7 +191,7 @@ class DhabaDetailsFragment :
     }
 
     private fun proceed(isDraft: Boolean) {
-        if (mListener?.isUpdate()!!) {
+        if (viewModel.dhabaModel._id.isNotEmpty()) {
             viewModel.updateDhaba(isDraft,
                 GenericCallBack { response ->
                     handleResponse(response, isDraft)

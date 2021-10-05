@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Transport Mall</string>
+    <string name="appName">Transport Mall Partner</string>
     <!--    <string name="googleMapsApiKey" translatable="false">AIzaSyAYJCariN6djEQQDnt6hy482EeCV4sRVYQ</string>-->
     <string name="googleMapsApiKey" translatable="false">AIzaSyDr5x9S74CXeXmex4fwVl24ChLOMIRyt5o</string>
     <string name="email">Email Address</string>
@@ -349,6 +349,24 @@
     <string name="reset">Reset</string>
     <string name="state">State</string>
     <string name="searchState">Search State</string>
+    <string name="details_missing_validation">Please fill following details before submitting</string>
+    <string name="owner_s_name">Owner\'s Name</string>
+    <string name="owner_mobile_number">Owner\'s Mobile Number</string>
+    <string name="owner_email_id">Owner\'s Email ID</string>
+    <string name="owner_pan_number">Owner\'s Pan Number</string>
+    <string name="owner_aadhaar_number">Owner\'s Aadhaar Number</string>
+    <string name="owner_s_picture">Owner\'s Picture</string>
+    <string name="owner_s_id_proof_front">Owner\'s ID Proof(Front)</string>
+    <string name="owner_s_id_proof_back">Owner\'s ID Proof(Back)</string>
+    <string name="dhaba_address_landmark">Dhaba Address Landmark</string>
+    <string name="dhaba_address_area">Dhaba Address Area</string>
+    <string name="highway">Highway</string>
+    <string name="dhaba_state">Dhaba\'s State</string>
+    <string name="dhaba_city">Dhaba\'s City</string>
+    <string name="dhaba_pincode">Dhaba\'s PinCode</string>
+    <string name="dhaba_mobile_number">Dhaba Mobile Number</string>
+    <string name="dhaba_photo">Dhaba Photo</string>
+    <string name="dhaba_video">Dhaba Video</string>
 
     <string-array name="select_state">
         <item>Select State</item>
