@@ -71,7 +71,8 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         //RECEIVING DATA IN CASE OF UPDATING DHABA
         mIsUpdate = intent.hasExtra("data")
         binding.isUpdate = mIsUpdate
-        binding.viewPager.setPagingEnabled(mIsUpdate)
+//        binding.viewPager.setPagingEnabled(mIsUpdate)
+        binding.viewPager.setPagingEnabled(true)
         if (mIsUpdate) {
             viewModel.mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
         } else {
@@ -203,6 +204,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         if (binding.viewPager.currentItem < 3) {
             binding.viewPager.currentItem += 1
         }
+    }
+
+    override fun showOwnerScreen() {
+        binding.viewPager.currentItem = 0
+    }
+
+    override fun showDhabaScreen() {
+        binding.viewPager.currentItem = 1
     }
 
     override fun saveAsDraft() {

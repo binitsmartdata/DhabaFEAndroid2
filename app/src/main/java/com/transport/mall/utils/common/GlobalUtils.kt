@@ -152,11 +152,32 @@ object GlobalUtils {
     fun showConfirmationDialogYesNo(
         context: Context,
         message: String?,
-        callBack: GenericCallBack<Boolean?>
+        callBack: GenericCallBack<Boolean>
     ) {
         val dialog = AlertDialog.Builder(context)
         dialog.setCancelable(false)
-        dialog.setTitle(message)
+        dialog.setTitle(context.getString(R.string.please_confirm))
+        dialog.setMessage(message)
+        dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
+        dialog.setNegativeButton(context.getString(R.string.no)) { _, _ ->
+            callBack.onResponse(
+                false
+            )
+        }
+        alertDialog = dialog.show()
+    }
+
+    @JvmStatic
+    fun showConfirmationDialogYesNo(
+        context: Context,
+        title: String?,
+        message: String?,
+        callBack: GenericCallBack<Boolean>
+    ) {
+        val dialog = AlertDialog.Builder(context)
+        dialog.setCancelable(false)
+        dialog.setTitle(title)
+        dialog.setMessage(message)
         dialog.setPositiveButton(context.getString(R.string.yes)) { _, _ -> callBack.onResponse(true) }
         dialog.setNegativeButton(context.getString(R.string.no)) { _, _ ->
             callBack.onResponse(
@@ -176,11 +197,11 @@ object GlobalUtils {
     }
 
     @JvmStatic
-    fun showInfoDialog(context: Context, title: String?, message: String?) {
+    fun showInfoDialog(context: Context, title: String?, message: String?, callBack: GenericCallBack<Boolean?>) {
         val dialog = AlertDialog.Builder(context)
         dialog.setTitle(title)
         dialog.setMessage(message)
-        dialog.setPositiveButton(context.getString(R.string.ok)) { _, _ -> }
+        dialog.setPositiveButton(context.getString(R.string.ok)) { _, _ -> callBack.onResponse(true) }
         alertDialog = dialog.show()
     }
 
@@ -609,6 +630,10 @@ object GlobalUtils {
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         val mLocationCallback: LocationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
+                if (locationResult.lastLocation != null) {
+                    LocationServices.getFusedLocationProviderClient(context)
+                        .removeLocationUpdates(this)
+                }
             }
         }
         LocationServices.getFusedLocationProviderClient(context)

@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAmenitiesBinding
-import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseFragment
@@ -55,7 +54,7 @@ class AmenitiesFragment :
         binding.btnSaveDraft.setOnClickListener {
             mListener?.getDhabaModelMain()?.dhabaModel?.let {
                 // UPDATING DHABA STATUS TO ISDRAFT
-                viewModel.updateDhabaStatus(true, it, progressObserver,
+                viewModel.updateDhabaStatus(true, it, null, progressObserver,
                     GenericCallBack {
                         if (it.data != null) {
                             mListener?.getDhabaModelMain()?.dhabaModel = it.data
@@ -72,61 +71,89 @@ class AmenitiesFragment :
         }
 
         binding.cardFood.setOnClickListener {
-            AmenitiesActivity.start(
-                activity as Context,
-                AmenitiesActivity.FOOD,
-                mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!,
-                mListener?.viewOnly()!!
-            )
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context,
+                    AmenitiesActivity.FOOD,
+                    mListener?.getDhabaModelMain()!!,
+                    mListener?.isUpdate()!!,
+                    mListener?.viewOnly()!!
+                )
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
         }
         binding.cardParking.setOnClickListener {
-            AmenitiesActivity.start(
-                activity as Context, AmenitiesActivity.PARKING,
-                mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!,
-                mListener?.viewOnly()!!
-            )
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.PARKING,
+                    mListener?.getDhabaModelMain()!!,
+                    mListener?.isUpdate()!!,
+                    mListener?.viewOnly()!!
+                )
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
         }
         binding.cardSleeping.setOnClickListener {
-            AmenitiesActivity.start(
-                activity as Context, AmenitiesActivity.SLEEPING,
-                mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!,
-                mListener?.viewOnly()!!
-            )
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.SLEEPING,
+                    mListener?.getDhabaModelMain()!!,
+                    mListener?.isUpdate()!!,
+                    mListener?.viewOnly()!!
+                )
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
         }
         binding.cardWashroom.setOnClickListener {
-            AmenitiesActivity.start(
-                activity as Context, AmenitiesActivity.WASHROOM,
-                mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!,
-                mListener?.viewOnly()!!
-            )
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.WASHROOM,
+                    mListener?.getDhabaModelMain()!!,
+                    mListener?.isUpdate()!!,
+                    mListener?.viewOnly()!!
+                )
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
         }
         binding.cardSecurity.setOnClickListener {
-            AmenitiesActivity.start(
-                activity as Context, AmenitiesActivity.SECURITY,
-                mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!,
-                mListener?.viewOnly()!!
-            )
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.SECURITY,
+                    mListener?.getDhabaModelMain()!!,
+                    mListener?.isUpdate()!!,
+                    mListener?.viewOnly()!!
+                )
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
         }
         binding.cardOther.setOnClickListener {
-            AmenitiesActivity.start(
-                activity as Context, AmenitiesActivity.OTHER,
-                mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!,
-                mListener?.viewOnly()!!
-            )
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.OTHER,
+                    mListener?.getDhabaModelMain()!!,
+                    mListener?.isUpdate()!!,
+                    mListener?.viewOnly()!!
+                )
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
         }
         binding.cardLights.setOnClickListener {
-            AmenitiesActivity.start(
-                activity as Context, AmenitiesActivity.LIGHT,
-                mListener?.getDhabaModelMain()!!,
-                mListener?.isUpdate()!!,
-                mListener?.viewOnly()!!
-            )
+            mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                AmenitiesActivity.start(
+                    activity as Context, AmenitiesActivity.LIGHT,
+                    mListener?.getDhabaModelMain()!!,
+                    mListener?.isUpdate()!!,
+                    mListener?.viewOnly()!!
+                )
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
         }
     }
 

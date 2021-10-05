@@ -61,6 +61,15 @@ class OwnerDetailsFragment :
         mListener?.getDhabaModelMain()?.ownerModel?.let {
             viewModel.ownerModel = it
 
+            it.alternativeMobilePrefix?.let {
+                if (it.isNotEmpty()) {
+                    try {
+                        binding.ccpCountryCodeAlt.setCountryForPhoneCode(it.toInt())
+                    } catch (e: Exception) {
+                        binding.ccpCountryCodeAlt.setCountryForPhoneCode(91)
+                    }
+                }
+            }
             it.mobilePrefix?.let {
                 if (it.isNotEmpty()) {
                     try {
@@ -87,6 +96,9 @@ class OwnerDetailsFragment :
                     xloadImages(binding.ivBackId, it, R.drawable.ic_transparent_placeholder)
                 }
             }
+        } ?: kotlin.run {
+            viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
+            viewModel.ownerModel.alternativeMobilePrefix = binding.ccpCountryCodeAlt.selectedCountryCode
         }
     }
 
@@ -94,6 +106,10 @@ class OwnerDetailsFragment :
         GlobalUtils.refreshLocation(activity as Context)
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
+        }
+        binding.ccpCountryCodeAlt.setOnCountryChangeListener {
+            viewModel.ownerModel.alternativeMobilePrefix =
+                binding.ccpCountryCodeAlt.selectedCountryCode
         }
 
         setupLocationViews()
@@ -135,11 +151,11 @@ class OwnerDetailsFragment :
             launchImagePicker()
         }
         binding.btnNext.setOnClickListener {
-            if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
+           /* if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
                 mListener?.showNextScreen()
-            } else {
+            } else {*/
                 saveDetails(false)
-            }
+//            }
         }
         binding.btnSaveDraft.setOnClickListener {
             if (mListener?.getDhabaModelMain()?.ownerModel != null) {
@@ -156,7 +172,11 @@ class OwnerDetailsFragment :
     private fun setupLocationViews() {
         binding.tvMapPicker.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
-                GlobalUtils.selectLocationOnMap(this, viewModel.ownerModel.latitude, viewModel.ownerModel.longitude)
+                GlobalUtils.selectLocationOnMap(
+                    this,
+                    viewModel.ownerModel.latitude,
+                    viewModel.ownerModel.longitude
+                )
             } else {
                 GlobalUtils.showConfirmationDialogYesNo(
                     getmContext(),
@@ -165,7 +185,11 @@ class OwnerDetailsFragment :
                         if (it!!) {
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         } else {
-                            GlobalUtils.selectLocationOnMap(this, viewModel.ownerModel.latitude, viewModel.ownerModel.longitude)
+                            GlobalUtils.selectLocationOnMap(
+                                this,
+                                viewModel.ownerModel.latitude,
+                                viewModel.ownerModel.longitude
+                            )
                         }
                     })
             }
@@ -206,26 +230,30 @@ class OwnerDetailsFragment :
 
     private fun saveDetails(isDraft: Boolean) {
 //        viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.textView_selectedCountry.text.toString()
-        viewModel.ownerModel.hasEverything(getmContext(), GenericCallBackTwoParams { hasEverything, message ->
-            if (hasEverything) {
-                if (mListener?.isUpdate()!! && viewModel.ownerModel._id.isNotEmpty()) {
-                    viewModel.updateOwner(GenericCallBack {
-                        handleData(it, isDraft)
-                    })
+        viewModel.ownerModel.hasEverything(
+            getmContext(),
+            GenericCallBackTwoParams { hasEverything, message ->
+                if (hasEverything) {
+                    if (viewModel.ownerModel._id.isNotEmpty()) {
+                        viewModel.updateOwner(GenericCallBack {
+                            handleData(it, isDraft)
+                        })
+                    } else {
+                        viewModel.addDhabaOwner(GenericCallBack {
+                            handleData(it, isDraft)
+                        })
+                    }
                 } else {
-                    viewModel.addDhabaOwner(GenericCallBack {
-                        handleData(it, isDraft)
-                    })
+                    showToastInCenter(message)
                 }
-            } else {
-                showToastInCenter(message)
-            }
-        })
+            })
     }
 
     private fun handleData(it: ApiResponseModel<DhabaOwnerModel>, isDraft: Boolean) {
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.ownerModel = it.data
+            viewModel.ownerModel = it.data!!
+
             if (isDraft) {
                 mListener?.getDhabaModelMain()?.draftedAtScreen =
                     DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()
@@ -266,9 +294,14 @@ class OwnerDetailsFragment :
                     viewModel.ownerModel.longitude = it.longitude.toString()
                 }
             } else if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE) {
-                viewModel.ownerModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
-                viewModel.ownerModel.latitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble()).toString()
-                viewModel.ownerModel.longitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble()).toString()
+                viewModel.ownerModel.address =
+                    data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
+                viewModel.ownerModel.latitude =
+                    data.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble())
+                        .toString()
+                viewModel.ownerModel.longitude =
+                    data.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble())
+                        .toString()
             } else {
                 val uri: Uri = data?.data!!
                 when (INTENT_TYPE) {

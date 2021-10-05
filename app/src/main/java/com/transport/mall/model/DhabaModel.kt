@@ -7,6 +7,7 @@ import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.SerializedName
 import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.common.GlobalUtils.getNonNullString
 import java.io.Serializable
 
 /**
@@ -209,8 +210,13 @@ class DhabaModel : Serializable, BaseObservable() {
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_dhaba_name))
+        } else if ((latitude.trim().isEmpty() || longitude.trim().isEmpty())
+            || (getNonNullString(latitude.trim(), "0").toDouble() == 0.toDouble()
+                    || getNonNullString(longitude.trim(), "0").trim().toDouble() == 0.toDouble())
+        ) {
+            callback.onResponse(false, context.getString(R.string.choose_dhaba_location))
         } else if (address.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.please_choose_address))
+            callback.onResponse(false, context.getString(R.string.enter_address))
         } else if (landmark.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_landmark))
         } else if (area.trim().isEmpty()) {
@@ -228,10 +234,59 @@ class DhabaModel : Serializable, BaseObservable() {
         }
     }
 
+    fun getMissingParameters(context: Context): String {
+        var missingParams = ""
+        if (name.trim().isEmpty()) {
+            missingParams = context.getString(R.string._dhaba_name)
+        }
+        if (address.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_address)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (landmark.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_address_landmark)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (area.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_address_area)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (highway.trim().isEmpty()) {
+            val param = context.getString(R.string.highway)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (state.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_state)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (city.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_city)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (pincode.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_pincode)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        /*if (mobile.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_mobile_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }*/
+        if (images.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_photo)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (videos.trim().isEmpty()) {
+            val param = context.getString(R.string.dhaba_video)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        return missingParams
+    }
+
+
     companion object {
-        val STATUS_PENDING = "Pending"
-        val STATUS_INPROGRESS = "InProgess"
-        val STATUS_ACTIVE = "Active"
-        val STATUS_INACTIVE = "Inactive"
+        public val STATUS_PENDING = "Pending"
+        public val STATUS_INPROGRESS = "InProgess"
+        public val STATUS_ACTIVE = "Active"
+        public val STATUS_INACTIVE = "Inactive"
     }
 }

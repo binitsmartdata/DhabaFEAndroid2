@@ -12,21 +12,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.databinding.DialogCitySelectionBinding
-import com.transport.mall.model.CityModel
+import com.transport.mall.model.StateModel
 import com.transport.mall.utils.common.GenericCallBack
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class DialogCitySelection constructor(
+class DialogStateSelection constructor(
     context: Context,
-    dataList: ArrayList<CityModel>,
-    selectedCities: String,
-    callBack: GenericCallBack<ArrayList<CityModel>>
+    dataList: ArrayList<StateModel>,
+    selectecStates: String,
+    callBack: GenericCallBack<ArrayList<StateModel>>
 ) : Dialog(context) {
 
     var binding: DialogCitySelectionBinding
-    var filterDataList: ArrayList<CityModel> = ArrayList()
+    var filterDataList: ArrayList<StateModel> = ArrayList()
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -37,14 +37,15 @@ class DialogCitySelection constructor(
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window!!.setGravity(Gravity.BOTTOM)
         binding.isHavingData = dataList.isNotEmpty()
+        binding.edSearch.setHint(context.getString(R.string.searchState))
         setCancelable(false)
 
         //CHECK ALREADY SELECTED DATA
-        val items: List<String> = selectedCities.split(",").map { it.trim() }
+        val items: List<String> = selectecStates.split(",").map { it.trim() }
         for (item in items) {
-            for (cityModel in dataList) {
-                if (cityModel.name_en?.trim().equals(item.trim(), true)!!) {
-                    cityModel.isChecked = true
+            for (stateModel in dataList) {
+                if (stateModel.name_en?.trim().equals(item.trim(), true)!!) {
+                    stateModel.isChecked = true
                     break
                 }
             }
@@ -52,9 +53,9 @@ class DialogCitySelection constructor(
 
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerView.adapter = CityListAdapter(context, dataList)
+        binding.recyclerView.adapter = StatesListAdapter(context, dataList)
         binding.btnContinue.setOnClickListener {
-            val selectedCities = ArrayList<CityModel>()
+            val selectedCities = ArrayList<StateModel>()
             for (model in if (filterDataList.isNotEmpty()) filterDataList else dataList) {
                 if (model.isChecked) {
                     selectedCities.add(model)
@@ -82,12 +83,12 @@ class DialogCitySelection constructor(
                             filterDataList.add(model)
                         }
                     }
-                    binding.recyclerView.adapter = CityListAdapter(context, filterDataList)
+                    binding.recyclerView.adapter = StatesListAdapter(context, filterDataList)
 
                     binding.isHavingData = filterDataList.isNotEmpty()
                 } else {
                     filterDataList.clear()
-                    binding.recyclerView.adapter = CityListAdapter(context, dataList)
+                    binding.recyclerView.adapter = StatesListAdapter(context, dataList)
                     binding.isHavingData = dataList.isNotEmpty()
                 }
             }

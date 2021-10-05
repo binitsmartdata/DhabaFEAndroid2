@@ -1,21 +1,24 @@
 package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import android.widget.RadioButton
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOtherAmenitiesBinding
 import com.transport.mall.model.OtherAmenitiesModel
+import com.transport.mall.model.PhotosModel
+import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
-import com.transport.mall.utils.xloadImages
+import com.transport.mall.utils.common.GlobalUtils
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -30,7 +33,9 @@ class OtherAmenitiesFragment :
     override var binding: FragmentOtherAmenitiesBinding
         get() = setUpBinding()
         set(value) {}
+
     var mListener: AddDhabaListener? = null
+    var imageList = ArrayList<PhotosModel>()
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -42,6 +47,7 @@ class OtherAmenitiesFragment :
             viewModel.model.dhaba_id = it._id
         }
 
+        refreshGalleryImages()
         setupLicensePhotoViews()
         //SETTING EXISTING DATA ON SCREEN
         mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {
@@ -55,44 +61,104 @@ class OtherAmenitiesFragment :
 
         it.mechanicShop.let {
             when (it) {
-                1 -> binding.rbMerch2771.isChecked = true
-                2 -> binding.rbMerch2772.isChecked = true
-                3 -> binding.rbMerch2773.isChecked = true
+                0 -> binding.rbMechNo.isChecked = true
+                1 -> {
+                    binding.rbMerch2771.isChecked = true
+                    binding.rbMechYes.isChecked = true
+                }
+                2 -> {
+                    binding.rbMerch2772.isChecked = true
+                    binding.rbMechYes.isChecked = true
+                }
+                3 -> {
+                    binding.rbMerch2773.isChecked = true
+                    binding.rbMechYes.isChecked = true
+                }
             }
         }
         it.mechanicShopDay.let {
             when (it) {
-                1 -> binding.rbMechDay1.isChecked = true
-                2 -> binding.rbMechDay2.isChecked = true
-                3 -> binding.rbMechDay3.isChecked = true
+                0 -> binding.rbMechDayNo.isChecked = true
+                1 -> {
+                    binding.rbMechDay1.isChecked = true
+                    binding.rbMechDayYes.isChecked = true
+                }
+                2 -> {
+                    binding.rbMechDay2.isChecked = true
+                    binding.rbMechDayYes.isChecked = true
+                }
+                3 -> {
+                    binding.rbMechDay3.isChecked = true
+                    binding.rbMechDayYes.isChecked = true
+                }
             }
         }
         it.punctureshop.let {
             when (it) {
-                1 -> binding.rbPuncture2471.isChecked = true
-                2 -> binding.rbPuncture2472.isChecked = true
-                3 -> binding.rbPuncture2473.isChecked = true
+                0 -> binding.rbPuncture247No.isChecked = true
+                1 -> {
+                    binding.rbPuncture2471.isChecked = true
+                    binding.rbPuncture247Yes.isChecked = true
+                }
+                2 -> {
+                    binding.rbPuncture2472.isChecked = true
+                    binding.rbPuncture247Yes.isChecked = true
+                }
+                3 -> {
+                    binding.rbPuncture2473.isChecked = true
+                    binding.rbPuncture247Yes.isChecked = true
+                }
             }
         }
         it.punctureshopDay.let {
             when (it) {
-                1 -> binding.rbPunctureDay1.isChecked = true
-                2 -> binding.rbPunctureDay2.isChecked = true
-                3 -> binding.rbPunctureDay3.isChecked = true
+                0 -> binding.rPunctureDayNo.isChecked = true
+                1 -> {
+                    binding.rbPunctureDay1.isChecked = true
+                    binding.rbPunctureDayYes.isChecked = true
+                }
+                2 -> {
+                    binding.rbPunctureDay2.isChecked = true
+                    binding.rbPunctureDayYes.isChecked = true
+                }
+                3 -> {
+                    binding.rbPunctureDay3.isChecked = true
+                    binding.rbPunctureDayYes.isChecked = true
+                }
             }
         }
         it.dailyutilityshop.let {
             when (it) {
-                1 -> binding.rbUtility2471.isChecked = true
-                2 -> binding.rbUtility2472.isChecked = true
-                3 -> binding.rbUtility2473.isChecked = true
+                0 -> binding.rbUtilityNo.isChecked = true
+                1 -> {
+                    binding.rbUtility2471.isChecked = true
+                    binding.rbUtilityYes.isChecked = true
+                }
+                2 -> {
+                    binding.rbUtility2472.isChecked = true
+                    binding.rbUtilityYes.isChecked = true
+                }
+                3 -> {
+                    binding.rbUtility2473.isChecked = true
+                    binding.rbUtilityYes.isChecked = true
+                }
             }
         }
         it.dailyutilityshopDay.let {
             when (it) {
-                1 -> binding.rbUtilityDay1.isChecked = true
-                2 -> binding.rbUtilityDay2.isChecked = true
-                3 -> binding.rbUtilityDay3.isChecked = true
+                0 -> binding.rbUtilityDayNo.isChecked = true
+                1 -> {
+                    binding.rbUtilityDay1.isChecked = true
+                    binding.rbUtilityDayYes.isChecked = true
+                }
+                2 -> {
+                    binding.rbUtilityDay2.isChecked = true
+                    binding.rbUtilityDayYes.isChecked = true
+                }
+                3 -> {
+                    binding.rbUtilityDay3.isChecked = true
+                    binding.rbUtilityDayYes.isChecked = true
+                }
             }
         }
         it.barber.let {
@@ -105,8 +171,8 @@ class OtherAmenitiesFragment :
 
         it.barberImages.let {
             if (it.isNotEmpty()) {
-                xloadImages(binding.ivBarberImg, it, R.drawable.ic_image_placeholder)
-                binding.ivBarberImg.visibility = View.VISIBLE
+                imageList.addAll(it)
+                refreshGalleryImages()
             }
         }
     }
@@ -132,33 +198,93 @@ class OtherAmenitiesFragment :
                 hideProgressDialog()
             }
         })
+
+        // YES NO BUTTONS IMPLEMENTATION
+        binding.rgMechYesNo.setOnCheckedChangeListener { radioGroup, i ->
+            val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.mechanicShopEnabled = enabled
+            if (!enabled) {
+                binding.rgMerch277.clearCheck()
+            }
+        }
+        binding.rgMechDayYesNo.setOnCheckedChangeListener { radioGroup, i ->
+            val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.mechanicShopDayEnabled = enabled
+            if (!enabled) {
+                binding.rgMechDay.clearCheck()
+            }
+        }
+        binding.rgPuncture247YesNo.setOnCheckedChangeListener { radioGroup, i ->
+            val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.punctureshopEnabled = enabled
+            if (!enabled) {
+                binding.rgPuncture247.clearCheck()
+            }
+        }
+        binding.rgPunctureDayYesNo.setOnCheckedChangeListener { radioGroup, i ->
+            val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.punctureshopDayEnabled = enabled
+            if (!enabled) {
+                binding.rgPunctureDay.clearCheck()
+            }
+        }
+        binding.rgUtilityYesNo.setOnCheckedChangeListener { radioGroup, i ->
+            val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.dailyutilityEnabled = enabled
+            if (!enabled) {
+                binding.rgUtility247.clearCheck()
+            }
+        }
+        binding.rgUtilityDayYesNo.setOnCheckedChangeListener { radioGroup, i ->
+            val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.dailyutilityDayEnabled = enabled
+            if (!enabled) {
+                binding.rgUtilityDay.clearCheck()
+            }
+        }
+        // YES NO BUTTONS IMPLEMENTATION -------------
+
         binding.rgMerch277.setOnCheckedChangeListener { _, i ->
-            viewModel.model.mechanicShop =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+            viewModel.model.mechanicShop = GlobalUtils.getNonNullString(
+                (activity?.findViewById<RadioButton>(i))?.tag.toString(),
+                "0"
+            ).toInt()
         }
         binding.rgMechDay.setOnCheckedChangeListener { _, i ->
-            viewModel.model.mechanicShopDay =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+            viewModel.model.mechanicShopDay = GlobalUtils.getNonNullString(
+                (activity?.findViewById<RadioButton>(i))?.tag.toString(),
+                "0"
+            ).toInt()
         }
         binding.rgPuncture247.setOnCheckedChangeListener { _, i ->
-            viewModel.model.punctureshop =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+            viewModel.model.punctureshop = GlobalUtils.getNonNullString(
+                (activity?.findViewById<RadioButton>(i))?.tag.toString(),
+                "0"
+            ).toInt()
         }
         binding.rgPunctureDay.setOnCheckedChangeListener { _, i ->
-            viewModel.model.punctureshopDay =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+            viewModel.model.punctureshopDay = GlobalUtils.getNonNullString(
+                (activity?.findViewById<RadioButton>(i))?.tag.toString(),
+                "0"
+            ).toInt()
         }
         binding.rgUtility247.setOnCheckedChangeListener { _, i ->
-            viewModel.model.dailyutilityshop =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+            viewModel.model.dailyutilityshop = GlobalUtils.getNonNullString(
+                (activity?.findViewById<RadioButton>(i))?.tag.toString(),
+                "0"
+            ).toInt()
         }
         binding.rgUtilityDay.setOnCheckedChangeListener { _, i ->
-            viewModel.model.dailyutilityshopDay =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+            viewModel.model.dailyutilityshopDay = GlobalUtils.getNonNullString(
+                (activity?.findViewById<RadioButton>(i))?.tag.toString(),
+                "0"
+            ).toInt()
         }
         binding.rgBarber.setOnCheckedChangeListener { _, i ->
-            viewModel.model.barber =
-                (activity?.findViewById<RadioButton>(i))?.tag.toString().toInt()
+            viewModel.model.barber = GlobalUtils.getNonNullString(
+                (activity?.findViewById<RadioButton>(i))?.tag.toString(),
+                "0"
+            ).toInt()
         }
 
         binding.btnSkip.setOnClickListener { activity?.finish() }
@@ -203,10 +329,34 @@ class OtherAmenitiesFragment :
             //Image Uri will not be null for RESULT_OK
             val uri: Uri = data?.data!!
 
-            // Use Uri object instead of File to avoid storage permissions
-            binding.ivBarberImg.setImageURI(uri)
-            binding.ivBarberImg.visibility = View.VISIBLE
-            viewModel.model.barberImages = getRealPathFromURI(uri)
+            addImageToGallery(uri)
+            viewModel.model.barberImages = imageList
         }
+    }
+
+    private fun addImageToGallery(uri: Uri) {
+        imageList.add(PhotosModel("", uri, getRealPathFromURI(uri)))
+        refreshGalleryImages()
+    }
+
+    private fun refreshGalleryImages() {
+        var columns = GlobalUtils.calculateNoOfColumns(activity as Context, 100f)
+
+        binding.recyclerView.layoutManager =
+            GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
+
+        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+            viewModel.model.barberImages = imageList
+        })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delBarberImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
+            })
+        })
+
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.setHasFixedSize(true)
     }
 }

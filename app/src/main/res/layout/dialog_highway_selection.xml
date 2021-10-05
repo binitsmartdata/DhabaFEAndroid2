@@ -30,18 +30,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edSearch"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/grey_stroke"
-                android:fontFamily="@font/opensans_regular"
-                android:hint="@string/search_city"
-                android:inputType="text"
-                android:maxLength="15"
-                android:padding="@dimen/_7sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:editable="false"
+                    android:padding="@dimen/_7sdp"
+                    android:text="@string/nh"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/grey_stroke"
+                    android:fontFamily="@font/opensans_regular"
+                    android:hint="@string/search_city"
+                    android:inputType="text"
+                    android:maxLength="4"
+                    android:padding="@dimen/_7sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnAddNew"

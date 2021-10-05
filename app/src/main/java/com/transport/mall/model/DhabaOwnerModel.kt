@@ -63,15 +63,37 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.address)
         }
 
-/*
-    @SerializedName(value = "location")
-    var location: String = ""
+    @SerializedName(value = "alternativeContactperson", alternate = ["alternativeContactPerson"])
+    var alternativeContactperson: String = ""
         @Bindable get() = field
-        set(location) {
-            field = location
-            notifyPropertyChanged(BR.location)
+        set(alternativeContactperson) {
+            field = alternativeContactperson
+            notifyPropertyChanged(BR.alternativeContactperson)
         }
-*/
+
+    @SerializedName(value = "alternatePhone")
+    var alternatePhone: String = ""
+        @Bindable get() = field
+        set(alternatePhone) {
+            field = alternatePhone
+            notifyPropertyChanged(BR.alternatePhone)
+        }
+
+    @SerializedName(value = "alternativeMobilePrefix")
+    var alternativeMobilePrefix: String = ""
+        @Bindable get() = field
+        set(alternativeMobilePrefix) {
+            field = alternativeMobilePrefix
+            notifyPropertyChanged(BR.alternativeMobilePrefix)
+        }
+
+    @SerializedName(value = "alternateDesignation")
+    var alternateDesignation: String = ""
+        @Bindable get() = field
+        set(alternateDesignation) {
+            field = alternateDesignation
+            notifyPropertyChanged(BR.alternateDesignation)
+        }
 
     @SerializedName(value = "panNumber")
     var panNumber: String = ""
@@ -132,24 +154,68 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (ownerName.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_owner_name))
-        } else if (mobile.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_phone_number))
-        } else if (mobile.trim().length < 10) {
+        } else if (mobile.trim().isEmpty() || mobile.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_mobile))
         } else if (email.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_email))
         } else if (!GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
-        } else if (address.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_address))
-        } else if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
+        } else if (panNumber.trim()
+                .isNotEmpty() && panNumber.trim().length < 10
+        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
             callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
-        } else if (adharCard.trim().isEmpty() || adharCard.trim().length < 12) {
+        } else if (adharCard.trim()
+                .isNotEmpty() && adharCard.trim().length < 12
+        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
             callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
-        } else if (ownerPic.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.select_owner_picture))
-        } else {
+        } else if (alternatePhone.trim()
+                .isNotEmpty() && alternatePhone.trim().length < 10
+        ) { // NOT MANDATORY BUT IF HAS THEN IT SHOULD BE VALID
+            callback.onResponse(false, context.getString(R.string.enter_valid_alt_number))
+        } /*else if (alternateContactPerson.trim().isNotEmpty() && alternateContactPerson.trim().length < 12) {
+            callback.onResponse(false, context.getString(R.string.enter_contact_person))
+        } else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 12) {
+            callback.onResponse(false, context.getString(R.string.enter_alternative_number))
+        } else if (alternateDesignation.trim().isNotEmpty() && alternateDesignation.trim().length < 12) {
+            callback.onResponse(false, context.getString(R.string.enter_alternative_contact_designation))
+        } */ else {
             callback.onResponse(true, "")
         }
+    }
+
+    fun getMissingParameters(context: Context): String {
+        var missingParams = ""
+        if (ownerName.trim().isEmpty()) {
+            missingParams = context.getString(R.string.owner_s_name)
+        }
+        if (mobile.trim().isEmpty() || mobile.trim().length < 10) {
+            val param = context.getString(R.string.owner_mobile_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (email.trim().isEmpty() || !GlobalUtils.isValidEmail(email)) {
+            val param = context.getString(R.string.owner_email_id)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
+            val param = context.getString(R.string.owner_pan_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (adharCard.trim().isEmpty() || adharCard.trim().length < 12) {
+            val param = context.getString(R.string.owner_aadhaar_number)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (ownerPic.trim().isEmpty()) {
+            val param = context.getString(R.string.owner_s_picture)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (idproofFront.trim().isEmpty()) {
+            val param = context.getString(R.string.owner_s_id_proof_front)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        if (idproofBack.trim().isEmpty()) {
+            val param = context.getString(R.string.owner_s_id_proof_back)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
+        return missingParams
     }
 }

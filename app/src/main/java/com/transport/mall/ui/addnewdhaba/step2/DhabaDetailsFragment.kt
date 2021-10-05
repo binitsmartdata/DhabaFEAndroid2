@@ -20,7 +20,6 @@ import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
-import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -28,7 +27,7 @@ import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.GlobalUtils.getAddressUsingLatLong
 import com.transport.mall.utils.common.GlobalUtils.getCurrentLocation
-import com.transport.mall.utils.common.GlobalUtils.refreshLocation
+import com.transport.mall.utils.common.GlobalUtils.showConfirmationDialogYesNo
 import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
@@ -104,7 +103,7 @@ class DhabaDetailsFragment :
     override fun initListeners() {
         setupVideoPickerViews()
         setupImagePicker()
-        refreshLocation(activity as Context)
+//        refreshLocation(activity as Context)
         setupLocationViews()
         setupCitiesAndStateView()
 
@@ -172,7 +171,7 @@ class DhabaDetailsFragment :
             showToastInCenter(getString(R.string.enter_owner_details))
         } else {
             if (isDraft) {
-                if (viewModel.dhabaModel.name.isNotEmpty()) {
+                if (viewModel.dhabaModel.name.trim().isNotEmpty()) {
                     proceed(isDraft)
                 } else {
                     showToastInCenter(getString(R.string.enter_dhaba_name))
@@ -192,7 +191,7 @@ class DhabaDetailsFragment :
     }
 
     private fun proceed(isDraft: Boolean) {
-        if (mListener?.isUpdate()!!) {
+        if (viewModel.dhabaModel._id.isNotEmpty()) {
             viewModel.updateDhaba(isDraft,
                 GenericCallBack { response ->
                     handleResponse(response, isDraft)
@@ -210,7 +209,8 @@ class DhabaDetailsFragment :
     private fun handleResponse(response: ApiResponseModel<DhabaModel>, isDraft: Boolean) {
         if (response.data != null) {
             mListener?.getDhabaModelMain()?.dhabaModel = response.data
-            viewModel.dhabaModel = response.data as DhabaModel
+            viewModel.dhabaModel = response.data!!
+
             if (isDraft) {
                 // UPDATING DHABA STATUS TO ISDRAFT
                 updateDhabaStatus(isDraft)
@@ -231,6 +231,7 @@ class DhabaDetailsFragment :
         viewModel.updateDhabaStatus(
             isDraft,
             viewModel.dhabaModel,
+            null,
             viewModel.progressObserver,
             GenericCallBack {
                 if (it.data != null) {
@@ -307,6 +308,7 @@ class DhabaDetailsFragment :
                 ?.observe(this@DhabaDetailsFragment, Observer {
                     DialogHighwaySelection(
                         getmContext(),
+                        true,
                         it as ArrayList<HighwayModel>,
                         GenericCallBack {
                             viewModel.dhabaModel.highway = it.highwayNumber!!
@@ -390,22 +392,25 @@ class DhabaDetailsFragment :
                 viewModel.dhabaModel.latitude = location.latitude.toString()
                 viewModel.dhabaModel.longitude = location.longitude.toString()
 
-                binding.edDhabaAddress.setText(
-                    getAddressUsingLatLong(
-                        activity as Context,
-                        location.latitude,
-                        location.longitude
-                    ).fullAddress
-                )
-                binding.edPinCode.setText(
-                    getAddressUsingLatLong(
-                        activity as Context,
-                        location.latitude,
-                        location.longitude
-                    ).postalCode
-                )
+                val address = getAddressUsingLatLong(
+                    activity as Context,
+                    location.latitude,
+                    location.longitude
+                ).fullAddress
+
+                setAddressAfterConfirmation(address)
             }
         })
+    }
+
+    private fun setAddressAfterConfirmation(address: String?) {
+        if (viewModel.dhabaModel.address.toString().isEmpty()) {
+            viewModel.dhabaModel.address = address!!
+        } else {
+            showConfirmationDialogYesNo(getmContext(), getString(R.string.address_placement_confirmation), address!!, GenericCallBack {
+                if (it) viewModel.dhabaModel.address = address!!
+            })
+        }
     }
 
 
@@ -444,41 +449,19 @@ class DhabaDetailsFragment :
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
             if (requestCode == INTENT_VIDEO_GALLERY) {
-//                val list = EasyVideoPicker.getSelectedVideos(data)
-//                viewModel.dhabaModel.videos = list?.get(0)?.videoPath!!
-//                var thumbPath =
-//                    createVideoThumbnail(activity as Context, viewModel.dhabaModel.videos)
-//                var uri = Uri.fromFile(thumbPath)
-//                binding.ivVideoThumb.setImageURI(uri)
-//                binding.frameVideoThumb.visibility = View.VISIBLE
-
                 processAndSetVideo(data?.data!!)
+
             } else if (requestCode == INTENT_VIDEO_CAMERA) {
-//                val videoUri: Uri = data?.data!!
-
-//                val bitmap = getVideoThumbnail(activity as Context, videoUri, 200, 200)
-//                val mimeType: String = activity?.contentResolver?.getType(videoUri)!!
-//                Save file to upload on server
-//                val file = saveVideoToAppScopeStorage(activity as Context, videoUri, mimeType)
-
-//                viewModel.dhabaModel.videos = file?.absolutePath!!
-//                binding.ivVideoThumb.setImageBitmap(bitmap)
-//                binding.frameVideoThumb.visibility = View.VISIBLE
-
-                //showing progress dialog in advance
                 processAndSetVideo(data?.data!!)
-            } else if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
-                val location = data?.getSerializableExtra("data") as LocationAddressModel?
-                location.let {
-                    viewModel.dhabaModel.address = it?.fullAddress!!
-                    viewModel.dhabaModel.latitude = it.latitude.toString()
-                    viewModel.dhabaModel.longitude = it.longitude.toString()
-                }
+
             } else if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE) {
-                viewModel.dhabaModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
-                viewModel.dhabaModel.latitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble()).toString()
-                viewModel.dhabaModel.longitude = data.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble()).toString()
+                // SIMPLE PLACE PICKER RESULY
+                viewModel.dhabaModel.latitude = data?.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble()).toString()
+                viewModel.dhabaModel.longitude = data?.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble()).toString()
+//                viewModel.dhabaModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
+                setAddressAfterConfirmation(data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!)
             } else {
+                // IMAGE INTENT RESULT
                 val uri: Uri = data?.data!!
                 viewModel.dhabaModel.images = getRealPathFromURI(uri)
                 binding.ivImageThumb.setImageURI(uri)

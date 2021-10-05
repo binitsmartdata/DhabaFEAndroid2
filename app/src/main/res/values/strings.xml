@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="appName">Transport Mall</string>
+    <string name="appName">Transport Mall Partner</string>
     <!--    <string name="googleMapsApiKey" translatable="false">AIzaSyAYJCariN6djEQQDnt6hy482EeCV4sRVYQ</string>-->
     <string name="googleMapsApiKey" translatable="false">AIzaSyDr5x9S74CXeXmex4fwVl24ChLOMIRyt5o</string>
     <string name="email">Email Address</string>
@@ -69,7 +69,7 @@
     <string name="washroom_cleaning"><![CDATA[Washroom & Cleaning]]></string>
     <string name="security">Security</string>
     <string name="other">Other</string>
-    <string name="dhaba_name">Dhaba Name</string>
+    <string name="dhaba_name">Dhaba Name *</string>
     <string name="dhaba_address">Dhaba address</string>
     <string name="fetch_location">Current Location</string>
     <string name="landmark">Landmark</string>
@@ -108,7 +108,7 @@
     <string name="enclosed">Enclosed</string>
     <string name="hot_water_bag">Hot Water Bag</string>
     <string name="hot_and_cold_water">Hot and Cold Water</string>
-    <string name="upload_washroom_photo">Upload Washroom Photo</string>
+    <string name="upload_washroom_photo">Upload Washroom Photos</string>
     <string name="day_guard">Day Guard</string>
     <string name="night_guard">Night Guard</string>
     <string name="police_verification">Police Verification</string>
@@ -130,9 +130,9 @@
     <string name="amen_title">Add Amenities</string>
     <string name="upload_dhaba_pictures">Upload Dhaba Picture</string>
     <string name="save_as_draft">Save as Draft</string>
-    <string name="owner_name">Owner name</string>
+    <string name="owner_name">Owner name *</string>
     <string name="phone_number">Phone number</string>
-    <string name="email_address">Email address</string>
+    <string name="email_address">Email address *</string>
     <string name="address">Address</string>
     <string name="pan_number">Pan Number</string>
     <string name="aadhar_card_number">Aadhar Card Number</string>
@@ -263,7 +263,7 @@
     <string name="location_alert_dialog">Location service is not enabled, do you want to enable it?</string>
     <string name="unable_to_fetch_address">Unable to fetch your current address.</string>
     <string name="assigned_to">Assigned To</string>
-    <string name="upload_barber_photo">Upload Barber Photo</string>
+    <string name="upload_barber_photo">Upload Barber Photos</string>
     <string name="enter_owner_name">Please Enter Owner Name</string>
     <string name="enter_phone_number">Please enter Phone Number</string>
     <string name="enter_email">Please Enter Email Id</string>
@@ -318,7 +318,56 @@
     <string name="skip">Skip</string>
     <string name="no_highway_found">No Highway Found</string>
     <string name="choose_parking_photo">Please choose at least one parking Photo</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="address_placement_confirmation">Do you want to overwrite the address?</string>
+    <string name="choose_dhaba_location">Please choose dhaba location.</string>
+    <string name="in_review">In Review</string>
+    <string name="submit_for_approval">Submit for approval</string>
+    <string name="select_bank">Select Bank</string>
+    <string name="owner">Owner</string>
+    <string name="deletion_confirmation">Do you want to delete this dhaba?</string>
+    <string name="alternative_contact_person">Alternative Contact Person</string>
+    <string name="alternative_contact_number">Alternative Contact Number</string>
+    <string name="alternative_contact_designation">Alternative Contact Designation</string>
+    <string name="enter_contact_person">Please enter alternative contact person name.</string>
+    <string name="enter_alternative_number">Please enter alternative contact number.</string>
+    <string name="enter_alternative_contact_designation">Please enter alternative contact person designation.</string>
+    <string name="add_highway">Add this highway</string>
+    <string name="highway_confirmation">Do you want to add </string>
+    <string name="_dhaba_name">Dhaba Name</string>
+    <string name="enter_dhaba_details_first">Please fill Dhaba details first.</string>
+    <string name="choose_mechanic">Please Choose Mechanic shop 24x7 option.</string>
+    <string name="choose_mechanic_day">Please Choose Mechanic shop day option.</string>
+    <string name="choose_puncture">Please Choose Puncture shop 24x7 option.</string>
+    <string name="choose_puncture_day">Please Choose Puncture shop day option.</string>
+    <string name="choose_daily_utility">Please Choose Daily utility 24x7 shop option.</string>
+    <string name="choose_utility_day">Please Choose Daily utility shop day option.</string>
+    <string name="enter_valid_alt_number">Please enter valid alternative mobile number</string>
+    <string name="enter_mobile_number_mandatory">10 Digit mobile number *</string>
+    <string name="alternative_mobile_number">Alternative Mobile number</string>
+    <string name="apply">Apply</string>
+    <string name="filters">Filters</string>
+    <string name="reset">Reset</string>
+    <string name="state">State</string>
+    <string name="searchState">Search State</string>
+    <string name="details_missing_validation">Please fill following details before submitting</string>
+    <string name="owner_s_name">Owner\'s Name</string>
+    <string name="owner_mobile_number">Owner\'s Mobile Number</string>
+    <string name="owner_email_id">Owner\'s Email ID</string>
+    <string name="owner_pan_number">Owner\'s Pan Number</string>
+    <string name="owner_aadhaar_number">Owner\'s Aadhaar Number</string>
+    <string name="owner_s_picture">Owner\'s Picture</string>
+    <string name="owner_s_id_proof_front">Owner\'s ID Proof(Front)</string>
+    <string name="owner_s_id_proof_back">Owner\'s ID Proof(Back)</string>
+    <string name="dhaba_address_landmark">Dhaba Address Landmark</string>
+    <string name="dhaba_address_area">Dhaba Address Area</string>
+    <string name="highway">Highway</string>
+    <string name="dhaba_state">Dhaba\'s State</string>
+    <string name="dhaba_city">Dhaba\'s City</string>
+    <string name="dhaba_pincode">Dhaba\'s PinCode</string>
+    <string name="dhaba_mobile_number">Dhaba Mobile Number</string>
+    <string name="dhaba_photo">Dhaba Photo</string>
+    <string name="dhaba_video">Dhaba Video</string>
+    <string name="nh">NH</string>
 
     <string-array name="select_state">
         <item>Select State</item>

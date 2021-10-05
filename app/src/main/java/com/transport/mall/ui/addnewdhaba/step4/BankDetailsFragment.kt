@@ -158,27 +158,31 @@ class BankDetailsFragment :
     }
 
     private fun setBankNamesAdapter(bankList: java.util.ArrayList<BankNamesModel>) {
+        //ADDING DEFAULT PLACEHOLDER
+        bankList.add(0, BankNamesModel(0, "", getString(R.string.select_bank), "", "", ""))
+
         banksAdapter =
             ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
         binding.spnrBanks.setAdapter(banksAdapter)
         binding.spnrBanks.setOnItemSelectedListener(object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.bankModel.bankName = bankList.get(p2).name!!
-                //GET LIST OF CITIES UNDER SELECTED STATE
+                if (p2 != 0) {
+                    viewModel.bankModel.bankName = bankList.get(p2).name!!
+                    //GET LIST OF CITIES UNDER SELECTED STATE
+                }
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
             }
-
         })
 
         viewModel.bankModel.bankName.let {
             if (it.isNotEmpty()) {
                 var index = 0
                 for (i in bankList) {
-                    if (i.equals(it)) {
+                    if (i.name.equals(it)) {
                         binding.spnrBanks.setSelection(index)
                         break
                     }
@@ -193,21 +197,37 @@ class BankDetailsFragment :
             if (isDraft) {
                 proceed(isDraft)
             } else {
-                viewModel.bankModel.hasEverything(
-                    getmContext(),
-                    GenericCallBackTwoParams() { allOk, message ->
-                        if (allOk) {
-                            proceed(isDraft)
-                        } else {
-                            showToastInCenter(message)
-                        }
-                    })
+                val ownerMissingParams = (mListener?.getDhabaModelMain()?.ownerModel?.getMissingParameters(getmContext())?.trim()!!)
+                val dhabaMissingParams = (mListener?.getDhabaModelMain()?.dhabaModel?.getMissingParameters(getmContext())?.trim()!!)
+                if (ownerMissingParams.isNotEmpty() || dhabaMissingParams.isNotEmpty()) {
+                    GlobalUtils.showInfoDialog(getmContext(), getString(R.string.details_missing_validation),
+                        ownerMissingParams + "\n" + dhabaMissingParams,
+                        GenericCallBack {
+                            if (ownerMissingParams.isNotEmpty()) {
+                                mListener?.showOwnerScreen()
+                            } else if (dhabaMissingParams.isNotEmpty()) {
+                                mListener?.showDhabaScreen()
+                            } else {
+                                mListener?.showOwnerScreen()
+                            }
+                        })
+                } else {
+                    viewModel.bankModel.hasEverything(
+                        getmContext(),
+                        GenericCallBackTwoParams() { allOk, message ->
+                            if (allOk) {
+                                proceed(isDraft)
+                            } else {
+                                showToastInCenter(message)
+                            }
+                        })
+                }
             }
         }
     }
 
     private fun proceed(isDraft: Boolean) {
-        if (mListener?.isUpdate()!! && viewModel.bankModel._id.isNotEmpty()) {
+        if (viewModel.bankModel._id.isNotEmpty()) {
             viewModel.updateBankDetail(GenericCallBack {
                 handleData(it, isDraft)
             })
@@ -225,7 +245,7 @@ class BankDetailsFragment :
 
             viewModel.updateDhabaStatus(
                 isDraft,
-                viewModel.dhabaModel,
+                viewModel.dhabaModel, null,
                 viewModel.progressObserver,
                 GenericCallBack {
                     if (it.data != null) {
@@ -236,11 +256,11 @@ class BankDetailsFragment :
                             mListener?.saveAsDraft()
                             activity?.finish()
                         } else {
-                            if (mListener?.isUpdate()!!) {
-                                showToastInCenter(getString(R.string.updated_successfully))
-                            } else {
-                                showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
-                            }
+//                            if (mListener?.isUpdate()!!) {
+//                                showToastInCenter(getString(R.string.updated_successfully))
+//                            } else {
+                            showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+//                            }
                         }
                     } else {
                         showToastInCenter(it.message)

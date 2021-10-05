@@ -178,6 +178,14 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
         // NOT APPLICABLE
     }
 
+    override fun showOwnerScreen() {
+        //NA
+    }
+
+    override fun showDhabaScreen() {
+        //NA
+    }
+
     override fun saveAsDraft() {
         // NOT APPLICABLE
     }

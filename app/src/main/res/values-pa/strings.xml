@@ -1,5 +1,5 @@
 <resources>
-    <string name="appName">ਟ੍ਰਾਂਸਪੋਰਟ ਮਾਲ</string>
+    <string name="appName">ਟ੍ਰਾਂਸਪੋਰਟ ਮਾਲ ਪਾਰਟਨਰ</string>
     <string name="email">"ਈਮੇਲ "</string>
     <string name="password">ਪਾਸਵਰਡ</string>
     <string name="login">ਲੌਗ ਇਨ</string>
@@ -124,7 +124,7 @@
     <string name="pin_code">ਪਿੰਨ ਕੋਡ</string>
     <string name="upload_dhaba_pictures">aਾਬੇ ਦੀ ਤਸਵੀਰ ਅਪਲੋਡ ਕਰੋ</string>
     <string name="save_as_draft">ਡਰਾਫਟ ਦੇ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
-    <string name="owner_name">ਮਾਲਕ ਦਾ ਨਾਮ</string>
+    <string name="owner_name">ਮਾਲਕ ਦਾ ਨਾਮ *</string>
     <string name="phone_number">ਫੋਨ ਨੰਬਰ</string>
     <string name="email_address">ਈਮੇਲ ਖਾਤਾ</string>
     <string name="address">ਜਾਣੋ</string>
@@ -327,5 +327,14 @@
     <string name="enter_valid_aadhar_number">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਆਧਾਰ ਕਾਰਡ ਨੰਬਰ ਦਾਖਲ ਕਰੋ.</string>
     <string name="no_cities_found">ਕਿਰਪਾ ਕਰਕੇ ਵੈਧ ਸ਼ਹਿਰ ਦਾ ਨਾਮ ਦਾਖਲ ਕਰੋ</string>
     <string name="skip">ਛੱਡੋ</string>
+    <string name="no_highway_found">ਕੋਈ ਹਾਈਵੇਅ ਨਹੀਂ ਮਿਲਿਆ</string>
+    <string name="choose_parking_photo">ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ ਇੱਕ ਪਾਰਕਿੰਗ ਫੋਟੋ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="address_placement_confirmation">ਕੀ ਤੁਸੀਂ ਪਤੇ ਨੂੰ ਮੁੜ ਲਿਖਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="choose_dhaba_location">ਕਿਰਪਾ ਕਰਕੇ ਢਾਬੇ ਦੀ ਜਗ੍ਹਾ ਚੁਣੋ.</string>
+    <string name="in_review">ਸਮੀਖਿਆ ਵਿੱਚ</string>
+    <string name="submit_for_approval">ਮਨਜ਼ੂਰੀ ਲਈ ਜਮ੍ਹਾਂ ਕਰੋ</string>
+    <string name="select_bank">ਬੈਂਕ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="owner">ਮਾਲਕ</string>
+    <string name="deletion_confirmation">ਕੀ ਤੁਸੀਂ ਇਸ ਢਾਬੇ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
 
 </resources>

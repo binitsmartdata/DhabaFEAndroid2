@@ -1,5 +1,5 @@
 <resources>
-    <string name="appName">ट्रांसपोर्ट मॉल</string>
+    <string name="appName">ट्रांसपोर्ट मॉल पार्टनर</string>
     <string name="email">ईमेल </string>
     <string name="password">पासवर्ड</string>
     <string name="login">लॉग इन </string>
@@ -129,7 +129,7 @@
     <string name="pin_code">पिन कोड</string>
     <string name="upload_dhaba_pictures">ढाबा चित्र अपलोड करें</string>
     <string name="save_as_draft">ड्राफ्ट के रूप में सेव करें</string>
-    <string name="owner_name">मालिक का नाम</string>
+    <string name="owner_name">मालिक का नाम *</string>
     <string name="phone_number">फ़ोन नंबर</string>
     <string name="email_address">ईमेल पता</string>
     <string name="address">पता</string>
@@ -342,4 +342,13 @@
     <string name="enter_valid_aadhar_number">कृपया एक मान्य आधार कार्ड नंबर दर्ज करें।</string>
     <string name="no_cities_found">कृपया मान्य शहर का नाम दर्ज करें</string>
     <string name="skip">छोड़ें</string>
+    <string name="no_highway_found">कोई राजमार्ग नहीं मिला</string>
+    <string name="choose_parking_photo">कृपया कम से कम एक पार्किंग चुनें फोटो</string>
+    <string name="address_placement_confirmation">क्या आप पते को अधिलेखित करना चाहते हैं?</string>
+    <string name="choose_dhaba_location">कृपया ढाबा स्थान चुनें।</string>
+    <string name="in_review">रिव्यू में</string>
+    <string name="submit_for_approval">अनुमोदन के लिए सबमिट करें</string>
+    <string name="select_bank">बैंक चुनें</string>
+    <string name="owner">मालिक</string>
+    <string name="deletion_confirmation">क्या आप इस ढाबे को हटाना चाहते हैं?</string>
 </resources>

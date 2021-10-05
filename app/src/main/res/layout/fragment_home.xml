@@ -46,6 +46,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/dhaba_mnagement"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
@@ -57,6 +58,7 @@
                     android:background="@drawable/primary_color_btn_selector"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="5dp"
+                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/add_new"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -75,21 +77,25 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/pending" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
                     android:layout_height="wrap_content"
                     android:text="@string/in_progress" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/active" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/inactive" />
 
             </com.google.android.material.tabs.TabLayout>

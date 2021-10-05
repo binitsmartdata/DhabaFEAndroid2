@@ -29,7 +29,7 @@ class WashroomAmenitiesModel : Serializable {
     var cleaner = ""
 
     @SerializedName(value = "images")
-    var images = ""
+    var images: ArrayList<PhotosModel> = ArrayList()
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (washroomStatus.isEmpty()) {

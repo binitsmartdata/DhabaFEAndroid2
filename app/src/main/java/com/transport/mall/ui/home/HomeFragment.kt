@@ -44,7 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
 
         // add your fragments
         adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_PENDING), getString(R.string.pending))
-        adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_progress))
+        adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_review))
         adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_ACTIVE), getString(R.string.active))
         adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INACTIVE), getString(R.string.inactive))
 

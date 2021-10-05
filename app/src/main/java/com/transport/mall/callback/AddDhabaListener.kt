@@ -4,6 +4,8 @@ import com.transport.mall.model.DhabaModelMain
 
 interface AddDhabaListener {
     fun showNextScreen()
+    fun showOwnerScreen()
+    fun showDhabaScreen()
     fun saveAsDraft()
     fun getDhabaId(): String
     fun getDhabaModelMain(): DhabaModelMain

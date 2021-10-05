@@ -42,7 +42,7 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
                         RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
                         RequestBody.create(MultipartBody.FORM, model.barber.toString()),
-                        getMultipartImageFile(
+                        getMultipartImagesList(
                             model.barberImages,
                             "barberImages"
                         )
@@ -74,7 +74,7 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
                         RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
                         RequestBody.create(MultipartBody.FORM, model.barber.toString()),
-                        getMultipartImageFile(
+                        getMultipartImagesList(
                             model.barberImages,
                             "barberImages"
                         )
@@ -115,4 +115,31 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
         }
     }
 
+    fun delBarberImg(imgId: String, callBack: GenericCallBack<Boolean>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.delBarberImg(model._id, imgId)
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                            callBack.onResponse(false)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            callBack.onResponse(true)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
 }
