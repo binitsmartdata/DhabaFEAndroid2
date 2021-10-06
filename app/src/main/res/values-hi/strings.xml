@@ -394,4 +394,7 @@
     <string name="dhaba_photo">ढाबा फोटो</string>
     <string name="dhaba_video">ढाबा वीडियो</string>
     <string name="nh">NH</string>
+    <string name="add_existing_owner">मौजूदा मालिक जोड़ें</string>
+    <string name="please_enter_a_valid_name">कृपया कोई मान्य नाम दर्ज करें</string>
+    <string name="search_owner">मालिक खोज</string>
 </resources>
