@@ -187,7 +187,10 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     override fun initListeners() {
-
+        binding.step1.setOnClickListener { if (binding.viewPager.isPagingEnabled()) showOwnerScreen() }
+        binding.step2.setOnClickListener { if (binding.viewPager.isPagingEnabled()) showDhabaScreen() }
+        binding.step3.setOnClickListener { if (binding.viewPager.isPagingEnabled()) showAmenitiesScreen() }
+        binding.step4.setOnClickListener { if (binding.viewPager.isPagingEnabled()) showBankDetailsScreen() }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -212,6 +215,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
 
     override fun showDhabaScreen() {
         binding.viewPager.currentItem = 1
+    }
+
+    override fun showAmenitiesScreen() {
+        binding.viewPager.currentItem = 2
+    }
+
+    override fun showBankDetailsScreen() {
+        binding.viewPager.currentItem = 3
     }
 
     override fun saveAsDraft() {

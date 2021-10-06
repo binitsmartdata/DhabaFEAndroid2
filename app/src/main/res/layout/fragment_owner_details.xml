@@ -32,22 +32,47 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_15sdp">
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llAddExisting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAddExisting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/default_btn_selector"
+                        android:drawableStart="@drawable/ic_add_dhaba_hilighted"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:text="@string/add_existing_owner"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/_14ssp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ownerNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/owner_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/llAddExisting">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -60,7 +85,6 @@
                         android:textSize="@dimen/_14ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
 
                 <LinearLayout
                     android:id="@+id/editlayout"

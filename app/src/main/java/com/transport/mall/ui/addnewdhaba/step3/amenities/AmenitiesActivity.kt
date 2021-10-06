@@ -186,6 +186,14 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
         //NA
     }
 
+    override fun showAmenitiesScreen() {
+        //NA
+    }
+
+    override fun showBankDetailsScreen() {
+        //NA
+    }
+
     override fun saveAsDraft() {
         // NOT APPLICABLE
     }

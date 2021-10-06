@@ -6,6 +6,8 @@ interface AddDhabaListener {
     fun showNextScreen()
     fun showOwnerScreen()
     fun showDhabaScreen()
+    fun showAmenitiesScreen()
+    fun showBankDetailsScreen()
     fun saveAsDraft()
     fun getDhabaId(): String
     fun getDhabaModelMain(): DhabaModelMain

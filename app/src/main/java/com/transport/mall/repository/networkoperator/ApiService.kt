@@ -89,7 +89,12 @@ interface ApiService {
     suspend fun getDhabaByID(@Query("id") id: String): Response<ApiResponseModel<DhabaModelMain>>
 
     @GET("user/getUserByRole")
-    suspend fun getUserByRole(): Response<ApiResponseModel<UserModelMain>>
+    suspend fun getUserByRole(
+        @Query("limit") limit: String,
+        @Query("page") page: String,
+        @Query("role") role: String,
+        @Query("searchName") searchName: String?
+    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaOwnerModel>>>>
 
     @Multipart
     @POST("dhaba/addDhaba")

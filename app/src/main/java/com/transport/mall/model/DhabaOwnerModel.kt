@@ -204,4 +204,28 @@ class DhabaOwnerModel : Serializable, BaseObservable() {
         }
         return missingParams
     }
+
+    fun populateData(model: DhabaOwnerModel?) {
+        try {
+            ownerName = GlobalUtils.getNonNullString(model?.ownerName!!, "")
+            mobilePrefix = GlobalUtils.getNonNullString(model.mobilePrefix, "")
+            mobile = GlobalUtils.getNonNullString(model.mobile, "")
+            email = GlobalUtils.getNonNullString(model.email, "")
+            address = GlobalUtils.getNonNullString(model.address, "")
+            alternativeContactperson = GlobalUtils.getNonNullString(model.alternativeContactperson, "")
+            alternatePhone = GlobalUtils.getNonNullString(model.alternatePhone, "")
+            alternativeMobilePrefix = GlobalUtils.getNonNullString(model.alternativeMobilePrefix, "")
+            alternateDesignation = GlobalUtils.getNonNullString(model.alternateDesignation, "")
+            panNumber = GlobalUtils.getNonNullString(model.panNumber, "")
+            adharCard = GlobalUtils.getNonNullString(model.adharCard, "")
+            ownerPic = GlobalUtils.getNonNullString(model.ownerPic, "")
+            idproofFront = GlobalUtils.getNonNullString(model.idproofFront, "")
+            idproofBack = GlobalUtils.getNonNullString(model.idproofBack, "")
+            latitude = GlobalUtils.getNonNullString(model.latitude, "")
+            longitude = GlobalUtils.getNonNullString(model.longitude, "")
+            _id = GlobalUtils.getNonNullString(model._id, "")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }
