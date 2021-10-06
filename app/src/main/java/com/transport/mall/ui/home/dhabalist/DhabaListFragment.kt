@@ -1,6 +1,8 @@
 package com.transport.mall.ui.home.dhabalist
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
@@ -114,16 +116,7 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
     }
 
     override fun initListeners() {
-        binding.edSearch.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                GlobalUtils.hideKeyboard(getmContext(), binding.edSearch)
-                if (binding.edSearch.text.toString().trim().isNotEmpty()) {
-                    onRefresh()
-                }
-                return@OnEditorActionListener true
-            }
-            false
-        })
+        setupSearchFieldListener()
 
         viewModel.dialogProgressObserver.observe(this, Observer {
             if (it) {
@@ -139,6 +132,30 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
             binding.swipeRefreshLayout.isRefreshing = it
         })
         binding.swipeRefreshLayout.setOnRefreshListener(this)
+    }
+
+    private fun setupSearchFieldListener() {
+        binding.edSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0.toString().trim().isEmpty()) {
+                    onRefresh()
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        binding.edSearch.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                GlobalUtils.hideKeyboard(getmContext(), binding.edSearch)
+                if (binding.edSearch.text.toString().trim().isNotEmpty()) {
+                    onRefresh()
+                }
+                return@OnEditorActionListener true
+            }
+            false
+        })
     }
 
     private fun refreshDhabaList() {

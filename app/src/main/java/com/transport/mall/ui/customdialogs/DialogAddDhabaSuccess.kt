@@ -1,6 +1,5 @@
 package com.transport.mall.ui.customdialogs
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -40,8 +39,11 @@ class DialogAddDhabaSuccess constructor(
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
         SharedPrefsHelper.getInstance(context).deleteDraftDhaba()
-
-        binding.dhabaId = id
+        if (id.length > 6) {
+            binding.dhabaId = "************" + id.substring(id.length - 6)
+        } else {
+            binding.dhabaId = id
+        }
         binding.btnGoHome.setOnClickListener {
             callBack.onResponse(SELECTED_ACTION.GO_HOME)
             dismiss()

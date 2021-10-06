@@ -17,6 +17,7 @@ import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.model.LocationAddressModel
 import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
+import com.transport.mall.ui.customdialogs.DialogOwnerSelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
@@ -54,12 +55,14 @@ class OwnerDetailsFragment :
         binding.viewOnly = mListener?.viewOnly()!!
 
         //SETTING EXISTING DATA ON SCREEN
-        setDataIfHas()
+        setDataIfHas(false)
     }
 
-    private fun setDataIfHas() {
+    private fun setDataIfHas(isSearched: Boolean) {
         mListener?.getDhabaModelMain()?.ownerModel?.let {
-            viewModel.ownerModel = it
+            if (!isSearched) {
+                viewModel.ownerModel = it
+            }
 
             it.alternativeMobilePrefix?.let {
                 if (it.isNotEmpty()) {
@@ -81,20 +84,20 @@ class OwnerDetailsFragment :
             }
 
             it.ownerPic?.let {
-                if (it.isNotEmpty()) {
-                    xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
-                }
+//                if (it.isNotEmpty()) {
+                xloadImages(binding.ivOwnerImage, it, R.drawable.ic_profile_pic_placeholder)
+//                }
             }
 
             it.idproofFront?.let {
-                if (it.isNotEmpty()) {
-                    xloadImages(binding.ivFrontId, it, R.drawable.ic_transparent_placeholder)
-                }
+//                if (it.isNotEmpty()) {
+                xloadImages(binding.ivFrontId, it, R.drawable.ic_transparent_placeholder)
+//                }
             }
             it.idproofBack?.let {
-                if (it.isNotEmpty()) {
-                    xloadImages(binding.ivBackId, it, R.drawable.ic_transparent_placeholder)
-                }
+//                if (it.isNotEmpty()) {
+                xloadImages(binding.ivBackId, it, R.drawable.ic_transparent_placeholder)
+//                }
             }
         } ?: kotlin.run {
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
@@ -103,7 +106,14 @@ class OwnerDetailsFragment :
     }
 
     override fun initListeners() {
-        GlobalUtils.refreshLocation(activity as Context)
+        binding.llAddExisting.setOnClickListener {
+            DialogOwnerSelection(getmContext(), GenericCallBack {
+                mListener?.getDhabaModelMain()?.ownerModel = it
+                viewModel.ownerModel.populateData(it)
+                setDataIfHas(true)
+            }).show()
+        }
+
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
         }
@@ -151,10 +161,10 @@ class OwnerDetailsFragment :
             launchImagePicker()
         }
         binding.btnNext.setOnClickListener {
-           /* if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
-                mListener?.showNextScreen()
-            } else {*/
-                saveDetails(false)
+            /* if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
+                 mListener?.showNextScreen()
+             } else {*/
+            saveDetails(false)
 //            }
         }
         binding.btnSaveDraft.setOnClickListener {
@@ -252,7 +262,7 @@ class OwnerDetailsFragment :
     private fun handleData(it: ApiResponseModel<DhabaOwnerModel>, isDraft: Boolean) {
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.ownerModel = it.data
-            viewModel.ownerModel = it.data!!
+            viewModel.ownerModel.populateData(it.data!!)
 
             if (isDraft) {
                 mListener?.getDhabaModelMain()?.draftedAtScreen =

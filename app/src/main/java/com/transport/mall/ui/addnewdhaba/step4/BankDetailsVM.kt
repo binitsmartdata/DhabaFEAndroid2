@@ -119,6 +119,7 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
         }
     }
 
+/*
     fun getUserByRole(callBack: GenericCallBack<ApiResponseModel<UserModelMain>>) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -139,4 +140,5 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
             }
         }
     }
+*/
 }

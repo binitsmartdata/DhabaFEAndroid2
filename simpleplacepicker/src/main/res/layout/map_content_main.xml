@@ -11,7 +11,7 @@
         android:id="@+id/map_fragment"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <com.skyfishjy.library.RippleBackground
         android:id="@+id/ripple_bg"
@@ -23,7 +23,7 @@
         app:rb_rippleAmount="4"
         app:rb_scale="6">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ic_pin"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/small_pin"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
@@ -85,7 +85,6 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:visibility="gone" />
 
                 <com.essam.simpleplacepicker.utils.CustomTextView
