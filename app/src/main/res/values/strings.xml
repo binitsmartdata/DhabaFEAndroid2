@@ -17,7 +17,7 @@
     <string name="post_request">Post Request</string>
     <string name="server_taking_too_long_to_respond">Server is taking too long to respond OR something is wrong with your internet connection. Please try again later.</string>
     <string name="unable_to_connect">Unable to connect with server</string>
-    <string name="please_wait">Please wait...</string>
+    <string name="please_wait">Please wait…</string>
     <string name="get_request">Get Request</string>
     <string name="db_retrieve">Get data from DB</string>
     <string name="delete_record_from_db">Delete record from DB</string>
@@ -93,14 +93,14 @@
     <string name="flat_hard_parking">Flat Hard Parking</string>
     <string name="kacha_flat_parking">Kacha Flat Parking</string>
     <string name="select_parking_space">Select Parking Space</string>
-    <string name="_1_20">1-20</string>
-    <string name="twenty_to_fifty">20-50</string>
-    <string name="_50_100">50-100</string>
+    <string name="_1_20">1–20</string>
+    <string name="twenty_to_fifty">20–50</string>
+    <string name="_50_100">50–100</string>
     <string name="above_100">Above 100</string>
     <string name="bed_charpai">Bed/Charpai</string>
     <string name="number_of_beds">Number of Beds</string>
-    <string name="_1_2">1-2</string>
-    <string name="_2_5">2-5</string>
+    <string name="_1_2">1–2</string>
+    <string name="_2_5">2–5</string>
     <string name="above_5">Above 5</string>
     <string name="upload_sleeping_amenities_photo">Upload Sleeping Amenities Photo</string>
     <string name="fan">Fan</string>
@@ -162,8 +162,8 @@
     <string name="continue_text">Continue</string>
     <string name="city">City</string>
     <string name="loading_cities">Loading Cities..</string>
-    <string name="_1_200_m">1-200 M</string>
-    <string name="_200_400_m">200-400 M</string>
+    <string name="_1_200_m">1–200 M</string>
+    <string name="_200_400_m">200–400 M</string>
     <string name="offers">Offers</string>
     <string name="discount">Discount (%)</string>
     <string name="offer_start_date">Offer Start Date</string>
@@ -379,6 +379,11 @@
     <string name="change_phone_number">Change Phone Number</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="enter_valid_phone_number">Please enter a valid phone number</string>
+    <string name="my_dhabas">My Dhabas</string>
+    <string name="discount_offers">Discount &amp; Offers</string>
+    <string name="my_orders">My Orders</string>
+    <string name="customers">Customers</string>
+    <string name="shops">Shop</string>
 
     <string-array name="select_state">
         <item>Select State</item>
@@ -397,6 +402,38 @@
         <item>Select City</item>
 
     </string-array>
+
+
+    <string-array name="menu_array_owner">
+        <item>@string/my_dhabas</item>
+        <item>@string/notifications</item>
+        <item>@string/discount_offers</item>
+        <item>@string/my_orders</item>
+        <item>@string/customers</item>
+        <item>@string/shops</item>
+        <item>@string/helpline</item>
+        <item>@string/settings</item>
+    </string-array>
+    <integer-array name="menu_icons_owner">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_notification</item>
+        <item>@drawable/ic_discount_offer</item>
+        <item>@drawable/ic_my_orders</item>
+        <item>@drawable/ic_customers</item>
+        <item>@drawable/ic_shop</item>
+        <item>@drawable/ic_helpline</item>
+        <item>@drawable/ic_settings</item>
+    </integer-array>
+    <integer-array name="menu_icons_hilighted_owner">
+        <item>@drawable/ic_home_hilighted</item>
+        <item>@drawable/ic_notification_hilighted</item>
+        <item>@drawable/ic_discount_offer_highlighted</item>
+        <item>@drawable/ic_my_orders_highlighted</item>
+        <item>@drawable/ic_customers_highlighted</item>
+        <item>@drawable/ic_shop_highlighted</item>
+        <item>@drawable/ic_helpline_hilighted</item>
+        <item>@drawable/ic_settings_hilighted</item>
+    </integer-array>
 
 
     <string-array name="menu_array_fiels_ex">
@@ -419,70 +456,5 @@
         <item>@drawable/ic_notification_hilighted</item>
         <item>@drawable/ic_settings_hilighted</item>
     </integer-array>
-
-    <string-array name="menu_array">
-        <item>@string/dhaba_mnagement</item>
-        <item>@string/add_new_dhaba</item>
-        <item>@string/notifications</item>
-        <item>@string/hepline</item>
-        <item>@string/settings</item>
-    </string-array>
-
-    <integer-array name="menu_icons">
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_add_dhaba</item>
-        <item>@drawable/ic_notification</item>
-        <item>@drawable/ic_helpline</item>
-        <item>@drawable/ic_settings</item>
-    </integer-array>
-
-    <integer-array name="menu_icons_hilighted">
-        <item>@drawable/ic_home_hilighted</item>
-        <item>@drawable/ic_add_dhaba_hilighted</item>
-        <item>@drawable/ic_notification_hilighted</item>
-        <item>@drawable/ic_helpline_hilighted</item>
-        <item>@drawable/ic_settings_hilighted</item>
-    </integer-array>
-
-    <string-array name="dhaba_list">
-        <item>Dhaba 1</item>
-        <item>Dhaba 2</item>
-        <item>Dhaba 3</item>
-        <item>Dhaba 4</item>
-        <item>Dhaba 5</item>
-        <item>Dhaba 6</item>
-        <item>Dhaba 7</item>
-        <item>Dhaba 8</item>
-        <item>Dhaba 9</item>
-        <item>Dhaba 10</item>
-    </string-array>
-    <string-array name="notification_list_demo">
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-        <item>A new dhaba is added in pending dhaba list..</item>
-    </string-array>
-    <string-array name="cities_list_dummy">
-        <item>City</item>
-        <item>Amritsar</item>
-        <item>Jalandhar</item>
-        <item>Kapurthala</item>
-        <item>Mohali</item>
-        <item>Nawashehar</item>
-        <item>Chandigarh</item>
-    </string-array>
-    <string-array name="bankNames">
-        <item>Punjab National Bank</item>
-        <item>HDFC Bank</item>
-        <item>ICICI Bank</item>
-        <item>Bank Of India</item>
-        <item>Indian Bank</item>
-        <item>IndusInd Bank</item>
-    </string-array>
 
 </resources>

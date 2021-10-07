@@ -17,6 +17,7 @@ import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
 import com.transport.mall.ui.home.helpline.EditProfileFragment
+import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
 import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
@@ -61,7 +62,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 
     override fun bindData() {
         setUpToolbar()
-        setUpSideMenu()
+        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner()) {
+            setUpSideMenuOwner()
+        } else/* if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive())*/ {
+            setUpSideMenuExecutive()
+        }
         setUserData()
     }
 
@@ -98,7 +103,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     /**
      *  SetUp Side Menu items ...
      */
-    private fun setUpSideMenu() {
+    private fun setUpSideMenuExecutive() {
         val menuArray = resources.getStringArray(R.array.menu_array_fiels_ex)
         val menuArrayIcons = resources.obtainTypedArray(R.array.menu_icons_fiels_ex)
         val menuArrayIconsHilighted =
@@ -115,9 +120,31 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         }
         binding.sideMenuRecyclerV.adapter = SideMenuAdapter(this, list, GenericCallBack {
             // ON ITEM CLICKED
-            displayView(it)
+            displayViewExecutive(it)
         })
-        displayView(0)
+        displayViewExecutive(0)
+    }
+
+    private fun setUpSideMenuOwner() {
+        val menuArray = resources.getStringArray(R.array.menu_array_owner)
+        val menuArrayIcons = resources.obtainTypedArray(R.array.menu_icons_owner)
+        val menuArrayIconsHilighted =
+            resources.obtainTypedArray(R.array.menu_icons_hilighted_owner)
+        for (i in menuArray.indices) {
+            list.add(
+                SideMenu(
+                    menuArray[i],
+                    menuArrayIcons.getResourceId(i, 0),
+                    menuArrayIconsHilighted.getResourceId(i, 0),
+                    i == 0
+                )
+            )
+        }
+        binding.sideMenuRecyclerV.adapter = SideMenuAdapter(this, list, GenericCallBack {
+            // ON ITEM CLICKED
+            displayViewOwner(it)
+        })
+        displayViewOwner(0)
     }
 
     private fun refreshSideMenu(it: Int?) {
@@ -180,7 +207,40 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     /**
      *  Show Fragment on Menu List Click ...
      */
-    private fun displayView(position: Int) {
+    private fun displayViewOwner(position: Int) {
+        refreshSideMenu(position) // SHOW SELECTED FRAGMENT TITLE SELECTED
+        var fragment: Fragment? = null
+
+        /*
+        * 0 my_dhabas
+        * 1 notifications
+        * 2 discount_offers
+        * 3 my_offers
+        * 4 customers
+        * 5 shops
+        * 6 helpline
+        * 7 settings
+        * */
+        when (position) {
+            0 -> fragment = HomeFragment()
+            1 -> fragment = NotificationsFragment()
+            2 -> fragment = HomeFragment()
+            3 -> fragment = HomeFragment()
+            4 -> fragment = HomeFragment()
+            5 -> fragment = HomeFragment()
+            6 -> fragment = HelplineFragment()
+            7 -> fragment = SettingsFragment()
+        }
+
+        fragment?.let {
+            openFragmentReplaceNoAnim(binding.dashboardContainer.id, it, "", false)
+
+            toolbar.title = list[position].title
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
+        }
+    }
+
+    private fun displayViewExecutive(position: Int) {
         refreshSideMenu(position) // SHOW SELECTED FRAGMENT TITLE SELECTED
         var fragment: Fragment? = null
 
@@ -192,7 +252,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 return
             }
             2 -> fragment = NotificationsFragment()
-//            3 -> fragment = HelplineFragment()
             3 -> fragment = SettingsFragment()
         }
 
@@ -206,6 +265,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 
     override fun openNotificationFragment() {
         displayView(2)
+    }
+
+    fun displayView(position: Int) {
+        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner()) {
+            displayViewOwner(position)
+        } else /*if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive())*/ {
+            displayViewExecutive(position)
+        }
     }
 
     override fun openProfileScreen() {

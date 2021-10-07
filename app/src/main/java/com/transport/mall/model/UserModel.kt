@@ -15,11 +15,6 @@ class UserModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.name)
         }
 
-/*
-    @SerializedName("lname")
-    var lname: String = ""
-*/
-
     @SerializedName("email")
     var email: String = ""
         @Bindable get() = field
@@ -114,4 +109,18 @@ class UserModel : Serializable, BaseObservable() {
 
     @SerializedName("updatedAt")
     var updatedAt: String = ""
+
+    companion object {
+        val ROLE_OWNER = "owner"
+        val ROLE_EXECUTIVE = "executive"
+    }
+
+    fun isOwner(): Boolean {
+//        return role.equals(ROLE_OWNER, true)
+        return true
+    }
+
+    fun isExecutive(): Boolean {
+        return role.equals(ROLE_EXECUTIVE, true)
+    }
 }

@@ -41,7 +41,7 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding, BaseVM>
     }
 
     private fun setupNotificationList() {
-        val list = ArrayList<NotificationModel>()
+        /*val list = ArrayList<NotificationModel>()
         val menuArray = resources.getStringArray(R.array.notification_list_demo)
         for (i in menuArray.indices) {
             list.add(
@@ -56,7 +56,7 @@ class NotificationsFragment : BaseFragment<FragmentNotificationsBinding, BaseVM>
         binding.recyclerView.adapter =
             NotificationsAdapter(activity as Context, list, GenericCallBack {
 
-            })
+            })*/
         binding.llMainData.visibility = View.GONE
         binding.llNoData.visibility = View.VISIBLE
     }
