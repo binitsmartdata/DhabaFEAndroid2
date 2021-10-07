@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "848917828653",
-    "project_id": "dhaba-app-326206",
-    "storage_bucket": "dhaba-app-326206.appspot.com"
+    "project_number": "587264477857",
+    "project_id": "transportmallprovider",
+    "storage_bucket": "transportmallprovider.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:848917828653:android:680a7f2d9b332a4700d4a4",
+        "mobilesdk_app_id": "1:587264477857:android:e113a3e6e0c3d1aad3bee0",
         "android_client_info": {
-          "package_name": "com.transport.mall"
+          "package_name": "com.transportmall.seller.dhaba.partnerapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "848917828653-tdaismh1urjfg14h1528rp1kduqaov4r.apps.googleusercontent.com",
+          "client_id": "587264477857-v910ckapcj8gfocga4600d23eivnr60g.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.transport.mall",
+            "package_name": "com.transportmall.seller.dhaba.partnerapp",
             "certificate_hash": "a98b93db62e9a500f48e7be3df235b49758afac8"
           }
         },
         {
-          "client_id": "848917828653-j7vrdl5vkc0e9v2915hdg01tq5vdkbrb.apps.googleusercontent.com",
+          "client_id": "587264477857-2lihmqdo2p6o31h6gr6qup19n5cgpjct.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAgYvByuc18p7M586ExeHC_DPU60xtjppc"
+          "current_key": "AIzaSyAEpl7aXNOz6YorSVECJVp0ErIb_EEKXMo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "848917828653-j7vrdl5vkc0e9v2915hdg01tq5vdkbrb.apps.googleusercontent.com",
+              "client_id": "587264477857-2lihmqdo2p6o31h6gr6qup19n5cgpjct.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
