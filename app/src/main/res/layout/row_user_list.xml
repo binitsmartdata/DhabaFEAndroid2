@@ -70,7 +70,18 @@
                     android:orientation="vertical"
                     android:text="@{model.email}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textSize="@dimen/_10ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:orientation="vertical"
+                    android:text="@{`+`+model.mobilePrefix + model.mobile}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
             </LinearLayout>
 
             <ImageView

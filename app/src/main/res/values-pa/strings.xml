@@ -379,5 +379,8 @@
     <string name="dhaba_photo">ਢਾਬਾ ਫੋਟੋ</string>
     <string name="dhaba_video">ਢਾਬਾ ਵੀਡੀਓ</string>
     <string name="nh">NH</string>
+    <string name="add_existing_owner">ਮੌਜੂਦਾ ਮਾਲਕ ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="please_enter_a_valid_name">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਨਾਮ ਦਰਜ ਕਰੋ</string>
+    <string name="search_owner">ਮਾਲਕ ਦੀ ਖੋਜ</string>
 
 </resources>
