@@ -695,7 +695,7 @@ object GlobalUtils {
             bitmap = mediaMetadataRetriever.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
-            Log.e("ThumbnailFromVideo :::", e.message)
+            Log.e("ThumbnailFromVideo :::", e.message.toString())
         } finally {
             mediaMetadataRetriever?.release()
         }
