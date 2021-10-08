@@ -58,9 +58,6 @@
             android:name="com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.transport.mall.ui.addnewdhaba.GoogleMapsActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".utils.common.fullimageview.ImagePagerActivity"
             android:screenOrientation="portrait" />
 

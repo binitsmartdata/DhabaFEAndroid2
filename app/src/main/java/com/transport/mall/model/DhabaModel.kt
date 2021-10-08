@@ -128,7 +128,7 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.mobile)
         }
 
-    var propertyStatus: String = "other"
+    var propertyStatus: String = ""
         @Bindable get() = field
         set(propertyStatus) {
             field = propertyStatus

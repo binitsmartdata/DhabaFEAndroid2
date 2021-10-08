@@ -37,6 +37,9 @@ import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.google.android.gms.location.*
 import com.transport.mall.R
 import com.transport.mall.model.LocationAddressModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.*
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -643,42 +646,65 @@ object GlobalUtils {
     fun getAddressUsingLatLong(
         context: Context,
         latitude: Double,
-        longitude: Double
-    ): LocationAddressModel {
-        val geocoder: Geocoder
-        val addresses: List<Address>
-        geocoder = Geocoder(context, Locale.getDefault())
+        longitude: Double,
+        callBack: GenericCallBack<LocationAddressModel>
+    ) {
+        showProgressDialog(context, context.getString(R.string.fetching_location_address))
+        GlobalScope.launch(Dispatchers.Main) {
+            val geocoder: Geocoder
+            val addresses: List<Address>
+            geocoder = Geocoder(context, Locale.getDefault())
 
-        var address = ""
-        var city = ""
-        var state = ""
-        var country = ""
-        var postalCode = ""
-        var knownName = ""
+            var address = ""
+            var city = ""
+            var state = ""
+            var country = ""
+            var postalCode = ""
+            var knownName = ""
 
-        try {
-            // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-            addresses = geocoder.getFromLocation(latitude, longitude, 1)
+            try {
+                // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                addresses = geocoder.getFromLocation(latitude, longitude, 1)
 
-            address = addresses[0].getAddressLine(0)
-            city = getNonNullString(addresses[0].getLocality(), "")
-            state = getNonNullString(addresses[0].getAdminArea(), "")
-            country = getNonNullString(addresses[0].getCountryName(), "")
-            postalCode = getNonNullString(addresses[0].getPostalCode(), "")
-            knownName = getNonNullString(addresses[0].getFeatureName(), "")
-        } catch (e: Exception) {
-            e.printStackTrace()
+                address = addresses[0].getAddressLine(0)
+                city = getNonNullString(addresses[0].getLocality(), "")
+                state = getNonNullString(addresses[0].getAdminArea(), "")
+                country = getNonNullString(addresses[0].getCountryName(), "")
+                postalCode = getNonNullString(addresses[0].getPostalCode(), "")
+                knownName = getNonNullString(addresses[0].getFeatureName(), "")
+
+                hideProgressDialog()
+                callBack.onResponse(
+                    LocationAddressModel(
+                        address,
+                        city,
+                        state,
+                        country,
+                        postalCode,
+                        knownName,
+                        latitude,
+                        longitude
+                    )
+                )
+            } catch (e: Exception) {
+                Log.e("FETCH ADDRESS::::", e.toString())
+                hideProgressDialog()
+                showInfoDialog(context, context.getString(R.string.cant_fetch_location_address), GenericCallBack {
+                    callBack.onResponse(
+                        LocationAddressModel(
+                            address,
+                            city,
+                            state,
+                            country,
+                            postalCode,
+                            knownName,
+                            latitude,
+                            longitude
+                        )
+                    )
+                })
+            }
         }
-        return LocationAddressModel(
-            address,
-            city,
-            state,
-            country,
-            postalCode,
-            knownName,
-            latitude,
-            longitude
-        )
     }
 
     @Throws(Throwable::class)

@@ -382,5 +382,8 @@
     <string name="add_existing_owner">ਮੌਜੂਦਾ ਮਾਲਕ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="please_enter_a_valid_name">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਨਾਮ ਦਰਜ ਕਰੋ</string>
     <string name="search_owner">ਮਾਲਕ ਦੀ ਖੋਜ</string>
+    <string name="fetching_location_address">ਸਥਾਨ ਦਾ ਪਤਾ ਲਿਆਉਣਾ ..</string>
+    <string name="cant_fetch_location_address">ਲੋਕੀਸ਼ਨ ਪਤਾ ਆਪਣੇ ਆਪ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ, ਕਿਰਪਾ ਕਰਕੇ ਲੋਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼ ਦੀ ਜਾਂਚ ਕਰੋ.</string>
+    <string name="please_select_state_first">ਕਿਰਪਾ ਕਰਕੇ ਪਹਿਲਾਂ ਰਾਜ ਦੀ ਚੋਣ ਕਰੋ</string>
 
 </resources>

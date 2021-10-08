@@ -17,6 +17,7 @@ import com.transport.mall.model.FiltersModel
 import com.transport.mall.model.HighwayModel
 import com.transport.mall.model.StateModel
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 
 
 class Dialogfilters constructor(
@@ -42,32 +43,30 @@ class Dialogfilters constructor(
         setCancelable(false)
         binding.filterModel = filterModel
 
-        AppDatabase.getInstance(context)?.cityDao()
-            ?.getAll()?.observe(fragment, Observer {
-                cityList = it as ArrayList<CityModel>
-            })
         AppDatabase.getInstance(context)?.statesDao()
             ?.getAll()?.observe(fragment, Observer {
                 statesList = it as ArrayList<StateModel>
-            })
 
-        binding.tvCity.setOnClickListener {
-            DialogCitySelection(context, cityList, filterModel.cities, GenericCallBack {
-                selectedCities = ""
-                val filteredCities: ArrayList<CityModel> = ArrayList()
-                cityList.forEach {
-                    if (it.isChecked) {
-                        filteredCities.add(it)
-                        selectedCities = if (selectedCities.isEmpty()) it.name_en!! else selectedCities + "," + it.name_en
+                //MARK CHECKED PREVIOUSLY SELECTED DATA
+                if (filterModel.states.trim().isNotEmpty()) {
+                    val filteredCities: ArrayList<StateModel> = ArrayList()
+                    //CHECK ALREADY SELECTED DATA
+                    val items: List<String> = filterModel.states.split(",").map { it.trim() }
+                    for (item in items) {
+                        for (stateModel in statesList) {
+                            if (stateModel.name_en?.trim().equals(item.trim(), true)!!) {
+                                stateModel.isChecked = true
+                                filteredCities.add(stateModel)
+                                break
+                            }
+                        }
+                    }
+
+                    if (filteredCities.isNotEmpty()) {
+                        populateCitiesByStates(fragment, filteredCities)
                     }
                 }
-                if (filteredCities.isNotEmpty() && selectedCities.isNotEmpty()) {
-                    binding.filterModel!!.cities = selectedCities
-                } else {
-                    binding.filterModel!!.cities = ""
-                }
-            }).show()
-        }
+            })
 
         binding.tvState.setOnClickListener {
             DialogStateSelection(context, statesList, filterModel.states, GenericCallBack {
@@ -81,10 +80,35 @@ class Dialogfilters constructor(
                 }
                 if (filteredCities.isNotEmpty() && selectedStates.isNotEmpty()) {
                     binding.filterModel!!.states = selectedStates
+                    binding.filterModel!!.cities = ""
+                    populateCitiesByStates(fragment, filteredCities)
                 } else {
                     binding.filterModel!!.states = ""
+                    binding.filterModel!!.cities = ""
                 }
             }).show()
+        }
+
+        binding.tvCity.setOnClickListener {
+            if (binding.filterModel!!.states.trim().isNotEmpty()) {
+                DialogCitySelection(context, cityList, filterModel.cities, GenericCallBack {
+                    selectedCities = ""
+                    val filteredCities: ArrayList<CityModel> = ArrayList()
+                    cityList.forEach {
+                        if (it.isChecked) {
+                            filteredCities.add(it)
+                            selectedCities = if (selectedCities.isEmpty()) it.name_en!! else selectedCities + "," + it.name_en
+                        }
+                    }
+                    if (filteredCities.isNotEmpty() && selectedCities.isNotEmpty()) {
+                        binding.filterModel!!.cities = selectedCities
+                    } else {
+                        binding.filterModel!!.cities = ""
+                    }
+                }).show()
+            } else {
+                GlobalUtils.showToastInCenter(context, context.getString(R.string.please_select_state_first))
+            }
         }
 
         binding.tvHighway.setOnClickListener {
@@ -101,7 +125,7 @@ class Dialogfilters constructor(
         }
 
         binding.btnContinue.setOnClickListener {
-            callBack.onResponse(filterModel)
+            callBack.onResponse(binding.filterModel!!)
             dismiss()
         }
         binding.btnReset.setOnClickListener {
@@ -112,5 +136,24 @@ class Dialogfilters constructor(
             callBack.onResponse(filterModel)
             dismiss()
         }
+    }
+
+    private fun populateCitiesByStates(fragment: Fragment, filteredCities: ArrayList<StateModel>) {
+        AppDatabase.getInstance(context)?.cityDao()
+            ?.getAll()?.observe(fragment, Observer {
+                val allCities = it as ArrayList<CityModel>
+                val citiesByStates = ArrayList<CityModel>()
+                for (cityModel in allCities) {
+                    for (states in filteredCities) {
+                        if (states.stateCode.equals(cityModel.stateCode)) {
+                            citiesByStates.add(cityModel)
+                        }
+                    }
+                }
+                if (citiesByStates.isNotEmpty()) {
+                    cityList.clear()
+                    cityList.addAll(citiesByStates)
+                }
+            })
     }
 }

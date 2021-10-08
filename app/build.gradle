@@ -34,14 +34,6 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
 
-        buildConfigField("String", "APP_PREF", APP_PREF)
-        buildConfigField("String", "BASE_URL", BASE_URL)
-        buildConfigField("String", "MEDIA_URL", MEDIA_URL)
-
-        resValue("string", "db_name", DATA_BASE_NAME)
-
-        //Reference them in .provider_paths files.
-        resValue "string", "app_name", "${app_name}"
         resValue "string", "app_version", "${version_name}"
     }
     buildTypes {
@@ -64,10 +56,25 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+
+    productFlavors {
+        transportMallProduction {
+            flavorDimensions "default"
+            applicationId "${application_id}"
+            buildConfigField("String", "BASE_URL", BASE_URL)
+            resValue "string", "app_name", "${app_name}"
+        }
+        transportMallDev {
+            flavorDimensions "default"
+            applicationId "${application_id_dev}"
+            buildConfigField("String", "BASE_URL", BASE_URL_DEV)
+            resValue "string", "app_name", "${app_name_dev}"
+        }
+    }
+
 }
 
 dependencies {
-
     def room_version = '2.3.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -15,8 +15,6 @@ import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOwnerDetailsBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.DhabaOwnerModel
-import com.transport.mall.model.LocationAddressModel
-import com.transport.mall.ui.addnewdhaba.GoogleMapsActivity
 import com.transport.mall.ui.customdialogs.DialogOwnerSelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -205,37 +203,8 @@ class OwnerDetailsFragment :
             }
         }
         binding.tvCurrLocation.setOnClickListener {
-            if (GlobalUtils.isLocationEnabled(getmContext())) {
-                getAddress()
-            } else {
-                GlobalUtils.showConfirmationDialogYesNo(
-                    getmContext(),
-                    getString(R.string.location_alert_dialog),
-                    GenericCallBack {
-                        if (it!!) {
-                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                        } else {
-                            showToastInCenter(getString(R.string.unable_to_fetch_address))
-                        }
-                    })
-            }
+
         }
-    }
-
-    private fun getAddress() {
-        GlobalUtils.getCurrentLocation(activity as Context, GenericCallBack { location ->
-            if (location != null) {
-                0
-                viewModel.ownerModel.latitude = location.latitude.toString()
-                viewModel.ownerModel.longitude = location.longitude.toString()
-
-                viewModel.ownerModel.address = GlobalUtils.getAddressUsingLatLong(
-                    activity as Context,
-                    location.latitude,
-                    location.longitude
-                ).fullAddress!!
-            }
-        })
     }
 
     private fun saveDetails(isDraft: Boolean) {
@@ -296,14 +265,7 @@ class OwnerDetailsFragment :
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == GoogleMapsActivity.REQUEST_CODE_MAP) {
-                val location = data?.getSerializableExtra("data") as LocationAddressModel?
-                location.let {
-                    viewModel.ownerModel.address = it?.fullAddress!!
-                    viewModel.ownerModel.latitude = it.latitude.toString()
-                    viewModel.ownerModel.longitude = it.longitude.toString()
-                }
-            } else if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE) {
+            if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE) {
                 viewModel.ownerModel.address =
                     data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
                 viewModel.ownerModel.latitude =

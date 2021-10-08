@@ -50,7 +50,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                             dhabaModel.latitude + "," + dhabaModel.longitude
                         ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
-                        RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
+                        if (dhabaModel.propertyStatus.isNotEmpty()) RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus) else null,
                         RequestBody.create(MultipartBody.FORM, if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
@@ -96,7 +96,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                             dhabaModel.latitude + "," + dhabaModel.longitude
                         ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
-                        RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
+                        if (dhabaModel.propertyStatus.isNotEmpty()) RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus) else null,
                         RequestBody.create(MultipartBody.FORM, if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
