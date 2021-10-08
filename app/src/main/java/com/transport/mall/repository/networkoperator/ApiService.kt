@@ -136,7 +136,7 @@ interface ApiService {
         @Part("location") location: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("propertyStatus") propertyStatus: RequestBody?,
-        @Part("status") status: RequestBody,
+        @Part("status") status: RequestBody?,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
         @Part images: MultipartBody.Part?,

@@ -132,14 +132,14 @@ class BankDetailsFragment :
         }
         binding.btnSaveDraft.setOnClickListener {
             viewModel.dhabaModel.isDraft = true.toString()
-            if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
+            /*if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
                 mListener?.getDhabaModelMain()?.draftedAtScreen =
                     DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
                 mListener?.saveAsDraft()
                 activity?.finish()
-            } else {
-                saveDetails(true)
-            }
+            } else {*/
+            saveDetails(true)
+//            }
         }
 
         binding.llPanPhoto.setOnClickListener {
@@ -193,9 +193,14 @@ class BankDetailsFragment :
     }
 
     private fun saveDetails(isDraft: Boolean) {
-        if (isDraft || (!isDraft && isHavingPreviousData())) {
+//        if (isDraft || (!isDraft && isHavingPreviousData())) {
+        if (isHavingPreviousData()) {
             if (isDraft) {
-                proceed(isDraft)
+                if (viewModel.bankModel.bankName.trim().isNotEmpty()) {
+                    proceed(isDraft)
+                } else {
+                    showToastInCenter(getString(R.string.enter_bank_name))
+                }
             } else {
                 val ownerMissingParams = (mListener?.getDhabaModelMain()?.ownerModel?.getMissingParameters(getmContext())?.trim()!!)
                 val dhabaMissingParams = (mListener?.getDhabaModelMain()?.dhabaModel?.getMissingParameters(getmContext())?.trim()!!)
@@ -245,7 +250,8 @@ class BankDetailsFragment :
 
             viewModel.updateDhabaStatus(
                 isDraft,
-                viewModel.dhabaModel, null,
+                viewModel.dhabaModel,
+                if (isDraft) DhabaModel.STATUS_INPROGRESS else DhabaModel.STATUS_PENDING,
                 viewModel.progressObserver,
                 GenericCallBack {
                     if (it.data != null) {
@@ -321,18 +327,8 @@ class BankDetailsFragment :
         if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
             return false
-        } else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
+        }/* else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
             showToastInCenter(getString(R.string.enter_dhaba_details))
-            return false
-        } /*else if (mListener?.getDhabaModelMain()?.foodAmenitiesModel == null
-            || mListener?.getDhabaModelMain()?.parkingAmenitiesModel == null
-            || mListener?.getDhabaModelMain()?.sleepingAmenitiesModel == null
-            || mListener?.getDhabaModelMain()?.washroomAmenitiesModel == null
-            || mListener?.getDhabaModelMain()?.securityAmenitiesModel == null
-            || mListener?.getDhabaModelMain()?.lightAmenitiesModel == null
-            || mListener?.getDhabaModelMain()?.otherAmenitiesModel == null
-        ) {
-            showToastInCenter(getString(R.string.fill_amenities_first))
             return false
         }*/
         return true

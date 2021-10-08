@@ -167,7 +167,7 @@ class DhabaDetailsFragment :
     }
 
     private fun saveDetails(isDraft: Boolean) {
-        if (!isDraft && mListener?.getDhabaModelMain()?.ownerModel == null) {
+        if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
         } else {
             if (isDraft) {
