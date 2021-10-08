@@ -67,33 +67,6 @@ fun xloadImages(
 }
 
 /**
- * For Creating Video thumbnail from video URI ...
- */
-fun createVideoThumbnail(context: Context, uri: String): File {
-    Log.e("createVideoThumbnail", "" + uri)
-    val bitmap =
-        ThumbnailUtils.createVideoThumbnail(uri, MediaStore.Images.Thumbnails.MINI_KIND)
-    return persistImage(context, bitmap, "thumbnail")
-}
-
-fun persistImage(context: Context, bitmap: Bitmap, name: String): File {
-    val filesDir = context.filesDir
-    val imageFile = File(filesDir, "$name.jpg")
-
-    val os: OutputStream
-    try {
-        os = FileOutputStream(imageFile) as OutputStream
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
-        os.flush()
-        os.close()
-    } catch (e: Exception) {
-        Log.e("AppBinding", "Error writing bitmap", e)
-    }
-
-    return imageFile
-}
-
-/**
  * Function for Single Permission ...
  */
 fun initSinglePermission(activity: Activity, permission: String, callback: PermissionCallback) {
