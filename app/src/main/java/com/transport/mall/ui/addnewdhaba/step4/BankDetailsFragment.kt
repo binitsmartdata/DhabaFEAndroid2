@@ -251,7 +251,7 @@ class BankDetailsFragment :
             viewModel.updateDhabaStatus(
                 isDraft,
                 viewModel.dhabaModel,
-                if (isDraft) DhabaModel.STATUS_INPROGRESS else DhabaModel.STATUS_PENDING,
+                if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
                 viewModel.progressObserver,
                 GenericCallBack {
                     if (it.data != null) {
