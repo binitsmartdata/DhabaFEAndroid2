@@ -32,6 +32,7 @@ class DhabaListAdapter(
         myViewHolderG?.binding?.dhabaContainer?.setOnClickListener { callBack.onResponse(position) }
 
         myViewHolderG?.binding?.ivDelete?.visibility = if (status.equals(DhabaModel.STATUS_PENDING)) View.VISIBLE else View.GONE
+        myViewHolderG?.binding?.ivEdit?.visibility = if (status.equals(DhabaModel.STATUS_PENDING) || status.equals(DhabaModel.STATUS_INPROGRESS)) View.VISIBLE else View.GONE
 
         if (dataList[position].dhabaModel?.dhabaCategory.equals(dataList[position].dhabaModel?.CATEGORY_GOLD, true)) {
             myViewHolderG?.binding?.tvCategory?.setBackgroundResource(R.drawable.ic_gold_hotel_type)

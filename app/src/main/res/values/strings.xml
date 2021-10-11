@@ -371,6 +371,9 @@
     <string name="add_existing_owner">Add Existing Owner</string>
     <string name="please_enter_a_valid_name">Please enter a valid name</string>
     <string name="search_owner">Search Owner</string>
+    <string name="fetching_location_address">Fetching location address..</string>
+    <string name="cant_fetch_location_address">Unable to fetch location address automatically, please check location settings.</string>
+    <string name="please_select_state_first">Please select state first</string>
     <string name="sign_up">Sign Up</string>
     <string name="login_as_field_executive">Login as Field Executive</string>
     <string name="login_as_dhaba_owner">Login as Dhaba Owner</string>

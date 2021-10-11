@@ -397,4 +397,7 @@
     <string name="add_existing_owner">मौजूदा मालिक जोड़ें</string>
     <string name="please_enter_a_valid_name">कृपया कोई मान्य नाम दर्ज करें</string>
     <string name="search_owner">मालिक खोज</string>
+    <string name="fetching_location_address">स्थान पता प्राप्त करना ..</string>
+    <string name="cant_fetch_location_address">स्थान पता स्वचालित रूप से लाने में असमर्थ, कृपया स्थान सेटिंग्स की जांच करें।</string>
+    <string name="please_select_state_first">कृपया पहले राज्य का चयन करें</string>
 </resources>

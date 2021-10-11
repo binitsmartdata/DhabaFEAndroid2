@@ -12,8 +12,11 @@ interface CityDao {
     @Query("SELECT * FROM cities")
     fun getAll(): LiveData<List<CityModel>>
 
-    @Query("SELECT * FROM cities where cities.stateCode=:stateCode")
+    @Query("SELECT * FROM cities where stateCode=:stateCode")
     fun getAllByState(stateCode: String): LiveData<List<CityModel>>
+
+    @Query("SELECT * FROM cities where stateCode IN (:stateCodes)")
+    fun getAllByMultipleStates(stateCodes: String): LiveData<List<CityModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(model: List<CityModel>)

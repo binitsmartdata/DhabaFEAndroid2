@@ -167,7 +167,7 @@ class DhabaDetailsFragment :
     }
 
     private fun saveDetails(isDraft: Boolean) {
-        if (!isDraft && mListener?.getDhabaModelMain()?.ownerModel == null) {
+        if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
         } else {
             if (isDraft) {
@@ -392,13 +392,9 @@ class DhabaDetailsFragment :
                 viewModel.dhabaModel.latitude = location.latitude.toString()
                 viewModel.dhabaModel.longitude = location.longitude.toString()
 
-                val address = getAddressUsingLatLong(
-                    activity as Context,
-                    location.latitude,
-                    location.longitude
-                ).fullAddress
-
-                setAddressAfterConfirmation(address)
+                getAddressUsingLatLong(activity as Context, location.latitude, location.longitude, GenericCallBack {
+                    setAddressAfterConfirmation(it.fullAddress)
+                })
             }
         })
     }

@@ -67,6 +67,8 @@ class AmenitiesFragment :
                             showToastInCenter(it.message)
                         }
                     })
+            } ?: kotlin.run {
+                showToastInCenter(getString(R.string.enter_dhaba_details_first))
             }
         }
 

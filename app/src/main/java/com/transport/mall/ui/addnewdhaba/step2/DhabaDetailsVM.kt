@@ -50,8 +50,8 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                             dhabaModel.latitude + "," + dhabaModel.longitude
                         ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
-                        RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
-                        RequestBody.create(MultipartBody.FORM, if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS),
+                        if (dhabaModel.propertyStatus.isNotEmpty()) RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus) else null,
+                        RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
                         getMultipartImageFile(dhabaModel.images, "images"),
@@ -96,8 +96,8 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                             dhabaModel.latitude + "," + dhabaModel.longitude
                         ),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.mobile),
-                        RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus),
-                        RequestBody.create(MultipartBody.FORM, if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS),
+                        if (dhabaModel.propertyStatus.isNotEmpty()) RequestBody.create(MultipartBody.FORM, dhabaModel.propertyStatus) else null,
+                        /*RequestBody.create(MultipartBody.FORM, if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS)*/null,
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
                         getMultipartImageFile(dhabaModel.images, "images"),
