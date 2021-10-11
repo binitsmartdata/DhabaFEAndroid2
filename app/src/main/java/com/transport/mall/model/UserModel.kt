@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 class UserModel : Serializable, BaseObservable() {
-    @SerializedName(value = "fname", alternate = ["name"])
+    @SerializedName(value = "fname", alternate = ["name", "ownerName"])
     var name: String = ""
         @Bindable get() = field
         set(name) {

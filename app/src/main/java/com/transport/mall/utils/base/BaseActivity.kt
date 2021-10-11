@@ -134,7 +134,7 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         snackBar.setActionTextColor(Color.WHITE)
         val snackBarView = snackBar.view
         when (isError) {
-            true -> snackBarView.setBackgroundColor(Color.parseColor("#ff0000"))
+            true -> snackBarView.setBackgroundColor(Color.BLACK)
             false -> snackBarView.setBackgroundColor(
                 ContextCompat.getColor(
                     this,

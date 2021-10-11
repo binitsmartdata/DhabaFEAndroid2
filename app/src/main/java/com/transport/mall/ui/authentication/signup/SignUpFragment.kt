@@ -4,10 +4,9 @@ import android.app.Activity
 import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentSignUpBinding
-import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.authentication.signup.SignUpVM
 import com.transport.mall.utils.base.BaseFragment
-import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 
 /**
@@ -34,7 +33,6 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpVM>() {
 
         viewModel.observerProgress()?.observe(this, Observer {
             if (it) {
-                GlobalUtils.hideKeyboard(activity as Activity)
                 showProgressDialog(getString(R.string.please_wait))
             } else {
                 hideProgressDialog()
@@ -60,27 +58,20 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpVM>() {
 
     override fun initListeners() {
         binding.btnSignUp.setOnClickListener {
-            viewModel.doLoginProcess(GenericCallBackTwoParams { output, output2 ->
-                when (output) {
-                    ApiResult.Status.LOADING -> {
-                        showProgressDialog()
-                    }
-                    ApiResult.Status.ERROR -> {
-                        hideProgressDialog()
-                        showToastInCenter(output2)
-                    }
-                    ApiResult.Status.SUCCESS -> {
-                        hideProgressDialog()
-                        activity?.finish()
-                    }
+            viewModel.signUp(GenericCallBack {
+                if (it.data != null) {
+                    showToastInCenter(getString(R.string.signup_success))
+                    activity?.supportFragmentManager?.popBackStack()
+                } else {
+                    showToastInCenter(it.message)
                 }
             })
         }
 
-        binding.ccpCountryCode.setCountryForPhoneCode(91)
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.mobilePrefixObserver.set(binding.ccpCountryCode.selectedCountryCode)
         }
+        binding.ccpCountryCode.setCountryForPhoneCode(91)
 
         binding.btnLogin.setOnClickListener {
             activity?.supportFragmentManager?.popBackStack()

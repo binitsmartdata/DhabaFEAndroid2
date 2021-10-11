@@ -60,6 +60,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
     }
 
     override fun initListeners() {
+        binding.ccpCountryCode.setOnCountryChangeListener {
+            viewModel.mobilePrefixObservable.set(binding.ccpCountryCode.selectedCountryCode.toString())
+        }
+        binding.ccpCountryCode.setCountryForPhoneCode(91)
+
         binding.btnLogin.setOnClickListener {
             viewModel.doLoginProcess(GenericCallBackTwoParams { output, output2 ->
                 when (output) {
@@ -77,18 +82,31 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 }
             })
         }
+        binding.btnLoginOwner.setOnClickListener {
+            viewModel.ownerLogin(GenericCallBackTwoParams { output, output2 ->
+                when (output) {
+                    ApiResult.Status.LOADING -> {
+                        showProgressDialog()
+                    }
+                    ApiResult.Status.ERROR -> {
+                        hideProgressDialog()
+                        showToastInCenter(output2)
+                    }
+                    ApiResult.Status.SUCCESS -> {
+                        hideProgressDialog()
+                        openFragmentReplaceNoAnim(
+                            R.id.authContainer,
+                            OtpVerificationFragment(viewModel.userModel),
+                            "",
+                            true
+                        )
+                    }
+                }
+            })
+        }
 
         binding.btnLoginToggle.setOnClickListener {
             binding.isOwnerLogin = !binding.isOwnerLogin!!
-        }
-
-        binding.btnLoginOwner.setOnClickListener {
-            openFragmentReplaceNoAnim(
-                R.id.authContainer,
-                OtpVerificationFragment(),
-                "",
-                true
-            )
         }
 
         binding.btnSignup.setOnClickListener {

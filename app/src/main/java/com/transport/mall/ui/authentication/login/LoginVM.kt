@@ -2,13 +2,13 @@ package com.transport.mall.ui.authentication.login
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.R
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
+import com.transport.mall.model.UserModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
@@ -26,6 +26,10 @@ import kotlinx.coroutines.launch
 class LoginVM(application: Application) : BaseVM(application) {
     val emailObservable = ObservableField<String>()
     val passwordObservable = ObservableField<String>()
+
+    val mobilePrefixObservable = ObservableField<String>()
+    val mobileObservable = ObservableField<String>()
+    var userModel = UserModel()
 
     var errorResponse: MutableLiveData<String>? = null
     var progressObserver: MutableLiveData<Boolean>? = null
@@ -49,7 +53,7 @@ class LoginVM(application: Application) : BaseVM(application) {
         return progressObserver
     }
 
-    fun doLoginProcess(callBak: GenericCallBackTwoParams<com.transport.mall.repository.networkoperator.ApiResult.Status, String>) {
+    fun doLoginProcess(callBak: GenericCallBackTwoParams<ApiResult.Status, String>) {
         var email = ""
         var password = ""
         emailObservable.get()?.let {
@@ -111,6 +115,74 @@ class LoginVM(application: Application) : BaseVM(application) {
                         app?.getString(R.string.valid_email_validation)
                     password.isEmpty() -> errorResponse?.value =
                         app?.getString(R.string.password_validation)
+                }
+            }
+        }
+    }
+
+    fun ownerLogin(callBak: GenericCallBackTwoParams<ApiResult.Status, String>) {
+        var mobilePrefix = ""
+        var mobile = ""
+        mobilePrefixObservable.get()?.let {
+            mobilePrefix = it
+        }
+
+        mobileObservable.get()?.let {
+            mobile = it
+        }
+
+        when (mobilePrefix.trim().isNotEmpty() && mobile.trim().isNotEmpty() && mobile.trim().length == 10) {
+            true -> {
+                progressObserver?.value = true
+                GlobalScope.launch(Dispatchers.Main) {
+                    try {
+                        executeApi(getApiService()?.ownerLogin("+" + mobilePrefix, "+" + mobilePrefix + mobile)).collect { result ->
+                            when (result.status) {
+                                ApiResult.Status.LOADING -> {
+                                    callBak.onResponse(result.status, "")
+                                }
+                                ApiResult.Status.ERROR -> {
+                                    progressObserver?.value = false
+                                    try {
+                                        val response =
+                                            Gson().fromJson(
+                                                result.error?.string(),
+                                                ApiResponseModel::class.java
+                                            )
+                                        callBak.onResponse(result.status, response.message)
+                                    } catch (e: Exception) {
+                                        callBak.onResponse(result.status, result.message)
+                                    }
+                                }
+                                ApiResult.Status.SUCCESS -> {
+                                    progressObserver?.value = false
+                                    result.data?.data?.let {
+
+                                        /* SharedPrefsHelper.getInstance(app as Context)
+                                             .setUserData(result.data.data!!)*/
+                                        userModel = it
+                                        callBak.onResponse(result.status, result.data.message)
+
+                                        /*getCitiesList(GenericCallBack {
+                                            HomeActivity.start(app?.applicationContext!!)
+                                            callBak.onResponse(result.status, result.data.message)
+                                        })*/
+                                    } ?: run {
+                                        showToastInCenter(app!!, result.data?.message.toString())
+                                    }
+                                }
+                            }
+                        }
+                    } catch (e: Exception) {
+                        progressObserver?.value = false
+                        showToastInCenter(app!!, getCorrectErrorMessage(e))
+                    }
+                }
+            }
+            else -> {
+                when {
+                    mobile.trim().isEmpty() -> errorResponse?.value = app!!.getString(R.string.enter_mobile_number)
+                    mobile.trim().length < 10 -> errorResponse?.value = app!!.getString(R.string.enter_valid_mobile)
                 }
             }
         }

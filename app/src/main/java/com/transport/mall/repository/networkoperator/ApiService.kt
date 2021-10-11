@@ -22,12 +22,33 @@ interface ApiService {
     ): Response<ApiResponseModel<UserModel>>
 
     @FormUrlEncoded
-    @POST("user/signup")
+    @POST("user/ownerLogin")
+    suspend fun ownerLogin(
+        @Field("mobilePrefix") mobilePrefix: String,
+        @Field("mobile") mobile: String
+    ): Response<ApiResponseModel<UserModel>>
+
+    @FormUrlEncoded
+    @POST("user/resendOtp")
+    suspend fun resendOtp(
+        @Field("mobilePrefix") mobilePrefix: String,
+        @Field("mobile") mobile: String
+    ): Response<ApiResponseModel<UserModel>>
+
+    @FormUrlEncoded
+    @POST("user/ownerSignUp")
     suspend fun signup(
         @Field("name") name: String,
         @Field("mobile") mobile: String,
         @Field("mobilePrefix") mobilePrefix: String,
         @Field("email") email: String,
+    ): Response<ApiResponseModel<UserModel>>
+
+    @FormUrlEncoded
+    @POST("user/checkOtp")
+    suspend fun checkOtp(
+        @Field("_id") id: String,
+        @Field("otp") otp: String
     ): Response<ApiResponseModel<UserModel>>
 
     @GET("city/getAllCities")

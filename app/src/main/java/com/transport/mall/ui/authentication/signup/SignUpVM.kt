@@ -1,18 +1,16 @@
 package com.transport.mall.ui.authentication.signup
 
 import android.app.Application
-import android.content.Context
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.R
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
+import com.transport.mall.model.UserModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.GenericCallBackTwoParams
-import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
@@ -49,7 +47,7 @@ class SignUpVM(application: Application) : BaseVM(application) {
         return progressObserver
     }
 
-    fun doLoginProcess(callBak: GenericCallBackTwoParams<ApiResult.Status, String>) {
+    fun signUp(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
         var name = ""
         var phone = ""
         var prefix = ""
@@ -82,30 +80,19 @@ class SignUpVM(application: Application) : BaseVM(application) {
                         ).collect { result ->
                             when (result.status) {
                                 ApiResult.Status.LOADING -> {
-                                    callBak.onResponse(result.status, "")
+                                    progressObserver?.value = true
                                 }
                                 ApiResult.Status.ERROR -> {
                                     progressObserver?.value = false
                                     try {
-                                        val response =
-                                            Gson().fromJson(
-                                                result.error?.string(),
-                                                ApiResponseModel::class.java
-                                            )
-                                        callBak.onResponse(result.status, response.message)
+                                        callBack.onResponse(Gson().fromJson(result.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<UserModel>)
                                     } catch (e: Exception) {
-                                        callBak.onResponse(result.status, result.message)
+                                        callBack.onResponse(ApiResponseModel(0, result.message.toString(), null))
                                     }
                                 }
                                 ApiResult.Status.SUCCESS -> {
                                     progressObserver?.value = false
-                                    result.data?.let {
-                                        SharedPrefsHelper.getInstance(app as Context)
-                                            .setUserData(result.data.data!!)
-
-                                        showToastInCenter(app!!, it.message)
-//                                        callBak.onResponse(it.status, it.message)
-                                    }
+                                    callBack.onResponse(result.data)
                                 }
                             }
                         }

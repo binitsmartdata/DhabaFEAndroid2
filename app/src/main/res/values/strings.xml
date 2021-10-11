@@ -387,6 +387,10 @@
     <string name="my_orders">My Orders</string>
     <string name="customers">Customers</string>
     <string name="shops">Shop</string>
+    <string name="signup_success">Sign Up Successful</string>
+    <string name="verifying">Verifying..</string>
+    <string name="enter_valid_otp">Please Enter a Valid OTP</string>
+    <string name="otp_sent">OTP sent</string>
 
     <string-array name="select_state">
         <item>Select State</item>

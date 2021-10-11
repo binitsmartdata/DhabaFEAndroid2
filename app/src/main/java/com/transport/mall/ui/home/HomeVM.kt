@@ -16,10 +16,4 @@ class HomeVM(application: Application) : BaseVM(application) {
     init {
         app = application
     }
-
-    fun observerError(): MutableLiveData<String>? {
-        errorResponse = null
-        errorResponse = MutableLiveData()
-        return errorResponse
-    }
 }

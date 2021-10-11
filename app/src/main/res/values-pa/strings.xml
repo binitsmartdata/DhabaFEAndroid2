@@ -385,5 +385,22 @@
     <string name="fetching_location_address">ਸਥਾਨ ਦਾ ਪਤਾ ਲਿਆਉਣਾ ..</string>
     <string name="cant_fetch_location_address">ਲੋਕੀਸ਼ਨ ਪਤਾ ਆਪਣੇ ਆਪ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ, ਕਿਰਪਾ ਕਰਕੇ ਲੋਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼ ਦੀ ਜਾਂਚ ਕਰੋ.</string>
     <string name="please_select_state_first">ਕਿਰਪਾ ਕਰਕੇ ਪਹਿਲਾਂ ਰਾਜ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="sign_up">ਸਾਇਨ ਅਪ</string>
+    <string name="login_as_field_executive">ਫੀਲਡ ਐਗਜ਼ੀਕਿ .ਟਿਵ ਵਜੋਂ ਲਾਗਇਨ ਕਰੋ</string>
+    <string name="login_as_dhaba_owner">ਧਾਬਾ ਮਾਲਕ ਦੇ ਤੌਰ ਤੇ ਲਾਗਇਨ ਕਰੋ</string>
+    <string name="verify">ਤਸਦੀਕ ਕਰੋ</string>
+    <string name="enter_otp_sent_to">ਨੂੰ ਭੇਜਿਆ ਓਟੀਪੀ ਦਰਜ ਕਰੋ</string>
+    <string name="change_phone_number">ਫੋਨ ਨੰਬਰ ਬਦਲੋ</string>
+    <string name="resend_otp">ਓਟੀਪੀ ਦੁਬਾਰਾ ਭੇਜੋ</string>
+    <string name="enter_valid_phone_number">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਫੋਨ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
+    <string name="my_dhabas">ਮੇਰੇ ਢਾਬੇ</string>
+    <string name="discount_offers">ਛੂਟ ਅਤੇ ਪੇਸ਼ਕਸ਼ਾਂ</string>
+    <string name="my_orders">ਮੇਰੇ ਆਦੇਸ਼</string>
+    <string name="customers">ਗਾਹਕ</string>
+    <string name="shops">ਦੁਕਾਨ</string>
+    <string name="signup_success">ਸਾਇਨ ਅਪ ਸਫਲ</string>
+    <string name="verifying">ਤਸਦੀਕ ..</string>
+    <string name="enter_valid_otp">ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਓਟੀਪੀ ਦਰਜ ਕਰੋ</string>
+    <string name="otp_sent">ਓਟੀਪੀ ਭੇਜਿਆ ਗਿਆ</string>
 
 </resources>
