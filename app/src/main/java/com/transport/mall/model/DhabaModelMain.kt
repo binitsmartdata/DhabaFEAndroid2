@@ -8,7 +8,7 @@ class DhabaModelMain : Serializable {
     var dhabaModel: DhabaModel? = null
 
     @SerializedName("owner")
-    var ownerModel: DhabaOwnerModel? = null
+    var ownerModel: UserModel? = null
 
     @SerializedName("foodAmenities")
     var foodAmenitiesModel: FoodAmenitiesModel? = null

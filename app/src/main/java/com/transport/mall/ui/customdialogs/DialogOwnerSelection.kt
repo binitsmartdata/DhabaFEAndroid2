@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.transport.mall.R
 import com.transport.mall.databinding.DialogOwnerSelectionBinding
-import com.transport.mall.model.DhabaOwnerModel
+import com.transport.mall.model.UserModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
@@ -27,14 +27,14 @@ import kotlinx.coroutines.launch
 
 class DialogOwnerSelection constructor(
     context: Context,
-    callBack: GenericCallBack<DhabaOwnerModel>
+    callBack: GenericCallBack<UserModel>
 ) : BaseDialog(context), SwipeRefreshLayout.OnRefreshListener, InfiniteAdapter.OnLoadMoreListener {
 
     var binding: DialogOwnerSelectionBinding
     var page = 1
     var searchString = ""
     var adapter: UserListAdapter? = null
-    var dataList: ArrayList<DhabaOwnerModel> = ArrayList()
+    var dataList: ArrayList<UserModel> = ArrayList()
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -84,7 +84,7 @@ class DialogOwnerSelection constructor(
         onRefresh()
     }
 
-    private fun getOwnerList(callBack: GenericCallBack<List<DhabaOwnerModel>>) {
+    private fun getOwnerList(callBack: GenericCallBack<List<UserModel>>) {
         if (page == 1) {
             binding.swipeRefreshLayout.isRefreshing = true
         }

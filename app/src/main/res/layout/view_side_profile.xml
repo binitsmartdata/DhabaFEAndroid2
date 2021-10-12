@@ -38,7 +38,7 @@
 
                 <com.transport.mall.utils.custom.CircleImageView
                     android:id="@+id/imProfile"
-                    loadImage="@{userModel.profileImage}"
+                    loadImage="@{userModel.ownerPic}"
                     placeholder="@{R.drawable.ic_profile_pic_placeholder}"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp" />
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:text="@{userModel.name}"
+                    android:text="@{userModel.ownerName}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14ssp"
                     tools:text="Profile Name" />

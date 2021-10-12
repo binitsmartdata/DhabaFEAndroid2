@@ -1,7 +1,6 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
@@ -14,12 +13,13 @@ import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOwnerDetailsBinding
 import com.transport.mall.model.DhabaModelMain
-import com.transport.mall.model.DhabaOwnerModel
+import com.transport.mall.model.UserModel
 import com.transport.mall.ui.customdialogs.DialogOwnerSelection
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.xloadImages
 
 
@@ -100,6 +100,10 @@ class OwnerDetailsFragment :
         } ?: kotlin.run {
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
             viewModel.ownerModel.alternativeMobilePrefix = binding.ccpCountryCodeAlt.selectedCountryCode
+
+            if (SharedPrefsHelper.getInstance(getmContext()).getUserData().isOwner()) {
+
+            }
         }
     }
 
@@ -228,7 +232,7 @@ class OwnerDetailsFragment :
             })
     }
 
-    private fun handleData(it: ApiResponseModel<DhabaOwnerModel>, isDraft: Boolean) {
+    private fun handleData(it: ApiResponseModel<UserModel>, isDraft: Boolean) {
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.ownerModel = it.data
             viewModel.ownerModel.populateData(it.data!!)

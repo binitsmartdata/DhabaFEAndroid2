@@ -28,7 +28,7 @@
 
         <variable
             name="owner"
-            type="com.transport.mall.model.DhabaOwnerModel" />
+            type="com.transport.mall.model.UserModel" />
 
         <variable
             name="user"
@@ -261,7 +261,7 @@
                 android:gravity="center">
 
                 <com.transport.mall.utils.custom.CircleImageView
-                    loadImage="@{user.profileImage}"
+                    loadImage="@{user.ownerPic}"
                     placeholder="@{R.drawable.ic_profile_pic_placeholder}"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
@@ -284,7 +284,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
-                        android:text="@{user.name}"
+                        android:text="@{user.ownerName}"
                         android:textColor="@color/black" />
 
                 </LinearLayout>

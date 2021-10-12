@@ -37,11 +37,11 @@ class ProfileVM(application: Application) : BaseVM(application) {
                 executeApi(
                     getApiService()?.updateUserProfile(
                         RequestBody.create(MultipartBody.FORM, userModel._id),
-                        RequestBody.create(MultipartBody.FORM, userModel.name),
+                        RequestBody.create(MultipartBody.FORM, userModel.ownerName),
                         RequestBody.create(MultipartBody.FORM, userModel.email),
                         RequestBody.create(MultipartBody.FORM, userModel.mobile),
                         RequestBody.create(MultipartBody.FORM, userModel.mobilePrefix),
-                        getMultipartImageFile(userModel.profileImage, "profileImage")
+                        getMultipartImageFile(userModel.ownerPic, "profileImage")
                     )
                 ).collect {
                     handleResponse(it, callBack, progressObserverUpdate)

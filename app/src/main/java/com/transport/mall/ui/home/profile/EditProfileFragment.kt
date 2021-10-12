@@ -78,7 +78,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
 
         binding.btnUpdateProfile.setOnClickListener {
             viewModel.userModel = binding.userModel as UserModel
-            if (viewModel.userModel.name.trim().isEmpty()) {
+            if (viewModel.userModel.ownerName.trim().isEmpty()) {
                 showToastInCenter(getString(R.string.please_enter_name))
             } else if (viewModel.userModel.email.trim().isEmpty() || !GlobalUtils.isValidEmail(viewModel.userModel.email.trim())) {
                 showToastInCenter(getString(R.string.enter_email_id))
@@ -108,7 +108,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
         if (resultCode == Activity.RESULT_OK) {
             val uri: Uri = data?.data!!
             binding.ivProfileImg.setImageURI(uri)
-            viewModel.userModel.profileImage = getRealPathFromURI(uri)
+            viewModel.userModel.ownerPic = getRealPathFromURI(uri)
         }
     }
 }

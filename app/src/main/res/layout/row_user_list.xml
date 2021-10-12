@@ -13,7 +13,7 @@
 
         <variable
             name="model"
-            type="com.transport.mall.model.DhabaOwnerModel" />
+            type="com.transport.mall.model.UserModel" />
 
         <variable
             name="context"

@@ -3,12 +3,11 @@ package com.transport.mall.ui.customdialogs
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.RowUserListBinding
-import com.transport.mall.model.DhabaOwnerModel
 import com.transport.mall.model.UserModel
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 
-class UserListAdapter(val context: Context, val dataList: List<DhabaOwnerModel>, val callBack: GenericCallBack<DhabaOwnerModel>) : InfiniteAdapter<RowUserListBinding>() {
+class UserListAdapter(val context: Context, val dataList: List<UserModel>, val callBack: GenericCallBack<UserModel>) : InfiniteAdapter<RowUserListBinding>() {
 
     init {
         setShouldLoadMore(true)

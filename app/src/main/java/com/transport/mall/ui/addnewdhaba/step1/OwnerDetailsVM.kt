@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
-import com.transport.mall.model.DhabaOwnerModel
+import com.transport.mall.model.UserModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -24,13 +24,13 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
     var progressObserverUpdate: MutableLiveData<Boolean> = MutableLiveData()
 
-    var ownerModel = DhabaOwnerModel()
+    var ownerModel = UserModel()
 
     init {
         app = application
     }
 
-    fun addDhabaOwner(callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>) {
+    fun addDhabaOwner(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -64,7 +64,7 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
         }
     }
 
-    fun updateOwner(callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>) {
+    fun updateOwner(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
         progressObserverUpdate.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -99,8 +99,8 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
     }
 
     private fun handleResponse(
-        it: ApiResult<ApiResponseModel<DhabaOwnerModel>>,
-        callBack: GenericCallBack<ApiResponseModel<DhabaOwnerModel>>,
+        it: ApiResult<ApiResponseModel<UserModel>>,
+        callBack: GenericCallBack<ApiResponseModel<UserModel>>,
         observer: MutableLiveData<Boolean>
     ) {
         when (it.status) {
@@ -110,7 +110,7 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
             ApiResult.Status.ERROR -> {
                 observer.value = false
                 try {
-                    callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<DhabaOwnerModel>?)
+                    callBack.onResponse(Gson().fromJson(it.error?.string(), ApiResponseModel::class.java) as ApiResponseModel<UserModel>?)
                 } catch (e: Exception) {
                     callBack.onResponse(ApiResponseModel(0, it.message!!, null))
                 }

@@ -124,7 +124,7 @@ interface ApiService {
         @Query("page") page: String,
         @Query("role") role: String,
         @Query("searchName") searchName: String?
-    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaOwnerModel>>>>
+    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<UserModel>>>>
 
     @Multipart
     @POST("dhaba/addDhaba")
@@ -195,7 +195,7 @@ interface ApiService {
         @Part ownerPic: MultipartBody.Part?,
         @Part idproofFront: MultipartBody.Part?,
         @Part idproofBack: MultipartBody.Part?
-    ): Response<ApiResponseModel<DhabaOwnerModel>>
+    ): Response<ApiResponseModel<UserModel>>
 
     @Multipart
     @POST("dhaba/updateOwner")
@@ -217,7 +217,7 @@ interface ApiService {
         @Part ownerPic: MultipartBody.Part?,
         @Part idproofFront: MultipartBody.Part?,
         @Part idproofBack: MultipartBody.Part?
-    ): Response<ApiResponseModel<DhabaOwnerModel>>
+    ): Response<ApiResponseModel<UserModel>>
 
     @Multipart
     @POST("user/updateUserProfile")
