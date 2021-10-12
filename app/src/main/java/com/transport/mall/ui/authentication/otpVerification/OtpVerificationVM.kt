@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 class OtpVerificationVM(application: Application) : BaseVM(application) {
     var progressObserver: MutableLiveData<Boolean>? = null
     var resendOtpObserver: MutableLiveData<Boolean>? = MutableLiveData<Boolean>()
-    var progressObserverCityStates: MutableLiveData<Boolean>? = null
+    var progressObserverCityStates: MutableLiveData<Boolean>? = MutableLiveData<Boolean>()
     var app: Application? = null
 
     var otp: String = ""
@@ -57,7 +57,7 @@ class OtpVerificationVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 executeApi(
-                    getApiService()?.resendOtp("+" + userModel.mobilePrefix, userModel.mobile)
+                    getApiService()?.resendOtp("+" + userModel.mobilePrefix, "+" + userModel.mobilePrefix + userModel.mobile)
                 ).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {

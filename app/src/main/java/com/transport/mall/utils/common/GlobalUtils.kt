@@ -433,7 +433,9 @@ object GlobalUtils {
                 InputMethodManager.HIDE_NOT_ALWAYS
             )
         } catch (e: Exception) {
-            Log.e("KEYBOARD", "------")
+            Log.e("KEYBOARD", e.toString() + "------")
+        } catch (e: Error) {
+            Log.e("KEYBOARD", e.toString() + "------")
         }
     }
 

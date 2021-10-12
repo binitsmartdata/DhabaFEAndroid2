@@ -264,7 +264,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     }
 
     override fun openNotificationFragment() {
-        displayView(2)
+        displayView(1)
     }
 
     fun displayView(position: Int) {

@@ -116,8 +116,7 @@ class UserModel : Serializable, BaseObservable() {
     }
 
     fun isOwner(): Boolean {
-//        return role.equals(ROLE_OWNER, true)
-        return true
+        return role.equals(ROLE_OWNER, true)
     }
 
     fun isExecutive(): Boolean {

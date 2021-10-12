@@ -391,6 +391,7 @@
     <string name="verifying">Verifying..</string>
     <string name="enter_valid_otp">Please Enter a Valid OTP</string>
     <string name="otp_sent">OTP sent</string>
+    <string name="resend_in">Resend In:</string>
 
     <string-array name="select_state">
         <item>Select State</item>

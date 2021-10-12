@@ -1,5 +1,9 @@
 package com.transport.mall.ui.authentication.otpVerification
 
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentOtpVerificationBinding
@@ -24,7 +28,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     override fun bindData() {
         binding.vm = viewModel
         viewModel.userModel = userModel
-        var prefix = if (userModel.mobilePrefix.isNotEmpty()) userModel.mobilePrefix else ""
+        var prefix = if (userModel.mobilePrefix.isNotEmpty()) "+" + userModel.mobilePrefix else ""
         binding.tvOtpSentTo.text = "$prefix ${userModel.mobile}"
         binding.btnLoginOwner.setOnClickListener {
             if (binding.edOtp.text.toString().isNotEmpty() && binding.edOtp.text.toString().length == 6) {
@@ -47,6 +51,8 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
             viewModel.resendOtp(GenericCallBack { response ->
                 response.data?.let {
                     showToastInCenter(getString(R.string.otp_sent))
+                    miliseconds = 0
+                    countDown()
                 } ?: kotlin.run {
                     showToastInCenter(response.message.toString())
                 }
@@ -55,6 +61,13 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     }
 
     override fun initListeners() {
+        viewModel.progressObserverCityStates?.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.fetching_states_cities_highways))
+            } else {
+                hideProgressDialog()
+            }
+        })
         viewModel.observerProgress()?.observe(this, Observer {
             if (it) {
                 showProgressDialog(getString(R.string.verifying))
@@ -69,5 +82,31 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
                 hideProgressDialog()
             }
         })
+
+        countDown()
     }
+
+    var miliseconds = 0
+    private fun countDown() {
+        if (miliseconds < 30000) {
+            if (activity != null) {
+                binding.btnResentOtp.isEnabled = false
+                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.grey))
+                Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                    miliseconds += 1000
+                    var seconds = ((30000 - miliseconds) / 1000).toString()
+                    binding.countDownTime = activity?.getString(R.string.resend_in) + " 00:${if (seconds.length > 1) seconds else "0" + seconds}"
+                    binding.tvResendIn.visibility = View.VISIBLE
+                    countDown()
+                }, 1000)
+            }
+        } else {
+            if (activity != null) {
+                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
+                binding.btnResentOtp.isEnabled = true
+                binding.tvResendIn.visibility = View.GONE
+            }
+        }
+    }
+
 }

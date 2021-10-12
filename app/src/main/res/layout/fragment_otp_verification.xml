@@ -8,19 +8,15 @@
         <import type="android.view.View" />
 
         <variable
+            name="context"
+            type="android.content.Context" />
+
+        <variable
             name="vm"
             type="com.transport.mall.ui.authentication.otpVerification.OtpVerificationVM" />
 
         <variable
-            name="a"
-            type="String" />
-
-        <variable
-            name="b"
-            type="String" />
-
-        <variable
-            name="c"
+            name="countDownTime"
             type="String" />
 
     </data>
@@ -100,8 +96,8 @@
             android:background="@drawable/grey_stroke_selector"
             android:text="@string/change_phone_number"
             android:textAllCaps="false"
-            android:visibility="gone"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btnResentOtp"
@@ -110,6 +106,16 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/grey_stroke_selector"
             android:text="@string/resend_otp"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvResendIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@{countDownTime}"
             android:textAllCaps="false"
             android:textColor="@color/black" />
 
