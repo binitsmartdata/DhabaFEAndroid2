@@ -365,7 +365,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
-                        android:text="@{userModel.ownerName}"
+                        android:text="@{userModel.isExecutive() ? userModel.ownerName : ``}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -388,7 +388,7 @@
                         android:enabled="false"
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="phone"
-                        android:text="@{userModel.mobile}"
+                        android:text="@{userModel.isExecutive() ? userModel.mobile : ``}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 

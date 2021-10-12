@@ -202,8 +202,15 @@ class BankDetailsFragment :
                     showToastInCenter(getString(R.string.enter_bank_name))
                 }
             } else {
-                val ownerMissingParams = (mListener?.getDhabaModelMain()?.ownerModel?.getMissingParameters(getmContext())?.trim()!!)
-                val dhabaMissingParams = (mListener?.getDhabaModelMain()?.dhabaModel?.getMissingParameters(getmContext())?.trim()!!)
+                var ownerMissingParams = ""
+                var dhabaMissingParams = ""
+                mListener?.getDhabaModelMain()?.ownerModel?.let {
+                    ownerMissingParams = it.getMissingParameters(getmContext())?.trim()!!
+                }
+                mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                    dhabaMissingParams = it.getMissingParameters(getmContext())?.trim()!!
+                }
+
                 if (ownerMissingParams.isNotEmpty() || dhabaMissingParams.isNotEmpty()) {
                     GlobalUtils.showInfoDialog(getmContext(), getString(R.string.details_missing_validation),
                         ownerMissingParams + "\n" + dhabaMissingParams,
@@ -327,10 +334,10 @@ class BankDetailsFragment :
         if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
             return false
-        }/* else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
+        } else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
             showToastInCenter(getString(R.string.enter_dhaba_details))
             return false
-        }*/
+        }
         return true
     }
 
