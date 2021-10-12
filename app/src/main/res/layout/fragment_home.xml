@@ -24,6 +24,10 @@
             name="viewModel"
             type="com.transport.mall.ui.home.HomeVM" />
 
+        <variable
+            name="userModel"
+            type="com.transport.mall.model.UserModel" />
+
     </data>
 
     <FrameLayout
@@ -56,9 +60,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/primary_color_btn_selector"
+                    android:fontFamily="@font/opensans_regular"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="5dp"
-                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/add_new"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
@@ -71,6 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:visibility="@{userModel.isOwner() ? View.GONE : View.VISIBLE}"
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
                 app:tabTextColor="@color/tabs_text_selector">
 
@@ -82,8 +87,8 @@
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/in_progress" />
 
                 <com.google.android.material.tabs.TabItem

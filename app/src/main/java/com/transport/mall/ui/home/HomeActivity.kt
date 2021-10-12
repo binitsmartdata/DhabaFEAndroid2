@@ -264,7 +264,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     }
 
     override fun openNotificationFragment() {
-        displayView(1)
+        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner())
+            displayViewOwner(1)
+        else
+            displayViewExecutive(2)
     }
 
     fun displayView(position: Int) {

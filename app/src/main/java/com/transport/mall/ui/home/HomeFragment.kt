@@ -8,9 +8,11 @@ import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentHomeBinding
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.UserModel
 import com.transport.mall.ui.home.dhabalist.DhabaListFragment
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.utils.base.BaseFragment
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
@@ -27,10 +29,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
         set(value) {}
 
     var mCommonActivityListener: CommonActivityListener? = null
+    var userModel: UserModel? = UserModel()
 
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
+        binding.userModel = userModel
         setupViewPager()
         setHasOptionsMenu(true)
     }
@@ -41,12 +46,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
         val adapter = HomeViewPagerAdapter(
             childFragmentManager
         )
-
         // add your fragments
         adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_PENDING), getString(R.string.pending))
-        adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_review))
-        adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_ACTIVE), getString(R.string.active))
-        adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INACTIVE), getString(R.string.inactive))
+        if (userModel?.isExecutive()!!) {
+            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_review))
+            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_ACTIVE), getString(R.string.active))
+            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INACTIVE), getString(R.string.inactive))
+        }
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter
