@@ -3,6 +3,7 @@ package com.transport.mall.ui.home.dhabalist
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
@@ -18,6 +19,7 @@ import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.FiltersModel
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.Dialogfilters
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
@@ -116,6 +118,11 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
     }
 
     override fun initListeners() {
+        //LISTENER TO LISTEN WHEN TO REFRESH THE DHABA LISTS.
+        RxBus.listen(DhabaModel::class.java).subscribe {
+            onRefresh()
+        }
+
         setupSearchFieldListener()
 
         viewModel.dialogProgressObserver.observe(this, Observer {
