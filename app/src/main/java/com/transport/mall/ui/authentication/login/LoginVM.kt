@@ -136,7 +136,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                 progressObserver?.value = true
                 GlobalScope.launch(Dispatchers.Main) {
                     try {
-                        executeApi(getApiService()?.ownerLogin("+" + mobilePrefix, "+" + mobilePrefix + mobile)).collect { result ->
+                        executeApi(getApiService()?.ownerLogin("+" + mobilePrefix, mobile)).collect { result ->
                             when (result.status) {
                                 ApiResult.Status.LOADING -> {
                                     callBak.onResponse(result.status, "")

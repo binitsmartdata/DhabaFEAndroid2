@@ -57,7 +57,7 @@ class OtpVerificationVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 executeApi(
-                    getApiService()?.resendOtp("+" + userModel.mobilePrefix, "+" + userModel.mobilePrefix + userModel.mobile)
+                    getApiService()?.resendOtp("+" + userModel.mobilePrefix, userModel.mobile)
                 ).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {

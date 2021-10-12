@@ -101,8 +101,9 @@ class OwnerDetailsFragment :
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
             viewModel.ownerModel.alternativeMobilePrefix = binding.ccpCountryCodeAlt.selectedCountryCode
 
-            if (SharedPrefsHelper.getInstance(getmContext()).getUserData().isOwner()) {
-
+            val loggedInUser = SharedPrefsHelper.getInstance(getmContext()).getUserData()
+            if (loggedInUser.isOwner()) {
+                showExistingUserDetails(loggedInUser)
             }
         }
     }
@@ -110,9 +111,7 @@ class OwnerDetailsFragment :
     override fun initListeners() {
         binding.llAddExisting.setOnClickListener {
             DialogOwnerSelection(getmContext(), GenericCallBack {
-                mListener?.getDhabaModelMain()?.ownerModel = it
-                viewModel.ownerModel.populateData(it)
-                setDataIfHas(true)
+                showExistingUserDetails(it)
             }).show()
         }
 
@@ -179,6 +178,12 @@ class OwnerDetailsFragment :
                 saveDetails(true)
             }
         }
+    }
+
+    private fun showExistingUserDetails(it: UserModel?) {
+        mListener?.getDhabaModelMain()?.ownerModel = it
+        viewModel.ownerModel.populateData(it)
+        setDataIfHas(true)
     }
 
     private fun setupLocationViews() {
