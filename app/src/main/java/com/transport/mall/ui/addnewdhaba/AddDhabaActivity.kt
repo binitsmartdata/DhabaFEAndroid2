@@ -19,6 +19,7 @@ import com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsFragment
 import com.transport.mall.ui.addnewdhaba.step2.DhabaDetailsFragment
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
@@ -303,5 +304,10 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        RxBus.publish(DhabaModel())
     }
 }
