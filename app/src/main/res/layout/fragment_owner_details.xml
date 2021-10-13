@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -23,6 +24,10 @@
         <variable
             name="viewModel"
             type="com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsVM" />
+
+        <variable
+            name="userModel"
+            type="com.transport.mall.model.UserModel" />
     </data>
 
     <ScrollView
@@ -59,7 +64,8 @@
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/add_existing_owner"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="@dimen/_14ssp"
+                        android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -191,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:background="@drawable/default_btn_selector"
-                        android:drawableLeft="@drawable/ic_location"
+                        android:drawableStart="@drawable/ic_location"
                         android:drawablePadding="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_semibold"
                         android:paddingVertical="@dimen/_5sdp"
@@ -547,7 +553,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
+                android:focusable="true"
+                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone" />
         </FrameLayout>
     </ScrollView>
 

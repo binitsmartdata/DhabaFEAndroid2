@@ -206,7 +206,22 @@
                     android:layout_height="30dp"
                     android:background="@drawable/default_btn_selector"
                     android:padding="5dp"
-                    android:src="@drawable/ic_delete"/>
+                    android:src="@drawable/ic_delete" />
+
+                <ImageView
+                    android:id="@+id/ivLocation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/default_btn_selector"
+                    android:src="@drawable/ic_marker" />
+
+                <ImageView
+                    android:id="@+id/ivView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/default_btn_selector"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_eye" />
 
             </LinearLayout>
 
@@ -229,7 +244,7 @@
                     placeholder="@{R.drawable.ic_profile_pic_placeholder}"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"/>
+                    android:layout_marginEnd="@dimen/_5sdp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"

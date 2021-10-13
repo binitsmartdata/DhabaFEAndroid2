@@ -48,6 +48,7 @@ class OwnerDetailsFragment :
         binding.context = activity
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
         mListener = activity as AddDhabaListener
         binding.isUpdate = mListener?.isUpdate()!!
         binding.viewOnly = mListener?.viewOnly()!!
@@ -241,6 +242,13 @@ class OwnerDetailsFragment :
         if (it.data != null) {
             mListener?.getDhabaModelMain()?.ownerModel = it.data
             viewModel.ownerModel.populateData(it.data!!)
+
+            //UPDATE OWNER'S DETAILS IN USER'S DATA BECAUSE OWNER IS THE SAME USER WHO HAS LOGGED IN
+            if (binding.userModel!!.isOwner() && binding.userModel!!._id.equals(mListener?.getDhabaModelMain()?.ownerModel?._id)) {
+                binding.userModel!!.populateData(it.data)
+                SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+            }
+            //---------
 
             if (isDraft) {
                 mListener?.getDhabaModelMain()?.draftedAtScreen =

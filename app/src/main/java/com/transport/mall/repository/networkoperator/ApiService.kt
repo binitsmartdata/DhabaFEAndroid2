@@ -76,7 +76,21 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Query("count") count: String,
         @Query("page") page: String,
-        @Query("status") status: String,
+        @Query("status") status: String?,
+        @Query("searchCity") searchCity: String?,
+        @Query("searchState") searchState: String?,
+        @Query("searchHighway") searchHighway: String?,
+        @Query("searchPincode") searchPincode: String?,
+        @Query("search") search: String?
+    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModelMain>>>>
+
+    //limit=10&page=1
+    @GET("dhaba/getAllOwnerDhabaList")
+    suspend fun getAllOwnerDhabaList(
+        @Header("Authorization") token: String,
+        @Query("count") count: String,
+        @Query("page") page: String,
+        @Query("status") status: String?,
         @Query("searchCity") searchCity: String?,
         @Query("searchState") searchState: String?,
         @Query("searchHighway") searchHighway: String?,

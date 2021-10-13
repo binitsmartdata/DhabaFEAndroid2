@@ -46,9 +46,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
         val adapter = HomeViewPagerAdapter(
             childFragmentManager
         )
-        // add your fragments
-        adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_PENDING), getString(R.string.pending))
-        if (userModel?.isExecutive()!!) {
+
+        if (userModel?.isOwner()!!) {
+            adapter.addFrag(DhabaListFragment(null), getString(R.string.pending))
+        } else {
+            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_PENDING), getString(R.string.pending))
             adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_review))
             adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_ACTIVE), getString(R.string.active))
             adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INACTIVE), getString(R.string.inactive))

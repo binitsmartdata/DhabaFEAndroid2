@@ -41,24 +41,38 @@ class DhabaListVM(application: Application) : BaseVM(application) {
         page: String,
         filters: FiltersModel,
         search: String,
-        status: String,
+        status: String?,
         callBack: GenericCallBack<ArrayList<DhabaModelMain>>
     ) {
         progressObserver.value = page == "1"
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 executeApi(
-                    getApiService()?.getAllDhabaList(
-                        token,
-                        limit,
-                        page,
-                        status,
-                        GlobalUtils.getNullifEmpty(filters.cities),
-                        GlobalUtils.getNullifEmpty(filters.states),
-                        GlobalUtils.getNullifEmpty(filters.highway),
-                        GlobalUtils.getNullifEmpty(filters.pincode),
-                        GlobalUtils.getNullifEmpty(search)
-                    )
+                    if (status == null || status.isEmpty()) {
+                        getApiService()?.getAllOwnerDhabaList(
+                            token,
+                            limit,
+                            page,
+                            null,
+                            GlobalUtils.getNullifEmpty(filters.cities),
+                            GlobalUtils.getNullifEmpty(filters.states),
+                            GlobalUtils.getNullifEmpty(filters.highway),
+                            GlobalUtils.getNullifEmpty(filters.pincode),
+                            GlobalUtils.getNullifEmpty(search)
+                        )
+                    } else {
+                        getApiService()?.getAllDhabaList(
+                            token,
+                            limit,
+                            page,
+                            status,
+                            GlobalUtils.getNullifEmpty(filters.cities),
+                            GlobalUtils.getNullifEmpty(filters.states),
+                            GlobalUtils.getNullifEmpty(filters.highway),
+                            GlobalUtils.getNullifEmpty(filters.pincode),
+                            GlobalUtils.getNullifEmpty(search)
+                        )
+                    }
                 ).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {

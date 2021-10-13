@@ -129,7 +129,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setTitle(if (isUpdate()) getString(R.string.update_dhaba) else getString(R.string.add_new_dhaba))
+        supportActionBar?.setTitle(
+            if (isUpdate())
+                getString(R.string.update_dhaba)
+            else if (viewOnly())
+                getString(R.string.dhaba_details)
+            else
+                getString(R.string.add_new_dhaba)
+        )
     }
 
     private fun setupStepsFragments() {
