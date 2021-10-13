@@ -44,7 +44,7 @@
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
                     android:maxLength="15"
-                    android:editable="false"
+                    android:enabled="false"
                     android:padding="@dimen/_7sdp"
                     android:text="@string/nh"
                     android:textColor="@color/black"
