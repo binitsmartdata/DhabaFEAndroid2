@@ -3,7 +3,6 @@ package com.transport.mall.ui.home.dhabalist
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView.OnEditorActionListener
@@ -210,8 +209,10 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
     }
 
     override fun onRefresh() {
-        page = 1
-        refreshDhabaList()
+        if (activity != null) {
+            page = 1
+            refreshDhabaList()
+        }
     }
 
     override fun onResume() {
