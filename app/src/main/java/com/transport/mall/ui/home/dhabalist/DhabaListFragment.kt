@@ -210,8 +210,10 @@ class DhabaListFragment(val status: String) : BaseFragment<FragmentDhabaListBind
     }
 
     override fun onRefresh() {
-        page = 1
-        refreshDhabaList()
+        if (activity != null) {
+            page = 1
+            refreshDhabaList()
+        }
     }
 
     override fun onResume() {

@@ -210,7 +210,6 @@ class BankDetailsFragment :
                 mListener?.getDhabaModelMain()?.dhabaModel?.let {
                     dhabaMissingParams = it.getMissingParameters(getmContext())?.trim()!!
                 }
-
                 if (ownerMissingParams.isNotEmpty() || dhabaMissingParams.isNotEmpty()) {
                     GlobalUtils.showInfoDialog(getmContext(), getString(R.string.details_missing_validation),
                         ownerMissingParams + "\n" + dhabaMissingParams,
