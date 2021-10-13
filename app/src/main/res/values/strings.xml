@@ -392,6 +392,9 @@
     <string name="enter_valid_otp">Please Enter a Valid OTP</string>
     <string name="otp_sent">OTP sent</string>
     <string name="resend_in">Resend In:</string>
+    <string name="assign">Assign</string>
+    <string name="assign_manager">Assign Manager</string>
+    <string name="manager_name">Manager Name</string>
 
     <string-array name="select_state">
         <item>Select State</item>

@@ -16,6 +16,7 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.FiltersModel
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
+import com.transport.mall.ui.customdialogs.DailogAddManager
 import com.transport.mall.ui.customdialogs.Dialogfilters
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment

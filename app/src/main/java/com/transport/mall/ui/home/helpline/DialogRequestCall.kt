@@ -25,7 +25,7 @@ class DialogRequestCall constructor(
         )
         setContentView(binding.root)
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.btnUpdateProfile.setOnClickListener { dismiss() }
     }

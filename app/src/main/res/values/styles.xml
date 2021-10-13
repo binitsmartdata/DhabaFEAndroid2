@@ -99,4 +99,9 @@
         <item name="otpViewStyle">@style/OtpWidget.OtpView</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_down</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_up</item>
+    </style>
+
 </resources>
