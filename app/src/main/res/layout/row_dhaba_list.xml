@@ -31,6 +31,10 @@
             type="com.transport.mall.model.UserModel" />
 
         <variable
+            name="manager"
+            type="com.transport.mall.model.UserModel" />
+
+        <variable
             name="user"
             type="com.transport.mall.model.UserModel" />
 
@@ -231,7 +235,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="10dp">
+            android:paddingHorizontal="10dp"
+            android:visibility="@{user.isExecutive() ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -303,6 +308,117 @@
                         android:textColor="@color/black" />
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:visibility="@{user.isOwner() ? View.VISIBLE : View.GONE}">
+
+            <LinearLayout
+                android:id="@+id/llAssignMgr"
+                android:layout_width="0dp"
+                android:background="@drawable/default_btn_selector"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.transport.mall.utils.custom.CircleImageView
+                        loadImage="@{manager.ownerPic}"
+                        placeholder="@{R.drawable.ic_profile_pic_placeholder}"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:visibility="@{manager!=null ? View.VISIBLE : View.GONE}" />
+
+                    <com.transport.mall.utils.custom.CircleImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/ic_add_red"
+                        android:visibility="@{manager==null ? View.VISIBLE : View.GONE}" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@string/manager"
+                        android:textColor="@color/grey"
+                        android:visibility="@{manager==null ? View.GONE : View.VISIBLE}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@{manager==null ? context.getString(R.string.assign_manager) : manager.ownerName}"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="right|center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvVerified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_verified"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:text="@string/verified"
+                    android:textColor="@color/black"
+                    android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    android:id="@+id/tvPayNow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:background="@drawable/primary_color_btn_selector"
+                    android:fontFamily="@font/opensans_regular"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_2sdp"
+                    android:text="@string/pay_now"
+                    android:textColor="@color/white"
+                    android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    android:id="@+id/tvSendForApproval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stroke_btn_selector"
+                    android:fontFamily="@font/opensans_regular"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_2sdp"
+                    android:text="@string/send_for_approval"
+                    android:textColor="@color/black"
+                    android:visibility="@{model.verified.equalsIgnoreCase(`false`) ? View.VISIBLE : View.GONE}" />
 
             </LinearLayout>
 

@@ -7,6 +7,7 @@ import com.transport.mall.databinding.RowDhabaListBinding
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.UserModel
+import com.transport.mall.ui.customdialogs.DailogAddManager
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
@@ -68,6 +69,9 @@ class DhabaListAdapter(
 
         myViewHolderG?.binding?.ivLocation?.setOnClickListener {
             locateCallBack.onResponse(position)
+        }
+        myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
+            DailogAddManager(context,"").show()
         }
     }
 

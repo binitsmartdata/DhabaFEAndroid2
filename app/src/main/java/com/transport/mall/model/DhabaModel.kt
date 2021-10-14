@@ -178,6 +178,14 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.active)
         }
 
+    @SerializedName("isVerified")
+    var verified: String? = "false"
+        @Bindable get() = field
+        set(verified) {
+            field = verified
+            notifyPropertyChanged(BR.verified)
+        }
+
     var latitude: String = ""
         @Bindable get() = field
         set(latitude) {

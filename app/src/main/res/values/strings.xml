@@ -395,6 +395,10 @@
     <string name="assign">Assign</string>
     <string name="assign_manager">Assign Manager</string>
     <string name="manager_name">Manager Name</string>
+    <string name="manager">Manager</string>
+    <string name="verified">Verified</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="send_for_approval">Send For Approval</string>
 
     <string-array name="select_state">
         <item>Select State</item>
