@@ -101,7 +101,7 @@
                     android:layout_marginStart="@dimen/_4sdp"
                     android:background="@android:color/transparent"
                     android:hint="@string/_10_digit_mobile_number"
-                    android:inputType="number"
+                    android:inputType="phone"
                     android:maxLength="10"
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
