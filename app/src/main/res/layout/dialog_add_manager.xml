@@ -9,8 +9,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="dhabaId"
-            type="String" />
+            name="dhaba"
+            type="com.transport.mall.model.DhabaModel" />
     </data>
 
     <FrameLayout
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/opensans_semibold"
-                android:text="@string/_dhaba_name"
+                android:text="@{dhaba.name}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/opensans_semibold"
-                android:text="@string/address"
+                android:text="@{dhaba.address}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
@@ -119,7 +119,7 @@
                 android:hint="@string/email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edMgrPhone"
+                    android:id="@+id/edMgrEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
@@ -141,5 +141,16 @@
                 android:textColor="@color/white" />
 
         </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="right|top"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/default_btn_selector"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_close" />
+
     </FrameLayout>
 </layout>

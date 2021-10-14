@@ -18,4 +18,5 @@
     <color name="colorRed">#EE000F</color>
     <color name="colorLightGrey">#F8F8F8</color>
     <color name="colorGrey1">#DADADA</color>
+    <color name="greenText">#59A700</color>
 </resources>

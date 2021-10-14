@@ -10,6 +10,9 @@ class DhabaModelMain : Serializable {
     @SerializedName("owner")
     var ownerModel: UserModel? = null
 
+    @SerializedName("manager")
+    var manager: UserModel? = null
+
     @SerializedName("foodAmenities")
     var foodAmenitiesModel: FoodAmenitiesModel? = null
 

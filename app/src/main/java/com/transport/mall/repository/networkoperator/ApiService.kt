@@ -105,6 +105,16 @@ interface ApiService {
     ): Response<ApiResponseModel<ArrayList<CityModel>>>
 
     @FormUrlEncoded
+    @POST("user/addDhabaManager")
+    suspend fun addDhabaManager(
+        @Field("name") name: String,
+        @Field("mobilePrefix") mobilePrefix: String,
+        @Field("mobile") mobile: String,
+        @Field("email") email: String,
+        @Field("dhabaId") dhabaId: String
+    ): Response<ApiResponseModel<UserModel>>
+
+    @FormUrlEncoded
     @POST("dhaba/updateDhabaStatus")
     suspend fun updateDhabaStatus(
         @Field("_id") _id: String,

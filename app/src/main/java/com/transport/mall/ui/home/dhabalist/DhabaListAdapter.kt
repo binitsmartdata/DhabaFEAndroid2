@@ -8,6 +8,7 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.customdialogs.DailogAddManager
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
@@ -71,28 +72,37 @@ class DhabaListAdapter(
             locateCallBack.onResponse(position)
         }
         myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
-            DailogAddManager(context,"").show()
+            DailogAddManager(context, dataList[position].dhabaModel!!, GenericCallBack {
+                if (it != null) {
+                    dataList[position].manager = it
+                    notifyDataSetChanged()
+                    RxBus.publish(dataList[position].dhabaModel!!)
+                }
+            }).show()
         }
     }
 
     private fun manageIconsVisibility(myViewHolderG: MyViewHolderG?, position: Int) {
-        myViewHolderG?.binding?.ivDelete?.visibility =
-            if (dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_PENDING)) View.VISIBLE else View.GONE
-
-        myViewHolderG?.binding?.ivEdit?.visibility =
-            if (dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_PENDING)
-                || dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_INPROGRESS)
-                || userModel.isOwner()
-            ) View.VISIBLE else View.GONE
-
-        myViewHolderG?.binding?.ivLocation?.visibility =
-            if (userModel.isOwner()) View.VISIBLE else View.GONE
-
-        myViewHolderG?.binding?.ivView?.visibility =
-            if (dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_ACTIVE)
-                || dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_INACTIVE)
-                || userModel.isOwner()
-            ) View.VISIBLE else View.GONE
+        when (dataList[position].dhabaModel?.status) {
+            DhabaModel.STATUS_PENDING -> {
+                myViewHolderG?.binding?.ivDelete?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivLocation?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
+            }
+            DhabaModel.STATUS_INPROGRESS -> {
+                myViewHolderG?.binding?.ivDelete?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivLocation?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
+            }
+            DhabaModel.STATUS_ACTIVE, DhabaModel.STATUS_INACTIVE, "" -> {
+                myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
+                myViewHolderG?.binding?.ivEdit?.visibility = View.GONE
+                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
+                myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun getCount(): Int {

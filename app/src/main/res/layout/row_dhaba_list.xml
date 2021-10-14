@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -75,13 +76,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/light_gold_shape"
                     android:fontFamily="@font/opensans_regular"
                     android:paddingHorizontal="7dp"
                     android:paddingVertical="3dp"
-                    android:text="@string/pending"
-                    android:textColor="@color/gold"
-                    android:visibility="gone" />
+                    android:text="@{model.status}"
+                    android:textColor="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? context.getColor(R.color.gold) : context.getColor(R.color.greenText)}"
+                    android:visibility="@{user.isOwner() ? View.VISIBLE : View.GONE}"
+                    app:backgroundResource="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? R.drawable.bg_pending_dhaba_status : R.drawable.bg_active_dhaba_status}" />
 
             </LinearLayout>
 
@@ -323,10 +324,10 @@
             <LinearLayout
                 android:id="@+id/llAssignMgr"
                 android:layout_width="0dp"
-                android:background="@drawable/default_btn_selector"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/default_btn_selector"
                 android:gravity="center_vertical">
 
                 <FrameLayout
@@ -379,8 +380,8 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:gravity="right|center_vertical"
                 android:orientation="vertical">
 

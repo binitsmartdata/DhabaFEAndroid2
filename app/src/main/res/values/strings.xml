@@ -399,6 +399,9 @@
     <string name="verified">Verified</string>
     <string name="pay_now">Pay Now</string>
     <string name="send_for_approval">Send For Approval</string>
+    <string name="enter_mgr_name">Please enter manager name.</string>
+    <string name="manager_assigned_successfully">Manager Assigned successfully.</string>
+    <string name="assigning_manager">Assigning Manager..</string>
 
     <string-array name="select_state">
         <item>Select State</item>
