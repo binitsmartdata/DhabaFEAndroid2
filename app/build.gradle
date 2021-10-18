@@ -64,6 +64,12 @@ android {
             buildConfigField("String", "BASE_URL", BASE_URL)
             resValue "string", "app_name", "${app_name}"
         }
+        transportMallUat {
+            flavorDimensions "default"
+            applicationId "${application_id_uat}"
+            buildConfigField("String", "BASE_URL", BASE_URL_UAT)
+            resValue "string", "app_name", "${app_name_uat}"
+        }
         transportMallDev {
             flavorDimensions "default"
             applicationId "${application_id_dev}"

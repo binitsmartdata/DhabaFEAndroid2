@@ -2,6 +2,7 @@ package com.getdishout.trxpay.ui.termsofservice
 
 import android.app.Dialog
 import android.content.Context
+import android.os.Build
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -25,7 +26,17 @@ class DialogTermsAndConditions(context: Context, title: String, html: String) : 
         val encoding = "UTF-8"
         binding.tvTerms.loadDataWithBaseURL("", html, mimeType, encoding, "")*/
         binding.ivClose.setOnClickListener { dismiss() }
-        binding.tvText.text = Html.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+        try {
+            if (Build.VERSION.SDK_INT >= 24) {
+                binding.tvText.text = Html.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            } else { // FOR OLD DEVICES
+                binding.tvText.text = Html.fromHtml(html)
+            }
+        } catch (e: Exception) {
+            binding.tvText.text = html
+        }
+
         /*binding.tvTerms.post(Runnable {
             val childHeight: Int = binding.tvTerms.getHeight()
             val isScrollable: Boolean =
