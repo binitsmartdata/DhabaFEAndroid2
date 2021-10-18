@@ -91,7 +91,7 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
             DhabaModel.STATUS_INPROGRESS -> {
-                myViewHolderG?.binding?.ivDelete?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
                 myViewHolderG?.binding?.ivLocation?.visibility = View.VISIBLE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
