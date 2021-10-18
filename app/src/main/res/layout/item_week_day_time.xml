@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/ll_wed"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6"
+        android:text="@string/mon"
+        android:padding="@dimen/_4sdp"
+        android:layout_margin="@dimen/_4sdp"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/tv_start_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:background="@drawable/grey_stroke"
+        android:text="@string/not_available"
+        android:padding="@dimen/_4sdp"
+        android:layout_margin="@dimen/_4sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/tv_end_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:background="@drawable/grey_stroke"
+        android:text="@string/not_available"
+        android:padding="@dimen/_4sdp"
+        android:layout_margin="@dimen/_4sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp" />
+</LinearLayout>

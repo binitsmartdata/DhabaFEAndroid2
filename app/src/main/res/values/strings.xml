@@ -402,6 +402,13 @@
     <string name="enter_mgr_name">Please enter manager name.</string>
     <string name="manager_assigned_successfully">Manager Assigned successfully.</string>
     <string name="assigning_manager">Assigning Manager..</string>
+    <string name="open_and_closing_times">Open and Closing Times</string>
+    <string name="weeks">Weeks</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="mon">Mon</string>
+    <string name="tue">TUE</string>
+    <string name="not_available">Not available</string>
 
     <string-array name="select_state">
         <item>Select State</item>
