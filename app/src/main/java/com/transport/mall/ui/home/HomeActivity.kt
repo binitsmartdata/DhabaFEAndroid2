@@ -16,6 +16,7 @@ import com.transport.mall.model.Toolbar
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
+import com.transport.mall.ui.home.customers.CustomersFragment
 import com.transport.mall.ui.home.helpline.EditProfileFragment
 import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
@@ -226,7 +227,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             1 -> fragment = NotificationsFragment()
             2 -> fragment = HomeFragment()
             3 -> fragment = HomeFragment()
-            4 -> fragment = HomeFragment()
+            4 -> fragment = CustomersFragment()
             5 -> fragment = HomeFragment()
             6 -> fragment = HelplineFragment()
             7 -> fragment = SettingsFragment()
