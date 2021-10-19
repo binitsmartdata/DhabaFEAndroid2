@@ -497,5 +497,8 @@
     <string name="customer_name">Customer Name</string>
     <string name="customer_phone_number">Customer Phone Number</string>
     <string name="send_invitation">Send Invitation</string>
+    <string name="no_orders">No Orders</string>
+    <string name="new_orders">New Orders</string>
+    <string name="past_orders">Past Orders</string>
 
 </resources>

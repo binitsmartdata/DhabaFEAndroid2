@@ -20,6 +20,7 @@ import com.transport.mall.ui.home.customers.CustomersFragment
 import com.transport.mall.ui.home.helpline.EditProfileFragment
 import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
+import com.transport.mall.ui.home.orders.OrdersFragment
 import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
 import com.transport.mall.utils.base.BaseActivity
@@ -226,7 +227,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             0 -> fragment = HomeFragment()
             1 -> fragment = NotificationsFragment()
             2 -> fragment = HomeFragment()
-            3 -> fragment = HomeFragment()
+            3 -> fragment = OrdersFragment()
             4 -> fragment = CustomersFragment()
             5 -> fragment = HomeFragment()
             6 -> fragment = HelplineFragment()
