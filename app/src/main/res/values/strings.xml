@@ -409,6 +409,13 @@
     <string name="mon">Mon</string>
     <string name="tue">TUE</string>
     <string name="not_available">Not available</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">fri</string>
+    <string name="sat">sat</string>
+    <string name="sun">sun</string>
+    <string name="please_select_start_time_first">Please select start time first</string>
+    <string name="please_select_another_time">Please select another time</string>
 
     <string-array name="select_state">
         <item>Select State</item>

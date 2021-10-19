@@ -1,6 +1,8 @@
 package com.transport.mall.utils
 
 import android.app.Activity
+import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.view.Gravity
@@ -8,11 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.transport.mall.R
+import com.transport.mall.callback.TimePickerCallBack
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun Snackbar.withColor(@ColorInt colorInt: Int): Snackbar {
     this.view.setBackgroundColor(colorInt)
@@ -84,4 +91,32 @@ fun Fragment.popBackFragment(fragment: Fragment) {
     } catch (e: Exception) {
         e.printStackTrace()
     }
+}
+
+fun Fragment.timePick(context: Context, textView: TextView, startTime: String) {
+    val cal = Calendar.getInstance()
+    val sdf = SimpleDateFormat("h:mm a")
+    val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+        cal.set(Calendar.HOUR_OF_DAY, hour)
+        cal.set(Calendar.MINUTE, minute)
+
+        if (startTime.isNotEmpty()) {
+            val date1 = sdf.parse(startTime)
+            val date2 = sdf.parse(sdf.format(cal.time))
+
+            if (date1.before(date2)) {
+                textView.text = sdf.format(cal.time)
+            } else {
+                Toast.makeText(context, getString(R.string.please_select_another_time), Toast.LENGTH_SHORT).show()
+                textView.text = getString(R.string.not_available)
+            }
+        } else {
+            textView.text = sdf.format(cal.time)
+        }
+    }
+
+    TimePickerDialog(
+        context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY),
+        cal.get(Calendar.MINUTE), false
+    ).show()
 }

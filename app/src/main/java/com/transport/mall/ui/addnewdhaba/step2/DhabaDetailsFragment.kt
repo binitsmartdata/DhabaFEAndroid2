@@ -2,6 +2,7 @@ package com.transport.mall.ui.addnewdhaba.step2
 
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,12 +11,14 @@ import android.provider.Settings
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
+import com.transport.mall.callback.TimePickerCallBack
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
@@ -31,9 +34,13 @@ import com.transport.mall.utils.common.GlobalUtils.showConfirmationDialogYesNo
 import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
+import com.transport.mall.utils.timePick
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -164,6 +171,133 @@ class DhabaDetailsFragment :
                 saveDetails(true)
             }
         }
+
+        binding.tvStartTimeMon.setOnClickListener {
+            timePick(getmContext(), binding.tvStartTimeMon, "")
+        }
+
+        binding.tvEndTimeMon.setOnClickListener {
+            if (binding.tvStartTimeMon.text.trim().toString().isEmpty()
+                || binding.tvStartTimeMon.text.trim().toString()
+                    .equals(getString(R.string.not_available), ignoreCase = true)) {
+                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+            } else {
+                timePick(
+                    getmContext(),
+                    binding.tvEndTimeMon,
+                    binding.tvStartTimeMon.text.trim().toString()
+                )
+            }
+        }
+
+        binding.tvStartTimeTue.setOnClickListener {
+            timePick(getmContext(), binding.tvStartTimeTue, "")
+        }
+
+        binding.tvEndTimeTue.setOnClickListener {
+            if (binding.tvStartTimeTue.text.trim().toString().isEmpty()
+                || binding.tvStartTimeTue.text.trim().toString()
+                    .equals(getString(R.string.not_available), ignoreCase = true)) {
+                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+            } else {
+                timePick(
+                    getmContext(),
+                    binding.tvEndTimeTue,
+                    binding.tvStartTimeTue.text.trim().toString()
+                )
+            }
+        }
+
+        binding.tvStartTimeWed.setOnClickListener {
+            timePick(getmContext(), binding.tvStartTimeWed, "")
+        }
+
+        binding.tvEndTimeWed.setOnClickListener {
+            if (binding.tvStartTimeWed.text.trim().toString().isEmpty()
+                || binding.tvStartTimeWed.text.trim().toString()
+                    .equals(getString(R.string.not_available), ignoreCase = true)) {
+                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+            } else {
+                timePick(
+                    getmContext(),
+                    binding.tvEndTimeWed,
+                    binding.tvStartTimeWed.text.trim().toString()
+                )
+            }
+        }
+
+        binding.tvStartTimeThu.setOnClickListener {
+            timePick(getmContext(), binding.tvStartTimeThu, "")
+        }
+
+        binding.tvEndTimeThu.setOnClickListener {
+            if (binding.tvStartTimeThu.text.trim().toString().isEmpty()
+                || binding.tvStartTimeThu.text.trim().toString()
+                    .equals(getString(R.string.not_available), ignoreCase = true)) {
+                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+            } else {
+                timePick(
+                    getmContext(),
+                    binding.tvEndTimeThu,
+                    binding.tvStartTimeThu.text.trim().toString()
+                )
+            }
+        }
+
+        binding.tvStartTimeFri.setOnClickListener {
+            timePick(getmContext(), binding.tvStartTimeFri, "")
+        }
+
+        binding.tvEndTimeFri.setOnClickListener {
+            if (binding.tvStartTimeFri.text.trim().toString().isEmpty()
+                || binding.tvStartTimeFri.text.trim().toString()
+                    .equals(getString(R.string.not_available), ignoreCase = true)) {
+                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+            } else {
+                timePick(
+                    getmContext(),
+                    binding.tvEndTimeFri,
+                    binding.tvStartTimeFri.text.trim().toString()
+                )
+            }
+        }
+
+        binding.tvStartTimeSat.setOnClickListener {
+            timePick(getmContext(), binding.tvStartTimeSat, "")
+        }
+
+        binding.tvEndTimeSat.setOnClickListener {
+            if (binding.tvStartTimeSat.text.trim().toString().isEmpty()
+                || binding.tvStartTimeSat.text.trim().toString()
+                    .equals(getString(R.string.not_available), ignoreCase = true)) {
+                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+            } else {
+                timePick(
+                    getmContext(),
+                    binding.tvEndTimeSat,
+                    binding.tvStartTimeSat.text.trim().toString()
+                )
+            }
+        }
+
+        binding.tvStartTimeSun.setOnClickListener {
+            timePick(getmContext(), binding.tvStartTimeSun, "")
+        }
+
+        binding.tvEndTimeSun.setOnClickListener {
+            if (binding.tvStartTimeSun.text.trim().toString().isEmpty()
+                || binding.tvStartTimeSun.text.trim().toString()
+                    .equals(getString(R.string.not_available), ignoreCase = true)) {
+                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+            } else {
+                timePick(
+                    getmContext(),
+                    binding.tvEndTimeSun,
+                    binding.tvStartTimeSun.text.trim().toString()
+                )
+            }
+        }
+        
     }
 
     private fun saveDetails(isDraft: Boolean) {
@@ -353,7 +487,11 @@ class DhabaDetailsFragment :
         binding.tvMapPicker.setOnClickListener {
             if (GlobalUtils.isLocationEnabled(getmContext())) {
 //                GoogleMapsActivity.start(this)
-                GlobalUtils.selectLocationOnMap(this, viewModel.dhabaModel.latitude, viewModel.dhabaModel.longitude)
+                GlobalUtils.selectLocationOnMap(
+                    this,
+                    viewModel.dhabaModel.latitude,
+                    viewModel.dhabaModel.longitude
+                )
             } else {
                 GlobalUtils.showConfirmationDialogYesNo(
                     getmContext(),
@@ -363,7 +501,11 @@ class DhabaDetailsFragment :
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         } else {
 //                            GoogleMapsActivity.start(this)
-                            GlobalUtils.selectLocationOnMap(this, viewModel.dhabaModel.latitude, viewModel.dhabaModel.longitude)
+                            GlobalUtils.selectLocationOnMap(
+                                this,
+                                viewModel.dhabaModel.latitude,
+                                viewModel.dhabaModel.longitude
+                            )
                         }
                     })
             }
@@ -392,9 +534,13 @@ class DhabaDetailsFragment :
                 viewModel.dhabaModel.latitude = location.latitude.toString()
                 viewModel.dhabaModel.longitude = location.longitude.toString()
 
-                getAddressUsingLatLong(activity as Context, location.latitude, location.longitude, GenericCallBack {
-                    setAddressAfterConfirmation(it.fullAddress)
-                })
+                getAddressUsingLatLong(
+                    activity as Context,
+                    location.latitude,
+                    location.longitude,
+                    GenericCallBack {
+                        setAddressAfterConfirmation(it.fullAddress)
+                    })
             }
         })
     }
@@ -403,9 +549,13 @@ class DhabaDetailsFragment :
         if (viewModel.dhabaModel.address.toString().isEmpty()) {
             viewModel.dhabaModel.address = address!!
         } else {
-            showConfirmationDialogYesNo(getmContext(), getString(R.string.address_placement_confirmation), address!!, GenericCallBack {
-                if (it) viewModel.dhabaModel.address = address!!
-            })
+            showConfirmationDialogYesNo(
+                getmContext(),
+                getString(R.string.address_placement_confirmation),
+                address!!,
+                GenericCallBack {
+                    if (it) viewModel.dhabaModel.address = address!!
+                })
         }
     }
 
@@ -452,8 +602,12 @@ class DhabaDetailsFragment :
 
             } else if (requestCode == SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE) {
                 // SIMPLE PLACE PICKER RESULY
-                viewModel.dhabaModel.latitude = data?.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble()).toString()
-                viewModel.dhabaModel.longitude = data?.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble()).toString()
+                viewModel.dhabaModel.latitude =
+                    data?.getDoubleExtra(SimplePlacePicker.LOCATION_LAT_EXTRA, -1.toDouble())
+                        .toString()
+                viewModel.dhabaModel.longitude =
+                    data?.getDoubleExtra(SimplePlacePicker.LOCATION_LNG_EXTRA, -1.toDouble())
+                        .toString()
 //                viewModel.dhabaModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
                 setAddressAfterConfirmation(data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!)
             } else {
@@ -468,7 +622,8 @@ class DhabaDetailsFragment :
     private fun processAndSetVideo(videoUri: Uri) {
         processVideo(videoUri, getmContext(), GenericCallBackTwoParams { outputFile, message ->
             if (outputFile == null) {
-                showInfoDialog(getmContext(), if (message != null) message else "Unable to process video.",
+                showInfoDialog(getmContext(),
+                    if (message != null) message else "Unable to process video.",
                     GenericCallBack {
 
                     })
@@ -484,4 +639,6 @@ class DhabaDetailsFragment :
     fun youAreInFocus() {
         mListener?.getDhabaModelMain()?.ownerModel?.let { viewModel.dhabaModel.owner_id = it._id }
     }
+
+
 }
