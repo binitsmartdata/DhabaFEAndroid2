@@ -500,5 +500,17 @@
     <string name="no_orders">No Orders</string>
     <string name="new_orders">New Orders</string>
     <string name="past_orders">Past Orders</string>
+    <string name="discounts">Discounts</string>
+    <string name="search_discount">Search Discount</string>
+    <string name="add_new_discount">Add New Discount</string>
+    <string name="active_discounts">Active Discounts</string>
+    <string name="no_discount">No Discount</string>
+    <string name="delete_discount">Delete Discount</string>
+    <string name="expired_discounts">Expired Discounts</string>
+    <string name="reject_offers">Reject Offers</string>
+    <string name="expired_offers">Expired Offers</string>
+    <string name="active_offers">Active Offers</string>
+    <string name="no_offers">No Offers</string>
+    <string name="add_new_offers">Add New Offers</string>
 
 </resources>
