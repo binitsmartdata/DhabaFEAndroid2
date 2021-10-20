@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/_10sdp">
 
         <LinearLayout
             android:id="@+id/dhabaContainer"
@@ -75,10 +75,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/opensans_semibold"
-                    android:paddingHorizontal="7dp"
-                    android:paddingVertical="3dp"
+                    android:paddingHorizontal="@dimen/_7sdp"
+                    android:paddingVertical="@dimen/_3sdp"
                     android:text="@{model.status.toUpperCase()}"
                     android:textColor="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? context.getColor(R.color.gold) :model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
                     android:textSize="@dimen/_8ssp"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingHorizontal="5dp">
+                android:paddingHorizontal="@dimen/_5sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvMenuTitle"
@@ -112,8 +112,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_gold_hotel_type"
                     android:fontFamily="@font/opensans_regular"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="2dp"
+                    android:paddingHorizontal="@dimen/_15sdp"
+                    android:paddingVertical="@dimen/_2sdp"
                     android:text="@{model.dhabaCategory}"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
@@ -182,7 +182,7 @@
                         android:id="@+id/tvRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
                         android:text="4.0"
@@ -200,33 +200,33 @@
 
                 <ImageView
                     android:id="@+id/ivEdit"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5sdp"
                     android:src="@drawable/ic_edit" />
 
                 <ImageView
                     android:id="@+id/ivDelete"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5sdp"
                     android:src="@drawable/ic_delete" />
 
                 <ImageView
                     android:id="@+id/ivLocation"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
                     android:src="@drawable/ic_marker" />
 
                 <ImageView
                     android:id="@+id/ivView"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="5dp"
+                    android:padding="@dimen/_5sdp"
                     android:src="@drawable/ic_eye" />
 
             </LinearLayout>
@@ -237,7 +237,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="@dimen/_10sdp"
             android:visibility="@{user.isExecutive() ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
@@ -318,8 +318,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="@dimen/_10sdp"
             android:visibility="@{user.isOwner() ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
@@ -428,8 +429,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="7dp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_7sdp"
             android:background="@color/black" />
 
     </LinearLayout>

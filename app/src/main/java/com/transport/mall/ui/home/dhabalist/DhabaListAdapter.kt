@@ -35,6 +35,7 @@ class DhabaListAdapter(
         myViewHolderG?.binding?.isInProgress = dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_INPROGRESS)
         myViewHolderG?.binding?.model = dataList[position].dhabaModel
         myViewHolderG?.binding?.owner = dataList[position].ownerModel
+        myViewHolderG?.binding?.manager = dataList[position].manager
         myViewHolderG?.binding?.user = userModel
 
         manageIconsVisibility(myViewHolderG, position)
@@ -72,13 +73,15 @@ class DhabaListAdapter(
             locateCallBack.onResponse(position)
         }
         myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
-            DailogAddManager(context, dataList[position].dhabaModel!!, GenericCallBack {
-                if (it != null) {
-                    dataList[position].manager = it
-                    notifyDataSetChanged()
-                    RxBus.publish(dataList[position].dhabaModel!!)
-                }
-            }).show()
+            if (dataList[position].manager == null) {
+                DailogAddManager(context, dataList[position].dhabaModel!!, GenericCallBack {
+                    if (it != null) {
+                        dataList[position].manager = it
+                        notifyDataSetChanged()
+                        RxBus.publish(dataList[position].dhabaModel!!)
+                    }
+                }).show()
+            }
         }
     }
 

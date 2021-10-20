@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.transport.mall.R" />
 
         <import type="android.view.View" />
@@ -12,7 +13,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <LinearLayout
             android:id="@+id/llMainData"
@@ -30,58 +32,68 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="@dimen/_4sdp"
-                    android:background="@color/light_red"
-                    android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/iv_star"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_marginEnd="@dimen/_8sdp"
-                    android:layout_marginStart="@dimen/_4sdp"
-                    android:src="@drawable/ic_call_red"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_points"
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="150"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintStart_toEndOf="@id/iv_star"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:textColor="@color/colorAccent" />
+                    android:background="@drawable/red_light_roundcorners"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp">
+
+                    <ImageView
+                        android:id="@+id/iv_star"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:padding="@dimen/_3sdp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@drawable/black_dot"
+                        android:src="@drawable/ic_star"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_points"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:text="150"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintStart_toEndOf="@id/iv_star"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_points_title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
                         android:text="@string/reward_points"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintStart_toEndOf="@id/iv_star"
-                        android:layout_marginStart="@dimen/_8sdp"
-                        app:layout_constraintTop_toBottomOf="@id/tv_points"
-                        android:textColor="@color/black" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_points" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/b_cart"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_call_red"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_cart"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:background="@drawable/grey_stroke"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -136,12 +148,12 @@
             android:id="@+id/llNoData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@color/white"
             android:gravity="center"
-            android:layout_gravity="center"
+            android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="visible"
-            android:orientation="vertical">
+            tools:visibility="visible">
 
             <ImageView
                 android:layout_width="@dimen/_100sdp"
@@ -152,8 +164,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_10sdp"
-                android:gravity="center"
                 android:fontFamily="@font/opensans_regular"
+                android:gravity="center"
                 android:text="@string/no_shops"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp" />
