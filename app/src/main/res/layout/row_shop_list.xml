@@ -1,0 +1,100 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.transport.mall.model.ShopModel" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="@{data.requiredPoints == 0 ? .9f : .4f}"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                imageResource="@{data.icon}"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:src="@drawable/ic_message" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:layout_gravity="top"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_4sdp"
+                    android:text="@{data.name}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    tools:text="Name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:orientation="vertical"
+                    android:background="@color/light_red"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@{data.points + ` Points`}"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_12ssp"
+                    tools:text="Contact Number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_required_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:orientation="vertical"
+                    android:visibility="@{(data.requiredPoints == 0) ? View.GONE : View.VISIBLE}"
+                    android:text="@{data.requiredPoints + ` more points required`}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    tools:text="Contact Number" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:visibility="@{(data.requiredPoints == 0) ? View.VISIBLE : View.GONE}"
+                android:src="@drawable/ic_call_red"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:background="@color/grey" />
+    </LinearLayout>
+</layout>

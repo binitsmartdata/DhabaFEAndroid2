@@ -512,5 +512,9 @@
     <string name="active_offers">Active Offers</string>
     <string name="no_offers">No Offers</string>
     <string name="add_new_offers">Add New Offers</string>
+    <string name="reward_points">Reward Points</string>
+    <string name="no_shops">No Shops</string>
+    <string name="search_shop">Search Shop</string>
+    <string name="search_product">Search Product</string>
 
 </resources>

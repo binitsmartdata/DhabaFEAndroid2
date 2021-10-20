@@ -23,6 +23,7 @@ import com.transport.mall.ui.home.notifications.NotificationsFragment
 import com.transport.mall.ui.home.offers.DiscountsOffersFragment
 import com.transport.mall.ui.home.orders.OrdersFragment
 import com.transport.mall.ui.home.settings.SettingsFragment
+import com.transport.mall.ui.home.shops.ShopsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
@@ -230,7 +231,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             2 -> fragment = DiscountsOffersFragment()
             3 -> fragment = OrdersFragment()
             4 -> fragment = CustomersFragment()
-            5 -> fragment = HomeFragment()
+            5 -> fragment = ShopsFragment()
             6 -> fragment = HelplineFragment()
             7 -> fragment = SettingsFragment()
         }
