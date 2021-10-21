@@ -57,6 +57,7 @@ class DialogManagerSelection constructor(
         binding.recyclerView.adapter = adapter
         adapter?.setOnLoadMoreListener(this)
 
+        binding.tvTitle.text = context.getString(R.string.add_existing_mgr)
         binding.ivClose.setOnClickListener { dismiss() }
         binding.swipeRefreshLayout.setOnRefreshListener(this)
 
@@ -85,38 +86,9 @@ class DialogManagerSelection constructor(
 
         onRefresh()
 
-        if (ownerId != null) {
+//        if (ownerId != null) {
             binding.edSearch.visibility = View.GONE
-        }
-    }
-
-    private fun getOwnerList(callBack: GenericCallBack<List<UserModel>>) {
-        if (page == 1) {
-            binding.swipeRefreshLayout.isRefreshing = true
-        }
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                executeApi(getApiService()?.getUserByRole(limit, page.toString(), "owner", searchString)).collect {
-                    when (it.status) {
-                        ApiResult.Status.LOADING -> {
-                            if (page == 1) {
-                                binding.swipeRefreshLayout.isRefreshing = true
-                            }
-                        }
-                        ApiResult.Status.ERROR -> {
-                            binding.swipeRefreshLayout.isRefreshing = false
-                            callBack.onResponse(ArrayList())
-                        }
-                        ApiResult.Status.SUCCESS -> {
-                            binding.swipeRefreshLayout.isRefreshing = false
-                            callBack.onResponse(it.data?.data?.data)
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                binding.swipeRefreshLayout.isRefreshing = false
-            }
-        }
+//        }
     }
 
     private fun getManagersList(callBack: GenericCallBack<List<UserModel>>) {
@@ -148,24 +120,16 @@ class DialogManagerSelection constructor(
     }
 
     fun refreshList() {
-        if (ownerId != null) {
-            adapter?.setShouldLoadMore(false)
-            getManagersList(GenericCallBack {
-                showData(it)
-            })
-        } else {
-            getOwnerList(GenericCallBack {
-                showData(it)
-            })
-        }
+        adapter?.setShouldLoadMore(false)
+        getManagersList(GenericCallBack {
+            showData(it)
+        })
     }
 
     private fun showData(it: List<UserModel>) {
         if (it.isNotEmpty()) {
             if (page == 1) {
-                if (ownerId==null) {
-                    adapter?.setShouldLoadMore(true)
-                }
+//                adapter?.setShouldLoadMore(true)
                 dataList.clear()
                 dataList.addAll(it)
             } else {
@@ -180,9 +144,9 @@ class DialogManagerSelection constructor(
                 adapter?.setShouldLoadMore(false)
             }
         }
-        if (ownerId==null) {
-            adapter?.removeLoadingView(dataList.size)
-        }
+//        if (ownerId == null) {
+//            adapter?.removeLoadingView(dataList.size)
+//        }
         binding.isHavingData = dataList.isNotEmpty()
     }
 

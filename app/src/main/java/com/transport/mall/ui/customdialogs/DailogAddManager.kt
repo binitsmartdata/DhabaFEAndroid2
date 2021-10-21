@@ -39,7 +39,7 @@ class DailogAddManager constructor(context: Context, owner: UserModel, dhaba: Dh
         binding.dhaba = dhaba
 
         binding.tvAddExisting.setOnClickListener {
-            DialogOwnerSelection(context, owner._id, GenericCallBack { selectedUser ->
+            DialogManagerSelection(context, owner._id, GenericCallBack { selectedUser ->
                 GlobalUtils.showProgressDialog(context, context.getString(R.string.assigning_manager))
                 GlobalScope.launch(Dispatchers.Main) {
                     try {
