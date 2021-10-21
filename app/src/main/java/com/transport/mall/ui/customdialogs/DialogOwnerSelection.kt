@@ -1,12 +1,12 @@
 package com.transport.mall.ui.customdialogs
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.Window
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
@@ -27,7 +27,6 @@ import kotlinx.coroutines.launch
 
 class DialogOwnerSelection constructor(
     context: Context,
-    val ownerId: String?,
     callBack: GenericCallBack<UserModel>
 ) : BaseDialog(context), SwipeRefreshLayout.OnRefreshListener, InfiniteAdapter.OnLoadMoreListener {
 
@@ -45,7 +44,6 @@ class DialogOwnerSelection constructor(
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         window!!.setGravity(Gravity.BOTTOM)
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         binding.isHavingData = true
         setCancelable(false)
 
@@ -84,10 +82,6 @@ class DialogOwnerSelection constructor(
         })
 
         onRefresh()
-
-        if (ownerId != null) {
-            binding.edSearch.visibility = View.GONE
-        }
     }
 
     private fun getOwnerList(callBack: GenericCallBack<List<UserModel>>) {
@@ -119,71 +113,28 @@ class DialogOwnerSelection constructor(
         }
     }
 
-    private fun getManagersList(callBack: GenericCallBack<List<UserModel>>) {
-        binding.swipeRefreshLayout.isRefreshing = true
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                executeApi(getApiService()?.getManagersByOwnerId(ownerId!!)).collect {
-                    when (it.status) {
-                        ApiResult.Status.LOADING -> {
-                            if (page == 1) {
-                                binding.swipeRefreshLayout.isRefreshing = true
-                            }
-                        }
-                        ApiResult.Status.ERROR -> {
-                            binding.swipeRefreshLayout.isRefreshing = false
-                            callBack.onResponse(ArrayList())
-                        }
-                        ApiResult.Status.SUCCESS -> {
-                            binding.swipeRefreshLayout.isRefreshing = false
-                            callBack.onResponse(it.data?.data)
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e("GET MANAGERS :", e.toString())
-                binding.swipeRefreshLayout.isRefreshing = false
-            }
-        }
-    }
-
     fun refreshList() {
-        if (ownerId != null) {
-            adapter?.setShouldLoadMore(false)
-            getManagersList(GenericCallBack {
-                showData(it)
-            })
-        } else {
-            getOwnerList(GenericCallBack {
-                showData(it)
-            })
-        }
-    }
-
-    private fun showData(it: List<UserModel>) {
-        if (it.isNotEmpty()) {
-            if (page == 1) {
-                if (ownerId==null) {
+        getOwnerList(GenericCallBack {
+            if (it != null && it.isNotEmpty()) {
+                if (page == 1) {
                     adapter?.setShouldLoadMore(true)
+                    dataList.clear()
+                    dataList.addAll(it)
+                } else {
+                    dataList.addAll(it)
                 }
-                dataList.clear()
-                dataList.addAll(it)
+                adapter?.notifyDataSetChanged()
             } else {
-                dataList.addAll(it)
+                if (page == 1) {
+                    dataList.clear()
+//                    adapter?.notifyDataSetChanged()
+                } else {
+                    adapter?.setShouldLoadMore(false)
+                }
             }
-            adapter?.notifyDataSetChanged()
-        } else {
-            if (page == 1) {
-                dataList.clear()
-                //                    adapter?.notifyDataSetChanged()
-            } else {
-                adapter?.setShouldLoadMore(false)
-            }
-        }
-        if (ownerId==null) {
             adapter?.removeLoadingView(dataList.size)
-        }
-        binding.isHavingData = dataList.isNotEmpty()
+            binding.isHavingData = dataList.isNotEmpty()
+        })
     }
 
     override fun onRefresh() {
