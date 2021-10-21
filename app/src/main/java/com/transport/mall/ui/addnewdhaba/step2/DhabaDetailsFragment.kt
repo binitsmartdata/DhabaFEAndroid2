@@ -2,7 +2,6 @@ package com.transport.mall.ui.addnewdhaba.step2
 
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -11,14 +10,12 @@ import android.provider.Settings
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
-import com.transport.mall.callback.TimePickerCallBack
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
@@ -34,11 +31,11 @@ import com.transport.mall.utils.common.GlobalUtils.showConfirmationDialogYesNo
 import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.timePick
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -68,6 +65,7 @@ class DhabaDetailsFragment :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.context = getmContext()
+        binding.userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
         mListener = activity as AddDhabaListener
         binding.isUpdate = mListener?.isUpdate()!!
         binding.viewOnly = mListener?.viewOnly()!!
@@ -172,132 +170,143 @@ class DhabaDetailsFragment :
             }
         }
 
+        setupOpeningTimeView()
+
+    }
+
+    private fun setupOpeningTimeView() {
         binding.tvStartTimeMon.setOnClickListener {
-            timePick(getmContext(), binding.tvStartTimeMon, "")
+            timePick(getmContext(), "", GenericCallBack {
+                binding.tvStartTimeMon.text = it
+            })
         }
 
         binding.tvEndTimeMon.setOnClickListener {
             if (binding.tvStartTimeMon.text.trim().toString().isEmpty()
                 || binding.tvStartTimeMon.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)) {
-                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+                    .equals(getString(R.string.not_available), ignoreCase = true)
+            ) {
+                showToastInCenter(getString(R.string.please_select_start_time_first))
             } else {
-                timePick(
-                    getmContext(),
-                    binding.tvEndTimeMon,
-                    binding.tvStartTimeMon.text.trim().toString()
-                )
+                timePick(getmContext(), binding.tvStartTimeMon.text.trim().toString(), GenericCallBack {
+                    binding.tvEndTimeMon.text = it
+                })
             }
         }
 
         binding.tvStartTimeTue.setOnClickListener {
-            timePick(getmContext(), binding.tvStartTimeTue, "")
+            timePick(getmContext(), "", GenericCallBack {
+                binding.tvStartTimeTue.text = it
+            })
         }
 
         binding.tvEndTimeTue.setOnClickListener {
             if (binding.tvStartTimeTue.text.trim().toString().isEmpty()
                 || binding.tvStartTimeTue.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)) {
-                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+                    .equals(getString(R.string.not_available), ignoreCase = true)
+            ) {
+                showToastInCenter(getString(R.string.please_select_start_time_first))
             } else {
-                timePick(
-                    getmContext(),
-                    binding.tvEndTimeTue,
-                    binding.tvStartTimeTue.text.trim().toString()
-                )
+                timePick(getmContext(), binding.tvStartTimeTue.text.trim().toString(), GenericCallBack {
+                    binding.tvEndTimeTue.text = it
+                })
             }
         }
 
         binding.tvStartTimeWed.setOnClickListener {
-            timePick(getmContext(), binding.tvStartTimeWed, "")
+            timePick(getmContext(), "", GenericCallBack {
+                binding.tvStartTimeWed.text = it
+            })
         }
 
         binding.tvEndTimeWed.setOnClickListener {
             if (binding.tvStartTimeWed.text.trim().toString().isEmpty()
                 || binding.tvStartTimeWed.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)) {
-                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+                    .equals(getString(R.string.not_available), ignoreCase = true)
+            ) {
+                showToastInCenter(getString(R.string.please_select_start_time_first))
             } else {
-                timePick(
-                    getmContext(),
-                    binding.tvEndTimeWed,
-                    binding.tvStartTimeWed.text.trim().toString()
-                )
+                timePick(getmContext(), binding.tvStartTimeWed.text.trim().toString(), GenericCallBack {
+                    binding.tvEndTimeWed.text = it
+                })
             }
         }
 
         binding.tvStartTimeThu.setOnClickListener {
-            timePick(getmContext(), binding.tvStartTimeThu, "")
+            timePick(getmContext(), "", GenericCallBack {
+                binding.tvStartTimeThu.text = it
+            })
         }
 
         binding.tvEndTimeThu.setOnClickListener {
             if (binding.tvStartTimeThu.text.trim().toString().isEmpty()
                 || binding.tvStartTimeThu.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)) {
-                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+                    .equals(getString(R.string.not_available), ignoreCase = true)
+            ) {
+                showToastInCenter(getString(R.string.please_select_start_time_first))
             } else {
-                timePick(
-                    getmContext(),
-                    binding.tvEndTimeThu,
-                    binding.tvStartTimeThu.text.trim().toString()
-                )
+                timePick(getmContext(), binding.tvStartTimeThu.text.trim().toString(), GenericCallBack {
+                    binding.tvEndTimeThu.text = it
+                })
             }
         }
 
         binding.tvStartTimeFri.setOnClickListener {
-            timePick(getmContext(), binding.tvStartTimeFri, "")
+            timePick(getmContext(), "", GenericCallBack {
+                binding.tvStartTimeFri.text = it
+            })
         }
 
         binding.tvEndTimeFri.setOnClickListener {
             if (binding.tvStartTimeFri.text.trim().toString().isEmpty()
                 || binding.tvStartTimeFri.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)) {
-                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+                    .equals(getString(R.string.not_available), ignoreCase = true)
+            ) {
+                showToastInCenter(getString(R.string.please_select_start_time_first))
             } else {
-                timePick(
-                    getmContext(),
-                    binding.tvEndTimeFri,
-                    binding.tvStartTimeFri.text.trim().toString()
-                )
+                timePick(getmContext(), binding.tvStartTimeFri.text.trim().toString(), GenericCallBack {
+                    binding.tvEndTimeFri.text = it
+                })
             }
         }
 
         binding.tvStartTimeSat.setOnClickListener {
-            timePick(getmContext(), binding.tvStartTimeSat, "")
+            timePick(getmContext(), "", GenericCallBack {
+                binding.tvStartTimeSat.text = it
+            })
         }
 
         binding.tvEndTimeSat.setOnClickListener {
             if (binding.tvStartTimeSat.text.trim().toString().isEmpty()
                 || binding.tvStartTimeSat.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)) {
-                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+                    .equals(getString(R.string.not_available), ignoreCase = true)
+            ) {
+                showToastInCenter(getString(R.string.please_select_start_time_first))
             } else {
-                timePick(
-                    getmContext(),
-                    binding.tvEndTimeSat,
-                    binding.tvStartTimeSat.text.trim().toString()
-                )
+                timePick(getmContext(), binding.tvStartTimeSat.text.trim().toString(), GenericCallBack {
+                    binding.tvEndTimeSat.text = it
+                })
             }
         }
 
         binding.tvStartTimeSun.setOnClickListener {
-            timePick(getmContext(), binding.tvStartTimeSun, "")
+            timePick(getmContext(), "", GenericCallBack {
+                binding.tvStartTimeSun.text = it
+            })
         }
 
         binding.tvEndTimeSun.setOnClickListener {
             if (binding.tvStartTimeSun.text.trim().toString().isEmpty()
                 || binding.tvStartTimeSun.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)) {
-                Toast.makeText(getmContext(), getString(R.string.please_select_start_time_first), Toast.LENGTH_SHORT).show()
+                    .equals(getString(R.string.not_available), ignoreCase = true)
+            ) {
+                showToastInCenter(getString(R.string.please_select_start_time_first))
             } else {
-                timePick(
-                    getmContext(),
-                    binding.tvEndTimeSun,
-                    binding.tvStartTimeSun.text.trim().toString()
-                )
+                timePick(getmContext(), binding.tvStartTimeSun.text.trim().toString(), GenericCallBack {
+                    binding.tvEndTimeSun.text = it
+                })
             }
         }
-        
     }
 
     private fun saveDetails(isDraft: Boolean) {

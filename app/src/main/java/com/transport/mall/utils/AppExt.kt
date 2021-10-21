@@ -17,7 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.transport.mall.R
-import com.transport.mall.callback.TimePickerCallBack
+import com.transport.mall.utils.common.GenericCallBack
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -93,7 +93,7 @@ fun Fragment.popBackFragment(fragment: Fragment) {
     }
 }
 
-fun Fragment.timePick(context: Context, textView: TextView, startTime: String) {
+fun Fragment.timePick(context: Context, startTime: String, callBack: GenericCallBack<String>) {
     val cal = Calendar.getInstance()
     val sdf = SimpleDateFormat("h:mm a")
     val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
@@ -105,13 +105,13 @@ fun Fragment.timePick(context: Context, textView: TextView, startTime: String) {
             val date2 = sdf.parse(sdf.format(cal.time))
 
             if (date1.before(date2)) {
-                textView.text = sdf.format(cal.time)
+                callBack.onResponse(sdf.format(cal.time))
             } else {
                 Toast.makeText(context, getString(R.string.please_select_another_time), Toast.LENGTH_SHORT).show()
-                textView.text = getString(R.string.not_available)
+                callBack.onResponse("")
             }
         } else {
-            textView.text = sdf.format(cal.time)
+            callBack.onResponse(sdf.format(cal.time))
         }
     }
 

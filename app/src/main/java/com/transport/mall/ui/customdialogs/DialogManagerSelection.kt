@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class DialogOwnerSelection constructor(
+class DialogManagerSelection constructor(
     context: Context,
     val ownerId: String?,
     callBack: GenericCallBack<UserModel>

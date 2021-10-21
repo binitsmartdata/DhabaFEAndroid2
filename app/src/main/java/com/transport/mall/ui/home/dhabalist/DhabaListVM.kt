@@ -1,6 +1,7 @@
 package com.transport.mall.ui.home.dhabalist
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
@@ -96,6 +97,7 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                     }
                 }
             } catch (e: Exception) {
+                Log.e("GET ALL DHABA :", e.toString())
                 progressObserver.value = false
 //                showToastInCenter(app!!, getCorrectErrorMessage(e))
                 callBack.onResponse(ArrayList())

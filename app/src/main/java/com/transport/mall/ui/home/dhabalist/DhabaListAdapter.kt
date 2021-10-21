@@ -74,7 +74,7 @@ class DhabaListAdapter(
         }
         myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
             if (dataList[position].manager == null) {
-                DailogAddManager(context, dataList[position].dhabaModel!!, GenericCallBack {
+                DailogAddManager(context, dataList[position].ownerModel!!, dataList[position].dhabaModel!!, GenericCallBack {
                     if (it != null) {
                         dataList[position].manager = it
                         notifyDataSetChanged()

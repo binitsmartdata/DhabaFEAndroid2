@@ -63,7 +63,11 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         RequestBody.create(
                             MultipartBody.FORM,
                             SharedPrefsHelper.getInstance(app!!).getUserData()._id
-                        )
+                        ),
+                        if (SharedPrefsHelper.getInstance(app!!).getUserData().isExecutive()) RequestBody.create(
+                            MultipartBody.FORM,
+                            SharedPrefsHelper.getInstance(app!!).getUserData()._id
+                        ) else null
                     )
                 ).collect {
                     handleResponse(it, callBack, progressObserver)
@@ -109,7 +113,11 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         RequestBody.create(
                             MultipartBody.FORM,
                             SharedPrefsHelper.getInstance(app!!).getUserData()._id
-                        )
+                        ),
+                        if (SharedPrefsHelper.getInstance(app!!).getUserData().isExecutive()) RequestBody.create(
+                            MultipartBody.FORM,
+                            SharedPrefsHelper.getInstance(app!!).getUserData()._id
+                        ) else null
                     )
                 ).collect {
                     handleResponse(it, callBack, progressObserverUpdate)

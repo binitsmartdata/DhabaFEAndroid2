@@ -115,6 +115,13 @@ interface ApiService {
     ): Response<ApiResponseModel<UserModel>>
 
     @FormUrlEncoded
+    @POST("dhaba/assignManager")
+    suspend fun assignManager(
+        @Field("_id") dhabaId: String,
+        @Field("dhabaManager_id") dhabaManager_id: String
+    ): Response<ResponseBody>
+
+    @FormUrlEncoded
     @POST("dhaba/updateDhabaStatus")
     suspend fun updateDhabaStatus(
         @Field("_id") _id: String,
@@ -150,9 +157,10 @@ interface ApiService {
         @Query("searchName") searchName: String?
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<UserModel>>>>
 
-    @GET("user/getManagersByOwnerId")
+    @FormUrlEncoded
+    @POST("user/getManagersByOwnerId")
     suspend fun getManagersByOwnerId(
-        @Query("ownerId") ownerId: String
+        @Field("ownerId") ownerId: String
     ): Response<ApiResponseModel<ArrayList<UserModel>>>
 
     @Multipart
@@ -176,7 +184,8 @@ interface ApiService {
         @Part images: MultipartBody.Part?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
-        @Part("updatedBy") updatedBy: RequestBody
+        @Part("updatedBy") updatedBy: RequestBody,
+        @Part("executive_id") executive_id: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart
@@ -201,7 +210,8 @@ interface ApiService {
         @Part images: MultipartBody.Part?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
-        @Part("updatedBy") updatedBy: RequestBody
+        @Part("updatedBy") updatedBy: RequestBody,
+        @Part("executive_id") executive_id: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart

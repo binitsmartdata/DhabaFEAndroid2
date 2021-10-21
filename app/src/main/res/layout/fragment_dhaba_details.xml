@@ -13,6 +13,10 @@
             type="com.transport.mall.ui.addnewdhaba.step2.DhabaDetailsVM" />
 
         <variable
+            name="userModel"
+            type="com.transport.mall.model.UserModel" />
+
+        <variable
             name="context"
             type="android.content.Context" />
 
@@ -478,7 +482,7 @@
                     android:id="@+id/cl_times"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:visibility="@{(userModel.isOwner() || userModel.isManager()) ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/uploadedImageRecycler">
@@ -488,6 +492,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16sdp"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="@string/open_and_closing_times"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
@@ -500,6 +505,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -510,6 +516,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_regular"
                             android:text="@string/weeks"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -519,6 +526,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
                             android:text="@string/start_time"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -528,13 +537,25 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
                             android:text="@string/end_time"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
+
+                        <ImageView
+                            android:id="@+id/ivEditTiming"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/red_circle"
+                            android:padding="@dimen/_5sdp"
+                            android:src="@drawable/ic_edit_white"
+                            android:visibility="gone" />
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_mon"
+                        android:id="@+id/llMon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
@@ -548,6 +569,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_bold"
                             android:padding="@dimen/_4sdp"
                             android:text="@string/mon"
                             android:textAllCaps="true"
@@ -555,47 +577,48 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_start_time_mon"
+                            android:id="@+id/tvStartTimeMon"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_end_time_mon"
+                            android:id="@+id/tvEndTimeMon"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_tue"
+                        android:id="@+id/llTue"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll_mon">
+                        app:layout_constraintTop_toBottomOf="@id/llMon">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_bold"
                             android:padding="@dimen/_4sdp"
                             android:text="@string/tue"
                             android:textAllCaps="true"
@@ -603,47 +626,48 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_start_time_tue"
+                            android:id="@+id/tvStartTimeTue"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_end_time_tue"
+                            android:id="@+id/tvEndTimeTue"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_wed"
+                        android:id="@+id/llWed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll_tue">
+                        app:layout_constraintTop_toBottomOf="@id/llTue">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_bold"
                             android:padding="@dimen/_4sdp"
                             android:text="@string/wed"
                             android:textAllCaps="true"
@@ -651,47 +675,48 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_start_time_wed"
+                            android:id="@+id/tvStartTimeWed"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_end_time_wed"
+                            android:id="@+id/tvEndTimeWed"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_thu"
+                        android:id="@+id/llThu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll_wed">
+                        app:layout_constraintTop_toBottomOf="@id/llWed">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_bold"
                             android:padding="@dimen/_4sdp"
                             android:text="@string/thu"
                             android:textAllCaps="true"
@@ -699,47 +724,48 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_start_time_thu"
+                            android:id="@+id/tvStartTimeThu"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_end_time_thu"
+                            android:id="@+id/tvEndTimeThu"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_fri"
+                        android:id="@+id/llFri"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll_thu">
+                        app:layout_constraintTop_toBottomOf="@id/llThu">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_bold"
                             android:padding="@dimen/_4sdp"
                             android:text="@string/fri"
                             android:textAllCaps="true"
@@ -747,47 +773,48 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_start_time_fri"
+                            android:id="@+id/tvStartTimeFri"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_end_time_fri"
+                            android:id="@+id/tvEndTimeFri"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_sat"
+                        android:id="@+id/llSat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll_fri">
+                        app:layout_constraintTop_toBottomOf="@id/llFri">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_bold"
                             android:padding="@dimen/_4sdp"
                             android:text="@string/sat"
                             android:textAllCaps="true"
@@ -795,47 +822,48 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_start_time_sat"
+                            android:id="@+id/tvStartTimeSat"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_end_time_sat"
+                            android:id="@+id/tvEndTimeSat"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/ll_sun"
+                        android:id="@+id/llSun"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll_sat">
+                        app:layout_constraintTop_toBottomOf="@id/llSat">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_bold"
                             android:padding="@dimen/_4sdp"
                             android:text="@string/sun"
                             android:textAllCaps="true"
@@ -843,27 +871,27 @@
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_start_time_sun"
+                            android:id="@+id/tvStartTimeSun"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
-                            android:id="@+id/tv_end_time_sun"
+                            android:id="@+id/tvEndTimeSun"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="1"
                             android:background="@drawable/grey_stroke"
+                            android:hint="@string/not_available"
                             android:padding="@dimen/_4sdp"
-                            android:text="@string/not_available"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />

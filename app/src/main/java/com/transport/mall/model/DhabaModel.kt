@@ -156,6 +156,13 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.videos)
         }
 
+    var executive_id: String = ""
+        @Bindable get() = field
+        set(executive_id) {
+            field = executive_id
+            notifyPropertyChanged(BR.executive_id)
+        }
+
     var createdBy: String = ""
         @Bindable get() = field
         set(createdBy) {

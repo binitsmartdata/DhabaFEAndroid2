@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class DailogAddManager constructor(context: Context, dhaba: DhabaModel, callBack: GenericCallBack<UserModel?>) : BaseDialog(context) {
+class DailogAddManager constructor(context: Context, owner: UserModel, dhaba: DhabaModel, callBack: GenericCallBack<UserModel?>) : BaseDialog(context) {
 
     var binding: DialogAddManagerBinding
     var mobilePrefix = ""
@@ -39,11 +39,35 @@ class DailogAddManager constructor(context: Context, dhaba: DhabaModel, callBack
         binding.dhaba = dhaba
 
         binding.tvAddExisting.setOnClickListener {
-            DialogOwnerSelection(context, dhaba.owner_id, GenericCallBack {
-                GlobalUtils.showToastInCenter(context, context.getString(R.string.manager_assigned_successfully))
-                callBack.onResponse(it)
-                dismiss()
-            })
+            DialogOwnerSelection(context, owner._id, GenericCallBack { selectedUser ->
+                GlobalUtils.showProgressDialog(context, context.getString(R.string.assigning_manager))
+                GlobalScope.launch(Dispatchers.Main) {
+                    try {
+                        executeApi(
+                            getApiService()?.assignManager(dhaba._id, selectedUser._id)
+                        ).collect {
+                            when (it.status) {
+                                ApiResult.Status.LOADING -> {
+                                    GlobalUtils.showProgressDialog(context)
+                                }
+                                ApiResult.Status.ERROR -> {
+                                    GlobalUtils.showToastInCenter(context, it.message.toString())
+                                    GlobalUtils.hideProgressDialog()
+                                }
+                                ApiResult.Status.SUCCESS -> {
+                                    GlobalUtils.hideProgressDialog()
+                                    GlobalUtils.showToastInCenter(context, context.getString(R.string.manager_assigned_successfully))
+                                    callBack.onResponse(selectedUser)
+                                    dismiss()
+                                }
+                            }
+                        }
+                    } catch (e: Exception) {
+                        GlobalUtils.hideProgressDialog()
+                        GlobalUtils.showToastInCenter(context, e.toString())
+                    }
+                }
+            }).show()
         }
         binding.ccpCountryCode.setOnCountryChangeListener {
             mobilePrefix = binding.ccpCountryCode.selectedCountryCode
@@ -80,6 +104,7 @@ class DailogAddManager constructor(context: Context, dhaba: DhabaModel, callBack
                                     GlobalUtils.showProgressDialog(context)
                                 }
                                 ApiResult.Status.ERROR -> {
+                                    GlobalUtils.showToastInCenter(context, it.message.toString())
                                     GlobalUtils.hideProgressDialog()
                                 }
                                 ApiResult.Status.SUCCESS -> {
