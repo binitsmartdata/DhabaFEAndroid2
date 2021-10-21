@@ -38,6 +38,13 @@ class DailogAddManager constructor(context: Context, dhaba: DhabaModel, callBack
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         binding.dhaba = dhaba
 
+        binding.tvAddExisting.setOnClickListener {
+            DialogOwnerSelection(context, dhaba.owner_id, GenericCallBack {
+                GlobalUtils.showToastInCenter(context, context.getString(R.string.manager_assigned_successfully))
+                callBack.onResponse(it)
+                dismiss()
+            })
+        }
         binding.ccpCountryCode.setOnCountryChangeListener {
             mobilePrefix = binding.ccpCountryCode.selectedCountryCode
         }

@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 
 class DialogOwnerSelection constructor(
     context: Context,
+    val ownerId: String?,
     callBack: GenericCallBack<UserModel>
 ) : BaseDialog(context), SwipeRefreshLayout.OnRefreshListener, InfiniteAdapter.OnLoadMoreListener {
 
@@ -113,28 +114,66 @@ class DialogOwnerSelection constructor(
         }
     }
 
-    fun refreshList() {
-        getOwnerList(GenericCallBack {
-            if (it != null && it.isNotEmpty()) {
-                if (page == 1) {
-                    adapter?.setShouldLoadMore(true)
-                    dataList.clear()
-                    dataList.addAll(it)
-                } else {
-                    dataList.addAll(it)
+    private fun getManagersList(callBack: GenericCallBack<List<UserModel>>) {
+        binding.swipeRefreshLayout.isRefreshing = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(getApiService()?.getManagersByOwnerId(ownerId!!)).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            if (page == 1) {
+                                binding.swipeRefreshLayout.isRefreshing = true
+                            }
+                        }
+                        ApiResult.Status.ERROR -> {
+                            binding.swipeRefreshLayout.isRefreshing = false
+                            callBack.onResponse(ArrayList())
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            binding.swipeRefreshLayout.isRefreshing = false
+                            callBack.onResponse(it.data?.data)
+                        }
+                    }
                 }
-                adapter?.notifyDataSetChanged()
-            } else {
-                if (page == 1) {
-                    dataList.clear()
-//                    adapter?.notifyDataSetChanged()
-                } else {
-                    adapter?.setShouldLoadMore(false)
-                }
+            } catch (e: Exception) {
+                binding.swipeRefreshLayout.isRefreshing = false
             }
-            adapter?.removeLoadingView(dataList.size)
-            binding.isHavingData = dataList.isNotEmpty()
-        })
+        }
+    }
+
+    fun refreshList() {
+        if (ownerId != null) {
+            adapter?.setShouldLoadMore(false)
+            getManagersList(GenericCallBack {
+                showData(it)
+            })
+        } else {
+            getOwnerList(GenericCallBack {
+                showData(it)
+            })
+        }
+    }
+
+    private fun showData(it: List<UserModel>) {
+        if (it != null && it.isNotEmpty()) {
+            if (page == 1) {
+                adapter?.setShouldLoadMore(true)
+                dataList.clear()
+                dataList.addAll(it)
+            } else {
+                dataList.addAll(it)
+            }
+            adapter?.notifyDataSetChanged()
+        } else {
+            if (page == 1) {
+                dataList.clear()
+                //                    adapter?.notifyDataSetChanged()
+            } else {
+                adapter?.setShouldLoadMore(false)
+            }
+        }
+        adapter?.removeLoadingView(dataList.size)
+        binding.isHavingData = dataList.isNotEmpty()
     }
 
     override fun onRefresh() {

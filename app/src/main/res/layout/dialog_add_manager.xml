@@ -53,6 +53,19 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAddExisting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/default_btn_selector"
+                android:drawableStart="@drawable/ic_add_dhaba_hilighted"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/opensans_semibold"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/select_existing_manager"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/_14ssp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"

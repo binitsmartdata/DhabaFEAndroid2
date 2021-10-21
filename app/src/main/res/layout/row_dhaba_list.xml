@@ -82,7 +82,7 @@
                     android:text="@{model.status.toUpperCase()}"
                     android:textColor="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? context.getColor(R.color.gold) :model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
                     android:textSize="@dimen/_8ssp"
-                    android:visibility="@{user.isOwner() ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"
                     app:backgroundResource="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? R.drawable.bg_pending_dhaba_status : model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? R.drawable.bg_active_dhaba_status :  R.drawable.bg_inactive_dhaba_status}" />
 
             </LinearLayout>
@@ -321,7 +321,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_10sdp"
-            android:visibility="@{user.isOwner() ? View.VISIBLE : View.GONE}">
+            android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
                 android:id="@+id/llAssignMgr"

@@ -66,7 +66,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 
     override fun bindData() {
         setUpToolbar()
-        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner()) {
+        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager()) {
             setUpSideMenuOwner()
         } else/* if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive())*/ {
             setUpSideMenuExecutive()
@@ -268,14 +268,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     }
 
     override fun openNotificationFragment() {
-        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner())
+        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager())
             displayViewOwner(1)
         else
             displayViewExecutive(2)
     }
 
     fun displayView(position: Int) {
-        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner()) {
+        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager()) {
             displayViewOwner(position)
         } else /*if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive())*/ {
             displayViewExecutive(position)

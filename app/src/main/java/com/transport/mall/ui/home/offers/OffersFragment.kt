@@ -39,10 +39,10 @@ class OffersFragment : BaseFragment<FragmentOffersBinding, BaseVM>(),
 
     private fun setupActiveList() {
         activeOffers.clear()
-        for (i in 0..2) {
-            activeOffers.add(DiscountOfferModel("Test$i", "Expiring in 2 Days",
-                true, R.drawable.ic_default_avatar))
-        }
+//        for (i in 0..2) {
+//            activeOffers.add(DiscountOfferModel("Test$i", "Expiring in 2 Days",
+//                true, R.drawable.ic_default_avatar))
+//        }
         activeOffersAdapter = DiscountsOffersAdapter(activity as Context, activeOffers,
             true, GenericCallBack {
             })
@@ -67,10 +67,10 @@ class OffersFragment : BaseFragment<FragmentOffersBinding, BaseVM>(),
 
     private fun setupRejectedList() {
         rejectedOffers.clear()
-        for (i in 0..2) {
-            rejectedOffers.add(DiscountOfferModel("Test$i", "Expiring in 2 Days",
-                true, R.drawable.ic_default_avatar))
-        }
+//        for (i in 0..2) {
+//            rejectedOffers.add(DiscountOfferModel("Test$i", "Expiring in 2 Days",
+//                true, R.drawable.ic_default_avatar))
+//        }
         rejectedOffersAdapter = DiscountsOffersAdapter(activity as Context, activeOffers,
             true, GenericCallBack {
             })
@@ -95,10 +95,10 @@ class OffersFragment : BaseFragment<FragmentOffersBinding, BaseVM>(),
 
     private fun setupExpiredList() {
         expiredOffers.clear()
-        for (i in 0..2) {
-            expiredOffers.add(DiscountOfferModel("Test$i", "Expired on 8th Aug",
-                false, R.drawable.ic_default_avatar))
-        }
+//        for (i in 0..2) {
+//            expiredOffers.add(DiscountOfferModel("Test$i", "Expired on 8th Aug",
+//                false, R.drawable.ic_default_avatar))
+//        }
         expiredOffersAdapter = DiscountsOffersAdapter(activity as Context, expiredOffers,
             true, GenericCallBack {
             })

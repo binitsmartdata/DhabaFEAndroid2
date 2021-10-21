@@ -178,6 +178,7 @@ class UserModel : Serializable, BaseObservable() {
     companion object {
         val ROLE_OWNER = "owner"
         val ROLE_EXECUTIVE = "executive"
+        val ROLE_MANAGER = "manager"
     }
 
     fun isOwner(): Boolean {
@@ -186,6 +187,10 @@ class UserModel : Serializable, BaseObservable() {
 
     fun isExecutive(): Boolean {
         return role.equals(ROLE_EXECUTIVE, true)
+    }
+
+    fun isManager(): Boolean {
+        return role.equals(ROLE_MANAGER, true)
     }
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {

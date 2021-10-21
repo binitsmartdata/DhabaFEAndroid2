@@ -103,7 +103,7 @@ class OwnerDetailsFragment :
             viewModel.ownerModel.alternativeMobilePrefix = binding.ccpCountryCodeAlt.selectedCountryCode
 
             val loggedInUser = SharedPrefsHelper.getInstance(getmContext()).getUserData()
-            if (loggedInUser.isOwner()) {
+            if (loggedInUser.isOwner() || loggedInUser.isManager()) {
                 showExistingUserDetails(loggedInUser)
             }
         }
@@ -111,7 +111,7 @@ class OwnerDetailsFragment :
 
     override fun initListeners() {
         binding.llAddExisting.setOnClickListener {
-            DialogOwnerSelection(getmContext(), GenericCallBack {
+            DialogOwnerSelection(getmContext(), "", GenericCallBack {
                 showExistingUserDetails(it)
             }).show()
         }

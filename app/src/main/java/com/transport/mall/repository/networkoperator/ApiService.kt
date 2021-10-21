@@ -150,6 +150,11 @@ interface ApiService {
         @Query("searchName") searchName: String?
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<UserModel>>>>
 
+    @GET("user/getManagersByOwnerId")
+    suspend fun getManagersByOwnerId(
+        @Query("ownerId") ownerId: String
+    ): Response<ApiResponseModel<ArrayList<UserModel>>>
+
     @Multipart
     @POST("dhaba/addDhaba")
     suspend fun addDhaba(

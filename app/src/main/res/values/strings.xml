@@ -516,5 +516,6 @@
     <string name="no_shops">No Shops</string>
     <string name="search_shop">Search Shop</string>
     <string name="search_product">Search Product</string>
+    <string name="select_existing_manager">Select Existing Manager</string>
 
 </resources>

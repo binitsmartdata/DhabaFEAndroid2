@@ -33,7 +33,7 @@ class PastOrdersFragment : BaseFragment<FragmentPastOrdersBinding, BaseVM>(),
 
     private fun setupOrdersList() {
         val list = ArrayList<OrderModel>()
-        for (i in 0..5) {
+        /*for (i in 0..5) {
             list.add(
                 OrderModel(
                     "Test$i",
@@ -42,7 +42,7 @@ class PastOrdersFragment : BaseFragment<FragmentPastOrdersBinding, BaseVM>(),
                     R.drawable.ic_default_avatar
                 )
             )
-        }
+        }*/
         ordersAdapter = OrdersAdapter(activity as Context, list, GenericCallBack {
         })
 

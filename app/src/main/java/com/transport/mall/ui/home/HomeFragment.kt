@@ -47,7 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
             childFragmentManager
         )
 
-        if (userModel?.isOwner()!!) {
+        if (userModel?.isOwner()!! || userModel?.isManager()!!) {
             adapter.addFrag(DhabaListFragment(null), getString(R.string.pending))
         } else {
             adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_PENDING), getString(R.string.pending))
