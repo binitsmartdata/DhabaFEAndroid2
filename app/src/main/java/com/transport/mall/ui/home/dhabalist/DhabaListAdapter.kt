@@ -73,7 +73,7 @@ class DhabaListAdapter(
             locateCallBack.onResponse(position)
         }
         myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
-//            if (dataList[position].manager == null) {
+            if (dataList[position].manager == null) {
                 DailogAddManager(context, dataList[position].ownerModel!!, dataList[position].dhabaModel!!, GenericCallBack {
                     if (it != null) {
                         dataList[position].manager = it
@@ -81,7 +81,7 @@ class DhabaListAdapter(
                         RxBus.publish(dataList[position].dhabaModel!!)
                     }
                 }).show()
-//            }
+            }
         }
     }
 
