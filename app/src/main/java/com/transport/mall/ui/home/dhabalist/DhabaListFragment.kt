@@ -1,6 +1,8 @@
 package com.transport.mall.ui.home.dhabalist
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -16,7 +18,6 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.FiltersModel
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
-import com.transport.mall.ui.customdialogs.DailogAddManager
 import com.transport.mall.ui.customdialogs.Dialogfilters
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
@@ -222,6 +223,6 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
 
     override fun onResume() {
         super.onResume()
-        GlobalUtils.hideKeyboard(getmContext(), binding.edSearch)
+        Handler(Looper.getMainLooper()).postDelayed(Runnable { GlobalUtils.hideKeyboard(getmContext(), binding.edSearch) }, 100)
     }
 }

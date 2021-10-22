@@ -37,14 +37,14 @@ class ShopsFragment : BaseFragment<FragmentShopsBinding, BaseVM>(),
 
     private fun setupCustomersList() {
         val list = ArrayList<ShopModel>()
-        list.add(
+        /*list.add(
             ShopModel("Test", 120, 0,
                 R.drawable.ic_default_avatar))
         for (i in 0..2) {
             list.add(
                 ShopModel("Test$i", 120, 1100,
                     R.drawable.ic_default_avatar))
-        }
+        }*/
         shopAdapter = ShopsAdapter(activity as Context, list, GenericCallBack {
         })
 
@@ -59,11 +59,11 @@ class ShopsFragment : BaseFragment<FragmentShopsBinding, BaseVM>(),
             if (it.isNotEmpty()) {
                 binding.llNoData.visibility = View.GONE
                 binding.recyclerView.visibility = View.VISIBLE
-                binding.edSearch.visibility = View.VISIBLE
+//                binding.edSearch.visibility = View.VISIBLE
             } else {
                 binding.llNoData.visibility = View.VISIBLE
                 binding.recyclerView.visibility = View.GONE
-                binding.edSearch.visibility = View.GONE
+//                binding.edSearch.visibility = View.GONE
             }
         }
     }
