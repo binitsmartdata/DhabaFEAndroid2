@@ -64,11 +64,14 @@ class DhabaDetailsFragment :
 
     var dhabaTimingModelParent: DhabaTimingModelParent = DhabaTimingModelParent("", ArrayList())
 
+    var userModel: UserModel = UserModel()
+
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.context = getmContext()
-        binding.userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
+        userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
+        binding.userModel = userModel
         mListener = activity as AddDhabaListener
         binding.isUpdate = mListener?.isUpdate()!!
         binding.viewOnly = mListener?.viewOnly()!!
@@ -223,9 +226,14 @@ class DhabaDetailsFragment :
                     getmContext(),
                     GenericCallBackTwoParams { status, message ->
                         if (status) {
-                            val validationMsg = dhabaTimingModelParent.validationMsg(getmContext())
-                            if (validationMsg.trim().isNotEmpty()) {
-                                showToastInCenter(validationMsg)
+                            // only owner or manager have option to manage timings
+                            if (userModel.isOwner() || userModel.isManager()) {
+                                val validationMsg = dhabaTimingModelParent.validationMsg(getmContext())
+                                if (validationMsg.trim().isNotEmpty()) {
+                                    showToastInCenter(validationMsg)
+                                } else {
+                                    proceed(isDraft)
+                                }
                             } else {
                                 proceed(isDraft)
                             }
@@ -260,26 +268,32 @@ class DhabaDetailsFragment :
             dhabaTimingModelParent.dhabaId = response.data?._id!!
 
             if (isDraft) {
-                // update dhaba timing
-                viewModel.addDhabaTimeing(dhabaTimingModelParent, GenericCallBack {
-                    if (it) {
+                // only owner or manager have option to manage timings
+                if (userModel.isOwner() || userModel.isManager()) {
+                    // update dhaba timing
+                    viewModel.addDhabaTimeing(dhabaTimingModelParent, GenericCallBack {
+                        if (!it) {
+                            showToastInCenter(getString(R.string.error_saving_timing))
+                        }
                         // UPDATING DHABA STATUS TO ISDRAFT
                         updateDhabaStatus(isDraft)
-                    } else {
-                        showToastInCenter(getString(R.string.error_saving_timing))
-                        // UPDATING DHABA STATUS TO ISDRAFT
-                        updateDhabaStatus(isDraft)
-                    }
-                })
+                    })
+                } else {
+                    // UPDATING DHABA STATUS TO ISDRAFT
+                    updateDhabaStatus(isDraft)
+                }
             } else {
-                viewModel.addDhabaTimeing(dhabaTimingModelParent, GenericCallBack {
-                    if (it) {
+                // only owner or manager have option to manage timings
+                if (userModel.isOwner() || userModel.isManager()) {
+                    viewModel.addDhabaTimeing(dhabaTimingModelParent, GenericCallBack {
+                        if (!it) {
+                            showToastInCenter(getString(R.string.error_saving_timing))
+                        }
                         showMessageAndGoNext()
-                    } else {
-                        showToastInCenter(getString(R.string.error_saving_timing))
-                        showMessageAndGoNext()
-                    }
-                })
+                    })
+                } else {
+                    showMessageAndGoNext()
+                }
             }
         } else {
             showToastInCenter(response.message)
