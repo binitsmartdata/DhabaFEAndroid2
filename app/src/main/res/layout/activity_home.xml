@@ -62,7 +62,7 @@
                         android:gravity="start"
                         android:text="@{toolbarModel.title}"
                         android:textColor="@color/black"
-                        android:visibility="@{toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) ? View.GONE : View.VISIBLE}"
+                        android:visibility="@{(toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) || toolbarModel.title.equalsIgnoreCase(@string/my_dhabas)) ? View.GONE : View.VISIBLE}"
                         tools:text="Title" />
 
                     <ImageView
@@ -71,7 +71,7 @@
                         android:layout_centerInParent="true"
                         android:padding="@dimen/_5sdp"
                         android:src="@drawable/ic_logo_splash"
-                        android:visibility="@{toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) ? View.VISIBLE : View.GONE}" />
+                        android:visibility="@{(toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) || toolbarModel.title.equalsIgnoreCase(@string/my_dhabas)) ? View.VISIBLE : View.GONE}" />
 
                 </RelativeLayout>
 

@@ -178,7 +178,7 @@ class UserModel : Serializable, BaseObservable() {
     companion object {
         val ROLE_OWNER = "owner"
         val ROLE_EXECUTIVE = "executive"
-        val ROLE_MANAGER = "manager"
+        val ROLE_MANAGER = "dhaba-manager"
     }
 
     fun isOwner(): Boolean {

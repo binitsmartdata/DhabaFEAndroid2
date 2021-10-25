@@ -7,6 +7,9 @@ class DhabaModelMain : Serializable {
     @SerializedName("dhaba")
     var dhabaModel: DhabaModel? = null
 
+    @SerializedName("dhabaTiming")
+    var dhabaTiming: ArrayList<DhabaTimingModel>? = null
+
     @SerializedName("owner")
     var ownerModel: UserModel? = null
 

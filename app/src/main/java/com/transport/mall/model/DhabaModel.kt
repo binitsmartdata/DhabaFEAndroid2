@@ -22,8 +22,6 @@ class DhabaModel : Serializable, BaseObservable() {
     var _id: String = ""
         @Bindable get() = field
         set(_id) {
-
-
             field = _id
             notifyPropertyChanged(BR._id)
         }

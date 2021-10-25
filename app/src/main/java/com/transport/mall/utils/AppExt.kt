@@ -92,31 +92,3 @@ fun Fragment.popBackFragment(fragment: Fragment) {
         e.printStackTrace()
     }
 }
-
-fun Fragment.timePick(context: Context, startTime: String, callBack: GenericCallBack<String>) {
-    val cal = Calendar.getInstance()
-    val sdf = SimpleDateFormat("h:mm a")
-    val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-        cal.set(Calendar.HOUR_OF_DAY, hour)
-        cal.set(Calendar.MINUTE, minute)
-
-        if (startTime.isNotEmpty()) {
-            val date1 = sdf.parse(startTime)
-            val date2 = sdf.parse(sdf.format(cal.time))
-
-            if (date1.before(date2)) {
-                callBack.onResponse(sdf.format(cal.time))
-            } else {
-                Toast.makeText(context, getString(R.string.please_select_another_time), Toast.LENGTH_SHORT).show()
-                callBack.onResponse("")
-            }
-        } else {
-            callBack.onResponse(sdf.format(cal.time))
-        }
-    }
-
-    TimePickerDialog(
-        context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY),
-        cal.get(Calendar.MINUTE), false
-    ).show()
-}

@@ -2,6 +2,7 @@ package com.transport.mall.repository.networkoperator
 
 
 import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.database.InternalDataListModel
 import com.transport.mall.database.InternalDocsListModel
 import com.transport.mall.model.*
@@ -161,7 +162,7 @@ interface ApiService {
     @POST("user/getManagersByOwnerId")
     suspend fun getManagersByOwnerId(
         @Field("ownerId") ownerId: String
-    ): Response<ApiResponseModel<ArrayList<UserModel>>>
+    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<UserModel>>>>
 
     @Multipart
     @POST("dhaba/addDhaba")
@@ -546,4 +547,7 @@ interface ApiService {
     suspend fun uploadImg(
         @Part images: MultipartBody.Part?
     ): Response<ResponseBody>
+
+    @POST("dhaba/addDhabaTimeing")
+    suspend fun addDhabaTimeing(@Body model: DhabaTimingModelParent): Response<DhabaTimingModelParent>
 }

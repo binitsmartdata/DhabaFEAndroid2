@@ -15,6 +15,10 @@
             name="viewModel"
             type="com.transport.mall.ui.home.dhabalist.DhabaListVM" />
 
+        <variable
+            name="user"
+            type="com.transport.mall.model.UserModel" />
+
     </data>
 
     <LinearLayout
@@ -128,7 +132,8 @@
                         android:text="@string/add_new_dhaba"
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="@{user.isManager() ? View.GONE : View.VISIBLE}" />
 
                 </LinearLayout>
             </FrameLayout>

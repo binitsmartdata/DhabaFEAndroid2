@@ -12,15 +12,18 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
+import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
+import com.transport.mall.ui.customdialogs.TimingListAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
@@ -32,7 +35,6 @@ import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
-import com.transport.mall.utils.timePick
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -59,7 +61,8 @@ class DhabaDetailsFragment :
     var StateList = ArrayList<StateModel>()
     var highwayList = ArrayList<HighwayModel>()
     var statesAdapter: ArrayAdapter<StateModel>? = null
-    var highwayAdapter: ArrayAdapter<HighwayModel>? = null
+
+    var dhabaTimingModelParent: DhabaTimingModelParent = DhabaTimingModelParent("", ArrayList())
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -72,6 +75,7 @@ class DhabaDetailsFragment :
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
+        setupOpeningTimeView()
     }
 
     private fun showDataIfHas() {
@@ -126,6 +130,13 @@ class DhabaDetailsFragment :
                 hideProgressDialog()
             }
         })
+        viewModel.progressObserverTimings.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.saving_timing))
+            } else {
+                hideProgressDialog()
+            }
+        })
 
         // SET ITEM SELECTED LISTENER ON PROPERTY STATUS SPINNER
         val menuArray = resources.getStringArray(R.array.property_status)
@@ -169,144 +180,32 @@ class DhabaDetailsFragment :
                 saveDetails(true)
             }
         }
+    }
 
-        setupOpeningTimeView()
-
+    private fun initTimingModel(opening: String, closing: String, day: String): DhabaTimingModel {
+        val model = DhabaTimingModel()
+        model.opening = opening
+        model.closing = closing
+        model.day = day
+        return model
     }
 
     private fun setupOpeningTimeView() {
-        binding.tvStartTimeMon.setOnClickListener {
-            timePick(getmContext(), "", GenericCallBack {
-                binding.tvStartTimeMon.text = it
-            })
+        if (mListener?.getDhabaModelMain()?.dhabaTiming != null && mListener?.getDhabaModelMain()?.dhabaTiming?.isNotEmpty()!!) {
+            dhabaTimingModelParent.timingArray = mListener?.getDhabaModelMain()?.dhabaTiming
+        } else {
+            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "monday"))
+            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "tuesday"))
+            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "wednesday"))
+            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "thursday"))
+            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "friday"))
+            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "saturday"))
+            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "sunday"))
         }
 
-        binding.tvEndTimeMon.setOnClickListener {
-            if (binding.tvStartTimeMon.text.trim().toString().isEmpty()
-                || binding.tvStartTimeMon.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)
-            ) {
-                showToastInCenter(getString(R.string.please_select_start_time_first))
-            } else {
-                timePick(getmContext(), binding.tvStartTimeMon.text.trim().toString(), GenericCallBack {
-                    binding.tvEndTimeMon.text = it
-                })
-            }
-        }
-
-        binding.tvStartTimeTue.setOnClickListener {
-            timePick(getmContext(), "", GenericCallBack {
-                binding.tvStartTimeTue.text = it
-            })
-        }
-
-        binding.tvEndTimeTue.setOnClickListener {
-            if (binding.tvStartTimeTue.text.trim().toString().isEmpty()
-                || binding.tvStartTimeTue.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)
-            ) {
-                showToastInCenter(getString(R.string.please_select_start_time_first))
-            } else {
-                timePick(getmContext(), binding.tvStartTimeTue.text.trim().toString(), GenericCallBack {
-                    binding.tvEndTimeTue.text = it
-                })
-            }
-        }
-
-        binding.tvStartTimeWed.setOnClickListener {
-            timePick(getmContext(), "", GenericCallBack {
-                binding.tvStartTimeWed.text = it
-            })
-        }
-
-        binding.tvEndTimeWed.setOnClickListener {
-            if (binding.tvStartTimeWed.text.trim().toString().isEmpty()
-                || binding.tvStartTimeWed.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)
-            ) {
-                showToastInCenter(getString(R.string.please_select_start_time_first))
-            } else {
-                timePick(getmContext(), binding.tvStartTimeWed.text.trim().toString(), GenericCallBack {
-                    binding.tvEndTimeWed.text = it
-                })
-            }
-        }
-
-        binding.tvStartTimeThu.setOnClickListener {
-            timePick(getmContext(), "", GenericCallBack {
-                binding.tvStartTimeThu.text = it
-            })
-        }
-
-        binding.tvEndTimeThu.setOnClickListener {
-            if (binding.tvStartTimeThu.text.trim().toString().isEmpty()
-                || binding.tvStartTimeThu.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)
-            ) {
-                showToastInCenter(getString(R.string.please_select_start_time_first))
-            } else {
-                timePick(getmContext(), binding.tvStartTimeThu.text.trim().toString(), GenericCallBack {
-                    binding.tvEndTimeThu.text = it
-                })
-            }
-        }
-
-        binding.tvStartTimeFri.setOnClickListener {
-            timePick(getmContext(), "", GenericCallBack {
-                binding.tvStartTimeFri.text = it
-            })
-        }
-
-        binding.tvEndTimeFri.setOnClickListener {
-            if (binding.tvStartTimeFri.text.trim().toString().isEmpty()
-                || binding.tvStartTimeFri.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)
-            ) {
-                showToastInCenter(getString(R.string.please_select_start_time_first))
-            } else {
-                timePick(getmContext(), binding.tvStartTimeFri.text.trim().toString(), GenericCallBack {
-                    binding.tvEndTimeFri.text = it
-                })
-            }
-        }
-
-        binding.tvStartTimeSat.setOnClickListener {
-            timePick(getmContext(), "", GenericCallBack {
-                binding.tvStartTimeSat.text = it
-            })
-        }
-
-        binding.tvEndTimeSat.setOnClickListener {
-            if (binding.tvStartTimeSat.text.trim().toString().isEmpty()
-                || binding.tvStartTimeSat.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)
-            ) {
-                showToastInCenter(getString(R.string.please_select_start_time_first))
-            } else {
-                timePick(getmContext(), binding.tvStartTimeSat.text.trim().toString(), GenericCallBack {
-                    binding.tvEndTimeSat.text = it
-                })
-            }
-        }
-
-        binding.tvStartTimeSun.setOnClickListener {
-            timePick(getmContext(), "", GenericCallBack {
-                binding.tvStartTimeSun.text = it
-            })
-        }
-
-        binding.tvEndTimeSun.setOnClickListener {
-            if (binding.tvStartTimeSun.text.trim().toString().isEmpty()
-                || binding.tvStartTimeSun.text.trim().toString()
-                    .equals(getString(R.string.not_available), ignoreCase = true)
-            ) {
-                showToastInCenter(getString(R.string.please_select_start_time_first))
-            } else {
-                timePick(getmContext(), binding.tvStartTimeSun.text.trim().toString(), GenericCallBack {
-                    binding.tvEndTimeSun.text = it
-                })
-            }
-        }
+        binding.timingRV.layoutManager = LinearLayoutManager(getmContext(), LinearLayoutManager.VERTICAL, false)
+        binding.timingRV.adapter = TimingListAdapter(getmContext(), dhabaTimingModelParent.timingArray!!)
+        binding.timingRV.setHasFixedSize(true)
     }
 
     private fun saveDetails(isDraft: Boolean) {
@@ -324,7 +223,12 @@ class DhabaDetailsFragment :
                     getmContext(),
                     GenericCallBackTwoParams { status, message ->
                         if (status) {
-                            proceed(isDraft)
+                            val validationMsg = dhabaTimingModelParent.validationMsg(getmContext())
+                            if (validationMsg.trim().isNotEmpty()) {
+                                showToastInCenter(validationMsg)
+                            } else {
+                                proceed(isDraft)
+                            }
                         } else {
                             showToastInCenter(message)
                         }
@@ -353,20 +257,41 @@ class DhabaDetailsFragment :
         if (response.data != null) {
             mListener?.getDhabaModelMain()?.dhabaModel = response.data
             viewModel.dhabaModel = response.data!!
+            dhabaTimingModelParent.dhabaId = response.data?._id!!
 
             if (isDraft) {
-                // UPDATING DHABA STATUS TO ISDRAFT
-                updateDhabaStatus(isDraft)
+                // update dhaba timing
+                viewModel.addDhabaTimeing(dhabaTimingModelParent, GenericCallBack {
+                    if (it) {
+                        // UPDATING DHABA STATUS TO ISDRAFT
+                        updateDhabaStatus(isDraft)
+                    } else {
+                        showToastInCenter(getString(R.string.error_saving_timing))
+                        // UPDATING DHABA STATUS TO ISDRAFT
+                        updateDhabaStatus(isDraft)
+                    }
+                })
             } else {
-                if (mListener?.isUpdate()!!) {
-                    showToastInCenter(getString(R.string.dhaba_updated_successfully))
-                } else {
-                    showToastInCenter(getString(R.string.dhaba_created_successfully))
-                    mListener?.showNextScreen()
-                }
+                viewModel.addDhabaTimeing(dhabaTimingModelParent, GenericCallBack {
+                    if (it) {
+                        showMessageAndGoNext()
+                    } else {
+                        showToastInCenter(getString(R.string.error_saving_timing))
+                        showMessageAndGoNext()
+                    }
+                })
             }
         } else {
             showToastInCenter(response.message)
+        }
+    }
+
+    private fun showMessageAndGoNext() {
+        if (mListener?.isUpdate()!!) {
+            showToastInCenter(getString(R.string.dhaba_updated_successfully))
+        } else {
+            showToastInCenter(getString(R.string.dhaba_created_successfully))
+            mListener?.showNextScreen()
         }
     }
 

@@ -406,14 +406,7 @@
     <string name="weeks">Weeks</string>
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
-    <string name="mon">Mon</string>
-    <string name="tue">TUE</string>
     <string name="not_available">Not available</string>
-    <string name="wed">Wed</string>
-    <string name="thu">Thu</string>
-    <string name="fri">fri</string>
-    <string name="sat">sat</string>
-    <string name="sun">sun</string>
     <string name="please_select_start_time_first">Please select start time first</string>
     <string name="please_select_another_time">Please select valid time</string>
     <string name="please_enter_customer_name">Please enter customer name</string>
@@ -518,5 +511,11 @@
     <string name="search_product">Search Product</string>
     <string name="select_existing_manager">Select Existing Manager</string>
     <string name="add_existing_mgr">Add Existing Manager</string>
+    <string name="error_saving_timing">Error occurred while saving Dhaba Timings</string>
+    <string name="select_dhaba_timings">Please select Dhaba Timings</string>
+    <string name="select_times_for_all_days">Please select opening times for all days.</string>
+    <string name="opening_time_validation">Start time cannot be after End time</string>
+    <string name="closing_time_validation">End time cannot be before Start time</string>
+    <string name="saving_timing">Saving Dhaba Timings</string>
 
 </resources>

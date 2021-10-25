@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
@@ -23,6 +24,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
     var progressObserverUpdate: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverTimings: MutableLiveData<Boolean> = MutableLiveData()
 
     var dhabaModel: DhabaModel = DhabaModel()
 
@@ -158,4 +160,35 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
         }
     }
 
+    fun addDhabaTimeing(
+        model: DhabaTimingModelParent,
+        callBack: GenericCallBack<Boolean>
+    ) {
+        progressObserverTimings.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.addDhabaTimeing(model)
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserverTimings.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserverTimings.value = false
+                            callBack.onResponse(false)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserverTimings.value = false
+                            callBack.onResponse(true)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                progressObserverTimings.value = false
+//                showToastInCenter(app!!, getCorrectErrorMessage(e))
+                callBack.onResponse(false)
+            }
+        }
+    }
 }

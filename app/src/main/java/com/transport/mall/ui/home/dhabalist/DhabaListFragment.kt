@@ -53,6 +53,7 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
 
     override fun bindData() {
         binding.lifecycleOwner = this
+        binding.user = SharedPrefsHelper.getInstance(getmContext()).getUserData()
         mListener = activity as CommonActivityListener
         showOriginalList()
         setHasOptionsMenu(true)

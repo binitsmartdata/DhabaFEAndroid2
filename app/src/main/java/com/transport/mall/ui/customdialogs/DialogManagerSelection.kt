@@ -108,7 +108,7 @@ class DialogManagerSelection constructor(
                         }
                         ApiResult.Status.SUCCESS -> {
                             binding.swipeRefreshLayout.isRefreshing = false
-                            callBack.onResponse(it.data?.data)
+                            callBack.onResponse(it.data?.data?.data)
                         }
                     }
                 }
