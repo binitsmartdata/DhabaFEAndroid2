@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/enter_otp_sent_to"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_12ssp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvOtpSentTo"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="@dimen/_12ssp" />
         </LinearLayout>
 
         <com.transport.mall.utils.common.OtpEditText
