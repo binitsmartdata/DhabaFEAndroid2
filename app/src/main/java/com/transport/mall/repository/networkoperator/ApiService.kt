@@ -364,6 +364,14 @@ interface ApiService {
         @Field("imgId") imgId: String
     ): Response<ApiResponseModel<*>>
 
+    @FormUrlEncoded
+    @POST("user/callRequest")
+    suspend fun callRequest(
+        @Header("Authorization") token: String,
+        @Field("mobilePrefix") mobilePrefix: String,
+        @Field("mobile") mobile: String
+    ): Response<ApiResponseModel<*>>
+
     @Multipart
     @POST("dhaba/addSleepingAmenities")
     suspend fun addSleepingAmenities(

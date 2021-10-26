@@ -26,6 +26,8 @@ import android.util.Log
 import android.util.Patterns
 import android.util.TypedValue
 import android.view.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -763,5 +765,10 @@ object GlobalUtils {
 
         intent.putExtras(bundle)
         fragment.startActivityForResult(intent, SimplePlacePicker.SELECT_LOCATION_REQUEST_CODE)
+    }
+
+    fun shakeThisView(context: Context, view: View) {
+        val shake: Animation = AnimationUtils.loadAnimation(context, R.anim.shake_anim)
+        view.startAnimation(shake)
     }
 }

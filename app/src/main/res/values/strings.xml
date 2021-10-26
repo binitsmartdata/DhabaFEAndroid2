@@ -517,5 +517,6 @@
     <string name="opening_time_validation">Start time cannot be after End time</string>
     <string name="closing_time_validation">End time cannot be before Start time</string>
     <string name="saving_timing">Saving Dhaba Timings</string>
+    <string name="call_request_submitted">Request has been submitted. We will call you within 24 hours.</string>
 
 </resources>
