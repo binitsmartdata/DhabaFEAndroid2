@@ -45,7 +45,7 @@
         <activity
             android:name="com.transport.mall.ui.home.HomeActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name="com.transport.mall.ui.authentication.AuthenticationActivity"
@@ -53,6 +53,10 @@
             android:windowSoftInputMode="stateVisible" />
         <activity
             android:name="com.transport.mall.ui.addnewdhaba.AddDhabaActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.transport.mall.ui.viewdhaba.ViewDhabaActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity

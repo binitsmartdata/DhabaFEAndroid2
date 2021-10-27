@@ -164,6 +164,12 @@ interface ApiService {
         @Field("ownerId") ownerId: String
     ): Response<ApiResponseModel<InternalDataListModel<ArrayList<UserModel>>>>
 
+    @FormUrlEncoded
+    @POST("user/getDhabaReviewById")
+    suspend fun getDhabaReviewById(
+        @Field("dhaba_id") dhaba_id: String
+    ): Response<ApiResponseModel<InternalDataListModel<ArrayList<UserModel>>>>
+
     @Multipart
     @POST("dhaba/addDhaba")
     suspend fun addDhaba(

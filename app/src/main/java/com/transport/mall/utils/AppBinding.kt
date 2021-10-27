@@ -3,11 +3,7 @@ package com.transport.mall.utils
 import android.Manifest.permission.*
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
-import android.graphics.Bitmap
-import android.media.ThumbnailUtils
 import android.net.Uri
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,9 +24,8 @@ import com.squareup.picasso.Picasso
 import com.transport.mall.R
 import com.transport.mall.callback.PermissionCallback
 import com.transport.mall.utils.base.BaseActivity
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
 
 
 /**
@@ -62,6 +57,39 @@ fun xloadImages(
             .load(R.drawable.ic_image_placeholder)
             .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.ic_launcher_background)
             .placeholder(R.drawable.ic_image_placeholder)
+            .into(view)
+    }
+}
+
+/**
+ * Picasso for image loading ...
+ */
+
+@BindingAdapter("loadImageRoundCorners", "placeholder")
+fun loadImageRoundCorners(view: ImageView?, image: String?, placeHolder: Int) {
+    image?.let {
+        if (it.contains("http")) {
+            Picasso.get()
+                .load(it)
+                .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.ic_launcher_background)
+                .placeholder(placeHolder)
+                .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
+                .into(view)
+        } else {
+            val file = File(it)
+            Picasso.get()
+                .load(file)
+                .error(placeHolder)
+                .placeholder(placeHolder)
+                .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
+                .into(view)
+        }
+    } ?: run {
+        Picasso.get()
+            .load(R.drawable.ic_image_placeholder)
+            .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.ic_launcher_background)
+            .placeholder(R.drawable.ic_image_placeholder)
+            .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
             .into(view)
     }
 }

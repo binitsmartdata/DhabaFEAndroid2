@@ -19,6 +19,7 @@ import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.FiltersModel
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.Dialogfilters
+import com.transport.mall.ui.viewdhaba.ViewDhabaActivity
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -76,7 +77,7 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
             }
         }, { viewPosition -> // DHABA CLICKED LISTENER
             getSingleDhaba(dhabaList, viewPosition) {
-                AddDhabaActivity.startViewOnly(activity as Context, it)
+                ViewDhabaActivity.start(activity as Context, it)
             }
         }, { locatePosition -> // DHABA CLICKED LISTENER
 //            getSingleDhaba(dhabaList, locatePosition) {
