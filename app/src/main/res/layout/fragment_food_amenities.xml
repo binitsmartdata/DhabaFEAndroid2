@@ -140,23 +140,40 @@
                         android:id="@+id/rgFoodAt100"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/rbFoodAt100Yes"
+                            android:id="@+id/rbFoodUnder100"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_5sdp"
                             android:tag="1"
-                            android:text="@string/yes" />
+                            android:text="@string/under_100" />
 
                         <RadioButton
-                            android:id="@+id/rbFoodAt100No"
+                            android:id="@+id/rbFood81_150"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="0"
-                            android:text="@string/no" />
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:tag="2"
+                            android:text="@string/_81_150" />
+
+                        <RadioButton
+                            android:id="@+id/rbFoodAt151To200"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:tag="3"
+                            android:text="@string/_151_200" />
+
+                        <RadioButton
+                            android:id="@+id/rbFoodAt201To300"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:tag="4"
+                            android:text="@string/_201_300" />
 
                     </RadioGroup>
                 </LinearLayout>
@@ -164,6 +181,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView

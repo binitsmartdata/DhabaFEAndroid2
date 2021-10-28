@@ -271,13 +271,13 @@ class SecurityAmenitiesFragment :
                 }
                 INTENT_IND_CAMERA -> {
                     viewModel.model.indoorCameraImage.add(
-                        PhotosModel("", uri, getRealPathFromURI(uri))
+                        PhotosModel("", getRealPathFromURI(uri))
                     )
                     refreshIndoorCameraImages()
                 }
                 INTENT_OUT_CAMERA -> {
                     viewModel.model.outdoorCameraImage.add(
-                        PhotosModel("", uri, getRealPathFromURI(uri))
+                        PhotosModel("", getRealPathFromURI(uri))
                     )
                     refreshOutdoorCameraImages()
                 }

@@ -8,6 +8,5 @@ import java.io.Serializable
  */
 data class PhotosModel(
     val _id: String,
-    val uri: Uri?,
     val path: String
 ) : Serializable

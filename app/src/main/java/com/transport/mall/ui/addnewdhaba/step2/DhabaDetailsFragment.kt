@@ -570,7 +570,7 @@ class DhabaDetailsFragment :
     }
 
     private fun addImageToGallery(uri: Uri) {
-        imageList.add(PhotosModel("", uri, getRealPathFromURI(uri)))
+        imageList.add(PhotosModel("", getRealPathFromURI(uri)))
         refreshGalleryImages()
     }
 

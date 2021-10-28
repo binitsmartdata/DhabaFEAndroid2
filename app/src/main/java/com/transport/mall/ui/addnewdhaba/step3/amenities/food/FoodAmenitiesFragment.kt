@@ -75,9 +75,13 @@ class FoodAmenitiesFragment :
             binding.rbFoodLicenseNo.isChecked = !it
         }
 
-        it.foodAt100.toBoolean().let {
-            binding.rbFoodAt100Yes.isChecked = it
-            binding.rbFoodAt100No.isChecked = !it
+        it.foodAt100.let {
+            when (it) {
+                "1" -> binding.rbFoodUnder100.isChecked = true
+                "2" -> binding.rbFood81150.isChecked = true
+                "3" -> binding.rbFoodAt151To200.isChecked = true
+                "4" -> binding.rbFoodAt201To300.isChecked = true
+            }
         }
 
         it.roCleanWater.toBoolean().let {
@@ -116,7 +120,7 @@ class FoodAmenitiesFragment :
         }
         binding.rgFoodAt100.setOnCheckedChangeListener { radioGroup, i ->
             viewModel.model.foodAt100 =
-                activity?.findViewById<RadioButton>(R.id.rbFoodAt100Yes)?.isChecked.toString()
+                activity?.findViewById<RadioButton>(i)?.getTag().toString()
         }
         binding.rgRoWater.setOnCheckedChangeListener { radioGroup, i ->
             viewModel.model.roCleanWater =
@@ -156,7 +160,7 @@ class FoodAmenitiesFragment :
     }
 
     private fun addImageToGallery(uri: Uri) {
-        imageList.add(PhotosModel("", uri, getRealPathFromURI(uri)))
+        imageList.add(PhotosModel("", getRealPathFromURI(uri)))
         refreshGalleryImages()
     }
 
@@ -183,7 +187,7 @@ class FoodAmenitiesFragment :
 
     override fun initListeners() {
         binding.btnSaveDhaba.setOnClickListener {
-            viewModel.model.hasEverything(getmContext(),GenericCallBackTwoParams { allOk, message ->
+            viewModel.model.hasEverything(getmContext(), GenericCallBackTwoParams { allOk, message ->
                 if (allOk) {
                     if (viewModel.model._id.isNotEmpty()) {
                         viewModel.updateFoodAmenities(GenericCallBack {
@@ -211,7 +215,7 @@ class FoodAmenitiesFragment :
 
     private fun handleData(it: ApiResponseModel<FoodAmenitiesModel>) {
         if (it.data != null) {
-                showToastInCenter(getString(R.string.food_amen_saved))
+            showToastInCenter(getString(R.string.food_amen_saved))
             var intent = Intent()
             intent.putExtra("data", it.data)
             activity?.setResult(Activity.RESULT_OK, intent)

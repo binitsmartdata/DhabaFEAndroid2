@@ -76,7 +76,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         }
         // SLEEPING AMENITIES PHOTOS
         viewModel.mDhabaModelMain.sleepingAmenitiesModel?.let {
-            imagesList.add(PhotosModel("", null, it.images.toString()))
+            imagesList.add(PhotosModel("", it.images.toString()))
         }
         // WASHROOM AMENITIES PHOTOS
         viewModel.mDhabaModelMain.washroomAmenitiesModel?.let {
@@ -95,8 +95,8 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         }
         // LIGHT AMENITIES PHOTOS
         viewModel.mDhabaModelMain.lightAmenitiesModel?.let {
-            imagesList.add(PhotosModel("", null, it.towerLightImage.toString()))
-            imagesList.add(PhotosModel("", null, it.bulbLightImage.toString()))
+            imagesList.add(PhotosModel("", it.towerLightImage.toString()))
+            imagesList.add(PhotosModel("", it.bulbLightImage.toString()))
         }
         // OTHER AMENITIES PHOTOS
         viewModel.mDhabaModelMain.otherAmenitiesModel?.let {

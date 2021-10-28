@@ -111,7 +111,7 @@ class ParkingAmenitiesFragment :
     private fun addImageToGallery(uri: Uri) {
         imageList.add(
             PhotosModel(
-                "", uri, getRealPathFromURI(uri)
+                "", getRealPathFromURI(uri)
             )
         )
         refreshGalleryImages()

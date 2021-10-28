@@ -410,7 +410,7 @@
     <string name="please_select_start_time_first">Please select start time first</string>
     <string name="please_select_another_time">Please select valid time</string>
     <string name="please_enter_customer_name">Please enter customer name</string>
-    <string name="please_enter_customer_phone_number">Please enter customer phone umber</string>
+    <string name="please_enter_customer_phone_number">Please enter customer phone number</string>
 
     <string-array name="select_state">
         <item>Select State</item>
@@ -535,5 +535,9 @@
     <string name="outdoor">Outdoor</string>
     <string name="indoor">Indoor</string>
     <string name="upload_pics">Upload Pics</string>
+    <string name="under_100">Under 80</string>
+    <string name="_81_150">81–150</string>
+    <string name="_151_200">151–200</string>
+    <string name="_201_300">201–300</string>
 
 </resources>
