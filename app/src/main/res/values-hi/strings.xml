@@ -379,12 +379,12 @@
     <string name="cant_fetch_location_address">स्थान पता स्वचालित रूप से लाने में असमर्थ, कृपया स्थान सेटिंग्स की जांच करें।</string>
     <string name="please_select_state_first">कृपया पहले राज्य का चयन करें</string>
     <string name="sign_up">साइन अप करें</string>
-    <string name="login_as_field_executive">फ़ील्ड कार्यकारी के रूप में लॉगिन करें</string>
-    <string name="login_as_dhaba_owner">ढाबा के मालिक के रूप में लॉगिन करें</string>
+    <string name="login_as_field_executive">कर्मचारी के रूप में लॉगिन करें</string>
+    <string name="login_as_dhaba_owner">भागीदार के रूप में लॉगिन करें</string>
     <string name="verify">सत्यापित करें</string>
     <string name="enter_otp_sent_to">में भेजा गया ओटीपी दर्ज करें</string>
     <string name="change_phone_number">फ़ोन नंबर बदलें</string>
-    <string name="resend_otp">ओटीपी पुनः भेजें</string>
+    <string name="resend_otp">ओटीपी पुन भेजें</string>
     <string name="enter_valid_phone_number">कृपया एक मान्य फोन नंबर दर्ज करें</string>
     <string name="my_dhabas">मेरे ढाबास</string>
     <string name="discount_offers">छूट तथा ऑफर</string>

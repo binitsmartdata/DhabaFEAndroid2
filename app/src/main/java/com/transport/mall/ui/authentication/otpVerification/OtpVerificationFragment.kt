@@ -12,6 +12,7 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
+
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
@@ -24,6 +25,8 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     override var binding: FragmentOtpVerificationBinding
         get() = setUpBinding()
         set(value) {}
+
+    val minutesToWait: Long = (60000 * 3).toLong() // 3 minutes
 
     override fun bindData() {
         binding.vm = viewModel
@@ -88,14 +91,19 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
 
     var miliseconds = 0
     private fun countDown() {
-        if (miliseconds < 30000) {
+        if (miliseconds < minutesToWait) {
             if (activity != null) {
                 binding.btnResentOtp.isEnabled = false
                 binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.grey))
                 Handler(Looper.getMainLooper()).postDelayed(Runnable {
                     miliseconds += 1000
-                    var seconds = ((30000 - miliseconds) / 1000).toString()
-                    binding.countDownTime = activity?.getString(R.string.resend_in) + " 00:${if (seconds.length > 1) seconds else "0" + seconds}"
+//                    var seconds = ((minutesToWait - miliseconds) / 1000).toString()
+//                    binding.countDownTime = activity?.getString(R.string.resend_in) + " 00:${if (seconds.length > 1) seconds else "0" + seconds}"
+                    val minutes = ((minutesToWait - miliseconds) / 1000 / 60).toString()
+                    val seconds = (((minutesToWait - miliseconds) / 1000 % 60)).toString()
+                    binding.countDownTime = activity?.getString(R.string.resend_in) +" "
+                            if (minutes.length > 1) minutes else "0$minutes" + ":" +
+                                    if (seconds.length > 1) seconds else "0$seconds"
                     binding.tvResendIn.visibility = View.VISIBLE
                     countDown()
                 }, 1000)

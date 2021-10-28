@@ -375,8 +375,8 @@
     <string name="cant_fetch_location_address">Unable to fetch location address automatically, please check location settings.</string>
     <string name="please_select_state_first">Please select state first</string>
     <string name="sign_up">Sign Up</string>
-    <string name="login_as_field_executive">Login as Field Executive</string>
-    <string name="login_as_dhaba_owner">Login as Dhaba Owner</string>
+    <string name="login_as_field_executive">Login as Employee</string>
+    <string name="login_as_dhaba_owner">Login as Partner</string>
     <string name="verify">Verify</string>
     <string name="enter_otp_sent_to">Enter OTP sent to</string>
     <string name="change_phone_number">Change Phone Number</string>
