@@ -325,27 +325,41 @@
                         android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/alternateDesignation"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ctlAltPerson"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:hint="@string/alternative_contact_designation"
+                    android:background="@drawable/grey_stroke"
+                    android:onClick="@{()->spnrAltContactDesignation.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/altContactNo">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spnrAltContactDesignation"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="text"
-                        android:maxLength="25"
-                        android:text="@={viewModel.ownerModel.alternateDesignation}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:background="@null"
+                        android:entries="@array/alternative_contact_designation"
+                        android:gravity="center_vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivAltContactDesignation"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivAltContactDesignation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:background="@drawable/ic_spinner_dropdown"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/uploadPictureLayout"
@@ -356,7 +370,7 @@
                     android:padding="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/alternateDesignation">
+                    app:layout_constraintTop_toBottomOf="@+id/ctlAltPerson">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivOwnerImage"

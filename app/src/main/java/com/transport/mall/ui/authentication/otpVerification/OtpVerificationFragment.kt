@@ -31,7 +31,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         var prefix = if (userModel.mobilePrefix.isNotEmpty()) "+" + userModel.mobilePrefix else ""
         binding.tvOtpSentTo.text = "$prefix ${userModel.mobile}"
         binding.btnLoginOwner.setOnClickListener {
-            if (binding.edOtp.text.toString().isNotEmpty() && binding.edOtp.text.toString().length == 6) {
+            if (binding.edOtp.text.toString().isNotEmpty() && binding.edOtp.text.toString().length == 4) {
                 viewModel.otp = binding.edOtp.text.toString()
                 viewModel.checkOtp(GenericCallBack {
                     it.data?.let {

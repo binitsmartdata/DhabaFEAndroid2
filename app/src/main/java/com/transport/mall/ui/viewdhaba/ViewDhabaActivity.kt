@@ -54,8 +54,13 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
     private fun assembleImagesAndShow() {
         var imagesList = ArrayList<PhotosModel>()
-        // DHABA PHOTO
-        imagesList.add(PhotosModel("", null, viewModel.mDhabaModelMain.dhabaModel?.images.toString()))
+
+        // DHABA PHOTOS
+        viewModel.mDhabaModelMain.dhabaModel?.let {
+            if (it.images.isNotEmpty()) {
+                imagesList.addAll(it.images)
+            }
+        }
 
         // FOOD AMENITIES PHOTOS
         viewModel.mDhabaModelMain.foodAmenitiesModel?.let {

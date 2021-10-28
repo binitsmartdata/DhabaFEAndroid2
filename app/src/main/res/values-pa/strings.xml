@@ -62,7 +62,7 @@
     <string name="washroom_cleaning">ਵਾਸ਼ਰੂਮ ਅਤੇ ਸਫਾਈ</string>
     <string name="security">ਸੁਰੱਖਿਆ</string>
     <string name="other">ਹੋਰ</string>
-    <string name="food_license">ਫੂਡ ਲਾਇਸੈਂਸ</string>
+    <string name="food_license">ਫੂਡ ਲਾਇਸੈਂਸ (Fssai)</string>
     <string name="yes">ਹਾਂ</string>
     <string name="no">ਨਹੀਂ</string>
     <string name="food_at_100_inr">100 ਰੁਪਏ ਵਿੱਚ ਭੋਜਨ</string>
@@ -88,7 +88,7 @@
     <string name="number_of_beds">ਬਿਸਤਰੇ ਦੀ ਗਿਣਤੀ</string>
     <string name="_1_2">1-2</string>
     <string name="_2_5">2-5</string>
-    <string name="above_5">5 ਤੋਂ ਉੱਪਰ</string>
+    <string name="above_5">5+</string>
     <string name="fan">ਪੱਖਾ</string>
     <string name="cooler">ਕੂਲਰ</string>
     <string name="enclosed">ਨੱਥੀ ਕਰਨ ਲਈ</string>
@@ -118,11 +118,11 @@
     <string name="amen_title">ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="dhaba_name">ਢਾਬੇ ਦਾ ਨਾਮ</string>
     <string name="dhaba_address">ਢਾਬੇ ਦਾ ਪਤਾ</string>
-    <string name="fetch_location">ਮੌਜੂਦਾ ਸਥਾਨ</string>
+    <string name="fetch_location">ਢਾਬਾ ਟਿਕਾਣਾ</string>
     <string name="landmark">ਲੈਂਡਮਾਰਕ</string>
     <string name="area">ਖੇਤਰ</string>
     <string name="pin_code">ਪਿੰਨ ਕੋਡ</string>
-    <string name="upload_dhaba_pictures">ਢਾਬੇ ਦੀ ਤਸਵੀਰ ਅਪਲੋਡ ਕਰੋ</string>
+    <string name="upload_dhaba_pictures">ਢਾਬਾ ਹੋਰਡਿੰਗ ਤਸਵੀਰਾਂ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="save_as_draft">ਡਰਾਫਟ ਦੇ ਰੂਪ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ</string>
     <string name="owner_name">ਮਾਲਕ ਦਾ ਨਾਮ *</string>
     <string name="phone_number">ਫੋਨ ਨੰਬਰ</string>
@@ -132,7 +132,7 @@
     <string name="aadhar_card_number">ਆਧਾਰ ਕਾਰਡ ਨੰਬਰ</string>
     <string name="upload_owner_picture">ਮਾਲਕ ਦੀ ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ</string>
     <string name="upload_id_proof">ਆਈਡੀ ਸਬੂਤ ਅਪਲੋਡ ਕਰੋ</string>
-    <string name="we_accept_aadhar_card_pan_card_or_driving_license">ਅਸੀਂ ਆਧਾਰ ਕਾਰਡ, ਪੈਨ ਕਾਰਡ ਜਾਂ ਡਰਾਈਵਿੰਗ ਲਾਇਸੈਂਸ ਸਵੀਕਾਰ ਕਰਦੇ ਹਾਂ</string>
+    <string name="we_accept_aadhar_card_pan_card_or_driving_license">ਅਸੀਂ ਆਧਾਰ ਕਾਰਡ, ਵੋਟਰ ਆਈਡੀ ਜਾਂ ਡਰਾਈਵਿੰਗ ਲਾਇਸੈਂਸ ਸਵੀਕਾਰ ਕਰਦੇ ਹਾਂ</string>
     <string name="front_side">ਸਾਹਮਣੇ ਵਾਲੇ ਪਾਸੇ</string>
     <string name="back_side">ਪਿਛਲਾ ਪਾਸਾ</string>
     <string name="next">ਅਗਲਾ</string>
@@ -208,7 +208,7 @@
     <string name="amenities_selected">ਸੁਵਿਧਾਵਾਂ ਚੁਣੀਆਂ ਗਈਆਂ</string>
     <string name="sleeping_amen_saved">ਸੌਣ ਦੀਆਂ ਸਹੂਲਤਾਂ ਸਫਲਤਾਪੂਰਵਕ ਸੁਰੱਖਿਅਤ ਕੀਤੀਆਂ ਗਈਆਂ.</string>
     <string name="upload_photos">ਫੋਟੋਆਂ ਅਪਲੋਡ ਕਰੋ</string>
-    <string name="no_amenities_selected">ਸਹੂਲਤਾਂ ਦੀ ਚੋਣ ਨਹੀਂ ਕੀਤੀ ਗਈ</string>
+    <string name="no_amenities_selected">ਚੋਣ ਨਹੀਂ ਕੀਤੀ ਗਈ</string>
     <string name="security_amen_saved">ਸੁਰੱਖਿਆ ਸਹੂਲਤਾਂ ਸਫਲਤਾਪੂਰਵਕ ਸੁਰੱਖਿਅਤ ਕੀਤੀਆਂ ਗਈਆਂ</string>
     <string name="amen_saved">ਸਹੂਲਤਾਂ ਸਫਲਤਾਪੂਰਵਕ ਸੁਰੱਖਿਅਤ ਕੀਤੀਆਂ ਗਈਆਂ</string>
     <string name="enter_owner_details">ਕਿਰਪਾ ਕਰਕੇ ਪਹਿਲਾਂ ਮਾਲਕ ਦੇ ਵੇਰਵੇ ਫਾਰਮ ਭਰੋ.</string>
@@ -258,20 +258,6 @@
     <string name="assigned_to">ਨੂੰ ਦਿੱਤਾ</string>
     <string name="upload_barber_photo">ਨਾਈ ਦੀ ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ</string>
 
-    <string-array name="menu_array">
-        <item>@string/dhaba_mnagement</item>
-        <item>@string/add_new_dhaba</item>
-        <item>@string/notifications</item>
-        <item>@string/hepline</item>
-        <item>@string/settings</item>
-    </string-array>
-
-    <string-array name="menu_array_fiels_ex">
-        <item>@string/dhaba_mnagement</item>
-        <item>@string/add_new_dhaba</item>
-        <item>@string/notifications</item>
-        <item>@string/settings</item>
-    </string-array>
     <string name="choose_language">ਭਾਸ਼ਾ ਚੁਣੋ</string>
     <string name="upload_sleeping_amenities_photo">" ਸੌਣ ਵਾਲੀਆਂ ਸਹੂਲਤਾਂ ਦੀ ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ"</string>
     <string name="enter_owner_name">ਕਿਰਪਾ ਕਰਕੇ ਮਾਲਕ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ</string>

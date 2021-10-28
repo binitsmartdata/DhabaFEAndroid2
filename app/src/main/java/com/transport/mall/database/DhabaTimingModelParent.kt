@@ -13,7 +13,7 @@ data class DhabaTimingModelParent(
     var timingArray: ArrayList<DhabaTimingModel>?
 ) : Serializable {
     fun validationMsg(context: Context): String {
-        timingArray?.let {
+        /*timingArray?.let {
             if (it.isNotEmpty()) {
                 for (item in it) {
                     if (item.opening.trim().isEmpty() || item.closing.trim().isEmpty()) {
@@ -23,7 +23,7 @@ data class DhabaTimingModelParent(
             } else {
                 return context.getString(R.string.select_dhaba_timings)
             }
-        }
+        }*/
         return ""
     }
 }

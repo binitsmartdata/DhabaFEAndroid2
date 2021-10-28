@@ -1,7 +1,9 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
 import android.content.Context
+import android.view.View
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -162,31 +164,32 @@ class AmenitiesFragment :
     override fun onResume() {
         super.onResume()
         mListener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
-            setSelectectedTextAndStyle(binding.tvFoodAmens)
+            setSelectectedTextAndStyle(binding.tvFoodAmens, binding.icTickFood)
         }
         mListener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
-            setSelectectedTextAndStyle(binding.tvParkingAmens)
+            setSelectectedTextAndStyle(binding.tvParkingAmens, binding.icTickParking)
         }
         mListener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
-            setSelectectedTextAndStyle(binding.tvSleepingAmen)
+            setSelectectedTextAndStyle(binding.tvSleepingAmen, binding.icTickSleeping)
         }
         mListener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
-            setSelectectedTextAndStyle(binding.tvWashroomAmen)
+            setSelectectedTextAndStyle(binding.tvWashroomAmen, binding.icTickWashroom)
         }
         mListener?.getDhabaModelMain()?.securityAmenitiesModel?.let {
-            setSelectectedTextAndStyle(binding.tvSecurityAmen)
+            setSelectectedTextAndStyle(binding.tvSecurityAmen, binding.icTickSecurity)
         }
         mListener?.getDhabaModelMain()?.lightAmenitiesModel?.let {
-            setSelectectedTextAndStyle(binding.tvLightAmen)
+            setSelectectedTextAndStyle(binding.tvLightAmen, binding.icTickLight)
         }
         mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {
-            setSelectectedTextAndStyle(binding.tvOtherAmen)
+            setSelectectedTextAndStyle(binding.tvOtherAmen, binding.icTickOther)
         }
     }
 
-    private fun setSelectectedTextAndStyle(tv: TextView) {
+    private fun setSelectectedTextAndStyle(tv: TextView, ivTickView: AppCompatImageView) {
         tv.text = getString(R.string.amenities_selected)
         tv.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
+        ivTickView.visibility = View.VISIBLE
     }
 
     private fun isHavingPreviousData(): Boolean {

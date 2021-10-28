@@ -71,11 +71,11 @@
     <string name="other">Other</string>
     <string name="dhaba_name">Dhaba Name *</string>
     <string name="dhaba_address">Dhaba address</string>
-    <string name="fetch_location">Current Location</string>
+    <string name="fetch_location">Dhaba Location</string>
     <string name="landmark">Landmark</string>
     <string name="area">Area</string>
     <string name="pin_code">Pin code</string>
-    <string name="food_license">Food License</string>
+    <string name="food_license">Food Licence (Fssai)</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="food_at_100_inr">Food at 100 INR</string>
@@ -101,7 +101,7 @@
     <string name="number_of_beds">Number of Beds</string>
     <string name="_1_2">1–2</string>
     <string name="_2_5">2–5</string>
-    <string name="above_5">Above 5</string>
+    <string name="above_5">5+</string>
     <string name="upload_sleeping_amenities_photo">Upload Sleeping Amenities Photo</string>
     <string name="fan">Fan</string>
     <string name="cooler">Cooler</string>
@@ -121,14 +121,14 @@
     <string name="daily_utility_shop">Daily Utility Shop 24x7</string>
     <string name="barber">Barber</string>
     <string name="in_premises">IN Premises</string>
-    <string name="food_amen_title">Add Food Amenities</string>
-    <string name="parking_amen_title">Add Parking Amenities</string>
-    <string name="sleeping_amen_title">Add Sleeping Amenities</string>
-    <string name="washroom_amen_title">Add Washroom Amenities</string>
-    <string name="security_amen_title">Add Security Amenities</string>
-    <string name="other_amen_title">Add Other Amenities</string>
-    <string name="amen_title">Add Amenities</string>
-    <string name="upload_dhaba_pictures">Upload Dhaba Picture</string>
+    <string name="food_amen_title">Write Food Details</string>
+    <string name="parking_amen_title">Write Parking Details</string>
+    <string name="sleeping_amen_title">Write Sleeping Details</string>
+    <string name="washroom_amen_title">Write Washroom Details</string>
+    <string name="security_amen_title">Write Security Details</string>
+    <string name="other_amen_title">Write Other Details</string>
+    <string name="amen_title">Write Details</string>
+    <string name="upload_dhaba_pictures">Add Dhaba hoarding  Picture</string>
     <string name="save_as_draft">Save as Draft</string>
     <string name="owner_name">Owner name *</string>
     <string name="phone_number">Phone number</string>
@@ -138,7 +138,7 @@
     <string name="aadhar_card_number">Aadhar Card Number</string>
     <string name="upload_owner_picture">Upload Owner Picture</string>
     <string name="upload_id_proof">Upload Id proof</string>
-    <string name="we_accept_aadhar_card_pan_card_or_driving_license">We accept aadhar card, pan card or driving license</string>
+    <string name="we_accept_aadhar_card_pan_card_or_driving_license">We accept aadhar card, Voter ID or driving license</string>
     <string name="front_side">Front Side</string>
     <string name="back_side">Back Side</string>
     <string name="next">Next</string>
@@ -156,7 +156,7 @@
     <string name="light">Light</string>
     <string name="tower_bright_light">Tower Bright Light</string>
     <string name="bulb_light">Bulb light</string>
-    <string name="_24x7_back_up_of_electricity">24X7 Back up of electricity</string>
+    <string name="_24x7_back_up_of_electricity">24X7 Electricity Back up</string>
     <string name="search_city">Search City</string>
     <string name="city_name">City Name</string>
     <string name="continue_text">Continue</string>
@@ -214,7 +214,7 @@
     <string name="amenities_selected">Amenities Selected</string>
     <string name="sleeping_amen_saved">Sleeping Amenities Saved Successfully.</string>
     <string name="upload_photos">Upload Photos</string>
-    <string name="no_amenities_selected">Amenities Not Selected</string>
+    <string name="no_amenities_selected">Not Selected</string>
     <string name="security_amen_saved">Security amenities saved successfully</string>
     <string name="amen_saved">Amenities Saved Successfully</string>
     <string name="enter_owner_details">Please fill owner details form first.</string>
@@ -243,14 +243,14 @@
     <string name="dhaba_updated_successfully">Dhaba Details Updated Successfully</string>
     <string name="updated_successfully">Updated Successfully</string>
     <string name="search_highway">Search Highway</string>
-    <string name="update_food_amen">Update food amenities</string>
-    <string name="update_other_amen">Update other amenities</string>
-    <string name="update_light_amen">Update light amenities</string>
-    <string name="update_security_amen">Update security amenities</string>
-    <string name="update_washroom_amen">Update washroom amenities</string>
-    <string name="update_sleeping_amen">Update sleeping amenities</string>
-    <string name="update_parking_amen">Update parking amenities</string>
-    <string name="update_amen">Update Amenities</string>
+    <string name="update_food_amen">Update Food Details</string>
+    <string name="update_other_amen">Update Other Details</string>
+    <string name="update_light_amen">Update Light Details</string>
+    <string name="update_security_amen">Update Security Details</string>
+    <string name="update_washroom_amen">Update Washroom Details</string>
+    <string name="update_sleeping_amen">Update Sleeping Details</string>
+    <string name="update_parking_amen">Update Parking Details</string>
+    <string name="update_amen">Update Details</string>
     <string name="updating_owner">Updating Owner Details</string>
     <string name="photo_deleted">Photo deleted successfully.</string>
     <string name="_10_digit_mobile_number">10 Digit mobile number</string>
@@ -424,6 +424,14 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="alternative_contact_designation">
+        <item>Alternative Contact Designation</item>
+        <item>Employee</item>
+        <item>Son</item>
+        <item>Manager</item>
+        <item>Helper</item>
+    </string-array>
+
 
     <string-array name="select_city">
         <item>Select City</item>
@@ -464,7 +472,7 @@
 
 
     <string-array name="menu_array_fiels_ex">
-        <item>@string/dhaba_mnagement</item>
+        <item>@string/my_dhabas</item>
         <item>@string/add_new_dhaba</item>
         <item>@string/notifications</item>
         <item>@string/settings</item>
@@ -520,7 +528,12 @@
     <string name="call_request_submitted">Request has been submitted. We will call you within 24 hours.</string>
     <string name="information">Information</string>
     <string name="reviews">Reviews</string>
-    <string name="add">Add</string>
+    <string name="add">Write</string>
     <string name="no_reviews">No Reviews</string>
+    <string name="food_type">Food Type</string>
+    <string name="washroom_area">Washroom Area</string>
+    <string name="outdoor">Outdoor</string>
+    <string name="indoor">Indoor</string>
+    <string name="upload_pics">Upload Pics</string>
 
 </resources>

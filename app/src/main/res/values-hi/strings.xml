@@ -66,7 +66,7 @@
     <string name="washroom_cleaning">वाशरूम और क्लीनिंग</string>
     <string name="security">सुरक्षा</string>
     <string name="other">अन्य</string>
-    <string name="food_license">फूड लाइसेंस</string>
+    <string name="food_license">फूड लाइसेंस (Fssai)</string>
     <string name="yes">हां</string>
     <string name="no">नहीं</string>
     <string name="food_at_100_inr">100 रुपये में खाना</string>
@@ -92,7 +92,7 @@
     <string name="number_of_beds">बिस्तरों की संख्या</string>
     <string name="_1_2">1-2</string>
     <string name="_2_5">2-5</string>
-    <string name="above_5">5 से ऊपर</string>
+    <string name="above_5">5+</string>
     <string name="upload_sleeping_amenities_photo">सोने की सुविधा फोटो अपलोड करें</string>
     <string name="fan">फैन </string>
     <string name="cooler">कूलर </string>
@@ -123,11 +123,11 @@
     <string name="amen_title">सुविधाएं जोड़ें</string>
     <string name="dhaba_name">ढाबा नाम</string>
     <string name="dhaba_address">ढाबा पता</string>
-    <string name="fetch_location">वर्तमान स्थान</string>
+    <string name="fetch_location">ढाबा स्थान</string>
     <string name="landmark">सीमाचिह्न</string>
     <string name="area">क्षेत्र</string>
     <string name="pin_code">पिन कोड</string>
-    <string name="upload_dhaba_pictures">ढाबा चित्र अपलोड करें</string>
+    <string name="upload_dhaba_pictures">ढाबा होर्डिंग चित्र जोड़ें</string>
     <string name="save_as_draft">ड्राफ्ट के रूप में सेव करें</string>
     <string name="owner_name">मालिक का नाम *</string>
     <string name="phone_number">फ़ोन नंबर</string>
@@ -137,7 +137,7 @@
     <string name="aadhar_card_number">आधार कार्ड नंबर</string>
     <string name="upload_owner_picture">मालिक की तस्वीर अपलोड करें</string>
     <string name="upload_id_proof">आईडी प्रूफ अपलोड करें</string>
-    <string name="we_accept_aadhar_card_pan_card_or_driving_license">हम आधार कार्ड, पैन कार्ड या ड्राइविंग लाइसेंस स्वीकार करते हैं</string>
+    <string name="we_accept_aadhar_card_pan_card_or_driving_license">हम आधार कार्ड, वोटर आईडी या ड्राइविंग लाइसेंस स्वीकार करते हैं</string>
     <string name="front_side">सामने की ओर</string>
     <string name="back_side">पीछे की ओर</string>
     <string name="next">अगला</string>
@@ -216,7 +216,7 @@
     <string name="amenities_selected">सुविधाएं चयनित</string>
     <string name="sleeping_amen_saved">सोने की सुविधा सफलतापूर्वक सहेजी गई।</string>
     <string name="upload_photos">तस्वीरें अपलोड करें</string>
-    <string name="no_amenities_selected">सुविधाएं चयनित नहीं</string>
+    <string name="no_amenities_selected">चयनित नहीं</string>
     <string name="security_amen_saved">सुरक्षा सुविधाएं सफलतापूर्वक सहेजी गईं</string>
     <string name="amen_saved">सुविधाएं सफलतापूर्वक सहेजी गईं</string>
     <string name="enter_owner_details">कृपया पहले मालिक का विवरण फॉर्म भरें।</string>
@@ -265,28 +265,6 @@
     <string name="unable_to_fetch_address">आपका वर्तमान पता लाने में असमर्थ।</string>
     <string name="assigned_to">को सौंपा</string>
 
-    <string-array name="menu_array_fiels_ex">
-        <item>@string/dhaba_mnagement</item>
-        <item>@string/add_new_dhaba</item>
-        <item>@string/notifications</item>
-        <item>@string/settings</item>
-    </string-array>
-
-    <string-array name="menu_array">
-        <item>@string/dhaba_mnagement</item>
-        <item>@string/add_new_dhaba</item>
-        <item>@string/notifications</item>
-        <item>@string/hepline</item>
-        <item>@string/settings</item>
-    </string-array>
-
-    <integer-array name="menu_icons">
-        <item>@drawable/ic_home</item>
-        <item>@drawable/ic_add_dhaba</item>
-        <item>@drawable/ic_notification</item>
-        <item>@drawable/ic_helpline</item>
-        <item>@drawable/ic_settings</item>
-    </integer-array>
     <string name="choose_language">भाषा चुनें</string>
     <string name="update_other_amen">अन्य सुविधाएं अपडेट करें</string>
     <string name="upload_barber_photo">नाई की फोटो अपलोड करें</string>

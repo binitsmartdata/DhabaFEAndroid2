@@ -348,135 +348,114 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
+
+                <FrameLayout
                     android:id="@+id/uploadLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_130sdp"
+                    android:layout_height="@dimen/_120sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pinCodeTil">
 
-                    <FrameLayout
-                        android:id="@+id/photoParentFrame"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/llVideoPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_light"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                        <LinearLayout
-                            android:id="@+id/llImagePicker"
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:src="@drawable/ic_video_picker"
+                            android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/grey_light"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="@font/opensans_regular"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="20dp">
+                            android:text="@string/upload_dhaba_video"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12ssp"
+                            android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
+                    </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="@dimen/_50sdp"
-                                android:layout_height="@dimen/_50sdp"
-                                android:src="@drawable/ic_upload_picture" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:fontFamily="@font/opensans_regular"
-                                android:gravity="center"
-                                android:text="@string/upload_dhaba_pictures"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12ssp" />
-
-
-                        </LinearLayout>
+                    <FrameLayout
+                        android:id="@+id/frameVideoThumb"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivImageThumb"
+                            android:id="@+id/ivVideoThumb"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop" />
 
-                    </FrameLayout>
-
-                    <View
-                        android:layout_width="@dimen/_10sdp"
-                        android:layout_height="match_parent" />
-
-                    <FrameLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
-                        <LinearLayout
-                            android:id="@+id/llVideoPicker"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/grey_light"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="20dp">
-
-                            <ImageView
-                                android:layout_width="@dimen/_50sdp"
-                                android:layout_height="@dimen/_50sdp"
-                                android:src="@drawable/ic_video_picker"
-                                android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginVertical="10dp"
-                                android:layout_marginStart="@dimen/_5sdp"
-                                android:fontFamily="@font/opensans_regular"
-                                android:gravity="center"
-                                android:text="@string/upload_dhaba_video"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12ssp"
-                                android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
-                        </LinearLayout>
-
-                        <FrameLayout
-                            android:id="@+id/frameVideoThumb"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:visibility="gone">
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/ivVideoThumb"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop" />
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/ivPlay"
-                                android:layout_width="@dimen/_45sdp"
-                                android:layout_height="@dimen/_45sdp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/white_round_corners"
-                                android:padding="@dimen/_10sdp"
-                                android:src="@drawable/ic_play" />
-
-                        </FrameLayout>
-
-                        <ProgressBar
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivPlay"
+                            android:layout_width="@dimen/_45sdp"
+                            android:layout_height="@dimen/_45sdp"
                             android:layout_gravity="center"
-                            android:visibility="@{loadingVideo ?View.VISIBLE :View.GONE}" />
+                            android:background="@drawable/white_round_corners"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_play" />
 
                     </FrameLayout>
+
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="@{loadingVideo ?View.VISIBLE :View.GONE}" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/llPhotos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/grey_light"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/uploadLayout">
+
+                    <ImageView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/ic_add_round" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@string/upload_dhaba_pictures"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
 
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/uploadedImageRecycler"
+                    android:id="@+id/recyclerViewDhabaPics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/uploadLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/llPhotos" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_times"
@@ -485,7 +464,7 @@
                     android:visibility="@{(userModel.isOwner() || userModel.isManager()) ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/uploadedImageRecycler">
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewDhabaPics">
 
                     <TextView
                         android:id="@+id/tv_open_close_times"
@@ -560,7 +539,7 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/ll_time_title"/>
+                        app:layout_constraintTop_toBottomOf="@id/ll_time_title" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

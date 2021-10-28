@@ -18,50 +18,64 @@
 
     </data>
 
-<!--    <FrameLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!---->
-        <ScrollView
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+    <!---->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardFood"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardFood"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:elevation="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/food"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="@string/food"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="bold" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icTickFood"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvFoodAmens"
@@ -72,49 +86,63 @@
                                 android:textColor="@color/grey"
                                 android:textSize="@dimen/_14ssp"
                                 android:textStyle="italic" />
-
-
                         </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardParking"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardParking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:elevation="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/parking"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="@string/parking"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="bold" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icTickParking"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvParkingAmens"
@@ -128,46 +156,61 @@
 
 
                         </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardSleeping"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSleeping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:elevation="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/sleeping"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="@string/sleeping"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="bold" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icTickSleeping"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvSleepingAmen"
@@ -181,46 +224,61 @@
 
 
                         </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardWashroom"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardWashroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:elevation="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/washroom_cleaning"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="@string/washroom_cleaning"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="bold" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icTickWashroom"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvWashroomAmen"
@@ -233,46 +291,61 @@
                                 android:textStyle="italic" />
 
                         </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardSecurity"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSecurity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:elevation="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/security"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="@string/security"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="bold" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icTickSecurity"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvSecurityAmen"
@@ -286,46 +359,61 @@
 
 
                         </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardLights"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardLights"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:elevation="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/light"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="@string/light"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="bold" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icTickLight"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvLightAmen"
@@ -339,46 +427,61 @@
 
 
                         </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardOther"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:elevation="@dimen/_3sdp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:elevation="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@string/other"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:text="@string/other"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="bold" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icTickOther"
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvOtherAmen"
@@ -392,51 +495,52 @@
 
 
                         </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_arrow_right" />
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_right" />
+                </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnNext"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/primary_color_btn_selector"
-                    android:text="@string/next"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
+            </androidx.cardview.widget.CardView>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSaveDraft"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_30sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:fontFamily="@font/opensans_bold"
-                    android:text="@string/save_as_draft"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorRed"
-                    android:textSize="@dimen/_14ssp"
-                    android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/primary_color_btn_selector"
+                android:text="@string/next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
 
-            </LinearLayout>
-        </ScrollView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveDraft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:background="@drawable/default_btn_selector"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/save_as_draft"
+                android:textAllCaps="false"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/_14ssp"
+                android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
 
-<!--        <View-->
-<!--            android:id="@+id/viewRestrictor"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:clickable="true"-->
-<!--            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />-->
+        </LinearLayout>
+    </ScrollView>
 
-<!--    </FrameLayout>-->
+    <!--        <View-->
+    <!--            android:id="@+id/viewRestrictor"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:clickable="true"-->
+    <!--            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}" />-->
+
+    <!--    </FrameLayout>-->
 </layout>

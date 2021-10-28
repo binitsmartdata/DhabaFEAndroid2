@@ -11,9 +11,9 @@ import com.transport.mall.R
 
 class OtpEditText : AppCompatEditText {
     private var mSpace = 10f //24 dp by default, space between the lines
-    private var mNumChars = 6f
+    private var mNumChars = 4f
     private var mLineSpacing = 6f //8dp by default, height of the text from our lines
-    private val mMaxLength = 6
+    private val mMaxLength = 4
     private var mLineStroke = 2f
     private var mLinesPaint: Paint? = null
     private var mClickListener: OnClickListener? = null

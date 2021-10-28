@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.view.View
+import android.widget.AdapterView
 import androidx.lifecycle.Observer
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -177,6 +179,33 @@ class OwnerDetailsFragment :
                 activity?.finish()
             } else {
                 saveDetails(true)
+            }
+        }
+
+        // SET ITEM SELECTED LISTENER ON ALTERNATIVE CONTACT PERSON DESIGNATION
+        val menuArray = resources.getStringArray(R.array.alternative_contact_designation)
+        binding.spnrAltContactDesignation.setOnItemSelectedListener(object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.ownerModel.alternateDesignation = if (p2 == 0) "" else menuArray[p2]
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+        })
+
+        //set existing value on ALTERNATIVE CONTACT PERSON DESIGNATION spinner
+        viewModel.ownerModel.alternateDesignation?.let {
+            if (it.isNotEmpty()) {
+                var index = 0
+                for (i in menuArray) {
+                    if (i.equals(it, true)) {
+                        binding.spnrAltContactDesignation.setSelection(index)
+                        break
+                    }
+                    index += 1
+                }
             }
         }
     }

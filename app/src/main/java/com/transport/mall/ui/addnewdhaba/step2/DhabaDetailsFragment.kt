@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -22,6 +23,7 @@ import com.transport.mall.database.AppDatabase
 import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
+import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
 import com.transport.mall.ui.customdialogs.TimingListAdapter
 import com.transport.mall.utils.base.BaseFragment
@@ -35,7 +37,6 @@ import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
-import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -65,6 +66,7 @@ class DhabaDetailsFragment :
     var dhabaTimingModelParent: DhabaTimingModelParent = DhabaTimingModelParent("", ArrayList())
 
     var userModel: UserModel = UserModel()
+    var imageList = ArrayList<PhotosModel>()
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -87,7 +89,8 @@ class DhabaDetailsFragment :
 
             it.images.let {
                 if (it.isNotEmpty()) {
-                    xloadImages(binding.ivImageThumb, it, R.drawable.ic_transparent_placeholder)
+                    imageList.addAll(it)
+                    refreshGalleryImages()
                 }
             }
 
@@ -509,7 +512,7 @@ class DhabaDetailsFragment :
 
 
     private fun setupImagePicker() {
-        binding.llImagePicker.setOnClickListener {
+        binding.llPhotos.setOnClickListener {
             ImagePicker.with(this)
                 .crop()                    //Crop image(Optional), Check Customization for more option
                 .compress(1024)            //Final image size will be less than 1 MB(Optional)
@@ -559,12 +562,37 @@ class DhabaDetailsFragment :
 //                viewModel.dhabaModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
                 setAddressAfterConfirmation(data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!)
             } else {
-                // IMAGE INTENT RESULT
                 val uri: Uri = data?.data!!
-                viewModel.dhabaModel.images = getRealPathFromURI(uri)
-                binding.ivImageThumb.setImageURI(uri)
+                addImageToGallery(uri)
+                viewModel.dhabaModel.images = imageList
             }
         }
+    }
+
+    private fun addImageToGallery(uri: Uri) {
+        imageList.add(PhotosModel("", uri, getRealPathFromURI(uri)))
+        refreshGalleryImages()
+    }
+
+    private fun refreshGalleryImages() {
+        var columns = GlobalUtils.calculateNoOfColumns(activity as Context, 100f)
+
+        binding.recyclerViewDhabaPics.layoutManager =
+            GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
+
+        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+            viewModel.dhabaModel.images = imageList
+        })
+        adapter.setDeletionListener(GenericCallBack {
+            viewModel.delDhabaImg(it, GenericCallBack {
+                if (it) {
+                    showToastInCenter(getString(R.string.photo_deleted))
+                }
+            })
+        })
+
+        binding.recyclerViewDhabaPics.adapter = adapter
+        binding.recyclerViewDhabaPics.setHasFixedSize(true)
     }
 
     private fun processAndSetVideo(videoUri: Uri) {

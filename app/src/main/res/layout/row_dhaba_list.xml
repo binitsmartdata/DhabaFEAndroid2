@@ -65,7 +65,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    loadImage="@{model.images}"
+                    loadImage="@{model.images.isEmpty() ? `` : model.images.get(0).path}"
                     placeholder="@{R.drawable.ic_image_placeholder}"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"
@@ -169,7 +169,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <RatingBar
                         android:id="@+id/ratingBar"

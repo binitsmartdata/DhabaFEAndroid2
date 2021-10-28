@@ -84,7 +84,7 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
         supportActionBar?.setHomeButtonEnabled(true)
         if (viewOnly()) {
             // removing add/update from screen title when this is viewOnly()
-            supportActionBar?.title = getTitleByType().replace(getString(R.string.add), "", true).replace(getString(R.string.update), "", true).toUpperCase()
+            supportActionBar?.title = getTitleByType().replace(getString(R.string.add), "", true).replace(getString(R.string.update), "", true)
         } else {
             supportActionBar?.title = getTitleByType()
         }

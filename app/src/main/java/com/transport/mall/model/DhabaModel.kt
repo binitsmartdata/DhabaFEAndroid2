@@ -140,7 +140,7 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.propertyStatus)
         }
 
-    var images: String = ""
+    var images: ArrayList<PhotosModel> = ArrayList()
         @Bindable get() = field
         set(images) {
             field = images
@@ -249,7 +249,7 @@ class DhabaModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_pincode))
         } else if (propertyStatus.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_property_status))
-        } else if (images.trim().isEmpty()) {
+        } else if (images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_dhaba_image))
         } else {
             callback.onResponse(true, "")
@@ -289,7 +289,7 @@ class DhabaModel : Serializable, BaseObservable() {
             val param = context.getString(R.string.dhaba_pincode)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
-        if (images.trim().isEmpty()) {
+        if (images.isEmpty()) {
             val param = context.getString(R.string.dhaba_photo)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }

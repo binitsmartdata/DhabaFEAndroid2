@@ -188,7 +188,7 @@ interface ApiService {
         @Part("status") status: RequestBody,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
-        @Part images: MultipartBody.Part?,
+        @Part images: Array<MultipartBody.Part?>?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
@@ -214,7 +214,7 @@ interface ApiService {
         @Part("status") status: RequestBody?,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
-        @Part images: MultipartBody.Part?,
+        @Part images: Array<MultipartBody.Part?>?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
@@ -338,6 +338,13 @@ interface ApiService {
     @POST("dhaba/delFoodImg")
     suspend fun delFoodImg(
         @Field("_id") amenityId: String,
+        @Field("imgId") imgId: String
+    ): Response<ApiResponseModel<*>>
+
+    @FormUrlEncoded
+    @POST("dhaba/delDhabaImg")
+    suspend fun delDhabaImg(
+        @Field("_id") dhabaId: String,
         @Field("imgId") imgId: String
     ): Response<ApiResponseModel<*>>
 

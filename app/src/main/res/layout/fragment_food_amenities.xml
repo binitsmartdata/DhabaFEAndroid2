@@ -210,7 +210,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_semibold"
-                        android:text="@string/veg_food_non_veg"
+                        android:text="@string/food_type"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 

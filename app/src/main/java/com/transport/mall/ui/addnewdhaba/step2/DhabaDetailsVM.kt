@@ -56,7 +56,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
-                        getMultipartImageFile(dhabaModel.images, "images"),
+                        getMultipartImagesList(dhabaModel.images, "images"),
                         getMultipartVideoFile(dhabaModel.videos, "videos"),
                         RequestBody.create(
                             MultipartBody.FORM,
@@ -106,7 +106,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         /*RequestBody.create(MultipartBody.FORM, if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS)*/null,
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
-                        getMultipartImageFile(dhabaModel.images, "images"),
+                        getMultipartImagesList(dhabaModel.images, "images"),
                         getMultipartVideoFile(dhabaModel.videos, "videos"),
                         RequestBody.create(
                             MultipartBody.FORM,
@@ -191,4 +191,33 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
             }
         }
     }
+
+    fun delDhabaImg(imgId: String, callBack: GenericCallBack<Boolean>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.delDhabaImg(dhabaModel._id, imgId)
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            progressObserver.value = false
+                            callBack.onResponse(false)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            callBack.onResponse(true)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+
 }
