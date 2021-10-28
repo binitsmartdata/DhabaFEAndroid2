@@ -38,14 +38,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_140sdp"
+                android:layout_marginTop="@dimen/_125sdp"
                 android:background="@android:color/transparent"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/white_round_corners"
+                    android:background="@drawable/white_round_corners_wide"
                     android:orientation="vertical"
                     android:padding="@dimen/_10sdp">
 
@@ -57,7 +57,7 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/opensans_semibold"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@{dhabaModelMain.dhabaModel.name}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
@@ -93,16 +93,16 @@
                         android:textColor="@color/grey"
                         android:textSize="@dimen/_12ssp" />
 
-<!--
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="Open 6am to 8pm"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp" />
--->
+                    <!--
+                                        <androidx.appcompat.widget.AppCompatTextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_10sdp"
+                                            android:fontFamily="@font/opensans_regular"
+                                            android:text="Open 6am to 8pm"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/_12ssp" />
+                    -->
 
                     <View
                         android:layout_width="match_parent"
@@ -114,7 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/opensans_semibold"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="@string/information"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/_12ssp" />
@@ -124,9 +124,40 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_regular"
-                        android:text="@{dhabaModelMain.dhabaModel.address +`\nLandmark : `+ dhabaModelMain.dhabaModel.landmark + `\nArea : `+ dhabaModelMain.dhabaModel.area + `\nHighway : `+ dhabaModelMain.dhabaModel.highway}"
+                        android:text="@{dhabaModelMain.dhabaModel.address}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="@{dhabaModelMain.dhabaModel.address.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@{`Landmark : `+ dhabaModelMain.dhabaModel.landmark}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="@{dhabaModelMain.dhabaModel.landmark.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@{`Area : `+ dhabaModelMain.dhabaModel.area}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="@{dhabaModelMain.dhabaModel.area.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@{`Highway : `+ dhabaModelMain.dhabaModel.highway}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="@{dhabaModelMain.dhabaModel.highway.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
 
                     <View
                         android:layout_width="match_parent"
@@ -139,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/opensans_semibold"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="@string/amenities"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/_12ssp"
@@ -351,7 +382,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="@font/opensans_semibold"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/reviews"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/_12ssp" />
@@ -361,9 +392,19 @@
                             style="?android:attr/ratingBarStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:rating="3.0" />
+                            android:rating="0" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center"
+                        android:padding="@dimen/_30sdp"
+                        android:text="@string/no_reviews"
+                        android:textColor="@color/grey" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
