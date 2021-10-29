@@ -90,13 +90,13 @@ class DhabaListAdapter(
             DhabaModel.STATUS_PENDING -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.VISIBLE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
-                myViewHolderG?.binding?.ivLocation?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
             DhabaModel.STATUS_INPROGRESS -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
-                myViewHolderG?.binding?.ivLocation?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
             DhabaModel.STATUS_ACTIVE, DhabaModel.STATUS_INACTIVE, "" -> {

@@ -15,6 +15,14 @@ class DhabaTimingModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR._id)
         }
 
+    @SerializedName("enabled")
+    var enabled: Boolean = true
+        @Bindable get() = field
+        set(enabled) {
+            field = enabled
+            notifyPropertyChanged(BR.enabled)
+        }
+
     @SerializedName("opening")
     var opening: String = ""
         @Bindable get() = field

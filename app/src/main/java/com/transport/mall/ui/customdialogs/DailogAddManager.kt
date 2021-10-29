@@ -69,6 +69,7 @@ class DailogAddManager constructor(context: Context, owner: UserModel, dhaba: Dh
                 }
             }).show()
         }
+        binding.ccpCountryCode.isClickable = false
         binding.ccpCountryCode.setOnCountryChangeListener {
             mobilePrefix = binding.ccpCountryCode.selectedCountryCode
         }

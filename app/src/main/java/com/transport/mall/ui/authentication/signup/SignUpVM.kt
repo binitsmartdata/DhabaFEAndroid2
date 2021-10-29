@@ -65,7 +65,7 @@ class SignUpVM(application: Application) : BaseVM(application) {
             email = it
         }
 
-        when (name.isNotEmpty() && phone.isNotEmpty() && (email.isNotEmpty() && isValidEmail(email))) {
+        when (name.isNotEmpty() && phone.isNotEmpty()/* && (email.isNotEmpty() && isValidEmail(email))*/) {
             true -> {
                 progressObserver?.value = true
                 GlobalScope.launch(Dispatchers.Main) {
@@ -108,10 +108,10 @@ class SignUpVM(application: Application) : BaseVM(application) {
                         errorResponse?.value = app?.getString(R.string.please_enter_name)
                     phone.trim().isEmpty() || phone.trim().length < 10 -> errorResponse?.value =
                         app?.getString(R.string.enter_valid_phone_number)
-                    email.trim().isEmpty() -> errorResponse?.value =
+                    /*email.trim().isEmpty() -> errorResponse?.value =
                         app?.getString(R.string.email_empty_validation)
                     !isValidEmail(email) -> errorResponse?.value =
-                        app?.getString(R.string.valid_email_validation)
+                        app?.getString(R.string.valid_email_validation)*/
                 }
             }
         }

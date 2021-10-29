@@ -35,6 +35,7 @@ class DialogRequestCall constructor(
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        binding.ccpCountryCode.isClickable = false
         binding.ccpCountryCode.setCountryForPhoneCode(91)
         binding.ccpCountryCode.setOnCountryChangeListener {
             prefix = binding.ccpCountryCode.selectedCountryCode

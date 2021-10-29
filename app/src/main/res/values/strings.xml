@@ -539,5 +539,11 @@
     <string name="_81_150">81–150</string>
     <string name="_151_200">151–200</string>
     <string name="_201_300">201–300</string>
+    <string name="upload_id_proof_front">Please select owner\'s ID Proof(Front)</string>
+    <string name="upload_owner_picture_validation">Please select owner\'s picture</string>
+    <string name="upload_dhaba_hoarding_pic">Please select Dhaba hoarding Picture</string>
+    <string name="dhaba_hoarding_pic">Dhaba hoarding Picture</string>
+    <string name="dhaba_location">Dhaba Location</string>
+    <string name="apply_on_all_days">Apply on all days</string>
 
 </resources>

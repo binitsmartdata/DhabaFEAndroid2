@@ -60,6 +60,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
     }
 
     override fun initListeners() {
+        binding.ccpCountryCode.isClickable = false
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.mobilePrefixObservable.set(binding.ccpCountryCode.selectedCountryCode.toString())
         }

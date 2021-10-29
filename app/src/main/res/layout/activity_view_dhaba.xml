@@ -190,7 +190,7 @@
                         <com.transport.mall.utils.custom.CircleImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:src="@drawable/demo_food_pic" />
+                            android:src="@drawable/ic_food" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -217,7 +217,7 @@
                         <com.transport.mall.utils.custom.CircleImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:src="@drawable/demo_food_pic" />
+                            android:src="@drawable/ic_parking" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -244,7 +244,7 @@
                         <com.transport.mall.utils.custom.CircleImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:src="@drawable/demo_food_pic" />
+                            android:src="@drawable/ic_sleeping" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -271,7 +271,7 @@
                         <com.transport.mall.utils.custom.CircleImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:src="@drawable/demo_food_pic" />
+                            android:src="@drawable/ic_washroom" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -298,7 +298,7 @@
                         <com.transport.mall.utils.custom.CircleImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:src="@drawable/demo_food_pic" />
+                            android:src="@drawable/ic_security" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -325,7 +325,7 @@
                         <com.transport.mall.utils.custom.CircleImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:src="@drawable/demo_food_pic" />
+                            android:src="@drawable/ic_light" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -352,7 +352,7 @@
                         <com.transport.mall.utils.custom.CircleImageView
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
-                            android:src="@drawable/demo_food_pic" />
+                            android:src="@drawable/ic_utility" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"

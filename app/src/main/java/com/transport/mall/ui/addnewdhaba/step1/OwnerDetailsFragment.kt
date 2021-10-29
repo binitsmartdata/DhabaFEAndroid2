@@ -118,6 +118,8 @@ class OwnerDetailsFragment :
             }).show()
         }
 
+        binding.ccpCountryCode.isClickable = false
+        binding.ccpCountryCodeAlt.isClickable = false
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
         }

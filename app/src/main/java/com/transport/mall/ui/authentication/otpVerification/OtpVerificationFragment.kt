@@ -2,6 +2,7 @@ package com.transport.mall.ui.authentication.otpVerification
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -101,9 +102,12 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
 //                    binding.countDownTime = activity?.getString(R.string.resend_in) + " 00:${if (seconds.length > 1) seconds else "0" + seconds}"
                     val minutes = ((minutesToWait - miliseconds) / 1000 / 60).toString()
                     val seconds = (((minutesToWait - miliseconds) / 1000 % 60)).toString()
-                    binding.countDownTime = activity?.getString(R.string.resend_in) +" "
-                            if (minutes.length > 1) minutes else "0$minutes" + ":" +
-                                    if (seconds.length > 1) seconds else "0$seconds"
+
+                    val minutesModified = if (minutes.length > 1) minutes else "0$minutes"
+                    val secondsModified = if (seconds.length > 1) seconds else "0$seconds"
+                    val countDownText = activity?.getString(R.string.resend_in) + " " + minutesModified + ":" + secondsModified
+
+                    binding.countDownTime = countDownText
                     binding.tvResendIn.visibility = View.VISIBLE
                     countDown()
                 }, 1000)

@@ -53,6 +53,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
     }
 
     override fun initListeners() {
+        binding.ccpCountryCode.isClickable = false
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.userModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
         }

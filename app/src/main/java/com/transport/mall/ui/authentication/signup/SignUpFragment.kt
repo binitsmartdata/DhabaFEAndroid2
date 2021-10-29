@@ -68,6 +68,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpVM>() {
             })
         }
 
+        binding.ccpCountryCode.isClickable = false
         binding.ccpCountryCode.setOnCountryChangeListener {
             viewModel.mobilePrefixObserver.set(binding.ccpCountryCode.selectedCountryCode)
         }

@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
@@ -39,6 +40,13 @@
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivChecked"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@{model.enabled ? @drawable/ic_checked : @drawable/ic_unchecked}" />
 
         <TextView
             android:id="@+id/tvStartTime"

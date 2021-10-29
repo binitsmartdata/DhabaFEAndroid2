@@ -186,27 +186,22 @@ class DhabaDetailsFragment :
                 saveDetails(true)
             }
         }
-    }
 
-    private fun initTimingModel(opening: String, closing: String, day: String): DhabaTimingModel {
-        val model = DhabaTimingModel()
-        model.opening = opening
-        model.closing = closing
-        model.day = day
-        return model
+        binding.rgTiming.setOnCheckedChangeListener { radioGroup, i ->
+            if (i == R.id.rb24hrsYes) {
+                dhabaTimingModelParent.setAllTo24Hours()
+                binding.timingRV.adapter?.let {
+                    it.notifyDataSetChanged()
+                }
+            }
+        }
     }
 
     private fun setupOpeningTimeView() {
         if (mListener?.getDhabaModelMain()?.dhabaTiming != null && mListener?.getDhabaModelMain()?.dhabaTiming?.isNotEmpty()!!) {
             dhabaTimingModelParent.timingArray = mListener?.getDhabaModelMain()?.dhabaTiming
         } else {
-            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "monday"))
-            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "tuesday"))
-            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "wednesday"))
-            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "thursday"))
-            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "friday"))
-            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "saturday"))
-            dhabaTimingModelParent.timingArray?.add(initTimingModel("", "", "sunday"))
+            dhabaTimingModelParent.setAllTo24Hours()
         }
 
         binding.timingRV.layoutManager = LinearLayoutManager(getmContext(), LinearLayoutManager.VERTICAL, false)

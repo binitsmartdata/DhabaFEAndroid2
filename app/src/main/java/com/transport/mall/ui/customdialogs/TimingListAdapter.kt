@@ -1,15 +1,11 @@
 package com.transport.mall.ui.customdialogs
 
-import android.app.TimePickerDialog
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.RowTimingListBinding
 import com.transport.mall.model.DhabaTimingModel
-import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
-import java.text.SimpleDateFormat
-import java.util.*
 
 class TimingListAdapter(
     val context: Context, val dataList: List<DhabaTimingModel>
@@ -31,29 +27,44 @@ class TimingListAdapter(
             setClosingPickerListener(position)
         }
 
+        myViewHolderG?.binding?.ivChecked?.setOnClickListener {
+            dataList.get(position).enabled = !dataList.get(position).enabled
+            notifyDataSetChanged()
+        }
+
         myViewHolderG?.binding?.executePendingBindings()
     }
 
     private fun setClosingPickerListener(position: Int) {
-        pickEndTime(context, dataList.get(position).opening, GenericCallBack {
-            if (it.isNotEmpty()) {
-                dataList.get(position).closing = it
-                notifyDataSetChanged()
-            } else {
-                setClosingPickerListener(position)
+        DailogTimePicker(context, GenericCallBackTwoParams { time, applyToAll ->
+            dataList.get(position).closing = time
+            if (applyToAll) {
+                dataList.forEach {
+                    it.closing = time
+                    it.enabled = true
+                }
             }
-        })
+            notifyDataSetChanged()
+        }).selectedTime(dataList.get(position).closing)
+            .type(DailogTimePicker.Companion.Type.END_TIME)
+            .startTime(dataList.get(position).opening)
+            .show()
     }
 
     private fun setOpeningPickerListener(position: Int) {
-        pickStartTime(context, dataList.get(position).closing, GenericCallBack {
-            if (it.isNotEmpty()) {
-                dataList.get(position).opening = it
-                notifyDataSetChanged()
-            } else {
-                setOpeningPickerListener(position)
+        DailogTimePicker(context, GenericCallBackTwoParams { time, applyToAll ->
+            dataList.get(position).opening = time
+            if (applyToAll) {
+                dataList.forEach {
+                    it.opening = time
+                    it.enabled = true
+                }
             }
-        })
+            notifyDataSetChanged()
+        }).selectedTime(dataList.get(position).opening)
+            .type(DailogTimePicker.Companion.Type.START_TIME)
+            .endTime(dataList.get(position).closing)
+            .show()
     }
 
     override fun getCount(): Int {
@@ -62,61 +73,5 @@ class TimingListAdapter(
 
     override fun getInflateLayout(type: Int): Int {
         return R.layout.row_timing_list
-    }
-
-    fun pickStartTime(context: Context, endTime: String, callBack: GenericCallBack<String>) {
-        val cal = Calendar.getInstance()
-        val sdf = SimpleDateFormat("h:mm a")
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-            cal.set(Calendar.HOUR_OF_DAY, hour)
-            cal.set(Calendar.MINUTE, minute)
-
-            if (endTime.isNotEmpty()) {
-                val date1 = sdf.parse(sdf.format(cal.time))
-                val date2 = sdf.parse(endTime)
-
-                if (date1.before(date2)) {
-                    callBack.onResponse(sdf.format(cal.time))
-                } else {
-                    GlobalUtils.showToastInCenter(context, context.getString(R.string.opening_time_validation))
-                    callBack.onResponse("")
-                }
-            } else {
-                callBack.onResponse(sdf.format(cal.time))
-            }
-        }
-
-        TimePickerDialog(
-            context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY),
-            cal.get(Calendar.MINUTE), false
-        ).show()
-    }
-
-    fun pickEndTime(context: Context, startTime: String, callBack: GenericCallBack<String>) {
-        val cal = Calendar.getInstance()
-        val sdf = SimpleDateFormat("h:mm a")
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-            cal.set(Calendar.HOUR_OF_DAY, hour)
-            cal.set(Calendar.MINUTE, minute)
-
-            if (startTime.isNotEmpty()) {
-                val date1 = sdf.parse(startTime)
-                val date2 = sdf.parse(sdf.format(cal.time))
-
-                if (date1.before(date2)) {
-                    callBack.onResponse(sdf.format(cal.time))
-                } else {
-                    GlobalUtils.showToastInCenter(context, context.getString(R.string.closing_time_validation))
-                    callBack.onResponse("")
-                }
-            } else {
-                callBack.onResponse(sdf.format(cal.time))
-            }
-        }
-
-        TimePickerDialog(
-            context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY),
-            cal.get(Calendar.MINUTE), false
-        ).show()
     }
 }

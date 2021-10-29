@@ -140,6 +140,7 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.propertyStatus)
         }
 
+    @SerializedName("test")
     var images: ArrayList<PhotosModel> = ArrayList()
         @Bindable get() = field
         set(images) {
@@ -239,7 +240,7 @@ class DhabaModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.choose_dhaba_location))
         } else if (address.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_address))
-        } else if (landmark.trim().isEmpty()) {
+        }/* else if (landmark.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_landmark))
         } else if (area.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_area))
@@ -249,8 +250,8 @@ class DhabaModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_pincode))
         } else if (propertyStatus.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_property_status))
-        } else if (images.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.select_dhaba_image))
+        } */ else if (images.isEmpty()) {
+            callback.onResponse(false, context.getString(R.string.upload_dhaba_hoarding_pic))
         } else {
             callback.onResponse(true, "")
         }
@@ -261,11 +262,17 @@ class DhabaModel : Serializable, BaseObservable() {
         if (name.trim().isEmpty()) {
             missingParams = context.getString(R.string._dhaba_name)
         }
+        if ((latitude.trim().isEmpty() || longitude.trim().isEmpty())
+            || (getNonNullString(latitude.trim(), "0").toDouble() == 0.toDouble()
+                    || getNonNullString(longitude.trim(), "0").trim().toDouble() == 0.toDouble())) {
+            val param = context.getString(R.string.dhaba_location)
+            missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
+        }
         if (address.trim().isEmpty()) {
             val param = context.getString(R.string.dhaba_address)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
-        if (landmark.trim().isEmpty()) {
+        /*if (landmark.trim().isEmpty()) {
             val param = context.getString(R.string.dhaba_address_landmark)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
@@ -288,9 +295,9 @@ class DhabaModel : Serializable, BaseObservable() {
         if (pincode.trim().isEmpty()) {
             val param = context.getString(R.string.dhaba_pincode)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
-        }
+        }*/
         if (images.isEmpty()) {
-            val param = context.getString(R.string.dhaba_photo)
+            val param = context.getString(R.string.dhaba_hoarding_pic)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
 /*
