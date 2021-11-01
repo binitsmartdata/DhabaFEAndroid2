@@ -25,6 +25,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
     var progressObserverUpdate: MutableLiveData<Boolean> = MutableLiveData()
     var progressObserverTimings: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverDelImg: MutableLiveData<Boolean> = MutableLiveData()
 
     var dhabaModel: DhabaModel = DhabaModel()
 
@@ -197,7 +198,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
     }
 
     fun delDhabaImg(imgId: String, callBack: GenericCallBack<Boolean>) {
-        progressObserver.value = true
+        progressObserverDelImg.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 executeApi(
@@ -205,20 +206,20 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                 ).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {
-                            progressObserver.value = true
+                            progressObserverDelImg.value = true
                         }
                         ApiResult.Status.ERROR -> {
-                            progressObserver.value = false
+                            progressObserverDelImg.value = false
                             callBack.onResponse(false)
                         }
                         ApiResult.Status.SUCCESS -> {
-                            progressObserver.value = false
+                            progressObserverDelImg.value = false
                             callBack.onResponse(true)
                         }
                     }
                 }
             } catch (e: Exception) {
-                progressObserver.value = false
+                progressObserverDelImg.value = false
                 showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }

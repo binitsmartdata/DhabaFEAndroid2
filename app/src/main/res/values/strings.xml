@@ -553,5 +553,7 @@
     <string name="add_dhaba_photos">Add Dhaba Photos</string>
     <string name="choose_barber_option">Please choose barber option</string>
     <string name="choose_sleeping_option">Please choose sleeping option</string>
+    <string name="open_24_x_7">Open 24 x 7</string>
+    <string name="deleting_image">Deleting Image</string>
 
 </resources>

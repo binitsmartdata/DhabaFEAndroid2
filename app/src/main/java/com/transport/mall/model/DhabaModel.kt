@@ -244,7 +244,6 @@ class DhabaModel : Serializable, BaseObservable() {
 
     var isDraft: String = ""
 
-
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_dhaba_name))

@@ -356,7 +356,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("dhaba/delDhabaImg")
     suspend fun delDhabaImg(
-        @Field("_id") dhabaId: String,
+        @Field("dhabaId") dhabaId: String,
         @Field("imgId") imgId: String
     ): Response<ApiResponseModel<*>>
 

@@ -145,6 +145,13 @@ class DhabaDetailsFragment :
         setupLocationViews()
         setupCitiesAndStateView()
 
+        viewModel.progressObserverDelImg.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.deleting_image))
+            } else {
+                hideProgressDialog()
+            }
+        })
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog(getString(R.string.saving_dhaba_details))
@@ -234,6 +241,12 @@ class DhabaDetailsFragment :
 
         binding.rgTiming.setOnCheckedChangeListener { radioGroup, id ->
             viewModel.dhabaModel.open247 = binding.rb24hrsYes.isChecked
+            if (binding.rb24hrsYes.isChecked) {
+                dhabaTimingModelParent.setAllTo24Hours()
+                binding.timingRV.adapter?.let {
+                    it.notifyDataSetChanged()
+                }
+            }
         }
     }
 
@@ -242,6 +255,9 @@ class DhabaDetailsFragment :
             dhabaTimingModelParent.timingArray = mListener?.getDhabaModelMain()?.dhabaTiming
         } else {
             dhabaTimingModelParent.setAllTo24Hours()
+            binding.timingRV.adapter?.let {
+                it.notifyDataSetChanged()
+            }
         }
 
         binding.timingRV.layoutManager = LinearLayoutManager(getmContext(), LinearLayoutManager.VERTICAL, false)
