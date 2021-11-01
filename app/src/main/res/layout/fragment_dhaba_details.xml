@@ -110,6 +110,59 @@
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/llLatLong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fetchLocationLayout">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:hint="@string/latitude">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:inputType="numberDecimal"
+                            android:maxLength="11"
+                            android:text="@={viewModel.dhabaModel.latitude}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:hint="@string/longitude">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:inputType="numberDecimal"
+                            android:maxLength="11"
+                            android:text="@={viewModel.dhabaModel.longitude}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/dhabaAddressTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -119,7 +172,7 @@
                     android:hint="@string/dhaba_address"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fetchLocationLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/llLatLong">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edDhabaAddress"
@@ -469,19 +522,19 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <FrameLayout
-                    android:id="@+id/uploadLayout"
+                    android:id="@+id/flHoardingPic"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
+                    android:layout_height="@dimen/_130sdp"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/grey_light"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cl_times">
 
                     <LinearLayout
-                        android:id="@+id/llVideoPicker"
+                        android:id="@+id/llLicensePhoto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/grey_light"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="20dp">
@@ -489,8 +542,7 @@
                         <ImageView
                             android:layout_width="@dimen/_50sdp"
                             android:layout_height="@dimen/_50sdp"
-                            android:src="@drawable/ic_video_picker"
-                            android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
+                            android:src="@drawable/ic_add_round" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -498,73 +550,139 @@
                             android:layout_marginVertical="10dp"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:fontFamily="@font/opensans_regular"
-                            android:gravity="center"
-                            android:text="@string/upload_dhaba_video"
+                            android:text="@string/upload_dhaba_pictures"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp"
-                            android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
+                            android:textSize="@dimen/_14ssp" />
+
                     </LinearLayout>
 
-                    <FrameLayout
-                        android:id="@+id/frameVideoThumb"
+                    <ImageView
+                        android:id="@+id/ivHoardingPic"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone">
+                        android:background="@color/grey_light"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivVideoThumb"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop" />
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivPlay"
-                            android:layout_width="@dimen/_45sdp"
-                            android:layout_height="@dimen/_45sdp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/white_round_corners"
-                            android:padding="@dimen/_10sdp"
-                            android:src="@drawable/ic_play" />
-
-                    </FrameLayout>
-
-                    <ProgressBar
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:visibility="@{loadingVideo ?View.VISIBLE :View.GONE}" />
+                        android:layout_gravity="top|right"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:text="*"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_20ssp" />
 
                 </FrameLayout>
 
                 <LinearLayout
-                    android:id="@+id/llPhotos"
+                    android:id="@+id/uploadLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@color/grey_light"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="20dp"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/uploadLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/flHoardingPic">
 
-                    <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:src="@drawable/ic_add_round" />
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_weight="1">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/upload_dhaba_pictures"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        <LinearLayout
+                            android:id="@+id/llPhotos"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/grey_light"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="20dp">
 
+                            <ImageView
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:src="@drawable/ic_add_red" />
 
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="10dp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:fontFamily="@font/opensans_regular"
+                                android:gravity="center"
+                                android:text="@string/add_dhaba_photos"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12ssp" />
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/llVideoPicker"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/grey_light"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <ImageView
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="@dimen/_50sdp"
+                                android:src="@drawable/ic_video_picker"
+                                android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="10dp"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:fontFamily="@font/opensans_regular"
+                                android:gravity="center"
+                                android:text="@string/upload_dhaba_video"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12ssp"
+                                android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:id="@+id/frameVideoThumb"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivVideoThumb"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivPlay"
+                                android:layout_width="@dimen/_45sdp"
+                                android:layout_height="@dimen/_45sdp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/white_round_corners"
+                                android:padding="@dimen/_10sdp"
+                                android:src="@drawable/ic_play" />
+
+                        </FrameLayout>
+
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="@{loadingVideo ?View.VISIBLE :View.GONE}" />
+
+                    </FrameLayout>
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -574,7 +692,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/llPhotos" />
+                    app:layout_constraintTop_toBottomOf="@+id/uploadLayout" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnNext"

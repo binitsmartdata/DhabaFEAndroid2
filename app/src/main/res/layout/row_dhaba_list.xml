@@ -65,7 +65,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    loadImage="@{model.images.isEmpty() ? `` : model.images.get(0).path}"
+                    loadImage="@{model.images}"
                     placeholder="@{R.drawable.ic_image_placeholder}"
                     android:layout_width="@dimen/_50sdp"
                     android:layout_height="@dimen/_50sdp"

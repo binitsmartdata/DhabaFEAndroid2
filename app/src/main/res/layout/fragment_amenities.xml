@@ -71,11 +71,11 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/icTickFood"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
-                                android:layout_marginRight="@dimen/_5sdp"
-                                android:src="@drawable/ic_tick_red"
-                                android:visibility="gone" />
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginStart="5dp"
+                                android:visibility="gone"
+                                android:src="@drawable/ic_tick_red" />
 
                             <TextView
                                 android:id="@+id/tvFoodAmens"
@@ -138,8 +138,9 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/icTickParking"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:src="@drawable/ic_tick_red"
                                 android:visibility="gone" />
@@ -206,8 +207,9 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/icTickSleeping"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:src="@drawable/ic_tick_red"
                                 android:visibility="gone" />
@@ -274,8 +276,9 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/icTickWashroom"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:src="@drawable/ic_tick_red"
                                 android:visibility="gone" />
@@ -341,8 +344,9 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/icTickSecurity"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:src="@drawable/ic_tick_red"
                                 android:visibility="gone" />
@@ -409,8 +413,9 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/icTickLight"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:src="@drawable/ic_tick_red"
                                 android:visibility="gone" />
@@ -477,8 +482,9 @@
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/icTickOther"
-                                android:layout_width="@dimen/_20sdp"
-                                android:layout_height="@dimen/_20sdp"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_marginStart="5dp"
                                 android:layout_marginRight="@dimen/_5sdp"
                                 android:src="@drawable/ic_tick_red"
                                 android:visibility="gone" />

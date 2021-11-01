@@ -41,6 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:animateLayoutChanges="true"
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -64,6 +65,7 @@
                             android:id="@+id/rbMechYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="true"
                             android:text="@string/yes" />
@@ -72,9 +74,39 @@
                             android:id="@+id/rbMechNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="false"
                             android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/rgMechDay_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbMechNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{rbMechYes.checked ? View.VISIBLE : View.GONE}">
+
+                        <RadioButton
+                            android:id="@+id/rbMech24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/_24_x_7" />
+
+                        <RadioButton
+                            android:id="@+id/rbMechDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/day" />
 
                     </RadioGroup>
 
@@ -90,6 +122,7 @@
                             android:id="@+id/rbMerch2771"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/in_premises" />
@@ -98,6 +131,7 @@
                             android:id="@+id/rbMerch2772"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="2"
                             android:text="@string/_1_200_m" />
@@ -106,89 +140,13 @@
                             android:id="@+id/rbMerch2773"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="3"
                             android:text="@string/_200_400_m" />
 
                     </RadioGroup>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="vertical">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="@string/mechanic_shop_day"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgMechDayYesNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checkedButton="@id/rbMechDayNo"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/rbMechDayYes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="true"
-                            android:text="@string/yes" />
-
-                        <RadioButton
-                            android:id="@+id/rbMechDayNo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="false"
-                            android:text="@string/no" />
-
-                    </RadioGroup>
-
-                    <RadioGroup
-                        android:id="@+id/rgMechDay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="@{rbMechDayYes.checked ? View.VISIBLE : View.GONE}">
-
-                        <RadioButton
-                            android:id="@+id/rbMechDay_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/in_premises" />
-
-                        <RadioButton
-                            android:id="@+id/rbMechDay_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/_1_200_m" />
-
-                        <RadioButton
-                            android:id="@+id/rbMechDay_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="3"
-                            android:text="@string/_200_400_m" />
-
-                    </RadioGroup>
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -217,6 +175,7 @@
                             android:id="@+id/rbPuncture_24_7Yes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="true"
                             android:text="@string/yes" />
@@ -225,9 +184,39 @@
                             android:id="@+id/rbPuncture_24_7No"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="false"
                             android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/rgPunctureDay_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbMechNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{rbPuncture247Yes.checked ? View.VISIBLE : View.GONE}">
+
+                        <RadioButton
+                            android:id="@+id/rbPuncture24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/_24_x_7" />
+
+                        <RadioButton
+                            android:id="@+id/rbPunctureDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/day" />
 
                     </RadioGroup>
 
@@ -243,6 +232,7 @@
                             android:id="@+id/rbPuncture24_7_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/in_premises" />
@@ -251,6 +241,7 @@
                             android:id="@+id/rbPuncture24_7_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="2"
                             android:text="@string/_1_200_m" />
@@ -259,89 +250,13 @@
                             android:id="@+id/rbPuncture24_7_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="3"
                             android:text="@string/_200_400_m" />
 
                     </RadioGroup>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="vertical">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="@string/puncture_shop_day"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgPunctureDayYesNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checkedButton="@id/rPunctureDayNo"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/rbPunctureDayYes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="true"
-                            android:text="@string/yes" />
-
-                        <RadioButton
-                            android:id="@+id/rPunctureDayNo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="false"
-                            android:text="@string/no" />
-
-                    </RadioGroup>
-
-                    <RadioGroup
-                        android:id="@+id/rgPunctureDay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="@{rbPunctureDayYes.checked ? View.VISIBLE : View.GONE}">
-
-                        <RadioButton
-                            android:id="@+id/rbPunctureDay1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/in_premises" />
-
-                        <RadioButton
-                            android:id="@+id/rbPunctureDay2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/_1_200_m" />
-
-                        <RadioButton
-                            android:id="@+id/rbPunctureDay3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="3"
-                            android:text="@string/_200_400_m" />
-
-                    </RadioGroup>
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -370,6 +285,7 @@
                             android:id="@+id/rbUtilityYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="true"
                             android:text="@string/yes" />
@@ -378,9 +294,39 @@
                             android:id="@+id/rbUtilityNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="false"
                             android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/rgUtilityDay_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbMechNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{rbUtilityYes.checked ? View.VISIBLE : View.GONE}">
+
+                        <RadioButton
+                            android:id="@+id/rbUtility24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/_24_x_7" />
+
+                        <RadioButton
+                            android:id="@+id/rbUtilityDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/day" />
 
                     </RadioGroup>
 
@@ -396,6 +342,7 @@
                             android:id="@+id/rbUtility24_7_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/in_premises" />
@@ -404,6 +351,7 @@
                             android:id="@+id/rbUtility24_7_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="2"
                             android:text="@string/_1_200_m" />
@@ -412,89 +360,13 @@
                             android:id="@+id/rbUtility24_7_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="3"
                             android:text="@string/_200_400_m" />
 
                     </RadioGroup>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="vertical">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="@string/daily_utility_shop_day"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgUtilityDayYesNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:checkedButton="@id/rbUtilityDayNo"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/rbUtilityDayYes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="true"
-                            android:text="@string/yes" />
-
-                        <RadioButton
-                            android:id="@+id/rbUtilityDayNo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="false"
-                            android:text="@string/no" />
-
-                    </RadioGroup>
-
-                    <RadioGroup
-                        android:id="@+id/rgUtilityDay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="@{rbUtilityDayYes.checked ? View.VISIBLE : View.GONE}">
-
-                        <RadioButton
-                            android:id="@+id/rbUtilityDay_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/in_premises" />
-
-                        <RadioButton
-                            android:id="@+id/rbUtilityDay_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/_1_200_m" />
-
-                        <RadioButton
-                            android:id="@+id/rbUtilityDay_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:tag="3"
-                            android:text="@string/_200_400_m" />
-
-                    </RadioGroup>
-                </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -512,16 +384,75 @@
                         android:textSize="@dimen/_14ssp" />
 
                     <RadioGroup
+                        android:id="@+id/rgBarberYesNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbBarberNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbBarberYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="true"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/rbBarberNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="false"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/rgBarberDay_24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbMechNo"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{rbBarberYes.checked ? View.VISIBLE : View.GONE}">
+
+                        <RadioButton
+                            android:id="@+id/rbBarber24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="1"
+                            android:text="@string/_24_x_7" />
+
+                        <RadioButton
+                            android:id="@+id/rbBarberDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:paddingVertical="@dimen/_10sdp"
+                            android:tag="2"
+                            android:text="@string/day" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
                         android:id="@+id/rgBarber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="@{rbBarberYes.checked ? View.VISIBLE : View.GONE}">
 
                         <RadioButton
                             android:id="@+id/rbBarber1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/in_premises" />
@@ -530,6 +461,7 @@
                             android:id="@+id/rbBarber2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="2"
                             android:text="@string/_1_200_m" />
@@ -538,6 +470,7 @@
                             android:id="@+id/rbBarber3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_10sdp"
                             android:tag="3"
                             android:text="@string/_200_400_m" />
@@ -549,7 +482,8 @@
                     android:id="@+id/flBarberImg"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
-                    android:background="@color/grey_light">
+                    android:background="@color/grey_light"
+                    android:clickable="@{!viewOnly}">
 
                     <LinearLayout
                         android:id="@+id/llLicensePhoto"
@@ -615,7 +549,7 @@
                 android:layout_height="match_parent"
                 android:clickable="true"
                 android:focusable="true"
-                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
+                android:visibility="gone" />
 
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>

@@ -140,12 +140,19 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.propertyStatus)
         }
 
-    @SerializedName("test")
-    var images: ArrayList<PhotosModel> = ArrayList()
+    var images: String = ""
         @Bindable get() = field
         set(images) {
             field = images
             notifyPropertyChanged(BR.images)
+        }
+
+    @SerializedName("imageList", alternate = ["holdingImg"])
+    var imageList: ArrayList<PhotosModel> = ArrayList()
+        @Bindable get() = field
+        set(imageList) {
+            field = imageList
+            notifyPropertyChanged(BR.imageList)
         }
 
     var videos: String = ""
@@ -264,7 +271,8 @@ class DhabaModel : Serializable, BaseObservable() {
         }
         if ((latitude.trim().isEmpty() || longitude.trim().isEmpty())
             || (getNonNullString(latitude.trim(), "0").toDouble() == 0.toDouble()
-                    || getNonNullString(longitude.trim(), "0").trim().toDouble() == 0.toDouble())) {
+                    || getNonNullString(longitude.trim(), "0").trim().toDouble() == 0.toDouble())
+        ) {
             val param = context.getString(R.string.dhaba_location)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }

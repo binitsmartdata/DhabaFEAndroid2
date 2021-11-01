@@ -31,6 +31,18 @@ class ParkingAmenitiesModel : Serializable {
     @SerializedName(value = "parkingSpace")
     var parkingSpace = "0"
 
+    @SerializedName(value = "flatHardParkingSpace")
+    var flatHardParkingSpace = "0"
+
+    @SerializedName(value = "concreteParkingSpace")
+    var concreteParkingSpace = "0"
+
+    @SerializedName(value = "parkingStatus")
+    var parkingStatus = "0"
+
+    @SerializedName(value = "parkingAvailable")
+    var parkingAvailable :Boolean? = false
+
     @SerializedName(value = "images")
     var images = ArrayList<PhotosModel>()
 

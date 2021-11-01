@@ -292,7 +292,7 @@ class SecurityAmenitiesFragment :
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
         val adapter = ImageGalleryAdapter(
-            activity as Context,
+            activity as Context, mListener?.viewOnly(),
             viewModel.model.indoorCameraImage,
             GenericCallBack { })
         adapter.setDeletionListener(GenericCallBack {
@@ -314,7 +314,7 @@ class SecurityAmenitiesFragment :
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
         val adapter = ImageGalleryAdapter(
-            activity as Context,
+            activity as Context, mListener?.viewOnly(),
             viewModel.model.outdoorCameraImage,
             GenericCallBack { })
         adapter.setDeletionListener(GenericCallBack {

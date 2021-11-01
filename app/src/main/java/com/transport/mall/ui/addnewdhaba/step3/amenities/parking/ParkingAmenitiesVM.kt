@@ -36,9 +36,13 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.module_id),
                         RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                         RequestBody.create(MultipartBody.FORM, model.concreteParking),
+                        RequestBody.create(MultipartBody.FORM, model.concreteParkingSpace),
                         RequestBody.create(MultipartBody.FORM, model.flatHardParking),
+                        RequestBody.create(MultipartBody.FORM, model.flatHardParkingSpace),
                         RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
                         RequestBody.create(MultipartBody.FORM, model.parkingSpace),
+                        RequestBody.create(MultipartBody.FORM, model.parkingStatus),
+                        RequestBody.create(MultipartBody.FORM, model.parkingAvailable.toString()),
                         getMultipartImagesList(model.images, "images")
                     )
                 ).collect {
@@ -90,9 +94,13 @@ class ParkingAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.module_id),
                         RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                         RequestBody.create(MultipartBody.FORM, model.concreteParking),
+                        RequestBody.create(MultipartBody.FORM, model.concreteParkingSpace),
                         RequestBody.create(MultipartBody.FORM, model.flatHardParking),
+                        RequestBody.create(MultipartBody.FORM, model.flatHardParkingSpace),
                         RequestBody.create(MultipartBody.FORM, model.kachaFlatParking),
                         RequestBody.create(MultipartBody.FORM, model.parkingSpace),
+                        RequestBody.create(MultipartBody.FORM, model.parkingStatus),
+                        RequestBody.create(MultipartBody.FORM, model.parkingAvailable.toString()),
                         getMultipartImagesList(model.images, "images")
                     )
                 ).collect {

@@ -13,7 +13,7 @@
             type="Integer" />
 
         <variable
-            name="selectedPosition"
+            name="viewOnly"
             type="java.lang.Boolean" />
 
         <variable
@@ -40,8 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="8dp">
+                android:elevation="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_10sdp">
 
                 <ImageView
                     loadImage="@{data.path}"

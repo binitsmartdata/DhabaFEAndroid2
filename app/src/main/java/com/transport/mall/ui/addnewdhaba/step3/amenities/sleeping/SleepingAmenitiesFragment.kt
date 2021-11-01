@@ -99,11 +99,10 @@ class SleepingAmenitiesFragment :
             }
         }
         it.enclosed.let {
-            val value = it.toBoolean()
-            if (value) {
-                binding.rbExposedYes.isChecked = true
-            } else {
-                binding.rbExposedNo.isChecked = true
+            when (it) {
+                "1" -> binding.rbExposedIndoor.isChecked = true
+                "2" -> binding.rbExposedOutdoor.isChecked = true
+                "3" -> binding.rbExposedBoth.isChecked = true
             }
         }
         it.open.let {
@@ -182,11 +181,8 @@ class SleepingAmenitiesFragment :
                 R.id.rbCoolerNo -> viewModel.model.cooler = "false"
             }
         }
-        binding.rgExposed.setOnCheckedChangeListener { _, i ->
-            when (i) {
-                R.id.rbExposedYes -> viewModel.model.enclosed = "true"
-                R.id.rbExposedNo -> viewModel.model.enclosed = "false"
-            }
+        binding.rgExposed.setOnCheckedChangeListener { _, id ->
+            viewModel.model.enclosed = activity?.findViewById<RadioButton>(id)?.getTag().toString()
         }
         binding.rgOpen.setOnCheckedChangeListener { _, i ->
             when (i) {

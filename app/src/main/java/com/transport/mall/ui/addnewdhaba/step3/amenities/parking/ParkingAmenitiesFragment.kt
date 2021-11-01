@@ -85,6 +85,34 @@ class ParkingAmenitiesFragment :
                 "4" -> binding.rgAbove100.isChecked = true
             }
         }
+        it.concreteParkingSpace.let {
+            when (it) {
+                "1" -> binding.rbConcreteSpace1.isChecked = true
+                "2" -> binding.rbConcreteSpace2.isChecked = true
+                "3" -> binding.rbConcreteSpace3.isChecked = true
+                "4" -> binding.rbConcreteSpace4.isChecked = true
+            }
+        }
+        it.flatHardParkingSpace.let {
+            when (it) {
+                "1" -> binding.rbFlatSpace1.isChecked = true
+                "2" -> binding.rbFlatSpace2.isChecked = true
+                "3" -> binding.rbFlatSpace3.isChecked = true
+                "4" -> binding.rbFlatSpace4.isChecked = true
+            }
+        }
+        it.parkingAvailable?.let {
+            when (it) {
+                true -> binding.rbParkingYes.isChecked = true
+                false -> binding.rbParkingNo.isChecked = true
+            }
+        }
+        it.parkingStatus.let {
+            when (it) {
+                "1" -> binding.rbStatusOwned.isChecked = true
+                "2" -> binding.rbStatusThirdParty.isChecked = true
+            }
+        }
 
         it.images.let {
             if (it.isNotEmpty()) {
@@ -123,7 +151,7 @@ class ParkingAmenitiesFragment :
         binding.recyclerView.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+        val adapter = ImageGalleryAdapter(activity as Context, mListener?.viewOnly(), imageList, GenericCallBack {
             viewModel.model.images = imageList
         })
         adapter.setDeletionListener(GenericCallBack {
@@ -165,9 +193,24 @@ class ParkingAmenitiesFragment :
             viewModel.model.parkingSpace =
                 activity?.findViewById<RadioButton>(id)?.getTag().toString()
         }
+        binding.rgFlatSpace.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.flatHardParkingSpace =
+                activity?.findViewById<RadioButton>(id)?.getTag().toString()
+        }
+        binding.rgConcreteSpace.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.concreteParkingSpace =
+                activity?.findViewById<RadioButton>(id)?.getTag().toString()
+        }
+        binding.rgParkingStatus.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.parkingStatus =
+                activity?.findViewById<RadioButton>(id)?.getTag().toString()
+        }
+        binding.rgParkingYesNo.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.model.parkingAvailable = binding.rbParkingYes.isChecked
+        }
 
         binding.btnSaveDhaba.setOnClickListener {
-            viewModel.model.hasEverything(getmContext(),GenericCallBackTwoParams { allOk, message ->
+            viewModel.model.hasEverything(getmContext(), GenericCallBackTwoParams { allOk, message ->
                 if (allOk) {
                     if (viewModel.model._id.isNotEmpty()) {
                         viewModel.updateParkingAmenities(GenericCallBack {

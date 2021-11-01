@@ -65,6 +65,7 @@
                             android:id="@+id/rbFoodLicenseYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/yes" />
@@ -73,6 +74,7 @@
                             android:id="@+id/rbFoodLicenseNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="0"
                             android:text="@string/no" />
@@ -90,6 +92,7 @@
                         android:id="@+id/llLicensePhoto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:clickable="@{!viewOnly}"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="20dp">
@@ -132,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_semibold"
-                        android:text="@string/food_at_100_inr"
+                        android:text="@string/food_for_1_cost"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -147,6 +150,7 @@
                             android:id="@+id/rbFoodUnder100"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_5sdp"
                             android:tag="1"
                             android:text="@string/under_100" />
@@ -155,6 +159,7 @@
                             android:id="@+id/rbFood81_150"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_5sdp"
                             android:tag="2"
                             android:text="@string/_81_150" />
@@ -163,6 +168,7 @@
                             android:id="@+id/rbFoodAt151To200"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_5sdp"
                             android:tag="3"
                             android:text="@string/_151_200" />
@@ -171,6 +177,7 @@
                             android:id="@+id/rbFoodAt201To300"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:paddingVertical="@dimen/_5sdp"
                             android:tag="4"
                             android:text="@string/_201_300" />
@@ -203,6 +210,7 @@
                             android:id="@+id/roWaterYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/yes" />
@@ -211,6 +219,7 @@
                             android:id="@+id/roWaterNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="0"
                             android:text="@string/no" />
@@ -242,6 +251,7 @@
                             android:id="@+id/rbVeg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/veg" />
@@ -250,6 +260,7 @@
                             android:id="@+id/rbNonVeg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="2"
                             android:text="@string/non_veg" />
@@ -258,6 +269,7 @@
                             android:id="@+id/rbBothFood"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="3"
                             android:text="@string/both" />
@@ -270,6 +282,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_light"
+                    android:clickable="@{!viewOnly}"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">
@@ -316,7 +329,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
+                android:visibility="gone" />
 
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>

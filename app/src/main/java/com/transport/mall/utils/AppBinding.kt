@@ -37,11 +37,18 @@ fun xloadImages(
     image: String?,
     placeHolder: Int
 ) {
+    val isSpecifiedPlaceholder = when (placeHolder) {
+        R.drawable.ic_profile_pic_placeholder -> true
+        R.drawable.ic_id_front -> true
+        R.drawable.ic_id_back -> true
+        else -> false
+    }
+
     image?.let {
         if (it.contains("http")) {
             Picasso.get()
                 .load(it)
-                .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.ic_launcher_background)
+                .error(if (isSpecifiedPlaceholder) placeHolder else R.drawable.ic_launcher_background)
                 .placeholder(placeHolder)
                 .into(view)
         } else {
@@ -55,7 +62,7 @@ fun xloadImages(
     } ?: run {
         Picasso.get()
             .load(R.drawable.ic_image_placeholder)
-            .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.ic_launcher_background)
+            .error(if (isSpecifiedPlaceholder) placeHolder else R.drawable.ic_launcher_background)
             .placeholder(R.drawable.ic_image_placeholder)
             .into(view)
     }

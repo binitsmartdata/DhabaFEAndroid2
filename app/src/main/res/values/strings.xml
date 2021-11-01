@@ -113,12 +113,12 @@
     <string name="night_guard">Night Guard</string>
     <string name="police_verification">Police Verification</string>
     <string name="submit_police_verification_document">Submit Police Verification Document</string>
-    <string name="mechanic_shop">Mechanic Shop 24 x 7</string>
+    <string name="mechanic_shop">Mechanic Shop</string>
     <string name="_24_x_7">24 x 7</string>
     <string name="day">Day</string>
     <string name="no_shop">No Shop</string>
-    <string name="puncture_shop">Puncture Shop 24x7</string>
-    <string name="daily_utility_shop">Daily Utility Shop 24x7</string>
+    <string name="puncture_shop">Puncture Shop</string>
+    <string name="daily_utility_shop">Daily Utility Shop</string>
     <string name="barber">Barber</string>
     <string name="in_premises">IN Premises</string>
     <string name="food_amen_title">Write Food Details</string>
@@ -335,11 +335,11 @@
     <string name="highway_confirmation">Do you want to add </string>
     <string name="_dhaba_name">Dhaba Name</string>
     <string name="enter_dhaba_details_first">Please fill Dhaba details first.</string>
-    <string name="choose_mechanic">Please Choose Mechanic shop 24x7 option.</string>
+    <string name="choose_mechanic">Please Choose Mechanic shop options.</string>
     <string name="choose_mechanic_day">Please Choose Mechanic shop day option.</string>
-    <string name="choose_puncture">Please Choose Puncture shop 24x7 option.</string>
+    <string name="choose_puncture">Please Choose Puncture shop option.</string>
     <string name="choose_puncture_day">Please Choose Puncture shop day option.</string>
-    <string name="choose_daily_utility">Please Choose Daily utility 24x7 shop option.</string>
+    <string name="choose_daily_utility">Please Choose Utility shop option.</string>
     <string name="choose_utility_day">Please Choose Daily utility shop day option.</string>
     <string name="enter_valid_alt_number">Please enter valid alternative mobile number</string>
     <string name="enter_mobile_number_mandatory">10 Digit mobile number *</string>
@@ -545,5 +545,13 @@
     <string name="dhaba_hoarding_pic">Dhaba hoarding Picture</string>
     <string name="dhaba_location">Dhaba Location</string>
     <string name="apply_on_all_days">Apply on all days</string>
+    <string name="owned">Owned</string>
+    <string name="third_party">Third Party</string>
+    <string name="food_for_1_cost">Food For 1 Cost</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="add_dhaba_photos">Add Dhaba Photos</string>
+    <string name="choose_barber_option">Please choose barber option</string>
+    <string name="choose_sleeping_option">Please choose sleeping option</string>
 
 </resources>

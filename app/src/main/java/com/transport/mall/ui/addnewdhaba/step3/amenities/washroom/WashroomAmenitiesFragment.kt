@@ -201,7 +201,7 @@ class WashroomAmenitiesFragment :
         binding.recyclerView.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
+        val adapter = ImageGalleryAdapter(activity as Context, mListener?.viewOnly(), imageList, GenericCallBack {
             viewModel.model.images = imageList
         })
         adapter.setDeletionListener(GenericCallBack {

@@ -37,6 +37,7 @@ import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
+import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -68,6 +69,13 @@ class DhabaDetailsFragment :
     var userModel: UserModel = UserModel()
     var imageList = ArrayList<PhotosModel>()
 
+    lateinit var SELECTED_IMAGE_INTENT_TYPE: IMAGE_INTENT_TYPE
+
+    enum class IMAGE_INTENT_TYPE {
+        HOARDING_PIC,
+        GALLERY
+    }
+
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -88,6 +96,13 @@ class DhabaDetailsFragment :
             viewModel.dhabaModel = it
 
             it.images.let {
+                if (it.isNotEmpty()) {
+                    xloadImages(binding.ivHoardingPic, it, R.drawable.ic_transparent_placeholder)
+                    binding.ivHoardingPic.visibility = View.VISIBLE
+                }
+            }
+
+            it.imageList.let {
                 if (it.isNotEmpty()) {
                     imageList.addAll(it)
                     refreshGalleryImages()
@@ -194,6 +209,19 @@ class DhabaDetailsFragment :
                     it.notifyDataSetChanged()
                 }
             }
+        }
+
+        // DHABA HOARDING PICTURE PICKER
+        binding.llLicensePhoto.setOnClickListener {
+            SELECTED_IMAGE_INTENT_TYPE = IMAGE_INTENT_TYPE.HOARDING_PIC
+            ImagePicker.with(this)
+                .crop()                    //Crop image(Optional), Check Customization for more option
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(
+                    1080,
+                    1080
+                )    //Final image resolution will be less than 1080 x 1080(Optional)
+                .start()
         }
     }
 
@@ -507,7 +535,9 @@ class DhabaDetailsFragment :
 
 
     private fun setupImagePicker() {
+        //GALLERY IMAGE PICKER
         binding.llPhotos.setOnClickListener {
+            SELECTED_IMAGE_INTENT_TYPE = IMAGE_INTENT_TYPE.GALLERY
             ImagePicker.with(this)
                 .crop()                    //Crop image(Optional), Check Customization for more option
                 .compress(1024)            //Final image size will be less than 1 MB(Optional)
@@ -557,9 +587,17 @@ class DhabaDetailsFragment :
 //                viewModel.dhabaModel.address = data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!
                 setAddressAfterConfirmation(data?.getStringExtra(SimplePlacePicker.SELECTED_ADDRESS)!!)
             } else {
-                val uri: Uri = data?.data!!
-                addImageToGallery(uri)
-                viewModel.dhabaModel.images = imageList
+                if (SELECTED_IMAGE_INTENT_TYPE == IMAGE_INTENT_TYPE.HOARDING_PIC) {
+                    val uri: Uri = data?.data!!
+                    // Use Uri object instead of File to avoid storage permissions
+                    binding.ivHoardingPic.setImageURI(uri)
+                    binding.ivHoardingPic.visibility = View.VISIBLE
+                    viewModel.dhabaModel.images = getRealPathFromURI(uri)
+                } else if (SELECTED_IMAGE_INTENT_TYPE == IMAGE_INTENT_TYPE.GALLERY) {
+                    val uri: Uri = data?.data!!
+                    addImageToGallery(uri)
+                    viewModel.dhabaModel.imageList = imageList
+                }
             }
         }
     }
@@ -575,8 +613,8 @@ class DhabaDetailsFragment :
         binding.recyclerViewDhabaPics.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        val adapter = ImageGalleryAdapter(activity as Context, imageList, GenericCallBack {
-            viewModel.dhabaModel.images = imageList
+        val adapter = ImageGalleryAdapter(activity as Context, mListener?.viewOnly(), imageList, GenericCallBack {
+            viewModel.dhabaModel.imageList = imageList
         })
         adapter.setDeletionListener(GenericCallBack {
             viewModel.delDhabaImg(it, GenericCallBack {

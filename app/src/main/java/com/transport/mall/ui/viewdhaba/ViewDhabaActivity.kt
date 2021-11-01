@@ -57,8 +57,8 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
         // DHABA PHOTOS
         viewModel.mDhabaModelMain.dhabaModel?.let {
-            if (it.images.isNotEmpty()) {
-                imagesList.addAll(it.images)
+            if (it.imageList.isNotEmpty()) {
+                imagesList.addAll(it.imageList)
             }
         }
 

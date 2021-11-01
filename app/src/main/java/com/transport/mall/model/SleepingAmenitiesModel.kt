@@ -55,7 +55,7 @@ class SleepingAmenitiesModel : Serializable {
         } else if (cooler.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_cooler))
         } else if (enclosed.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.choose_enclosed))
+            callback.onResponse(false, context.getString(R.string.choose_sleeping_option))
         } else if (open.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_if_open))
         } else if (hotWater.isEmpty()) {

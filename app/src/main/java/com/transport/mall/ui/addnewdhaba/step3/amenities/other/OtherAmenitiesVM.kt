@@ -36,12 +36,13 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.module_id),
                         RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                         RequestBody.create(MultipartBody.FORM, model.mechanicShop.toString()),
-                        RequestBody.create(MultipartBody.FORM, model.mechanicShopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.mechanicShopType.toString()),
                         RequestBody.create(MultipartBody.FORM, model.punctureshop.toString()),
-                        RequestBody.create(MultipartBody.FORM, model.punctureshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.punctureShopType.toString()),
                         RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
-                        RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.utilityShopType.toString()),
                         RequestBody.create(MultipartBody.FORM, model.barber.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.barberShopType.toString()),
                         getMultipartImagesList(
                             model.barberImages,
                             "barberImages"
@@ -68,12 +69,13 @@ class OtherAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.module_id),
                         RequestBody.create(MultipartBody.FORM, model.dhaba_id),
                         RequestBody.create(MultipartBody.FORM, model.mechanicShop.toString()),
-                        RequestBody.create(MultipartBody.FORM, model.mechanicShopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.mechanicShopType.toString()),
                         RequestBody.create(MultipartBody.FORM, model.punctureshop.toString()),
-                        RequestBody.create(MultipartBody.FORM, model.punctureshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.punctureShopType.toString()),
                         RequestBody.create(MultipartBody.FORM, model.dailyutilityshop.toString()),
-                        RequestBody.create(MultipartBody.FORM, model.dailyutilityshopDay.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.utilityShopType.toString()),
                         RequestBody.create(MultipartBody.FORM, model.barber.toString()),
+                        RequestBody.create(MultipartBody.FORM, model.barberShopType.toString()),
                         getMultipartImagesList(
                             model.barberImages,
                             "barberImages"

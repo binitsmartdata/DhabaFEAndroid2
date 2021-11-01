@@ -92,12 +92,12 @@ class OwnerDetailsFragment :
 
             it.idproofFront?.let {
 //                if (it.isNotEmpty()) {
-                xloadImages(binding.ivFrontId, it, R.drawable.ic_transparent_placeholder)
+                xloadImages(binding.ivFrontId, it, R.drawable.ic_id_front)
 //                }
             }
             it.idproofBack?.let {
 //                if (it.isNotEmpty()) {
-                xloadImages(binding.ivBackId, it, R.drawable.ic_transparent_placeholder)
+                xloadImages(binding.ivBackId, it, R.drawable.ic_id_back)
 //                }
             }
         } ?: kotlin.run {

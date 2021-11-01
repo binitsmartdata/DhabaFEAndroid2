@@ -24,7 +24,7 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            loadImage="@{dhabaModelMain.dhabaModel.images.isEmpty() ? `` : dhabaModelMain.dhabaModel.images.get(0).path}"
+            loadImage="@{dhabaModelMain.dhabaModel.images}"
             placeholder="@{R.drawable.ic_image_placeholder}"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"

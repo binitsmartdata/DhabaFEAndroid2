@@ -188,7 +188,8 @@ interface ApiService {
         @Part("status") status: RequestBody,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
-        @Part images: Array<MultipartBody.Part?>?,
+        @Part images: MultipartBody.Part?,
+        @Part imageList: Array<MultipartBody.Part?>?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
@@ -214,7 +215,8 @@ interface ApiService {
         @Part("status") status: RequestBody?,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
-        @Part images: Array<MultipartBody.Part?>?,
+        @Part images: MultipartBody.Part?,
+        @Part imageList: Array<MultipartBody.Part?>?,
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
@@ -314,9 +316,13 @@ interface ApiService {
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("concreteParking") concreteParking: RequestBody,
+        @Part("concreteParkingSpace") concreteParkingSpace: RequestBody,
         @Part("flatHardParking") flatHardParking: RequestBody,
+        @Part("flatHardParkingSpace") flatHardParkingSpace: RequestBody,
         @Part("kachaFlatParking") kachaFlatParking: RequestBody,
         @Part("parkingSpace") parkingSpace: RequestBody,
+        @Part("parkingStatus") parkingStatus: RequestBody,
+        @Part("parkingAvailable") parkingAvailable: RequestBody,
         @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<ParkingAmenitiesModel>>
 
@@ -328,9 +334,13 @@ interface ApiService {
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("concreteParking") concreteParking: RequestBody,
+        @Part("concreteParkingSpace") concreteParkingSpace: RequestBody,
         @Part("flatHardParking") flatHardParking: RequestBody,
+        @Part("flatHardParkingSpace") flatHardParkingSpace: RequestBody,
         @Part("kachaFlatParking") kachaFlatParking: RequestBody,
         @Part("parkingSpace") parkingSpace: RequestBody,
+        @Part("parkingStatus") parkingStatus: RequestBody,
+        @Part("parkingAvailable") parkingAvailable: RequestBody,
         @Part images: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<ParkingAmenitiesModel>>
 
@@ -483,12 +493,13 @@ interface ApiService {
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("mechanicShop") mechanicShop: RequestBody,
-        @Part("mechanicShopDay") mechanicShopDay: RequestBody,
+        @Part("mechanicShopType") mechanicShopType: RequestBody,
         @Part("punctureshop") punctureshop: RequestBody,
-        @Part("punctureshopDay") punctureshopDay: RequestBody,
+        @Part("punctureShopType") punctureShopType: RequestBody,
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
-        @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
+        @Part("utilityShopType") utilityShopType: RequestBody,
         @Part("barber") barber: RequestBody,
+        @Part("barberShopType") barberShopType: RequestBody,
         @Part barberImages: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 
@@ -500,12 +511,13 @@ interface ApiService {
         @Part("module_id") module_id: RequestBody,
         @Part("dhaba_id") dhaba_id: RequestBody,
         @Part("mechanicShop") mechanicShop: RequestBody,
-        @Part("mechanicShopDay") mechanicShopDay: RequestBody,
+        @Part("mechanicShopType") mechanicShopType: RequestBody,
         @Part("punctureshop") punctureshop: RequestBody,
-        @Part("punctureshopDay") punctureshopDay: RequestBody,
+        @Part("punctureShopType") punctureShopType: RequestBody,
         @Part("dailyutilityshop") dailyutilityshop: RequestBody,
-        @Part("dailyutilityshopDay") dailyutilityshopDay: RequestBody,
+        @Part("utilityShopType") utilityShopType: RequestBody,
         @Part("barber") barber: RequestBody,
+        @Part("barberShopType") barberShopType: RequestBody,
         @Part barberImages: Array<MultipartBody.Part?>?
     ): Response<ApiResponseModel<OtherAmenitiesModel>>
 

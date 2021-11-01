@@ -61,6 +61,7 @@
                             android:id="@+id/rbBedCharpaiYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -68,6 +69,7 @@
                             android:id="@+id/rbBedCharpaiNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -100,6 +102,7 @@
                             android:id="@+id/rbBed1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="1"
                             android:text="@string/_1_2" />
@@ -108,6 +111,7 @@
                             android:id="@+id/rbBed5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="2"
                             android:text="@string/_2_5" />
@@ -116,6 +120,7 @@
                             android:id="@+id/rbBedAbove5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:tag="3"
                             android:text="@string/above_5" />
@@ -127,12 +132,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_130sdp"
                     android:background="@color/grey_light"
+                    android:clickable="@{!viewOnly}"
                     android:visibility="@{rbBedCharpaiYes.checked ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
                         android:id="@+id/llSleepingAmanPhoto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:clickable="@{!viewOnly}"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="20dp">
@@ -188,6 +195,7 @@
                             android:id="@+id/rbFanYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -195,6 +203,7 @@
                             android:id="@+id/rbFanNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -225,6 +234,7 @@
                             android:id="@+id/rbCoolerYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -232,6 +242,7 @@
                             android:id="@+id/rbCoolerNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -248,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_semibold"
-                        android:text="@string/enclosed"
+                        android:text="@string/sleeping"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp" />
 
@@ -259,18 +270,31 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/rbExposedYes"
+                            android:id="@+id/rbExposedIndoor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
-                            android:text="@string/yes" />
+                            android:tag="1"
+                            android:text="@string/indoor" />
 
                         <RadioButton
-                            android:id="@+id/rbExposedNo"
+                            android:id="@+id/rbExposedOutdoor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
-                            android:text="@string/no" />
+                            android:tag="2"
+                            android:text="@string/outdoor" />
+
+                        <RadioButton
+                            android:id="@+id/rbExposedBoth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
+                            android:padding="@dimen/_10sdp"
+                            android:tag="3"
+                            android:text="@string/both" />
 
                     </RadioGroup>
                 </LinearLayout>
@@ -299,6 +323,7 @@
                             android:id="@+id/rbOpenYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -306,6 +331,7 @@
                             android:id="@+id/rbOpenNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -336,6 +362,7 @@
                             android:id="@+id/rbHotWaterYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -343,6 +370,7 @@
                             android:id="@+id/rbHotWaterNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -367,7 +395,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
+                android:visibility="gone"/>
 
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>

@@ -56,7 +56,8 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, DhabaModel.STATUS_PENDING),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
-                        getMultipartImagesList(dhabaModel.images, "images"),
+                        getMultipartImageFile(dhabaModel.images, "images"),
+                        getMultipartImagesList(dhabaModel.imageList, "imageList"),
                         getMultipartVideoFile(dhabaModel.videos, "videos"),
                         RequestBody.create(
                             MultipartBody.FORM,
@@ -106,7 +107,8 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         /*RequestBody.create(MultipartBody.FORM, if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS)*/null,
                         RequestBody.create(MultipartBody.FORM, dhabaModel.latitude),
                         RequestBody.create(MultipartBody.FORM, dhabaModel.longitude),
-                        getMultipartImagesList(dhabaModel.images, "images"),
+                        getMultipartImageFile(dhabaModel.images, "images"),
+                        getMultipartImagesList(dhabaModel.imageList, "imageList"),
                         getMultipartVideoFile(dhabaModel.videos, "videos"),
                         RequestBody.create(
                             MultipartBody.FORM,

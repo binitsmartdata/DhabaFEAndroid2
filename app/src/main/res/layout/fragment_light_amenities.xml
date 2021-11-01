@@ -63,6 +63,7 @@
                             android:id="@+id/rbTowerYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -70,6 +71,7 @@
                             android:id="@+id/rbTowerNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -81,6 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_130sdp"
                     android:background="@color/grey_light"
+                    android:clickable="@{!viewOnly}"
                     android:visibility="@{rbTowerYes.checked ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
@@ -142,6 +145,7 @@
                             android:id="@+id/rbBulbYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -149,6 +153,7 @@
                             android:id="@+id/rbBulbNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -159,6 +164,7 @@
                     android:id="@+id/frameBulbPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_130sdp"
+                    android:clickable="@{!viewOnly}"
                     android:visibility="@{rbBulbYes.checked ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
@@ -222,6 +228,7 @@
                             android:id="@+id/rbElectricityYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/yes" />
 
@@ -229,6 +236,7 @@
                             android:id="@+id/rbElectricityNo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="@{!viewOnly}"
                             android:padding="@dimen/_10sdp"
                             android:text="@string/no" />
 
@@ -253,7 +261,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
+                android:visibility="gone" />
 
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>
