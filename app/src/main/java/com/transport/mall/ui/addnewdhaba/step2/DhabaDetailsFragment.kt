@@ -95,6 +95,14 @@ class DhabaDetailsFragment :
         mListener?.getDhabaModelMain()?.dhabaModel?.let {
             viewModel.dhabaModel = it
 
+            it.open247?.let {
+                if (it) {
+                    binding.rb24hrsYes.isChecked = true
+                } else {
+                    binding.rb24hrsNo.isChecked = true
+                }
+            }
+
             it.images.let {
                 if (it.isNotEmpty()) {
                     xloadImages(binding.ivHoardingPic, it, R.drawable.ic_transparent_placeholder)
@@ -222,6 +230,10 @@ class DhabaDetailsFragment :
                     1080
                 )    //Final image resolution will be less than 1080 x 1080(Optional)
                 .start()
+        }
+
+        binding.rgTiming.setOnCheckedChangeListener { radioGroup, id ->
+            viewModel.dhabaModel.open247 = binding.rb24hrsYes.isChecked
         }
     }
 

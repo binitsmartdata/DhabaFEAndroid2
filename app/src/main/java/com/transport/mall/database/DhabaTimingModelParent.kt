@@ -42,7 +42,7 @@ data class DhabaTimingModelParent(
         model.opening = opening
         model.closing = closing
         model.day = day
-        model.enabled = enabled
+        model.isEnabled = enabled
         return model
     }
 }

@@ -28,7 +28,7 @@ class TimingListAdapter(
         }
 
         myViewHolderG?.binding?.ivChecked?.setOnClickListener {
-            dataList.get(position).enabled = !dataList.get(position).enabled
+            dataList.get(position).isEnabled = !dataList.get(position).isEnabled
             notifyDataSetChanged()
         }
 
@@ -41,7 +41,7 @@ class TimingListAdapter(
             if (applyToAll) {
                 dataList.forEach {
                     it.closing = time
-                    it.enabled = true
+                    it.isEnabled = true
                 }
             }
             notifyDataSetChanged()
@@ -57,7 +57,7 @@ class TimingListAdapter(
             if (applyToAll) {
                 dataList.forEach {
                     it.opening = time
-                    it.enabled = true
+                    it.isEnabled = true
                 }
             }
             notifyDataSetChanged()

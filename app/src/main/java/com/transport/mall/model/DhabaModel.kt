@@ -234,6 +234,14 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.blockMonth)
         }
 
+    @SerializedName("isOpen24_7")
+    var open247: Boolean? = true
+        @Bindable get() = field
+        set(open247) {
+            field = open247
+            notifyPropertyChanged(BR.open247)
+        }
+
     var isDraft: String = ""
 
 

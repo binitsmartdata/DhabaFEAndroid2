@@ -193,7 +193,8 @@ interface ApiService {
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
-        @Part("executive_id") executive_id: RequestBody?
+        @Part("executive_id") executive_id: RequestBody?,
+        @Part("isOpen24_7") isOpen24_7: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart
@@ -220,7 +221,8 @@ interface ApiService {
         @Part videos: MultipartBody.Part?,
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
-        @Part("executive_id") executive_id: RequestBody?
+        @Part("executive_id") executive_id: RequestBody?,
+        @Part("isOpen24_7") isOpen24_7: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart
