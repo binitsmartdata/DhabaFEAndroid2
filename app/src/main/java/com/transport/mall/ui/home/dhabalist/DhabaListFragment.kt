@@ -79,10 +79,8 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
             getSingleDhaba(dhabaList, viewPosition) {
                 ViewDhabaActivity.start(activity as Context, it)
             }
-        }, { locatePosition -> // DHABA CLICKED LISTENER
-//            getSingleDhaba(dhabaList, locatePosition) {
-//                AddDhabaActivity.startForUpdate(activity as Context, it)
-//            }
+        }, { sendForApprovalPosition -> // DHABA CLICKED LISTENER
+            sendForApproval(dhabaList, sendForApprovalPosition)
         })
         dhabaListAdapter?.setOnLoadMoreListener {
             page++
@@ -91,6 +89,30 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity as Context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = dhabaListAdapter
+    }
+
+    private fun sendForApproval(dhabaModelMain: ArrayList<DhabaModelMain>, position: Int) {
+        val ownerMissingParams = dhabaModelMain[position].ownerModel?.getMissingParameters(getmContext()).toString()
+        val dhabaMissingParams = dhabaModelMain[position].dhabaModel?.getMissingParameters(getmContext()).toString()
+        if (ownerMissingParams.isNotEmpty() || dhabaMissingParams.isNotEmpty()) {
+            // IF ALL THE PARAMETERS ARE NOT THERE THEN ASK USER TO FILL THEM
+            GlobalUtils.showInfoDialog(getmContext(), getString(R.string.details_missing_validation),
+                ownerMissingParams + "\n" + dhabaMissingParams,
+                GenericCallBack {
+                    getSingleDhaba(dhabaList, position) {
+                        AddDhabaActivity.startForUpdate(activity as Context, it)
+                    }
+                })
+        } else {
+            // UPDATE DHABA STATUS TO IN PROGRESS(IN REVIEW)
+            viewModel.updateDhabaStatus(false, dhabaModelMain[position].dhabaModel!!, DhabaModel.STATUS_INPROGRESS, viewModel.dialogProgressObserver, GenericCallBack {
+                it.data?.let {
+                    GlobalUtils.showToastInCenter(getmContext(), getString(R.string.sent_for_spproval))
+                    dhabaModelMain[position].dhabaModel = it
+                    dhabaListAdapter?.notifyDataSetChanged()
+                }
+            })
+        }
     }
 
     private fun getSingleDhaba(dhabaList: ArrayList<DhabaModelMain>, editPosition: Int, callBack: GenericCallBack<DhabaModelMain>) {

@@ -422,7 +422,7 @@
                     android:paddingVertical="@dimen/_2sdp"
                     android:text="@string/send_for_approval"
                     android:textColor="@color/black"
-                    android:visibility="@{model.verified.equalsIgnoreCase(`false`) ? View.VISIBLE : View.GONE}" />
+                    android:visibility="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? View.VISIBLE : View.GONE}" />
 
             </LinearLayout>
 

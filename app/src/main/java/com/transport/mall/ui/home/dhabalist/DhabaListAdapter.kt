@@ -20,7 +20,7 @@ class DhabaListAdapter(
     private val deletionCallBack: GenericCallBack<DhabaModel>,
     private val editCallBack: GenericCallBack<Int>,
     private val viewCallBack: GenericCallBack<Int>,
-    private val locateCallBack: GenericCallBack<Int>
+    private val sendForApprovalCallBack: GenericCallBack<Int>
 ) : InfiniteAdapter<RowDhabaListBinding>() {
 
     var userModel = UserModel()
@@ -70,7 +70,7 @@ class DhabaListAdapter(
         }
 
         myViewHolderG?.binding?.ivLocation?.setOnClickListener {
-            locateCallBack.onResponse(position)
+//            locateCallBack.onResponse(position)
         }
         myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
             if (dataList[position].manager == null) {
@@ -82,6 +82,9 @@ class DhabaListAdapter(
                     }
                 }).show()
             }
+        }
+        myViewHolderG?.binding?.tvSendForApproval?.setOnClickListener {
+            sendForApprovalCallBack.onResponse(position)
         }
     }
 

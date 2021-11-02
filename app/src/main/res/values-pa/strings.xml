@@ -474,5 +474,6 @@
     <string name="force_update_message">ਐਪ ਦਾ ਇਹ ਸੰਸਕਰਣ ਲੰਮਾ ਸਹਿਯੋਗੀ ਨਹੀਂ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਵਰਤਣ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕਰੋ</string>
     <string name="name_">ਨਾਮ *</string>
     <string name="confirm_save_dhaba_details">ਕੀ ਤੁਸੀਂ ਢਾਬੇ ਦੇ ਵੇਰਵੇ ਸੁਰੱਖਿਅਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="sent_for_spproval">ਸਫਲਤਾਪੂਰਵਕ ਮਨਜ਼ੂਰੀ ਲਈ ਭੇਜਿਆ ਗਿਆ</string>
 
 </resources>
