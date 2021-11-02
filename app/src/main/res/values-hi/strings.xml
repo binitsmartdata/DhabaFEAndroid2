@@ -462,4 +462,21 @@
     <string name="_81_150">81–150</string>
     <string name="_151_200">151–200</string>
     <string name="_201_300">201–300</string>
+    <string name="upload_id_proof_front">कृपया मालिक के आईडी प्रूफ का चयन करें (सामने)</string>
+    <string name="upload_owner_picture_validation">कृपया मालिक की तस्वीर का चयन करें</string>
+    <string name="upload_dhaba_hoarding_pic">कृपया ढाबा होर्डिंग पिक्चर का चयन करें</string>
+    <string name="dhaba_hoarding_pic">ढाबा होर्डिंग पिक्चर</string>
+    <string name="dhaba_location">ढाबा स्थान</string>
+    <string name="apply_on_all_days">सभी दिनों पर लागू करें</string>
+    <string name="owned">स्वामित्व</string>
+    <string name="third_party">तृतीय पक्ष</string>
+    <string name="food_for_1_cost">1 लागत के लिए भोजन</string>
+    <string name="latitude">अक्षांश</string>
+    <string name="longitude">देशान्तर</string>
+    <string name="add_dhaba_photos">ढाबा तस्वीरें जोड़ें</string>
+    <string name="choose_barber_option">कृपया बार्बर विकल्प चुनें</string>
+    <string name="choose_sleeping_option">कृपया सोने की सुविधा विकल्प चुनें</string>
+    <string name="open_24_x_7">24 x 7 खोलें</string>
+    <string name="deleting_image">छवि हटाना</string>
+    <string name="force_update_message">ऐप का यह संस्करण अब समर्थित नहीं है, कृपया उपयोग करने के लिए अद्यतन करें</string>
 </resources>

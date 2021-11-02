@@ -14,6 +14,7 @@ import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
+import com.transport.mall.model.SettingsModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.repository.networkoperator.ApiService
 import com.transport.mall.repository.networkoperator.NetworkAdapter
@@ -277,15 +278,14 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
 
     fun getLastSupportedVersion(
         context: Context,
-        token: String,
-        callBack: GenericCallBack<String>
+        callBack: GenericCallBack<SettingsModel?>
     ) {
         baseProgressOberver?.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val currentVersion = GlobalUtils.getCurrentVersion(context)
+//                val currentVersion = GlobalUtils.getCurrentVersion(context)
                 executeApi(
-                    getApiService()?.getLastSupportedVersion(SharedPrefsHelper.getInstance(context).getUserData().accessToken, currentVersion.toString())
+                    getApiService()?.getAllsetting(SharedPrefsHelper.getInstance(context).getUserData().accessToken)
                 ).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {
@@ -293,18 +293,24 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                         }
                         ApiResult.Status.ERROR -> {
                             baseProgressOberver?.value = false
-                            callBack.onResponse(it.message)
+                            callBack.onResponse(null)
                         }
                         ApiResult.Status.SUCCESS -> {
                             baseProgressOberver?.value = false
-                            callBack.onResponse(it.data?.string())
+                            it.data?.let {
+                                it.data?.let {
+                                    if (it.data.isNotEmpty()) {
+                                        callBack.onResponse(it.data[0])
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             } catch (e: Exception) {
                 baseProgressOberver?.value = false
 //                showToastInCenter(app!!, getCorrectErrorMessage(e))
-                callBack.onResponse(e.toString())
+                callBack.onResponse(null)
             }
         }
     }

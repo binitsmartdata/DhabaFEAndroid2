@@ -41,6 +41,7 @@ import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.google.android.gms.location.*
 import com.transport.mall.R
 import com.transport.mall.model.LocationAddressModel
+import io.github.g00fy2.versioncompare.Version
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -191,6 +192,16 @@ object GlobalUtils {
                 false
             )
         }
+        alertDialog = dialog.show()
+    }
+
+    @JvmStatic
+    fun showInfoDialog(context: Context, message: String?, cancelable: Boolean, callBack: GenericCallBack<Boolean?>) {
+        val dialog = AlertDialog.Builder(context)
+        dialog.setTitle(context.getString(R.string.appName))
+        dialog.setMessage(message)
+        dialog.setCancelable(cancelable)
+        dialog.setPositiveButton(context.getString(R.string.ok)) { _, _ -> callBack.onResponse(true) }
         alertDialog = dialog.show()
     }
 
@@ -784,7 +795,9 @@ object GlobalUtils {
         }
     }
 
-    fun isCurrentVersionSupported(context: Context, supportedVersion: String) {
-
+    fun isCurrentVersionSupported(context: Context, supportedVersion: String): Boolean {
+        val currentVersion = Version(getCurrentVersion(context))
+        val lastSupportedVersion = Version(supportedVersion)
+        return !currentVersion.isLowerThan(lastSupportedVersion)
     }
 }

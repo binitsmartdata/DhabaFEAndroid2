@@ -101,6 +101,8 @@ class OwnerDetailsFragment :
 //                }
             }
         } ?: kotlin.run {
+            binding.ccpCountryCode.setCountryForPhoneCode(91)
+            binding.ccpCountryCodeAlt.setCountryForPhoneCode(91)
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
             viewModel.ownerModel.alternativeMobilePrefix = binding.ccpCountryCodeAlt.selectedCountryCode
 

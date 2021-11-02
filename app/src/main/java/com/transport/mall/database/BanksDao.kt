@@ -18,6 +18,6 @@ interface BanksDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(model: BankNamesModel?)
 
-    @Query("DELETE FROM states")
+    @Query("DELETE FROM banks")
     fun deleteAll()
 }

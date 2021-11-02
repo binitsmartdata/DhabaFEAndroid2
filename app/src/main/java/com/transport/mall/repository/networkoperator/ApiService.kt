@@ -147,8 +147,8 @@ interface ApiService {
     @GET("dhaba/getAllHighway")
     suspend fun getAllHighway(): Response<ApiResponseModel<ArrayList<HighwayModel>>>
 
-    @GET("user/getLastSupportedVersion")
-    suspend fun getLastSupportedVersion(@Header("Authorization") token: String, @Query("currentVersion") currentVersion: String): Response<ResponseBody>
+    @GET("setting/getAllsetting")
+    suspend fun getAllsetting(@Header("Authorization") token: String): Response<ApiResponseModel<InternalDataListModel<ArrayList<SettingsModel>>>>
 
     @GET("dhaba/getDhabaByID")
     suspend fun getDhabaByID(@Query("id") id: String): Response<ApiResponseModel<DhabaModelMain>>

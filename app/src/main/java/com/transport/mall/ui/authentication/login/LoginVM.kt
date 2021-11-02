@@ -202,6 +202,8 @@ class LoginVM(application: Application) : BaseVM(application) {
                         }
                         ApiResult.Status.SUCCESS -> {
                             it.data?.data?.data?.let {
+                                AppDatabase.getInstance(app!!)?.cityDao()
+                                    ?.deleteAll()
                                 for (model in it) {
                                     model.name_en = model.name?.en!!
                                     AppDatabase.getInstance(app!!)?.cityDao()
@@ -240,6 +242,8 @@ class LoginVM(application: Application) : BaseVM(application) {
                         ApiResult.Status.SUCCESS -> {
 //                            progressObserverCityStates?.value = false
                             it.data?.data?.data?.let {
+                                AppDatabase.getInstance(app!!)?.statesDao()
+                                    ?.deleteAll()
                                 for (model in it) {
                                     model.name_en = model.name?.en!!
                                     AppDatabase.getInstance(app!!)?.statesDao()
@@ -276,6 +280,8 @@ class LoginVM(application: Application) : BaseVM(application) {
 //                            progressObserverCityStates?.value = false
                             it.data?.data?.let {
                                 AppDatabase.getInstance(app!!)?.bankDao()
+                                    ?.deleteAll()
+                                AppDatabase.getInstance(app!!)?.bankDao()
                                     ?.insertAll(it)
                             }
 
@@ -305,6 +311,8 @@ class LoginVM(application: Application) : BaseVM(application) {
                         ApiResult.Status.SUCCESS -> {
                             progressObserverCityStates?.value = false
                             it.data?.data?.let {
+                                AppDatabase.getInstance(app!!)?.highwayDao()
+                                    ?.deleteAll()
                                 AppDatabase.getInstance(app!!)?.highwayDao()
                                     ?.insertAll(it)
                             }

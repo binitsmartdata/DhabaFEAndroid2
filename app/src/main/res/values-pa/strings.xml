@@ -455,5 +455,22 @@
     <string name="_81_150">81–150</string>
     <string name="_151_200">151–200</string>
     <string name="_201_300">201–300</string>
+    <string name="upload_id_proof_front">ਕਿਰਪਾ ਕਰਕੇ ਮਾਲਕ ਦਾ ਆਈਡੀ ਪ੍ਰਮਾਣ (ਸਾਹਮਣੇ) ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="upload_owner_picture_validation">ਕਿਰਪਾ ਕਰਕੇ ਮਾਲਕ ਦੀ ਤਸਵੀਰ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="upload_dhaba_hoarding_pic">ਕਿਰਪਾ ਕਰਕੇ ਢਾਬਾ ਹੋਰਡਿੰਗ ਤਸਵੀਰ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="dhaba_hoarding_pic">ਢਾਬਾ ਹੋਰਡਿੰਗ ਤਸਵੀਰ</string>
+    <string name="dhaba_location">ਢਾਬਾ ਟਿਕਾਣਾ</string>
+    <string name="apply_on_all_days">ਸਾਰੇ ਦਿਨਾਂ ਲਈ ਲਾਗੂ ਕਰੋ</string>
+    <string name="owned">ਮਾਲਕੀਅਤ</string>
+    <string name="third_party">ਤੀਸਰਾ ਪੱਖ</string>
+    <string name="food_for_1_cost">1 ਕੀਮਤ ਲਈ ਭੋਜਨ</string>
+    <string name="latitude">ਵਿਥਕਾਰ</string>
+    <string name="longitude">ਲੰਬਕਾਰ</string>
+    <string name="add_dhaba_photos">ਢਾਬਾ ਦੀਆਂ ਫੋਟੋਆਂ ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="choose_barber_option">ਕਿਰਪਾ ਕਰਕੇ ਬਾਰਬਰ ਵਿਕਲਪ ਚੁਣੋ</string>
+    <string name="choose_sleeping_option">ਕਿਰਪਾ ਕਰਕੇ ਸੌਣ ਦੀਆਂ ਸਹੂਲਤਾਂ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="open_24_x_7">24 x 7 ਖੋਲ੍ਹੋ</string>
+    <string name="deleting_image">ਚਿੱਤਰ ਨੂੰ ਹਟਾਉਣਾ</string>
+    <string name="force_update_message">ਐਪ ਦਾ ਇਹ ਸੰਸਕਰਣ ਲੰਮਾ ਸਹਿਯੋਗੀ ਨਹੀਂ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਵਰਤਣ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕਰੋ</string>
 
 </resources>

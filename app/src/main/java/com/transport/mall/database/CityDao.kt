@@ -24,6 +24,6 @@ interface CityDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(model: CityModel?)
 
-    @Query("DELETE FROM Cities")
+    @Query("DELETE FROM cities")
     fun deleteAll()
 }

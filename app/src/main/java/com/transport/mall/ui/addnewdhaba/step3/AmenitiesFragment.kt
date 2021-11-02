@@ -10,11 +10,17 @@ import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.FragmentAmenitiesBinding
+import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.model.UserModel
+import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
+import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -32,15 +38,19 @@ class AmenitiesFragment :
 
     var mListener: AddDhabaListener? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+    var userModel: UserModel? = null
 
     override fun bindData() {
         binding.lifecycleOwner = this
         mListener = activity as AddDhabaListener
         binding.context = activity
 
-        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
-        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
+//        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
+//        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
         binding.isUpdate = mListener?.isUpdate()!!
+        binding.viewOnly = mListener?.viewOnly()!!
+        userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
+        binding.userModel = userModel
     }
 
     override fun initListeners() {
@@ -49,26 +59,42 @@ class AmenitiesFragment :
         })
 
         binding.btnNext.setOnClickListener {
-            if (isHavingPreviousData()) {
-                mListener?.showNextScreen()
+            if (userModel?.isExecutive()!!) {
+                if (isHavingPreviousData()) {
+                    mListener?.showNextScreen()
+                }
+            } else {
+                if (isHavingPreviousData()) {
+                    var ownerMissingParams = ""
+                    var dhabaMissingParams = ""
+                    mListener?.getDhabaModelMain()?.ownerModel?.let {
+                        ownerMissingParams = it.getMissingParameters(getmContext()).trim()
+                    }
+                    mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                        dhabaMissingParams = it.getMissingParameters(getmContext()).trim()
+                    }
+                    if (ownerMissingParams.isNotEmpty() || dhabaMissingParams.isNotEmpty()) {
+                        GlobalUtils.showInfoDialog(getmContext(), getString(R.string.details_missing_validation),
+                            ownerMissingParams + "\n" + dhabaMissingParams,
+                            GenericCallBack {
+                                if (ownerMissingParams.isNotEmpty()) {
+                                    mListener?.showOwnerScreen()
+                                } else if (dhabaMissingParams.isNotEmpty()) {
+                                    mListener?.showDhabaScreen()
+                                } else {
+                                    mListener?.showOwnerScreen()
+                                }
+                            })
+                    } else {
+                        updateDhabaStatus(false)
+                    }
+                }
             }
         }
         binding.btnSaveDraft.setOnClickListener {
             mListener?.getDhabaModelMain()?.dhabaModel?.let {
                 // UPDATING DHABA STATUS TO ISDRAFT
-                viewModel.updateDhabaStatus(true, it, null, progressObserver,
-                    GenericCallBack {
-                        if (it.data != null) {
-                            mListener?.getDhabaModelMain()?.dhabaModel = it.data
-
-                            mListener?.getDhabaModelMain()?.draftedAtScreen =
-                                DhabaModelMain.DraftScreen.AmenitiesFragment.toString()
-                            mListener?.saveAsDraft()
-                            activity?.finish()
-                        } else {
-                            showToastInCenter(it.message)
-                        }
-                    })
+                updateDhabaStatus(true)
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
             }
@@ -159,6 +185,54 @@ class AmenitiesFragment :
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
             }
         }
+    }
+
+    private fun updateDhabaStatus(isDraft: Boolean) {
+        viewModel.updateDhabaStatus(
+            isDraft,
+            mListener?.getDhabaModelMain()?.dhabaModel!!,
+            if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
+            progressObserver,
+            GenericCallBack {
+                if (it.data != null) {
+                    mListener?.getDhabaModelMain()?.dhabaModel = it.data
+                    if (isDraft) {
+                        mListener?.getDhabaModelMain()?.draftedAtScreen =
+                            DhabaModelMain.DraftScreen.AmenitiesFragment.toString()
+                        mListener?.saveAsDraft()
+                        activity?.finish()
+                    } else {
+                        showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                    }
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
+    }
+
+    fun showSuccessDialog(dhabaId: String) {
+        DialogAddDhabaSuccess(
+            activity as Context,
+            dhabaId,
+            GenericCallBack {
+                when (it) {
+                    DialogAddDhabaSuccess.SELECTED_ACTION.GO_HOME -> {
+                        goToHomeScreen()
+                    }
+                    DialogAddDhabaSuccess.SELECTED_ACTION.VIEW_DHABA -> {
+                        progressObserver.value = true
+                        viewModel.getDhabaById(dhabaId, GenericCallBack {
+                            progressObserver.value = false
+                            if (it.data != null) {
+                                activity?.finish()
+                                AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
+                            } else {
+                                showToastInCenter(it.message)
+                            }
+                        })
+                    }
+                }
+            }).show()
     }
 
     override fun onResume() {

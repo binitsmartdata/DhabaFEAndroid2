@@ -16,6 +16,14 @@
             name="isUpdate"
             type="Boolean" />
 
+        <variable
+            name="viewOnly"
+            type="Boolean" />
+
+        <variable
+            name="userModel"
+            type="com.transport.mall.model.UserModel" />
+
     </data>
 
     <!--    <FrameLayout-->
@@ -74,8 +82,8 @@
                                 android:layout_width="@dimen/_17sdp"
                                 android:layout_height="@dimen/_17sdp"
                                 android:layout_marginStart="5dp"
-                                android:visibility="gone"
-                                android:src="@drawable/ic_tick_red" />
+                                android:src="@drawable/ic_tick_red"
+                                android:visibility="gone" />
 
                             <TextView
                                 android:id="@+id/tvFoodAmens"
@@ -518,10 +526,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="@string/next"
+                android:text="@{userModel.isExecutive() ? @string/next : @string/submit_for_approval}"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
+                android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSaveDraft"
@@ -536,7 +544,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/colorRed"
                 android:textSize="@dimen/_14ssp"
-                android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}" />
+                android:visibility="@{(viewOnly || isUpdate) ? View.GONE : View.VISIBLE}" />
 
         </LinearLayout>
     </ScrollView>
