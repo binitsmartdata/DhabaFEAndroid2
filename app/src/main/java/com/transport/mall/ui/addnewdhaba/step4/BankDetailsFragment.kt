@@ -22,6 +22,7 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
@@ -145,6 +146,18 @@ class BankDetailsFragment :
         binding.llPanPhoto.setOnClickListener {
             launchImagePicker()
         }
+        setRxBusListener()
+    }
+
+    private fun setRxBusListener() {
+        //LISTENER TO LISTEN WHEN TO EXECUTE SAVE BUTTON
+/*
+        RxBus.listen(DhabaModelMain.ActiveScreen::class.java).subscribe {
+            if (it == DhabaModelMain.ActiveScreen.BankDetailsFragment) {
+                binding.btnNext.performClick()
+            }
+        }
+*/
     }
 
     private fun setupBankNameDropdown() {

@@ -264,23 +264,29 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     override fun onBackPressed() {
-        if (!isUpdate()) {
-            GlobalUtils.showDhabaDiscardAlert(this, getString(R.string.want_to_discard),
+        /*if (!isUpdate()) {
+            GlobalUtils.showDhabaDiscardAlert(this, getString(R.string.confirm_save_dhaba_details),
                 GenericCallBack {
                     when (it) {
-                        1 -> { // discard
-                            finish()
+                        1 -> { // Yes
+//                            finish()
                             SharedPrefsHelper.getInstance(this).deleteDraftDhaba()
+                            when(binding.viewPager.currentItem){
+                                0 -> RxBus.publish(DhabaModelMain.ActiveScreen.OwnerDetailsFragment)
+                                1 -> RxBus.publish(DhabaModelMain.ActiveScreen.DhabaDetailsFragment)
+                                2 -> RxBus.publish(DhabaModelMain.ActiveScreen.AmenitiesFragment)
+                                3 -> RxBus.publish(DhabaModelMain.ActiveScreen.BankDetailsFragment)
+                            }
                         }
-                        3 -> { // save as draft
-                            saveAsDraft()
+                        2 -> { // No
+//                            saveAsDraft()
                             finish()
                         }
                     }
                 })
-        } else {
+        } else {*/
             finish()
-        }
+//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -556,5 +556,7 @@
     <string name="open_24_x_7">Open 24 x 7</string>
     <string name="deleting_image">Deleting Image</string>
     <string name="force_update_message">This version of app is not longer supported, Please update to keep using </string>
+    <string name="name_">Name *</string>
+    <string name="confirm_save_dhaba_details">Do you want to save dhaba details?</string>
 
 </resources>

@@ -48,4 +48,11 @@ class DhabaModelMain : Serializable {
         AmenitiesFragment,
         BankDetailsFragment
     }
+
+    enum class ActiveScreen {
+        DhabaDetailsFragment,
+        OwnerDetailsFragment,
+        AmenitiesFragment,
+        BankDetailsFragment
+    }
 }

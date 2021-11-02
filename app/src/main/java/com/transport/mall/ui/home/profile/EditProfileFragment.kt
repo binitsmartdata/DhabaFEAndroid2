@@ -81,7 +81,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
             viewModel.userModel = binding.userModel as UserModel
             if (viewModel.userModel.ownerName.trim().isEmpty()) {
                 showToastInCenter(getString(R.string.please_enter_name))
-            } else if (viewModel.userModel.email.trim().isEmpty() || !GlobalUtils.isValidEmail(viewModel.userModel.email.trim())) {
+            } else if (viewModel.userModel.isExecutive() && (viewModel.userModel.email.trim().isEmpty() || !GlobalUtils.isValidEmail(viewModel.userModel.email.trim()))) {
                 showToastInCenter(getString(R.string.enter_email_id))
             } else if (viewModel.userModel.mobile.trim().isEmpty()) {
                 showToastInCenter(getString(R.string.enter_mobile_number))

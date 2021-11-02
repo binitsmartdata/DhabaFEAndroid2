@@ -74,8 +74,8 @@ class SignUpVM(application: Application) : BaseVM(application) {
                             getApiService()?.signup(
                                 name,
                                 phone,
-                                prefix,
-                                email
+                                prefix
+//                                email
                             )
                         ).collect { result ->
                             when (result.status) {

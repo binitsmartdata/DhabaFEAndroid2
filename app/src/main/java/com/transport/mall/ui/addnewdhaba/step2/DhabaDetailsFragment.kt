@@ -26,6 +26,7 @@ import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
 import com.transport.mall.ui.customdialogs.TimingListAdapter
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
@@ -248,6 +249,18 @@ class DhabaDetailsFragment :
                 }
             }
         }
+        setRxBusListener()
+    }
+
+    private fun setRxBusListener() {
+        //LISTENER TO LISTEN WHEN TO EXECUTE SAVE BUTTON
+/*
+        RxBus.listen(DhabaModelMain.ActiveScreen::class.java).subscribe {
+            if (it == DhabaModelMain.ActiveScreen.DhabaDetailsFragment) {
+                binding.btnNext.performClick()
+            }
+        }
+*/
     }
 
     private fun setupOpeningTimeView() {

@@ -41,8 +41,8 @@ interface ApiService {
     suspend fun signup(
         @Field("name") name: String,
         @Field("mobile") mobile: String,
-        @Field("mobilePrefix") mobilePrefix: String,
-        @Field("email") email: String,
+        @Field("mobilePrefix") mobilePrefix: String
+//        @Field("email") email: String,
     ): Response<ApiResponseModel<UserModel>>
 
     @FormUrlEncoded

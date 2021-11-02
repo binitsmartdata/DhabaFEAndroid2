@@ -68,7 +68,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:background="@drawable/grey_stroke"
             android:fontFamily="@font/opensans_regular"
-            android:hint="@string/email_address"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="@dimen/_10sdp"
             android:text="@={userModel.email}"

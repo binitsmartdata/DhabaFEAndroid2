@@ -479,4 +479,6 @@
     <string name="open_24_x_7">24 x 7 खोलें</string>
     <string name="deleting_image">छवि हटाना</string>
     <string name="force_update_message">ऐप का यह संस्करण अब समर्थित नहीं है, कृपया उपयोग करने के लिए अद्यतन करें</string>
+    <string name="name_">नाम *</string>
+    <string name="confirm_save_dhaba_details">क्या आप ढाबा विवरण सहेजना चाहते हैं?</string>
 </resources>

@@ -17,6 +17,7 @@ import com.transport.mall.databinding.FragmentOwnerDetailsBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.customdialogs.DialogOwnerSelection
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
@@ -212,6 +213,18 @@ class OwnerDetailsFragment :
                 }
             }
         }
+        setRxBusListener()
+    }
+
+    private fun setRxBusListener() {
+        //LISTENER TO LISTEN WHEN TO EXECUTE SAVE BUTTON
+/*
+        RxBus.listen(DhabaModelMain.ActiveScreen::class.java).subscribe {
+            if (it == DhabaModelMain.ActiveScreen.OwnerDetailsFragment) {
+                binding.btnNext.performClick()
+            }
+        }
+*/
     }
 
     private fun showExistingUserDetails(it: UserModel?) {
