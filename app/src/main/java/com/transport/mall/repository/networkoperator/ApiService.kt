@@ -147,6 +147,9 @@ interface ApiService {
     @GET("dhaba/getAllHighway")
     suspend fun getAllHighway(): Response<ApiResponseModel<ArrayList<HighwayModel>>>
 
+    @GET("user/getLastSupportedVersion")
+    suspend fun getLastSupportedVersion(@Header("Authorization") token: String, @Query("currentVersion") currentVersion: String): Response<ResponseBody>
+
     @GET("dhaba/getDhabaByID")
     suspend fun getDhabaByID(@Query("id") id: String): Response<ApiResponseModel<DhabaModelMain>>
 
@@ -356,7 +359,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("dhaba/delDhabaImg")
     suspend fun delDhabaImg(
-        @Field("dhabaId") dhabaId: String,
+        @Field("_id") dhabaId: String,
         @Field("imgId") imgId: String
     ): Response<ApiResponseModel<*>>
 

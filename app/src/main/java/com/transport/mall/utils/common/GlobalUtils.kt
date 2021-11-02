@@ -8,6 +8,8 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.*
@@ -770,5 +772,19 @@ object GlobalUtils {
     fun shakeThisView(context: Context, view: View) {
         val shake: Animation = AnimationUtils.loadAnimation(context, R.anim.shake_anim)
         view.startAnimation(shake)
+    }
+
+    fun getCurrentVersion(context: Context): String {
+        try {
+            val pInfo: PackageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            return pInfo.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+            return "0"
+        }
+    }
+
+    fun isCurrentVersionSupported(context: Context, supportedVersion: String) {
+
     }
 }

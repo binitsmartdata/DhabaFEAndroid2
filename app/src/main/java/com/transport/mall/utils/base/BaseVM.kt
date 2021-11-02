@@ -42,6 +42,7 @@ import java.util.concurrent.TimeoutException
 open class BaseVM(context: Application) : AndroidViewModel(context) {
 
     var showProgressDialog: MutableLiveData<Boolean>? = null
+    var baseProgressOberver: MutableLiveData<Boolean>? = null
 
     fun toggleProgressDialog(): MutableLiveData<Boolean>? {
         showProgressDialog = null
@@ -270,6 +271,40 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                         null
                     )
                 )
+            }
+        }
+    }
+
+    fun getLastSupportedVersion(
+        context: Context,
+        token: String,
+        callBack: GenericCallBack<String>
+    ) {
+        baseProgressOberver?.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val currentVersion = GlobalUtils.getCurrentVersion(context)
+                executeApi(
+                    getApiService()?.getLastSupportedVersion(SharedPrefsHelper.getInstance(context).getUserData().accessToken, currentVersion.toString())
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            baseProgressOberver?.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            baseProgressOberver?.value = false
+                            callBack.onResponse(it.message)
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            baseProgressOberver?.value = false
+                            callBack.onResponse(it.data?.string())
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                baseProgressOberver?.value = false
+//                showToastInCenter(app!!, getCorrectErrorMessage(e))
+                callBack.onResponse(e.toString())
             }
         }
     }
