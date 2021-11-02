@@ -264,7 +264,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
     }
 
     override fun onBackPressed() {
-        /*if (!isUpdate()) {
+        if (!isUpdate()) {
             GlobalUtils.showDhabaDiscardAlert(this, getString(R.string.confirm_save_dhaba_details),
                 GenericCallBack {
                     when (it) {
@@ -284,9 +284,9 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
                         }
                     }
                 })
-        } else {*/
+        } else {
             finish()
-//        }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -16,6 +16,7 @@ import com.transport.mall.model.UserModel
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -183,6 +184,20 @@ class AmenitiesFragment :
                 )
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+            }
+        }
+        setRxBusListener()
+    }
+
+    private fun setRxBusListener() {
+        //LISTENER TO LISTEN WHEN TO EXECUTE SAVE BUTTON
+        RxBus.listen(DhabaModelMain.ActiveScreen::class.java).subscribe {
+            if (it == DhabaModelMain.ActiveScreen.AmenitiesFragment) {
+                try {
+                    binding.btnNext.performClick()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
     }

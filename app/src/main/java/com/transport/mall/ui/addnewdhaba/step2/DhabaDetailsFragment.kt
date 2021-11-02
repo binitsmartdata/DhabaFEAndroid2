@@ -254,13 +254,15 @@ class DhabaDetailsFragment :
 
     private fun setRxBusListener() {
         //LISTENER TO LISTEN WHEN TO EXECUTE SAVE BUTTON
-/*
         RxBus.listen(DhabaModelMain.ActiveScreen::class.java).subscribe {
             if (it == DhabaModelMain.ActiveScreen.DhabaDetailsFragment) {
-                binding.btnNext.performClick()
+                try {
+                    binding.btnNext.performClick()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
-*/
     }
 
     private fun setupOpeningTimeView() {
