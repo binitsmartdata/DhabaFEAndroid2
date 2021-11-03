@@ -269,7 +269,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="@{owner.ownerName}"
                         android:textColor="@color/black" />
 
@@ -306,7 +306,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="@{user.ownerName}"
                         android:textColor="@color/black" />
 
@@ -372,7 +372,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="@{manager==null ? context.getString(R.string.assign_manager) : manager.ownerName}"
                         android:textColor="@color/black" />
 

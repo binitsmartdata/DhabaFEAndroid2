@@ -171,7 +171,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:gravity="start"
                         android:singleLine="true"
-                        android:text="Dhaba Details"
+                        android:text="@string/dhaba_details"
                         android:textColor="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
                         android:textSize="@dimen/_10sdp" />
 
