@@ -56,6 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:fontFamily="@font/opensans_regular"
                     android:text="@string/login"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_18ssp" />
@@ -73,12 +74,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:fontFamily="@font/opensans_regular"
                         android:hint="@string/email">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
                             android:inputType="textEmailAddress"
                             android:text="@={vm.emailObservable}"
                             android:textColor="@color/black"
@@ -93,12 +96,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/opensans_regular"
                         android:hint="@string/password">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edPwd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
                             android:inputType="textPassword"
                             android:text="@={vm.passwordObservable}"
                             android:textColor="@color/black"
@@ -146,6 +151,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_4sdp"
                             android:background="@android:color/transparent"
+                            android:fontFamily="@font/opensans_regular"
                             android:hint="@string/_10_digit_mobile_number"
                             android:inputType="number"
                             android:maxLength="10"
@@ -170,6 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/primary_color_btn_selector"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="@string/login"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -181,6 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/primary_color_btn_selector"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="@string/continue_text"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -192,6 +200,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
+                        android:fontFamily="@font/opensans_bold"
                         android:text="@string/sign_up"
                         android:textAllCaps="false"
                         android:textColor="@color/colorPrimary"
@@ -207,6 +216,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20sdp"
             android:background="@drawable/default_btn_selector"
+            android:fontFamily="@font/opensans_regular"
             android:text="@{isOwnerLogin ? context.getString(R.string.login_as_field_executive) : context.getString(R.string.login_as_dhaba_owner)}"
             android:textAllCaps="false"
             android:textColor="@color/black" />

@@ -228,12 +228,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         when (position) {
             0 -> fragment = HomeFragment()
             1 -> fragment = NotificationsFragment()
-            2 -> fragment = DiscountsOffersFragment()
-            3 -> fragment = OrdersFragment()
-            4 -> fragment = CustomersFragment()
-            5 -> fragment = ShopsFragment()
-            6 -> fragment = HelplineFragment()
-            7 -> fragment = SettingsFragment()
+//            2 -> fragment = DiscountsOffersFragment()
+//            3 -> fragment = OrdersFragment()
+//            4 -> fragment = CustomersFragment()
+//            5 -> fragment = ShopsFragment()
+            2 -> fragment = HelplineFragment()
+            3 -> fragment = SettingsFragment()
         }
 
         fragment?.let {

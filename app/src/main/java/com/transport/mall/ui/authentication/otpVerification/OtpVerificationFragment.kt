@@ -1,9 +1,11 @@
 package com.transport.mall.ui.authentication.otpVerification
 
+import android.app.Activity
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.transport.mall.R
@@ -28,6 +30,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         set(value) {}
 
     val minutesToWait: Long = (60000 * 3).toLong() // 3 minutes
+    var otp = ""
 
     override fun bindData() {
         binding.vm = viewModel
@@ -35,8 +38,8 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         var prefix = if (userModel.mobilePrefix.isNotEmpty()) "+" + userModel.mobilePrefix else ""
         binding.tvOtpSentTo.text = "$prefix ${userModel.mobile}"
         binding.btnLoginOwner.setOnClickListener {
-            if (binding.edOtp.text.toString().isNotEmpty() && binding.edOtp.text.toString().length == 4) {
-                viewModel.otp = binding.edOtp.text.toString()
+            if (otp.isNotEmpty() && otp.length == 4) {
+                viewModel.otp = otp
                 viewModel.checkOtp(GenericCallBack {
                     it.data?.let {
                         SharedPrefsHelper.getInstance(getmContext()).setUserData(it)
@@ -65,6 +68,11 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     }
 
     override fun initListeners() {
+        binding.otpView.setOtpCompletionListener {
+            otp = it
+            binding.btnLoginOwner.performClick()
+        }
+
         viewModel.progressObserverCityStates?.observe(this, Observer {
             if (it) {
                 showProgressDialog(getString(R.string.fetching_states_cities_highways))
@@ -119,6 +127,12 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
                 binding.tvResendIn.visibility = View.GONE
             }
         }
+    }
+
+    fun Context.showKeyboard(view: View?) {
+        val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInputFromWindow(view?.windowToken, 0, 0)
+        view?.clearFocus()
     }
 
 }

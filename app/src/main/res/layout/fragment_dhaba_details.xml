@@ -521,60 +521,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <FrameLayout
-                    android:id="@+id/flHoardingPic"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_130sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@color/grey_light"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cl_times">
-
-                    <LinearLayout
-                        android:id="@+id/llLicensePhoto"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-
-                        <ImageView
-                            android:layout_width="@dimen/_50sdp"
-                            android:layout_height="@dimen/_50sdp"
-                            android:src="@drawable/ic_add_round" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="10dp"
-                            android:layout_marginStart="@dimen/_5sdp"
-                            android:fontFamily="@font/opensans_regular"
-                            android:text="@string/upload_dhaba_pictures"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/ivHoardingPic"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/grey_light"
-                        android:scaleType="fitCenter"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top|right"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:text="*"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_20ssp" />
-
-                </FrameLayout>
-
                 <LinearLayout
                     android:id="@+id/uploadLayout"
                     android:layout_width="match_parent"
@@ -583,7 +529,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/flHoardingPic">
+                    app:layout_constraintTop_toBottomOf="@+id/cl_times">
 
                     <FrameLayout
                         android:layout_width="0dp"
@@ -602,13 +548,12 @@
                             <ImageView
                                 android:layout_width="@dimen/_50sdp"
                                 android:layout_height="@dimen/_50sdp"
-                                android:src="@drawable/ic_add_red" />
+                                android:src="@drawable/ic_upload_picture" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginVertical="10dp"
-                                android:layout_marginStart="@dimen/_5sdp"
                                 android:fontFamily="@font/opensans_regular"
                                 android:gravity="center"
                                 android:text="@string/add_dhaba_photos"
@@ -694,6 +639,60 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/uploadLayout" />
 
+                <FrameLayout
+                    android:id="@+id/flHoardingPic"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/grey_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewDhabaPics">
+
+                    <LinearLayout
+                        android:id="@+id/llLicensePhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:src="@drawable/ic_upload_picture" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/upload_dhaba_pictures"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivHoardingPic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/grey_light"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:text="*"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/_20ssp" />
+
+                </FrameLayout>
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnNext"
                     android:layout_width="match_parent"
@@ -710,8 +709,7 @@
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewDhabaPics" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/flHoardingPic" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnSaveDraft"

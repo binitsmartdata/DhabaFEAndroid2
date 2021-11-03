@@ -102,9 +102,13 @@ class OtpVerificationVM(application: Application) : BaseVM(application) {
             }
             ApiResult.Status.SUCCESS -> {
                 progressObserver?.value = false
-                getCitiesList(GenericCallBack { isSuccess ->
+                if (it.data?.status == 200) {
+                    getCitiesList(GenericCallBack { isSuccess ->
+                        callBack.onResponse(it.data)
+                    })
+                } else {
                     callBack.onResponse(it.data)
-                })
+                }
             }
         }
     }

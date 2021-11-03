@@ -231,7 +231,7 @@ class DhabaDetailsFragment :
         binding.llLicensePhoto.setOnClickListener {
             SELECTED_IMAGE_INTENT_TYPE = IMAGE_INTENT_TYPE.HOARDING_PIC
             ImagePicker.with(this)
-                .crop()                    //Crop image(Optional), Check Customization for more option
+                .crop(16f, 9f)
                 .compress(1024)            //Final image size will be less than 1 MB(Optional)
                 .maxResultSize(
                     1080,

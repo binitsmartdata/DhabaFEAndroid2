@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/opensans_regular"
-                    android:text="@string/dhaba_mnagement"
+                    android:text="@{userModel.isExecutive() ? @string/dhaba_mnagement : @string/my_dhabas}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp" />
 

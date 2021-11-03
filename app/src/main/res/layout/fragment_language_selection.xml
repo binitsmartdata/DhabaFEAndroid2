@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -46,6 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_bold"
             android:text="@string/choose_language"
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp"
@@ -65,9 +67,11 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:clickable="false"
+                android:fontFamily="@font/opensans_regular"
                 android:gravity="center"
                 android:text="@string/english"
-                android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}" />
+                android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}"
+                app:isBold="@{english}" />
 
             <ImageView
                 android:id="@+id/ivEnglishTick"
@@ -94,9 +98,11 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:clickable="false"
+                android:fontFamily="@font/opensans_regular"
                 android:gravity="center"
                 android:text="@string/hindi"
-                android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}" />
+                android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}"
+                app:isBold="@{hindi}" />
 
             <ImageView
                 android:id="@+id/ivHindiTick"
@@ -123,9 +129,11 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:clickable="false"
+                android:fontFamily="@font/opensans_regular"
                 android:gravity="center"
                 android:text="@string/punjabi"
-                android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}" />
+                android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey)}"
+                app:isBold="@{punjabi}" />
 
             <ImageView
                 android:id="@+id/icPunjabiTick"

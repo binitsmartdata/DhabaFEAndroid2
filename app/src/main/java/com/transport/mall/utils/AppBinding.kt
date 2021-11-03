@@ -3,6 +3,7 @@ package com.transport.mall.utils
 import android.Manifest.permission.*
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.graphics.Typeface
 import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
@@ -187,6 +188,15 @@ fun setImageResource(imageView: ImageView, resource: Int) {
 @BindingAdapter("setImageURI")
 fun setImageURI(imageView: ImageView, resource: Uri) {
     imageView.setImageURI(resource)
+}
+
+@BindingAdapter("isBold")
+fun setBold(view: TextView, isBold: Boolean) {
+    if (isBold) {
+        view.setTypeface(null, Typeface.BOLD)
+    } else {
+        view.setTypeface(null, Typeface.NORMAL)
+    }
 }
 
 

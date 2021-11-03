@@ -12,11 +12,12 @@
     <color name="grey">#9A9A9A</color>
     <color name="grey1">#636363</color>
     <color name="grey_light">#F8F8F8</color>
-    <color name="gold_light">#FFF6DC</color>
+    <color name="gold_light">#D9FFF6DC</color>
     <color name="gold">#F7BA00</color>
     <color name="light_red">#FFECED</color>
     <color name="colorRed">#EE000F</color>
     <color name="colorLightGrey">#F8F8F8</color>
     <color name="colorGrey1">#DADADA</color>
     <color name="greenText">#3D7300</color>
+    <color name="grey_otp_box">#CCCCCC</color>
 </resources>
