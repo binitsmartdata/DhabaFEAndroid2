@@ -29,17 +29,16 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding, BaseV
         get() = this
 
     override fun bindData() {
-        if (!SharedPrefsHelper.getInstance(this).getSelectedLanguage().isEmpty()) {
-            openFragmentReplaceNoAnim(R.id.authContainer, LoginFragment(), "LOGIN", true)
-        } else {
+//        if (!SharedPrefsHelper.getInstance(this).getSelectedLanguage().isEmpty()) {
+//            openFragmentReplaceNoAnim(R.id.authContainer, LoginFragment(), "LOGIN", true)
+//        } else {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 LanguageSelectionFragment(),
                 "LANGUAGE",
                 true
             )
-
-        }
+//        }
     }
 
     override fun initListeners() {

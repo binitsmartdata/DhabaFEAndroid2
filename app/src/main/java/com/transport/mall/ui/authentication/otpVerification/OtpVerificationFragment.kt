@@ -70,6 +70,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     override fun initListeners() {
         binding.otpView.setOtpCompletionListener {
             otp = it
+            binding.otp = it
             binding.btnLoginOwner.performClick()
         }
 

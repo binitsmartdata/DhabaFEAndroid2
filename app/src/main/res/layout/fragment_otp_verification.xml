@@ -20,116 +20,124 @@
             name="countDownTime"
             type="String" />
 
+        <variable
+            name="otp"
+            type="String" />
+
     </data>
 
-    <ScrollView
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/_15sdp">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/parent"
+        <include layout="@layout/layout_app_logo" />
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:animateLayoutChanges="true"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="@dimen/_15sdp">
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_marginVertical="20dp"
-                android:src="@drawable/ic_logo_splash" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="@string/verify"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18ssp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:text="@string/verify"
+                android:text="@string/enter_otp_sent_to"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_18ssp" />
+                android:textSize="@dimen/_12ssp" />
 
-            <LinearLayout
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOtpSentTo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/enter_otp_sent_to"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvOtpSentTo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
-            </LinearLayout>
-
-            <com.mukesh.OtpView
-                android:id="@+id/otpView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:focusableInTouchMode="true"
-                android:inputType="number"
-                android:itemBackground="@color/white"
-                android:textColor="@android:color/black"
-                app:OtpItemCount="4"
-                app:OtpItemHeight="@dimen/_40sdp"
-                app:OtpItemSpacing="@dimen/_15sdp"
-                app:OtpItemWidth="@dimen/_40sdp"
-                app:OtpLineColor="@color/grey_otp_box"
-                app:OtpViewType="rectangle" />
-
-            <TextView
-                android:id="@+id/tvResendIn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center"
-                android:text="@{countDownTime}"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
-
-            <Button
-                android:id="@+id/btnLoginOwner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:background="@drawable/primary_color_btn_selector"
-                android:text="@string/continue_text"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/btnChangeNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/grey_stroke_selector"
-                android:text="@string/change_phone_number"
-                android:textAllCaps="false"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:textColor="@color/black"
-                android:visibility="gone" />
+                android:textSize="@dimen/_12ssp" />
+        </LinearLayout>
 
-            <Button
-                android:id="@+id/btnResentOtp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/grey_stroke_selector"
-                android:text="@string/resend_otp"
-                android:textAllCaps="false"
-                android:textColor="@color/black" />
+        <com.mukesh.OtpView
+            android:id="@+id/otpView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:focusableInTouchMode="true"
+            android:inputType="number"
+            android:itemBackground="@color/white"
+            android:textColor="@android:color/black"
+            app:OtpItemCount="4"
+            app:OtpItemHeight="@dimen/_40sdp"
+            app:OtpItemRadius="@dimen/_4sdp"
+            app:OtpItemSpacing="@dimen/_15sdp"
+            app:OtpItemWidth="@dimen/_40sdp"
+            app:OtpLineColor="@color/grey_otp_box"
+            app:OtpLineWidth="@dimen/_1sdp"
+            app:OtpViewType="rectangle" />
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </ScrollView>
+        <TextView
+            android:id="@+id/tvResendIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@{countDownTime}"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnLoginOwner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/primary_color_btn_selector"
+            android:enabled="@{otp.length() == 4}"
+            android:text="@string/continue_text"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnChangeNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/grey_stroke_selector"
+            android:text="@string/change_phone_number"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnResentOtp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/grey_stroke_selector"
+            android:text="@string/resend_otp"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

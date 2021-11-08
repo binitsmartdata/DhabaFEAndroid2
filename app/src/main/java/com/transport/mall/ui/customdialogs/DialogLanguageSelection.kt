@@ -28,7 +28,7 @@ class DialogLanguageSelection constructor(
             LayoutInflater.from(context), R.layout.fragment_language_selection, null, false
         )
         setContentView(binding.root)
-        window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         binding.context = context
 
         //setting already selected language

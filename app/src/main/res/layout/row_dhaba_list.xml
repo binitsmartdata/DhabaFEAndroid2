@@ -432,7 +432,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:layout_marginTop="@dimen/_7sdp"
-            android:background="@color/black" />
+            android:background="@color/divider_dcdcdc" />
 
     </LinearLayout>
 </layout>

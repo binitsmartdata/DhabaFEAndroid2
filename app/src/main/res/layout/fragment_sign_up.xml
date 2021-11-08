@@ -19,158 +19,167 @@
 
     </data>
 
-    <ScrollView
+    <!-- <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:background="@color/white">-->
+
+    <LinearLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingBottom="@dimen/_15sdp"
+        tools:context=".ui.main.MainActivity">
+
+        <include layout="@layout/layout_app_logo" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/sign_up"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18ssp" />
 
         <LinearLayout
-            android:id="@+id/parent"
+            android:id="@+id/llExecutiveLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:animateLayoutChanges="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_15sdp"
-            tools:context=".ui.main.MainActivity">
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_marginVertical="20dp"
-                android:src="@drawable/ic_logo_splash" />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
                 android:fontFamily="@font/opensans_regular"
-                android:text="@string/sign_up"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_18ssp" />
+                android:hint="@string/name_">
 
-            <LinearLayout
-                android:id="@+id/llExecutiveLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/name_">
+                    android:inputType="textPersonName"
+                    android:text="@={vm.nameObervable}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="textPersonName"
-                        android:text="@={vm.nameObervable}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:id="@+id/editlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_stroke"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edEmail">
-
-                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                        android:id="@+id/ccpCountryCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        app:ccp_defaultCode="91"
-                        app:ccp_textSize="@dimen/_12ssp" />
-
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edPhoneNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_4sdp"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/opensans_regular"
-                        android:hint="@string/enter_mobile_number_mandatory"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@={vm.phoneNumberObserver}"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
-                        android:textSize="@dimen/_13ssp" />
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:hint="@string/email"
-                    android:visibility="gone">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:text="@={vm.emailObservable}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
+                android:id="@+id/editlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:orientation="vertical">
+                android:background="@drawable/grey_stroke"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edEmail">
 
-                <Button
-                    android:id="@+id/btnSignUp"
+                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                    android:id="@+id/ccpCountryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center"
+                    app:ccp_defaultCode="91"
+                    app:ccp_hideNameCode="true"
+                    app:ccp_textSize="@dimen/_12ssp" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:background="@color/grey_stroke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/primary_color_btn_selector"
-                    android:fontFamily="@font/opensans_bold"
-                    android:text="@string/sign_up"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:fontFamily="@font/opensans_bold"
-                    android:text="@string/login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary" />
-
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:hint="@string/enter_mobile_number_mandatory"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@={vm.phoneNumberObserver}"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:textSize="@dimen/_13ssp" />
             </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/email"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:text="@={vm.emailObservable}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/primary_color_btn_selector"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/sign_up"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/default_btn_selector"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+    <!--    </ScrollView>-->
 </layout>

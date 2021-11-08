@@ -107,7 +107,9 @@
                         android:id="@+id/ccpCountryCode"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
                         android:gravity="center"
+                        app:ccp_hideNameCode="true"
                         app:ccp_defaultCode="91"
                         app:ccp_textSize="@dimen/_12ssp" />
 
@@ -115,7 +117,7 @@
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey" />
+                        android:background="@color/grey_stroke" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edPhoneNumber"
@@ -298,16 +300,18 @@
                     <com.rilixtech.widget.countrycodepicker.CountryCodePicker
                         android:id="@+id/ccpCountryCodeAlt"
                         android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         app:ccp_defaultCode="91"
+                        app:ccp_hideNameCode="true"
                         app:ccp_textSize="@dimen/_12ssp" />
 
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey" />
+                        android:background="@color/grey_stroke" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edPhoneNumberAlt"
