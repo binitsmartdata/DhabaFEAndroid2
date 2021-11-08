@@ -34,7 +34,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
             mListener?.startOver()
         }
         binding.llLanguage.setOnClickListener {
-            DialogLanguageSelection(getmContext(), this).show()
+            if (activity != null) {
+                DialogLanguageSelection(getmContext(), this).show()
+            }
         }
 
         val selectedLanguage = SharedPrefsHelper.getInstance(getmContext()).getSelectedLanguage()
