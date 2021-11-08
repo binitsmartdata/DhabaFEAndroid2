@@ -50,7 +50,7 @@
             android:fontFamily="@font/opensans_regular"
             android:text="@string/sign_up"
             android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp" />
+            android:textSize="@dimen/_24ssp" />
 
         <LinearLayout
             android:id="@+id/llExecutiveLogin"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/grey_stroke"
+                android:background="@drawable/grey_dark_stroke"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -110,6 +110,7 @@
                     android:id="@+id/edPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_2sdp"
                     android:layout_marginStart="@dimen/_4sdp"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/opensans_regular"
@@ -120,7 +121,7 @@
                     android:text="@={vm.phoneNumberObserver}"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="@dimen/_14ssp" />
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -160,7 +161,8 @@
                 android:fontFamily="@font/opensans_bold"
                 android:text="@string/sign_up"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
 
             <Button
                 android:id="@+id/btnLogin"
@@ -170,6 +172,7 @@
                 android:background="@drawable/default_btn_selector"
                 android:fontFamily="@font/opensans_bold"
                 android:text="@string/login"
+                android:textSize="@dimen/_16ssp"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary" />
 

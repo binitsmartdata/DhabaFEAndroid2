@@ -51,15 +51,14 @@
             android:fontFamily="@font/opensans_regular"
             android:text="@string/choose_language"
             android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="@dimen/_24ssp" />
 
-        <FrameLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/grey_stroke"
-            android:elevation="@dimen/_5sdp"
+            android:elevation="@dimen/_2sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_5sdp">
 
@@ -83,9 +82,11 @@
                         android:clickable="false"
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/english"
                         android:textAllCaps="false"
                         android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                        android:textSize="@dimen/_16ssp"
                         app:isBold="@{english}" />
 
                     <ImageView
@@ -119,9 +120,11 @@
                         android:clickable="false"
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/hindi"
                         android:textAllCaps="false"
                         android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                        android:textSize="@dimen/_16ssp"
                         app:isBold="@{hindi}" />
 
                     <ImageView
@@ -155,9 +158,11 @@
                         android:clickable="false"
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
+                        android:paddingVertical="@dimen/_10sdp"
                         android:text="@string/punjabi"
                         android:textAllCaps="false"
                         android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                        android:textSize="@dimen/_16ssp"
                         app:isBold="@{punjabi}" />
 
                     <ImageView
@@ -171,7 +176,7 @@
 
                 </FrameLayout>
             </LinearLayout>
-        </FrameLayout>
+        </androidx.cardview.widget.CardView>
 
         <View
             android:layout_width="match_parent"

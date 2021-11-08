@@ -87,7 +87,7 @@
             android:value="@string/googleMapsApiKey" />
 
         <receiver
-            android:name=".utils.common.MySMSBroadcastReceiver"
+            android:name=".utils.MySMSBroadcastReceiver"
             android:exported="true"
             android:permission="com.google.android.gms.auth.api.phone.permission.SEND">
             <intent-filter>

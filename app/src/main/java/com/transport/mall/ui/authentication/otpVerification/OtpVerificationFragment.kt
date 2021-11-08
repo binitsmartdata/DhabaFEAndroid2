@@ -2,15 +2,23 @@ package com.transport.mall.ui.authentication.otpVerification
 
 import android.app.Activity
 import android.content.Context
+import android.content.IntentFilter
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import com.google.android.gms.auth.api.phone.SmsRetriever
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient
+import com.google.android.gms.tasks.Task
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentOtpVerificationBinding
 import com.transport.mall.model.UserModel
+import com.transport.mall.utils.AppSignatureHelper
+import com.transport.mall.utils.MySMSBroadcastReceiver
+import com.transport.mall.utils.MySMSBroadcastReceiver.OTPReceiveListener
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -20,6 +28,7 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
  * Created by Parambir Singh on 2019-12-06.
  */
 class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentOtpVerificationBinding, OtpVerificationVM>() {
+    private val REQ_USER_CONSENT: Int = 123
     override val layoutId: Int
         get() = R.layout.fragment_otp_verification
     override var viewModel: OtpVerificationVM
@@ -31,6 +40,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
 
     val minutesToWait: Long = (60000 * 3).toLong() // 3 minutes
     var otp = ""
+    var mySMSBroadcastReceiver: MySMSBroadcastReceiver? = null
 
     override fun bindData() {
         binding.vm = viewModel
@@ -97,6 +107,31 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         })
 
         countDown()
+        initSmsReceiver()
+
+    }
+
+    private fun initSmsReceiver() {
+        startSMSRetrieverClient()
+
+        mySMSBroadcastReceiver = MySMSBroadcastReceiver()
+        activity?.registerReceiver(mySMSBroadcastReceiver, IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION))
+        mySMSBroadcastReceiver?.init(object : OTPReceiveListener {
+            override fun onOTPReceived(otp: String?) {
+                Log.e("OTP RECEIVED :", otp.toString())
+            }
+
+            override fun onOTPTimeOut() {
+                Log.e("OTP TIMEOUT :", "TIMEOUT")
+            }
+        })
+
+//        printAppSignature()
+    }
+
+    private fun printAppSignature() {
+        val appSignatureHelper = AppSignatureHelper(activity)
+        Log.e("OTP SMS SIGNATURE ::", appSignatureHelper.appSignatures.toString()) // This will give you the key.
     }
 
     var miliseconds = 0
@@ -136,4 +171,15 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         view?.clearFocus()
     }
 
+    private fun startSMSRetrieverClient() {
+        val client: SmsRetrieverClient = SmsRetriever.getClient(activity)
+        val task: Task<Void> = client.startSmsRetriever()
+        task.addOnSuccessListener { aVoid -> Log.e("OTP SMS SUCCESS ::", "$aVoid") }
+        task.addOnFailureListener { e -> Log.e("OTP SMS SUCCESS ::", "$e") }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mySMSBroadcastReceiver != null) activity?.unregisterReceiver(mySMSBroadcastReceiver)
+    }
 }

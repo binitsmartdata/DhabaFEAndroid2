@@ -50,7 +50,7 @@
             android:layout_margin="@dimen/_10sdp"
             android:text="@string/verify"
             android:textColor="@color/black"
-            android:textSize="@dimen/_18ssp" />
+            android:textSize="@dimen/_24ssp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -62,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/enter_otp_sent_to"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp" />
 
@@ -99,6 +100,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center"
             android:text="@{countDownTime}"
+            android:textSize="@dimen/_14ssp"
             android:textAllCaps="false"
             android:textColor="@color/black" />
 
@@ -111,7 +113,8 @@
             android:enabled="@{otp.length() == 4}"
             android:text="@string/continue_text"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp" />
 
         <Button
             android:id="@+id/btnChangeNumber"
@@ -132,7 +135,8 @@
             android:background="@drawable/grey_stroke_selector"
             android:text="@string/resend_otp"
             android:textAllCaps="false"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp" />
 
         <View
             android:layout_width="match_parent"

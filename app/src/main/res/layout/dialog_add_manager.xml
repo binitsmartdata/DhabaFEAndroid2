@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/grey_stroke"
+                android:background="@drawable/grey_dark_stroke"
                 android:orientation="horizontal">
 
                 <com.rilixtech.widget.countrycodepicker.CountryCodePicker
@@ -113,6 +113,7 @@
                     android:id="@+id/edPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_2sdp"
                     android:layout_marginStart="@dimen/_4sdp"
                     android:background="@android:color/transparent"
                     android:hint="@string/_10_digit_mobile_number"

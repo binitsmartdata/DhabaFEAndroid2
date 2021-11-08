@@ -63,7 +63,7 @@
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/login"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_18ssp" />
+                android:textSize="@dimen/_24ssp" />
 
             <LinearLayout
                 android:id="@+id/llExecutiveLogin"
@@ -128,7 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_stroke"
+                    android:background="@drawable/grey_dark_stroke"
                     android:orientation="horizontal"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -155,6 +155,7 @@
                         android:id="@+id/edPhoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_2sdp"
                         android:layout_marginStart="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/opensans_regular"
@@ -165,7 +166,7 @@
                         android:text="@={vm.mobileObservable}"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/_13ssp" />
+                        android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -186,6 +187,7 @@
                     android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
                     android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}" />
 
                 <Button
@@ -199,6 +201,7 @@
                     android:text="@string/continue_text"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:textSize="@dimen/_16ssp"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
 
                 <Button
@@ -211,6 +214,7 @@
                     android:text="@string/sign_up"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_16ssp"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
 
             </LinearLayout>
@@ -233,7 +237,8 @@
             android:fontFamily="@font/opensans_regular"
             android:text="@{isOwnerLogin ? context.getString(R.string.login_as_field_executive) : context.getString(R.string.login_as_dhaba_owner)}"
             android:textAllCaps="false"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp" />
 
     </LinearLayout>
 </layout>
