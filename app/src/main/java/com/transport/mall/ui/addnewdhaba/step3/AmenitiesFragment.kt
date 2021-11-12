@@ -18,7 +18,6 @@ import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
-import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -27,11 +26,11 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
  * Created by Parambir Singh on 2019-12-06.
  */
 class AmenitiesFragment :
-    BaseFragment<FragmentAmenitiesBinding, BaseVM>() {
+    BaseFragment<FragmentAmenitiesBinding, AmenititesVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_amenities
-    override var viewModel: BaseVM
-        get() = setUpVM(this, BaseVM(baseActivity.application))
+    override var viewModel: AmenititesVM
+        get() = setUpVM(this, AmenititesVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentAmenitiesBinding
         get() = setUpBinding()
@@ -46,15 +45,50 @@ class AmenitiesFragment :
         mListener = activity as AddDhabaListener
         binding.context = activity
 
-//        binding.btnNext.isEnabled = !mListener?.isUpdate()!!
-//        binding.btnSaveDraft.isEnabled = !mListener?.isUpdate()!!
         binding.isUpdate = mListener?.isUpdate()!!
         binding.viewOnly = mListener?.viewOnly()!!
         userModel = SharedPrefsHelper.getInstance(getmContext()).getUserData()
         binding.userModel = userModel
+
+        fetchAmenitiesData()
+    }
+
+    private fun fetchAmenitiesData() {
+        viewModel.getAllAmenities { amenitiesList ->
+            amenitiesList.forEach {
+                if (it.isFoodAmenities()) {
+                    binding.foodAmenities = it
+                }
+                if (it.isParkingAmenities()) {
+                    binding.parkingAmenities = it
+                }
+                if (it.isSleepingAmenities()) {
+                    binding.sleepingAmenities = it
+                }
+                if (it.isWashroomAmenities()) {
+                    binding.washroomAmenities = it
+                }
+                if (it.isSecurityAmenities()) {
+                    binding.securityAmenities = it
+                }
+                if (it.isLightAmenities()) {
+                    binding.lightAmenities = it
+                }
+                if (it.isOtherAmenities()) {
+                    binding.otherAmenities = it
+                }
+            }
+        }
     }
 
     override fun initListeners() {
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                binding.internalProgressBar.visibility = View.VISIBLE
+            } else {
+                binding.internalProgressBar.visibility = View.GONE
+            }
+        })
         progressObserver.observe(this, Observer {
             if (it) showProgressDialog() else hideProgressDialog()
         })

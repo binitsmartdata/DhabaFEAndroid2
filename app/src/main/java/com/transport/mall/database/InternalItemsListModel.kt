@@ -5,6 +5,6 @@ import androidx.room.Index
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class InternalDataListModel<T>(
-	@SerializedName("data") var data: T
+data class InternalItemsListModel<T>(
+    @SerializedName("items") var data: T
 ) : Serializable

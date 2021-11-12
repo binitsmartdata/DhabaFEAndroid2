@@ -24,6 +24,34 @@
             name="userModel"
             type="com.transport.mall.model.UserModel" />
 
+        <variable
+            name="foodAmenities"
+            type="com.transport.mall.model.AmenityModel" />
+
+        <variable
+            name="parkingAmenities"
+            type="com.transport.mall.model.AmenityModel" />
+
+        <variable
+            name="sleepingAmenities"
+            type="com.transport.mall.model.AmenityModel" />
+
+        <variable
+            name="washroomAmenities"
+            type="com.transport.mall.model.AmenityModel" />
+
+        <variable
+            name="securityAmenities"
+            type="com.transport.mall.model.AmenityModel" />
+
+        <variable
+            name="lightAmenities"
+            type="com.transport.mall.model.AmenityModel" />
+
+        <variable
+            name="otherAmenities"
+            type="com.transport.mall.model.AmenityModel" />
+
     </data>
 
     <!--    <FrameLayout-->
@@ -36,9 +64,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:orientation="vertical"
             android:padding="@dimen/_5sdp">
+
+            <ProgressBar
+                android:id="@+id/internalProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardFood"
@@ -46,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:visibility="@{!foodAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -66,7 +102,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/food"
+                            android:text="@{foodAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold" />
@@ -113,6 +149,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:visibility="@{!parkingAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -133,7 +170,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/parking"
+                            android:text="@{parkingAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold" />
@@ -182,6 +219,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:visibility="@{!sleepingAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -202,7 +240,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/sleeping"
+                            android:text="@{sleepingAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold" />
@@ -251,6 +289,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:visibility="@{!washroomAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -271,7 +310,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/washroom_cleaning"
+                            android:text="@{washroomAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold" />
@@ -319,6 +358,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:visibility="@{!securityAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -339,7 +379,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/security"
+                            android:text="@{securityAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold" />
@@ -388,6 +428,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:visibility="@{!lightAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -408,7 +449,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/light"
+                            android:text="@{lightAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold" />
@@ -457,6 +498,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:visibility="@{!otherAmenities.shouldShow() ? View.GONE : View.VISIBLE}"
                 app:cardBackgroundColor="@color/white">
 
                 <LinearLayout
@@ -477,7 +519,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/other"
+                            android:text="@{otherAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="bold" />

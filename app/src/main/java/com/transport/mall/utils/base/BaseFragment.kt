@@ -10,6 +10,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -206,10 +207,12 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
     }
 
     fun goToHomeScreen() {
-        val intent = Intent(activity, HomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        activity?.startActivity(intent)
-        activity?.finish()
+        try {
+            HomeActivity.start(getmContext())
+            activity?.finish()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
     }
 
     var INTENT_VIDEO_CAMERA = 111

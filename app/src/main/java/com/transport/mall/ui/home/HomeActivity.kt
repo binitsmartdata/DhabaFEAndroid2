@@ -57,7 +57,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, HomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
     }
