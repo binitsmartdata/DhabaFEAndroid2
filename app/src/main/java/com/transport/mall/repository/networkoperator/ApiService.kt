@@ -586,7 +586,7 @@ interface ApiService {
     @POST("dhaba/addDhabaTimeing")
     suspend fun addDhabaTimeing(@Body model: DhabaTimingModelParent): Response<DhabaTimingModelParent>
 
-    @POST("getAllAmenities/find")
-    suspend fun getAllAmenities(): Response<ApiResponseModel<InternalItemsListModel<ArrayList<AmenityModel>>>>
+    @POST("getAllAmenitiesData/find")
+    suspend fun getAllAmenities(): Response<ApiResponseModel<InternalDataListModel<ArrayList<AmenityModel>>>>
 
 }

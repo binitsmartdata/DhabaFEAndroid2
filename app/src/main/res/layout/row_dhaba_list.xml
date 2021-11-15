@@ -322,7 +322,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
             android:paddingRight="@dimen/_10sdp"
-            android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}">
+            android:visibility="@{((user.isOwner() || user.isManager()) &amp;&amp; (!model.status.equalsIgnoreCase(model.Companion.STATUS_INACTIVE))) ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
                 android:id="@+id/llAssignMgr"
@@ -347,7 +347,7 @@
 
                     <com.transport.mall.utils.custom.CircleImageView
                         android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_height="63dp"
                         android:layout_marginEnd="@dimen/_5sdp"
                         android:padding="@dimen/_5sdp"
                         android:src="@drawable/ic_add_red"
@@ -385,9 +385,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:visibility="invisible"
                 android:gravity="right|center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="invisible">
 
                 <TextView
                     android:id="@+id/tvVerified"
