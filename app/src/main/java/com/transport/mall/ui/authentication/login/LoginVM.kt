@@ -94,7 +94,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                                             .setUserData(result.data.data!!)
 
                                         getCitiesList(GenericCallBack {
-                                            HomeActivity.start(app?.applicationContext!!)
+                                            HomeActivity.startFromLogin(app?.applicationContext!!)
                                             callBak.onResponse(result.status, result.data.message)
                                         })
                                     }

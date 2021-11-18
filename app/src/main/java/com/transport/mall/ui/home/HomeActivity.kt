@@ -60,6 +60,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 //            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
+        fun startFromLogin(context: Context) {
+            val intent = Intent(context, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context.startActivity(intent)
+        }
     }
 
     val observer = MutableLiveData<Boolean>()

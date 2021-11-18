@@ -372,6 +372,7 @@ class DhabaDetailsFragment :
     private fun showMessageAndGoNext() {
         if (mListener?.isUpdate()!!) {
             showToastInCenter(getString(R.string.dhaba_updated_successfully))
+            activity?.finish()
         } else {
             showToastInCenter(getString(R.string.dhaba_created_successfully))
             mListener?.showNextScreen()
