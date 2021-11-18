@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivitySplashBinding
 import com.transport.mall.ui.authentication.AuthenticationActivity
+import com.transport.mall.utils.AppSignatureHelper
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -35,6 +37,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
 
     override fun bindData() {
         binding.lifecycleOwner = this
+
+//        val appSignatureHelper = AppSignatureHelper(this)
+//        Log.e("OTP SMS SIGNATURE ::", appSignatureHelper.appSignatures.toString())
     }
 
     override fun initListeners() {

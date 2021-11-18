@@ -81,7 +81,6 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         binding.otpView.setOtpCompletionListener {
             otp = it
             binding.otp = it
-            binding.btnLoginOwner.performClick()
         }
 
         viewModel.progressObserverCityStates?.observe(this, Observer {
@@ -119,19 +118,14 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         mySMSBroadcastReceiver?.init(object : OTPReceiveListener {
             override fun onOTPReceived(otp: String?) {
                 Log.e("OTP RECEIVED :", otp.toString())
+                binding.otpView.setText(otp)
+                binding.btnLoginOwner.performClick()
             }
 
             override fun onOTPTimeOut() {
                 Log.e("OTP TIMEOUT :", "TIMEOUT")
             }
         })
-
-//        printAppSignature()
-    }
-
-    private fun printAppSignature() {
-        val appSignatureHelper = AppSignatureHelper(activity)
-        Log.e("OTP SMS SIGNATURE ::", appSignatureHelper.appSignatures.toString()) // This will give you the key.
     }
 
     var miliseconds = 0
