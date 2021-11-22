@@ -1,7 +1,10 @@
 package com.transport.mall.repository.networkoperator
 
 
-import com.transport.mall.database.*
+import com.transport.mall.database.ApiResponseModel
+import com.transport.mall.database.DhabaTimingModelParent
+import com.transport.mall.database.InternalDataListModel
+import com.transport.mall.database.InternalDocsListModel
 import com.transport.mall.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -194,7 +197,9 @@ interface ApiService {
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
         @Part("executive_id") executive_id: RequestBody?,
-        @Part("isOpen24_7") isOpen24_7: RequestBody?
+        @Part("isOpen24_7") isOpen24_7: RequestBody?,
+        @Part("approval_for") approval_for: RequestBody?,
+        @Part("approval_by") approval_by: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart
@@ -222,7 +227,9 @@ interface ApiService {
         @Part("createdBy") createdBy: RequestBody,
         @Part("updatedBy") updatedBy: RequestBody,
         @Part("executive_id") executive_id: RequestBody?,
-        @Part("isOpen24_7") isOpen24_7: RequestBody?
+        @Part("isOpen24_7") isOpen24_7: RequestBody?,
+        @Part("approval_for") approval_for: RequestBody?,
+        @Part("approval_by") approval_by: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart

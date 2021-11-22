@@ -64,7 +64,7 @@
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/add_existing_owner"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="16sp"
                         android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -76,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/owner_name"
+                    app:boxStrokeWidth="0.7dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llAddExisting">
@@ -88,7 +89,7 @@
                         android:singleLine="true"
                         android:text="@={viewModel.ownerModel.ownerName}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +112,7 @@
                         android:gravity="center"
                         app:ccp_hideNameCode="true"
                         app:ccp_defaultCode="91"
-                        app:ccp_textSize="@dimen/_12ssp" />
+                        app:ccp_textSize="16sp" />
 
                     <View
                         android:layout_width="0.5dp"
@@ -133,7 +134,7 @@
                         android:text="@={viewModel.ownerModel.mobile}"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/_13ssp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -142,6 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
+                    app:boxStrokeWidth="0.7dp"
                     android:hint="@string/email"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +156,7 @@
                         android:inputType="textEmailAddress"
                         android:text="@={viewModel.ownerModel.email}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -165,6 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/address"
+                    app:boxStrokeWidth="0.7dp"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -179,7 +182,7 @@
                         android:singleLine="false"
                         android:text="@={viewModel.ownerModel.address}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -206,7 +209,7 @@
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/fetch_location"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvMapPicker"
@@ -218,7 +221,7 @@
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/pick_from_map"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -227,6 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
+                    app:boxStrokeWidth="0.7dp"
                     android:hint="@string/pan_number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -240,7 +244,7 @@
                         android:maxLength="10"
                         android:text="@={viewModel.ownerModel.panNumber}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -250,6 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/aadhar_card_number"
+                    app:boxStrokeWidth="0.7dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/panNoTil">
@@ -262,7 +267,7 @@
                         android:maxLength="12"
                         android:text="@={viewModel.ownerModel.adharCard}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -272,6 +277,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/alternative_contact_person"
+                    app:boxStrokeWidth="0.7dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/aadharCardTil">
@@ -284,7 +290,7 @@
                         android:maxLength="25"
                         android:text="@={viewModel.ownerModel.alternativeContactperson}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -306,7 +312,7 @@
                         android:gravity="center"
                         app:ccp_defaultCode="91"
                         app:ccp_hideNameCode="true"
-                        app:ccp_textSize="@dimen/_12ssp" />
+                        app:ccp_textSize="16sp" />
 
                     <View
                         android:layout_width="0.5dp"
@@ -328,7 +334,7 @@
                         android:text="@={viewModel.ownerModel.alternatePhone}"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/_13ssp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
 
@@ -397,7 +403,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_owner_picture"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -430,7 +436,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/upload_id_proof"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -443,7 +449,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/we_accept_aadhar_card_pan_card_or_driving_license"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/uploadProofText" />
@@ -508,7 +514,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/front_side"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="@+id/uploadFrontSideLayout"
                         app:layout_constraintStart_toStartOf="@+id/uploadFrontSideLayout"
                         app:layout_constraintTop_toBottomOf="@+id/uploadFrontSideLayout" />
@@ -555,7 +561,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/back_side"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="@+id/uploadBackSideLayout"
                         app:layout_constraintStart_toStartOf="@+id/uploadBackSideLayout"
                         app:layout_constraintTop_toBottomOf="@+id/uploadBackSideLayout" />
@@ -574,7 +580,7 @@
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.next)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -589,7 +595,7 @@
                     android:fontFamily="@font/opensans_bold"
                     android:text="@string/save_as_draft"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

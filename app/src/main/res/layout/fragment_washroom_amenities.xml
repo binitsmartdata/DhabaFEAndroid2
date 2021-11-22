@@ -51,7 +51,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/washroom_area"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgOpen"
@@ -90,7 +90,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/hot_and_cold_water"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgHotColdWater"
@@ -129,7 +129,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/truck_show_clean"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgCleaner"
@@ -185,7 +185,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_washroom_photo"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
                 </FrameLayout>
@@ -204,6 +204,7 @@
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 

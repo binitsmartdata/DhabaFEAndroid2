@@ -49,7 +49,7 @@
                 android:inputType="text"
                 android:padding="@dimen/_5sdp"
                 android:singleLine="true"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="16sp" />
 
             <View
                 android:layout_width="@dimen/_1sdp"
@@ -116,10 +116,11 @@
                         android:layout_marginVertical="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
-                        android:text="@string/no_dhaba_added"
+                        android:text="@string/no_dhaba_found"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16ssp" />
 
+<!--
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnAddDhaba"
                         android:layout_width="wrap_content"
@@ -135,6 +136,7 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/_12ssp"
                         android:visibility="@{user.isManager() ? View.GONE : View.VISIBLE}" />
+-->
 
                 </LinearLayout>
             </FrameLayout>

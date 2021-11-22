@@ -38,8 +38,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
     override fun bindData() {
         binding.lifecycleOwner = this
 
-//        val appSignatureHelper = AppSignatureHelper(this)
-//        Log.e("OTP SMS SIGNATURE ::", appSignatureHelper.appSignatures.toString())
+        val appSignatureHelper = AppSignatureHelper(this)
+        Log.e("OTP SMS SIGNATURE ::", appSignatureHelper.appSignatures.toString())
     }
 
     override fun initListeners() {

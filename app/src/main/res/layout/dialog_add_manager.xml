@@ -70,6 +70,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:boxStrokeWidth="0.7dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:hint="@string/manager_name">
@@ -133,6 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
+                app:boxStrokeWidth="0.7dp"
                 android:hint="@string/email">
 
                 <com.google.android.material.textfield.TextInputEditText

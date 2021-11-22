@@ -476,4 +476,5 @@
     <string name="confirm_save_dhaba_details">ਕੀ ਤੁਸੀਂ ਢਾਬੇ ਦੇ ਵੇਰਵੇ ਸੁਰੱਖਿਅਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="sent_for_spproval">ਸਫਲਤਾਪੂਰਵਕ ਮਨਜ਼ੂਰੀ ਲਈ ਭੇਜਿਆ ਗਿਆ</string>
     <string name="location_settings">ਸਥਾਨ ਸੈਟਿੰਗਾਂ</string>
+    <string name="no_dhaba_found">ਕੋਈ ਢਾਬਾ ਨਹੀਂ ਮਿਲਿਆ</string>
 </resources>

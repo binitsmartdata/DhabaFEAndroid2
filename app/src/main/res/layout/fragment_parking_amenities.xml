@@ -54,7 +54,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/parking"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgParkingYesNo"
@@ -122,7 +122,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/concrete_parking"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgConcreteParking"
@@ -209,7 +209,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/flat_hard_parking"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgFlatHardParking"
@@ -296,7 +296,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/kacha_flat_parking"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgKachaFlatParking"
@@ -402,7 +402,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/upload_parking_photos"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -421,6 +421,7 @@
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 

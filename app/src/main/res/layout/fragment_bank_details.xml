@@ -58,7 +58,7 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:text="@string/bank_details"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -101,6 +101,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/gst_number"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +116,7 @@
                         android:maxLength="15"
                         android:text="@={viewModel.bankModel.gstNumber}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,6 +124,7 @@
                     android:id="@+id/accountnumber"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/account_number"
@@ -138,7 +140,7 @@
                         android:maxLength="18"
                         android:text="@={viewModel.bankModel.accountNumber}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,6 +149,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/ifsc_code"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +164,7 @@
                         android:maxLength="11"
                         android:text="@={viewModel.bankModel.ifscCode}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,6 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/account_holder_name"
+                    app:boxStrokeWidth="0.7dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/IFSCCodeTil">
@@ -185,7 +189,7 @@
                         android:maxLength="30"
                         android:text="@={viewModel.bankModel.accountName}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,6 +198,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/pan_number"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -208,7 +213,7 @@
                         android:maxLength="10"
                         android:text="@={viewModel.bankModel.panNumber}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -244,7 +249,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_pan_photo"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -275,7 +280,7 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:text="@string/onboarded_by"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
@@ -284,6 +289,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/name"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -298,7 +304,7 @@
                         android:inputType="text"
                         android:text="@{userModel.ownerName}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -307,6 +313,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/onboarding_date"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -322,7 +329,7 @@
                         android:inputType="text"
                         android:text="@{currentDate}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -344,7 +351,7 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:text="@string/sales_executive"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -352,6 +359,7 @@
                     android:id="@+id/saleExecutiveNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/name"
@@ -367,7 +375,7 @@
                         android:inputType="text"
                         android:text="@{userModel.isExecutive() ? userModel.ownerName : ``}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -375,6 +383,7 @@
                     android:id="@+id/phoneNumberTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/phone_number"
@@ -390,7 +399,7 @@
                         android:inputType="phone"
                         android:text="@{userModel.isExecutive() ? userModel.mobile : ``}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -412,7 +421,7 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:text="@string/area_head"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
@@ -420,6 +429,7 @@
                     android:id="@+id/areaHeadNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/name"
@@ -434,7 +444,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="text"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -443,6 +453,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/phone_number"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -456,7 +467,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:inputType="phone"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -499,7 +510,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/blocking_system_for"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -544,6 +555,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    app:boxStrokeWidth="0.7dp"
                     android:hint="@string/choose_months"
                     android:visibility="@{rb30Days.checked ? View.GONE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -558,7 +570,7 @@
                         android:maxLength="2"
                         android:text="@={viewModel.blockingMonths}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -581,7 +593,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/property_status"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -625,7 +637,7 @@
                     android:text="@{isUpdate ? context.getString(R.string.submit_for_approval) : context.getString(R.string.submit_for_approval)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -643,7 +655,7 @@
                     android:text="@string/save_as_draft"
                     android:textAllCaps="false"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{(isUpdate||viewOnly) ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

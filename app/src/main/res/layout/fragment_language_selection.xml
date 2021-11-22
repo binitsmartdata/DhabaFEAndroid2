@@ -30,159 +30,155 @@
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:gravity="center"
-        android:orientation="vertical"
-        android:paddingBottom="30dp">
+        android:orientation="vertical">
 
         <include layout="@layout/layout_app_logo" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/opensans_regular"
-            android:text="@string/choose_language"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_24ssp" />
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:elevation="@dimen/_2sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp">
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="@string/choose_language"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="26sp" />
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:elevation="@dimen/_2sdp"
+                app:cardElevation="5dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_5sdp">
 
-                <FrameLayout
-                    android:id="@+id/flEnglish"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="@dimen/_5sdp">
+                    android:orientation="vertical">
 
-                    <Button
+                    <FrameLayout
+                        android:id="@+id/flEnglish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:fontFamily="@font/opensans_regular"
-                        android:gravity="center"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:text="@string/english"
-                        android:textAllCaps="false"
-                        android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
-                        android:textSize="@dimen/_16ssp"
-                        app:isBold="@{english}" />
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="@dimen/_5sdp">
 
-                    <ImageView
-                        android:id="@+id/ivEnglishTick"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:layout_marginHorizontal="10dp"
-                        android:src="@drawable/ic_tick"
-                        android:visibility="@{english ? View.VISIBLE : View.GONE}" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:clickable="false"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="@string/english"
+                            android:textAllCaps="false"
+                            android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                            android:textSize="18sp"
+                            app:isBold="@{english}" />
 
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/ivEnglishTick"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_marginHorizontal="10dp"
+                            android:src="@drawable/ic_tick"
+                            android:visibility="@{english ? View.VISIBLE : View.GONE}" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/grey_divider" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:id="@+id/flHindi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="@dimen/_5sdp">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_divider" />
 
-                    <Button
+                    <FrameLayout
+                        android:id="@+id/flHindi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:fontFamily="@font/opensans_regular"
-                        android:gravity="center"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:text="@string/hindi"
-                        android:textAllCaps="false"
-                        android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
-                        android:textSize="@dimen/_16ssp"
-                        app:isBold="@{hindi}" />
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="@dimen/_5sdp">
 
-                    <ImageView
-                        android:id="@+id/ivHindiTick"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:layout_marginHorizontal="10dp"
-                        android:src="@drawable/ic_tick"
-                        android:visibility="@{hindi ? View.VISIBLE : View.GONE}" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:clickable="false"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="@string/hindi"
+                            android:textAllCaps="false"
+                            android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                            android:textSize="18sp"
+                            app:isBold="@{hindi}" />
 
-                </FrameLayout>
+                        <ImageView
+                            android:id="@+id/ivHindiTick"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_marginHorizontal="10dp"
+                            android:src="@drawable/ic_tick"
+                            android:visibility="@{hindi ? View.VISIBLE : View.GONE}" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/grey_divider" />
+                    </FrameLayout>
 
-                <FrameLayout
-                    android:id="@+id/flPunjabi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="@dimen/_5sdp">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_divider" />
 
-                    <Button
+                    <FrameLayout
+                        android:id="@+id/flPunjabi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:clickable="false"
-                        android:fontFamily="@font/opensans_regular"
-                        android:gravity="center"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:text="@string/punjabi"
-                        android:textAllCaps="false"
-                        android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
-                        android:textSize="@dimen/_16ssp"
-                        app:isBold="@{punjabi}" />
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="@dimen/_5sdp">
 
-                    <ImageView
-                        android:id="@+id/icPunjabiTick"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:layout_marginHorizontal="10dp"
-                        android:src="@drawable/ic_tick"
-                        android:visibility="@{punjabi ? View.VISIBLE : View.GONE}" />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:clickable="false"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="@string/punjabi"
+                            android:textAllCaps="false"
+                            android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                            android:textSize="18sp"
+                            app:isBold="@{punjabi}" />
 
-                </FrameLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/icPunjabiTick"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_marginHorizontal="10dp"
+                            android:src="@drawable/ic_tick"
+                            android:visibility="@{punjabi ? View.VISIBLE : View.GONE}" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2" />
-
-    </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </FrameLayout>
 
 </layout>

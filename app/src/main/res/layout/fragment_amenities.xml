@@ -81,8 +81,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="5dp"
                 android:visibility="@{!foodAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,7 +106,7 @@
                             android:padding="5dp"
                             android:text="@{foodAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -128,15 +130,14 @@
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
                                 android:textColor="@color/grey"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="italic" />
+                                android:textSize="12sp" />
                         </LinearLayout>
 
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
@@ -149,8 +150,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="5dp"
                 android:visibility="@{!parkingAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -172,7 +175,7 @@
                             android:padding="5dp"
                             android:text="@{parkingAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -197,16 +200,15 @@
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
                                 android:textColor="@color/grey"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="italic" />
+                                android:textSize="12sp" />
 
 
                         </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
@@ -219,8 +221,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="5dp"
                 android:visibility="@{!sleepingAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -242,7 +246,7 @@
                             android:padding="5dp"
                             android:text="@{sleepingAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -267,16 +271,15 @@
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
                                 android:textColor="@color/grey"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="italic" />
+                                android:textSize="12sp" />
 
 
                         </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
@@ -289,8 +292,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="5dp"
                 android:visibility="@{!washroomAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -312,7 +317,7 @@
                             android:padding="5dp"
                             android:text="@{washroomAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -337,15 +342,14 @@
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
                                 android:textColor="@color/grey"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="italic" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
@@ -358,8 +362,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="5dp"
                 android:visibility="@{!securityAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -381,7 +387,7 @@
                             android:padding="5dp"
                             android:text="@{securityAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -406,16 +412,15 @@
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
                                 android:textColor="@color/grey"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="italic" />
+                                android:textSize="12sp" />
 
 
                         </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
@@ -428,8 +433,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="5dp"
                 android:visibility="@{!lightAmenities.shouldShow()  ? View.GONE : View.VISIBLE}"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -451,7 +458,7 @@
                             android:padding="5dp"
                             android:text="@{lightAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -476,16 +483,15 @@
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
                                 android:textColor="@color/grey"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="italic" />
+                                android:textSize="12sp" />
 
 
                         </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
@@ -498,8 +504,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="5dp"
                 android:visibility="@{!otherAmenities.shouldShow() ? View.GONE : View.VISIBLE}"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -521,7 +529,7 @@
                             android:padding="5dp"
                             android:text="@{otherAmenities.getNameByLang(context)}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -546,16 +554,15 @@
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
                                 android:textColor="@color/grey"
-                                android:textSize="@dimen/_14ssp"
-                                android:textStyle="italic" />
+                                android:textSize="12sp" />
 
 
                         </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
@@ -571,7 +578,7 @@
                 android:text="@{userModel.isExecutive() ? @string/next : @string/submit_for_approval}"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="18sp"
                 android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -586,7 +593,7 @@
                 android:text="@string/save_as_draft"
                 android:textAllCaps="false"
                 android:textColor="@color/colorRed"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="18sp"
                 android:visibility="@{(viewOnly || isUpdate) ? View.GONE : View.VISIBLE}" />
 
         </LinearLayout>

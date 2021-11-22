@@ -27,4 +27,6 @@
     <color name="btn_stroke" tools:override="true">#A2A2A2</color>
     <color name="divider_dcdcdc" tools:override="true">#DCDCDC</color>
     <color name="text_privacy_policy" tools:override="true">#A2A2A2</color>
+    <color name="text_tab_secondary" tools:override="true">#AAAAAA</color>
+    <color name="text_input" tools:override="true">#636363</color>
 </resources>

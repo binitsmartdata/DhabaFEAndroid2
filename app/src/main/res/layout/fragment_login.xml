@@ -63,7 +63,7 @@
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/login"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_24ssp" />
+                android:textSize="26sp" />
 
             <LinearLayout
                 android:id="@+id/llExecutiveLogin"
@@ -79,7 +79,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/email">
+                    android:hint="@string/email"
+                    app:boxStrokeWidth="0.7dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
@@ -89,7 +90,7 @@
                         android:inputType="textEmailAddress"
                         android:text="@={vm.emailObservable}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +102,8 @@
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/password">
+                    android:hint="@string/password"
+                    app:boxStrokeWidth="0.7dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edPwd"
@@ -111,7 +113,7 @@
                         android:inputType="textPassword"
                         android:text="@={vm.passwordObservable}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -143,13 +145,13 @@
                         android:gravity="center"
                         app:ccp_defaultCode="91"
                         app:ccp_hideNameCode="true"
-                        app:ccp_textSize="@dimen/_12ssp" />
+                        app:ccp_textSize="16sp" />
 
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey_stroke" />
+                        android:background="@color/grey" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edPhoneNumber"
@@ -166,7 +168,7 @@
                         android:text="@={vm.mobileObservable}"
                         android:textColor="@color/black"
                         android:textColorHint="@color/grey"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -187,7 +189,7 @@
                     android:text="@string/login"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}" />
 
                 <Button
@@ -201,7 +203,7 @@
                     android:text="@string/continue_text"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
 
                 <Button
@@ -214,7 +216,7 @@
                     android:text="@string/sign_up"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
 
             </LinearLayout>
@@ -238,7 +240,7 @@
             android:text="@{isOwnerLogin ? context.getString(R.string.login_as_field_executive) : context.getString(R.string.login_as_dhaba_owner)}"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="@dimen/_16ssp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 </layout>

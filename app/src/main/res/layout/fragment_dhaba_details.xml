@@ -53,6 +53,7 @@
                     android:id="@+id/dhabaNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/dhaba_name"
@@ -68,7 +69,7 @@
                         android:inputType="text"
                         android:text="@={viewModel.dhabaModel.name}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +96,7 @@
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/fetch_location"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvMapPicker"
@@ -107,7 +108,7 @@
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/pick_from_map"
                         android:textColor="@color/colorRed"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -126,6 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
+                        app:boxStrokeWidth="0.7dp"
                         android:hint="@string/latitude">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -136,7 +138,7 @@
                             android:maxLength="11"
                             android:text="@={viewModel.dhabaModel.latitude}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,6 +146,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        app:boxStrokeWidth="0.7dp"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
@@ -157,7 +160,7 @@
                             android:maxLength="11"
                             android:text="@={viewModel.dhabaModel.longitude}"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -169,6 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    app:boxStrokeWidth="0.7dp"
                     android:hint="@string/dhaba_address"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +186,7 @@
                         android:inputType="text|textMultiLine"
                         android:text="@={viewModel.dhabaModel.address}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -192,6 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
+                    app:boxStrokeWidth="0.7dp"
                     android:hint="@string/landmark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +210,7 @@
                         android:inputType="text"
                         android:text="@={viewModel.dhabaModel.landmark}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -214,6 +219,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/area"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -228,7 +234,7 @@
                         android:inputType="text"
                         android:text="@={viewModel.dhabaModel.area}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -253,7 +259,7 @@
                         android:hint="@string/highway_number"
                         android:text="@={viewModel.dhabaModel.highway}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/spnrImgDropdown"
                         app:layout_constraintStart_toStartOf="parent"
@@ -382,6 +388,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0.7dp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/pin_code"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -397,7 +404,7 @@
                         android:maxLength="6"
                         android:text="@={viewModel.dhabaModel.pincode}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -558,7 +565,7 @@
                                 android:gravity="center"
                                 android:text="@string/add_dhaba_photos"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_12ssp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
@@ -594,7 +601,7 @@
                                 android:gravity="center"
                                 android:text="@string/upload_dhaba_video"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_12ssp"
+                                android:textSize="12sp"
                                 android:visibility="@{loadingVideo ? View.INVISIBLE : View.VISIBLE}" />
                         </LinearLayout>
 
@@ -670,7 +677,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_dhaba_pictures"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -689,7 +696,7 @@
                         android:layout_marginRight="@dimen/_10sdp"
                         android:text="*"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_20ssp" />
+                        android:textSize="20sp" />
 
                 </FrameLayout>
 
@@ -705,7 +712,7 @@
                     android:text="@{isUpdate ? context.getString(R.string.update) :context.getString(R.string.next)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -720,7 +727,7 @@
                     android:fontFamily="@font/opensans_bold"
                     android:text="@string/save_as_draft"
                     android:textColor="@color/colorRed"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="18sp"
                     android:visibility="@{(isUpdate || viewOnly) ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

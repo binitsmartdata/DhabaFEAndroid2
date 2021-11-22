@@ -560,5 +560,6 @@
     <string name="confirm_save_dhaba_details">Do you want to save dhaba details?</string>
     <string name="sent_for_spproval">Sent for approval successfully</string>
     <string name="location_settings">Location Settings</string>
+    <string name="no_dhaba_found">No Dhaba Found</string>
 
 </resources>

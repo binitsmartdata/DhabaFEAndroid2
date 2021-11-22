@@ -161,9 +161,11 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
                 hideProgressDialog()
             }
         })
+/*
         binding.btnAddDhaba.setOnClickListener {
             mListener?.openAddDhabaActivity()
         }
+*/
         viewModel.progressObserver.observe(this, Observer {
             binding.swipeRefreshLayout.isRefreshing = it
         })

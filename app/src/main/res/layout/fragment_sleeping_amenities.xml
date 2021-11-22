@@ -49,7 +49,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/bed_charpai"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgBedCharpai"
@@ -90,7 +90,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/number_of_beds"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgNoOfCharpai"
@@ -157,7 +157,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_sleeping_amenities_photo"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -183,7 +183,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/fan"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgFan"
@@ -222,7 +222,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/cooler"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgCooler"
@@ -261,7 +261,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/sleeping"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgExposed"
@@ -311,7 +311,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/open"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgOpen"
@@ -350,7 +350,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/hot_water_bag"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgHotColdWater"
@@ -385,6 +385,7 @@
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 

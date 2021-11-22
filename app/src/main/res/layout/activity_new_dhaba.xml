@@ -35,15 +35,24 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardParking"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_3sdp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/llSteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:visibility="@{isUpdate ? View.GONE : View.VISIBLE}">
 
@@ -152,7 +161,7 @@
                         android:singleLine="true"
                         android:text="@string/owner_details"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="11sp" />
 
                 </LinearLayout>
 
@@ -173,7 +182,7 @@
                         android:singleLine="true"
                         android:text="@string/dhaba_details"
                         android:textColor="@{(stepnumber == 2 ||stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="11sp" />
 
                 </LinearLayout>
 
@@ -194,7 +203,7 @@
                         android:singleLine="true"
                         android:text="@string/amenities"
                         android:textColor="@{(stepnumber == 3 || stepnumber == 4) ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="11sp" />
 
                 </LinearLayout>
 
@@ -215,44 +224,57 @@
                         android:singleLine="true"
                         android:text="@string/bank_details"
                         android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.grey)}"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textSize="11sp" />
 
                 </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}"
-            app:tabMode="scrollable"
-            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-            app:tabTextColor="@color/tabs_text_selector">
+            android:visibility="@{isUpdate ? View.VISIBLE : View.GONE}">
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/owner_details" />
+                android:background="@color/white"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@color/colorPrimary"
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                app:tabTextColor="@color/text_tab_secondary">
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dhaba_details" />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/owner_details" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/amenities" />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dhaba_details" />
 
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bank_details" />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/amenities" />
 
-        </com.google.android.material.tabs.TabLayout>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bank_details" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="bottom"
+                android:background="@color/grey_stroke" />
+
+        </FrameLayout>
 
         <com.transport.mall.utils.custom.CustomViewPager
             android:id="@+id/viewPager"

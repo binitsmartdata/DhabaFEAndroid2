@@ -50,7 +50,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/tower_bright_light"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgTower"
@@ -106,7 +106,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_photo"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -132,7 +132,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/bulb_light"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgBulb"
@@ -188,7 +188,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_photo"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -215,7 +215,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/_24x7_back_up_of_electricity"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgElectricity"
@@ -251,6 +251,7 @@
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 

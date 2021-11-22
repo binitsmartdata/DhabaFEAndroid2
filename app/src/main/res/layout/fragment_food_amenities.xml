@@ -53,7 +53,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/food_license"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgFoodLicense"
@@ -110,7 +110,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_food_license_photo"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -137,7 +137,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/food_for_1_cost"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgFoodAt100"
@@ -198,7 +198,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/ro_clean_water"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgRoWater"
@@ -239,7 +239,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/food_type"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgFoodType"
@@ -300,7 +300,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/upload_food_photos"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -320,6 +320,7 @@
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:textSize="18sp"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 
             </LinearLayout>

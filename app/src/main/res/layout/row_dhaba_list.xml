@@ -57,6 +57,7 @@
             android:id="@+id/dhabaContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -67,8 +68,8 @@
                 <ImageView
                     loadImage="@{model.images}"
                     placeholder="@{R.drawable.ic_image_placeholder}"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
                     android:scaleType="centerCrop" />
 
                 <TextView
@@ -81,7 +82,7 @@
                     android:paddingVertical="@dimen/_3sdp"
                     android:text="@{model.status.toUpperCase()}"
                     android:textColor="@{(model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) || model.status.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? context.getColor(R.color.gold) :model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
-                    android:textSize="@dimen/_6ssp"
+                    android:textSize="13sp"
                     android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"
                     app:backgroundResource="@{(model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) || model.status.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? R.drawable.bg_pending_dhaba_status : model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? R.drawable.bg_active_dhaba_status :  R.drawable.bg_inactive_dhaba_status}" />
 
@@ -92,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_5sdp">
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_5sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvMenuTitle"
@@ -103,7 +105,7 @@
                     android:orientation="vertical"
                     android:text="@{model.name}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13ssp"
+                    android:textSize="15sp"
                     tools:text="Pehalwan Dhaba" />
 
                 <TextView
@@ -128,7 +130,7 @@
                     android:orientation="vertical"
                     android:text="@{model.address}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="13sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -143,7 +145,7 @@
                         android:orientation="vertical"
                         android:text="@{model.highway}"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_10ssp" />
+                        android:textSize="13sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -204,7 +206,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_7sdp"
                     android:src="@drawable/ic_edit" />
 
                 <ImageView
@@ -212,7 +214,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_8sdp"
                     android:src="@drawable/ic_delete" />
 
                 <ImageView
@@ -220,6 +222,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
+                    android:padding="@dimen/_3sdp"
                     android:src="@drawable/ic_marker" />
 
                 <ImageView
@@ -227,7 +230,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_8sdp"
                     android:src="@drawable/ic_eye" />
 
             </LinearLayout>
@@ -264,14 +267,16 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/owner"
-                        android:textColor="@color/grey" />
+                        android:textColor="@color/grey"
+                        android:textSize="11sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@{owner.ownerName}"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -301,14 +306,16 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/assigned_to"
-                        android:textColor="@color/grey" />
+                        android:textColor="@color/grey"
+                        android:textSize="11sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@{user.ownerName}"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -367,6 +374,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/manager"
                         android:textColor="@color/grey"
+                        android:textSize="11sp"
                         android:visibility="@{manager==null ? View.GONE : View.VISIBLE}" />
 
                     <TextView
@@ -374,7 +382,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@{manager==null ? context.getString(R.string.assign_manager) : manager.ownerName}"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
@@ -398,6 +407,7 @@
                     android:fontFamily="@font/opensans_regular"
                     android:text="@string/verified"
                     android:textColor="@color/black"
+                    android:textSize="11sp"
                     android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -411,6 +421,7 @@
                     android:paddingVertical="@dimen/_2sdp"
                     android:text="@string/pay_now"
                     android:textColor="@color/white"
+                    android:textSize="13sp"
                     android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -423,6 +434,7 @@
                     android:paddingVertical="@dimen/_2sdp"
                     android:text="@string/send_for_approval"
                     android:textColor="@color/black"
+                    android:textSize="13sp"
                     android:visibility="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? View.VISIBLE : View.GONE}" />
 
             </LinearLayout>

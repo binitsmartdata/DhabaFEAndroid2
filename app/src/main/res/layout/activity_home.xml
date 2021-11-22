@@ -115,10 +115,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sideMenuRecyclerV"
-                itemDecor="@{true}"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="@dimen/_10sdp"
                 android:layout_weight="1"
                 app:layout="@{R.layout.row_side_menu}"
                 app:layout_constraintBottom_toBottomOf="parent"

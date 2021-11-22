@@ -54,7 +54,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/day_guard"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgDayGuard"
@@ -115,7 +115,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/night_guard"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgNightGuard"
@@ -176,7 +176,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/police_verification"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rbPoliceVerification"
@@ -235,7 +235,7 @@
                             android:gravity="center"
                             android:text="@string/submit_police_verification_document"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -262,7 +262,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/indoor_cameras"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgIndoorCameraYesNo"
@@ -356,7 +356,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_photos"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -388,7 +388,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:text="@string/outdoor_cameras"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14ssp" />
+                        android:textSize="16sp" />
 
                     <RadioGroup
                         android:id="@+id/rgOutdoorCameraYesNo"
@@ -480,7 +480,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/upload_photos"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -507,6 +507,7 @@
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 
