@@ -561,5 +561,7 @@
     <string name="sent_for_spproval">Sent for approval successfully</string>
     <string name="location_settings">Location Settings</string>
     <string name="no_dhaba_found">No Dhaba Found</string>
+    <string name="dhaba_added_succesfully">Dhaba Added Succesfully</string>
+    <string name="this_is_the_id_number_of_added_dhaba">This is the id number of added dhaba.</string>
 
 </resources>

@@ -62,7 +62,7 @@
                             android:fontFamily="@font/opensans_regular"
                             android:text="@string/request_for_call"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_16ssp"
+                            android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="@+id/icon1"
                             app:layout_constraintStart_toEndOf="@+id/icon1"
                             app:layout_constraintTop_toTopOf="@+id/icon1" />

@@ -49,6 +49,7 @@
                 imageResource="@{data.selected ? data.hilightedIcon : data.icon}"
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:padding="@dimen/_7sdp" />
 
             <androidx.appcompat.widget.AppCompatTextView

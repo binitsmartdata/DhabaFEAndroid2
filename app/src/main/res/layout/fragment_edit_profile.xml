@@ -48,10 +48,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/opensans_regular"
             android:hint="@string/name"
-            app:boxStrokeWidth="0.7dp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:theme="@style/TextLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameImg">
@@ -66,7 +66,7 @@
                 android:padding="@dimen/_10sdp"
                 android:text="@={userModel.ownerName}"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -74,10 +74,10 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/opensans_regular"
-            app:boxStrokeWidth="0.7dp"
-            android:hint="@string/email"
             android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:hint="@string/email"
+            android:theme="@style/TextLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilName">
@@ -92,7 +92,7 @@
                 android:padding="@dimen/_10sdp"
                 android:text="@={userModel.email}"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -114,7 +114,7 @@
                 android:gravity="center"
                 app:ccp_defaultCode="91"
                 app:ccp_hideNameCode="true"
-                app:ccp_textSize="@dimen/_12ssp" />
+                app:ccp_textSize="16sp" />
 
             <View
                 android:layout_width="0.5dp"
@@ -126,7 +126,6 @@
                 android:id="@+id/edPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_2sdp"
                 android:layout_marginStart="@dimen/_4sdp"
                 android:background="@android:color/transparent"
                 android:hint="@string/enter_mobile_number_mandatory"
@@ -136,7 +135,7 @@
                 android:text="@={userModel.mobile}"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -150,7 +149,7 @@
             android:text="@string/update_profile"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/_16ssp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editlayout" />

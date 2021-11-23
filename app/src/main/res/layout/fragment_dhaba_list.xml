@@ -40,10 +40,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/opensans_regular"
                 android:background="@android:color/transparent"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="5dp"
+                android:fontFamily="@font/opensans_regular"
                 android:hint="@string/search_dhaba"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
@@ -118,25 +118,25 @@
                         android:gravity="center"
                         android:text="@string/no_dhaba_found"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_16ssp" />
+                        android:textSize="18sp" />
 
-<!--
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnAddDhaba"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_10sdp"
-                        android:background="@drawable/btn_red_stroke"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:gravity="center"
-                        android:paddingHorizontal="@dimen/_20sdp"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:text="@string/add_new_dhaba"
-                        android:textAllCaps="false"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_12ssp"
-                        android:visibility="@{user.isManager() ? View.GONE : View.VISIBLE}" />
--->
+                    <!--
+                                        <androidx.appcompat.widget.AppCompatButton
+                                            android:id="@+id/btnAddDhaba"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginVertical="@dimen/_10sdp"
+                                            android:background="@drawable/btn_red_stroke"
+                                            android:fontFamily="@font/opensans_semibold"
+                                            android:gravity="center"
+                                            android:paddingHorizontal="@dimen/_20sdp"
+                                            android:paddingVertical="@dimen/_10sdp"
+                                            android:text="@string/add_new_dhaba"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/colorPrimary"
+                                            android:textSize="18sp"
+                                            android:visibility="@{user.isManager() ? View.GONE : View.VISIBLE}" />
+                    -->
 
                 </LinearLayout>
             </FrameLayout>

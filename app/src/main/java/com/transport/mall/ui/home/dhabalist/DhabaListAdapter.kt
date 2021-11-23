@@ -102,7 +102,13 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
-            DhabaModel.STATUS_ACTIVE, DhabaModel.STATUS_INACTIVE, "" -> {
+            DhabaModel.STATUS_ACTIVE -> {
+                myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
+                myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
+                myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
+            }
+            DhabaModel.STATUS_INACTIVE, "" -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.GONE
                 myViewHolderG?.binding?.ivLocation?.visibility = View.GONE

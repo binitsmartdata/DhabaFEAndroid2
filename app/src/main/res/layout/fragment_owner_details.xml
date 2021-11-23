@@ -76,7 +76,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/owner_name"
-                    app:boxStrokeWidth="0.7dp"
+                    android:theme="@style/TextLabel"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llAddExisting">
@@ -125,7 +126,6 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_2sdp"
                         android:layout_marginStart="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:hint="@string/enter_mobile_number_mandatory"
@@ -143,7 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    app:boxStrokeWidth="0.7dp"
+                    android:theme="@style/TextLabel"
                     android:hint="@string/email"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/address"
-                    app:boxStrokeWidth="0.7dp"
+                    android:theme="@style/TextLabel"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -230,7 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    app:boxStrokeWidth="0.7dp"
+                    android:theme="@style/TextLabel"
                     android:hint="@string/pan_number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -254,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/aadhar_card_number"
-                    app:boxStrokeWidth="0.7dp"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/panNoTil">
@@ -277,7 +277,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/alternative_contact_person"
-                    app:boxStrokeWidth="0.7dp"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/aadharCardTil">
@@ -325,7 +325,6 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_2sdp"
                         android:layout_marginStart="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:hint="@string/alternative_mobile_number"
@@ -343,7 +342,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_stroke"
+                    android:background="@drawable/grey_dark_stroke"
                     android:onClick="@{()->spnrAltContactDesignation.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
@@ -414,7 +413,7 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:text="*"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_20ssp" />
+                        android:textSize="28sp" />
 
                 </FrameLayout>
 
@@ -503,7 +502,7 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:text="*"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/_20ssp" />
+                            android:textSize="28sp" />
 
                     </FrameLayout>
 

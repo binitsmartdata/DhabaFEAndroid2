@@ -13,8 +13,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <LinearLayout
             android:id="@+id/llMainData"
@@ -35,7 +35,7 @@
                 android:inputType="text"
                 android:padding="@dimen/_5sdp"
                 android:singleLine="true"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/ll_top"
@@ -54,7 +54,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/add_new_offers"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textSize="16sp" />
 
                 <!--                <Spinner-->
                 <!--                    android:id="@+id/s_view"-->
@@ -79,7 +79,7 @@
                         android:layout_marginTop="@dimen/_8sdp"
                         android:text="@string/active_offers"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -145,6 +145,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/ll_no_data"
             android:layout_width="wrap_content"
@@ -169,7 +170,7 @@
                 android:gravity="center"
                 android:text="@string/no_offers"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </FrameLayout>

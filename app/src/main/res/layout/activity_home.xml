@@ -147,7 +147,7 @@
                     android:padding="@dimen/_10sdp"
                     android:text="@string/privacy_policy"
                     android:textColor="@color/text_privacy_policy"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tvTermsConditions"
@@ -158,7 +158,7 @@
                     android:padding="@dimen/_10sdp"
                     android:text="@string/terms_and_conditions"
                     android:textColor="@color/text_privacy_policy"
-                    android:textSize="@dimen/_10ssp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 

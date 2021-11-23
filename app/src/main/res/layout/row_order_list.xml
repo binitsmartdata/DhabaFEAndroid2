@@ -48,7 +48,7 @@
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:text="@{data.name}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="16sp"
                     tools:text="Name" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -60,7 +60,7 @@
                     android:layout_marginTop="@dimen/_4sdp"
                     android:text="@{data.date}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="14sp"
                     tools:text="Date" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -72,7 +72,7 @@
                     android:layout_marginTop="@dimen/_4sdp"
                     android:text="@{data.status}"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="14sp"
                     tools:text="Status" />
             </LinearLayout>
         </LinearLayout>

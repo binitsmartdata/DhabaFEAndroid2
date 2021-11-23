@@ -484,4 +484,6 @@
     <string name="sent_for_spproval">अनुमोदन के लिए सफलतापूर्वक भेजा गया</string>
     <string name="location_settings">स्थान सेटिंग</string>
     <string name="no_dhaba_found">कोई ढाबा नहीं मिला</string>
+    <string name="dhaba_added_succesfully">ढाबा सफलतापूर्वक जोड़ा गया</string>
+    <string name="this_is_the_id_number_of_added_dhaba">यह जोड़े गए ढाबे का आईडी नंबर है।</string>
 </resources>

@@ -52,11 +52,6 @@ class DialogAddDhabaSuccess constructor(
             callBack.onResponse(SELECTED_ACTION.VIEW_DHABA)
             dismiss()
         }
-        binding.ivTick.visibility = View.VISIBLE
-        Handler().postDelayed(
-            Runnable { (binding.ivTick.getDrawable() as Animatable).start() },
-            300
-        )
 
         binding.tvDhabaId.setOnClickListener {
             val clipboard: ClipboardManager? =

@@ -49,17 +49,12 @@
 
             <include layout="@layout/layout_app_logo" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_36sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/login"
                 android:textColor="@color/black"
@@ -80,7 +75,7 @@
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/email"
-                    app:boxStrokeWidth="0.7dp">
+                    android:theme="@style/TextLabel">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
@@ -103,7 +98,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/password"
-                    app:boxStrokeWidth="0.7dp">
+                    android:theme="@style/TextLabel">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edPwd"
@@ -157,7 +152,6 @@
                         android:id="@+id/edPhoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_2sdp"
                         android:layout_marginStart="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/opensans_regular"

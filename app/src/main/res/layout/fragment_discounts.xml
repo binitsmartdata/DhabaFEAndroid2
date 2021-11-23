@@ -35,7 +35,7 @@
                 android:inputType="text"
                 android:padding="@dimen/_5sdp"
                 android:singleLine="true"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/ll_top"
@@ -145,7 +145,7 @@
                 android:gravity="center"
                 android:text="@string/no_discount"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
     </FrameLayout>

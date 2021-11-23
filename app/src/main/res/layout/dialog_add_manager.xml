@@ -16,12 +16,11 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_10sdp">
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_round_corners"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/_15sdp"
@@ -34,7 +33,7 @@
                 android:fontFamily="@font/opensans_semibold"
                 android:text="@string/assign_manager"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -43,7 +42,7 @@
                 android:fontFamily="@font/opensans_semibold"
                 android:text="@{dhaba.name}"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -51,7 +50,7 @@
                 android:fontFamily="@font/opensans_semibold"
                 android:text="@{dhaba.address}"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="13sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAddExisting"
@@ -59,31 +58,32 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/default_btn_selector"
                 android:drawableStart="@drawable/ic_add_dhaba_hilighted"
-                android:drawablePadding="@dimen/_5sdp"
+                android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_semibold"
+                android:gravity="center_vertical"
                 android:paddingVertical="@dimen/_10sdp"
                 android:text="@string/select_existing_manager"
                 android:textColor="@color/colorRed"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxStrokeWidth="0.7dp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
-                android:hint="@string/manager_name">
+                android:hint="@string/manager_name"
+                android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edMgrName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +103,7 @@
                     android:gravity="center"
                     app:ccp_defaultCode="91"
                     app:ccp_hideNameCode="true"
-                    app:ccp_textSize="@dimen/_12ssp" />
+                    app:ccp_textSize="16sp" />
 
                 <View
                     android:layout_width="0.5dp"
@@ -115,7 +115,6 @@
                     android:id="@+id/edPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_2sdp"
                     android:layout_marginStart="@dimen/_4sdp"
                     android:background="@android:color/transparent"
                     android:hint="@string/_10_digit_mobile_number"
@@ -124,7 +123,7 @@
                     android:padding="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
-                    android:textSize="@dimen/_13ssp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
 
@@ -134,8 +133,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
-                app:boxStrokeWidth="0.7dp"
-                android:hint="@string/email">
+                android:hint="@string/email"
+                android:theme="@style/TextLabel">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edMgrEmail"
@@ -144,7 +143,7 @@
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -157,7 +156,8 @@
                 android:background="@drawable/primary_color_btn_selector"
                 android:text="@string/assign"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

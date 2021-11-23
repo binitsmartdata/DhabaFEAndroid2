@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="com.transport.mall.R" />
 
         <import type="android.view.View" />
@@ -34,19 +35,19 @@
                 android:fontFamily="@font/opensans_semibold"
                 android:text="@string/add_customer"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_customer_name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                app:boxStrokeWidth="0.7dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/customer_name"
+                android:theme="@style/TextLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title">
@@ -58,7 +59,7 @@
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -66,9 +67,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxStrokeWidth="0.7dp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/customer_phone_number"
+                android:theme="@style/TextLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_customer_name">
@@ -80,7 +81,7 @@
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="phone"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -95,7 +96,7 @@
                 android:text="@string/send_invitation"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_16ssp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_customer_contact" />

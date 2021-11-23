@@ -49,7 +49,7 @@
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:text="@{data.name}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="16sp"
                     tools:text="Name" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -60,7 +60,7 @@
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:text="@{data.contact}"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="16sp"
                     tools:text="Contact Number" />
             </LinearLayout>
         </LinearLayout>

@@ -9,7 +9,8 @@ data class AmenityModel(
     val description: String? = "",
     val isActive: Boolean = true,
     val isDeleted: Boolean = false,
-    val _id: String? = ""
+    val _id: String? = "",
+    val slug: String? = ""
 ) : Serializable {
     override fun toString(): String {
         return name?.en.toString()
@@ -35,40 +36,40 @@ data class AmenityModel(
     }
 
     fun isFoodAmenities(): Boolean {
-        return _id.equals(FOOD_AMENITIES_ID)
+        return slug.equals(FOOD_AMENITIES_SLUG)
     }
 
     fun isParkingAmenities(): Boolean {
-        return _id.equals(PARKING_AMENITIES_ID)
+        return slug.equals(PARKING_AMENITIES_SLUG)
     }
 
     fun isSleepingAmenities(): Boolean {
-        return _id.equals(SLEEPING_AMENITIES_ID)
+        return slug.equals(SLEEPING_AMENITIES_SLUG)
     }
 
     fun isWashroomAmenities(): Boolean {
-        return _id.equals(WASHROOM_AMENITIES_ID)
+        return slug.equals(WASHROOM_AMENITIES_SLUG)
     }
 
     fun isSecurityAmenities(): Boolean {
-        return _id.equals(SECURITY_AMENITIES_ID)
+        return slug.equals(SECURITY_AMENITIES_SLUG)
     }
 
     fun isLightAmenities(): Boolean {
-        return _id.equals(LIGHT_AMENITIES_ID)
+        return slug.equals(LIGHT_AMENITIES_SLUG)
     }
 
     fun isOtherAmenities(): Boolean {
-        return _id.equals(OTHER_AMENITIES_ID)
+        return slug.equals(OTHER_AMENITIES_SLUG)
     }
 
     companion object {
-        val FOOD_AMENITIES_ID = "618dfdaba537221c4171fe36"
-        val PARKING_AMENITIES_ID = "618dfc97a975601bb31691a7"
-        val SLEEPING_AMENITIES_ID = "618dfe17a537221c4171fe39"
-        val WASHROOM_AMENITIES_ID = "618dfe2fa537221c4171fe3a"
-        val SECURITY_AMENITIES_ID = "618e32aba537221c4171fe3b"
-        val LIGHT_AMENITIES_ID = "618dfddba537221c4171fe37"
-        val OTHER_AMENITIES_ID = "618dfdf2a537221c4171fe38"
+        val FOOD_AMENITIES_SLUG = "food-amenities"
+        val PARKING_AMENITIES_SLUG = "parking-amenities"
+        val SLEEPING_AMENITIES_SLUG = "sleeping-amenities"
+        val WASHROOM_AMENITIES_SLUG = "washroom-amenities"
+        val SECURITY_AMENITIES_SLUG = "security-amenities"
+        val LIGHT_AMENITIES_SLUG = "light-amenities"
+        val OTHER_AMENITIES_SLUG = "other-amenities"
     }
 }

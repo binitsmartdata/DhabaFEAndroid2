@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -17,9 +18,11 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:padding="@dimen/_5sdp">
 
         <LinearLayout
+            android:id="@+id/profileView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
             android:gravity="center"
@@ -45,20 +48,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_10sdp"
                     android:text="@{userModel.ownerName}"
                     android:textColor="@color/black"
                     android:textSize="19sp"
+                    app:drawableEndCompat="@drawable/ic_edit_black"
                     tools:text="Profile Name" />
 
-                <ImageView
-                    android:id="@+id/ivEdit"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/default_btn_selector"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_edit" />
-
             </LinearLayout>
+
         </LinearLayout>
 
     </FrameLayout>

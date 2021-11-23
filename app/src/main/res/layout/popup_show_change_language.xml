@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionVM" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+
+        <variable
+            name="english"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="hindi"
+            type="java.lang.Boolean" />
+
+        <variable
+            name="punjabi"
+            type="java.lang.Boolean" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_changeLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="2">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_language" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="sans-serif-black"
+                    android:padding="10dp"
+                    android:text="@string/change_language"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_divider" />
+
+            <TextView
+                android:id="@+id/tvEnglish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{english ? context.getColor(R.color.color_selected_language) :  context.getColor(R.color.white)}"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="10dp"
+                android:text="@string/english"
+                android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvHindi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{hindi ? context.getColor(R.color.color_selected_language) :  context.getColor(R.color.white)}"
+                android:fontFamily="@font/opensans_regular"
+                android:padding="10dp"
+                android:text="@string/hindi"
+                android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvPunjabi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@{punjabi ? context.getColor(R.color.color_selected_language) :  context.getColor(R.color.white)}"
+                android:fontFamily="@font/opensans_regular"
+                android:padding="10dp"
+                android:text="@string/punjabi"
+                android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

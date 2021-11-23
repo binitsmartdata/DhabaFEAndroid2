@@ -54,7 +54,7 @@
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/no_orders"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

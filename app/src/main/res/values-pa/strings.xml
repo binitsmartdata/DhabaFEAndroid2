@@ -477,4 +477,6 @@
     <string name="sent_for_spproval">ਸਫਲਤਾਪੂਰਵਕ ਮਨਜ਼ੂਰੀ ਲਈ ਭੇਜਿਆ ਗਿਆ</string>
     <string name="location_settings">ਸਥਾਨ ਸੈਟਿੰਗਾਂ</string>
     <string name="no_dhaba_found">ਕੋਈ ਢਾਬਾ ਨਹੀਂ ਮਿਲਿਆ</string>
+    <string name="dhaba_added_succesfully">ਢਾਬਾ ਸਫਲਤਾਪੂਰਵਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ</string>
+    <string name="this_is_the_id_number_of_added_dhaba">ਇਹ ਐਡ ਕੀਤੇ ਢਾਬੇ ਦਾ ਆਈਡੀ ਨੰਬਰ ਹੈ।</string>
 </resources>

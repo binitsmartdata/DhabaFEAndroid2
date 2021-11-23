@@ -35,7 +35,7 @@
             android:fontFamily="@font/opensans_semibold"
             android:text="@string/onboarded_by"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="16sp"
             android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1" />
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/name"
             android:layout_marginTop="@dimen/_10sdp"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/onboardedByText">
@@ -59,7 +59,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/onboarding_date"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,7 +103,7 @@
             android:fontFamily="@font/opensans_semibold"
             android:text="@string/sales_executive"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="16sp"
             android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -113,7 +113,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:hint="@string/name"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +136,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:hint="@string/phone_number"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +150,7 @@
                 android:inputType="phone"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/area_head"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +173,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,7 +194,7 @@
             android:fontFamily="@font/opensans_semibold"
             android:text="@string/area_head"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="16sp"
             android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -205,7 +205,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -218,7 +218,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -228,7 +228,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phone_number"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -241,7 +241,7 @@
                 android:inputType="phone"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -250,7 +250,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:hint="@string/head"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -264,7 +264,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -285,7 +285,7 @@
             android:fontFamily="@font/opensans_semibold"
             android:text="@string/bank_details"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="16sp"
             android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider4" />
@@ -296,7 +296,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/bank"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -309,7 +309,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -319,7 +319,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/gst_number"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -332,7 +332,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -343,7 +343,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/ifsc_code"
             android:layout_marginTop="@dimen/_10sdp"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/gstNumberTil">
@@ -355,7 +355,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -366,7 +366,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/account_holder_name"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -379,7 +379,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -389,7 +389,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/pan_number"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -402,7 +402,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -432,7 +432,7 @@
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/upload_pan_photo"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -466,7 +466,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -502,7 +502,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/choose_months"
             android:layout_marginTop="@dimen/_10sdp"
-            app:boxStrokeWidth="0.7dp"
+            android:theme="@style/TextLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/blockingSystemLayout">
@@ -514,7 +514,7 @@
                 android:inputType="text"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -538,7 +538,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp" />
+                android:textSize="16sp" />
 
             <RadioGroup
                 android:layout_width="match_parent"
