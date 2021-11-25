@@ -1,12 +1,12 @@
 package com.transport.mall.ui.addnewdhaba.step1
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.telephony.PhoneNumberFormattingTextWatcher
-import android.view.View
-import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -16,6 +16,7 @@ import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.databinding.FragmentOwnerDetailsBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.UserModel
+import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.customdialogs.DialogOwnerSelection
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
@@ -188,30 +189,15 @@ class OwnerDetailsFragment :
         }
 
         // SET ITEM SELECTED LISTENER ON ALTERNATIVE CONTACT PERSON DESIGNATION
-        val menuArray = resources.getStringArray(R.array.alternative_contact_designation)
-        binding.spnrAltContactDesignation.setOnItemSelectedListener(object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.ownerModel.alternateDesignation = if (p2 == 0) "" else menuArray[p2]
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-        })
-
-        //set existing value on ALTERNATIVE CONTACT PERSON DESIGNATION spinner
-        viewModel.ownerModel.alternateDesignation?.let {
-            if (it.isNotEmpty()) {
-                var index = 0
-                for (i in menuArray) {
-                    if (i.equals(it, true)) {
-                        binding.spnrAltContactDesignation.setSelection(index)
-                        break
-                    }
-                    index += 1
-                }
-            }
+        val menuArray2 = resources.getStringArray(R.array.alternative_contact_designation)
+        var designationAdapter = ArrayAdapter(
+            activity as Context,
+            android.R.layout.simple_list_item_1, menuArray2
+        )
+        binding.edSelectDesignation.setOnClickListener {
+            DialogDropdownOptions(getmContext(), getString(R.string.alternative_contact_designation), designationAdapter, {
+                viewModel.ownerModel.alternateDesignation = menuArray2[it]
+            }).show()
         }
         setRxBusListener()
     }

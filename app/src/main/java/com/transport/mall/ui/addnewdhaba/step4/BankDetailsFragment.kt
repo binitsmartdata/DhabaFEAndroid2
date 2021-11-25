@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +21,7 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
+import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -46,7 +46,7 @@ class BankDetailsFragment :
 
     var mListener: AddDhabaListener? = null
     var bankList: ArrayList<BankNamesModel> = ArrayList()
-    var banksAdapter: ArrayAdapter<BankNamesModel>? = null
+    lateinit var banksAdapter: ArrayAdapter<BankNamesModel>
 
     override fun bindData() {
         binding.context = activity
@@ -173,37 +173,12 @@ class BankDetailsFragment :
     }
 
     private fun setBankNamesAdapter(bankList: java.util.ArrayList<BankNamesModel>) {
-        //ADDING DEFAULT PLACEHOLDER
-        bankList.add(0, BankNamesModel(0, "", getString(R.string.select_bank), "", "", ""))
-
         banksAdapter =
             ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
-        binding.spnrBanks.setAdapter(banksAdapter)
-        binding.spnrBanks.setOnItemSelectedListener(object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                if (p2 != 0) {
-                    viewModel.bankModel.bankName = bankList.get(p2).name!!
-                    //GET LIST OF CITIES UNDER SELECTED STATE
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-        })
-
-        viewModel.bankModel.bankName.let {
-            if (it.isNotEmpty()) {
-                var index = 0
-                for (i in bankList) {
-                    if (i.name.equals(it)) {
-                        binding.spnrBanks.setSelection(index)
-                        break
-                    }
-                    index += 1
-                }
-            }
+        binding.edBank.setOnClickListener {
+            DialogDropdownOptions(getmContext(), getString(R.string.state), banksAdapter, {
+                viewModel.bankModel.bankName = bankList[it].name!!
+            }).show()
         }
     }
 
@@ -270,6 +245,7 @@ class BankDetailsFragment :
             viewModel.bankModel = it.data!!
 
             viewModel.updateDhabaStatus(
+                activity as Context,
                 isDraft,
                 viewModel.dhabaModel,
                 if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,

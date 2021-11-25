@@ -62,7 +62,7 @@
                     android:fontFamily="sans-serif-black"
                     android:padding="10dp"
                     android:text="@string/change_language"
-                    android:textColor="@color/text_gray"
+                    android:textColor="@color/text_gray_hint"
                     android:textSize="16sp" />
 
             </LinearLayout>

@@ -238,6 +238,7 @@ class AmenitiesFragment :
 
     private fun updateDhabaStatus(isDraft: Boolean) {
         viewModel.updateDhabaStatus(
+            activity as Context,
             isDraft,
             mListener?.getDhabaModelMain()?.dhabaModel!!,
             if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
@@ -311,7 +312,7 @@ class AmenitiesFragment :
 
     private fun setSelectectedTextAndStyle(tv: TextView, ivTickView: AppCompatImageView) {
         tv.text = getString(R.string.amenities_selected)
-        tv.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
+        tv.setTextColor(ContextCompat.getColor(getmContext(), R.color.grey_amenities))
         ivTickView.visibility = View.VISIBLE
     }
 

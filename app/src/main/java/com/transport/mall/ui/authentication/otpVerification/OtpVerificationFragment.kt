@@ -132,7 +132,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     private fun countDown() {
         if (miliseconds < minutesToWait) {
             if (activity != null) {
-                binding.btnResentOtp.isEnabled = false
+                binding.btnResentOtp.isEnabled = true
                 binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.grey))
                 Handler(Looper.getMainLooper()).postDelayed(Runnable {
                     miliseconds += 1000
@@ -143,7 +143,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
 
                     val minutesModified = if (minutes.length > 1) minutes else "0$minutes"
                     val secondsModified = if (seconds.length > 1) seconds else "0$seconds"
-                    val countDownText = activity?.getString(R.string.resend_in) + " " + minutesModified + ":" + secondsModified
+                    val countDownText = getString(R.string.otp_expires_in) + " " + minutesModified + ":" + secondsModified
 
                     binding.countDownTime = countDownText
                     binding.tvResendIn.visibility = View.VISIBLE

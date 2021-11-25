@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30sdp"
-            android:text="@string/dhaba_added_succesfully" />
+            android:text="@string/submitted_for_approval" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDhabaId"

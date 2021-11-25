@@ -1,32 +1,12 @@
 package com.transport.mall.ui.home.orders
 
 import android.app.Activity
-import android.content.Context
-import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
-import com.transport.mall.databinding.FragmentCustomersBinding
-import com.transport.mall.databinding.FragmentNotificationsBinding
 import com.transport.mall.databinding.FragmentOrdersBinding
-import com.transport.mall.model.CustomerModel
-import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.NotificationModel
-import com.transport.mall.ui.addnewdhaba.step1.AmenitiesFragment
-import com.transport.mall.ui.addnewdhaba.step1.BankDetailsFragment
-import com.transport.mall.ui.addnewdhaba.step1.OwnerDetailsFragment
-import com.transport.mall.ui.addnewdhaba.step2.DhabaDetailsFragment
-import com.transport.mall.ui.home.customers.CustomersAdapter
-import com.transport.mall.ui.home.customers.DialogAddCustomer
-import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
-import com.transport.mall.ui.home.helpline.DialogRequestCall
-import com.transport.mall.ui.home.notifications.NotificationsAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
-import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
 class OrdersFragment : BaseFragment<FragmentOrdersBinding, BaseVM>(),

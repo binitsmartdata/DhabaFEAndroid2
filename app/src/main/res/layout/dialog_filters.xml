@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -16,15 +17,21 @@
             type="com.transport.mall.model.FiltersModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp">
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/viewSpace"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/white_round_corners"
+            android:background="@color/white"
             android:orientation="vertical"
             android:padding="@dimen/_10sdp">
 
@@ -53,77 +60,97 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/stateView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/grey_dark_stroke"
-                android:gravity="center"
-                android:onClick="@{() -> tvState.performClick()}"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bankDetailsText">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvState"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tIState"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/opensans_regular"
-                    android:gravity="center_vertical"
                     android:hint="@string/state"
-                    android:paddingVertical="@dimen/_10sdp"
-                    android:text="@{filterModel.states}"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColorHint="@color/text_gray"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.7dp">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivSpnrState"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edState"
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:text="@{filterModel.states}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/ic_spinner_dropdown" />
-            </LinearLayout>
+                    android:onClick="@{()->edState.performClick()}"
+                    android:src="@drawable/ic_spinner_dropdown" />
 
-            <LinearLayout
-                android:id="@+id/llCityFilter"
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/cityView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/grey_dark_stroke"
-                android:gravity="center"
-                android:onClick="@{() -> tvCity.performClick()}"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bankDetailsText">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvCity"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tICity"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/opensans_regular"
-                    android:gravity="center_vertical"
                     android:hint="@string/city"
-                    android:paddingVertical="@dimen/_10sdp"
-                    android:text="@{filterModel.cities}"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColorHint="@color/text_gray"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.7dp">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivSpnrCity"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edCity"
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:text="@{filterModel.cities}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/ic_spinner_dropdown" />
-            </LinearLayout>
+                    android:onClick="@{()->edCity.performClick()}"
+                    android:src="@drawable/ic_spinner_dropdown" />
+
+            </FrameLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/pinCodeTil"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/pin_code"
                 android:theme="@style/TextLabel">
 
@@ -140,36 +167,47 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/highwayView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/grey_dark_stroke"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bankDetailsText">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvHighway"
-                    android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tIHighway"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/opensans_regular"
-                    android:gravity="center_vertical"
                     android:hint="@string/highway_number"
-                    android:paddingVertical="@dimen/_10sdp"
-                    android:text="@{filterModel.highway}"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textColorHint="@color/text_gray"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.7dp">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/spnrImgDropdown"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edHighway"
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:text="@{filterModel.highway}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/_15sdp"
-                    android:background="@drawable/ic_spinner_dropdown" />
-            </LinearLayout>
+                    android:onClick="@{()->edHighway.performClick()}"
+                    android:src="@drawable/ic_spinner_dropdown" />
+
+            </FrameLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnContinue"
@@ -200,5 +238,5 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 </layout>

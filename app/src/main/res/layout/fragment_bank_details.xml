@@ -62,48 +62,56 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <FrameLayout
                     android:id="@+id/bankView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_dark_stroke"
-                    android:onClick="@{()->spnrBanks.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bankDetailsText">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spnrBanks"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tIBank"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:background="@null"
-                        android:gravity="center_vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/spnrImgDropdown"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:hint="@string/select_bank"
+                        android:textColorHint="@color/text_gray"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.7dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/spnrImgDropdown"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edBank"
+                            style="@style/openRegularTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:text="@={viewModel.bankModel.bankName}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:background="@drawable/ic_spinner_dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:onClick="@{()->edBank.performClick()}"
+                        android:src="@drawable/ic_spinner_dropdown" />
+
+                </FrameLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/gstNumberTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/gst_number"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bankView">
@@ -124,10 +132,10 @@
                     android:id="@+id/accountnumber"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:theme="@style/TextLabel"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/account_number"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/gstNumberTil">
@@ -149,9 +157,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/ifsc_code"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/accountnumber">
@@ -198,9 +206,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/pan_number"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/accountHolderNameTil">
@@ -220,7 +228,7 @@
                 <FrameLayout
                     android:id="@+id/framePanCardPhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_140sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@color/grey_light"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -230,7 +238,7 @@
                     <LinearLayout
                         android:id="@+id/llPanPhoto"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/_15sdp"
                         android:gravity="center"
                         android:orientation="vertical"
@@ -289,9 +297,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/name"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/onboardedByText">
@@ -313,9 +321,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/onboarding_date"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nameTil">
@@ -359,10 +367,10 @@
                     android:id="@+id/saleExecutiveNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:theme="@style/TextLabel"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/name"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/salesExecutiveText">
@@ -383,10 +391,10 @@
                     android:id="@+id/phoneNumberTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:theme="@style/TextLabel"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/phone_number"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/saleExecutiveNameTil">
@@ -429,10 +437,10 @@
                     android:id="@+id/areaHeadNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:theme="@style/TextLabel"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/name"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/areaHeadText">
@@ -453,9 +461,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/phone_number"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/areaHeadNameTil">
@@ -555,8 +563,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:theme="@style/TextLabel"
                     android:hint="@string/choose_months"
+                    android:theme="@style/TextLabel"
                     android:visibility="@{rb30Days.checked ? View.GONE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

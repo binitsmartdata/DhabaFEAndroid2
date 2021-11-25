@@ -43,6 +43,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:visibility="@{userModel.isManager() ? View.GONE : View.VISIBLE}">
@@ -51,7 +52,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/opensans_regular"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="@{userModel.isExecutive() ? @string/dhaba_mnagement : @string/my_dhabas}"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -60,9 +61,9 @@
                     android:id="@+id/tvAddNew"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/primary_color_btn_selector"
-                    android:fontFamily="@font/opensans_regular"
-                    android:paddingHorizontal="15dp"
+                    android:background="@drawable/primary_color_btn_selector_small_corners"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:paddingHorizontal="10dp"
                     android:paddingVertical="5dp"
                     android:text="@string/add_new"
                     android:textAllCaps="false"
@@ -78,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:visibility="@{(userModel.isOwner() || userModel.isManager()) ? View.GONE : View.VISIBLE}"
-                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                app:tabTextAppearance="@style/TabsCustomStyle"
                 app:tabTextColor="@color/tabs_text_selector">
 
                 <com.google.android.material.tabs.TabItem

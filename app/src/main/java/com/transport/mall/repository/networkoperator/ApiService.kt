@@ -130,7 +130,9 @@ interface ApiService {
         @Field("blockMonth") blockMonth: String,
         @Field("isActive") isActive: String,
         @Field("isDraft") isDraft: String,
-        @Field("status") status: String
+        @Field("status") status: String,
+        @Field("approval_for") approval_for: String?,
+        @Field("approval_by") approval_by: String?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @GET("state/getAllStates")

@@ -53,10 +53,10 @@
                     android:id="@+id/dhabaNameTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:theme="@style/TextLabel"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/dhaba_name"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -93,6 +93,7 @@
                         android:drawableLeft="@drawable/ic_location"
                         android:drawablePadding="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_semibold"
+                        android:gravity="center_vertical"
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/fetch_location"
                         android:textColor="@color/colorRed"
@@ -102,9 +103,11 @@
                         android:id="@+id/tvMapPicker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:background="@drawable/default_btn_selector"
                         android:fontFamily="@font/opensans_semibold"
+                        android:gravity="center_vertical"
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/pick_from_map"
                         android:textColor="@color/colorRed"
@@ -127,8 +130,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:theme="@style/TextLabel"
-                        android:hint="@string/latitude">
+                        android:hint="@string/latitude"
+                        android:theme="@style/TextLabel">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -146,11 +149,11 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:theme="@style/TextLabel"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:hint="@string/longitude">
+                        android:hint="@string/longitude"
+                        android:theme="@style/TextLabel">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -172,8 +175,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:hint="@string/dhaba_address_mandatory"
                     android:theme="@style/TextLabel"
-                    android:hint="@string/dhaba_address"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llLatLong">
@@ -196,8 +199,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:theme="@style/TextLabel"
                     android:hint="@string/landmark"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dhabaAddressTil">
@@ -219,9 +222,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/area"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/landmarkTil">
@@ -238,162 +241,185 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/highwayTil"
+                <FrameLayout
+                    android:id="@+id/flHighway"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_dark_stroke"
-                    android:onClick="@{()->tvHighway.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/areaTil">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvHighway"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tIHighway"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:gravity="center_vertical"
                         android:hint="@string/highway_number"
-                        android:text="@={viewModel.dhabaModel.highway}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/spnrImgDropdown"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textColorHint="@color/text_gray"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.7dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/spnrImgDropdown"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edHighway"
+                            style="@style/openRegularTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:text="@={viewModel.dhabaModel.highway}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:background="@drawable/ic_spinner_dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:onClick="@{()->edHighway.performClick()}"
+                        android:src="@drawable/ic_spinner_dropdown" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ctlPropertyStatus"
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/flPropertyStatus"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_dark_stroke"
-                    android:onClick="@{()->spnrPropertyStatus.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/highwayTil">
+                    app:layout_constraintTop_toBottomOf="@+id/flHighway">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spnrPropertyStatus"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tIPropertyStatus"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:background="@null"
-                        android:entries="@array/property_status"
-                        android:gravity="center_vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/spinnerProperty"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:hint="@string/property_status"
+                        android:textColorHint="@color/text_gray"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.7dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/spinnerProperty"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edPropertyStatus"
+                            style="@style/openRegularTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:text="@={viewModel.dhabaModel.propertyStatus}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:background="@drawable/ic_spinner_dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:onClick="@{()->edPropertyStatus.performClick()}"
+                        android:src="@drawable/ic_spinner_dropdown" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/selectStateLayout"
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/flState"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_dark_stroke"
-                    android:onClick="@{()->spnrState.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ctlPropertyStatus">
+                    app:layout_constraintTop_toBottomOf="@+id/flPropertyStatus">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spnrState"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tIState"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:background="@null"
-                        android:entries="@array/select_state"
-                        android:gravity="center_vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/spinnerArrowImage1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:hint="@string/state"
+                        android:textColorHint="@color/text_gray"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.7dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/spinnerArrowImage1"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edState"
+                            style="@style/openRegularTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:text="@={viewModel.dhabaModel.state}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:background="@drawable/ic_spinner_dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:onClick="@{()->edState.performClick()}"
+                        android:src="@drawable/ic_spinner_dropdown" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </FrameLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/selectCityLayout"
+                <FrameLayout
+                    android:id="@+id/flCity"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_dark_stroke"
-                    android:onClick="@{()->spnrCity.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/selectStateLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/flState">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spnrCity"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tICity"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:background="@null"
-                        android:entries="@array/select_city"
-                        android:gravity="center_vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/spinnerArrowImage2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:hint="@string/city"
+                        android:textColorHint="@color/text_gray"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.7dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/spinnerArrowImage2"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edCity"
+                            style="@style/openRegularTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:text="@={viewModel.dhabaModel.city}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:background="@drawable/ic_spinner_dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:onClick="@{()->edCity.performClick()}"
+                        android:src="@drawable/ic_spinner_dropdown" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </FrameLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/pinCodeTil"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/TextLabel"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/pin_code"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/selectCityLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/flCity">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edPinCode"

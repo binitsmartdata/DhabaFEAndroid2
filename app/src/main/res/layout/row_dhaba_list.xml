@@ -57,7 +57,6 @@
             android:id="@+id/dhabaContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -68,8 +67,8 @@
                 <ImageView
                     loadImage="@{model.images}"
                     placeholder="@{R.drawable.placeholder}"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:scaleType="centerCrop" />
 
                 <TextView
@@ -79,7 +78,7 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:paddingHorizontal="@dimen/_7sdp"
                     android:paddingVertical="@dimen/_3sdp"
-                    android:text="@{model.status.toUpperCase()}"
+                    android:text="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? `Draft` : model.status.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS) ? `In Review` :model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? `Active` : `Inactive`}"
                     android:textColor="@{(model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) || model.status.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? context.getColor(R.color.gold) :model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
                     android:textSize="13sp"
                     android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"
@@ -241,6 +240,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:visibility="@{user.isExecutive() ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
@@ -334,7 +334,6 @@
                 android:id="@+id/llAssignMgr"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@drawable/default_btn_selector"
                 android:gravity="center_vertical">
@@ -353,7 +352,7 @@
 
                     <com.transport.mall.utils.custom.CircleImageView
                         android:layout_width="@dimen/_40sdp"
-                        android:layout_height="63dp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
                         android:padding="@dimen/_5sdp"
                         android:src="@drawable/ic_add_red"
@@ -394,8 +393,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
-                android:orientation="vertical"
-                android:visibility="invisible">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvVerified"

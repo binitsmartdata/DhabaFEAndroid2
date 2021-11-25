@@ -27,7 +27,7 @@
             loadImage="@{dhabaModelMain.dhabaModel.images}"
             placeholder="@{R.drawable.ic_image_placeholder}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_180sdp"
             android:scaleType="centerCrop"
             android:src="@drawable/demo_food_pic" />
 
@@ -38,7 +38,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_125sdp"
+                android:layout_marginTop="@dimen/_155sdp"
                 android:background="@android:color/transparent"
                 android:orientation="vertical">
 
@@ -53,6 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -85,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_marginTop="@dimen/_5sdp" />
+                        android:layout_marginTop="@dimen/_10sdp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -93,7 +94,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{dhabaModelMain.dhabaModel.address}"
-                        android:textColor="@color/grey"
+                        android:textColor="@color/grey_view_dhaba"
                         android:textSize="14sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -124,7 +125,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{dhabaModelMain.dhabaModel.address}"
                         android:textColor="@color/black"
@@ -134,7 +135,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Landmark : `+ dhabaModelMain.dhabaModel.landmark}"
                         android:textColor="@color/black"
@@ -144,7 +145,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Area : `+ dhabaModelMain.dhabaModel.area}"
                         android:textColor="@color/black"
@@ -154,7 +155,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Highway : `+ dhabaModelMain.dhabaModel.highway}"
                         android:textColor="@color/black"
@@ -198,7 +199,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:fontFamily="@font/opensans_regular"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/food"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -225,7 +226,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:fontFamily="@font/opensans_regular"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/parking"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -252,7 +253,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:fontFamily="@font/opensans_regular"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/sleeping"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -279,7 +280,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:fontFamily="@font/opensans_regular"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/washroom_cleaning"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -306,7 +307,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:fontFamily="@font/opensans_regular"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/security"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -333,7 +334,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:fontFamily="@font/opensans_regular"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/light"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -360,7 +361,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:fontFamily="@font/opensans_regular"
+                            android:fontFamily="@font/opensans_bold"
                             android:text="@string/other"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -377,6 +378,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:visibility="gone"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
@@ -402,6 +404,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
+                        android:visibility="gone"
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
                         android:padding="@dimen/_30sdp"

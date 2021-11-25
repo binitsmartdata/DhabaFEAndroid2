@@ -129,7 +129,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
-                                android:textColor="@color/grey"
+                                android:textColor="@color/grey_amenities"
                                 android:textSize="12sp" />
                         </LinearLayout>
 
@@ -199,7 +199,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
-                                android:textColor="@color/grey"
+                                android:textColor="@color/grey_amenities"
                                 android:textSize="12sp" />
 
 
@@ -270,7 +270,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
-                                android:textColor="@color/grey"
+                                android:textColor="@color/grey_amenities"
                                 android:textSize="12sp" />
 
 
@@ -341,7 +341,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
-                                android:textColor="@color/grey"
+                                android:textColor="@color/grey_amenities"
                                 android:textSize="12sp" />
 
                         </LinearLayout>
@@ -411,7 +411,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
-                                android:textColor="@color/grey"
+                                android:textColor="@color/grey_amenities"
                                 android:textSize="12sp" />
 
 
@@ -482,7 +482,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
-                                android:textColor="@color/grey"
+                                android:textColor="@color/grey_amenities"
                                 android:textSize="12sp" />
 
 
@@ -553,7 +553,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingHorizontal="5dp"
                                 android:text="@string/no_amenities_selected"
-                                android:textColor="@color/grey"
+                                android:textColor="@color/grey_amenities"
                                 android:textSize="12sp" />
 
 

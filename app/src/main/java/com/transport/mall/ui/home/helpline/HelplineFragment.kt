@@ -3,6 +3,7 @@ package com.transport.mall.ui.home.helpline
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentHelplineBinding
+import com.transport.mall.ui.home.CommonActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 
@@ -21,7 +22,7 @@ class HelplineFragment : BaseFragment<FragmentHelplineBinding, BaseVM>() {
 
     override fun bindData() {
         binding.callCardView.setOnClickListener {
-            DialogRequestCall(activity as Context).show()
+            CommonActivity.start(getmContext(),CommonActivity.TYPE_REQUEST_FOR_CALL,"")
         }
     }
 

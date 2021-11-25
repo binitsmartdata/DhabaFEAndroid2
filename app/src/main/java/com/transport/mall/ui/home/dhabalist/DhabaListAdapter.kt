@@ -91,7 +91,7 @@ class DhabaListAdapter(
     private fun manageIconsVisibility(myViewHolderG: MyViewHolderG?, position: Int) {
         when (dataList[position].dhabaModel?.status) {
             DhabaModel.STATUS_PENDING -> {
-                myViewHolderG?.binding?.ivDelete?.visibility = View.VISIBLE
+                myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
                 myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE

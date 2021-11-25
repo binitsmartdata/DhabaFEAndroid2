@@ -95,6 +95,7 @@ class UserModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.alternateDesignation)
         }
 
+    // pan number is changed to VOTER ID now.
     @SerializedName(value = "panNumber")
     var panNumber: String = ""
         @Bindable get() = field
@@ -200,11 +201,11 @@ class UserModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_valid_mobile))
         } /*else if (email.trim().isEmpty() || !GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
-        } else if (panNumber.trim().isNotEmpty() && panNumber.trim().length < 10) {
-            callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
+        } */ else if (panNumber.trim().isEmpty() && adharCard.trim().isEmpty()) {
+            callback.onResponse(false, context.getString(R.string.enter_voter_id_or_adhar_card))
         } else if (adharCard.trim().isNotEmpty() && adharCard.trim().length < 12) {
             callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
-        } else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 10) {
+        } /*else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_alt_number))
         } */ else if (ownerPic.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.upload_owner_picture_validation))
@@ -227,12 +228,12 @@ class UserModel : Serializable, BaseObservable() {
         /*if (email.trim().isEmpty() || !GlobalUtils.isValidEmail(email)) {
             val param = context.getString(R.string.owner_email_id)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
-        }
-        if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
-            val param = context.getString(R.string.owner_pan_number)
+        }*/
+        if (panNumber.trim().isEmpty() && adharCard.trim().isEmpty()) {
+            val param = context.getString(R.string.owner_voter_id_or_adhar_card)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }
-        if (adharCard.trim().isEmpty() || adharCard.trim().length < 12) {
+        /*if (adharCard.trim().isEmpty() || adharCard.trim().length < 12) {
             val param = context.getString(R.string.owner_aadhaar_number)
             missingParams = if (missingParams.isEmpty()) param else missingParams + "\n" + param
         }*/

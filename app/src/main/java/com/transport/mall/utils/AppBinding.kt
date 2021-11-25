@@ -8,6 +8,8 @@ import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
@@ -193,9 +195,9 @@ fun setImageURI(imageView: ImageView, resource: Uri) {
 @BindingAdapter("isBold")
 fun setBold(view: TextView, isBold: Boolean) {
     if (isBold) {
-        view.setTypeface(null, Typeface.BOLD)
+        view.setTypeface(ResourcesCompat.getFont(view.context, R.font.opensans_bold))
     } else {
-        view.setTypeface(null, Typeface.NORMAL)
+        view.setTypeface(ResourcesCompat.getFont(view.context, R.font.opensans_regular))
     }
 }
 

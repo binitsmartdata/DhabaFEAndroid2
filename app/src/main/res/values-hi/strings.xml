@@ -203,7 +203,7 @@
     <string name="request_for_call">कॉल के लिए अनुरोध</string>
     <string name="save">सेव</string>
     <string name="enter_your_phone_number_where_we_can_call_you">अपना फ़ोन नंबर दर्ज करें जहाँ हम आपको कॉल कर सकें</string>
-    <string name="call_me_now">अब मुझे फोन करें</string>
+    <string name="call_me_now">मुझे फोन करें</string>
     <string name="dhaba_details">ढाबा विवरण</string>
     <string name="owner_details">मालिक का विवरण</string>
     <string name="amenities">सुविधाएं</string>
@@ -471,8 +471,8 @@
     <string name="owned">स्वामित्व</string>
     <string name="third_party">तृतीय पक्ष</string>
     <string name="food_for_1_cost">1 लागत के लिए भोजन</string>
-    <string name="latitude">अक्षांश</string>
-    <string name="longitude">देशान्तर</string>
+    <string name="latitude">अक्षांश *</string>
+    <string name="longitude">देशान्तर *</string>
     <string name="add_dhaba_photos">ढाबा तस्वीरें जोड़ें</string>
     <string name="choose_barber_option">कृपया बार्बर विकल्प चुनें</string>
     <string name="choose_sleeping_option">कृपया सोने की सुविधा विकल्प चुनें</string>

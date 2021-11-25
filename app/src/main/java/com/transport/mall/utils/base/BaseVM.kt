@@ -223,6 +223,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
     }
 
     fun updateDhabaStatus(
+        context: Context,
         isDraft: Boolean,
         dhabaModel: DhabaModel,
         status: String?,
@@ -239,7 +240,9 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                         dhabaModel.blockMonth.toString(),
                         dhabaModel.active.toString(),
                         isDraft.toString(),
-                        if (status == null) (if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS) else status
+                        if (status == null) (if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS) else status,
+                        if (isDraft) null else (if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()) "quality-control" else "executive"),
+                        if (isDraft) null else (SharedPrefsHelper.getInstance(context).getUserData().role.toString())
                     )
                 ).collect {
                     when (it.status) {

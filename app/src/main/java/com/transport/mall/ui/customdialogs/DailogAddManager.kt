@@ -33,7 +33,7 @@ class DailogAddManager constructor(context: Context, owner: UserModel, dhaba: Dh
         )
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        window!!.getAttributes().windowAnimations = R.style.DialogAnimation
+        window!!.getAttributes().windowAnimations = R.style.DialogAnimationBottom
         window!!.setGravity(Gravity.BOTTOM)
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         binding.dhaba = dhaba

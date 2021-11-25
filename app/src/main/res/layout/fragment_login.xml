@@ -53,8 +53,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="@dimen/_36sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_66sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/login"
                 android:textColor="@color/black"
@@ -72,7 +72,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/email"
                     android:theme="@style/TextLabel">
@@ -94,7 +94,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/password"
@@ -117,15 +117,16 @@
                 android:id="@+id/llOwnerLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_15sdp">
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/editlayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_dark_stroke"
+                    android:background="@drawable/grey_stroke_aaaaaa"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -136,26 +137,42 @@
                         android:id="@+id/ccpCountryCode"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:gravity="center"
                         app:ccp_defaultCode="91"
                         app:ccp_hideNameCode="true"
+                        app:ccp_hidePhoneCode="true"
                         app:ccp_textSize="16sp" />
 
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey" />
+                        android:background="@color/grey_aaaaaa" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/opensans_regular"
+                        android:inputType="number"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:text="+91"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edPhoneNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:fontFamily="@font/opensans_regular"
-                        android:hint="@string/_10_digit_mobile_number"
+                        android:hint="@string/enter_10_digit_mobile_no"
                         android:inputType="number"
                         android:maxLength="10"
                         android:padding="@dimen/_10sdp"
@@ -170,14 +187,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:orientation="vertical">
 
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_44sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:fontFamily="@font/opensans_bold"
                     android:text="@string/login"
@@ -189,7 +206,7 @@
                 <Button
                     android:id="@+id/btnLoginOwner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_44sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:enabled="@{vm.mobileObservable.trim().length() == 10}"
@@ -203,10 +220,10 @@
                 <Button
                     android:id="@+id/btnSignup"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_44sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:fontFamily="@font/opensans_bold"
+                    android:fontFamily="@font/opensans_semibold"
                     android:text="@string/sign_up"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"

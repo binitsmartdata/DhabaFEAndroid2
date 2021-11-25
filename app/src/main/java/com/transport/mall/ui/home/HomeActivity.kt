@@ -2,6 +2,7 @@ package com.transport.mall.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
@@ -151,6 +152,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             displayViewOwner(it)
         })
         displayViewOwner(0)
+        ((findViewById<ImageView>(R.id.ivClose))).setOnClickListener {
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
+        }
     }
 
     private fun refreshSideMenu(it: Int?) {

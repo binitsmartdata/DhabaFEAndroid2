@@ -464,8 +464,8 @@
     <string name="owned">ਮਾਲਕੀਅਤ</string>
     <string name="third_party">ਤੀਸਰਾ ਪੱਖ</string>
     <string name="food_for_1_cost">1 ਕੀਮਤ ਲਈ ਭੋਜਨ</string>
-    <string name="latitude">ਵਿਥਕਾਰ</string>
-    <string name="longitude">ਲੰਬਕਾਰ</string>
+    <string name="latitude">ਵਿਥਕਾਰ *</string>
+    <string name="longitude">ਲੰਬਕਾਰ *</string>
     <string name="add_dhaba_photos">ਢਾਬਾ ਦੀਆਂ ਫੋਟੋਆਂ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="choose_barber_option">ਕਿਰਪਾ ਕਰਕੇ ਬਾਰਬਰ ਵਿਕਲਪ ਚੁਣੋ</string>
     <string name="choose_sleeping_option">ਕਿਰਪਾ ਕਰਕੇ ਸੌਣ ਦੀਆਂ ਸਹੂਲਤਾਂ ਦੀ ਚੋਣ ਕਰੋ</string>

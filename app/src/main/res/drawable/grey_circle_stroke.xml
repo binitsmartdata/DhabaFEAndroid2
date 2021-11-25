@@ -4,7 +4,7 @@
 
     <stroke
         android:width="2dp"
-        android:color="@color/grey" />
+        android:color="@color/mtrl_textinput_default_box_stroke_color" />
     <solid android:color="@color/white" />
     <corners android:radius="@dimen/_30sdp" />
 

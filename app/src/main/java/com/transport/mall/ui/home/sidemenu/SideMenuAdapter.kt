@@ -1,6 +1,7 @@
 package com.transport.mall.ui.home.sidemenu
 
 import android.content.Context
+import androidx.core.content.res.ResourcesCompat
 import com.transport.mall.R
 import com.transport.mall.databinding.RowSideMenuBinding
 import com.transport.mall.model.SideMenu

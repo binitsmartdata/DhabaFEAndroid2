@@ -64,6 +64,7 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
     private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModelMain>) {
         dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList, { deletedDhaba -> // dhaba deletion listener
             viewModel.updateDhabaStatus(
+                activity as Context,
                 deletedDhaba.isDraft.toBoolean(),
                 deletedDhaba,
                 DhabaModel.STATUS_INACTIVE,
@@ -105,7 +106,8 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
                 })
         } else {
             // UPDATE DHABA STATUS TO IN PROGRESS(IN REVIEW)
-            viewModel.updateDhabaStatus(false, dhabaModelMain[position].dhabaModel!!, DhabaModel.STATUS_INPROGRESS, viewModel.dialogProgressObserver, GenericCallBack {
+            viewModel.updateDhabaStatus(
+                activity as Context,false, dhabaModelMain[position].dhabaModel!!, DhabaModel.STATUS_INPROGRESS, viewModel.dialogProgressObserver, GenericCallBack {
                 it.data?.let {
                     GlobalUtils.showToastInCenter(getmContext(), getString(R.string.sent_for_spproval))
                     dhabaModelMain[position].dhabaModel = it

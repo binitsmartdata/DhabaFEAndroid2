@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,7 +27,7 @@ class Dialogfilters constructor(
     fragment: Fragment,
     filterModel: FiltersModel,
     callBack: GenericCallBack<FiltersModel>
-) : Dialog(fragment.activity as Context) {
+) : Dialog(fragment.activity as Context, R.style.PauseDialog) {
 
     var binding: DialogFiltersBinding
     var cityList: ArrayList<CityModel> = ArrayList()
@@ -40,8 +41,7 @@ class Dialogfilters constructor(
             LayoutInflater.from(context), R.layout.dialog_filters, null, false
         )
         setContentView(binding.root)
-        window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        window!!.getAttributes().windowAnimations = R.style.DialogAnimation
+        window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         window!!.setGravity(Gravity.BOTTOM)
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setCancelable(false)
@@ -72,7 +72,7 @@ class Dialogfilters constructor(
                 }
             })
 
-        binding.tvState.setOnClickListener {
+        binding.edState.setOnClickListener {
             DialogStateSelection(context, statesList, filterModel.states, GenericCallBack {
                 selectedStates = ""
                 val filteredCities: ArrayList<StateModel> = ArrayList()
@@ -83,6 +83,7 @@ class Dialogfilters constructor(
                     }
                 }
                 if (filteredCities.isNotEmpty() && selectedStates.isNotEmpty()) {
+                    Log.e("SELECTED STATES :", selectedStates)
                     binding.filterModel!!.states = selectedStates
                     binding.filterModel!!.cities = ""
                     populateCitiesByStates(fragment, filteredCities)
@@ -93,7 +94,7 @@ class Dialogfilters constructor(
             }).show()
         }
 
-        binding.tvCity.setOnClickListener {
+        binding.edCity.setOnClickListener {
             if (binding.filterModel!!.states.trim().isNotEmpty()) {
                 DialogCitySelection(context, cityList, filterModel.cities, GenericCallBack {
                     selectedCities = ""
@@ -105,6 +106,7 @@ class Dialogfilters constructor(
                         }
                     }
                     if (filteredCities.isNotEmpty() && selectedCities.isNotEmpty()) {
+                        Log.e("SELECTED CITIES :", selectedCities)
                         binding.filterModel!!.cities = selectedCities
                     } else {
                         binding.filterModel!!.cities = ""
@@ -115,7 +117,7 @@ class Dialogfilters constructor(
             }
         }
 
-        binding.tvHighway.setOnClickListener {
+        binding.edHighway.setOnClickListener {
             AppDatabase.getInstance(context)?.highwayDao()?.getAll()
                 ?.observe(fragment, {
                     DialogHighwaySelection(
@@ -126,6 +128,9 @@ class Dialogfilters constructor(
                             binding.filterModel!!.highway = it.highwayNumber!!
                         }).show()
                 })
+        }
+        binding.viewSpace.setOnClickListener {
+            dismiss()
         }
 
         binding.btnContinue.setOnClickListener {

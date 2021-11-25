@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="7dp">
 
             <ImageView
                 imageResource="@{data.selected ? data.hilightedIcon : data.icon}"
@@ -61,7 +61,7 @@
                 android:padding="@dimen/_15sdp"
                 android:text="@{data.title}"
                 android:textColor="@{data.selected ? context.getColor(R.color.colorPrimary) : context.getColor(R.color.black)}"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:isBold="@{data.selected}"
                 tools:text="Dhaba List" />
 

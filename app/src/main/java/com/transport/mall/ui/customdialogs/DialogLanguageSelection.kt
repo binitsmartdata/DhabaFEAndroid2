@@ -32,7 +32,7 @@ class DialogLanguageSelection constructor(
         )
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        window!!.getAttributes().windowAnimations = R.style.DialogAnimation
+        window!!.getAttributes().windowAnimations = R.style.DialogAnimationBottom
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         window!!.setGravity(Gravity.BOTTOM)
         binding.context = context

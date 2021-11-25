@@ -8,7 +8,6 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -24,6 +23,7 @@ import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
+import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
 import com.transport.mall.ui.customdialogs.TimingListAdapter
 import com.transport.mall.utils.RxBus
@@ -63,7 +63,7 @@ class DhabaDetailsFragment :
 
     var StateList = ArrayList<StateModel>()
     var highwayList = ArrayList<HighwayModel>()
-    var statesAdapter: ArrayAdapter<StateModel>? = null
+    lateinit var statesAdapter: ArrayAdapter<StateModel>
 
     var dhabaTimingModelParent: DhabaTimingModelParent = DhabaTimingModelParent("", ArrayList())
 
@@ -135,6 +135,22 @@ class DhabaDetailsFragment :
                     }
                 }
             }
+
+            it.state.let {
+                if (it.isNotEmpty()) {
+                    AppDatabase.getInstance(getmContext())?.statesDao()?.getByName(it)?.observe(this, {
+                        if (it.isNotEmpty()) {
+                            //GET LIST OF CITIES UNDER SELECTED STATE
+                            AppDatabase.getInstance(getmContext())?.cityDao()
+                                ?.getAllByState(it.get(0).stateCode!!)
+                                ?.observe(viewLifecycleOwner, Observer {
+                                    it?.let { setCitiesAdapter(it as ArrayList<CityModel>) }
+                                })
+                        }
+                    })
+                }
+            }
+
         }
     }
 
@@ -177,29 +193,14 @@ class DhabaDetailsFragment :
 
         // SET ITEM SELECTED LISTENER ON PROPERTY STATUS SPINNER
         val menuArray = resources.getStringArray(R.array.property_status)
-        binding.spnrPropertyStatus.setOnItemSelectedListener(object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.dhabaModel.propertyStatus = if (p2 == 0) "" else menuArray[p2]
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-        })
-
-        //set existing value on property status spinner
-        viewModel.dhabaModel.propertyStatus?.let {
-            if (it.isNotEmpty()) {
-                var index = 0
-                for (i in menuArray) {
-                    if (i.equals(it, true)) {
-                        binding.spnrPropertyStatus.setSelection(index)
-                        break
-                    }
-                    index += 1
-                }
-            }
+        var designationAdapter = ArrayAdapter(
+            activity as Context,
+            android.R.layout.simple_list_item_1, menuArray
+        )
+        binding.edPropertyStatus.setOnClickListener {
+            DialogDropdownOptions(getmContext(), getString(R.string.property_status), designationAdapter, {
+                viewModel.dhabaModel.propertyStatus = menuArray[it]
+            }).show()
         }
 
         binding.btnNext.setOnClickListener {
@@ -381,6 +382,7 @@ class DhabaDetailsFragment :
 
     private fun updateDhabaStatus(isDraft: Boolean) {
         viewModel.updateDhabaStatus(
+            activity as Context,
             isDraft,
             viewModel.dhabaModel,
             null,
@@ -420,42 +422,23 @@ class DhabaDetailsFragment :
             activity as Context,
             android.R.layout.simple_list_item_1, stateList
         )
-        binding.spnrState.setAdapter(statesAdapter)
-        binding.spnrState.setOnItemSelectedListener(object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.dhabaModel.state = stateList.get(p2).name_en!!
-                //GET LIST OF CITIES UNDER SELECTED STATE
+        binding.edState.setOnClickListener {
+            DialogDropdownOptions(getmContext(), getString(R.string.state), statesAdapter, {
+                viewModel.dhabaModel.state = stateList[it].name_en!!
+                viewModel.dhabaModel.city = ""
 
+                //GET LIST OF CITIES UNDER SELECTED STATE
                 AppDatabase.getInstance(getmContext())?.cityDao()
-                    ?.getAllByState(stateList.get(p2).stateCode!!)
+                    ?.getAllByState(stateList.get(it).stateCode!!)
                     ?.observe(viewLifecycleOwner, Observer {
                         it?.let { setCitiesAdapter(it as ArrayList<CityModel>) }
                     })
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-        })
-
-        viewModel.dhabaModel.state?.let {
-            if (it.isNotEmpty()) {
-                var index = 0
-                for (i in stateList) {
-                    if (i.name_en?.equals(it)!!) {
-                        binding.spnrState.setSelection(index)
-                        break
-                    }
-                    index += 1
-                }
-            }
+            }).show()
         }
     }
 
     private fun setHighwayAdapter(StateList: ArrayList<HighwayModel>) {
-        binding.tvHighway.setOnClickListener {
+        binding.edHighway.setOnClickListener {
             AppDatabase.getInstance(getmContext())?.highwayDao()?.getAll()
                 ?.observe(this@DhabaDetailsFragment, Observer {
                     DialogHighwaySelection(
@@ -475,29 +458,10 @@ class DhabaDetailsFragment :
             activity as Context,
             android.R.layout.simple_list_item_1, cityList
         )
-        binding.spnrCity.setAdapter(citiesAdapter)
-        binding.spnrCity.setOnItemSelectedListener(object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.dhabaModel.city = cityList.get(p2).name_en!!
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-        })
-
-        viewModel.dhabaModel.city?.let {
-            if (it.isNotEmpty()) {
-                var index = 0
-                for (i in cityList) {
-                    if (i.name_en.equals(it)) {
-                        binding.spnrCity.setSelection(index)
-                        break
-                    }
-                    index += 1
-                }
-            }
+        binding.edCity.setOnClickListener {
+            DialogDropdownOptions(getmContext(), getString(R.string.city), citiesAdapter, {
+                viewModel.dhabaModel.city = cityList[it].name_en!!
+            }).show()
         }
     }
 

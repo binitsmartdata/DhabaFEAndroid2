@@ -63,6 +63,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/add_existing_owner"
+                        android:gravity="center_vertical"
                         android:textColor="@color/colorRed"
                         android:textSize="16sp"
                         android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}" />
@@ -100,7 +101,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/grey_dark_stroke"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:paddingVertical="@dimen/_2sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ownerNameTil">
@@ -109,10 +112,11 @@
                         android:id="@+id/ccpCountryCode"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:gravity="center"
-                        app:ccp_hideNameCode="true"
                         app:ccp_defaultCode="91"
+                        app:ccp_hideNameCode="true"
+                        app:ccp_hidePhoneCode="true"
                         app:ccp_textSize="16sp" />
 
                     <View
@@ -120,13 +124,27 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:background="@color/grey_stroke" />
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/opensans_regular"
+                        android:inputType="number"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:text="+91"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edPhoneNumber"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:hint="@string/enter_mobile_number_mandatory"
                         android:inputType="phone"
@@ -143,8 +161,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:theme="@style/TextLabel"
                     android:hint="@string/email"
+                    android:theme="@style/TextLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editlayout">
@@ -230,8 +248,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:hint="@string/voter_id"
                     android:theme="@style/TextLabel"
-                    android:hint="@string/pan_number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fetchLocationLayout">
@@ -299,7 +317,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/grey_dark_stroke"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:paddingVertical="@dimen/_2sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/alternativePerson">
@@ -307,11 +327,12 @@
                     <com.rilixtech.widget.countrycodepicker.CountryCodePicker
                         android:id="@+id/ccpCountryCodeAlt"
                         android:layout_width="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:gravity="center"
                         app:ccp_defaultCode="91"
                         app:ccp_hideNameCode="true"
+                        app:ccp_hidePhoneCode="true"
                         app:ccp_textSize="16sp" />
 
                     <View
@@ -319,58 +340,78 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:background="@color/grey_stroke" />
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/opensans_regular"
+                        android:inputType="number"
+                        android:paddingVertical="@dimen/_10sdp"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:text="+91"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edPhoneNumberAlt"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_4sdp"
                         android:background="@android:color/transparent"
                         android:hint="@string/alternative_mobile_number"
                         android:inputType="phone"
                         android:maxLength="10"
                         android:text="@={viewModel.ownerModel.alternatePhone}"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColorHint="@color/text_gray_hint"
                         android:textSize="16sp" />
                 </LinearLayout>
 
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/ctlAltPerson"
+                <FrameLayout
+                    android:id="@+id/flAltPerson"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_dark_stroke"
-                    android:onClick="@{()->spnrAltContactDesignation.performClick()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/altContactNo">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spnrAltContactDesignation"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tIAltPerson"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:background="@null"
-                        android:entries="@array/alternative_contact_designation"
-                        android:gravity="center_vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/ivAltContactDesignation"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:hint="@string/alternative_contact_designation"
+                        android:textColorHint="@color/text_gray"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.7dp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivAltContactDesignation"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edSelectDesignation"
+                            style="@style/openRegularTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:text="@={viewModel.ownerModel.alternateDesignation}"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:onClick="@{()->edSelectDesignation.performClick()}"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:background="@drawable/ic_spinner_dropdown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:src="@drawable/ic_spinner_dropdown" />
+
+                </FrameLayout>
 
                 <FrameLayout
                     android:id="@+id/uploadPictureLayout"
@@ -379,7 +420,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ctlAltPerson">
+                    app:layout_constraintTop_toBottomOf="@+id/flAltPerson">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"

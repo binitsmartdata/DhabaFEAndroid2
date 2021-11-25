@@ -201,7 +201,7 @@
     <string name="loading_cities_states">Loading Cities and States..</string>
     <string name="save">Save</string>
     <string name="enter_your_phone_number_where_we_can_call_you">Enter your phone number where we can call you</string>
-    <string name="call_me_now">Call me now</string>
+    <string name="call_me_now">Call Me</string>
     <string name="dhaba_details">Dhaba Details</string>
     <string name="owner_details">Owner Details</string>
     <string name="amenities">Amenities</string>
@@ -232,7 +232,7 @@
     <string name="choose_location">Choose Location</string>
     <string name="use_location">Use Location</string>
     <string name="click_on_map_to_get_address">Click on map to get address</string>
-    <string name="update_dhaba">Update Dhaba</string>
+    <string name="update_dhaba">Edit Dhaba</string>
     <string name="fetching_states_cities_highways">Fetching States,Cities, Highways</string>
     <string name="update">Update</string>
     <string name="gallery">Gallery</string>
@@ -417,7 +417,6 @@
 
     </string-array>
     <string-array name="property_status">
-        <item>Property Status</item>
         <item>Owner</item>
         <item>Rented</item>
         <item>Lease</item>
@@ -425,7 +424,6 @@
     </string-array>
 
     <string-array name="alternative_contact_designation">
-        <item>Alternative Contact Designation</item>
         <item>Employee</item>
         <item>Son</item>
         <item>Manager</item>
@@ -442,30 +440,30 @@
     <string-array name="menu_array_owner">
         <item>@string/my_dhabas</item>
         <item>@string/notifications</item>
-<!--        <item>@string/discount_offers</item>-->
-<!--        <item>@string/my_orders</item>-->
-<!--        <item>@string/customers</item>-->
-<!--        <item>@string/shops</item>-->
+        <!--        <item>@string/discount_offers</item>-->
+        <!--        <item>@string/my_orders</item>-->
+        <!--        <item>@string/customers</item>-->
+        <!--        <item>@string/shops</item>-->
         <item>@string/helpline</item>
         <item>@string/settings</item>
     </string-array>
     <integer-array name="menu_icons_owner">
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_notification_filled</item>
-<!--        <item>@drawable/ic_discount_offer</item>-->
-<!--        <item>@drawable/ic_my_orders</item>-->
-<!--        <item>@drawable/ic_customers</item>-->
-<!--        <item>@drawable/ic_shop</item>-->
+        <!--        <item>@drawable/ic_discount_offer</item>-->
+        <!--        <item>@drawable/ic_my_orders</item>-->
+        <!--        <item>@drawable/ic_customers</item>-->
+        <!--        <item>@drawable/ic_shop</item>-->
         <item>@drawable/ic_helpline</item>
         <item>@drawable/ic_settings</item>
     </integer-array>
     <integer-array name="menu_icons_hilighted_owner">
         <item>@drawable/ic_home_hilighted</item>
         <item>@drawable/ic_notification_hilighted</item>
-<!--        <item>@drawable/ic_discount_offer_highlighted</item>-->
-<!--        <item>@drawable/ic_my_orders_highlighted</item>-->
-<!--        <item>@drawable/ic_customers_highlighted</item>-->
-<!--        <item>@drawable/ic_shop_highlighted</item>-->
+        <!--        <item>@drawable/ic_discount_offer_highlighted</item>-->
+        <!--        <item>@drawable/ic_my_orders_highlighted</item>-->
+        <!--        <item>@drawable/ic_customers_highlighted</item>-->
+        <!--        <item>@drawable/ic_shop_highlighted</item>-->
         <item>@drawable/ic_helpline_hilighted</item>
         <item>@drawable/ic_settings_hilighted</item>
     </integer-array>
@@ -548,8 +546,8 @@
     <string name="owned">Owned</string>
     <string name="third_party">Third Party</string>
     <string name="food_for_1_cost">Food For 1 Cost</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude *</string>
+    <string name="longitude">Longitude *</string>
     <string name="add_dhaba_photos">Add Dhaba Photos</string>
     <string name="choose_barber_option">Please choose barber option</string>
     <string name="choose_sleeping_option">Please choose sleeping option</string>
@@ -563,5 +561,12 @@
     <string name="no_dhaba_found">No Dhaba Found</string>
     <string name="dhaba_added_succesfully">Dhaba Added Succesfully</string>
     <string name="this_is_the_id_number_of_added_dhaba">This is the id number of added dhaba.</string>
+    <string name="voter_id">Voter Id</string>
+    <string name="enter_voter_id_or_adhar_card">Please enter either Voter Id or Aadhar Card</string>
+    <string name="owner_voter_id_or_adhar_card">Owner\'s Voter ID or Adhar Card</string>
+    <string name="enter_10_digit_mobile_no">Enter 10 digit mobile no.</string>
+    <string name="otp_expires_in">OTP expires in </string>
+    <string name="dhaba_address_mandatory">Dhaba Address *</string>
+    <string name="submitted_for_approval">Submitted For Approval</string>
 
 </resources>

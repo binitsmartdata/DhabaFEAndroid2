@@ -2,23 +2,15 @@ package com.transport.mall.ui.home.customers
 
 import android.app.Activity
 import android.content.Context
-import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentCustomersBinding
-import com.transport.mall.databinding.FragmentNotificationsBinding
 import com.transport.mall.model.CustomerModel
-import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.NotificationModel
-import com.transport.mall.ui.home.helpline.DialogRequestCall
-import com.transport.mall.ui.home.notifications.NotificationsAdapter
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.recyclerviewbase.RecyclerBindingList
 import com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback
 
 class CustomersFragment : BaseFragment<FragmentCustomersBinding, BaseVM>(),
