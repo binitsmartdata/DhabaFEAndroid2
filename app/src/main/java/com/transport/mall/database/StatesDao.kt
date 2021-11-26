@@ -9,10 +9,10 @@ import com.transport.mall.model.StateModel
 
 @Dao
 interface StatesDao {
-    @Query("SELECT * FROM states")
+    @Query("SELECT * FROM states where isActive=1 AND isDeleted=0")
     fun getAll(): LiveData<List<StateModel>>
 
-    @Query("SELECT * FROM states where name_en=:name")
+    @Query("SELECT * FROM states where name_en=:name AND isActive=1 AND isDeleted=0")
     fun getByName(name: String): LiveData<List<StateModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

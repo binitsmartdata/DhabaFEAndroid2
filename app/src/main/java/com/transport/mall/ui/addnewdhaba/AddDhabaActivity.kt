@@ -131,7 +131,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setTitle(
+        binding.tvTitle.setText(
             if (isUpdate()) (if (viewOnly()) getString(R.string.dhaba_details) else getString(R.string.update_dhaba))
             else
                 getString(R.string.add_new_dhaba)
@@ -154,7 +154,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             if (it.isExecutive()) {
                 adapter.addFrag(fragment4, getString(R.string.bank_details))
                 binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
-            }else{
+            } else {
                 binding.tabLayout.tabMode = TabLayout.MODE_FIXED
             }
         }
@@ -271,7 +271,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
                         1 -> { // Yes
 //                            finish()
                             SharedPrefsHelper.getInstance(this).deleteDraftDhaba()
-                            when(binding.viewPager.currentItem){
+                            when (binding.viewPager.currentItem) {
                                 0 -> RxBus.publish(DhabaModelMain.ActiveScreen.OwnerDetailsFragment)
                                 1 -> RxBus.publish(DhabaModelMain.ActiveScreen.DhabaDetailsFragment)
                                 2 -> RxBus.publish(DhabaModelMain.ActiveScreen.AmenitiesFragment)

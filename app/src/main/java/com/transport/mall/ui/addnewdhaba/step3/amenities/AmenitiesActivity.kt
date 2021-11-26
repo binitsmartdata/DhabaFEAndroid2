@@ -3,6 +3,7 @@ package com.transport.mall.ui.addnewdhaba.step3.amenities
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.view.Menu
 import android.view.MenuItem
 import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
@@ -79,14 +80,14 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
 
     private fun setupToolbar() {
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setHomeButtonEnabled(false)
         if (viewOnly()) {
             // removing add/update from screen title when this is viewOnly()
-            supportActionBar?.title = getTitleByType().replace(getString(R.string.add), "", true).replace(getString(R.string.update), "", true)
+            binding.tvTitle.text = getTitleByType().replace(getString(R.string.add), "", true).replace(getString(R.string.update), "", true)
         } else {
-            supportActionBar?.title = getTitleByType()
+            binding.tvTitle.text = getTitleByType()
         }
     }
 
@@ -171,7 +172,7 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.getItemId()) {
-            android.R.id.home -> {
+            R.id.actionClose -> {
                 finish()
                 true
             }
@@ -218,4 +219,12 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
     override fun viewOnly(): Boolean {
         return intent.getBooleanExtra("viewOnly", false)
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_close, menu)
+        return true
+    }
+
 }

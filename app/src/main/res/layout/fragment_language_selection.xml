@@ -93,11 +93,11 @@
 
                         <ImageView
                             android:id="@+id/ivEnglishTick"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_marginHorizontal="10dp"
-                            android:src="@drawable/ic_tick"
+                            android:src="@drawable/ic_tick_language"
                             android:visibility="@{english ? View.VISIBLE : View.GONE}" />
 
                     </FrameLayout>
@@ -130,11 +130,11 @@
 
                         <ImageView
                             android:id="@+id/ivHindiTick"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_marginHorizontal="10dp"
-                            android:src="@drawable/ic_tick"
+                            android:src="@drawable/ic_tick_language"
                             android:visibility="@{hindi ? View.VISIBLE : View.GONE}" />
 
                     </FrameLayout>
@@ -167,11 +167,11 @@
 
                         <ImageView
                             android:id="@+id/icPunjabiTick"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_marginHorizontal="10dp"
-                            android:src="@drawable/ic_tick"
+                            android:src="@drawable/ic_tick_language"
                             android:visibility="@{punjabi ? View.VISIBLE : View.GONE}" />
 
                     </FrameLayout>

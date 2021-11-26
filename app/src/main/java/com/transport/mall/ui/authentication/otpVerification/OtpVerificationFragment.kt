@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.Task
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentOtpVerificationBinding
 import com.transport.mall.model.UserModel
-import com.transport.mall.utils.AppSignatureHelper
 import com.transport.mall.utils.MySMSBroadcastReceiver
 import com.transport.mall.utils.MySMSBroadcastReceiver.OTPReceiveListener
 import com.transport.mall.utils.base.BaseFragment
@@ -53,8 +52,8 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
                 viewModel.checkOtp(GenericCallBack {
                     it.data?.let {
                         SharedPrefsHelper.getInstance(getmContext()).setUserData(it)
-                        activity?.finish()
                         goToHomeScreen()
+                        activity?.finish()
                     } ?: kotlin.run {
                         showToastInCenter(it.message.toString())
                     }
@@ -132,28 +131,30 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     private fun countDown() {
         if (miliseconds < minutesToWait) {
             if (activity != null) {
-                binding.btnResentOtp.isEnabled = true
-                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.grey))
+//                binding.btnResentOtp.isEnabled = true
+//                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
                 Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                    miliseconds += 1000
+                    activity?.let {
+                        miliseconds += 1000
 //                    var seconds = ((minutesToWait - miliseconds) / 1000).toString()
 //                    binding.countDownTime = activity?.getString(R.string.resend_in) + " 00:${if (seconds.length > 1) seconds else "0" + seconds}"
-                    val minutes = ((minutesToWait - miliseconds) / 1000 / 60).toString()
-                    val seconds = (((minutesToWait - miliseconds) / 1000 % 60)).toString()
+                        val minutes = ((minutesToWait - miliseconds) / 1000 / 60).toString()
+                        val seconds = (((minutesToWait - miliseconds) / 1000 % 60)).toString()
 
-                    val minutesModified = if (minutes.length > 1) minutes else "0$minutes"
-                    val secondsModified = if (seconds.length > 1) seconds else "0$seconds"
-                    val countDownText = getString(R.string.otp_expires_in) + " " + minutesModified + ":" + secondsModified
+                        val minutesModified = if (minutes.length > 1) minutes else "0$minutes"
+                        val secondsModified = if (seconds.length > 1) seconds else "0$seconds"
+                        val countDownText = getString(R.string.otp_expires_in) + " " + minutesModified + ":" + secondsModified
 
-                    binding.countDownTime = countDownText
-                    binding.tvResendIn.visibility = View.VISIBLE
-                    countDown()
+                        binding.countDownTime = countDownText
+                        binding.tvResendIn.visibility = View.VISIBLE
+                        countDown()
+                    }
                 }, 1000)
             }
         } else {
             if (activity != null) {
-                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
-                binding.btnResentOtp.isEnabled = true
+//                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
+//                binding.btnResentOtp.isEnabled = true
                 binding.tvResendIn.visibility = View.GONE
             }
         }

@@ -7,6 +7,8 @@
 
         <import type="android.view.View" />
 
+        <import type="com.transport.mall.model.DhabaModel" />
+
         <variable
             name="toolbarModel"
             type="com.transport.mall.model.Toolbar" />
@@ -18,6 +20,10 @@
         <variable
             name="user"
             type="com.transport.mall.model.UserModel" />
+
+        <variable
+            name="status"
+            type="String" />
 
     </data>
 
@@ -47,15 +53,11 @@
                 android:hint="@string/search_dhaba"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
-                android:padding="@dimen/_5sdp"
+                android:padding="@dimen/_10sdp"
                 android:singleLine="true"
                 android:textColorHint="@color/text_gray"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
-            <View
-                android:layout_width="@dimen/_1sdp"
-                android:layout_height="match_parent"
-                android:background="@color/grey_stroke" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -68,7 +70,7 @@
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_10sdp"
+                    android:padding="@dimen/_7sdp"
                     android:src="@drawable/ic_filters"
                     android:text="@string/city" />
 
@@ -88,59 +90,77 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    itemDecor="@{false}"
+                <TextView
+                    android:id="@+id/tvType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:text="@{status}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:visibility="@{user.isExecutive() ? View.GONE : View.GONE}" />
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/llNoData"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        itemDecor="@{false}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-                    <ImageView
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="@dimen/_100sdp"
-                        android:src="@drawable/ic_no_dhaba" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="@dimen/_10sdp"
-                        android:fontFamily="@font/opensans_regular"
+                    <LinearLayout
+                        android:id="@+id/llNoData"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@string/no_dhaba_found"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                    <!--
-                                        <androidx.appcompat.widget.AppCompatButton
-                                            android:id="@+id/btnAddDhaba"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginVertical="@dimen/_10sdp"
-                                            android:background="@drawable/btn_red_stroke"
-                                            android:fontFamily="@font/opensans_semibold"
-                                            android:gravity="center"
-                                            android:paddingHorizontal="@dimen/_20sdp"
-                                            android:paddingVertical="@dimen/_10sdp"
-                                            android:text="@string/add_new_dhaba"
-                                            android:textAllCaps="false"
-                                            android:textColor="@color/colorPrimary"
-                                            android:textSize="18sp"
-                                            android:visibility="@{user.isManager() ? View.GONE : View.VISIBLE}" />
-                    -->
+                        <ImageView
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:src="@drawable/ic_no_dhaba" />
 
-                </LinearLayout>
-            </FrameLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/_10sdp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="@string/no_dhaba_found"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <!--
+                                            <androidx.appcompat.widget.AppCompatButton
+                                                android:id="@+id/btnAddDhaba"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginVertical="@dimen/_10sdp"
+                                                android:background="@drawable/btn_red_stroke"
+                                                android:fontFamily="@font/opensans_semibold"
+                                                android:gravity="center"
+                                                android:paddingHorizontal="@dimen/_20sdp"
+                                                android:paddingVertical="@dimen/_10sdp"
+                                                android:text="@string/add_new_dhaba"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/colorPrimary"
+                                                android:textSize="18sp"
+                                                android:visibility="@{user.isManager() ? View.GONE : View.VISIBLE}" />
+                        -->
+
+                    </LinearLayout>
+                </FrameLayout>
+
+            </LinearLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>

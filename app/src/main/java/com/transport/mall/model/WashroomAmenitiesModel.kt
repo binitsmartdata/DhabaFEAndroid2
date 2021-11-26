@@ -32,13 +32,13 @@ class WashroomAmenitiesModel : Serializable {
     var images: ArrayList<PhotosModel> = ArrayList()
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (washroomStatus.isEmpty()) {
+        /*if (washroomStatus.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_washroom_status))
         } else if (water.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_hot_and_cold_water))
         } else if (cleaner.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_truck_show_clean))
-        } else if (images.isEmpty()) {
+        } else */if (washroomStatus.isNotEmpty() && washroomStatus.equals("true", true) && images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_photo))
         } else {
             callback.onResponse(true, "")

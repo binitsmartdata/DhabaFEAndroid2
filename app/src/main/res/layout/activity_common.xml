@@ -25,6 +25,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/ToolbarTheme"
             android:background="@color/white"
             android:elevation="@dimen/_4sdp">
 

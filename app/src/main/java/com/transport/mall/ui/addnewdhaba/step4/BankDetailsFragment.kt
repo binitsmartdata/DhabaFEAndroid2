@@ -332,9 +332,9 @@ class BankDetailsFragment :
     }
 
     fun youAreInFocus() {
-        mListener?.getDhabaModelMain()?.ownerModel?.let {
+        /*mListener?.getDhabaModelMain()?.ownerModel?.let {
             viewModel.bankModel.panNumber = it.panNumber
-        }
+        }*/
         mListener?.getDhabaModelMain()?.ownerModel?.let { viewModel.bankModel.user_id = it._id }
         mListener?.getDhabaModelMain()?.dhabaModel?.let { viewModel.dhabaModel = it }
     }

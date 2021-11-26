@@ -78,6 +78,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                     }
                     ApiResult.Status.SUCCESS -> {
                         hideProgressDialog()
+                        goToHomeScreen()
                         activity?.finish()
                     }
                 }

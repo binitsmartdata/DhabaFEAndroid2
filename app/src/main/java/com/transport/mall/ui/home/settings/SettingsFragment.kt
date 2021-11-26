@@ -1,6 +1,9 @@
 package com.transport.mall.ui.home.settings
 
 import android.content.Context
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentSettingsBinding
@@ -26,6 +29,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
 
     override fun bindData() {
         mListener = activity as CommonActivityListener
+        setHasOptionsMenu(true)
         binding.profileLayout.setOnClickListener {
             mListener?.openProfileScreen()
         }
@@ -50,5 +54,20 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
 
     override fun initListeners() {
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_notification, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionNotification -> {
+                mListener?.openNotificationFragment()
+                return true
+            }
+        }
+        return false
     }
 }

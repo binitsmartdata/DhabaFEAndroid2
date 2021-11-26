@@ -9,13 +9,13 @@ import com.transport.mall.model.CityModel
 
 @Dao
 interface CityDao {
-    @Query("SELECT * FROM cities")
+    @Query("SELECT * FROM cities where isActive=1 AND isDeleted=0")
     fun getAll(): LiveData<List<CityModel>>
 
-    @Query("SELECT * FROM cities where stateCode=:stateCode")
+    @Query("SELECT * FROM cities where stateCode=:stateCode AND isActive=1 AND isDeleted=0")
     fun getAllByState(stateCode: String): LiveData<List<CityModel>>
 
-    @Query("SELECT * FROM cities where stateCode IN (:stateCodes)")
+    @Query("SELECT * FROM cities where stateCode IN (:stateCodes) AND isActive=1 AND isDeleted=0")
     fun getAllByMultipleStates(stateCodes: String): LiveData<List<CityModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

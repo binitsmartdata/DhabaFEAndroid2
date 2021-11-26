@@ -16,7 +16,7 @@
 
     <item android:state_enabled="false">
         <shape>
-            <stroke android:width="@dimen/_1sdp" android:color="@color/grey_light" />
+            <stroke android:width="@dimen/_1sdp" android:color="@color/black" />
             <corners android:radius="@dimen/_5sdp" />
         </shape>
     </item>

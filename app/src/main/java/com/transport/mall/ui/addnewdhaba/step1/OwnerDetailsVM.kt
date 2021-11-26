@@ -121,4 +121,41 @@ class OwnerDetailsVM(application: Application) : BaseVM(application) {
             }
         }
     }
+
+    fun deleteIdProofFront(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.removeIdProofFront(
+                        RequestBody.create(MultipartBody.FORM, ownerModel._id),
+                        RequestBody.create(MultipartBody.FORM, "")
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserver)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+    fun deleteIdProofBack(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.removeIdProofBack(
+                        RequestBody.create(MultipartBody.FORM, ownerModel._id),
+                        RequestBody.create(MultipartBody.FORM, "")
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserver)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
 }

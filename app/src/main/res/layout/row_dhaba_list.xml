@@ -201,34 +201,34 @@
 
                 <ImageView
                     android:id="@+id/ivEdit"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_7sdp"
+                    android:padding="@dimen/_6sdp"
                     android:src="@drawable/ic_edit" />
 
                 <ImageView
                     android:id="@+id/ivDelete"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_8sdp"
+                    android:padding="@dimen/_7sdp"
                     android:src="@drawable/ic_delete" />
 
                 <ImageView
                     android:id="@+id/ivLocation"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_3sdp"
-                    android:src="@drawable/ic_marker" />
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_location_listing" />
 
                 <ImageView
                     android:id="@+id/ivView"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
                     android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_8sdp"
+                    android:padding="@dimen/_6sdp"
                     android:src="@drawable/ic_eye" />
 
             </LinearLayout>

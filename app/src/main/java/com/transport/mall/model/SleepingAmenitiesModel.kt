@@ -44,13 +44,13 @@ class SleepingAmenitiesModel : Serializable {
     var images = ""
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (sleeping.isEmpty()) {
+        /*if (sleeping.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_bed_charpai))
-        } else if (sleeping.isNotEmpty() && sleeping.equals("true") && noOfBeds.isEmpty()) {
+        } else */if (sleeping.isNotEmpty() && sleeping.equals("true") && noOfBeds.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_no_of_beds))
         } else if (sleeping.equals("true") && images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_photo))
-        } else if (fan.isEmpty()) {
+        } /*else if (fan.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_fan))
         } else if (cooler.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_cooler))
@@ -60,7 +60,7 @@ class SleepingAmenitiesModel : Serializable {
             callback.onResponse(false, context.getString(R.string.choose_if_open))
         } else if (hotWater.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_hot_water))
-        } else {
+        }*/ else {
             callback.onResponse(true, "")
         }
     }

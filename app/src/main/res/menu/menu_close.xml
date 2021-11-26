@@ -4,10 +4,10 @@
     tools:context="com.getdishout.trxpay.ui.slingshot.SlingshotProcessActivity">
 
     <item
-        android:id="@+id/actionNotification"
+        android:id="@+id/actionClose"
         android:enabled="true"
-        android:icon="@drawable/ic_notification_menu"
-        android:title="@string/notifications"
+        android:icon="@drawable/ic_close_black"
+        android:title="Close"
         app:showAsAction="always" />
 
 </menu>

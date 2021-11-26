@@ -47,11 +47,11 @@ class ParkingAmenitiesModel : Serializable {
     var images = ArrayList<PhotosModel>()
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (images.isEmpty()) {
+        /*if (images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_parking_photo))
-        } else {
+        } else {*/
             callback.onResponse(true, "")
-        }
+//        }
     }
 
     fun getNoOfAmenities(): Int {

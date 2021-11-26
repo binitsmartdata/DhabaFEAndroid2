@@ -2,6 +2,7 @@ package com.transport.mall.ui.home.helpline
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.Observer
@@ -10,6 +11,7 @@ import com.transport.mall.R
 import com.transport.mall.databinding.FragmentEditProfileBinding
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.home.profile.ProfileVM
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
@@ -65,16 +67,40 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
                 hideProgressDialog()
             }
         })
+        viewModel.progressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.deleting_profile_photo))
+            } else {
+                hideProgressDialog()
+            }
+        })
 
         binding.ivProfileImg.setOnClickListener {
-            ImagePicker.with(this)
-                .cropSquare()//Crop image(Optional), Check Customization for more option
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
+            if (viewModel.userModel.ownerPic.trim().isEmpty()) {
+                openImagePicker()
+            } else {
+                GlobalUtils.showOptionsDialog(
+                    getmContext(),
+                    arrayOf(getString(R.string.update_photo), getString(R.string.remove_photo)),
+                    getString(R.string.choose_action),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                openImagePicker()
+                            }
+                            1 -> {
+                                viewModel.removeProfileImage({
+                                    viewModel.userModel.ownerPic = it.data!!.ownerPic
+                                    SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
+                                    GlobalUtils.showToastInCenter(getmContext(), getString(R.string.photo_removed_successfully))
+
+                                    //NOTIFY THAT USER MODEL IS UPDATED
+                                    RxBus.publish(it.data!!)
+                                })
+                            }
+                        }
+                    })
+            }
         }
 
         binding.btnUpdateProfile.setOnClickListener {
@@ -95,13 +121,26 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
 
                         SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
                         showToastInCenter(getString(R.string.profile_updated))
-                        goToHomeScreen()
+
+                        //NOTIFY THAT USER MODEL IS UPDATED
+                        RxBus.publish(it.data!!)
                     } else {
                         showToastInCenter(it.message)
                     }
                 })
             }
         }
+    }
+
+    private fun openImagePicker() {
+        ImagePicker.with(this)
+            .cropSquare()//Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

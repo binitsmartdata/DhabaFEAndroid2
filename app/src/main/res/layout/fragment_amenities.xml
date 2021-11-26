@@ -572,7 +572,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNext"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_46sdp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/primary_color_btn_selector"
@@ -585,7 +585,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSaveDraft"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_46sdp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_30sdp"

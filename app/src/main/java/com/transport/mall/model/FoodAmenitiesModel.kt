@@ -44,19 +44,19 @@ class FoodAmenitiesModel : Serializable {
     var foodLisenceFile: String = ""
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (foodLisence.isEmpty()) {
+        /*if (foodLisence.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_food_license_option))
-        } else if (foodLisence.equals("true", true) && foodLisenceFile.isEmpty()) {
+        } else*/ if (foodLisence.equals("true", true) && foodLisenceFile.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_license_photo))
-        } else if (foodAt100.isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.select_food_at_100))
+        } /*else if (foodAt100.isEmpty()) {
+            callback.onResponse(false, context.getString(R.string.choose_food_1_cost))
         } else if (roCleanWater.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_ro_water_option))
         } else if (food.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_food_type))
         } else if (images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.choose_atlease_one_photo))
-        } else {
+        } */else {
             callback.onResponse(true, "")
         }
     }

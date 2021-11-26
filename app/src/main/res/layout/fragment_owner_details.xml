@@ -61,9 +61,9 @@
                         android:drawableStart="@drawable/ic_add_dhaba_hilighted"
                         android:drawablePadding="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_semibold"
+                        android:gravity="center_vertical"
                         android:paddingVertical="@dimen/_5sdp"
                         android:text="@string/add_existing_owner"
-                        android:gravity="center_vertical"
                         android:textColor="@color/colorRed"
                         android:textSize="16sp"
                         android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}" />
@@ -124,6 +124,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:background="@color/grey_stroke" />
+
                     <androidx.appcompat.widget.AppCompatEditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -340,6 +341,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:background="@color/grey_stroke" />
+
                     <androidx.appcompat.widget.AppCompatEditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -407,8 +409,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"
                         android:layout_marginTop="5dp"
-                        android:onClick="@{()->edSelectDesignation.performClick()}"
                         android:layout_marginEnd="@dimen/_15sdp"
+                        android:onClick="@{()->edSelectDesignation.performClick()}"
                         android:src="@drawable/ic_spinner_dropdown" />
 
                 </FrameLayout>
@@ -497,10 +499,10 @@
                     <FrameLayout
                         android:id="@+id/uploadFrontSideLayout"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_100sdp"
+                        android:layout_height="@dimen/_70sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        app:layout_constraintEnd_toStartOf="@+id/uploadBackSideLayout"
+                        app:layout_constraintEnd_toStartOf="@+id/flBackSide"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/acceptText">
 
@@ -525,7 +527,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/ivFrontId"
                                 android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_100sdp"
+                                android:layout_height="@dimen/_70sdp"
                                 android:clickable="false"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_id_front"
@@ -545,6 +547,18 @@
                             android:textColor="@color/colorPrimary"
                             android:textSize="28sp" />
 
+                        <ImageView
+                            android:id="@+id/ivDeleteFront"
+                            android:layout_width="@dimen/_23sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_margin="@dimen/_3sdp"
+                            android:background="@drawable/red_circle"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_delete"
+                            android:visibility="@{(isUpdate &amp;&amp; !viewModel.ownerModel.idproofFront.empty) ? View.VISIBLE : View.GONE}"
+                            app:tint="@color/white" />
+
                     </FrameLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -559,40 +573,59 @@
                         app:layout_constraintStart_toStartOf="@+id/uploadFrontSideLayout"
                         app:layout_constraintTop_toBottomOf="@+id/uploadFrontSideLayout" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/uploadBackSideLayout"
+                    <FrameLayout
+                        android:id="@+id/flBackSide"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_100sdp"
+                        android:layout_height="@dimen/_70sdp"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/grey1_fill_bg"
-                        android:padding="@dimen/_5sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/uploadFrontSideLayout"
                         app:layout_constraintTop_toBottomOf="@+id/acceptText">
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_add_red"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/uploadBackSideLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_70sdp"
+                            android:background="@drawable/grey1_fill_bg"
+                            android:padding="@dimen/_5sdp">
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivBackId"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_100sdp"
-                            android:clickable="false"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ic_id_back"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_add_red"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivBackId"
+                                android:layout_width="@dimen/_100sdp"
+                                android:layout_height="@dimen/_70sdp"
+                                android:clickable="false"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/ic_id_back"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <ImageView
+                            android:id="@+id/ivDeleteBack"
+                            android:layout_width="@dimen/_23sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_margin="@dimen/_3sdp"
+                            android:background="@drawable/red_circle"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_delete"
+                            android:visibility="@{(isUpdate &amp;&amp; !viewModel.ownerModel.idproofBack.empty) ? View.VISIBLE : View.GONE}"
+                            app:tint="@color/white" />
+
+                    </FrameLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -602,16 +635,16 @@
                         android:text="@string/back_side"
                         android:textColor="@color/black"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="@+id/uploadBackSideLayout"
-                        app:layout_constraintStart_toStartOf="@+id/uploadBackSideLayout"
-                        app:layout_constraintTop_toBottomOf="@+id/uploadBackSideLayout" />
+                        app:layout_constraintEnd_toEndOf="@+id/flBackSide"
+                        app:layout_constraintStart_toStartOf="@+id/flBackSide"
+                        app:layout_constraintTop_toBottomOf="@+id/flBackSide" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnNext"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:fontFamily="@font/opensans_bold"
@@ -629,7 +662,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/btnSaveDraft"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_30sdp"
                     android:fontFamily="@font/opensans_bold"

@@ -53,6 +53,25 @@ class ProfileVM(application: Application) : BaseVM(application) {
         }
     }
 
+    fun removeProfileImage(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.removeProfileImage(
+                        RequestBody.create(MultipartBody.FORM, userModel._id),
+                        RequestBody.create(MultipartBody.FORM, "")
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserver)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+
     private fun handleResponse(
         it: ApiResult<ApiResponseModel<UserModel>>,
         callBack: GenericCallBack<ApiResponseModel<UserModel>>,

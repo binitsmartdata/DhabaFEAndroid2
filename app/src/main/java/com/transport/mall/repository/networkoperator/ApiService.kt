@@ -279,6 +279,20 @@ interface ApiService {
     ): Response<ApiResponseModel<UserModel>>
 
     @Multipart
+    @POST("dhaba/updateOwner")
+    suspend fun removeIdProofFront(
+        @Part("_id") _id: RequestBody,
+        @Part("idproofFront") idproofFront: RequestBody
+    ): Response<ApiResponseModel<UserModel>>
+
+    @Multipart
+    @POST("dhaba/updateOwner")
+    suspend fun removeIdProofBack(
+        @Part("_id") _id: RequestBody,
+        @Part("idproofBack") idproofFront: RequestBody
+    ): Response<ApiResponseModel<UserModel>>
+
+    @Multipart
     @POST("user/updateUserProfile")
     suspend fun updateUserProfile(
         @Part("_id") _id: RequestBody,
@@ -287,6 +301,13 @@ interface ApiService {
         @Part("mobile") mobile: RequestBody,
         @Part("mobilePrefix") mobilePrefix: RequestBody,
         @Part profileImage: MultipartBody.Part?
+    ): Response<ApiResponseModel<UserModel>>
+
+    @Multipart
+    @POST("user/updateUserProfile")
+    suspend fun removeProfileImage(
+        @Part("_id") _id: RequestBody,
+        @Part("profileImage") profileImage: RequestBody
     ): Response<ApiResponseModel<UserModel>>
 
     @Multipart

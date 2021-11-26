@@ -63,7 +63,7 @@ class ImagePagerActivity : BaseActivity<ActivityImagespagerBinding, BaseVM>() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.title = getString(R.string.appName)
+        binding.tvTitle.text = getString(R.string.appName)
     }
 
     override fun initListeners() {

@@ -135,7 +135,7 @@
     <string name="email_address">Email address *</string>
     <string name="address">Address</string>
     <string name="pan_number">Pan Number</string>
-    <string name="aadhar_card_number">Aadhar Card Number</string>
+    <string name="aadhar_card_number">Aadhar Card Number *</string>
     <string name="upload_owner_picture">Upload Owner Picture</string>
     <string name="upload_id_proof">Upload Id proof</string>
     <string name="we_accept_aadhar_card_pan_card_or_driving_license">We accept aadhar card, Voter ID or driving license</string>
@@ -561,12 +561,30 @@
     <string name="no_dhaba_found">No Dhaba Found</string>
     <string name="dhaba_added_succesfully">Dhaba Added Succesfully</string>
     <string name="this_is_the_id_number_of_added_dhaba">This is the id number of added dhaba.</string>
-    <string name="voter_id">Voter Id</string>
+    <string name="voter_id">Voter Id *</string>
     <string name="enter_voter_id_or_adhar_card">Please enter either Voter Id or Aadhar Card</string>
     <string name="owner_voter_id_or_adhar_card">Owner\'s Voter ID or Adhar Card</string>
     <string name="enter_10_digit_mobile_no">Enter 10 digit mobile no.</string>
     <string name="otp_expires_in">OTP expires in </string>
     <string name="dhaba_address_mandatory">Dhaba Address *</string>
     <string name="submitted_for_approval">Submitted For Approval</string>
+    <string name="pending_dhabas">Pending Dhabas</string>
+    <string name="in_review_dhabas">In Review Dhabas</string>
+    <string name="active_dhabas">Active Dhabas</string>
+    <string name="inactive_dhabas">Inactive Dhabas</string>
+    <string name="cities">Cities</string>
+    <string name="states">States</string>
+    <string name="highways">Highways</string>
+    <string name="banks">Banks</string>
+    <string name="failed_to_fetch">Failed to fetch</string>
+    <string name="fields_with">Fields with</string>
+    <string name="asterisk_are_mandatory">asterisk are mandatory</string>
+    <string name="choose_food_1_cost">Please choose option food for 1 cost</string>
+    <string name="update_photo">Update Photo</string>
+    <string name="remove_photo">Remove Photo</string>
+    <string name="photo_removed_successfully">Photo Removed Successfully</string>
+    <string name="choose_action">Choose Action</string>
+    <string name="deleting_profile_photo">Removing Profile Photo</string>
+    <string name="removed_successfully">Removed Successfully</string>
 
 </resources>

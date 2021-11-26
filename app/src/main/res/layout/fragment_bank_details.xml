@@ -230,7 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_140sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@color/grey_light"
+                    android:background="@drawable/grey_fill_bg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/panNumberTil">
@@ -270,16 +270,6 @@
 
                 </FrameLayout>
 
-                <View
-                    android:id="@+id/divider1"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@color/colorGrey1"
-                    app:layout_constraintBottom_toBottomOf="@id/framePanCardPhoto"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/onboardedByText"
                     android:layout_width="wrap_content"
@@ -290,7 +280,7 @@
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider1" />
+                    app:layout_constraintTop_toBottomOf="@+id/framePanCardPhoto" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nameTil"
@@ -479,26 +469,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:id="@+id/divider4"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@color/colorGrey1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/areaHeadPhoneNumberTil" />
-
-                <View
-                    android:id="@+id/divider5"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@color/colorGrey1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/areaHeadPhoneNumberTil" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/blockingSystemLayout"
                     android:layout_width="match_parent"
@@ -508,7 +478,7 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider5">
+                    app:layout_constraintTop_toBottomOf="@+id/areaHeadPhoneNumberTil">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/blockingSystemText"
@@ -636,7 +606,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnNext"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:fontFamily="@font/opensans_bold"
@@ -655,7 +625,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSaveDraft"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:background="@drawable/default_btn_selector"

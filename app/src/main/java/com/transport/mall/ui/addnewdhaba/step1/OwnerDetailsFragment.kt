@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
@@ -198,6 +199,33 @@ class OwnerDetailsFragment :
             DialogDropdownOptions(getmContext(), getString(R.string.alternative_contact_designation), designationAdapter, {
                 viewModel.ownerModel.alternateDesignation = menuArray2[it]
             }).show()
+        }
+
+        binding.ivDeleteFront.setOnClickListener {
+            viewModel.deleteIdProofFront(GenericCallBack {
+                if (it.data != null) {
+                    mListener?.getDhabaModelMain()?.ownerModel?.idproofFront = ""
+                    viewModel.ownerModel.idproofFront = ""
+                    showToastInCenter(getString(R.string.removed_successfully))
+                    xloadImages(binding.ivFrontId, it.data!!.idproofFront, R.drawable.ic_id_front)
+                    binding.ivDeleteFront.visibility = View.GONE
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
+        }
+        binding.ivDeleteBack.setOnClickListener {
+            viewModel.deleteIdProofBack(GenericCallBack {
+                if (it.data != null) {
+                    mListener?.getDhabaModelMain()?.ownerModel?.idproofBack = ""
+                    viewModel.ownerModel.idproofBack = ""
+                    showToastInCenter(getString(R.string.removed_successfully))
+                    xloadImages(binding.ivBackId, it.data!!.idproofBack, R.drawable.ic_id_back)
+                    binding.ivDeleteBack.visibility = View.GONE
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
         }
         setRxBusListener()
     }

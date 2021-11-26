@@ -376,7 +376,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@color/grey_light"
+                    android:background="@drawable/grey_fill_bg"
                     android:clickable="@{!viewOnly}"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -416,7 +416,7 @@
                 <Button
                     android:id="@+id/btnSaveDhaba"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginVertical="@dimen/_20sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"

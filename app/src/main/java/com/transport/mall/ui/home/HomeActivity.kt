@@ -11,9 +11,7 @@ import com.getdishout.trxpay.ui.termsofservice.DialogTermsAndConditions
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.ActivityHomeBinding
-import com.transport.mall.model.SideMenu
-import com.transport.mall.model.TermsConditionsModel
-import com.transport.mall.model.Toolbar
+import com.transport.mall.model.*
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
@@ -22,6 +20,7 @@ import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
 import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
+import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -57,12 +56,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 //            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(intent)
         }
-
-        fun startFromLogin(context: Context) {
-            val intent = Intent(context, HomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            context.startActivity(intent)
-        }
     }
 
     val observer = MutableLiveData<Boolean>()
@@ -81,6 +74,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         binding.userModel = SharedPrefsHelper.getInstance(this).getUserData()
         binding.user.profileView.setOnClickListener {
             openProfileFragment()
+        }
+        //LISTENER TO LISTEN WHEN TO EXECUTE SAVE BUTTON
+        RxBus.listen(UserModel::class.java).subscribe {
+            binding.userModel = SharedPrefsHelper.getInstance(this).getUserData()
         }
     }
 

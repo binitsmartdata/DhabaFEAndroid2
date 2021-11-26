@@ -482,7 +482,7 @@
                     android:id="@+id/flBarberImg"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
-                    android:background="@color/grey_light"
+                    android:background="@drawable/grey_fill_bg"
                     android:clickable="@{!viewOnly}">
 
                     <LinearLayout
@@ -521,7 +521,7 @@
                 <Button
                     android:id="@+id/btnSaveDhaba"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:background="@drawable/primary_color_btn_selector"
@@ -534,7 +534,7 @@
                 <Button
                     android:id="@+id/btnSkip"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_46sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:background="@drawable/default_btn_selector"
                     android:text="@string/skip"

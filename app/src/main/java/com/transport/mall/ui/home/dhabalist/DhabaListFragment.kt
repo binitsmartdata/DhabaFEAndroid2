@@ -55,6 +55,13 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.user = SharedPrefsHelper.getInstance(getmContext()).getUserData()
+        binding.status = when (status) {
+            DhabaModel.STATUS_PENDING -> getString(R.string.pending_dhabas)
+            DhabaModel.STATUS_INPROGRESS -> getString(R.string.in_review_dhabas)
+            DhabaModel.STATUS_ACTIVE -> getString(R.string.active_dhabas)
+            DhabaModel.STATUS_INACTIVE -> getString(R.string.inactive_dhabas)
+            else -> ""
+        }
         mListener = activity as CommonActivityListener
         showOriginalList()
         setHasOptionsMenu(true)
@@ -107,13 +114,13 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
         } else {
             // UPDATE DHABA STATUS TO IN PROGRESS(IN REVIEW)
             viewModel.updateDhabaStatus(
-                activity as Context,false, dhabaModelMain[position].dhabaModel!!, DhabaModel.STATUS_INPROGRESS, viewModel.dialogProgressObserver, GenericCallBack {
-                it.data?.let {
-                    GlobalUtils.showToastInCenter(getmContext(), getString(R.string.sent_for_spproval))
-                    dhabaModelMain[position].dhabaModel = it
-                    dhabaListAdapter?.notifyDataSetChanged()
-                }
-            })
+                activity as Context, false, dhabaModelMain[position].dhabaModel!!, DhabaModel.STATUS_INPROGRESS, viewModel.dialogProgressObserver, GenericCallBack {
+                    it.data?.let {
+                        GlobalUtils.showToastInCenter(getmContext(), getString(R.string.sent_for_spproval))
+                        dhabaModelMain[position].dhabaModel = it
+                        dhabaListAdapter?.notifyDataSetChanged()
+                    }
+                })
         }
     }
 
