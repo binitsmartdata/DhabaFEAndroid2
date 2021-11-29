@@ -1,8 +1,6 @@
 package com.transport.mall.utils
 
 import android.app.Activity
-import android.app.TimePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.view.Gravity
@@ -10,15 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import com.transport.mall.R
-import com.transport.mall.utils.common.GenericCallBack
-import java.text.SimpleDateFormat
 import java.util.*
 
 fun Snackbar.withColor(@ColorInt colorInt: Int): Snackbar {
@@ -92,3 +86,4 @@ fun Fragment.popBackFragment(fragment: Fragment) {
         e.printStackTrace()
     }
 }
+

@@ -42,8 +42,8 @@ fun xloadImages(
 ) {
     val isSpecifiedPlaceholder = when (placeHolder) {
         R.drawable.ic_profile_pic_placeholder -> true
-        R.drawable.ic_id_front -> true
-        R.drawable.ic_id_back -> true
+//        R.drawable.ic_id_front -> true
+//        R.drawable.ic_id_back -> true
         else -> false
     }
 

@@ -42,7 +42,7 @@ public class ImageAdapter extends PagerAdapter {
         View itemView = mLayoutInflater.inflate(R.layout.row_image_pager, container, false);
 
         ImageView imageView = itemView.findViewById(R.id.imageView);
-        xloadImages(imageView, data.get(position).getPath(), R.drawable.ic_image_placeholder);
+        xloadImages(imageView, data.get(position).getPath(), R.drawable.placeholder);
 
         container.addView(itemView);
 

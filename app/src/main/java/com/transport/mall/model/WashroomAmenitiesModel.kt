@@ -20,13 +20,13 @@ class WashroomAmenitiesModel : Serializable {
     var dhaba_id = ""
 
     @SerializedName(value = "washroomStatus")
-    var washroomStatus = ""
+    var washroomStatus = "false"
 
     @SerializedName(value = "water")
-    var water = ""
+    var water = "false"
 
     @SerializedName(value = "cleaner")
-    var cleaner = ""
+    var cleaner = "false"
 
     @SerializedName(value = "images")
     var images: ArrayList<PhotosModel> = ArrayList()

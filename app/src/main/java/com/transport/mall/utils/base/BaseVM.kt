@@ -117,7 +117,11 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                 return t.message.toString()
             }
         }
-        return ResponseCodes.logErrorMessage(error_code)
+        if (error_code == ResponseCodes.UNKNOWN_ERROR) {
+            return t.message.toString()
+        } else {
+            return ResponseCodes.logErrorMessage(error_code)
+        }
     }
 
     suspend fun <T> executeApi(input: Response<T>?): Flow<ApiResult<T>> {
@@ -140,17 +144,21 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
     }
 
     fun getMultipartImagesList(
-        imageList: ArrayList<PhotosModel>,
+        imageList: ArrayList<PhotosModel>?,
         parameterName: String
     ): Array<MultipartBody.Part?>? {
-        if (imageList.isEmpty()) {
-            return null
-        } else {
-            val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(imageList.size)
-            for (index in 0 until imageList.size) {
-                surveyImagesParts[index] = getMultipartImageFile(imageList.get(index).path, parameterName)
+        imageList?.let {
+            if (imageList.isEmpty()) {
+                return null
+            } else {
+                val surveyImagesParts = arrayOfNulls<MultipartBody.Part>(imageList.size)
+                for (index in 0 until imageList.size) {
+                    surveyImagesParts[index] = getMultipartImageFile(imageList.get(index).path, parameterName)
+                }
+                return surveyImagesParts
             }
-            return surveyImagesParts
+        } ?: kotlin.run {
+            return null
         }
     }
 
@@ -235,14 +243,15 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             try {
                 executeApi(
                     getApiService()?.updateDhabaStatus(
-                        dhabaModel._id,
-                        dhabaModel.blockDay.toString(),
-                        dhabaModel.blockMonth.toString(),
-                        dhabaModel.active.toString(),
-                        isDraft.toString(),
-                        if (status == null) (if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS) else status,
-                        if (isDraft) null else (if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()) "quality-control" else "executive"),
-                        if (isDraft) null else (SharedPrefsHelper.getInstance(context).getUserData().role.toString())
+                        /* _id          */ dhabaModel._id,
+                        /* blockDay     */ dhabaModel.blockDay.toString(),
+                        /* blockMonth   */ dhabaModel.blockMonth.toString(),
+                        /* isActive     */ dhabaModel.active.toString(),
+                        /* isDraft      */ isDraft.toString(),
+                        /* status       */ if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
+                        /* approval_for */ if (isDraft) null else (if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()) "quality-control" else "executive"),
+                        /* approval_by  */ if (isDraft) null else (SharedPrefsHelper.getInstance(context).getUserData().role.toString()),
+                        /* isUpdated    */ if (isDraft) "false" else (if (dhabaModel.status.equals(DhabaModel.STATUS_ACTIVE)) "true" else "false")
                     )
                 ).collect {
                     when (it.status) {

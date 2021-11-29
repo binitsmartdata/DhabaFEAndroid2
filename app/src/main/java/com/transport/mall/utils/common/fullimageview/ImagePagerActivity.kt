@@ -38,9 +38,9 @@ class ImagePagerActivity : BaseActivity<ActivityImagespagerBinding, BaseVM>() {
             context.startActivity(starter)
         }
 
-        fun start(context: Context, model: PhotosModel) {
+        fun startForSingle(context: Context, path: String) {
             val list = ArrayList<PhotosModel>()
-            list.add(model)
+            list.add(PhotosModel("", path))
             val starter = Intent(context, ImagePagerActivity::class.java)
             starter.putExtra("data", list)
             starter.putExtra("position", 0)

@@ -15,6 +15,7 @@ import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 /**
@@ -81,14 +82,17 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
             } else {
                 GlobalUtils.showOptionsDialog(
                     getmContext(),
-                    arrayOf(getString(R.string.update_photo), getString(R.string.remove_photo)),
+                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo), getString(R.string.remove_photo)),
                     getString(R.string.choose_action),
                     DialogInterface.OnClickListener { dialogInterface, i ->
                         when (i) {
                             0 -> {
-                                openImagePicker()
+                                ImagePagerActivity.startForSingle(getmContext(), viewModel.userModel.ownerPic)
                             }
                             1 -> {
+                                openImagePicker()
+                            }
+                            2 -> {
                                 viewModel.removeProfileImage({
                                     viewModel.userModel.ownerPic = it.data!!.ownerPic
                                     SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
@@ -101,6 +105,10 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
                         }
                     })
             }
+        }
+
+        binding.ivEditPhoto.setOnClickListener {
+            openImagePicker()
         }
 
         binding.btnUpdateProfile.setOnClickListener {

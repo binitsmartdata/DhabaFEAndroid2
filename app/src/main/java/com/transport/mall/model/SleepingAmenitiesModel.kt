@@ -20,25 +20,25 @@ class SleepingAmenitiesModel : Serializable {
     var dhaba_id = ""
 
     @SerializedName(value = "sleeping")
-    var sleeping = ""
+    var sleeping = "false"
 
     @SerializedName(value = "noOfBeds")
     var noOfBeds = "0"
 
     @SerializedName(value = "fan")
-    var fan = ""
+    var fan = "false"
 
     @SerializedName(value = "cooler")
-    var cooler = ""
+    var cooler = "false"
 
     @SerializedName(value = "enclosed")
     var enclosed = ""
 
     @SerializedName(value = "open")
-    var open = ""
+    var open = "false"
 
     @SerializedName(value = "hotWater")
-    var hotWater = ""
+    var hotWater = "false"
 
     @SerializedName(value = "images")
     var images = ""

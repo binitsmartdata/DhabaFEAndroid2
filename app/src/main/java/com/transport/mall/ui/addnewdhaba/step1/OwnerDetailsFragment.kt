@@ -2,10 +2,12 @@ package com.transport.mall.ui.addnewdhaba.step1
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.telephony.PhoneNumberFormattingTextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
@@ -24,6 +26,7 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.xloadImages
 
@@ -152,24 +155,68 @@ class OwnerDetailsFragment :
         })
 
         binding.uploadPictureLayout.setOnClickListener {
-            INTENT_TYPE = PICKER_OWNER_IMAGE
-            ImagePicker.with(this)
-                .cropSquare()//Crop image(Optional), Check Customization for more option
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
+            Log.e("PROFILE img :", viewModel.ownerModel.ownerPic)
+            if (viewModel.ownerModel.ownerPic.trim().isEmpty()) {
+                openOwnerImgPicker()
+            } else {
+                GlobalUtils.showOptionsDialog(
+                    getmContext(),
+                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                    getString(R.string.choose_action),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                ImagePagerActivity.startForSingle(getmContext(), viewModel.ownerModel.ownerPic)
+                            }
+                            1 -> {
+                                openOwnerImgPicker()
+                            }
+                        }
+                    })
+            }
         }
 
         binding.uploadFrontSideLayout.setOnClickListener {
-            INTENT_TYPE = PICKER_ID_FRONT
-            launchImagePicker()
+            Log.e("front img :", viewModel.ownerModel.idproofFront)
+            if (viewModel.ownerModel.idproofFront.trim().isEmpty()) {
+                launchFrontImgPicker()
+            } else {
+                GlobalUtils.showOptionsDialog(
+                    getmContext(),
+                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                    getString(R.string.choose_action),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                ImagePagerActivity.startForSingle(getmContext(), viewModel.ownerModel.idproofFront)
+                            }
+                            1 -> {
+                                launchFrontImgPicker()
+                            }
+                        }
+                    })
+            }
         }
         binding.uploadBackSideLayout.setOnClickListener {
-            INTENT_TYPE = PICKER_ID_BACK
-            launchImagePicker()
+            Log.e("BACK img :", viewModel.ownerModel.idproofBack)
+            if (viewModel.ownerModel.idproofBack.trim().isEmpty()) {
+                launchBackImgPicker()
+            } else {
+                GlobalUtils.showOptionsDialog(
+                    getmContext(),
+                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                    getString(R.string.choose_action),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                ImagePagerActivity.startForSingle(getmContext(), viewModel.ownerModel.idproofBack)
+                            }
+                            1 -> {
+                                launchBackImgPicker()
+                            }
+                        }
+                    })
+            }
         }
         binding.btnNext.setOnClickListener {
             /* if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
@@ -209,6 +256,13 @@ class OwnerDetailsFragment :
                     showToastInCenter(getString(R.string.removed_successfully))
                     xloadImages(binding.ivFrontId, it.data!!.idproofFront, R.drawable.ic_id_front)
                     binding.ivDeleteFront.visibility = View.GONE
+
+                    //UPDATE OWNER'S DETAILS IN USER'S DATA BECAUSE OWNER IS THE SAME USER WHO HAS LOGGED IN
+                    if (binding.userModel!!.isOwner() && binding.userModel!!._id.equals(mListener?.getDhabaModelMain()?.ownerModel?._id)) {
+                        binding.userModel!!.idproofFront = ""
+                        SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                    }
+                    //---------
                 } else {
                     showToastInCenter(it.message)
                 }
@@ -222,12 +276,41 @@ class OwnerDetailsFragment :
                     showToastInCenter(getString(R.string.removed_successfully))
                     xloadImages(binding.ivBackId, it.data!!.idproofBack, R.drawable.ic_id_back)
                     binding.ivDeleteBack.visibility = View.GONE
+
+                    //UPDATE OWNER'S DETAILS IN USER'S DATA BECAUSE OWNER IS THE SAME USER WHO HAS LOGGED IN
+                    if (binding.userModel!!.isOwner() && binding.userModel!!._id.equals(mListener?.getDhabaModelMain()?.ownerModel?._id)) {
+                        binding.userModel!!.idproofBack = ""
+                        SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                    }
+                    //---------
                 } else {
                     showToastInCenter(it.message)
                 }
             })
         }
         setRxBusListener()
+    }
+
+    private fun launchBackImgPicker() {
+        INTENT_TYPE = PICKER_ID_BACK
+        launchImagePicker()
+    }
+
+    private fun launchFrontImgPicker() {
+        INTENT_TYPE = PICKER_ID_FRONT
+        launchImagePicker()
+    }
+
+    private fun openOwnerImgPicker() {
+        INTENT_TYPE = PICKER_OWNER_IMAGE
+        ImagePicker.with(this)
+            .cropSquare()//Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
     }
 
     private fun setRxBusListener() {

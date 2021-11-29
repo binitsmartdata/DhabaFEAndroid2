@@ -1,6 +1,7 @@
 package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.view.View
@@ -14,6 +15,8 @@ import com.transport.mall.model.LightAmenitiesModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.xloadImages
 
 /**
@@ -92,19 +95,69 @@ class LightAmenitiesFragment :
 
     private fun setupLicensePhotoViews() {
         binding.frameTowerPhoto.setOnClickListener {
-            INTENT_TYPE = INTENT_TOWER
-            ImagePicker.with(this)
-                .crop()                    //Crop image(Optional), Check Customization for more option
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
+            if (mListener?.viewOnly()!!) {
+                ImagePagerActivity.startForSingle(getmContext(), viewModel.model.towerLightImage)
+            } else {
+                if (viewModel.model.towerLightImage.trim().isEmpty()) {
+                    launchToweImgPicker()
+                } else {
+                    GlobalUtils.showOptionsDialog(
+                        getmContext(),
+                        arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                        getString(R.string.choose_action),
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            when (i) {
+                                0 -> {
+                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.model.towerLightImage)
+                                }
+                                1 -> {
+                                    launchToweImgPicker()
+                                }
+                            }
+                        })
+                }
+            }
         }
     }
 
+    private fun launchToweImgPicker() {
+        INTENT_TYPE = INTENT_TOWER
+        ImagePicker.with(this)
+            .crop()                    //Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
+    }
+
     private fun setupFoodPhotosView() {
+        if (mListener?.viewOnly()!!) {
+            ImagePagerActivity.startForSingle(getmContext(), viewModel.model.bulbLightImage)
+        } else {
+            if (viewModel.model.bulbLightImage.trim().isEmpty()) {
+                launchBulbImgPicker()
+            } else {
+                GlobalUtils.showOptionsDialog(
+                    getmContext(),
+                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                    getString(R.string.choose_action),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                ImagePagerActivity.startForSingle(getmContext(), viewModel.model.bulbLightImage)
+                            }
+                            1 -> {
+                                launchBulbImgPicker()
+                            }
+                        }
+                    })
+            }
+        }
+    }
+
+    private fun launchBulbImgPicker() {
         binding.frameBulbPhoto.setOnClickListener {
             INTENT_TYPE = INTENT_BULB
             ImagePicker.with(this)

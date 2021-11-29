@@ -37,6 +37,7 @@ import com.transport.mall.utils.common.GlobalUtils.showConfirmationDialogYesNo
 import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
@@ -111,7 +112,7 @@ class DhabaDetailsFragment :
                 }
             }
 
-            it.imageList.let {
+            it.imageList?.let {
                 if (it.isNotEmpty()) {
                     imageList.addAll(it)
                     refreshGalleryImages()
@@ -230,15 +231,28 @@ class DhabaDetailsFragment :
 
         // DHABA HOARDING PICTURE PICKER
         binding.llLicensePhoto.setOnClickListener {
-            SELECTED_IMAGE_INTENT_TYPE = IMAGE_INTENT_TYPE.HOARDING_PIC
-            ImagePicker.with(this)
-                .crop(16f, 9f)
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
+            if (mListener?.viewOnly()!!) {
+                ImagePagerActivity.startForSingle(getmContext(), viewModel.dhabaModel.images)
+            } else {
+                if (viewModel.dhabaModel.images.trim().isEmpty()) {
+                    launchHoardingImgPicker()
+                } else {
+                    GlobalUtils.showOptionsDialog(
+                        getmContext(),
+                        arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                        getString(R.string.choose_action),
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            when (i) {
+                                0 -> {
+                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.dhabaModel.images)
+                                }
+                                1 -> {
+                                    launchHoardingImgPicker()
+                                }
+                            }
+                        })
+                }
+            }
         }
 
         binding.rgTiming.setOnCheckedChangeListener { radioGroup, id ->
@@ -251,6 +265,18 @@ class DhabaDetailsFragment :
             }
         }
         setRxBusListener()
+    }
+
+    private fun launchHoardingImgPicker() {
+        SELECTED_IMAGE_INTENT_TYPE = IMAGE_INTENT_TYPE.HOARDING_PIC
+        ImagePicker.with(this)
+            .crop(16f, 9f)
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
     }
 
     private fun setRxBusListener() {
@@ -559,19 +585,23 @@ class DhabaDetailsFragment :
 
     private fun setupVideoPickerViews() {
         binding.llVideoPicker.setOnClickListener {
-            GlobalUtils.showOptionsDialog(activity,
-                arrayOf(getString(R.string.gallery), getString(R.string.camera)),
-                getString(R.string.select_video_source),
-                DialogInterface.OnClickListener { dialogInterface, i ->
-                    when (i) {
-                        0 -> {
-                            pickVideoFromGallery(this)
+            if (mListener?.viewOnly()!!) {
+                // TODO : implement video player
+            } else {
+                GlobalUtils.showOptionsDialog(activity,
+                    arrayOf(getString(R.string.gallery), getString(R.string.camera)),
+                    getString(R.string.select_video_source),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                pickVideoFromGallery(this)
+                            }
+                            1 -> {
+                                captureVideo(this)
+                            }
                         }
-                        1 -> {
-                            captureVideo(this)
-                        }
-                    }
-                })
+                    })
+            }
         }
     }
 

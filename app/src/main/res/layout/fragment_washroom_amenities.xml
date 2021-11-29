@@ -57,6 +57,7 @@
                         android:id="@+id/rgOpen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbOpenNo"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -96,6 +97,7 @@
                         android:id="@+id/rgHotColdWater"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbHotWaterNo"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -134,6 +136,7 @@
                     <RadioGroup
                         android:id="@+id/rgCleaner"
                         android:layout_width="match_parent"
+                        android:checkedButton="@id/rbCleanerNo"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 

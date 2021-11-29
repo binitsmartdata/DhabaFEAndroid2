@@ -59,6 +59,7 @@
                         android:id="@+id/rgFoodLicense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checkedButton="@id/rbFoodLicenseNo"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -84,7 +85,7 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_150sdp"
+                    android:layout_height="@dimen/_120sdp"
                     android:background="@drawable/grey_fill_bg"
                     android:visibility="@{rbFoodLicenseYes.checked ? View.VISIBLE : View.GONE}">
 
@@ -92,7 +93,6 @@
                         android:id="@+id/llLicensePhoto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:clickable="@{!viewOnly}"
                         android:gravity="center"
                         android:orientation="vertical"
                         android:padding="20dp">
@@ -204,6 +204,7 @@
                         android:id="@+id/rgRoWater"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checkedButton="@id/roWaterNo"
                         android:orientation="horizontal">
 
                         <RadioButton

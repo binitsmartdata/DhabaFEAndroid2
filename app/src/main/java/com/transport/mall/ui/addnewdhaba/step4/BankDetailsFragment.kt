@@ -115,8 +115,8 @@ class BankDetailsFragment :
                 (activity?.findViewById<RadioButton>(i))?.getTag().toString().toInt()
         }
         binding.rgPropertyStatus.setOnCheckedChangeListener { radioGroup, i ->
-            viewModel.dhabaModel.status =
-                activity?.findViewById<RadioButton>(i)?.getTag().toString()
+//            viewModel.dhabaModel.status =
+//                activity?.findViewById<RadioButton>(i)?.getTag().toString()
         }
 
         viewModel.progressObserver.observe(this, Observer {

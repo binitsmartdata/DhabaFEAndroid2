@@ -123,6 +123,7 @@ class OtpVerificationVM(application: Application) : BaseVM(application) {
                     //------------
 
                 } else {
+                    progressObserver?.value = false
                     callBack.onResponse(it.data)
                 }
             }

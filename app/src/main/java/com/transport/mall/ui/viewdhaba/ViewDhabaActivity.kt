@@ -9,6 +9,7 @@ import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseActivity
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 
 
 /**
@@ -122,6 +123,9 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
     override fun initListeners() {
         binding.ivBack.setOnClickListener {
             finish()
+        }
+        binding.ivHoardingPic.setOnClickListener {
+            ImagePagerActivity.startForSingle(this, viewModel.mDhabaModelMain.dhabaModel?.images!!)
         }
         binding.llFoodAmenities.setOnClickListener {
             AmenitiesActivity.start(this, AmenitiesActivity.FOOD, viewModel.mDhabaModelMain, true, true)

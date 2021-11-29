@@ -24,10 +24,12 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivHoardingPic"
             loadImage="@{dhabaModelMain.dhabaModel.images}"
             placeholder="@{R.drawable.ic_image_placeholder}"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_180sdp"
+            android:clickable="true"
             android:scaleType="centerCrop"
             android:src="@drawable/demo_food_pic" />
 
@@ -38,9 +40,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_155sdp"
                 android:background="@android:color/transparent"
                 android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_155sdp"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:focusable="false" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -52,8 +60,8 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
                         android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -86,6 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
+                        android:scrollbars="horizontal"
                         android:layout_marginTop="@dimen/_10sdp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -378,9 +387,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:visibility="gone"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="0dp"
@@ -404,12 +413,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:visibility="gone"
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
                         android:padding="@dimen/_30sdp"
                         android:text="@string/no_reviews"
-                        android:textColor="@color/grey" />
+                        android:textColor="@color/grey"
+                        android:visibility="gone" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
@@ -422,10 +431,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/default_btn_selector"
-            android:padding="@dimen/_10sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:padding="@dimen/_7sdp"
             android:src="@drawable/ic_back_white" />
 
     </FrameLayout>

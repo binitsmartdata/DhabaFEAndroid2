@@ -132,7 +132,8 @@ interface ApiService {
         @Field("isDraft") isDraft: String,
         @Field("status") status: String,
         @Field("approval_for") approval_for: String?,
-        @Field("approval_by") approval_by: String?
+        @Field("approval_by") approval_by: String?,
+        @Field("isUpdated") isUpdated: String? // this will identify at backend that dhaba is updated after getting approved or From Draft mode
     ): Response<ApiResponseModel<DhabaModel>>
 
     @GET("state/getAllStates")

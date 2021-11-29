@@ -2,6 +2,7 @@ package com.transport.mall.ui.addnewdhaba.step3.amenities.food
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.view.View
@@ -20,6 +21,7 @@ import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.xloadImages
 
 /**
@@ -70,12 +72,12 @@ class FoodAmenitiesFragment :
         viewModel.model = it
         binding.isUpdate = viewModel.model._id.isNotEmpty()
 
-        it.foodLisence.toBoolean().let {
+        it.foodLisence?.toBoolean().let {
             binding.rbFoodLicenseYes.isChecked = it
             binding.rbFoodLicenseNo.isChecked = !it
         }
 
-        it.foodAt100.let {
+        it.foodAt100?.let {
             when (it) {
                 "1" -> binding.rbFoodUnder100.isChecked = true
                 "2" -> binding.rbFood81150.isChecked = true
@@ -84,18 +86,19 @@ class FoodAmenitiesFragment :
             }
         }
 
-        it.roCleanWater.toBoolean().let {
+        it.roCleanWater?.toBoolean().let {
             binding.roWaterYes.isChecked = it
             binding.roWaterNo.isChecked = !it
         }
-
-        when (it.food) {
-            "1" -> binding.rbVeg.isChecked = true
-            "2" -> binding.rbNonVeg.isChecked = true
-            "3" -> binding.rbBothFood.isChecked = true
+        it.food?.let {
+            when (it) {
+                "1" -> binding.rbVeg.isChecked = true
+                "2" -> binding.rbNonVeg.isChecked = true
+                "3" -> binding.rbBothFood.isChecked = true
+            }
         }
 
-        it.foodLisenceFile.let {
+        it.foodLisenceFile?.let {
             if (it.isNotEmpty()) {
                 xloadImages(
                     binding.ivLicenseImg,
@@ -133,16 +136,41 @@ class FoodAmenitiesFragment :
 
     private fun setupLicensePhotoViews() {
         binding.llLicensePhoto.setOnClickListener {
-            SELECTED_IMAGE_INTENT_TYPE = IMAGE_INTENT_TYPE.FOOD_LICENSE
-            ImagePicker.with(this)
-                .crop()                    //Crop image(Optional), Check Customization for more option
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
+            if (mListener?.viewOnly()!!) {
+                ImagePagerActivity.startForSingle(getmContext(), viewModel.model.foodLisenceFile)
+            } else {
+                if (viewModel.model.foodLisenceFile.trim().isEmpty()) {
+                    launchFoodLicensePicker()
+                } else {
+                    GlobalUtils.showOptionsDialog(
+                        getmContext(),
+                        arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                        getString(R.string.choose_action),
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            when (i) {
+                                0 -> {
+                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.model.foodLisenceFile)
+                                }
+                                1 -> {
+                                    launchFoodLicensePicker()
+                                }
+                            }
+                        })
+                }
+            }
         }
+    }
+
+    private fun launchFoodLicensePicker() {
+        SELECTED_IMAGE_INTENT_TYPE = IMAGE_INTENT_TYPE.FOOD_LICENSE
+        ImagePicker.with(this)
+            .crop()                    //Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
     }
 
     private fun setupFoodPhotosView() {

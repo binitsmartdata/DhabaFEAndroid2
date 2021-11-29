@@ -83,7 +83,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_130sdp"
                     android:background="@drawable/grey_fill_bg"
-                    android:clickable="@{!viewOnly}"
                     android:visibility="@{rbTowerYes.checked ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
@@ -164,7 +163,6 @@
                     android:id="@+id/frameBulbPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_130sdp"
-                    android:clickable="@{!viewOnly}"
                     android:visibility="@{rbBulbYes.checked ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout

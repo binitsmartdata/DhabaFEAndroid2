@@ -23,13 +23,13 @@ class FoodAmenitiesModel : Serializable {
     var name: String = ""
 
     @SerializedName(value = "foodLisence")
-    var foodLisence: String = ""
+    var foodLisence: String = "false"
 
     @SerializedName(value = "foodAt100")
     var foodAt100: String = ""
 
     @SerializedName(value = "roCleanWater")
-    var roCleanWater: String = ""
+    var roCleanWater: String = "false"
 
     @SerializedName(value = "normalWater")
     var normalWater: String = ""

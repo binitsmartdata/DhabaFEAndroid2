@@ -1,6 +1,7 @@
 package com.transport.mall.ui.addnewdhaba.step3.amenities.sleeping
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.view.View
@@ -16,6 +17,8 @@ import com.transport.mall.ui.addnewdhaba.step3.foodamenities.SleepingAmenitiesVM
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
+import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.xloadImages
 
 /**
@@ -44,7 +47,6 @@ class SleepingAmenitiesFragment :
             viewModel.model.dhaba_id = it._id
         }
 
-        setupLicensePhotoViews()
         setupFoodPhotosView()
         //SETTING EXISTING DATA ON SCREEN
         mListener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
@@ -98,7 +100,7 @@ class SleepingAmenitiesFragment :
                 binding.rbCoolerNo.isChecked = true
             }
         }
-        it.enclosed.let {
+        it.enclosed?.let {
             when (it) {
                 "1" -> binding.rbExposedIndoor.isChecked = true
                 "2" -> binding.rbExposedOutdoor.isChecked = true
@@ -123,30 +125,42 @@ class SleepingAmenitiesFragment :
         }
     }
 
-    private fun setupLicensePhotoViews() {
+    private fun setupFoodPhotosView() {
         binding.llSleepingAmanPhoto.setOnClickListener {
-            ImagePicker.with(this)
-                .crop()                    //Crop image(Optional), Check Customization for more option
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
+            if (mListener?.viewOnly()!!) {
+                ImagePagerActivity.startForSingle(getmContext(), viewModel.model.images)
+            } else {
+                if (viewModel.model.images.trim().isEmpty()) {
+                    launchSleepingAmenitiesImgPicker()
+                } else {
+                    GlobalUtils.showOptionsDialog(
+                        getmContext(),
+                        arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                        getString(R.string.choose_action),
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            when (i) {
+                                0 -> {
+                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.model.images)
+                                }
+                                1 -> {
+                                    launchSleepingAmenitiesImgPicker()
+                                }
+                            }
+                        })
+                }
+            }
         }
     }
 
-    private fun setupFoodPhotosView() {
-        binding.llSleepingAmanPhoto.setOnClickListener {
-            ImagePicker.with(this)
-                .crop()                    //Crop image(Optional), Check Customization for more option
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
-        }
+    private fun launchSleepingAmenitiesImgPicker() {
+        ImagePicker.with(this)
+            .crop()                    //Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
     }
 
     override fun initListeners() {

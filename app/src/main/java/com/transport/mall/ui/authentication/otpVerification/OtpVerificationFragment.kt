@@ -3,12 +3,10 @@ package com.transport.mall.ui.authentication.otpVerification
 import android.app.Activity
 import android.content.Context
 import android.content.IntentFilter
-import android.os.Handler
-import android.os.Looper
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient
@@ -40,6 +38,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     val minutesToWait: Long = (60000 * 3).toLong() // 3 minutes
     var otp = ""
     var mySMSBroadcastReceiver: MySMSBroadcastReceiver? = null
+    var cTimer: CountDownTimer? = null
 
     override fun bindData() {
         binding.vm = viewModel
@@ -67,7 +66,7 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
             viewModel.resendOtp(GenericCallBack { response ->
                 response.data?.let {
                     showToastInCenter(getString(R.string.otp_sent))
-                    miliseconds = 0
+                    cancelTimer()
                     countDown()
                 } ?: kotlin.run {
                     showToastInCenter(response.message.toString())
@@ -127,36 +126,28 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
         })
     }
 
-    var miliseconds = 0
     private fun countDown() {
-        if (miliseconds < minutesToWait) {
-            if (activity != null) {
-//                binding.btnResentOtp.isEnabled = true
-//                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
-                Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                    activity?.let {
-                        miliseconds += 1000
-//                    var seconds = ((minutesToWait - miliseconds) / 1000).toString()
-//                    binding.countDownTime = activity?.getString(R.string.resend_in) + " 00:${if (seconds.length > 1) seconds else "0" + seconds}"
-                        val minutes = ((minutesToWait - miliseconds) / 1000 / 60).toString()
-                        val seconds = (((minutesToWait - miliseconds) / 1000 % 60)).toString()
+        if (activity != null) {
+            cTimer = object : CountDownTimer(minutesToWait, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val minutes = (millisUntilFinished / 1000 / 60).toString()
+                    val seconds = ((millisUntilFinished / 1000 % 60)).toString()
 
-                        val minutesModified = if (minutes.length > 1) minutes else "0$minutes"
-                        val secondsModified = if (seconds.length > 1) seconds else "0$seconds"
-                        val countDownText = getString(R.string.otp_expires_in) + " " + minutesModified + ":" + secondsModified
+                    val minutesModified = if (minutes.length > 1) minutes else "0$minutes"
+                    val secondsModified = if (seconds.length > 1) seconds else "0$seconds"
+                    val countDownText = getString(R.string.otp_expires_in) + " " + minutesModified + ":" + secondsModified
 
-                        binding.countDownTime = countDownText
-                        binding.tvResendIn.visibility = View.VISIBLE
-                        countDown()
+                    binding.countDownTime = countDownText
+                    binding.tvResendIn.visibility = View.VISIBLE
+                }
+
+                override fun onFinish() {
+                    if (activity != null) {
+                        binding.tvResendIn.visibility = View.GONE
                     }
-                }, 1000)
+                }
             }
-        } else {
-            if (activity != null) {
-//                binding.btnResentOtp.setTextColor(ContextCompat.getColor(getmContext(), R.color.black))
-//                binding.btnResentOtp.isEnabled = true
-                binding.tvResendIn.visibility = View.GONE
-            }
+            cTimer?.start()
         }
     }
 
@@ -176,5 +167,11 @@ class OtpVerificationFragment(val userModel: UserModel) : BaseFragment<FragmentO
     override fun onDestroy() {
         super.onDestroy()
         if (mySMSBroadcastReceiver != null) activity?.unregisterReceiver(mySMSBroadcastReceiver)
+        cancelTimer()
+    }
+
+    //cancel timer
+    fun cancelTimer() {
+        if (cTimer != null) cTimer!!.cancel()
     }
 }
