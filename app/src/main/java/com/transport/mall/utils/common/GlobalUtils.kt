@@ -619,18 +619,6 @@ object GlobalUtils {
         return SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
     }
 
-    lateinit var fusedLocationClient: FusedLocationProviderClient
-
-    @SuppressLint("MissingPermission")
-    fun getCurrentLocation(context: Context, callBack: GenericCallBack<Location>) {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                callBack.onResponse(location)
-            }
-    }
-
     @SuppressLint("MissingPermission")
     fun refreshLocation(context: Context) {
         val mLocationRequest = LocationRequest.create()

@@ -133,7 +133,7 @@
     <string name="phone_number">फ़ोन नंबर</string>
     <string name="email_address">ईमेल पता</string>
     <string name="address">पता</string>
-    <string name="pan_number">पैन नंबर</string>
+    <string name="pan_number">पैन नंबर *</string>
     <string name="aadhar_card_number">आधार कार्ड नंबर *</string>
     <string name="upload_owner_picture">मालिक की तस्वीर अपलोड करें</string>
     <string name="upload_id_proof">आईडी प्रूफ अपलोड करें</string>
@@ -177,9 +177,9 @@
     <string name="head">हेड</string>
     <string name="bank_details">"बैंक डिटेल्स "</string>
     <string name="bank">"बैंक "</string>
-    <string name="gst_number">जीएसटी नंबर</string>
-    <string name="ifsc_code">आईएफएससी कोड</string>
-    <string name="account_holder_name">खाता धारक का नाम</string>
+    <string name="gst_number">जीएसटी नंबर *</string>
+    <string name="ifsc_code">आईएफएससी कोड *</string>
+    <string name="account_holder_name">खाता धारक का नाम *</string>
     <string name="upload_pan_photo">पैन फोटो अपलोड करें</string>
     <string name="blocking_system_for">ब्लॉकिंग व्यवस्था के लिए</string>
     <string name="choose_months">महीने चुनें</string>
@@ -310,7 +310,7 @@
     <string name="choose_tower_light_photo">कृपया टावर लाइट फोटो चुनें</string>
     <string name="choose_bulb_light_photo">कृपया बल्ब लाइट फोटो चुनें</string>
     <string name="enter_bank_account_number">कृपया बैंक खाता संख्या दर्ज करें</string>
-    <string name="account_number">बैंक खाता संख्या</string>
+    <string name="account_number">बैंक खाता संख्या *</string>
     <string name="please_choose_address">कृपया पता चुनें।</string>
     <string name="select_food_at_100">कृपया 100 विकल्प पर भोजन चुनें</string>
     <string name="enter_valid_mobile">कृपया 10 अंकों का मोबाइल नंबर दर्ज करें</string>
@@ -326,7 +326,7 @@
     <string name="choose_dhaba_location">कृपया ढाबा स्थान चुनें।</string>
     <string name="in_review">रिव्यू में</string>
     <string name="submit_for_approval">अनुमोदन के लिए सबमिट करें</string>
-    <string name="select_bank">बैंक चुनें</string>
+    <string name="select_bank">बैंक चुनें *</string>
     <string name="owner">मालिक</string>
     <string name="deletion_confirmation">क्या आप इस ढाबे को हटाना चाहते हैं?</string>
     <string name="alternative_contact_person">वैकल्पिक संपर्क व्यक्ति</string>

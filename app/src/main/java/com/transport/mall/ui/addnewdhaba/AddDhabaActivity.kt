@@ -118,8 +118,12 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
                     )
                 ) {
                     finish()
+                } else {
+                    requestLocationUpdates()
                 }
             }
+        } else {
+            requestLocationUpdates()
         }
 
         setupToolbar()

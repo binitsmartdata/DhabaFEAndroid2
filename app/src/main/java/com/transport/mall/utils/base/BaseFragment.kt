@@ -1,16 +1,17 @@
 package com.transport.mall.utils.base
 
+import android.Manifest
 import android.R
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -19,11 +20,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.common.FilePath
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -266,5 +272,35 @@ abstract class BaseFragment<dataBinding : ViewDataBinding, viewModel : ViewModel
 
     fun getmContext(): Context {
         return activity as Context
+    }
+
+    fun requestLocationUpdates() {
+        val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
+        val mLocationRequest: LocationRequest = LocationRequest.create()
+        mLocationRequest.setInterval(60000)
+        mLocationRequest.setFastestInterval(5000)
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        val mLocationCallback: LocationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                if (locationResult == null) {
+                    return
+                }
+                for (location in locationResult.getLocations()) {
+                    if (location != null) {
+                        fusedLocationProviderClient.removeLocationUpdates(this)
+                    }
+                }
+            }
+        }
+        if (ActivityCompat.checkSelfPermission(getmContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                getmContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            return
+        }
+        fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null)
     }
 }

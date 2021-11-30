@@ -1,17 +1,22 @@
 package com.transport.mall.utils.base
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -19,6 +24,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.androidadvance.topsnackbar.TSnackbar
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import com.transport.mall.R
 import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -69,7 +78,7 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         bindData()
         initListeners()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility =View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             window.statusBarColor = Color.WHITE
         }
     }
@@ -341,6 +350,34 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun requestLocationUpdates() {
+        val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        val mLocationRequest: LocationRequest = LocationRequest.create()
+        mLocationRequest.setInterval(60000)
+        mLocationRequest.setFastestInterval(5000)
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        val mLocationCallback: LocationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                if (locationResult == null) {
+                    return
+                }
+                for (location in locationResult.getLocations()) {
+                    if (location != null) {
+                        fusedLocationProviderClient.removeLocationUpdates(this)
+                    }
+                }
+            }
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        fusedLocationProviderClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null)
     }
 }
 

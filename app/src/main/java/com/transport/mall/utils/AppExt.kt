@@ -1,19 +1,30 @@
 package com.transport.mall.utils
 
+import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Handler
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
+import com.transport.mall.utils.common.GenericCallBack
 
 fun Snackbar.withColor(@ColorInt colorInt: Int): Snackbar {
     this.view.setBackgroundColor(colorInt)
@@ -86,4 +97,36 @@ fun Fragment.popBackFragment(fragment: Fragment) {
         e.printStackTrace()
     }
 }
+
+
+fun Fragment.getCurrentLocation(callBack: GenericCallBack<LatLng>) {
+    val fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
+    // for getting the current location update after every 2 seconds with high accuracy
+    if (ActivityCompat.checkSelfPermission(
+            activity as Context,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            activity as Context,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED
+    ) {
+        callBack.onResponse(null)
+        return
+    }
+
+    fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+        Log.e("LAST LOCATION ::", "$it")
+        it?.let {
+            callBack.onResponse(LatLng(it.latitude, it.longitude))
+        } ?: kotlin.run {
+//            Toast.makeText(activity, "Unable to get last location ", Toast.LENGTH_SHORT).show()
+        }
+    }
+    fusedLocationProviderClient.lastLocation.addOnFailureListener {
+        Log.e("LAST LOCATIONS ::", "$it")
+        Toast.makeText(activity, "Unable to get last location ", Toast.LENGTH_SHORT).show()
+        callBack.onResponse(null)
+    }
+}
+
 

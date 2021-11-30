@@ -32,13 +32,13 @@ import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.GlobalUtils.getAddressUsingLatLong
-import com.transport.mall.utils.common.GlobalUtils.getCurrentLocation
 import com.transport.mall.utils.common.GlobalUtils.showConfirmationDialogYesNo
 import com.transport.mall.utils.common.GlobalUtils.showInfoDialog
 import com.transport.mall.utils.common.VideoUtils.getVideoThumbnail
 import com.transport.mall.utils.common.VideoUtils.processVideo
 import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
+import com.transport.mall.utils.getCurrentLocation
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -537,18 +537,20 @@ class DhabaDetailsFragment :
     }
 
     private fun getAddress() {
-        getCurrentLocation(activity as Context, GenericCallBack { location ->
-            if (location != null) {
-                viewModel.dhabaModel.latitude = location.latitude.toString()
-                viewModel.dhabaModel.longitude = location.longitude.toString()
+        getCurrentLocation(GenericCallBack {
+            if (it != null) {
+                viewModel.dhabaModel.latitude = it.latitude.toString()
+                viewModel.dhabaModel.longitude = it.longitude.toString()
 
                 getAddressUsingLatLong(
                     activity as Context,
-                    location.latitude,
-                    location.longitude,
+                    it.latitude,
+                    it.longitude,
                     GenericCallBack {
                         setAddressAfterConfirmation(it.fullAddress)
                     })
+            } else {
+                showToastInCenter(getString(R.string.unable_to_get_location))
             }
         })
     }
@@ -683,9 +685,17 @@ class DhabaDetailsFragment :
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        // when user will come after enabling location services
+        getCurrentLocation(GenericCallBack {
+            if (it == null) {
+                requestLocationUpdates()
+            }
+        })
+    }
+
     fun youAreInFocus() {
         mListener?.getDhabaModelMain()?.ownerModel?.let { viewModel.dhabaModel.owner_id = it._id }
     }
-
-
 }
