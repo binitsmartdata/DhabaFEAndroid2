@@ -23,21 +23,6 @@
             android:orientation="vertical"
             android:padding="@dimen/_15sdp">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCurrLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:background="@drawable/default_btn_selector"
-                android:drawableStart="@drawable/ic_location"
-                android:drawablePadding="@dimen/_5sdp"
-                android:fontFamily="@font/opensans_semibold"
-                android:gravity="center_vertical"
-                android:paddingVertical="@dimen/_5sdp"
-                android:text="@string/fetch_location_profile"
-                android:textColor="@color/colorRed"
-                android:textSize="16sp" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/landmarkTil"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -120,45 +105,6 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/flPropertyStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tIPropertyStatus"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/property_status"
-                    android:textColorHint="@color/text_gray"
-                    app:boxStrokeColor="@color/input_selector"
-                    app:boxStrokeWidth="0.7dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edPropertyStatus"
-                        style="@style/openRegularTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:focusable="false"
-                        android:text="@={userModel.propertyStatus}"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:onClick="@{()->edPropertyStatus.performClick()}"
-                    android:src="@drawable/ic_spinner_dropdown" />
-
-            </FrameLayout>
-
-            <FrameLayout
                 android:id="@+id/flState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -201,6 +147,7 @@
                 android:id="@+id/flCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_15sdp">
 
                 <com.google.android.material.textfield.TextInputLayout

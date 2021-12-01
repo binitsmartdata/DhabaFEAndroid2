@@ -56,7 +56,7 @@ class CityStateHighwayBanksFetcher {
         }
 
         private fun getCities(callBack: GenericCallBack<Boolean>) {
-            GlobalScope.launch(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.IO) {
                 try {
                     ApiUtils.getInstance()
                         .executeApi(ApiUtils.getInstance().getApiService()?.getAllCities(SharedPrefsHelper.getInstance(context!!).getUserData().accessToken, "4100", "", "", "1", "ASC", "true"))
@@ -90,7 +90,7 @@ class CityStateHighwayBanksFetcher {
         }
 
         fun getStatesList(callBack: GenericCallBack<Boolean>) {
-            GlobalScope.launch(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.IO) {
                 try {
                     ApiUtils.getInstance().executeApi(
                         ApiUtils.getInstance().getApiService()?.getAllStates(
@@ -129,7 +129,7 @@ class CityStateHighwayBanksFetcher {
         }
 
         fun getAllBankList(callBack: GenericCallBack<Boolean>) {
-            GlobalScope.launch(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.IO) {
                 try {
                     ApiUtils.getInstance().executeApi(
                         ApiUtils.getInstance().getApiService()?.getAllBankList()
@@ -162,7 +162,7 @@ class CityStateHighwayBanksFetcher {
         }
 
         fun getAllHighway(callBack: GenericCallBack<Boolean>) {
-            GlobalScope.launch(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.IO) {
                 try {
                     ApiUtils.getInstance().executeApi(ApiUtils.getInstance().getApiService()?.getAllHighway()).collect {
                         when (it.status) {

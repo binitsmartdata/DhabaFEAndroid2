@@ -275,25 +275,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/framePanCardPhoto" />
 
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSaveDraft"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_46sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:fontFamily="@font/opensans_bold"
-                    android:text="@string/save_as_draft"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorRed"
-                    android:textSize="18sp"
-                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnNext" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>

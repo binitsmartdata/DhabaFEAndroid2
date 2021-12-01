@@ -16,21 +16,20 @@ import com.transport.mall.model.StateModel
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
-import com.transport.mall.ui.home.profile.ProfileVM
+import com.transport.mall.ui.home.profile.owner.OwnerProfileVM
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class AddressFragment : BaseFragment<FragmentAddressBinding, ProfileVM>() {
+class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_address
-    override var viewModel: ProfileVM
-        get() = setUpVM(this, ProfileVM(baseActivity.application))
+    override var viewModel: OwnerProfileVM
+        get() = setUpVM(this, OwnerProfileVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentAddressBinding
         get() = setUpBinding()
@@ -87,29 +86,20 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, ProfileVM>() {
 
         binding.btnUpdateProfile.setOnClickListener {
             viewModel.userModel = binding.userModel as UserModel
-            if (viewModel.userModel.ownerName.trim().isEmpty()) {
-                showToastInCenter(getString(R.string.please_enter_name))
-            } else if (viewModel.userModel.isExecutive() && (viewModel.userModel.email.trim().isEmpty() || !GlobalUtils.isValidEmail(viewModel.userModel.email.trim()))) {
-                showToastInCenter(getString(R.string.enter_email_id))
-            } else if (viewModel.userModel.mobile.trim().isEmpty()) {
-                showToastInCenter(getString(R.string.enter_mobile_number))
-            } else if (viewModel.userModel.mobile.trim().length < 10) {
-                showToastInCenter(getString(R.string.enter_valid_mobile))
-            } else {
-                viewModel.updateUserProfile(GenericCallBack {
-                    if (it.data != null) {
-                        viewModel.userModel = it.data!!
 
-                        SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
-                        showToastInCenter(getString(R.string.profile_updated))
+            viewModel.updateAddressData(GenericCallBack {
+                if (it.data != null) {
+                    viewModel.userModel = it.data!!
 
-                        //NOTIFY THAT USER MODEL IS UPDATED
-                        RxBus.publish(it.data!!)
-                    } else {
-                        showToastInCenter(it.message)
-                    }
-                })
-            }
+                    SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
+                    showToastInCenter(getString(R.string.profile_updated))
+
+                    //NOTIFY THAT USER MODEL IS UPDATED
+                    RxBus.publish(it.data!!)
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
         }
     }
 
@@ -152,41 +142,25 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, ProfileVM>() {
         )
         binding.edCity.setOnClickListener {
             DialogDropdownOptions(getmContext(), getString(R.string.select_city), citiesAdapter, {
-                    viewModel.userModel.city = arrayOf(cityList[it].name_en!!)
+                viewModel.userModel.city = arrayOf(cityList[it].name_en!!)
             }).show()
         }
     }
 
     private fun propertyStatusListener() {
         // SET ITEM SELECTED LISTENER ON PROPERTY STATUS SPINNER
+        /*
         val menuArray = resources.getStringArray(R.array.property_status)
         var designationAdapter = ArrayAdapter(
             activity as Context,
             android.R.layout.simple_list_item_1, menuArray
         )
+
         binding.edPropertyStatus.setOnClickListener {
             DialogDropdownOptions(getmContext(), getString(R.string.property_status), designationAdapter, {
                 viewModel.userModel.propertyStatus = menuArray[it]
             }).show()
         }
-    }
-
-    private fun openImagePicker() {
-        ImagePicker.with(this)
-            .cropSquare()//Crop image(Optional), Check Customization for more option
-            .compress(1024)            //Final image size will be less than 1 MB(Optional)
-            .maxResultSize(
-                1080,
-                1080
-            )    //Final image resolution will be less than 1080 x 1080(Optional)
-            .start()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            val uri: Uri = data?.data!!
-            viewModel.userModel.ownerPic = getRealPathFromURI(uri)
-        }
+*/
     }
 }

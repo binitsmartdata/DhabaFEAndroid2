@@ -26,20 +26,11 @@ class OwnerBankDetailsVM(application: Application) : BaseVM(application) {
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
 
     var bankModel = BankDetailsModel()
-    var dhabaModel = DhabaModel()
 
     var blockingMonths: ObservableField<String> = ObservableField()
 
     init {
         app = application
-
-        blockingMonths.addOnPropertyChangedCallback(object :
-            Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                blockingMonths.get()
-                    ?.let { dhabaModel.blockMonth = GlobalUtils.getNonNullString(it, "0").toInt() }
-            }
-        })
     }
 
     fun addBankDetail(callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>) {
@@ -117,27 +108,4 @@ class OwnerBankDetailsVM(application: Application) : BaseVM(application) {
             }
         }
     }
-
-/*
-    fun getUserByRole(callBack: GenericCallBack<ApiResponseModel<UserModelMain>>) {
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                executeApi(getApiService()?.getUserByRole()).collect {
-                    when (it.status) {
-                        ApiResult.Status.ERROR -> {
-                            callBack.onResponse(
-                                ApiResponseModel(0, it.message!!, null)
-                            )
-                        }
-                        ApiResult.Status.SUCCESS -> {
-                            callBack.onResponse(it.data!!)
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-*/
 }

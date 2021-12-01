@@ -112,6 +112,7 @@ class UserModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.adharCard)
         }
 
+
     @SerializedName(value = "ownerPic", alternate = ["profileImage"])
     var ownerPic: String = ""
         @Bindable get() = field
@@ -128,7 +129,7 @@ class UserModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.idproofFront)
         }
 
-    @SerializedName(value = "idproofBack")
+    @SerializedName(value = "idproofBack", alternate = ["IdProfBack"])
     var idproofBack: String = ""
         @Bindable get() = field
         set(idproofBack) {
@@ -168,7 +169,7 @@ class UserModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.area)
         }
 
-    @SerializedName(value = "highway")
+    @SerializedName(value = "highway", alternate = ["highwayNo"])
     var highway: String? = ""
         @Bindable get() = field
         set(highway) {
@@ -195,7 +196,7 @@ class UserModel : Serializable, BaseObservable() {
     @SerializedName(value = "city")
     var city: Array<String>? = null
 
-    @SerializedName(value = "pincode")
+    @SerializedName(value = "pincode", alternate = ["zipcode"])
     var pincode: String? = ""
         @Bindable get() = field
         set(pincode) {

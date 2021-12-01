@@ -58,15 +58,19 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
         // DHABA HOARDING IMAGE
         viewModel.mDhabaModelMain.dhabaModel?.let {
-            if (it.images.isNotEmpty()) {
-                imagesList.add(PhotosModel("", it.images))
+            if (it.images != null) {
+                it.images?.let {
+                    imagesList.add(PhotosModel("", it))
+                }
             }
         }
 
         // DHABA PHOTOS
         viewModel.mDhabaModelMain.dhabaModel?.let {
-            if (it.imageList.isNotEmpty()) {
-                imagesList.addAll(it.imageList)
+            if (it.imageList != null) {
+                it.imageList?.let {
+                    imagesList.addAll(it)
+                }
             }
         }
 

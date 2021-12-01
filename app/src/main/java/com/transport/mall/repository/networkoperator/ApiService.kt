@@ -12,7 +12,6 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
-
 interface ApiService {
 
     @FormUrlEncoded
@@ -304,6 +303,33 @@ interface ApiService {
         @Part("mobile") mobile: RequestBody,
         @Part("mobilePrefix") mobilePrefix: RequestBody,
         @Part profileImage: MultipartBody.Part?
+    ): Response<ApiResponseModel<UserModel>>
+
+    @Multipart
+    @POST("user/updateUserProfile")
+    suspend fun updateUserProfileBasicDetails(
+        @Part("_id") _id: RequestBody,
+        @Part("name") fname: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("mobile") mobile: RequestBody,
+        @Part("mobilePrefix") mobilePrefix: RequestBody,
+        @Part("panNumber") panNumber: RequestBody,
+        @Part("aadharNumber") aadharNumber: RequestBody,
+        @Part profileImage: MultipartBody.Part?,
+        @Part idproofFront: MultipartBody.Part?,
+        @Part IdProfBack: MultipartBody.Part?
+    ): Response<ApiResponseModel<UserModel>>
+
+    @Multipart
+    @POST("user/updateUserProfile")
+    suspend fun updateAddressData(
+        @Part("_id") _id: RequestBody,
+        @Part("state") state: RequestBody,
+//        @Part("city") city: Array<String>,
+        @Part("zipcode") zipcode: RequestBody,
+        @Part("landmark") landmark: RequestBody,
+        @Part("area") area: RequestBody,
+        @Part("highwayNo") highwayNo: RequestBody
     ): Response<ApiResponseModel<UserModel>>
 
     @Multipart
@@ -623,3 +649,4 @@ interface ApiService {
     suspend fun getAllAmenities(): Response<ApiResponseModel<InternalDataListModel<ArrayList<AmenityModel>>>>
 
 }
+

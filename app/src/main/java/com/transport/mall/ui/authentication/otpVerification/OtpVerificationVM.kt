@@ -104,12 +104,12 @@ class OtpVerificationVM(application: Application) : BaseVM(application) {
             }
             ApiResult.Status.SUCCESS -> {
                 if (it.data?.status == 200) {
-//                    getCitiesList(GenericCallBack { isSuccess ->
-//                        callBack.onResponse(it.data)
-//                    })
+
+                    callBack.onResponse(it.data)
+                    progressObserver?.value = false
 
                     // FETCHING CITIES, STATES, HIGHWAYS, BANKS
-                    CityStateHighwayBanksFetcher.getAllData(app!!, object : CityStateHighwayBanksFetcher.CallBack {
+                    /*CityStateHighwayBanksFetcher.getAllData(app!!, object : CityStateHighwayBanksFetcher.CallBack {
                         override fun onAllSucceed() {
                             callBack.onResponse(it.data)
                             progressObserver?.value = false
@@ -119,7 +119,7 @@ class OtpVerificationVM(application: Application) : BaseVM(application) {
                             progressObserver?.value = false
                             showToastInCenter(app!!, app!!.getString(R.string.failed_to_fetch) + " " + failedThings)
                         }
-                    })
+                    })*/
                     //------------
 
                 } else {

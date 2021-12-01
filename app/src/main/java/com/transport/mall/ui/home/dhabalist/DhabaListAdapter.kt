@@ -98,7 +98,10 @@ class DhabaListAdapter(
             }
             DhabaModel.STATUS_INPROGRESS -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
-                myViewHolderG?.binding?.ivEdit?.visibility = View.GONE
+                myViewHolderG?.binding?.ivEdit?.visibility =
+                    if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()
+                        && dataList[position].dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
+                    ) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }

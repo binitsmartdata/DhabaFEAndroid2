@@ -242,6 +242,20 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.open247)
         }
 
+    var approval_for: String = ""
+        @Bindable get() = field
+        set(approval_for) {
+            field = approval_for
+            notifyPropertyChanged(BR.approval_for)
+        }
+    var approval_by: String = ""
+        @Bindable get() = field
+        set(approval_by) {
+            field = approval_by
+            notifyPropertyChanged(BR.approval_by)
+        }
+
+
     var isDraft: String = ""
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {

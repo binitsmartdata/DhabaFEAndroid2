@@ -19,7 +19,7 @@ import okhttp3.RequestBody
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class ProfileVM(application: Application) : BaseVM(application) {
+class OwnerProfileVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
     var progressObserverUpdate: MutableLiveData<Boolean> = MutableLiveData()
@@ -35,13 +35,41 @@ class ProfileVM(application: Application) : BaseVM(application) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 executeApi(
-                    getApiService()?.updateUserProfile(
+                    getApiService()?.updateUserProfileBasicDetails(
                         RequestBody.create(MultipartBody.FORM, userModel._id),
                         RequestBody.create(MultipartBody.FORM, userModel.ownerName),
                         RequestBody.create(MultipartBody.FORM, userModel.email),
                         RequestBody.create(MultipartBody.FORM, userModel.mobile),
                         RequestBody.create(MultipartBody.FORM, userModel.mobilePrefix),
-                        getMultipartImageFile(userModel.ownerPic, "profileImage")
+                        RequestBody.create(MultipartBody.FORM, userModel.panNumber),
+                        RequestBody.create(MultipartBody.FORM, userModel.adharCard),
+                        getMultipartImageFile(userModel.ownerPic, "profileImage"),
+                        getMultipartImageFile(userModel.idproofFront, "idproofFront"),
+                        getMultipartImageFile(userModel.idproofBack, "idproofBack"),
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserverUpdate)
+                }
+            } catch (e: Exception) {
+                progressObserverUpdate.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+
+    fun updateAddressData(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
+        progressObserverUpdate.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.updateAddressData(
+                        RequestBody.create(MultipartBody.FORM, userModel._id),
+                        RequestBody.create(MultipartBody.FORM, userModel.state),
+//                        RequestBody.create(MultipartBody.FORM, userModel.city),
+                        RequestBody.create(MultipartBody.FORM, userModel.pincode),
+                        RequestBody.create(MultipartBody.FORM, userModel.landmark),
+                        RequestBody.create(MultipartBody.FORM, userModel.area),
+                        RequestBody.create(MultipartBody.FORM, userModel.highway),
                     )
                 ).collect {
                     handleResponse(it, callBack, progressObserverUpdate)
@@ -92,6 +120,43 @@ class ProfileVM(application: Application) : BaseVM(application) {
             ApiResult.Status.SUCCESS -> {
                 observer.value = false
                 callBack.onResponse(it.data)
+            }
+        }
+    }
+
+    fun deleteIdProofFront(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.removeIdProofFront(
+                        RequestBody.create(MultipartBody.FORM, userModel._id),
+                        RequestBody.create(MultipartBody.FORM, "")
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserver)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+    fun deleteIdProofBack(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.removeIdProofBack(
+                        RequestBody.create(MultipartBody.FORM, userModel._id),
+                        RequestBody.create(MultipartBody.FORM, "")
+                    )
+                ).collect {
+                    handleResponse(it, callBack, progressObserver)
+                }
+            } catch (e: Exception) {
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
     }

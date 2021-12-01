@@ -244,14 +244,22 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                 executeApi(
                     getApiService()?.updateDhabaStatus(
                         /* _id          */ dhabaModel._id,
-                        /* blockDay     */ dhabaModel.blockDay.toString(),
-                        /* blockMonth   */ dhabaModel.blockMonth.toString(),
-                        /* isActive     */ dhabaModel.active.toString(),
-                        /* isDraft      */ isDraft.toString(),
-                        /* status       */ if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
-                        /* approval_for */ if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()) "quality-control" else "executive",
-                        /* approval_by  */ SharedPrefsHelper.getInstance(context).getUserData().role.toString(),
-                        /* isUpdated    */ if (isDraft) "false" else (if (dhabaModel.status.equals(DhabaModel.STATUS_ACTIVE)) "true" else "false")
+                        /* blockDay     */
+                        dhabaModel.blockDay.toString(),
+                        /* blockMonth   */
+                        dhabaModel.blockMonth.toString(),
+                        /* isActive     */
+                        dhabaModel.active.toString(),
+                        /* isDraft      */
+                        isDraft.toString(),
+                        /* status       */
+                        if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
+                        /* approval_for */
+                        if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()) "quality-control" else "executive",
+                        /* approval_by  */
+                        SharedPrefsHelper.getInstance(context).getUserData().role.toString(),
+                        /* isUpdated    */
+                        /*if (isDraft) "false" else (if (dhabaModel.status.equals(DhabaModel.STATUS_ACTIVE)) */"true"/* else "false")*/
                     )
                 ).collect {
                     when (it.status) {

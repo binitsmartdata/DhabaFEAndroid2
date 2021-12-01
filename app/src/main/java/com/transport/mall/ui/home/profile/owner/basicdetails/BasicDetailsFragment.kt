@@ -5,31 +5,39 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentBasicDetailsBinding
 import com.transport.mall.model.UserModel
-import com.transport.mall.ui.home.profile.ProfileVM
+import com.transport.mall.ui.home.profile.owner.OwnerProfileVM
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
+import com.transport.mall.utils.xloadImages
 
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, ProfileVM>() {
+class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, OwnerProfileVM>() {
     override val layoutId: Int
         get() = R.layout.fragment_basic_details
-    override var viewModel: ProfileVM
-        get() = setUpVM(this, ProfileVM(baseActivity.application))
+    override var viewModel: OwnerProfileVM
+        get() = setUpVM(this, OwnerProfileVM(baseActivity.application))
         set(value) {}
     override var binding: FragmentBasicDetailsBinding
         get() = setUpBinding()
         set(value) {}
+
+    private val PICKER_PROFILE_IMAGE = 1
+    private val PICKER_ID_FRONT = 2
+    private val PICKER_ID_BACK = 3
+    private var INTENT_TYPE = 0
 
     var userData: UserModel? = null
 
@@ -53,6 +61,17 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, ProfileVM
                 }
             }
         }
+
+        userData?.idproofFront?.let {
+//                if (it.isNotEmpty()) {
+            xloadImages(binding.ivFrontId, it, R.drawable.ic_id_front)
+//                }
+        }
+        userData?.idproofBack?.let {
+//                if (it.isNotEmpty()) {
+            xloadImages(binding.ivBackId, it, R.drawable.ic_id_back)
+//                }
+        }
     }
 
     override fun initListeners() {
@@ -70,7 +89,7 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, ProfileVM
         })
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
-                showProgressDialog(getString(R.string.deleting_profile_photo))
+                showProgressDialog(getString(R.string.deleting_image))
             } else {
                 hideProgressDialog()
             }
@@ -101,6 +120,28 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, ProfileVM
                                     //NOTIFY THAT USER MODEL IS UPDATED
                                     RxBus.publish(it.data!!)
                                 })
+                            }
+                        }
+                    })
+            }
+        }
+
+        binding.uploadBackSideLayout.setOnClickListener {
+            Log.e("BACK img :", viewModel.userModel.idproofBack)
+            if (viewModel.userModel.idproofBack.trim().isEmpty()) {
+                launchBackImgPicker()
+            } else {
+                GlobalUtils.showOptionsDialog(
+                    getmContext(),
+                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                    getString(R.string.choose_action),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                ImagePagerActivity.startForSingle(getmContext(), viewModel.userModel.idproofBack)
+                            }
+                            1 -> {
+                                launchBackImgPicker()
                             }
                         }
                     })
@@ -138,9 +179,84 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, ProfileVM
                 })
             }
         }
+
+        binding.uploadFrontSideLayout.setOnClickListener {
+            Log.e("front img :", viewModel.userModel.idproofFront)
+            if (viewModel.userModel.idproofFront.trim().isEmpty()) {
+                launchFrontImgPicker()
+            } else {
+                GlobalUtils.showOptionsDialog(
+                    getmContext(),
+                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                    getString(R.string.choose_action),
+                    DialogInterface.OnClickListener { dialogInterface, i ->
+                        when (i) {
+                            0 -> {
+                                ImagePagerActivity.startForSingle(getmContext(), viewModel.userModel.idproofFront)
+                            }
+                            1 -> {
+                                launchFrontImgPicker()
+                            }
+                        }
+                    })
+            }
+        }
+
+        binding.ivDeleteFront.setOnClickListener {
+            viewModel.deleteIdProofFront(GenericCallBack {
+                if (it.data != null) {
+                    binding.userModel!!.idproofFront = ""
+                    showToastInCenter(getString(R.string.removed_successfully))
+                    xloadImages(binding.ivFrontId, it.data!!.idproofFront, R.drawable.ic_id_front)
+                    binding.ivDeleteFront.visibility = View.GONE
+
+                    SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                    //---------
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
+        }
+        binding.ivDeleteBack.setOnClickListener {
+            viewModel.deleteIdProofBack(GenericCallBack {
+                if (it.data != null) {
+                    binding.userModel!!.idproofBack = ""
+                    showToastInCenter(getString(R.string.removed_successfully))
+                    xloadImages(binding.ivBackId, it.data!!.idproofBack, R.drawable.ic_id_back)
+                    binding.ivDeleteBack.visibility = View.GONE
+
+                    SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                    //---------
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
+        }
+    }
+
+    private fun launchBackImgPicker() {
+        INTENT_TYPE = PICKER_ID_BACK
+        launchImagePicker()
+    }
+
+    private fun launchFrontImgPicker() {
+        INTENT_TYPE = PICKER_ID_FRONT
+        launchImagePicker()
+    }
+
+    private fun launchImagePicker() {
+        ImagePicker.with(this)
+            .crop(16f, 9f)
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
     }
 
     private fun openImagePicker() {
+        INTENT_TYPE = PICKER_PROFILE_IMAGE
         ImagePicker.with(this)
             .cropSquare()//Crop image(Optional), Check Customization for more option
             .compress(1024)            //Final image size will be less than 1 MB(Optional)
@@ -155,8 +271,20 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, ProfileVM
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             val uri: Uri = data?.data!!
-            binding.ivProfileImg.setImageURI(uri)
-            viewModel.userModel.ownerPic = getRealPathFromURI(uri)
+            when (INTENT_TYPE) {
+                PICKER_PROFILE_IMAGE -> {
+                    binding.ivProfileImg.setImageURI(uri)
+                    viewModel.userModel.ownerPic = getRealPathFromURI(uri)
+                }
+                PICKER_ID_FRONT -> {
+                    binding.ivFrontId.setImageURI(uri)
+                    viewModel.userModel.idproofFront = getRealPathFromURI(uri)
+                }
+                PICKER_ID_BACK -> {
+                    binding.ivBackId.setImageURI(uri)
+                    viewModel.userModel.idproofBack = getRealPathFromURI(uri)
+                }
+            }
         }
     }
 }

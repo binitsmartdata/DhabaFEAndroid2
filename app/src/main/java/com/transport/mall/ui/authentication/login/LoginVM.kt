@@ -88,8 +88,14 @@ class LoginVM(application: Application) : BaseVM(application) {
                                 }
                                 ApiResult.Status.SUCCESS -> {
                                     result.data?.let {
+
+                                        SharedPrefsHelper.getInstance(app as Context)
+                                            .setUserData(result.data.data!!)
+                                        callBak.onResponse(result.status, result.data.message)
+                                        progressObserver?.value = false
+
                                         // FETCHING CITIES, STATES, HIGHWAYS, BANKS
-                                        CityStateHighwayBanksFetcher.getAllData(app!!, object : CityStateHighwayBanksFetcher.CallBack {
+                                        /*CityStateHighwayBanksFetcher.getAllData(app!!, object : CityStateHighwayBanksFetcher.CallBack {
                                             override fun onAllSucceed() {
                                                 SharedPrefsHelper.getInstance(app as Context)
                                                     .setUserData(result.data.data!!)
@@ -101,7 +107,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                                                 progressObserver?.value = false
                                                 showToastInCenter(app!!, app!!.getString(R.string.failed_to_fetch) + " " + failedThings)
                                             }
-                                        })
+                                        })*/
                                         //---------------
                                     }
                                 }

@@ -2,6 +2,7 @@ package com.transport.mall.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.ActivityHomeBinding
 import com.transport.mall.model.*
+import com.transport.mall.repository.commonprocesses.CityStateHighwayBanksFetcher
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
@@ -69,6 +71,17 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             setUpSideMenuExecutive()
         }
         setUserData()
+
+        CityStateHighwayBanksFetcher.getAllData(this, object : CityStateHighwayBanksFetcher.CallBack {
+            override fun onAllSucceed() {
+                Log.e("CITY STATE BANKS HWAYS", "FETCHED SUCCESSFULLY")
+            }
+
+            override fun completedWithSomeErrors(failedThings: String) {
+                Log.e("CITY STATE BANKS HWAYS", "FAILED FOR $failedThings")
+            }
+        })
+
     }
 
     private fun setUserData() {
@@ -83,7 +96,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     }
 
     fun openProfileFragment() {
-//        if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive()) {
+        if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive()) {
             openFragmentReplaceNoAnim(
                 binding.dashboardContainer.id,
                 EditProfileFragment(),
@@ -92,16 +105,16 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             )
             toolbar.title = getString(R.string.edit_profile)
             binding.drawerLayout.closeDrawer(binding.leftDrawer)
-//        } else {
-//            openFragmentReplaceNoAnim(
-//                binding.dashboardContainer.id,
-//                OwnerEditProfileFragment(),
-//                "editProfile",
-//                false
-//            )
-//            toolbar.title = getString(R.string.edit_profile)
-//            binding.drawerLayout.closeDrawer(binding.leftDrawer)
-//        }
+        } else {
+            openFragmentReplaceNoAnim(
+                binding.dashboardContainer.id,
+                OwnerEditProfileFragment(),
+                "editProfile",
+                false
+            )
+            toolbar.title = getString(R.string.edit_profile)
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
+        }
     }
 
     /**

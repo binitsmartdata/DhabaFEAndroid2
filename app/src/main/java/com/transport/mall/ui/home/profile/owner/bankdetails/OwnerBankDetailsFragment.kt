@@ -15,7 +15,6 @@ import com.transport.mall.databinding.FragmentProfileBankDetailsBinding
 import com.transport.mall.model.BankNamesModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
-import com.transport.mall.ui.home.CommonActivity
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GlobalUtils
@@ -47,19 +46,10 @@ class OwnerBankDetailsFragment :
 
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
-
-        // getexecutive, manager roles and show(read only)
-/*
-        viewModel.getUserByRole(GenericCallBack {
-            it.data?.let {
-                binding.executiveModel = it
-            }
-        })
-*/
     }
 
     private fun showDataIfHas() {
-
+        viewModel.bankModel.user_id = SharedPrefsHelper.getInstance(getmContext()).getUserData()._id
     }
 
     override fun initListeners() {
@@ -74,19 +64,7 @@ class OwnerBankDetailsFragment :
         })
 
         binding.btnNext.setOnClickListener {
-            viewModel.dhabaModel.isDraft = false.toString()
             saveDetails(false)
-        }
-        binding.btnSaveDraft.setOnClickListener {
-            viewModel.dhabaModel.isDraft = true.toString()
-            /*if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
-                mListener?.getDhabaModelMain()?.draftedAtScreen =
-                    DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
-                mListener?.saveAsDraft()
-                activity?.finish()
-            } else {*/
-            saveDetails(true)
-//            }
         }
 
         binding.llPanPhoto.setOnClickListener {
@@ -130,11 +108,6 @@ class OwnerBankDetailsFragment :
 
     private fun saveDetails(isDraft: Boolean) {
 
-    }
-
-    fun showSuccessDialog(dhabaId: String) {
-        CommonActivity.showDhabaSuccessMessage(getmContext(), CommonActivity.TYPE_DHABA_SUCCESS, dhabaId)
-        activity?.finish()
     }
 
     private fun launchImagePicker() {
