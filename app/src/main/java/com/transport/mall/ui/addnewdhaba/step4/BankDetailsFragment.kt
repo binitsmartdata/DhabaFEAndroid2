@@ -19,9 +19,8 @@ import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.BankNamesModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
-import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
-import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
+import com.transport.mall.ui.home.CommonActivity
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -176,7 +175,7 @@ class BankDetailsFragment :
         banksAdapter =
             ArrayAdapter(activity as Context, android.R.layout.simple_list_item_1, bankList)
         binding.edBank.setOnClickListener {
-            DialogDropdownOptions(getmContext(), getString(R.string.state), banksAdapter, {
+            DialogDropdownOptions(getmContext(), getString(R.string.select_bank), banksAdapter, {
                 viewModel.bankModel.bankName = bankList[it].name!!
             }).show()
         }
@@ -275,28 +274,8 @@ class BankDetailsFragment :
     }
 
     fun showSuccessDialog(dhabaId: String) {
-        DialogAddDhabaSuccess(
-            activity as Context,
-            dhabaId,
-            GenericCallBack {
-                when (it) {
-                    DialogAddDhabaSuccess.SELECTED_ACTION.GO_HOME -> {
-                        goToHomeScreen()
-                    }
-                    DialogAddDhabaSuccess.SELECTED_ACTION.VIEW_DHABA -> {
-                        viewModel.progressObserver.value = true
-                        viewModel.getDhabaById(dhabaId, GenericCallBack {
-                            viewModel.progressObserver.value = false
-                            if (it.data != null) {
-                                activity?.finish()
-                                AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
-                            } else {
-                                showToastInCenter(it.message)
-                            }
-                        })
-                    }
-                }
-            }).show()
+        CommonActivity.showDhabaSuccessMessage(getmContext(), CommonActivity.TYPE_DHABA_SUCCESS, dhabaId)
+        activity?.finish()
     }
 
     private fun launchImagePicker() {

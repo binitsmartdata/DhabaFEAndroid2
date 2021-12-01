@@ -13,13 +13,11 @@ import com.transport.mall.databinding.FragmentAmenitiesBinding
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.UserModel
-import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
-import com.transport.mall.ui.customdialogs.DialogAddDhabaSuccess
+import com.transport.mall.ui.home.CommonActivity
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
-import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 /**
@@ -94,11 +92,11 @@ class AmenitiesFragment :
         })
 
         binding.btnNext.setOnClickListener {
-            if (userModel?.isExecutive()!!) {
-                if (isHavingPreviousData()) {
-                    mListener?.showNextScreen()
-                }
-            } else {
+//            if (userModel?.isExecutive()!!) {
+            if (isHavingPreviousData()) {
+                mListener?.showNextScreen()
+            }
+            /*} else {
                 if (isHavingPreviousData()) {
                     var ownerMissingParams = ""
                     var dhabaMissingParams = ""
@@ -124,7 +122,7 @@ class AmenitiesFragment :
                         updateDhabaStatus(false)
                     }
                 }
-            }
+            }*/
         }
         binding.btnSaveDraft.setOnClickListener {
             mListener?.getDhabaModelMain()?.dhabaModel?.let {
@@ -261,28 +259,8 @@ class AmenitiesFragment :
     }
 
     fun showSuccessDialog(dhabaId: String) {
-        DialogAddDhabaSuccess(
-            activity as Context,
-            dhabaId,
-            GenericCallBack {
-                when (it) {
-                    DialogAddDhabaSuccess.SELECTED_ACTION.GO_HOME -> {
-                        goToHomeScreen()
-                    }
-                    DialogAddDhabaSuccess.SELECTED_ACTION.VIEW_DHABA -> {
-                        progressObserver.value = true
-                        viewModel.getDhabaById(dhabaId, GenericCallBack {
-                            progressObserver.value = false
-                            if (it.data != null) {
-                                activity?.finish()
-                                AddDhabaActivity.startForUpdate(activity as Context, it.data!!)
-                            } else {
-                                showToastInCenter(it.message)
-                            }
-                        })
-                    }
-                }
-            }).show()
+        CommonActivity.showDhabaSuccessMessage(getmContext(), CommonActivity.TYPE_DHABA_SUCCESS, dhabaId)
+        activity?.finish()
     }
 
     override fun onResume() {

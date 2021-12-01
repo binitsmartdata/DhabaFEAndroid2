@@ -152,6 +152,57 @@ class UserModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.longitude)
         }
 
+    @SerializedName(value = "landmark")
+    var landmark: String? = ""
+        @Bindable get() = field
+        set(landmark) {
+            field = landmark
+            notifyPropertyChanged(BR.landmark)
+        }
+
+    @SerializedName(value = "area")
+    var area: String? = ""
+        @Bindable get() = field
+        set(area) {
+            field = area
+            notifyPropertyChanged(BR.area)
+        }
+
+    @SerializedName(value = "highway")
+    var highway: String? = ""
+        @Bindable get() = field
+        set(highway) {
+            field = highway
+            notifyPropertyChanged(BR.highway)
+        }
+
+    @SerializedName(value = "propertyStatus")
+    var propertyStatus: String? = ""
+        @Bindable get() = field
+        set(propertyStatus) {
+            field = propertyStatus
+            notifyPropertyChanged(BR.propertyStatus)
+        }
+
+    @SerializedName(value = "state")
+    var state: String? = ""
+        @Bindable get() = field
+        set(state) {
+            field = state
+            notifyPropertyChanged(BR.state)
+        }
+
+    @SerializedName(value = "city")
+    var city: Array<String>? = null
+
+    @SerializedName(value = "pincode")
+    var pincode: String? = ""
+        @Bindable get() = field
+        set(pincode) {
+            field = pincode
+            notifyPropertyChanged(BR.pincode)
+        }
+
     @SerializedName(value = "role")
     var role: String? = ""
         @Bindable get() = field

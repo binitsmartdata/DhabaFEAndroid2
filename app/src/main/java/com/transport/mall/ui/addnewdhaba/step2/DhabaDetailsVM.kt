@@ -74,6 +74,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         ) else null,
                         RequestBody.create(MultipartBody.FORM, dhabaModel.open247.toString()),
                         RequestBody.create(MultipartBody.FORM, if (SharedPrefsHelper.getInstance(app!!).getUserData().isExecutive()) "quality-control" else "executive"),
+                        RequestBody.create(MultipartBody.FORM, SharedPrefsHelper.getInstance(app!!).getUserData().role.toString()),
                         RequestBody.create(MultipartBody.FORM, SharedPrefsHelper.getInstance(app!!).getUserData().role.toString())
                     )
                 ).collect {
@@ -128,6 +129,7 @@ class DhabaDetailsVM(application: Application) : BaseVM(application) {
                         ) else null,
                         RequestBody.create(MultipartBody.FORM, dhabaModel.open247.toString()),
                         RequestBody.create(MultipartBody.FORM, if (SharedPrefsHelper.getInstance(app!!).getUserData().isExecutive()) "quality-control" else "executive"),
+                        RequestBody.create(MultipartBody.FORM, SharedPrefsHelper.getInstance(app!!).getUserData().role.toString()),
                         RequestBody.create(MultipartBody.FORM, SharedPrefsHelper.getInstance(app!!).getUserData().role.toString())
                     )
                 ).collect {

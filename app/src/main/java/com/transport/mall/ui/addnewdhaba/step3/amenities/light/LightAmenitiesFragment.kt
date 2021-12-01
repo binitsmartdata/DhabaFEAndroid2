@@ -133,42 +133,42 @@ class LightAmenitiesFragment :
     }
 
     private fun setupFoodPhotosView() {
-        if (mListener?.viewOnly()!!) {
-            ImagePagerActivity.startForSingle(getmContext(), viewModel.model.bulbLightImage)
-        } else {
-            if (viewModel.model.bulbLightImage.trim().isEmpty()) {
-                launchBulbImgPicker()
+        binding.frameBulbPhoto.setOnClickListener {
+            if (mListener?.viewOnly()!!) {
+                ImagePagerActivity.startForSingle(getmContext(), viewModel.model.bulbLightImage)
             } else {
-                GlobalUtils.showOptionsDialog(
-                    getmContext(),
-                    arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
-                    getString(R.string.choose_action),
-                    DialogInterface.OnClickListener { dialogInterface, i ->
-                        when (i) {
-                            0 -> {
-                                ImagePagerActivity.startForSingle(getmContext(), viewModel.model.bulbLightImage)
+                if (viewModel.model.bulbLightImage.trim().isEmpty()) {
+                    launchBulbImgPicker()
+                } else {
+                    GlobalUtils.showOptionsDialog(
+                        getmContext(),
+                        arrayOf(getString(R.string.view_photo), getString(R.string.update_photo)),
+                        getString(R.string.choose_action),
+                        DialogInterface.OnClickListener { dialogInterface, i ->
+                            when (i) {
+                                0 -> {
+                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.model.bulbLightImage)
+                                }
+                                1 -> {
+                                    launchBulbImgPicker()
+                                }
                             }
-                            1 -> {
-                                launchBulbImgPicker()
-                            }
-                        }
-                    })
+                        })
+                }
             }
         }
     }
 
     private fun launchBulbImgPicker() {
-        binding.frameBulbPhoto.setOnClickListener {
-            INTENT_TYPE = INTENT_BULB
-            ImagePicker.with(this)
-                .crop()                    //Crop image(Optional), Check Customization for more option
-                .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(
-                    1080,
-                    1080
-                )    //Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
-        }
+        INTENT_TYPE = INTENT_BULB
+        ImagePicker.with(this)
+            .crop()                    //Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .start()
     }
 
     override fun initListeners() {

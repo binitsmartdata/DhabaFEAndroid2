@@ -576,7 +576,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/primary_color_btn_selector"
-                android:text="@{userModel.isExecutive() ? @string/next : @string/submit_for_approval}"
+                android:text="@string/next"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="18sp"

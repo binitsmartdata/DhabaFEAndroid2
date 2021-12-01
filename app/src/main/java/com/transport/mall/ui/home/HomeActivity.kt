@@ -18,6 +18,7 @@ import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
 import com.transport.mall.ui.home.helpline.EditProfileFragment
 import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
+import com.transport.mall.ui.home.profile.owner.OwnerEditProfileFragment
 import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
 import com.transport.mall.utils.RxBus
@@ -81,15 +82,26 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         }
     }
 
-    public fun openProfileFragment() {
-        openFragmentReplaceNoAnim(
-            binding.dashboardContainer.id,
-            EditProfileFragment(),
-            "editProfile",
-            false
-        )
-        toolbar.title = getString(R.string.edit_profile)
-        binding.drawerLayout.closeDrawer(binding.leftDrawer)
+    fun openProfileFragment() {
+//        if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive()) {
+            openFragmentReplaceNoAnim(
+                binding.dashboardContainer.id,
+                EditProfileFragment(),
+                "editProfile",
+                false
+            )
+            toolbar.title = getString(R.string.edit_profile)
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
+//        } else {
+//            openFragmentReplaceNoAnim(
+//                binding.dashboardContainer.id,
+//                OwnerEditProfileFragment(),
+//                "editProfile",
+//                false
+//            )
+//            toolbar.title = getString(R.string.edit_profile)
+//            binding.drawerLayout.closeDrawer(binding.leftDrawer)
+//        }
     }
 
     /**

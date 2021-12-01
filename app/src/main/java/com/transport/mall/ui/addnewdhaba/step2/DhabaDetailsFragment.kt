@@ -210,14 +210,14 @@ class DhabaDetailsFragment :
         }
         binding.btnSaveDraft.setOnClickListener {
             viewModel.dhabaModel.isDraft = true.toString()
-            if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
-                mListener?.getDhabaModelMain()?.draftedAtScreen =
-                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
-                mListener?.saveAsDraft()
-                activity?.finish()
-            } else {
+//            if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
+//                mListener?.getDhabaModelMain()?.draftedAtScreen =
+//                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
+//                mListener?.saveAsDraft()
+//                activity?.finish()
+//            } else {
                 saveDetails(true)
-            }
+//            }
         }
 
         binding.rgTiming.setOnCheckedChangeListener { radioGroup, i ->
@@ -449,7 +449,7 @@ class DhabaDetailsFragment :
             android.R.layout.simple_list_item_1, stateList
         )
         binding.edState.setOnClickListener {
-            DialogDropdownOptions(getmContext(), getString(R.string.state), statesAdapter, {
+            DialogDropdownOptions(getmContext(), getString(R.string.select_state), statesAdapter, {
                 viewModel.dhabaModel.state = stateList[it].name_en!!
                 viewModel.dhabaModel.city = ""
 
@@ -485,7 +485,7 @@ class DhabaDetailsFragment :
             android.R.layout.simple_list_item_1, cityList
         )
         binding.edCity.setOnClickListener {
-            DialogDropdownOptions(getmContext(), getString(R.string.city), citiesAdapter, {
+            DialogDropdownOptions(getmContext(), getString(R.string.select_city), citiesAdapter, {
                 viewModel.dhabaModel.city = cityList[it].name_en!!
             }).show()
         }

@@ -483,7 +483,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_110sdp"
                     android:background="@drawable/grey_fill_bg"
-                    android:clickable="@{!viewOnly}">
+                    android:clickable="@{!viewOnly}"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}">
 
                     <LinearLayout
                         android:id="@+id/llLicensePhoto"

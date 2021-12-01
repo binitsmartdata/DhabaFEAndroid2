@@ -378,6 +378,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/grey_fill_bg"
                     android:clickable="@{!viewOnly}"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="20dp">

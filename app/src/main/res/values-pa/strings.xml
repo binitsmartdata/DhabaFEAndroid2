@@ -128,7 +128,7 @@
     <string name="phone_number">ਫੋਨ ਨੰਬਰ</string>
     <string name="email_address">ਈਮੇਲ ਖਾਤਾ</string>
     <string name="address">ਜਾਣੋ</string>
-    <string name="pan_number">ਪੈਨ ਨੰਬਰ *</string>
+    <string name="pan_number">ਪੈਨ ਨੰਬਰ</string>
     <string name="aadhar_card_number">ਆਧਾਰ ਕਾਰਡ ਨੰਬਰ *</string>
     <string name="upload_owner_picture">ਮਾਲਕ ਦੀ ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ</string>
     <string name="upload_id_proof">ਆਈਡੀ ਸਬੂਤ ਅਪਲੋਡ ਕਰੋ</string>
@@ -169,9 +169,9 @@
     <string name="head">ਸਿਰ</string>
     <string name="bank_details">ਬੈਂਕ ਵੇਰਵੇ</string>
     <string name="bank">ਬੈਂਕ</string>
-    <string name="gst_number">ਜੀਐਸਟੀ ਨੰਬਰ *</string>
-    <string name="ifsc_code">ਆਈਐਫਐਸਸੀ ਕੋਡ *</string>
-    <string name="account_holder_name">ਖਾਤਾ ਧਾਰਕ ਦਾ ਨਾਮ *</string>
+    <string name="gst_number">ਜੀਐਸਟੀ ਨੰਬਰ</string>
+    <string name="ifsc_code">ਆਈਐਫਐਸਸੀ ਕੋਡ</string>
+    <string name="account_holder_name">ਖਾਤਾ ਧਾਰਕ ਦਾ ਨਾਮ</string>
     <string name="upload_pan_photo">ਪੈਨ ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ</string>
     <string name="blocking_system_for">ਲਈ ਬਲੌਕਿੰਗ ਸਿਸਟਮ</string>
     <string name="choose_months">ਮਹੀਨੇ ਚੁਣੋ</string>
@@ -303,7 +303,7 @@
     <string name="choose_tower_light_photo">ਕਿਰਪਾ ਕਰਕੇ ਟਾਵਰ ਲਾਈਟ ਫੋਟੋ ਦੀ ਚੋਣ ਕਰੋ</string>
     <string name="choose_bulb_light_photo">ਕਿਰਪਾ ਕਰਕੇ ਬਲਬ ਲਾਈਟ ਫੋਟੋ ਦੀ ਚੋਣ ਕਰੋ</string>
     <string name="enter_bank_account_number">ਕਿਰਪਾ ਕਰਕੇ ਬੈਂਕ ਖਾਤਾ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
-    <string name="account_number">ਖਾਤਾ ਨੰਬਰ *</string>
+    <string name="account_number">ਖਾਤਾ ਨੰਬਰ</string>
     <string name="please_choose_address">ਕਿਰਪਾ ਕਰਕੇ ਪਤਾ ਚੁਣੋ.</string>
     <string name="update_other_amen">ਹੋਰ ਸਹੂਲਤਾਂ ਨੂੰ ਅਪਡੇਟ ਕਰੋ</string>
     <string name="enter_valid_mobile">ਕਿਰਪਾ ਕਰਕੇ 10 ਅੰਕਾਂ ਦਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
@@ -319,7 +319,7 @@
     <string name="choose_dhaba_location">ਕਿਰਪਾ ਕਰਕੇ ਢਾਬੇ ਦੀ ਜਗ੍ਹਾ ਚੁਣੋ.</string>
     <string name="in_review">ਸਮੀਖਿਆ ਵਿੱਚ</string>
     <string name="submit_for_approval">ਮਨਜ਼ੂਰੀ ਲਈ ਜਮ੍ਹਾਂ ਕਰੋ</string>
-    <string name="select_bank">ਬੈਂਕ ਦੀ ਚੋਣ ਕਰੋ *</string>
+    <string name="select_bank">ਬੈਂਕ ਦੀ ਚੋਣ ਕਰੋ</string>
     <string name="owner">ਮਾਲਕ</string>
     <string name="deletion_confirmation">ਕੀ ਤੁਸੀਂ ਇਸ ਢਾਬੇ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="alternative_contact_person">ਵਿਕਲਪਕ ਸੰਪਰਕ ਵਿਅਕਤੀ</string>
@@ -497,4 +497,14 @@
     <string name="failed_to_fetch">ਲਿਆਉਣ ਵਿੱਚ ਅਸਫਲ</string>
     <string name="fields_with">" "</string>
     <string name="asterisk_are_mandatory">ਵਾਲੇ ਖੇਤਰ ਲਾਜ਼ਮੀ ਹਨ</string>
+    <string name="choose_food_1_cost">ਕਿਰਪਾ ਕਰਕੇ 1 ਕੀਮਤ ਲਈ ਵਿਕਲਪ ਭੋਜਨ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="update_photo">ਅਪਡੇਟ ਫੋਟੋ</string>
+    <string name="remove_photo">ਫੋਟੋ ਹਟਾਓ</string>
+    <string name="photo_removed_successfully">ਫੋਟੋ ਸਫਲਤਾਪੂਰਵਕ ਹਟਾ ਦਿੱਤੀ ਗਈ</string>
+    <string name="choose_action">ਕਾਰਵਾਈ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="deleting_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਨੂੰ ਹਟਾਉਣਾ</string>
+    <string name="removed_successfully">ਸਫਲਤਾਪੂਰਵਕ ਹਟਾ ਦਿੱਤਾ ਗਿਆ</string>
+    <string name="view_photo">ਫੋਟੋ ਵੇਖੋ</string>
+    <string name="unable_to_get_location">ਮੌਜੂਦਾ ਸਥਾਨ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ.</string>
+    <string name="view_list">ਦ੍ਰਿਸ਼ ਦੀ ਸੂਚੀ ਵੇਖੋ</string>
 </resources>

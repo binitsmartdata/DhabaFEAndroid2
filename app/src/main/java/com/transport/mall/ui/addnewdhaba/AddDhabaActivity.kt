@@ -9,7 +9,6 @@ import androidx.viewpager.widget.ViewPager
 import com.afollestad.assent.Permission
 import com.afollestad.assent.askForPermissions
 import com.afollestad.assent.isAllGranted
-import com.google.android.material.tabs.TabLayout
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.databinding.ActivityNewDhabaBinding
@@ -154,14 +153,14 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
         adapter.addFrag(fragment1, getString(R.string.owner_details))
         adapter.addFrag(fragment2, getString(R.string.dhaba_details))
         adapter.addFrag(fragment3, getString(R.string.amenities))
-        userModel?.let {
-            if (it.isExecutive()) {
-                adapter.addFrag(fragment4, getString(R.string.bank_details))
-                binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
-            } else {
-                binding.tabLayout.tabMode = TabLayout.MODE_FIXED
-            }
-        }
+//        userModel?.let {
+//            if (it.isExecutive()) {
+        adapter.addFrag(fragment4, getString(R.string.bank_details))
+//                binding.tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
+//            } else {
+//                binding.tabLayout.tabMode = TabLayout.MODE_FIXED
+//            }
+//        }
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter

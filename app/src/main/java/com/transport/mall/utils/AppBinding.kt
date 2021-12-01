@@ -3,12 +3,10 @@ package com.transport.mall.utils
 import android.Manifest.permission.*
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.graphics.Typeface
 import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.afollestad.assent.Permission
@@ -40,12 +38,12 @@ fun xloadImages(
     image: String?,
     placeHolder: Int
 ) {
-    val isSpecifiedPlaceholder = when (placeHolder) {
-        R.drawable.ic_profile_pic_placeholder -> true
+    val isSpecifiedPlaceholder = false//when (placeHolder) {
+//        R.drawable.ic_profile_pic_placeholder -> true
 //        R.drawable.ic_id_front -> true
 //        R.drawable.ic_id_back -> true
-        else -> false
-    }
+//        else -> false
+//    }
 
     image?.let {
         if (it.contains("http")) {

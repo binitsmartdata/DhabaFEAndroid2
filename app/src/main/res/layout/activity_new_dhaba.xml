@@ -134,8 +134,7 @@
                     android:layout_width="0dp"
                     android:layout_height="2dp"
                     android:layout_weight="1"
-                    android:background="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.mtrl_textinput_default_box_stroke_color)}"
-                    android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}" />
+                    android:background="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.colorPrimary): ContextCompat.getColor(context,R.color.mtrl_textinput_default_box_stroke_color)}" />
 
                 <TextView
                     android:id="@+id/step4"
@@ -145,8 +144,7 @@
                     android:fontFamily="@font/opensans_bold"
                     android:gravity="center"
                     android:text="4"
-                    android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.mtrl_textinput_default_box_stroke_color)}"
-                    android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}" />
+                    android:textColor="@{stepnumber == 4 ? ContextCompat.getColor(context,R.color.white): ContextCompat.getColor(context,R.color.mtrl_textinput_default_box_stroke_color)}" />
 
                 <View
                     android:layout_width="0dp"
@@ -229,8 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/step4Title"

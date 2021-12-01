@@ -94,8 +94,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:scrollbars="horizontal"
-                        android:layout_marginTop="@dimen/_10sdp" />
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:scrollbars="horizontal" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -129,12 +129,13 @@
                         android:fontFamily="@font/opensans_bold"
                         android:text="@string/information"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:visibility="@{(dhabaModelMain.dhabaModel.address.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.landmark.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.area.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.highway.trim().isEmpty()) ? View.GONE : View.VISIBLE}" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{dhabaModelMain.dhabaModel.address}"
                         android:textColor="@color/black"
@@ -144,7 +145,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Landmark : `+ dhabaModelMain.dhabaModel.landmark}"
                         android:textColor="@color/black"
@@ -154,7 +155,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Area : `+ dhabaModelMain.dhabaModel.area}"
                         android:textColor="@color/black"
@@ -164,7 +165,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Highway : `+ dhabaModelMain.dhabaModel.highway}"
                         android:textColor="@color/black"

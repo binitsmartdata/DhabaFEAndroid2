@@ -56,6 +56,13 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
     private fun assembleImagesAndShow() {
         var imagesList = ArrayList<PhotosModel>()
 
+        // DHABA HOARDING IMAGE
+        viewModel.mDhabaModelMain.dhabaModel?.let {
+            if (it.images.isNotEmpty()) {
+                imagesList.add(PhotosModel("", it.images))
+            }
+        }
+
         // DHABA PHOTOS
         viewModel.mDhabaModelMain.dhabaModel?.let {
             if (it.imageList.isNotEmpty()) {

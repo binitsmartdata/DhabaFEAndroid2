@@ -380,7 +380,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/state"
+                        android:hint="@string/select_state"
                         android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
@@ -422,7 +422,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/city"
+                        android:hint="@string/select_city"
                         android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">

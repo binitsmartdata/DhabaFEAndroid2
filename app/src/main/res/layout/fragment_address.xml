@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <variable
+            name="userModel"
+            type="com.transport.mall.model.UserModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCurrLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="@drawable/default_btn_selector"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="@dimen/_5sdp"
+                android:fontFamily="@font/opensans_semibold"
+                android:gravity="center_vertical"
+                android:paddingVertical="@dimen/_5sdp"
+                android:text="@string/fetch_location_profile"
+                android:textColor="@color/colorRed"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/landmarkTil"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/landmark"
+                android:theme="@style/TextLabel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edLandmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
+                    android:inputType="text"
+                    android:text="@={userModel.landmark}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/areaTil"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/area"
+                android:theme="@style/TextLabel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
+                    android:inputType="text"
+                    android:text="@={userModel.area}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <FrameLayout
+                android:id="@+id/flHighway"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tIHighway"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/highway_number"
+                    android:textColorHint="@color/text_gray"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.7dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edHighway"
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:text="@={userModel.highway}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:onClick="@{()->edHighway.performClick()}"
+                    android:src="@drawable/ic_spinner_dropdown" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flPropertyStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tIPropertyStatus"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/property_status"
+                    android:textColorHint="@color/text_gray"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.7dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edPropertyStatus"
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:text="@={userModel.propertyStatus}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:onClick="@{()->edPropertyStatus.performClick()}"
+                    android:src="@drawable/ic_spinner_dropdown" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tIState"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/select_state"
+                    android:textColorHint="@color/text_gray"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.7dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edState"
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:text="@={userModel.state}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:onClick="@{()->edState.performClick()}"
+                    android:src="@drawable/ic_spinner_dropdown" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tICity"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/select_city"
+                    android:textColorHint="@color/text_gray"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.7dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edCity"
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:onClick="@{()->edCity.performClick()}"
+                    android:src="@drawable/ic_spinner_dropdown" />
+
+            </FrameLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pinCodeTil"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/pin_code"
+                android:theme="@style/TextLabel">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPinCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_regular"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:text="@={userModel.pincode}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpdateProfile"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_46sdp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:background="@drawable/primary_color_btn_selector"
+                android:fontFamily="@font/opensans_bold"
+                android:gravity="center"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -86,22 +86,22 @@ class BankDetailsModel : Serializable, BaseObservable() {
         }
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
-        if (bankName.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_bank_name))
-        } else if (gstNumber.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_gst_number))
-        } else if (accountNumber.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_bank_account_number))
-        } else if (ifscCode.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_ifsc_code))
-        } else if (accountName.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.enter_account_holder_name))
-        } else if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
-            callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
-        } else if (panPhoto.trim().isEmpty()) {
-            callback.onResponse(false, context.getString(R.string.choose_pan_card_photo))
-        } else {
+//        if (bankName.trim().isEmpty()) {
+//            callback.onResponse(false, context.getString(R.string.enter_bank_name))
+//        } else if (gstNumber.trim().isEmpty()) {
+//            callback.onResponse(false, context.getString(R.string.enter_gst_number))
+//        } else if (accountNumber.trim().isEmpty()) {
+//            callback.onResponse(false, context.getString(R.string.enter_bank_account_number))
+//        } else if (ifscCode.trim().isEmpty()) {
+//            callback.onResponse(false, context.getString(R.string.enter_ifsc_code))
+//        } else if (accountName.trim().isEmpty()) {
+//            callback.onResponse(false, context.getString(R.string.enter_account_holder_name))
+//        } else if (panNumber.trim().isEmpty() || panNumber.trim().length < 10) {
+//            callback.onResponse(false, context.getString(R.string.enter_valid_pan_number))
+//        } else if (panPhoto.trim().isEmpty()) {
+//            callback.onResponse(false, context.getString(R.string.choose_pan_card_photo))
+//        } else {
             callback.onResponse(true, "")
-        }
+//        }
     }
 }

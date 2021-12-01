@@ -202,7 +202,8 @@ interface ApiService {
         @Part("executive_id") executive_id: RequestBody?,
         @Part("isOpen24_7") isOpen24_7: RequestBody?,
         @Part("approval_for") approval_for: RequestBody?,
-        @Part("approval_by") approval_by: RequestBody?
+        @Part("approval_by") approval_by: RequestBody?,
+        @Part("role") role: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart
@@ -232,7 +233,8 @@ interface ApiService {
         @Part("executive_id") executive_id: RequestBody?,
         @Part("isOpen24_7") isOpen24_7: RequestBody?,
         @Part("approval_for") approval_for: RequestBody?,
-        @Part("approval_by") approval_by: RequestBody?
+        @Part("approval_by") approval_by: RequestBody?,
+        @Part("role") role: RequestBody?
     ): Response<ApiResponseModel<DhabaModel>>
 
     @Multipart
