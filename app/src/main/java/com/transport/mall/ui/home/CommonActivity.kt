@@ -68,7 +68,6 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = intent.getStringExtra(TITLE)
         binding.title = intent.getStringExtra(TITLE)
-        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -105,6 +104,7 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
                 supportActionBar?.setDisplayShowHomeEnabled(true)
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setHomeButtonEnabled(true)
+                binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
 
                 openFragmentReplace(
                     R.id.authContainer,
