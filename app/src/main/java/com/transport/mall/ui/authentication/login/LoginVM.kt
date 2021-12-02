@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import com.transport.mall.BuildConfig
 import com.transport.mall.R
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.UserModel
@@ -174,6 +175,9 @@ class LoginVM(application: Application) : BaseVM(application) {
                                              .setUserData(result.data.data!!)*/
                                         userModel = it
                                         callBak.onResponse(result.status, result.data.message)
+                                        if (BuildConfig.DEBUG) {
+                                            showToastInCenter(app?.applicationContext, "OTP is: " + result.data?.data?.otp)
+                                        }
 
                                         /*getCitiesList(GenericCallBack {
                                             HomeActivity.start(app?.applicationContext!!)

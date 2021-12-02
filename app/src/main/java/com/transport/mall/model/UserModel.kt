@@ -228,6 +228,14 @@ class UserModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.accessToken)
         }
 
+    @SerializedName("otp")
+    var otp: String = ""
+        @Bindable get() = field
+        set(otp) {
+            field = otp
+            notifyPropertyChanged(BR.otp)
+        }
+
     companion object {
         val ROLE_OWNER = "owner"
         val ROLE_EXECUTIVE = "executive"
