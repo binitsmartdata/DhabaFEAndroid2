@@ -37,5 +37,8 @@
     <color name="grey_divider_theme">#D4D3D4</color>
     <color name="greyImgBackground">#F5F5F5</color>
     <color name="dhaba_id_bg">#F5F5F5</color>
+    <color name="text_color_language_disabled">#DF8083</color>
+    <color name="card_bg_new_theme">#5A191C</color>
+    <color name="btn_color_new_theme">#C26C6C</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#D4D3D4</color>
 </resources>

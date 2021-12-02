@@ -33,10 +33,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
-
-        <include layout="@layout/layout_app_logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,12 +45,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/choose_language"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textColor="@color/white"
+                android:textSize="26sp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -61,9 +58,9 @@
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_20sdp"
                 android:elevation="@dimen/_2sdp"
-                app:cardElevation="5dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/_5sdp">
+                app:cardBackgroundColor="@color/card_bg_new_theme"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,9 +82,10 @@
                             android:clickable="false"
                             android:fontFamily="@font/opensans_regular"
                             android:gravity="center"
+                            android:paddingVertical="@dimen/_10sdp"
                             android:text="@string/english"
                             android:textAllCaps="false"
-                            android:textColor="@{english ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                            android:textColor="@{english ? context.getColor(R.color.white) :  context.getColor(R.color.text_color_language_disabled)}"
                             android:textSize="18sp"
                             app:isBold="@{english}" />
 
@@ -105,7 +103,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/grey_divider" />
+                        android:background="#3BEBEBEB" />
 
                     <FrameLayout
                         android:id="@+id/flHindi"
@@ -122,9 +120,10 @@
                             android:clickable="false"
                             android:fontFamily="@font/opensans_regular"
                             android:gravity="center"
+                            android:paddingVertical="@dimen/_10sdp"
                             android:text="@string/hindi"
                             android:textAllCaps="false"
-                            android:textColor="@{hindi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                            android:textColor="@{hindi ? context.getColor(R.color.white) :  context.getColor(R.color.text_color_language_disabled)}"
                             android:textSize="18sp"
                             app:isBold="@{hindi}" />
 
@@ -142,7 +141,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/grey_divider" />
+                        android:background="#3BEBEBEB" />
 
                     <FrameLayout
                         android:id="@+id/flPunjabi"
@@ -159,9 +158,10 @@
                             android:clickable="false"
                             android:fontFamily="@font/opensans_regular"
                             android:gravity="center"
+                            android:paddingVertical="@dimen/_10sdp"
                             android:text="@string/punjabi"
                             android:textAllCaps="false"
-                            android:textColor="@{punjabi ? context.getColor(R.color.colorPrimary) :  context.getColor(R.color.grey_text)}"
+                            android:textColor="@{punjabi ? context.getColor(R.color.white) :  context.getColor(R.color.text_color_language_disabled)}"
                             android:textSize="18sp"
                             app:isBold="@{punjabi}" />
 

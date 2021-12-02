@@ -50,8 +50,6 @@ class ImagePagerActivity : BaseActivity<ActivityImagespagerBinding, BaseVM>() {
     }
 
     override fun bindData() {
-        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
-
         data = intent.getSerializableExtra("data") as ArrayList<PhotosModel>
         position = intent.getIntExtra("position", 0)
         setupToolbar()
@@ -67,6 +65,7 @@ class ImagePagerActivity : BaseActivity<ActivityImagespagerBinding, BaseVM>() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         binding.tvTitle.text = getString(R.string.appName)
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
     }
 
     override fun initListeners() {

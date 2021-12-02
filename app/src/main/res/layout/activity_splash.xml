@@ -8,40 +8,13 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/ivSplashLogo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_logo_splash_white" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_margin="@dimen/_40sdp"
-                android:visibility="gone" />
-
-        </FrameLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/ivSplashLogo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_logo_splash_white"
+            android:transitionName="appLogo" />
 
     </LinearLayout>
 

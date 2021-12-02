@@ -59,8 +59,6 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
     }
 
     override fun bindData() {
-        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
-
         intentType = intent.getIntExtra(INTENT_TYPE, 0)
 
         setupToolbar()
@@ -70,6 +68,7 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = intent.getStringExtra(TITLE)
         binding.title = intent.getStringExtra(TITLE)
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

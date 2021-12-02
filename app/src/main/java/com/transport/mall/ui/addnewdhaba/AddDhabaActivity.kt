@@ -70,7 +70,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
 
     override fun bindData() {
         binding.context = this
-        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
 
         //RECEIVING DATA IN CASE OF UPDATING DHABA
         mIsUpdate = intent.hasExtra("data")
@@ -141,6 +140,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             else
                 getString(R.string.add_new_dhaba)
         )
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
     }
 
     private fun setupStepsFragments() {

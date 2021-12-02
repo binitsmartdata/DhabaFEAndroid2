@@ -1,13 +1,20 @@
 package com.transport.mall.ui.authentication.pre_login.splash
 
+import android.app.ActivityOptions
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
+import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.util.Pair
 import android.view.View
 import android.view.Window
+import android.view.WindowInsets
+import android.view.WindowManager
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivitySplashBinding
 import com.transport.mall.ui.authentication.AuthenticationActivity
@@ -37,7 +44,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
         get() = this
 
     override fun bindData() {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         binding.lifecycleOwner = this
 
         val appSignatureHelper = AppSignatureHelper(this)
@@ -45,14 +51,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
     }
 
     override fun initListeners() {
-        viewModel.baseProgressOberver?.observe(this, {
-            if (it) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.GONE
-            }
-        })
-
         viewModel.getLastSupportedVersion(mContext, GenericCallBack {
             it?.let {
                 if (GlobalUtils.getNonNullString(it.lastSupportedVersion, "").isNotEmpty()) {
@@ -87,8 +85,29 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
         } else {
             val intent = Intent(this, AuthenticationActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
+
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                this,
+                Pair(binding.ivSplashLogo, "appLogo")
+            )
+
+            startActivity(intent, options.toBundle())
+            Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                finish()
+            }, 1000)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE)
+        super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }
     }
 

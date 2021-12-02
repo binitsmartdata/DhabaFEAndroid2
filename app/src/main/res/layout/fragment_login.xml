@@ -26,7 +26,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <!--<ScrollView
@@ -47,17 +46,15 @@
             android:paddingBottom="@dimen/_15sdp"
             tools:context=".ui.main.MainActivity">
 
-            <include layout="@layout/layout_app_logo" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="@dimen/_66sdp"
+                android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/login"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="26sp" />
 
             <LinearLayout
@@ -67,50 +64,64 @@
                 android:orientation="vertical"
                 android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/email_til"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/email"
-                    android:theme="@style/TextLabel">
+                    android:background="@drawable/dark_bg_new_theme">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etEmail"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/email_til"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
-                        android:inputType="textEmailAddress"
-                        android:text="@={vm.emailObservable}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:hint="@string/email"
+                        android:theme="@style/TextLabelDark">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/opensans_regular"
+                            android:inputType="textEmailAddress"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="@={vm.emailObservable}"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password_til"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/password"
-                    android:theme="@style/TextLabel">
+                    android:background="@drawable/dark_bg_new_theme">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edPwd"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/password_til"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
-                        android:inputType="textPassword"
-                        android:text="@={vm.passwordObservable}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:hint="@string/password"
+                        android:theme="@style/TextLabelDark">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edPwd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/opensans_regular"
+                            android:inputType="textPassword"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="@={vm.passwordObservable}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </FrameLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -125,7 +136,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_46sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/grey_stroke_aaaaaa"
+                    android:background="@drawable/dark_bg_new_theme"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}"
@@ -142,6 +153,7 @@
                         app:ccp_defaultCode="91"
                         app:ccp_hideNameCode="true"
                         app:ccp_hidePhoneCode="true"
+                        app:ccp_textColor="@color/white"
                         app:ccp_textSize="16sp" />
 
                     <View
@@ -162,8 +174,8 @@
                         android:paddingVertical="@dimen/_10sdp"
                         android:paddingStart="@dimen/_5sdp"
                         android:text="+91"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
                         android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -177,8 +189,8 @@
                         android:maxLength="10"
                         android:padding="@dimen/_10sdp"
                         android:text="@={vm.mobileObservable}"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -195,11 +207,11 @@
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_44sdp"
-                    android:background="@drawable/primary_color_btn_selector"
+                    android:background="@drawable/btn_selector_new_theme"
                     android:fontFamily="@font/opensans_bold"
                     android:text="@string/login"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/btn_text_color_newtheme"
                     android:textSize="18sp"
                     android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}" />
 
@@ -208,12 +220,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_44sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/primary_color_btn_selector"
+                    android:background="@drawable/btn_selector_new_theme"
                     android:enabled="@{vm.mobileObservable.trim().length() == 10}"
                     android:fontFamily="@font/opensans_bold"
                     android:text="@string/continue_text"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/btn_text_color_newtheme"
                     android:textSize="18sp"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
 
@@ -222,11 +234,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_44sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/default_btn_selector"
+                    android:background="@drawable/transparent_btn_selector"
                     android:fontFamily="@font/opensans_semibold"
                     android:text="@string/sign_up"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
 
@@ -246,11 +258,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/default_btn_selector"
+            android:background="@drawable/transparent_btn_selector"
             android:fontFamily="@font/opensans_regular"
             android:text="@{isOwnerLogin ? context.getString(R.string.login_as_field_executive) : context.getString(R.string.login_as_dhaba_owner)}"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
     </LinearLayout>

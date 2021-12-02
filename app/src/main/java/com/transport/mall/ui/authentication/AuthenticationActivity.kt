@@ -1,14 +1,16 @@
 package com.transport.mall.ui.authentication
 
 import android.content.Context
+import android.os.Build
+import android.os.Bundle
+import android.view.Window
+import android.view.WindowInsets
+import android.view.WindowManager
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAuthenticationBinding
-import com.transport.mall.ui.authentication.login.LoginFragment
-import com.transport.mall.ui.authentication.login.SignUpFragment
 import com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionFragment
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
-import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
 /**
@@ -32,17 +34,29 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding, BaseV
 //        if (!SharedPrefsHelper.getInstance(this).getSelectedLanguage().isEmpty()) {
 //            openFragmentReplaceNoAnim(R.id.authContainer, LoginFragment(), "LOGIN", true)
 //        } else {
-            openFragmentReplaceNoAnim(
-                R.id.authContainer,
-                LanguageSelectionFragment(),
-                "LANGUAGE",
-                true
-            )
+        openFragmentReplaceNoAnim(
+            R.id.authContainer,
+            LanguageSelectionFragment(),
+            "LANGUAGE",
+            true
+        )
 //        }
     }
 
     override fun initListeners() {
 
-
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE)
+        super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+    }
+
 }

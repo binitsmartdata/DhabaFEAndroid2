@@ -131,11 +131,13 @@
                 app:recyclerLinearAdapter="@{list}" />
 
             <ImageView
+                android:id="@+id/ivSplashLogo"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_logo_splash" />
+                android:src="@drawable/ic_logo_splash"
+                android:transitionName="appLogo" />
 
             <LinearLayout
                 android:layout_width="match_parent"

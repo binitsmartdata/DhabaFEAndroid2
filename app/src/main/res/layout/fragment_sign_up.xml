@@ -30,24 +30,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:animateLayoutChanges="true"
-        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="@dimen/_15sdp"
         android:paddingBottom="@dimen/_15sdp"
         tools:context=".ui.main.MainActivity">
 
-        <include layout="@layout/layout_app_logo" />
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_56sdp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:layout_marginBottom="@dimen/_20sdp"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/sign_up"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="26sp" />
 
         <LinearLayout
@@ -56,26 +52,33 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_15sdp"
-                android:fontFamily="@font/opensans_regular"
-                android:hint="@string/name_"
-                android:theme="@style/TextLabel">
+                android:background="@drawable/dark_bg_new_theme">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edName"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textPersonName"
-                    android:text="@={vm.nameObervable}"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:hint="@string/name_"
+                    android:theme="@style/TextLabelDark">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/opensans_regular"
+                        android:inputType="textPersonName"
+                        android:paddingHorizontal="@dimen/_10sdp"
+                        android:text="@={vm.nameObervable}"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/editlayout"
@@ -83,7 +86,7 @@
                 android:layout_height="@dimen/_46sdp"
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:background="@drawable/grey_dark_stroke"
+                android:background="@drawable/dark_bg_new_theme"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,6 +102,7 @@
                     app:ccp_defaultCode="91"
                     app:ccp_hideNameCode="true"
                     app:ccp_hidePhoneCode="true"
+                    app:ccp_textColor="@color/white"
                     app:ccp_textSize="16sp" />
 
                 <View
@@ -106,6 +110,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:background="@color/grey" />
+
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,8 +123,8 @@
                     android:paddingVertical="@dimen/_10sdp"
                     android:paddingStart="@dimen/_5sdp"
                     android:text="+91"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -133,8 +138,8 @@
                     android:maxLength="10"
                     android:padding="@dimen/_10sdp"
                     android:text="@={vm.phoneNumberObserver}"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -154,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:text="@={vm.emailObservable}"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -172,11 +177,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_44sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/primary_color_btn_selector"
+                android:background="@drawable/btn_selector_new_theme"
                 android:fontFamily="@font/opensans_bold"
                 android:text="@string/sign_up"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/btn_text_color_newtheme"
                 android:textSize="18sp" />
 
             <Button
@@ -184,11 +189,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_44sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/default_btn_selector"
+                android:background="@drawable/transparent_btn_selector"
                 android:fontFamily="@font/opensans_semibold"
                 android:text="@string/login"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
         </LinearLayout>

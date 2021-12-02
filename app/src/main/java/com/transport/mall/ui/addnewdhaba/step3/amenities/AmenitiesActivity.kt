@@ -64,8 +64,6 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
     }
 
     override fun bindData() {
-        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
-
         dhabaModelMain = intent.getSerializableExtra(DHABA_MODEL) as DhabaModelMain
         amanityType = intent.getIntExtra(AMENITY_TYPE, 0)
         isUpdate = intent.getBooleanExtra("isUpdate", false)
@@ -92,6 +90,7 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
         } else {
             binding.tvTitle.text = getTitleByType()
         }
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
     }
 
     private fun getTitleByType(): String {

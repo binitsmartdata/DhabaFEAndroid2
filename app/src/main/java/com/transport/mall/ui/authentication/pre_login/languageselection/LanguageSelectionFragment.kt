@@ -1,6 +1,7 @@
 package com.transport.mall.ui.authentication.pre_login.languageselection
 
 import android.os.Handler
+import android.os.Looper
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentLanguageSelectionBinding
 import com.transport.mall.ui.authentication.login.LoginFragment
@@ -50,7 +51,7 @@ class LanguageSelectionFragment :
     }
 
     private fun goToLogin() {
-        Handler().postDelayed(Runnable {
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
             openFragmentReplaceNoAnim(
                 R.id.authContainer,
                 LoginFragment(),

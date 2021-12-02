@@ -32,19 +32,16 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:animateLayoutChanges="true"
-        android:background="@color/white"
         android:gravity="center_horizontal"
         android:orientation="vertical">
-
-        <include layout="@layout/layout_app_logo" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_56sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/verify"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="26sp" />
 
         <LinearLayout
@@ -59,7 +56,7 @@
                 android:fontFamily="@font/opensans_regular"
                 android:gravity="center"
                 android:text="@string/enter_otp_sent_to"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -68,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:fontFamily="@font/opensans_regular"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -81,8 +78,8 @@
             android:layout_marginEnd="@dimen/_16sdp"
             android:focusableInTouchMode="true"
             android:inputType="number"
-            android:itemBackground="@color/white"
-            android:textColor="@android:color/black"
+            android:itemBackground="@color/card_bg_new_theme"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/_24ssp"
             app:OtpItemCount="4"
             app:OtpItemHeight="@dimen/_54sdp"
@@ -91,7 +88,7 @@
             app:OtpItemWidth="@dimen/_54sdp"
             app:OtpLineColor="@color/grey_otp_box"
             app:OtpLineWidth="@dimen/_1sdp"
-            app:OtpViewType="rectangle" />
+            app:OtpViewType="none" />
 
         <TextView
             android:id="@+id/tvResendIn"
@@ -102,7 +99,7 @@
             android:gravity="center"
             android:text="@{countDownTime}"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <Button
@@ -112,11 +109,11 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_14sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:background="@drawable/primary_color_btn_selector"
+            android:background="@drawable/btn_selector_new_theme"
             android:enabled="@{otp.length() == 4}"
             android:text="@string/continue_text"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/btn_text_color_newtheme"
             android:textSize="18sp" />
 
         <Button
@@ -138,11 +135,11 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_14sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:background="@drawable/grey_stroke_selector"
+            android:background="@drawable/white_stroke_selector"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/resend_otp"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
