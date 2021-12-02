@@ -9,6 +9,7 @@
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="android:ambientShadowAlpha">0.1</item>
         <item name="android:spotShadowAlpha">0.1</item>
+        <item name="android:statusBarColor">#00000000</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
@@ -150,5 +151,6 @@
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
         <!-- Customize color of navigation drawer icon and back arrow -->
         <item name="colorControlNormal">@color/black</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 </resources>

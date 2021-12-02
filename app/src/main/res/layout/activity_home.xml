@@ -41,7 +41,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@drawable/screen_background_gradient"
                 android:elevation="@dimen/_4sdp"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="@style/ToolbarTheme"
@@ -63,7 +63,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:gravity="start"
                         android:text="@{toolbarModel.title}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:visibility="@{(toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) || toolbarModel.title.equalsIgnoreCase(@string/my_dhabas) || toolbarModel.title.equalsIgnoreCase(@string/settings)|| toolbarModel.title.equalsIgnoreCase(@string/helpline)) ? View.GONE : View.VISIBLE}"
                         tools:text="Title" />

@@ -13,6 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/screen_background_gradient"
             android:theme="@style/ToolbarTheme">
 
             <RelativeLayout
@@ -29,7 +30,7 @@
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="start"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="16sp" />
             </RelativeLayout>
 

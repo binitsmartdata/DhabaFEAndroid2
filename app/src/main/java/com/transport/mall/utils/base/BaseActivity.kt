@@ -1,16 +1,17 @@
 package com.transport.mall.utils.base
 
 import android.Manifest
+import android.annotation.TargetApi
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
@@ -77,9 +78,18 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         this.mViewModel = viewModel
         bindData()
         initListeners()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            window.statusBarColor = Color.WHITE
+        setStatusBarGradiant(this)
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    open fun setStatusBarGradiant(activity: Activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window: Window = activity.getWindow()
+            val background: Drawable = ContextCompat.getDrawable(this,R.drawable.screen_background_gradient)!!
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent))
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent))
+            window.setBackgroundDrawable(background)
         }
     }
 

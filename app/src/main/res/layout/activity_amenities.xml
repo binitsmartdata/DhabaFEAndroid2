@@ -13,8 +13,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:background="@drawable/screen_background_gradient"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:elevation="@dimen/_4sdp"
             android:theme="@style/ToolbarTheme">
 
@@ -31,7 +31,7 @@
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="start"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     tools:text="Title" />
             </RelativeLayout>
