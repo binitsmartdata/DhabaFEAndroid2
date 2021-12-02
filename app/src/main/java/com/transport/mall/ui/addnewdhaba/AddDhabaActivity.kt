@@ -3,6 +3,7 @@ package com.transport.mall.ui.addnewdhaba
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
@@ -69,6 +70,7 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
 
     override fun bindData() {
         binding.context = this
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
 
         //RECEIVING DATA IN CASE OF UPDATING DHABA
         mIsUpdate = intent.hasExtra("data")

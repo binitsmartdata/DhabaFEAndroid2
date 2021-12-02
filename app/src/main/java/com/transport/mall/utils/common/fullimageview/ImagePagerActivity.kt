@@ -2,6 +2,7 @@ package com.transport.mall.utils.common.fullimageview
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.view.MenuItem
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityImagespagerBinding
@@ -49,6 +50,8 @@ class ImagePagerActivity : BaseActivity<ActivityImagespagerBinding, BaseVM>() {
     }
 
     override fun bindData() {
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
+
         data = intent.getSerializableExtra("data") as ArrayList<PhotosModel>
         position = intent.getIntExtra("position", 0)
         setupToolbar()

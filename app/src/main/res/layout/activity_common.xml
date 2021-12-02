@@ -50,7 +50,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_centerInParent="true"
                     android:padding="@dimen/_5sdp"
-                    android:src="@drawable/ic_logo_splash"
+                    android:src="@drawable/ic_logo_splash_white"
                     android:visibility="@{(title.empty || title == null) ? View.VISIBLE: View.GONE }" />
 
             </RelativeLayout>

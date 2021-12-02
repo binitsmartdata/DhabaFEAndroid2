@@ -3,6 +3,7 @@ package com.transport.mall.ui.home
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.view.Menu
 import android.view.MenuItem
 import com.transport.mall.R
@@ -58,6 +59,8 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
     }
 
     override fun bindData() {
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
+
         intentType = intent.getIntExtra(INTENT_TYPE, 0)
 
         setupToolbar()

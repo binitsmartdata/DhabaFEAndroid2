@@ -227,6 +227,7 @@ class UserModel : Serializable, BaseObservable() {
             field = accessToken
             notifyPropertyChanged(BR.accessToken)
         }
+
     @SerializedName("otp")
     var otp: String = ""
         @Bindable get() = field

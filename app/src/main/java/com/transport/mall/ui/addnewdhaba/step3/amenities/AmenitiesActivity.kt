@@ -3,6 +3,7 @@ package com.transport.mall.ui.addnewdhaba.step3.amenities
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.view.Menu
 import android.view.MenuItem
 import com.afollestad.assent.Permission
@@ -63,6 +64,8 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
     }
 
     override fun bindData() {
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
+
         dhabaModelMain = intent.getSerializableExtra(DHABA_MODEL) as DhabaModelMain
         amanityType = intent.getIntExtra(AMENITY_TYPE, 0)
         isUpdate = intent.getBooleanExtra("isUpdate", false)

@@ -9,7 +9,9 @@ import com.transport.mall.BuildConfig
 import com.transport.mall.R
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.UserModel
+import com.transport.mall.repository.commonprocesses.CityStateHighwayBanksFetcher
 import com.transport.mall.repository.networkoperator.ApiResult
+import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -176,6 +178,7 @@ class LoginVM(application: Application) : BaseVM(application) {
                                         if (BuildConfig.DEBUG) {
                                             showToastInCenter(app?.applicationContext, "OTP is: " + result.data?.data?.otp)
                                         }
+
                                         /*getCitiesList(GenericCallBack {
                                             HomeActivity.start(app?.applicationContext!!)
                                             callBak.onResponse(result.status, result.data.message)

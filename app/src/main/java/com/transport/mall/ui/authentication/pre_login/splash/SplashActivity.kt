@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.view.Window
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivitySplashBinding
 import com.transport.mall.ui.authentication.AuthenticationActivity
@@ -36,6 +37,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
         get() = this
 
     override fun bindData() {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         binding.lifecycleOwner = this
 
         val appSignatureHelper = AppSignatureHelper(this)

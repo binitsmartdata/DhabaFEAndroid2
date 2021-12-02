@@ -2,6 +2,7 @@ package com.transport.mall.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -127,6 +128,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         supportActionBar?.setHomeButtonEnabled(true)
         setupDrawerToggle()
         binding.toolbarModel = toolbar
+
+        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
     }
 
     /**

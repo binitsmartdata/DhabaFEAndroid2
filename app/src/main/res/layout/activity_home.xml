@@ -73,7 +73,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_centerInParent="true"
                         android:padding="@dimen/_5sdp"
-                        android:src="@drawable/ic_logo_splash"
+                        android:src="@drawable/ic_logo_splash_white"
                         android:visibility="@{(toolbarModel.title.equalsIgnoreCase(@string/dhaba_mnagement) || toolbarModel.title.equalsIgnoreCase(@string/my_dhabas)|| toolbarModel.title.equalsIgnoreCase(@string/settings)|| toolbarModel.title.equalsIgnoreCase(@string/helpline)) ? View.VISIBLE : View.GONE}" />
 
                 </RelativeLayout>
