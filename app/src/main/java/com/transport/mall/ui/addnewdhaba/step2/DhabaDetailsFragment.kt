@@ -216,7 +216,7 @@ class DhabaDetailsFragment :
 //                mListener?.saveAsDraft()
 //                activity?.finish()
 //            } else {
-                saveDetails(true)
+            saveDetails(true)
 //            }
         }
 
@@ -264,6 +264,17 @@ class DhabaDetailsFragment :
                 }
             }
         }
+
+        binding.showTimings = false
+        binding.flTimingArrow.setOnClickListener {
+            binding.showTimings = !binding.showTimings!!
+            if (binding.showTimings!!) {
+                binding.ivTimingArrow.rotation = 0f
+            } else {
+                binding.ivTimingArrow.rotation = 180f
+            }
+        }
+
         setRxBusListener()
     }
 
@@ -310,6 +321,7 @@ class DhabaDetailsFragment :
     private fun saveDetails(isDraft: Boolean) {
         if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
+            mListener?.showOwnerScreen()
         } else {
             if (isDraft) {
                 if (viewModel.dhabaModel.name.trim().isNotEmpty()) {

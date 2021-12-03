@@ -439,7 +439,7 @@
 
     <string-array name="menu_array_owner">
         <item>@string/my_dhabas</item>
-        <item>@string/notifications</item>
+<!--        <item>@string/notifications</item>-->
         <!--        <item>@string/discount_offers</item>-->
         <!--        <item>@string/my_orders</item>-->
         <!--        <item>@string/customers</item>-->
@@ -449,7 +449,7 @@
     </string-array>
     <integer-array name="menu_icons_owner">
         <item>@drawable/ic_home</item>
-        <item>@drawable/ic_notification_filled</item>
+<!--        <item>@drawable/ic_notification_filled</item>-->
         <!--        <item>@drawable/ic_discount_offer</item>-->
         <!--        <item>@drawable/ic_my_orders</item>-->
         <!--        <item>@drawable/ic_customers</item>-->
@@ -459,7 +459,7 @@
     </integer-array>
     <integer-array name="menu_icons_hilighted_owner">
         <item>@drawable/ic_home_hilighted</item>
-        <item>@drawable/ic_notification_hilighted</item>
+<!--        <item>@drawable/ic_notification_hilighted</item>-->
         <!--        <item>@drawable/ic_discount_offer_highlighted</item>-->
         <!--        <item>@drawable/ic_my_orders_highlighted</item>-->
         <!--        <item>@drawable/ic_customers_highlighted</item>-->
@@ -472,21 +472,21 @@
     <string-array name="menu_array_fiels_ex">
         <item>@string/dhaba_mnagement</item>
         <item>@string/add_new_dhaba</item>
-        <item>@string/notifications</item>
+<!--        <item>@string/notifications</item>-->
         <item>@string/settings</item>
     </string-array>
 
     <integer-array name="menu_icons_fiels_ex">
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_add_dhaba</item>
-        <item>@drawable/ic_notification_filled</item>
+<!--        <item>@drawable/ic_notification_filled</item>-->
         <item>@drawable/ic_settings</item>
     </integer-array>
 
     <integer-array name="menu_icons_hilighted_fiels_ex">
         <item>@drawable/ic_home_hilighted</item>
         <item>@drawable/ic_add_dhaba_hilighted</item>
-        <item>@drawable/ic_notification_hilighted</item>
+<!--        <item>@drawable/ic_notification_hilighted</item>-->
         <item>@drawable/ic_settings_hilighted</item>
     </integer-array>
 
@@ -595,5 +595,6 @@
     <string name="fetch_location_profile">Fetch Location</string>
     <string name="voter_id_">Voter ID</string>
     <string name="aadhar_card_number_">Aadhar Card Number</string>
+    <string name="today">Today</string>
 
 </resources>

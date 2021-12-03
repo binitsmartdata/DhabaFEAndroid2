@@ -61,7 +61,7 @@
                     android:layout_weight="2"
                     android:fontFamily="sans-serif-black"
                     android:padding="10dp"
-                    android:text="@string/change_language"
+                    android:text="@string/choose_language"
                     android:textColor="@color/text_gray_hint"
                     android:textSize="16sp" />
 

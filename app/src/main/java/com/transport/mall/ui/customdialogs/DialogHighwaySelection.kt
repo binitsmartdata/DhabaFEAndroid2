@@ -2,6 +2,8 @@ package com.transport.mall.ui.customdialogs
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
@@ -20,18 +22,21 @@ class DialogHighwaySelection constructor(
     isCustomHighwayEnabled: Boolean,
     dataList: ArrayList<HighwayModel>,
     val callBack: GenericCallBack<HighwayModel>
-) : Dialog(context), GenericCallBack<HighwayModel> {
+) : Dialog(context, R.style.PauseDialog), GenericCallBack<HighwayModel> {
 
     var binding: DialogHighwaySelectionBinding
     var filterDataList: ArrayList<HighwayModel> = ArrayList()
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context), R.layout.dialog_highway_selection, null, false
-        )
+        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_highway_selection, null, false)
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.viewSpace.setOnClickListener {
+            dismiss()
+        }
 
         binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

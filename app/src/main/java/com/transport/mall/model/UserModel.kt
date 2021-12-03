@@ -195,6 +195,11 @@ class UserModel : Serializable, BaseObservable() {
 
     @SerializedName(value = "city")
     var city: Array<String>? = null
+        @Bindable get() = field
+        set(city) {
+            field = city
+            notifyPropertyChanged(BR.city)
+        }
 
     @SerializedName(value = "pincode", alternate = ["zipcode"])
     var pincode: String? = ""

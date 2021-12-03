@@ -320,16 +320,16 @@ interface ApiService {
         @Part IdProfBack: MultipartBody.Part?
     ): Response<ApiResponseModel<UserModel>>
 
-    @Multipart
+    @FormUrlEncoded
     @POST("user/updateUserProfile")
     suspend fun updateAddressData(
-        @Part("_id") _id: RequestBody,
-        @Part("state") state: RequestBody,
-//        @Part("city") city: Array<String>,
-        @Part("zipcode") zipcode: RequestBody,
-        @Part("landmark") landmark: RequestBody,
-        @Part("area") area: RequestBody,
-        @Part("highwayNo") highwayNo: RequestBody
+        @Field("_id") _id: String?,
+        @Field("state") state: String?,
+        @Field("city") city: Array<String>?,
+        @Field("zipcode") zipcode: String?,
+        @Field("landmark") landmark: String?,
+        @Field("area") area: String?,
+        @Field("highwayNo") highwayNo: String?
     ): Response<ApiResponseModel<UserModel>>
 
     @Multipart

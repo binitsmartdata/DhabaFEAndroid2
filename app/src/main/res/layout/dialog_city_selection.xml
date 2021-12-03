@@ -23,78 +23,90 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="@dimen/_10sdp">
+        android:background="@android:color/transparent"
+        android:orientation="horizontal">
 
-        <FrameLayout
+        <View
+            android:id="@+id/viewSpace"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edSearch"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/grey_stroke"
-                android:fontFamily="@font/opensans_regular"
-                android:hint="@string/search_city"
-                android:inputType="text"
-                android:maxLength="15"
-                android:padding="@dimen/_7sdp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/grey_stroke"
+                    android:fontFamily="@font/opensans_regular"
+                    android:hint="@string/search_city"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:padding="@dimen/_7sdp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnAddNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/grey_stroke"
+                    android:fontFamily="@font/opensans_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@string/add_new"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:visibility="@{(isCustomHighwayEnabled &amp;&amp; !edSearch.text.toString().trim().empty) ? View.VISIBLE : View.GONE}" />
+
+            </FrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/btnAddNew"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvNoData"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:background="@drawable/grey_stroke"
-                android:fontFamily="@font/opensans_regular"
+                android:fontFamily="@font/opensans_semibold"
                 android:gravity="center"
-                android:padding="@dimen/_4sdp"
-                android:text="@string/add_new"
-                android:textAllCaps="false"
+                android:paddingVertical="@dimen/_30sdp"
+                android:text="@string/no_cities_found"
                 android:textColor="@color/black"
-                android:textSize="12sp"
-                android:visibility="@{(isCustomHighwayEnabled &amp;&amp; !edSearch.text.toString().trim().empty) ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{isHavingData ? View.GONE : View.VISIBLE}" />
 
-        </FrameLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/primary_color_btn_selector"
+                android:fontFamily="@font/opensans_bold"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/continue_text"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="@{isHavingData ? View.VISIBLE : View.GONE}" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_weight="1" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvNoData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/opensans_semibold"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_30sdp"
-            android:text="@string/no_cities_found"
-            android:textColor="@color/black"
-            android:visibility="@{isHavingData ? View.GONE : View.VISIBLE}" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnContinue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/primary_color_btn_selector"
-            android:fontFamily="@font/opensans_bold"
-            android:gravity="center"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/continue_text"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:visibility="@{isHavingData ? View.VISIBLE : View.GONE}" />
-
+        </LinearLayout>
     </LinearLayout>
-
 </layout>

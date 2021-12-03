@@ -255,13 +255,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         * */
         when (position) {
             0 -> fragment = HomeFragment()
-            1 -> fragment = NotificationsFragment()
+//            1 -> fragment = NotificationsFragment()
 //            2 -> fragment = DiscountsOffersFragment()
 //            3 -> fragment = OrdersFragment()
 //            4 -> fragment = CustomersFragment()
 //            5 -> fragment = ShopsFragment()
-            2 -> fragment = HelplineFragment()
-            3 -> fragment = SettingsFragment()
+            1 -> fragment = HelplineFragment()
+            2 -> fragment = SettingsFragment()
         }
 
         fragment?.let {
@@ -283,8 +283,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 AddDhabaActivity.start(this)
                 return
             }
-            2 -> fragment = NotificationsFragment()
-            3 -> fragment = SettingsFragment()
+//            2 -> fragment = NotificationsFragment()
+            2 -> fragment = SettingsFragment()
         }
 
         fragment?.let {

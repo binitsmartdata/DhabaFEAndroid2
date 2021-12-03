@@ -185,11 +185,11 @@ class BankDetailsFragment :
 //        if (isDraft || (!isDraft && isHavingPreviousData())) {
         if (isHavingPreviousData()) {
             if (isDraft) {
-                if (viewModel.bankModel.bankName.trim().isNotEmpty()) {
-                    proceed(isDraft)
-                } else {
-                    showToastInCenter(getString(R.string.enter_bank_name))
-                }
+//                if (viewModel.bankModel.bankName.trim().isNotEmpty()) {
+                proceed(isDraft)
+//                } else {
+//                    showToastInCenter(getString(R.string.enter_bank_name))
+//                }
             } else {
                 var ownerMissingParams = ""
                 var dhabaMissingParams = ""
@@ -302,9 +302,11 @@ class BankDetailsFragment :
     private fun isHavingPreviousData(): Boolean {
         if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
+            mListener?.showOwnerScreen()
             return false
         } else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
             showToastInCenter(getString(R.string.enter_dhaba_details))
+            mListener?.showDhabaScreen()
             return false
         }
         return true

@@ -7,8 +7,8 @@
         <import type="com.transport.mall.R" />
 
         <variable
-            name="userModel"
-            type="com.transport.mall.model.UserModel" />
+            name="viewModel"
+            type="com.transport.mall.ui.home.profile.owner.OwnerProfileVM" />
 
     </data>
 
@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text="@={userModel.landmark}"
+                    android:text="@={viewModel.userModel.landmark}"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="text"
-                    android:text="@={userModel.area}"
+                    android:text="@={viewModel.userModel.area}"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -88,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:focusable="false"
-                        android:text="@={userModel.highway}"
+                        android:text="@={viewModel.userModel.highway}"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:focusable="false"
-                        android:text="@={userModel.state}"
+                        android:text="@={viewModel.userModel.state}"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -147,7 +147,6 @@
                 android:id="@+id/flCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_marginTop="@dimen/_15sdp">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -167,6 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:focusable="false"
+                        android:text="@{viewModel.userModel.city[0]}"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -198,7 +198,7 @@
                     android:fontFamily="@font/opensans_regular"
                     android:inputType="number"
                     android:maxLength="6"
-                    android:text="@={userModel.pincode}"
+                    android:text="@={viewModel.userModel.pincode}"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

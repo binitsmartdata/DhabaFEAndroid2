@@ -1,12 +1,9 @@
 package com.transport.mall.ui.home.profile.owner.address
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentAddressBinding
@@ -48,7 +45,8 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
         userData = SharedPrefsHelper.getInstance(activity as Context).getUserData()
         userData?.let {
             viewModel.userModel = it
-            binding.userModel = viewModel.userModel
+//            binding.userModel = viewModel.userModel
+            binding.viewModel = viewModel
         }
     }
 
@@ -85,7 +83,7 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
         })
 
         binding.btnUpdateProfile.setOnClickListener {
-            viewModel.userModel = binding.userModel as UserModel
+//            viewModel.userModel = binding.userModel as UserModel
 
             viewModel.updateAddressData(GenericCallBack {
                 if (it.data != null) {
@@ -142,6 +140,7 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
         )
         binding.edCity.setOnClickListener {
             DialogDropdownOptions(getmContext(), getString(R.string.select_city), citiesAdapter, {
+                Log.e("selected city", cityList[it].name_en!!)
                 viewModel.userModel.city = arrayOf(cityList[it].name_en!!)
             }).show()
         }

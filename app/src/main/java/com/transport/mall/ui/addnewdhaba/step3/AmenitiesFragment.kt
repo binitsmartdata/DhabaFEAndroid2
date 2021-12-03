@@ -130,6 +130,7 @@ class AmenitiesFragment :
                 updateDhabaStatus(true)
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                mListener?.showDhabaScreen()
             }
         }
 
@@ -144,6 +145,7 @@ class AmenitiesFragment :
                 )
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                mListener?.showDhabaScreen()
             }
         }
         binding.cardParking.setOnClickListener {
@@ -156,6 +158,7 @@ class AmenitiesFragment :
                 )
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                mListener?.showDhabaScreen()
             }
         }
         binding.cardSleeping.setOnClickListener {
@@ -168,6 +171,7 @@ class AmenitiesFragment :
                 )
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                mListener?.showDhabaScreen()
             }
         }
         binding.cardWashroom.setOnClickListener {
@@ -180,6 +184,7 @@ class AmenitiesFragment :
                 )
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                mListener?.showDhabaScreen()
             }
         }
         binding.cardSecurity.setOnClickListener {
@@ -192,6 +197,7 @@ class AmenitiesFragment :
                 )
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                mListener?.showDhabaScreen()
             }
         }
         binding.cardOther.setOnClickListener {
@@ -204,6 +210,7 @@ class AmenitiesFragment :
                 )
             } ?: kotlin.run {
                 showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                mListener?.showDhabaScreen()
             }
         }
         binding.cardLights.setOnClickListener {
@@ -297,9 +304,11 @@ class AmenitiesFragment :
     private fun isHavingPreviousData(): Boolean {
         if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
+            mListener?.showOwnerScreen()
             return false
         } else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
             showToastInCenter(getString(R.string.enter_dhaba_details))
+            mListener?.showDhabaScreen()
             return false
         }
         return true
