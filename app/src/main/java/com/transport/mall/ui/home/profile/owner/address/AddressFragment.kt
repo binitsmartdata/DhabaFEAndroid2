@@ -48,6 +48,20 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
             viewModel.userModel = it
 //            binding.userModel = viewModel.userModel
             binding.viewModel = viewModel
+
+            it.state?.let {
+                AppDatabase.getInstance(getmContext())?.statesDao()?.getByName(it)?.observe(this, {
+                    if (it.isNotEmpty()) {
+                        //GET LIST OF CITIES UNDER SELECTED STATE
+                        AppDatabase.getInstance(getmContext())?.cityDao()
+                            ?.getAllByState(it.get(0).stateCode!!)
+                            ?.observe(viewLifecycleOwner, Observer {
+                                it?.let { setCitiesAdapter(it as ArrayList<CityModel>) }
+                            })
+                    }
+                })
+
+            }
         }
     }
 

@@ -64,7 +64,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_bank"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -98,7 +97,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/gst_number"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bankView">
@@ -122,7 +122,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/account_number"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/gstNumberTil">
@@ -146,7 +147,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/ifsc_code"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/accountnumber">
@@ -171,7 +173,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/account_holder_name"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/IFSCCodeTil">
@@ -195,7 +198,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/pan_number"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/accountHolderNameTil">

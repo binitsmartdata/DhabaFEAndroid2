@@ -103,7 +103,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/dhaba_name"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llMandatoryWarning">
@@ -180,7 +181,8 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:hint="@string/latitude"
-                        android:theme="@style/TextLabel">
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.6dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -202,7 +204,8 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:hint="@string/longitude"
-                        android:theme="@style/TextLabel">
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.6dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -226,7 +229,8 @@
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/dhaba_address_mandatory"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llLatLong">
@@ -251,7 +255,8 @@
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/landmark"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dhabaAddressTil">
@@ -276,7 +281,8 @@
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/area"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/landmarkTil">
@@ -309,7 +315,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/highway_number"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -352,7 +357,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/property_status"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -395,7 +399,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_state"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -438,7 +441,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_city"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -473,7 +475,8 @@
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/pin_code"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flCity">

@@ -60,7 +60,8 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/opensans_regular"
                 android:hint="@string/name"
-                android:theme="@style/TextLabel"
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frameImg">
@@ -84,7 +85,8 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/opensans_regular"
                 android:hint="@string/email"
-                android:theme="@style/TextLabel"
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilName">
@@ -169,7 +171,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/voter_id_"
-                android:theme="@style/TextLabel"
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editlayout">
@@ -192,7 +195,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/aadhar_card_number_"
-                android:theme="@style/TextLabel"
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/panNoTil">

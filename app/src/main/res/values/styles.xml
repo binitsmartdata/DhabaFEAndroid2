@@ -126,6 +126,10 @@
         <item name="boxStrokeColor">@color/input_selector</item>
         <item name="boxStrokeWidth">0.6dp</item>
     </style>
+    <style name="TILStyleRedHint" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeWidth">0.6dp</item>
+        <item name="android:textColorHint">@color/text_gray_hint</item>
+    </style>
 
     <style name="TabsCustomStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:fontFamily">@font/opensans_semibold</item>

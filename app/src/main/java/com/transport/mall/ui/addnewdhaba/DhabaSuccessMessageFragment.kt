@@ -34,9 +34,7 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
     override fun bindData() {
         binding.lifecycleOwner = this
         setHasOptionsMenu(true)
-    }
 
-    override fun initListeners() {
         dialogProgressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog()
@@ -45,6 +43,9 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
             }
         })
 
+    }
+
+    override fun initListeners() {
         SharedPrefsHelper.getInstance(getmContext()).deleteDraftDhaba()
         if (id.length > 6) {
             binding.dhabaId = "************" + id.substring(id.length - 6)
@@ -52,7 +53,9 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
             binding.dhabaId = id
         }
         binding.btnViewDhaba.setOnClickListener {
+            dialogProgressObserver.value = true
             viewModel.getDhabaById(id, GenericCallBack {
+                dialogProgressObserver.value = false
                 if (it.data != null) {
                     context?.let { context ->
                         AddDhabaActivity.startForUpdate(context, it.data!!)

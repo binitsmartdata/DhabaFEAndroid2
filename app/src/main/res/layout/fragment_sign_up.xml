@@ -63,7 +63,8 @@
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:hint="@string/name_"
-                android:theme="@style/TextLabel">
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edName"
@@ -145,7 +146,8 @@
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:hint="@string/email"
-                android:theme="@style/TextLabel"
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp"
                 android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputEditText
