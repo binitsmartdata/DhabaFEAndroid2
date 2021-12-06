@@ -1,12 +1,9 @@
 package com.transport.mall.ui.home.profile.owner.address
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentAddressBinding
@@ -16,6 +13,7 @@ import com.transport.mall.model.StateModel
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
+import com.transport.mall.ui.customdialogs.DialogProfileUpdate
 import com.transport.mall.ui.home.profile.owner.OwnerProfileVM
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
@@ -48,7 +46,22 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
         userData = SharedPrefsHelper.getInstance(activity as Context).getUserData()
         userData?.let {
             viewModel.userModel = it
-            binding.userModel = viewModel.userModel
+//            binding.userModel = viewModel.userModel
+            binding.viewModel = viewModel
+
+            it.state?.let {
+                AppDatabase.getInstance(getmContext())?.statesDao()?.getByName(it)?.observe(this, {
+                    if (it.isNotEmpty()) {
+                        //GET LIST OF CITIES UNDER SELECTED STATE
+                        AppDatabase.getInstance(getmContext())?.cityDao()
+                            ?.getAllByState(it.get(0).stateCode!!)
+                            ?.observe(viewLifecycleOwner, Observer {
+                                it?.let { setCitiesAdapter(it as ArrayList<CityModel>) }
+                            })
+                    }
+                })
+
+            }
         }
     }
 
@@ -85,14 +98,15 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
         })
 
         binding.btnUpdateProfile.setOnClickListener {
-            viewModel.userModel = binding.userModel as UserModel
+//            viewModel.userModel = binding.userModel as UserModel
 
             viewModel.updateAddressData(GenericCallBack {
                 if (it.data != null) {
                     viewModel.userModel = it.data!!
 
                     SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
-                    showToastInCenter(getString(R.string.profile_updated))
+//                    showToastInCenter(getString(R.string.profile_updated))
+                    DialogProfileUpdate(getmContext()).show()
 
                     //NOTIFY THAT USER MODEL IS UPDATED
                     RxBus.publish(it.data!!)
@@ -142,6 +156,7 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
         )
         binding.edCity.setOnClickListener {
             DialogDropdownOptions(getmContext(), getString(R.string.select_city), citiesAdapter, {
+                Log.e("selected city", cityList[it].name_en!!)
                 viewModel.userModel.city = arrayOf(cityList[it].name_en!!)
             }).show()
         }

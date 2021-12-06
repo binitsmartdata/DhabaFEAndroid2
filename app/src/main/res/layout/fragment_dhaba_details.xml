@@ -33,6 +33,10 @@
             name="loadingVideo"
             type="Boolean" />
 
+        <variable
+            name="showTimings"
+            type="Boolean" />
+
     </data>
 
 
@@ -48,12 +52,13 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/_15sdp">
+                android:paddingVertical="@dimen/_15sdp">
 
                 <LinearLayout
                     android:id="@+id/llMandatoryWarning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:background="@drawable/grey_roundcorners_fofofo"
                     android:gravity="start"
                     android:orientation="horizontal"
@@ -94,10 +99,12 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/dhaba_name"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llMandatoryWarning">
@@ -118,6 +125,7 @@
                     android:id="@+id/fetchLocationLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -159,6 +167,7 @@
                     android:id="@+id/llLatLong"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:orientation="horizontal"
                     android:visibility="@{userModel.isExecutive() ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -172,7 +181,8 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:hint="@string/latitude"
-                        android:theme="@style/TextLabel">
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.6dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -194,7 +204,8 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:hint="@string/longitude"
-                        android:theme="@style/TextLabel">
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.6dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -215,9 +226,11 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/dhaba_address_mandatory"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llLatLong">
@@ -239,9 +252,11 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/landmark"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dhabaAddressTil">
@@ -263,9 +278,11 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/area"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/landmarkTil">
@@ -286,6 +303,7 @@
                     android:id="@+id/flHighway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
@@ -297,7 +315,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/highway_number"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -328,6 +345,7 @@
                     android:id="@+id/flPropertyStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
@@ -339,7 +357,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/property_status"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -370,6 +387,7 @@
                     android:id="@+id/flState"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
@@ -381,7 +399,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_state"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -412,6 +429,7 @@
                     android:id="@+id/flCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
@@ -423,7 +441,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_city"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 
@@ -455,9 +472,11 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/pin_code"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flCity">
@@ -489,6 +508,7 @@
                         android:id="@+id/tv_open_close_times"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_16sdp"
                         android:fontFamily="@font/opensans_semibold"
                         android:text="Open 24x7"
@@ -502,6 +522,7 @@
                         android:id="@+id/rgTiming"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:checkedButton="@id/rb24hrsYes"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -527,10 +548,9 @@
                     </RadioGroup>
 
                     <LinearLayout
-                        android:id="@+id/ll_time_title"
-                        android:layout_width="0dp"
+                        android:id="@+id/llTimingTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:visibility="@{rb24hrsYes.checked ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -538,14 +558,58 @@
                         app:layout_constraintTop_toBottomOf="@id/rgTiming">
 
                         <TextView
+                            android:id="@+id/tvTimingTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_semibold"
+                            android:text="@string/open_and_closing_times"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <FrameLayout
+                            android:id="@+id/flTimingArrow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivTimingArrow"
+                                android:layout_width="@dimen/_25sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:layout_gravity="center"
+                                android:padding="@dimen/_3sdp"
+                                android:rotation="180"
+                                android:src="@drawable/ic_timing_dropdown" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_time_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{rb24hrsYes.checked ? View.GONE : (showTimings ? View.VISIBLE : View.GONE)}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llTimingTitle">
+
+                        <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/_4sdp"
                             android:layout_weight="0.6"
                             android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
                             android:text="@string/day"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="15sp" />
 
                         <View
                             android:layout_width="@dimen/_25sdp"
@@ -560,7 +624,7 @@
                             android:gravity="center"
                             android:text="@string/start_time"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -571,7 +635,7 @@
                             android:gravity="center"
                             android:text="@string/end_time"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
+                            android:textSize="15sp" />
 
                         <ImageView
                             android:id="@+id/ivEditTiming"
@@ -582,13 +646,28 @@
                             android:src="@drawable/ic_edit_white"
                             android:visibility="gone" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:background="@drawable/btn_primary_round_corners"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:hint="@string/not_available"
+                            android:paddingVertical="@dimen/_2sdp"
+                            android:text="@string/today"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:visibility="invisible" />
+
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/timingRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="@{rb24hrsYes.checked ? View.GONE : View.VISIBLE}"
+                        android:visibility="@{rb24hrsYes.checked ? View.GONE : (showTimings ? View.VISIBLE : View.GONE)}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ll_time_title" />
@@ -599,6 +678,7 @@
                     android:id="@+id/uploadLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -706,6 +786,7 @@
                     android:id="@+id/recyclerViewDhabaPics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -715,6 +796,7 @@
                     android:id="@+id/flHoardingPic"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_130sdp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/grey_fill_bg"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -769,6 +851,7 @@
                     android:id="@+id/btnNext"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_46sdp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:fontFamily="@font/opensans_bold"
@@ -787,6 +870,7 @@
                     android:id="@+id/btnSaveDraft"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_46sdp"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_30sdp"
                     android:fontFamily="@font/opensans_bold"
@@ -806,7 +890,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
-                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewOnly ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone" />
 
         </FrameLayout>
     </ScrollView>

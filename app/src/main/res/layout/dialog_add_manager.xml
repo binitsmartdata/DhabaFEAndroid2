@@ -73,7 +73,8 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:hint="@string/manager_name"
-                android:theme="@style/TextLabel">
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edMgrName"
@@ -152,7 +153,8 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
                 android:hint="@string/email"
-                android:theme="@style/TextLabel">
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edMgrEmail"

@@ -49,7 +49,7 @@ fun xloadImages(
         if (it.contains("http")) {
             Picasso.get()
                 .load(it)
-                .error(if (isSpecifiedPlaceholder) placeHolder else R.drawable.ic_launcher_background)
+                .error(if (isSpecifiedPlaceholder) placeHolder else R.drawable.grey_placeholder)
                 .placeholder(placeHolder)
                 .into(view)
         } else {
@@ -62,8 +62,8 @@ fun xloadImages(
         }
     } ?: run {
         Picasso.get()
-            .load(R.drawable.ic_image_placeholder)
-            .error(if (isSpecifiedPlaceholder) placeHolder else R.drawable.ic_launcher_background)
+            .load(R.drawable.grey_placeholder)
+            .error(if (isSpecifiedPlaceholder) placeHolder else R.drawable.grey_placeholder)
             .placeholder(R.drawable.ic_image_placeholder)
             .into(view)
     }
@@ -79,7 +79,7 @@ fun loadImageRoundCorners(view: ImageView?, image: String?, placeHolder: Int) {
         if (it.contains("http")) {
             Picasso.get()
                 .load(it)
-                .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.ic_launcher_background)
+                .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.grey_placeholder)
                 .placeholder(placeHolder)
                 .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
                 .into(view)
@@ -95,7 +95,7 @@ fun loadImageRoundCorners(view: ImageView?, image: String?, placeHolder: Int) {
     } ?: run {
         Picasso.get()
             .load(R.drawable.ic_image_placeholder)
-            .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.ic_launcher_background)
+            .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.grey_placeholder)
             .placeholder(R.drawable.ic_image_placeholder)
             .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
             .into(view)

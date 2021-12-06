@@ -63,13 +63,13 @@ class OwnerProfileVM(application: Application) : BaseVM(application) {
             try {
                 executeApi(
                     getApiService()?.updateAddressData(
-                        RequestBody.create(MultipartBody.FORM, userModel._id),
-                        RequestBody.create(MultipartBody.FORM, userModel.state),
-//                        RequestBody.create(MultipartBody.FORM, userModel.city),
-                        RequestBody.create(MultipartBody.FORM, userModel.pincode),
-                        RequestBody.create(MultipartBody.FORM, userModel.landmark),
-                        RequestBody.create(MultipartBody.FORM, userModel.area),
-                        RequestBody.create(MultipartBody.FORM, userModel.highway),
+                        userModel._id,
+                        userModel.state,
+                        userModel.city,
+                        userModel.pincode,
+                        userModel.landmark,
+                        userModel.area,
+                        userModel.highway,
                     )
                 ).collect {
                     handleResponse(it, callBack, progressObserverUpdate)
@@ -142,6 +142,7 @@ class OwnerProfileVM(application: Application) : BaseVM(application) {
             }
         }
     }
+
     fun deleteIdProofBack(callBack: GenericCallBack<ApiResponseModel<UserModel>>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {

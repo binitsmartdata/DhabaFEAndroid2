@@ -9,7 +9,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.getdishout.trxpay.ui.termsofservice.DialogTermsAndConditions
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.ActivityHomeBinding
@@ -213,13 +212,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     private fun handleData(it: TermsConditionsModel) {
         when (SharedPrefsHelper.getInstance(this@HomeActivity).getSelectedLanguage()) {
             "en" -> {
-                DialogTermsAndConditions(this, it.title_en!!, it.content_en!!).show()
+                CommonActivity.showTermsAndConditionsMessage(this, it.title_en!!, it.content_en!!)
             }
             "hi" -> {
-                DialogTermsAndConditions(this, it.title_hi!!, it.content_hi!!).show()
+                CommonActivity.showTermsAndConditionsMessage(this, it.title_hi!!, it.content_hi!!)
             }
             "pa" -> {
-                DialogTermsAndConditions(this, it.title_pu!!, it.content_pu!!).show()
+                CommonActivity.showTermsAndConditionsMessage(this, it.title_pu!!, it.content_pu!!)
             }
         }
     }
@@ -258,13 +257,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         * */
         when (position) {
             0 -> fragment = HomeFragment()
-            1 -> fragment = NotificationsFragment()
+//            1 -> fragment = NotificationsFragment()
 //            2 -> fragment = DiscountsOffersFragment()
 //            3 -> fragment = OrdersFragment()
 //            4 -> fragment = CustomersFragment()
 //            5 -> fragment = ShopsFragment()
-            2 -> fragment = HelplineFragment()
-            3 -> fragment = SettingsFragment()
+            1 -> fragment = HelplineFragment()
+            2 -> fragment = SettingsFragment()
         }
 
         fragment?.let {
@@ -286,8 +285,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 AddDhabaActivity.start(this)
                 return
             }
-            2 -> fragment = NotificationsFragment()
-            3 -> fragment = SettingsFragment()
+//            2 -> fragment = NotificationsFragment()
+            2 -> fragment = SettingsFragment()
         }
 
         fragment?.let {

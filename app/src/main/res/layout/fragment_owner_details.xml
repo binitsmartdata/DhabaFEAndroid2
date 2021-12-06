@@ -117,7 +117,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/owner_name"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/llAddExisting">
@@ -202,7 +203,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/email"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editlayout">
@@ -225,7 +227,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/address"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -289,7 +292,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/voter_id"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fetchLocationLayout">
@@ -312,7 +316,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/aadhar_card_number"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/panNoTil">
@@ -335,7 +340,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/alternative_contact_person"
-                    android:theme="@style/TextLabel"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/aadharCardTil">
@@ -427,7 +433,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/alternative_contact_designation"
-                        android:textColorHint="@color/text_gray"
                         app:boxStrokeColor="@color/input_selector"
                         app:boxStrokeWidth="0.7dp">
 

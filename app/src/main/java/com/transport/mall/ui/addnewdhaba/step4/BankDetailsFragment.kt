@@ -19,6 +19,7 @@ import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.BankNamesModel
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.ui.customdialogs.ConfirmationDialog
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.home.CommonActivity
 import com.transport.mall.utils.RxBus
@@ -131,15 +132,19 @@ class BankDetailsFragment :
             saveDetails(false)
         }
         binding.btnSaveDraft.setOnClickListener {
-            viewModel.dhabaModel.isDraft = true.toString()
-            /*if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
-                mListener?.getDhabaModelMain()?.draftedAtScreen =
-                    DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
-                mListener?.saveAsDraft()
-                activity?.finish()
-            } else {*/
-            saveDetails(true)
+            ConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_save_as_draft), {
+                if (it) {
+                    viewModel.dhabaModel.isDraft = true.toString()
+                    /*if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
+                        mListener?.getDhabaModelMain()?.draftedAtScreen =
+                            DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
+                        mListener?.saveAsDraft()
+                        activity?.finish()
+                    } else {*/
+                    saveDetails(true)
 //            }
+                }
+            }).show()
         }
 
         binding.llPanPhoto.setOnClickListener {
@@ -185,11 +190,11 @@ class BankDetailsFragment :
 //        if (isDraft || (!isDraft && isHavingPreviousData())) {
         if (isHavingPreviousData()) {
             if (isDraft) {
-                if (viewModel.bankModel.bankName.trim().isNotEmpty()) {
-                    proceed(isDraft)
-                } else {
-                    showToastInCenter(getString(R.string.enter_bank_name))
-                }
+//                if (viewModel.bankModel.bankName.trim().isNotEmpty()) {
+                proceed(isDraft)
+//                } else {
+//                    showToastInCenter(getString(R.string.enter_bank_name))
+//                }
             } else {
                 var ownerMissingParams = ""
                 var dhabaMissingParams = ""
@@ -302,9 +307,11 @@ class BankDetailsFragment :
     private fun isHavingPreviousData(): Boolean {
         if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
+            mListener?.showOwnerScreen()
             return false
         } else if (mListener?.getDhabaModelMain()?.dhabaModel == null) {
             showToastInCenter(getString(R.string.enter_dhaba_details))
+            mListener?.showDhabaScreen()
             return false
         }
         return true

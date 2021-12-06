@@ -74,8 +74,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/state"
-                    android:textColorHint="@color/text_gray"
+                    android:hint="@string/select_state"
                     app:boxStrokeColor="@color/input_selector"
                     app:boxStrokeWidth="0.7dp">
 
@@ -116,8 +115,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/city"
-                    android:textColorHint="@color/text_gray"
+                    android:hint="@string/select_city"
                     app:boxStrokeColor="@color/input_selector"
                     app:boxStrokeWidth="0.7dp">
 
@@ -152,7 +150,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/pin_code"
-                android:theme="@style/TextLabel">
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edPinCode"
@@ -182,7 +181,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/highway_number"
-                    android:textColorHint="@color/text_gray"
                     app:boxStrokeColor="@color/input_selector"
                     app:boxStrokeWidth="0.7dp">
 

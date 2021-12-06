@@ -47,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/customer_name"
-                android:theme="@style/TextLabel"
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title">
@@ -69,7 +70,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/customer_phone_number"
-                android:theme="@style/TextLabel"
+                app:boxStrokeColor="@color/input_selector"
+                app:boxStrokeWidth="0.6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_customer_name">

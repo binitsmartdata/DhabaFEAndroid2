@@ -12,6 +12,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentBasicDetailsBinding
 import com.transport.mall.model.UserModel
+import com.transport.mall.ui.customdialogs.DialogProfileUpdate
 import com.transport.mall.ui.home.profile.owner.OwnerProfileVM
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
@@ -169,7 +170,8 @@ class BasicDetailsFragment : BaseFragment<FragmentBasicDetailsBinding, OwnerProf
                         viewModel.userModel = it.data!!
 
                         SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
-                        showToastInCenter(getString(R.string.profile_updated))
+//                        showToastInCenter(getString(R.string.profile_updated))
+                        DialogProfileUpdate(getmContext()).show()
 
                         //NOTIFY THAT USER MODEL IS UPDATED
                         RxBus.publish(it.data!!)

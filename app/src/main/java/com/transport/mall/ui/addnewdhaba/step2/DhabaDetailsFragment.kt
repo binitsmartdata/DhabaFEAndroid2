@@ -23,6 +23,7 @@ import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
+import com.transport.mall.ui.customdialogs.ConfirmationDialog
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
 import com.transport.mall.ui.customdialogs.TimingListAdapter
@@ -209,15 +210,19 @@ class DhabaDetailsFragment :
             saveDetails(false)
         }
         binding.btnSaveDraft.setOnClickListener {
-            viewModel.dhabaModel.isDraft = true.toString()
+            ConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_save_as_draft), {
+                if (it) {
+                    viewModel.dhabaModel.isDraft = true.toString()
 //            if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
 //                mListener?.getDhabaModelMain()?.draftedAtScreen =
 //                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
 //                mListener?.saveAsDraft()
 //                activity?.finish()
 //            } else {
-                saveDetails(true)
+                    saveDetails(true)
 //            }
+                }
+            }).show()
         }
 
         binding.rgTiming.setOnCheckedChangeListener { radioGroup, i ->
@@ -264,6 +269,17 @@ class DhabaDetailsFragment :
                 }
             }
         }
+
+        binding.showTimings = false
+        binding.flTimingArrow.setOnClickListener {
+            binding.showTimings = !binding.showTimings!!
+            if (binding.showTimings!!) {
+                binding.ivTimingArrow.rotation = 0f
+            } else {
+                binding.ivTimingArrow.rotation = 180f
+            }
+        }
+
         setRxBusListener()
     }
 
@@ -310,6 +326,7 @@ class DhabaDetailsFragment :
     private fun saveDetails(isDraft: Boolean) {
         if (mListener?.getDhabaModelMain()?.ownerModel == null) {
             showToastInCenter(getString(R.string.enter_owner_details))
+            mListener?.showOwnerScreen()
         } else {
             if (isDraft) {
                 if (viewModel.dhabaModel.name.trim().isNotEmpty()) {

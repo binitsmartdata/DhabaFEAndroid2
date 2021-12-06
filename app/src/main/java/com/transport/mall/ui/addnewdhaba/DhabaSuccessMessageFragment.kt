@@ -3,11 +3,14 @@ package com.transport.mall.ui.addnewdhaba
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentDhabaSuccessBinding
 import com.transport.mall.model.UserModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
@@ -26,10 +29,20 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
         set(value) {}
 
     var userModel: UserModel? = UserModel()
+    var dialogProgressObserver: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun bindData() {
         binding.lifecycleOwner = this
         setHasOptionsMenu(true)
+
+        dialogProgressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
+
     }
 
     override fun initListeners() {
@@ -40,6 +53,19 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
             binding.dhabaId = id
         }
         binding.btnViewDhaba.setOnClickListener {
+            dialogProgressObserver.value = true
+            viewModel.getDhabaById(id, GenericCallBack {
+                dialogProgressObserver.value = false
+                if (it.data != null) {
+                    context?.let { context ->
+                        AddDhabaActivity.startForUpdate(context, it.data!!)
+                    }
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
+        }
+        binding.btnGoHome.setOnClickListener {
             goToHomeScreen()
         }
 

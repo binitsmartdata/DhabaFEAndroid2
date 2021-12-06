@@ -65,7 +65,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
-                        android:drawablePadding="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_2sdp"
                         android:text="@{userModel.ownerName}"
                         android:textColor="@color/black"
                         android:textSize="19sp"

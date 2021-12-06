@@ -119,14 +119,18 @@
 
     <style name="TextLabel" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <!-- Hint color and label color in FALSE state -->
-        <item name="android:textColorHint">@color/text_gray</item>
+        <item name="android:textColorHint">@color/text_gray_hint</item>
         <item name="android:textSize">16sp</item>
         <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorAccent">@color/text_gray</item>
-        <item name="colorControlNormal">@color/text_gray</item>
-        <item name="colorControlActivated">@color/text_gray</item>
+        <item name="colorAccent">#CCCCCC</item>
+        <item name="colorControlNormal">#CCCCCC</item>
+        <item name="colorControlActivated">#CCCCCC</item>
         <item name="boxStrokeColor">@color/input_selector</item>
         <item name="boxStrokeWidth">0.6dp</item>
+    </style>
+    <style name="TILStyleRedHint" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeWidth">0.6dp</item>
+        <item name="android:textColorHint">@color/text_gray_hint</item>
     </style>
 
     <style name="TextLabelDark" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

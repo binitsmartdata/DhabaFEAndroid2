@@ -6,6 +6,8 @@ import com.transport.mall.databinding.RowTimingListBinding
 import com.transport.mall.model.DhabaTimingModel
 import com.transport.mall.utils.common.GenericCallBackTwoParams
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TimingListAdapter(
     val context: Context, val dataList: List<DhabaTimingModel>
@@ -27,12 +29,15 @@ class TimingListAdapter(
             setClosingPickerListener(position)
         }
 
-        myViewHolderG?.binding?.ivChecked?.setOnClickListener {
+        myViewHolderG?.binding?.flChecked?.setOnClickListener {
             dataList.get(position).isEnabled = !dataList.get(position).isEnabled
             notifyDataSetChanged()
         }
 
         myViewHolderG?.binding?.executePendingBindings()
+
+        val sdf = SimpleDateFormat("EEE")
+        myViewHolderG?.binding?.today = sdf.format(Date())
     }
 
     private fun setClosingPickerListener(position: Int) {

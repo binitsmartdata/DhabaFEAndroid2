@@ -2,6 +2,8 @@ package com.transport.mall.ui.customdialogs
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
@@ -23,7 +25,7 @@ class DialogStateSelection constructor(
     dataList: ArrayList<StateModel>,
     selectecStates: String,
     callBack: GenericCallBack<ArrayList<StateModel>>
-) : Dialog(context) {
+) : Dialog(context, R.style.PauseDialog) {
 
     var binding: DialogCitySelectionBinding
     var filterDataList: ArrayList<StateModel> = ArrayList()
@@ -36,6 +38,7 @@ class DialogStateSelection constructor(
         setContentView(binding.root)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window!!.setGravity(Gravity.BOTTOM)
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         binding.isHavingData = dataList.isNotEmpty()
         binding.edSearch.setHint(context.getString(R.string.searchState))
         setCancelable(false)
@@ -49,6 +52,9 @@ class DialogStateSelection constructor(
                     break
                 }
             }
+        }
+        binding.viewSpace.setOnClickListener {
+            dismiss()
         }
 
         binding.recyclerView.layoutManager =

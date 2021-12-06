@@ -91,8 +91,8 @@
 
                         <ImageView
                             android:id="@+id/ivEnglishTick"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_marginHorizontal="10dp"
                             android:src="@drawable/ic_tick_language"
@@ -129,8 +129,8 @@
 
                         <ImageView
                             android:id="@+id/ivHindiTick"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_marginHorizontal="10dp"
                             android:src="@drawable/ic_tick_language"
@@ -167,8 +167,8 @@
 
                         <ImageView
                             android:id="@+id/icPunjabiTick"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_marginHorizontal="10dp"
                             android:src="@drawable/ic_tick_language"
