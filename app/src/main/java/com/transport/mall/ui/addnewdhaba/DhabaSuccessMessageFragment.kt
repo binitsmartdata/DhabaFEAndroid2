@@ -3,6 +3,8 @@ package com.transport.mall.ui.addnewdhaba
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentDhabaSuccessBinding
 import com.transport.mall.model.UserModel
@@ -27,6 +29,7 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
         set(value) {}
 
     var userModel: UserModel? = UserModel()
+    var dialogProgressObserver: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun bindData() {
         binding.lifecycleOwner = this
@@ -34,6 +37,14 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
     }
 
     override fun initListeners() {
+        dialogProgressObserver.observe(this, Observer {
+            if (it) {
+                showProgressDialog()
+            } else {
+                hideProgressDialog()
+            }
+        })
+
         SharedPrefsHelper.getInstance(getmContext()).deleteDraftDhaba()
         if (id.length > 6) {
             binding.dhabaId = "************" + id.substring(id.length - 6)
