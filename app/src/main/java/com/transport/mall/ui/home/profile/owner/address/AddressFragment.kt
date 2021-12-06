@@ -13,6 +13,7 @@ import com.transport.mall.model.StateModel
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.customdialogs.DialogHighwaySelection
+import com.transport.mall.ui.customdialogs.DialogProfileUpdate
 import com.transport.mall.ui.home.profile.owner.OwnerProfileVM
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
@@ -90,7 +91,8 @@ class AddressFragment : BaseFragment<FragmentAddressBinding, OwnerProfileVM>() {
                     viewModel.userModel = it.data!!
 
                     SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
-                    showToastInCenter(getString(R.string.profile_updated))
+//                    showToastInCenter(getString(R.string.profile_updated))
+                    DialogProfileUpdate(getmContext()).show()
 
                     //NOTIFY THAT USER MODEL IS UPDATED
                     RxBus.publish(it.data!!)

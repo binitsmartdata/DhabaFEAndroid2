@@ -8,7 +8,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.getdishout.trxpay.ui.termsofservice.DialogTermsAndConditions
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.ActivityHomeBinding
@@ -210,13 +209,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     private fun handleData(it: TermsConditionsModel) {
         when (SharedPrefsHelper.getInstance(this@HomeActivity).getSelectedLanguage()) {
             "en" -> {
-                DialogTermsAndConditions(this, it.title_en!!, it.content_en!!).show()
+                CommonActivity.showTermsAndConditionsMessage(this, it.title_en!!, it.content_en!!)
             }
             "hi" -> {
-                DialogTermsAndConditions(this, it.title_hi!!, it.content_hi!!).show()
+                CommonActivity.showTermsAndConditionsMessage(this, it.title_hi!!, it.content_hi!!)
             }
             "pa" -> {
-                DialogTermsAndConditions(this, it.title_pu!!, it.content_pu!!).show()
+                CommonActivity.showTermsAndConditionsMessage(this, it.title_pu!!, it.content_pu!!)
             }
         }
     }

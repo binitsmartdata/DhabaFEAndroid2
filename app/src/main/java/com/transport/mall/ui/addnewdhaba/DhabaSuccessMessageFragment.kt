@@ -8,6 +8,7 @@ import com.transport.mall.databinding.FragmentDhabaSuccessBinding
 import com.transport.mall.model.UserModel
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
@@ -40,6 +41,17 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
             binding.dhabaId = id
         }
         binding.btnViewDhaba.setOnClickListener {
+            viewModel.getDhabaById(id, GenericCallBack {
+                if (it.data != null) {
+                    context?.let { context ->
+                        AddDhabaActivity.startForUpdate(context, it.data!!)
+                    }
+                } else {
+                    showToastInCenter(it.message)
+                }
+            })
+        }
+        binding.btnGoHome.setOnClickListener {
             goToHomeScreen()
         }
 

@@ -596,5 +596,7 @@
     <string name="voter_id_">Voter ID</string>
     <string name="aadhar_card_number_">Aadhar Card Number</string>
     <string name="today">Today</string>
+    <string name="are_you_sure_you_want_to_save_as_draft">Are you sure you want to save as draft?</string>
+    <string name="profile_updated_">Profile Updated</string>
 
 </resources>

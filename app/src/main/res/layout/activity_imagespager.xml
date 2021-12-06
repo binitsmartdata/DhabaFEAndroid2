@@ -13,6 +13,8 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_3sdp"
             android:theme="@style/ToolbarTheme">
 
             <RelativeLayout
@@ -22,7 +24,6 @@
                 <TextView
                     android:id="@+id/tvTitle"
                     style="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title"
-                    tools:text="Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -30,7 +31,8 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="start"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="Title" />
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>

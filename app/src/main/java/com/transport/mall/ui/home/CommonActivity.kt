@@ -10,6 +10,7 @@ import com.transport.mall.databinding.ActivityCommonBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.ui.addnewdhaba.DhabaSuccessMessageFragment
 import com.transport.mall.ui.home.helpline.RequestForCallFragment
+import com.transport.mall.ui.termsandconditions.TermsAndConditionsFragment
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 
@@ -37,10 +38,12 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
 
     companion object {
         private const val INTENT_TYPE = "INTENT_TYPE"
+        private const val HTML_TEXT = "htmlText"
         private const val DHABA_ID = "DHABA_ID"
         private const val TITLE = "TITLE"
         public const val TYPE_REQUEST_FOR_CALL = 1
         public const val TYPE_DHABA_SUCCESS = 2
+        public const val TYPE_TERMS_AND_CONDITIONS = 3
 
         fun start(context: Context, intentType: Int, title: String) {
             val starter = Intent(context, CommonActivity::class.java)
@@ -53,6 +56,14 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
             val starter = Intent(context, CommonActivity::class.java)
             starter.putExtra(INTENT_TYPE, intentType)
             starter.putExtra(DHABA_ID, id)
+            (context as Activity).startActivity(starter)
+        }
+
+        fun showTermsAndConditionsMessage(context: Context, title: String, html: String) {
+            val starter = Intent(context, CommonActivity::class.java)
+            starter.putExtra(INTENT_TYPE, TYPE_TERMS_AND_CONDITIONS)
+            starter.putExtra(HTML_TEXT, html)
+            starter.putExtra(TITLE, title)
             (context as Activity).startActivity(starter)
         }
     }
@@ -121,6 +132,18 @@ class CommonActivity : BaseActivity<ActivityCommonBinding, BaseVM>() {
                     R.id.authContainer,
                     DhabaSuccessMessageFragment(intent.getStringExtra(DHABA_ID)!! + ""),
                     "DHABA_SUCCESS",
+                    true
+                )
+            }
+            TYPE_TERMS_AND_CONDITIONS -> {
+                supportActionBar?.setDisplayShowHomeEnabled(false)
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                supportActionBar?.setHomeButtonEnabled(false)
+
+                openFragmentReplace(
+                    R.id.authContainer,
+                    TermsAndConditionsFragment(intent.getStringExtra(HTML_TEXT)!! + ""),
+                    "TERMS_AND_CONDITIONS",
                     true
                 )
             }

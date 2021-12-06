@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionVM" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+
+        <variable
+            name="message"
+            type="String" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_30sdp"
+            android:background="@drawable/white_round_corners"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_20sdp">
+
+            <ImageView
+                android:id="@+id/ivTick"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:src="@drawable/ic_verified" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/opensans_regular"
+                android:gravity="center"
+                android:text="@string/profile_updated_"
+                android:textColor="@color/black"
+                android:textSize="23sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

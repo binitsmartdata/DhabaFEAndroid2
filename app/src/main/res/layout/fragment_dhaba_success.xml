@@ -63,15 +63,24 @@
         <Button
             android:id="@+id/btnViewDhaba"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_46sdp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_30sdp"
-            android:background="@drawable/btn_primary"
-            android:fontFamily="@font/opensans_bold"
-            android:text="@string/view_list"
+            android:background="@drawable/btn_primary_no_corners"
+            android:text="@string/view_dhaba"
             android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnGoHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/default_btn_selector"
+            android:text="@string/go_to_home"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 </layout>

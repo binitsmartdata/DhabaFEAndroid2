@@ -94,13 +94,48 @@ class AmenitiesActivity : BaseActivity<ActivityAmenitiesBinding, BaseVM>(), AddD
     private fun getTitleByType(): String {
         if (isUpdate) {
             when (amanityType) {
-                FOOD -> return getString(R.string.update_food_amen)
-                PARKING -> return getString(R.string.update_parking_amen)
-                SLEEPING -> return getString(R.string.update_sleeping_amen)
-                WASHROOM -> return getString(R.string.update_washroom_amen)
-                SECURITY -> return getString(R.string.update_security_amen)
-                LIGHT -> return getString(R.string.update_light_amen)
-                OTHER -> return getString(R.string.update_other_amen)
+                FOOD -> {
+                    if (dhabaModelMain.foodAmenitiesModel != null)
+                        return getString(R.string.update_food_amen)
+                    else
+                        return getString(R.string.food_amen_title)
+                }
+                PARKING -> {
+                    if (dhabaModelMain.parkingAmenitiesModel != null)
+                        return getString(R.string.update_parking_amen)
+                    else
+                        return getString(R.string.parking_amen_title)
+                }
+                SLEEPING -> {
+                    if (dhabaModelMain.sleepingAmenitiesModel != null)
+                        return getString(R.string.update_sleeping_amen)
+                    else
+                        return getString(R.string.sleeping_amen_title)
+                }
+                WASHROOM -> {
+                    if (dhabaModelMain.sleepingAmenitiesModel != null)
+                        return getString(R.string.update_washroom_amen)
+                    else
+                        return getString(R.string.washroom_amen_title)
+                }
+                SECURITY -> {
+                    if (dhabaModelMain.sleepingAmenitiesModel != null)
+                        return getString(R.string.update_security_amen)
+                    else
+                        return getString(R.string.security_amen_title)
+                }
+                LIGHT -> {
+                    if (dhabaModelMain.sleepingAmenitiesModel != null)
+                        return getString(R.string.update_light_amen)
+                    else
+                        return getString(R.string.add_light_amenities)
+                }
+                OTHER -> {
+                    if (dhabaModelMain.sleepingAmenitiesModel != null)
+                        return getString(R.string.update_other_amen)
+                    else
+                        return getString(R.string.other_amen_title)
+                }
             }
             return getString(R.string.update_amen)
         } else {

@@ -14,6 +14,7 @@ import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
+import com.transport.mall.ui.customdialogs.ConfirmationDialog
 import com.transport.mall.ui.home.CommonActivity
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
@@ -125,13 +126,17 @@ class AmenitiesFragment :
             }*/
         }
         binding.btnSaveDraft.setOnClickListener {
-            mListener?.getDhabaModelMain()?.dhabaModel?.let {
-                // UPDATING DHABA STATUS TO ISDRAFT
-                updateDhabaStatus(true)
-            } ?: kotlin.run {
-                showToastInCenter(getString(R.string.enter_dhaba_details_first))
-                mListener?.showDhabaScreen()
-            }
+            ConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_save_as_draft), {
+                if (it) {
+                    mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                        // UPDATING DHABA STATUS TO ISDRAFT
+                        updateDhabaStatus(true)
+                    } ?: kotlin.run {
+                        showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                        mListener?.showDhabaScreen()
+                    }
+                }
+            }).show()
         }
 
         binding.cardFood.setOnClickListener {

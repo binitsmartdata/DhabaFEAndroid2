@@ -1,6 +1,8 @@
 package com.transport.mall.ui.home.dhabalist
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.RowDhabaListBinding
@@ -13,6 +15,7 @@ import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
+import java.util.*
 
 class DhabaListAdapter(
     val context: Context,
@@ -70,7 +73,10 @@ class DhabaListAdapter(
         }
 
         myViewHolderG?.binding?.ivLocation?.setOnClickListener {
-//            locateCallBack.onResponse(position)
+//            val uri: String = java.lang.String.format(Locale.ENGLISH, "geo:%f,%f", dataList[position].dhabaModel!!.latitude, dataList[position].dhabaModel!!.longitude)
+            val geoUri = "http://maps.google.com/maps?q=loc:" + dataList[position].dhabaModel!!.latitude.toString() + "," + dataList[position].dhabaModel!!.longitude.toString() + " (" + dataList[position].dhabaModel!!.name + ")"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+            context.startActivity(intent)
         }
         myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
             if (dataList[position].manager == null) {
@@ -89,11 +95,14 @@ class DhabaListAdapter(
     }
 
     private fun manageIconsVisibility(myViewHolderG: MyViewHolderG?, position: Int) {
+        val latitude = GlobalUtils.getNonNullString(dataList[position].dhabaModel?.latitude, "0")
+        val longitude = GlobalUtils.getNonNullString(dataList[position].dhabaModel?.longitude, "0")
+
         when (dataList[position].dhabaModel?.status) {
             DhabaModel.STATUS_PENDING -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
-                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
+                myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
             DhabaModel.STATUS_INPROGRESS -> {
@@ -102,19 +111,19 @@ class DhabaListAdapter(
                     if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()
                         && dataList[position].dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
                     ) View.VISIBLE else View.GONE
-                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
+                myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
             DhabaModel.STATUS_ACTIVE -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
-                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
+                myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
             DhabaModel.STATUS_INACTIVE, "" -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.GONE
-                myViewHolderG?.binding?.ivLocation?.visibility = View.GONE
+                myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
         }
