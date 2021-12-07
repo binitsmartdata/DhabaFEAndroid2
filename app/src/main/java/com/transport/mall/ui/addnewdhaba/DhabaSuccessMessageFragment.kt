@@ -59,6 +59,7 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
                 if (it.data != null) {
                     context?.let { context ->
                         AddDhabaActivity.startForUpdate(context, it.data!!)
+                        activity?.finish()
                     }
                 } else {
                     showToastInCenter(it.message)
@@ -67,6 +68,7 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
         }
         binding.btnGoHome.setOnClickListener {
             goToHomeScreen()
+            activity?.finish()
         }
 
         binding.tvDhabaId.setOnClickListener {

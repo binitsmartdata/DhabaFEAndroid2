@@ -3,6 +3,8 @@ package com.transport.mall.ui.home
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -101,7 +103,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 binding.dashboardContainer.id,
                 EditProfileFragment(),
                 "editProfile",
-                false
+                true
             )
             toolbar.title = getString(R.string.edit_profile)
             binding.drawerLayout.closeDrawer(binding.leftDrawer)
@@ -110,7 +112,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 binding.dashboardContainer.id,
                 OwnerEditProfileFragment(),
                 "editProfile",
-                false
+                true
             )
             toolbar.title = getString(R.string.edit_profile)
             binding.drawerLayout.closeDrawer(binding.leftDrawer)
@@ -267,7 +269,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         }
 
         fragment?.let {
-            openFragmentReplaceNoAnim(binding.dashboardContainer.id, it, "", false)
+            openFragmentReplaceNoAnim(binding.dashboardContainer.id, it, "", true)
 
             toolbar.title = list[position].title
             binding.drawerLayout.closeDrawer(binding.leftDrawer)
@@ -290,7 +292,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         }
 
         fragment?.let {
-            openFragmentReplaceNoAnim(binding.dashboardContainer.id, it, "", false)
+            openFragmentReplaceNoAnim(binding.dashboardContainer.id, it, "", true)
 
             toolbar.title = list[position].title
             binding.drawerLayout.closeDrawer(binding.leftDrawer)
@@ -329,19 +331,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 
     override fun onResume() {
         super.onResume()
-        val myFragment: Fragment? =
-            supportFragmentManager.findFragmentById(binding.dashboardContainer.id)
-        if (myFragment != null && myFragment.isVisible()) {
-            if (myFragment is HomeFragment) {
-                refreshSideMenu(0) // SHOW SELECTED FRAGMENT TITLE SELECTED
-            } else if (myFragment is NotificationsFragment) {
-                refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
-            } else if (myFragment is EditProfileFragment) {
-                refreshSideMenu(3) // SHOW SELECTED FRAGMENT TITLE SELECTED
-            } else if (myFragment is SettingsFragment) {
-                refreshSideMenu(4) // SHOW SELECTED FRAGMENT TITLE SELECTED
-            }
-        }
+        refreshSideMenu()
     }
 
     fun getTermsAndConditions(slug: String, progressObserver: MutableLiveData<Boolean>, callBack: GenericCallBack<TermsConditionsModel>) {
@@ -369,6 +359,49 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 showToastInCenter(viewModel.getCorrectErrorMessage(e))
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Handler(Looper.getMainLooper()).postDelayed({
+            try {
+                refreshSideMenu()
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+        }, 500)
+    }
+
+    private fun refreshSideMenu() {
+        val myFragment: Fragment? =
+            supportFragmentManager.findFragmentById(binding.dashboardContainer.id)
+        if (myFragment != null && myFragment.isVisible()) {
+            if (myFragment is HomeFragment) {
+                if (isExecutive()) {
+                    refreshSideMenu(0) // SHOW SELECTED FRAGMENT TITLE SELECTED
+                } else {
+                    refreshSideMenu(0) // SHOW SELECTED FRAGMENT TITLE SELECTED
+                }
+            } else if (myFragment is NotificationsFragment) {
+                refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
+            } else if (myFragment is HelplineFragment) {
+                if (isExecutive()) {
+                    refreshSideMenu(0) // SHOW SELECTED FRAGMENT TITLE SELECTED
+                } else {
+                    refreshSideMenu(1) // SHOW SELECTED FRAGMENT TITLE SELECTED
+                }
+            } else if (myFragment is SettingsFragment) {
+                if (isExecutive()) {
+                    refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
+                } else {
+                    refreshSideMenu(2) // SHOW SELECTED FRAGMENT TITLE SELECTED
+                }
+            }
+        }
+    }
+
+    fun isExecutive(): Boolean {
+        return SharedPrefsHelper.getInstance(this).getUserData().isExecutive()
     }
 
 }

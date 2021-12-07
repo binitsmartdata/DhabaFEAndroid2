@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_splash"
@@ -12,10 +12,11 @@
             android:id="@+id/ivSplashLogo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_70sdp"
+            android:layout_gravity="center"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_logo_splash_white"
             android:transitionName="appLogo" />
 
-    </LinearLayout>
+    </FrameLayout>
 
 </layout>

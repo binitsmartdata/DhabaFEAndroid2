@@ -40,6 +40,6 @@
     <color name="grey_light_box">#D4D3D4</color>
     <color name="text_color_language_disabled">#DF8083</color>
     <color name="card_bg_new_theme">#5A191C</color>
-    <color name="btn_color_new_theme">#C26C6C</color>
+    <color name="btn_color_new_theme">#6F6B0F1D</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#D4D3D4</color>
 </resources>

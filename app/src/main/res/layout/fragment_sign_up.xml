@@ -52,33 +52,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <FrameLayout
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_15sdp"
-                android:background="@drawable/dark_bg_new_theme">
+                android:background="@drawable/dark_bg_new_theme"
+                android:fontFamily="@font/opensans_regular"
+                android:hint="@string/name_"
+                android:theme="@style/TextLabelDark">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/name_"
-                    android:theme="@style/TextLabelDark">
+                    android:inputType="textPersonName"
+                    android:translationY="-6dp"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="@={vm.nameObervable}"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edName"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="textPersonName"
-                        android:paddingHorizontal="@dimen/_10sdp"
-                        android:text="@={vm.nameObervable}"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-            </FrameLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:id="@+id/editlayout"
