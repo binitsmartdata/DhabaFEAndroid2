@@ -5,9 +5,13 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
+import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentEditProfileBinding
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.customdialogs.DialogProfileUpdate
@@ -32,10 +36,13 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
         get() = setUpBinding()
         set(value) {}
 
+    var mListener: CommonActivityListener? = null
     var userData: UserModel? = null
 
     override fun bindData() {
+        setHasOptionsMenu(true)
         binding.lifecycleOwner = this
+        mListener = activity as CommonActivityListener
         setUserData()
     }
 
@@ -160,5 +167,20 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
             binding.ivProfileImg.setImageURI(uri)
             viewModel.userModel.ownerPic = getRealPathFromURI(uri)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_notification, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionNotification -> {
+                mListener?.openNotificationFragment()
+                return true
+            }
+        }
+        return false
     }
 }

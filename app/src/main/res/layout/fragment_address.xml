@@ -207,7 +207,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpdateProfile"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_46sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_32sdp"
                 android:background="@drawable/primary_color_btn_selector"
                 android:fontFamily="@font/opensans_bold"

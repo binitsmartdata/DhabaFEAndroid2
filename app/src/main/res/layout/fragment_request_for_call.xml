@@ -21,38 +21,65 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_margin="16dp"
             android:elevation="@dimen/_4sdp"
             app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp">
+            app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
                 android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/_15sdp"
-                android:paddingTop="@dimen/_20sdp"
+                android:paddingTop="@dimen/_10sdp"
                 android:paddingRight="@dimen/_15sdp"
                 android:paddingBottom="@dimen/_20sdp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <FrameLayout
                     android:id="@+id/profile_image"
-                    android:layout_width="@dimen/_200sdp"
-                    android:layout_height="@dimen/_200sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:src="@drawable/ic_helpline_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivSmallDemoPic"
+                        android:layout_width="152dp"
+                        android:layout_height="152dp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:src="@drawable/ic_helpline_pic" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivBigDemoPic"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginBottom="@dimen/_13sdp"
+                        android:src="@drawable/ic_helpline_pic"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/ivChecked"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:background="@drawable/white_cicle"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_checked_call"
+                        android:visibility="gone" />
+
+                </FrameLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/enterPhoneText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_25sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_25sdp"
                     android:fontFamily="@font/opensans_regular"
                     android:gravity="center"
@@ -62,6 +89,24 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSucceed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginRight="42dp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:gravity="center"
+                    android:text="@string/thanks_for_calling"
+                    android:textColor="@color/grey1"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enterPhoneText" />
 
                 <LinearLayout
                     android:id="@+id/editlayout"
@@ -74,7 +119,7 @@
                     android:paddingVertical="@dimen/_2sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/enterPhoneText">
+                    app:layout_constraintTop_toBottomOf="@+id/tvSucceed">
 
                     <com.rilixtech.widget.countrycodepicker.CountryCodePicker
                         android:id="@+id/ccpCountryCode"
@@ -83,31 +128,30 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:gravity="center"
                         app:ccp_defaultCode="91"
+                        android:visibility="gone"
                         app:ccp_hideNameCode="true"
                         app:ccp_hidePhoneCode="true"
                         app:ccp_textSize="16sp" />
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:src="@drawable/flag_india" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/opensans_regular"
+                        android:padding="@dimen/_5sdp"
+                        android:text="IN +91"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
                     <View
                         android:layout_width="0.5dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_2sdp"
                         android:background="@color/grey_stroke" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_4sdp"
-                        android:background="@android:color/transparent"
-                        android:enabled="false"
-                        android:focusable="false"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="number"
-                        android:paddingVertical="@dimen/_10sdp"
-                        android:paddingStart="@dimen/_5sdp"
-                        android:text="+91"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
-                        android:textSize="16sp" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edPhoneNumber"
@@ -128,7 +172,8 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnCallMe"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_46sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/primary_color_btn_selector"
                     android:fontFamily="@font/opensans_bold"

@@ -72,6 +72,39 @@ fun xloadImages(
 /**
  * Picasso for image loading ...
  */
+@BindingAdapter("loadProfileImage", "placeholder")
+fun loadProfileImage(
+    view: ImageView?,
+    image: String?,
+    placeHolder: Int
+) {
+    image?.let {
+        if (it.contains("http")) {
+            Picasso.get()
+                .load(it)
+                .error(placeHolder)
+                .placeholder(placeHolder)
+                .into(view)
+        } else {
+            val file = File(it)
+            Picasso.get()
+                .load(file)
+                .error(placeHolder)
+                .placeholder(placeHolder)
+                .into(view)
+        }
+    } ?: run {
+        Picasso.get()
+            .load(R.drawable.grey_placeholder)
+            .error(placeHolder)
+            .placeholder(placeHolder)
+            .into(view)
+    }
+}
+
+/**
+ * Picasso for image loading ...
+ */
 
 @BindingAdapter("loadImageRoundCorners", "placeholder")
 fun loadImageRoundCorners(view: ImageView?, image: String?, placeHolder: Int) {

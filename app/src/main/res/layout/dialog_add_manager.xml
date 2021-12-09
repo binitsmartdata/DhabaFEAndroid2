@@ -106,30 +106,31 @@
                     android:gravity="center"
                     app:ccp_defaultCode="91"
                     app:ccp_hideNameCode="true"
+                    android:visibility="gone"
                     app:ccp_hidePhoneCode="true"
                     app:ccp_textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:src="@drawable/flag_india" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:padding="@dimen/_5sdp"
+                    android:text="IN +91"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_2sdp"
                     android:background="@color/grey_stroke" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_4sdp"
-                    android:background="@android:color/transparent"
-                    android:enabled="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="number"
-                    android:paddingVertical="@dimen/_10sdp"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:text="+91"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey"
-                    android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edPhoneNumber"

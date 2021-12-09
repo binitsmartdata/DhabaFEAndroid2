@@ -19,13 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:paddingBottom="5dp"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/ivClose"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
-            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
             android:src="@drawable/ic_close_dark" />
@@ -33,24 +34,24 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="@dimen/_5sdp">
+            android:background="@color/white">
 
             <LinearLayout
                 android:id="@+id/profileView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_90sdp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp">
+                android:paddingHorizontal="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginBottom="15dp">
 
                 <com.transport.mall.utils.custom.CircleImageView
                     android:id="@+id/imProfile"
-                    loadImage="@{userModel.ownerPic}"
-                    placeholder="@{R.drawable.ic_profile_pic_placeholder}"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="@dimen/_60sdp"
+                    loadProfileImage="@{userModel.ownerPic}"
+                    placeholder="@{R.drawable.ic_user_placeholder}"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
                     android:layout_marginEnd="10dp" />
 
                 <LinearLayout
@@ -62,13 +63,13 @@
                     <TextView
                         android:id="@+id/tvProfileName"
                         android:layout_width="wrap_content"
-                        android:fontFamily="@font/opensans_semibold"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:drawablePadding="@dimen/_2sdp"
+                        android:fontFamily="@font/opensans_semibold"
                         android:text="@{userModel.ownerName}"
                         android:textColor="@color/black"
-                        android:textSize="19sp"
+                        android:textSize="16sp"
                         app:drawableEndCompat="@drawable/ic_edit_black"
                         tools:text="Profile Name" />
 

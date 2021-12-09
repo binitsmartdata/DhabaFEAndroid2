@@ -1,5 +1,6 @@
 package com.transport.mall.ui.home.helpline
 
+import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentRequestForCallBinding
 import com.transport.mall.model.UserModel
@@ -63,9 +64,13 @@ class RequestForCallFragment : BaseFragment<FragmentRequestForCallBinding, BaseV
                                 }
                                 ApiResult.Status.SUCCESS -> {
                                     GlobalUtils.hideProgressDialog()
-                                    GlobalUtils.showInfoDialog(getmContext(), getmContext().getString(R.string.call_request_submitted), {
-                                        activity?.finish()
-                                    })
+                                    binding.ivBigDemoPic.visibility = View.VISIBLE
+                                    binding.ivChecked.visibility = View.VISIBLE
+                                    binding.tvSucceed.visibility = View.VISIBLE
+                                    binding.ivSmallDemoPic.visibility = View.GONE
+                                    binding.enterPhoneText.visibility = View.GONE
+                                    binding.editlayout.visibility = View.GONE
+                                    binding.btnCallMe.visibility = View.GONE
                                 }
                             }
                         }

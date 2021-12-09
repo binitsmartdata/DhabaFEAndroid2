@@ -13,9 +13,9 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.*
+import android.graphics.drawable.ColorDrawable
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.location.LocationManager
 import android.media.MediaMetadataRetriever
 import android.net.ConnectivityManager
@@ -776,5 +776,21 @@ object GlobalUtils {
         val currentVersion = Version(getCurrentVersion(context))
         val lastSupportedVersion = Version(supportedVersion)
         return !currentVersion.isLowerThan(lastSupportedVersion)
+    }
+
+    fun showLogOutDialog(context: Context, callBack: GenericCallBack<Boolean>) {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.custome_confirmation_dialog_box)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(false)
+        val message = dialog.findViewById<TextView>(R.id.message)
+        val btn_no_exit = dialog.findViewById<TextView>(R.id.btn_no_exit)
+        val btn_yes_exit = dialog.findViewById<Button>(R.id.btn_yes_exit)
+        btn_no_exit.setOnClickListener { v: View? -> dialog.dismiss() }
+        btn_yes_exit.setOnClickListener { v: View? ->
+            callBack.onResponse(true)
+        }
+        dialog.show()
     }
 }

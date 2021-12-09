@@ -598,5 +598,8 @@
     <string name="today">Today</string>
     <string name="are_you_sure_you_want_to_save_as_draft">Are you sure you want to save as draft?</string>
     <string name="profile_updated_">Profile Updated</string>
+    <string name="thanks_for_calling">Thank you for your request. Our team will contact you soon from 01723508706</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
+    <string name="please_fill_the_form_below">Please fill the form below</string>
 
 </resources>

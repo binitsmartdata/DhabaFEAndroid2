@@ -29,6 +29,7 @@ import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.WebViewActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -199,6 +200,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             }
         })
 
+        binding.tvAboutUs.setOnClickListener {
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("from", "about_us")
+            startActivity(intent)
+        }
         binding.tvPrivacyPolicy.setOnClickListener {
             getTermsAndConditions("privacy_policy", observer, GenericCallBack {
                 handleData(it)

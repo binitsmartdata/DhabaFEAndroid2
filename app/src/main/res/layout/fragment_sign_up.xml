@@ -53,35 +53,42 @@
             android:orientation="vertical">
 
 
-            <com.google.android.material.textfield.TextInputLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/dark_bg_new_theme"
-                android:fontFamily="@font/opensans_regular"
-                android:hint="@string/name_"
-                android:theme="@style/TextLabelDark">
+                android:paddingVertical="@dimen/_5sdp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edName"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="textPersonName"
-                    android:translationY="-6dp"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:text="@={vm.nameObervable}"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:hint="@string/name_"
+                    android:theme="@style/TextLabelDark">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/opensans_regular"
+                        android:inputType="textPersonName"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@={vm.nameObervable}"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:translationY="-5dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/editlayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_46sdp"
-                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/dark_bg_new_theme"
                 android:gravity="center_vertical"
@@ -96,11 +103,28 @@
                     android:layout_height="@dimen/_46sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:gravity="center_vertical"
+                    android:visibility="gone"
                     app:ccp_defaultCode="91"
                     app:ccp_hideNameCode="true"
                     app:ccp_hidePhoneCode="true"
-                    app:ccp_textColor="@color/white"
+                    app:ccp_textColor="@android:color/transparent"
                     app:ccp_textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:src="@drawable/flag_india" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/opensans_regular"
+                    android:padding="@dimen/_5sdp"
+                    android:text="IN +91"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="0.5dp"
@@ -109,28 +133,13 @@
                     android:background="@color/grey" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_4sdp"
-                    android:background="@android:color/transparent"
-                    android:enabled="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/opensans_regular"
-                    android:inputType="number"
-                    android:paddingVertical="@dimen/_10sdp"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:text="+91"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="16sp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edPhoneNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/opensans_regular"
                     android:hint="@string/enter_mobile_number_mandatory"
+                    android:layout_marginVertical="@dimen/_8sdp"
                     android:inputType="number"
                     android:maxLength="10"
                     android:padding="@dimen/_10sdp"
@@ -165,7 +174,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:orientation="vertical">
 

@@ -261,14 +261,17 @@ class DhabaModel : Serializable, BaseObservable() {
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_dhaba_name))
-        } else if ((latitude.trim().isEmpty() || longitude.trim().isEmpty())
+        }
+        //this is mandatory while submit for approval
+        /*else if ((latitude.trim().isEmpty() || longitude.trim().isEmpty())
             || (getNonNullString(latitude.trim(), "0").toDouble() == 0.toDouble()
                     || getNonNullString(longitude.trim(), "0").trim().toDouble() == 0.toDouble())
         ) {
             callback.onResponse(false, context.getString(R.string.choose_dhaba_location))
         } else if (address.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_address))
-        }/* else if (landmark.trim().isEmpty()) {
+        }*/
+        /* else if (landmark.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_landmark))
         } else if (area.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_area))
@@ -278,9 +281,11 @@ class DhabaModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_pincode))
         } else if (propertyStatus.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.select_property_status))
-        } */ else if (images.isEmpty()) {
+        } */
+        //this is mandatory while submit for approval
+        /*else if (images.isEmpty()) {
             callback.onResponse(false, context.getString(R.string.upload_dhaba_hoarding_pic))
-        } else {
+        }*/ else {
             callback.onResponse(true, "")
         }
     }

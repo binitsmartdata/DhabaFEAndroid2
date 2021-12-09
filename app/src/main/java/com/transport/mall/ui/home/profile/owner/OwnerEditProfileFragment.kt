@@ -1,11 +1,14 @@
 package com.transport.mall.ui.home.profile.owner
 
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.transport.mall.R
+import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentOwnerEditProfileBinding
 import com.transport.mall.model.UserModel
 import com.transport.mall.ui.home.dhabalist.HomeViewPagerAdapter
 import com.transport.mall.ui.home.profile.owner.address.AddressFragment
-import com.transport.mall.ui.home.profile.owner.bankdetails.OwnerBankDetailsFragment
 import com.transport.mall.ui.home.profile.owner.basicdetails.BasicDetailsFragment
 import com.transport.mall.utils.base.BaseFragment
 
@@ -23,8 +26,11 @@ class OwnerEditProfileFragment : BaseFragment<FragmentOwnerEditProfileBinding, O
         set(value) {}
 
     var userData: UserModel? = null
+    var mListener: CommonActivityListener? = null
 
     override fun bindData() {
+        setHasOptionsMenu(true)
+        mListener = activity as CommonActivityListener
         binding.lifecycleOwner = this
         setupViewPager()
 
@@ -45,5 +51,20 @@ class OwnerEditProfileFragment : BaseFragment<FragmentOwnerEditProfileBinding, O
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_notification, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionNotification -> {
+                mListener?.openNotificationFragment()
+                return true
+            }
+        }
+        return false
     }
 }

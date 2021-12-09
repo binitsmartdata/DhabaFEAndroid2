@@ -43,25 +43,26 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="7dp">
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="17dp">
 
             <ImageView
                 imageResource="@{data.selected ? data.hilightedIcon : data.icon}"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:padding="@dimen/_7sdp" />
+                android:padding="2dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMenuTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/opensans_regular"
                 android:orientation="vertical"
-                android:padding="@dimen/_15sdp"
                 android:text="@{data.title}"
-                android:textColor="@{data.selected ? context.getColor(R.color.colorPrimary) : context.getColor(R.color.black)}"
-                android:textSize="18sp"
+                android:textColor="@{data.selected ? context.getColor(R.color.colorPrimary) : context.getColor(R.color.text_gray)}"
+                android:textSize="22sp"
                 app:isBold="@{data.selected}"
                 tools:text="Dhaba List" />
 
