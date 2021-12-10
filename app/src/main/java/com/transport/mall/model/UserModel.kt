@@ -266,17 +266,17 @@ class UserModel : Serializable, BaseObservable() {
             callback.onResponse(false, context.getString(R.string.enter_valid_mobile))
         } /*else if (email.trim().isEmpty() || !GlobalUtils.isValidEmail(email)) {
             callback.onResponse(false, context.getString(R.string.enter_valid_email))
-        } */ else if (panNumber.trim().isEmpty() && adharCard.trim().isEmpty()) {
+        } */ /*else if (panNumber.trim().isEmpty() && adharCard.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.enter_voter_id_or_adhar_card))
         } else if (adharCard.trim().isNotEmpty() && adharCard.trim().length < 12) {
             callback.onResponse(false, context.getString(R.string.enter_valid_aadhar_number))
-        } /*else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 10) {
+        }*/ /*else if (alternatePhone.trim().isNotEmpty() && alternatePhone.trim().length < 10) {
             callback.onResponse(false, context.getString(R.string.enter_valid_alt_number))
-        } */ else if (ownerPic.trim().isEmpty()) {
+        } */ /*else if (ownerPic.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.upload_owner_picture_validation))
         } else if (idproofFront.trim().isEmpty()) {
             callback.onResponse(false, context.getString(R.string.upload_id_proof_front))
-        } else {
+        } */else {
             callback.onResponse(true, "")
         }
     }
