@@ -82,7 +82,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpVM>() {
         }
 
 
-        applyHintPositionListener(binding.edName, binding.tilName)
+//        applyHintPositionListener(binding.edName, binding.tilName)
     }
 
     private fun applyHintPositionListener(editText: EditText, til: TextInputLayout) {

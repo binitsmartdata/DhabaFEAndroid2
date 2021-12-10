@@ -339,7 +339,7 @@
     <string name="choose_daily_utility">ਕਿਰਪਾ ਕਰਕੇ ਰੋਜ਼ਾਨਾ ਸਹੂਲਤ ਦੁਕਾਨ ਦੀ ਚੋਣ ਕਰੋ.</string>
     <string name="choose_utility_day">ਕਿਰਪਾ ਕਰਕੇ ਰੋਜ਼ਾਨਾ ਸਹੂਲਤ ਸ਼ਾਪ ਡੇਅ ਵਿਕਲਪ ਦੀ ਚੋਣ ਕਰੋ.</string>
     <string name="enter_valid_alt_number">ਕਿਰਪਾ ਕਰਕੇ ਵੈਧ ਵਿਕਲਪਿਕ ਮੋਬਾਈਲ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
-    <string name="enter_mobile_number_mandatory">10 ਅੰਕ ਮੋਬਾਈਲ ਨੰਬਰ *</string>
+    <string name="enter_mobile_number_mandatory">10 ਅੰਕ ਮੋਬਾਈਲ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
     <string name="alternative_mobile_number">ਵਿਕਲਪਿਕ ਮੋਬਾਈਲ ਨੰਬਰ</string>
     <string name="apply">ਲਾਗੂ ਕਰੋ</string>
     <string name="filters">ਫਿਲਟਰ</string>

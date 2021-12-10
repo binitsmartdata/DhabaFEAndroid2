@@ -3,6 +3,8 @@ package com.transport.mall.ui.authentication
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.View
 import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -44,8 +46,34 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding, BaseV
     }
 
     override fun initListeners() {
+        /*if (resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK === Configuration.SCREENLAYOUT_SIZE_SMALL) {
+            binding.frameMain.setBackgroundResource(R.drawable.bg_gradient)
+            binding.ivDotLines.visibility = View.VISIBLE
+        } else {
+            binding.frameMain.setBackgroundResource(R.drawable.bg_splash)
+            binding.ivDotLines.visibility = View.GONE
+        }*/
 
+        //Determine density
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+        val density: Int = metrics.densityDpi
+
+        if (density == DisplayMetrics.DENSITY_HIGH) {
+            binding.frameMain.setBackgroundResource(R.drawable.bg_gradient)
+            binding.ivDotLines.visibility = View.VISIBLE
+        } else if (density == DisplayMetrics.DENSITY_MEDIUM) {
+            binding.frameMain.setBackgroundResource(R.drawable.bg_gradient)
+            binding.ivDotLines.visibility = View.VISIBLE
+        } else if (density == DisplayMetrics.DENSITY_LOW) {
+            binding.frameMain.setBackgroundResource(R.drawable.bg_splash)
+            binding.ivDotLines.visibility = View.GONE
+        } else {
+            binding.frameMain.setBackgroundResource(R.drawable.bg_splash)
+            binding.ivDotLines.visibility = View.GONE
+        }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         getWindow().requestFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)

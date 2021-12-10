@@ -342,7 +342,7 @@
     <string name="choose_daily_utility">Please Choose Utility shop option.</string>
     <string name="choose_utility_day">Please Choose Daily utility shop day option.</string>
     <string name="enter_valid_alt_number">Please enter valid alternative mobile number</string>
-    <string name="enter_mobile_number_mandatory">10 Digit mobile number *</string>
+    <string name="enter_mobile_number_mandatory">Enter 10 Digit mobile number</string>
     <string name="alternative_mobile_number">Alternative Mobile number</string>
     <string name="apply">Apply</string>
     <string name="filters">Filters</string>

@@ -32,7 +32,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/parent"
@@ -70,29 +71,31 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:background="@drawable/dark_bg_new_theme"
-                        android:paddingVertical="@dimen/_5sdp">
+                        android:paddingVertical="@dimen/_8sdp">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/email_til"
+                        <!--                        <com.google.android.material.textfield.TextInputLayout-->
+                        <!--                            android:id="@+id/email_til"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:fontFamily="@font/opensans_regular"-->
+                        <!--                            android:hint="@string/email"-->
+                        <!--                            android:theme="@style/TextLabelDark">-->
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
                             android:fontFamily="@font/opensans_regular"
                             android:hint="@string/email"
-                            android:theme="@style/TextLabelDark">
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@={vm.emailObservable}"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_dark_theme"
+                            android:textSize="15sp" />
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etEmail"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@android:color/transparent"
-                                android:fontFamily="@font/opensans_regular"
-                                android:inputType="textEmailAddress"
-                                android:padding="@dimen/_10sdp"
-                                android:text="@={vm.emailObservable}"
-                                android:textColor="@color/white"
-                                android:textSize="15sp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--                        </com.google.android.material.textfield.TextInputLayout>-->
                     </FrameLayout>
 
                     <FrameLayout
@@ -101,29 +104,31 @@
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_15sdp"
                         android:background="@drawable/dark_bg_new_theme"
-                        android:paddingVertical="@dimen/_5sdp">
+                        android:paddingVertical="@dimen/_8sdp">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/password_til"
+                        <!--                        <com.google.android.material.textfield.TextInputLayout-->
+                        <!--                            android:id="@+id/password_til"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:fontFamily="@font/opensans_regular"-->
+                        <!--                            android:hint="@string/password"-->
+                        <!--                            android:theme="@style/TextLabelDark">-->
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edPwd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
                             android:fontFamily="@font/opensans_regular"
                             android:hint="@string/password"
-                            android:theme="@style/TextLabelDark">
+                            android:inputType="textPassword"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@={vm.passwordObservable}"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_dark_theme"
+                            android:textSize="16sp" />
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edPwd"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@android:color/transparent"
-                                android:fontFamily="@font/opensans_regular"
-                                android:inputType="textPassword"
-                                android:padding="@dimen/_10sdp"
-                                android:text="@={vm.passwordObservable}"
-                                android:textColor="@color/white"
-                                android:textSize="16sp" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <!--                        </com.google.android.material.textfield.TextInputLayout>-->
                     </FrameLayout>
                 </LinearLayout>
 
@@ -131,8 +136,8 @@
                     android:id="@+id/llOwnerLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:orientation="vertical">
 
                     <LinearLayout

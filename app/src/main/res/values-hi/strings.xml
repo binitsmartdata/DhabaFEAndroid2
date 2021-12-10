@@ -346,7 +346,7 @@
     <string name="choose_daily_utility">कृपया दैनिक उपयोगिता शॉप विकल्प चुनें।</string>
     <string name="choose_utility_day">कृपया दैनिक उपयोगिता की दुकान दिवस विकल्प चुनें।</string>
     <string name="enter_valid_alt_number">कृपया वैध वैकल्पिक मोबाइल नंबर दर्ज करें</string>
-    <string name="enter_mobile_number_mandatory">10 अंक मोबाइल नंबर *</string>
+    <string name="enter_mobile_number_mandatory">10 अंक मोबाइल नंबर दर्ज करे</string>
     <string name="alternative_mobile_number">वैकल्पिक मोबाइल नंबर</string>
     <string name="apply">लागू करना</string>
     <string name="filters">फिल्टर</string>

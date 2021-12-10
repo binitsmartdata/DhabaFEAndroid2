@@ -124,8 +124,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
             )
         }
 
-        applyHintPositionListener(binding.etEmail, binding.emailTil)
-        applyHintPositionListener(binding.edPwd, binding.passwordTil)
+//        applyHintPositionListener(binding.etEmail, binding.emailTil)
+//        applyHintPositionListener(binding.edPwd, binding.passwordTil)
     }
 
     private fun applyHintPositionListener(editText: EditText, til: TextInputLayout) {
