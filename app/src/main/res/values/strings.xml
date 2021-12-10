@@ -454,7 +454,7 @@
         <!--        <item>@drawable/ic_my_orders</item>-->
         <!--        <item>@drawable/ic_customers</item>-->
         <!--        <item>@drawable/ic_shop</item>-->
-        <item>@drawable/ic_helpline</item>
+        <item>@drawable/ic_helpline_png</item>
         <item>@drawable/ic_settings</item>
     </integer-array>
     <integer-array name="menu_icons_hilighted_owner">
@@ -464,8 +464,8 @@
         <!--        <item>@drawable/ic_my_orders_highlighted</item>-->
         <!--        <item>@drawable/ic_customers_highlighted</item>-->
         <!--        <item>@drawable/ic_shop_highlighted</item>-->
-        <item>@drawable/ic_helpline_hilighted</item>
-        <item>@drawable/ic_settings_hilighted</item>
+        <item>@drawable/ic_helpline_png</item>
+        <item>@drawable/ic_settings_png</item>
     </integer-array>
 
 
@@ -480,7 +480,7 @@
         <item>@drawable/ic_home</item>
         <item>@drawable/ic_add_dhaba</item>
 <!--        <item>@drawable/ic_notification_filled</item>-->
-        <item>@drawable/ic_settings</item>
+        <item>@drawable/ic_settings_png</item>
     </integer-array>
 
     <integer-array name="menu_icons_hilighted_fiels_ex">
@@ -598,8 +598,9 @@
     <string name="today">Today</string>
     <string name="are_you_sure_you_want_to_save_as_draft">Are you sure you want to save as draft?</string>
     <string name="profile_updated_">Profile Updated</string>
-    <string name="thanks_for_calling">Thank you for your request. Our team will contact you soon from 01723508706</string>
+    <string name="thanks_for_calling">Thank you for your request. Our team will contact you soon</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="please_fill_the_form_below">Please fill the form below</string>
+    <string name="are_you_sure_to_exit">Are you sure you want exit now?</string>
 
 </resources>

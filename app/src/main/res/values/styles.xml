@@ -11,6 +11,7 @@
         <item name="android:spotShadowAlpha">0.2</item>
         <item name="android:statusBarColor">#00000000</item>
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:autofilledHighlight" tools:targetApi="o">@android:color/transparent</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">

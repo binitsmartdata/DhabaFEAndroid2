@@ -28,235 +28,242 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--<ScrollView
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">-->
-
-        <LinearLayout
-            android:id="@+id/parent"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:animateLayoutChanges="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_15sdp"
-            android:paddingBottom="@dimen/_15sdp"
-            tools:context=".ui.main.MainActivity">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:fontFamily="@font/opensans_regular"
-                android:text="@string/login"
-                android:textColor="@color/white"
-                android:textSize="26sp" />
+            android:layout_weight="1">
 
             <LinearLayout
-                android:id="@+id/llExecutiveLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:background="@drawable/dark_bg_new_theme"
-                    android:paddingVertical="@dimen/_5sdp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/email_til"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:hint="@string/email"
-                        android:theme="@style/TextLabelDark">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:fontFamily="@font/opensans_regular"
-                            android:inputType="textEmailAddress"
-                            android:padding="@dimen/_10sdp"
-                            android:text="@={vm.emailObservable}"
-                            android:textColor="@color/white"
-                            android:textSize="15sp"
-                            android:translationY="-5dp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/dark_bg_new_theme"
-                    android:paddingVertical="@dimen/_5sdp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/password_til"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:hint="@string/password"
-                        android:theme="@style/TextLabelDark">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edPwd"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:fontFamily="@font/opensans_regular"
-                            android:inputType="textPassword"
-                            android:padding="@dimen/_10sdp"
-                            android:text="@={vm.passwordObservable}"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            android:translationY="-5dp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-                </FrameLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llOwnerLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/editlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_46sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/dark_bg_new_theme"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edEmail">
-
-                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                        android:id="@+id/ccpCountryCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:gravity="center"
-                        android:visibility="gone"
-                        app:ccp_defaultCode="91"
-                        app:ccp_hideNameCode="true"
-                        app:ccp_hidePhoneCode="true"
-                        app:ccp_textColor="@android:color/transparent"
-                        app:ccp_textSize="16sp" />
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:src="@drawable/flag_india" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/opensans_regular"
-                        android:padding="@dimen/_5sdp"
-                        android:text="IN +91"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey_aaaaaa" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edPhoneNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/opensans_regular"
-                        android:hint="@string/enter_10_digit_mobile_no"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@={vm.mobileObservable}"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/btnLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_44sdp"
-                    android:background="@drawable/btn_selector_new_theme"
-                    android:fontFamily="@font/opensans_bold"
-                    android:text="@string/login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/btn_text_color_newtheme"
-                    android:textSize="18sp"
-                    android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}" />
-
-                <Button
-                    android:id="@+id/btnLoginOwner"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_44sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/btn_selector_new_theme"
-                    android:enabled="@{vm.mobileObservable.trim().length() == 10}"
-                    android:fontFamily="@font/opensans_bold"
-                    android:text="@string/continue_text"
-                    android:textAllCaps="false"
-                    android:textColor="@color/btn_text_color_newtheme"
-                    android:textSize="18sp"
-                    android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
-
-                <Button
-                    android:id="@+id/btnSignup"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_44sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/transparent_btn_selector"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:text="@string/sign_up"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
-
-            </LinearLayout>
-
-            <View
+                android:id="@+id/parent"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2" />
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:animateLayoutChanges="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                tools:context=".ui.main.MainActivity">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:text="@string/login"
+                    android:textColor="@color/white"
+                    android:textSize="26sp" />
+
+                <LinearLayout
+                    android:id="@+id/llExecutiveLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:background="@drawable/dark_bg_new_theme"
+                        android:paddingVertical="@dimen/_5sdp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/email_til"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:hint="@string/email"
+                            android:theme="@style/TextLabelDark">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:fontFamily="@font/opensans_regular"
+                                android:inputType="textEmailAddress"
+                                android:padding="@dimen/_10sdp"
+                                android:text="@={vm.emailObservable}"
+                                android:textColor="@color/white"
+                                android:textSize="15sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/dark_bg_new_theme"
+                        android:paddingVertical="@dimen/_5sdp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/password_til"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:hint="@string/password"
+                            android:theme="@style/TextLabelDark">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edPwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:fontFamily="@font/opensans_regular"
+                                android:inputType="textPassword"
+                                android:padding="@dimen/_10sdp"
+                                android:text="@={vm.passwordObservable}"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llOwnerLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/editlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_46sdp"
+                        android:background="@drawable/dark_bg_new_theme"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edEmail">
+
+                        <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                            android:id="@+id/ccpCountryCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            app:ccp_defaultCode="91"
+                            app:ccp_hideNameCode="true"
+                            app:ccp_hidePhoneCode="true"
+                            app:ccp_textColor="@android:color/transparent"
+                            app:ccp_textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:src="@drawable/flag_india" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:hint="@string/enter_10_digit_mobile_no"
+                            android:theme="@style/TextLabelDark">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:fontFamily="@font/opensans_regular"
+                                android:padding="@dimen/_5sdp"
+                                android:text="IN +91"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:background="@color/grey_aaaaaa" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/opensans_regular"
+                            android:hint="@string/enter_10_digit_mobile_no"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@={vm.mobileObservable}"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_dark_theme"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_44sdp"
+                        android:background="@drawable/btn_selector_new_theme"
+                        android:fontFamily="@font/opensans_bold"
+                        android:text="@string/login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_text_color_newtheme"
+                        android:textSize="18sp"
+                        android:visibility="@{isOwnerLogin ? View.GONE : View.VISIBLE}" />
+
+                    <Button
+                        android:id="@+id/btnLoginOwner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_44sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/btn_selector_new_theme"
+                        android:enabled="@{vm.mobileObservable.trim().length() == 10}"
+                        android:fontFamily="@font/opensans_bold"
+                        android:text="@string/continue_text"
+                        android:textAllCaps="false"
+                        android:textColor="@color/btn_text_color_newtheme"
+                        android:textSize="18sp"
+                        android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
+
+                    <Button
+                        android:id="@+id/btnSignup"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_44sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/transparent_btn_selector"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:text="@string/sign_up"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2" />
 
 
-        </LinearLayout>
-        <!--        </ScrollView>-->
+            </LinearLayout>
+        </ScrollView>
 
         <Button
             android:id="@+id/btnLoginToggle"

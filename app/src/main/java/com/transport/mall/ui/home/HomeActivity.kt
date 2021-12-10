@@ -29,6 +29,7 @@ import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.WebViewActivity
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
@@ -204,16 +205,25 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
             val intent = Intent(this, WebViewActivity::class.java)
             intent.putExtra("from", "about_us")
             startActivity(intent)
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
         }
         binding.tvPrivacyPolicy.setOnClickListener {
-            getTermsAndConditions("privacy_policy", observer, GenericCallBack {
+            /*getTermsAndConditions("privacy_policy", observer, GenericCallBack {
                 handleData(it)
-            })
+            })*/
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("from", "privacy_policy")
+            startActivity(intent)
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
         }
         binding.tvTermsConditions.setOnClickListener {
-            getTermsAndConditions("terms_and_condition", observer, GenericCallBack {
-                handleData(it)
-            })
+            /* getTermsAndConditions("terms_and_condition", observer, GenericCallBack {
+                 handleData(it)
+             })*/
+            val intent = Intent(this, WebViewActivity::class.java)
+            intent.putExtra("from", "terms_conditions")
+            startActivity(intent)
+            binding.drawerLayout.closeDrawer(binding.leftDrawer)
         }
     }
 
@@ -368,7 +378,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
+        val fragments = supportFragmentManager.backStackEntryCount
+        if (fragments == 1) {
+            GlobalUtils.showCustomConfirmationDialog(this, getString(R.string.are_you_sure_to_exit), {
+                if (it) {
+                    finish()
+                }
+            })
+        } else if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()
+        }
         Handler(Looper.getMainLooper()).postDelayed({
             try {
                 refreshSideMenu()

@@ -76,43 +76,55 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
         // FOOD AMENITIES PHOTOS
         viewModel.mDhabaModelMain.foodAmenitiesModel?.let {
-            if (it.images.isNotEmpty()) {
+            if (it.images !=null && it.images.isNotEmpty()) {
                 imagesList.addAll(it.images)
             }
         }
         // PARKING AMENITIES PHOTOS
         viewModel.mDhabaModelMain.parkingAmenitiesModel?.let {
-            if (it.images.isNotEmpty()) {
+            if (it.images !=null && it.images.isNotEmpty()) {
                 imagesList.addAll(it.images)
             }
         }
         // SLEEPING AMENITIES PHOTOS
         viewModel.mDhabaModelMain.sleepingAmenitiesModel?.let {
-            imagesList.add(PhotosModel("", it.images.toString()))
+            it.images?.let {
+                if (it.isNotEmpty()) {
+                    imagesList.add(PhotosModel("", it))
+                }
+            }
         }
         // WASHROOM AMENITIES PHOTOS
         viewModel.mDhabaModelMain.washroomAmenitiesModel?.let {
-            if (it.images.isNotEmpty()) {
+            if (it.images !=null && it.images.isNotEmpty()) {
                 imagesList.addAll(it.images)
             }
         }
         // SECURITY AMENITIES PHOTOS
         viewModel.mDhabaModelMain.securityAmenitiesModel?.let {
-            if (it.indoorCameraImage.isNotEmpty()) {
+            if (it.indoorCameraImage != null && it.indoorCameraImage.isNotEmpty()) {
                 imagesList.addAll(it.indoorCameraImage)
             }
-            if (it.outdoorCameraImage.isNotEmpty()) {
+            if (it.outdoorCameraImage != null && it.outdoorCameraImage.isNotEmpty()) {
                 imagesList.addAll(it.outdoorCameraImage)
             }
         }
         // LIGHT AMENITIES PHOTOS
         viewModel.mDhabaModelMain.lightAmenitiesModel?.let {
-            imagesList.add(PhotosModel("", it.towerLightImage.toString()))
-            imagesList.add(PhotosModel("", it.bulbLightImage.toString()))
+            it.towerLightImage?.let {
+                if (it.isNotEmpty()) {
+                    imagesList.add(PhotosModel("", it))
+                }
+            }
+            it.bulbLightImage?.let {
+                if (it.isNotEmpty()) {
+                    imagesList.add(PhotosModel("", it))
+                }
+            }
         }
         // OTHER AMENITIES PHOTOS
         viewModel.mDhabaModelMain.otherAmenitiesModel?.let {
-            if (it.barberImages.isNotEmpty()) {
+            if (it.barberImages != null && it.barberImages.isNotEmpty()) {
                 imagesList.addAll(it.barberImages)
             }
         }

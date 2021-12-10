@@ -3,10 +3,12 @@ package com.transport.mall.utils
 import android.Manifest.permission.*
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.afollestad.assent.Permission
@@ -229,6 +231,15 @@ fun setBold(view: TextView, isBold: Boolean) {
         view.setTypeface(ResourcesCompat.getFont(view.context, R.font.opensans_bold))
     } else {
         view.setTypeface(ResourcesCompat.getFont(view.context, R.font.opensans_regular))
+    }
+}
+
+@BindingAdapter("isHighlighted")
+fun isHighlighted(view: ImageView, isHighlighted: Boolean) {
+    if (isHighlighted) {
+        view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorPrimary), PorterDuff.Mode.SRC_IN)
+    } else {
+        view.setColorFilter(ContextCompat.getColor(view.context, R.color.text_gray), PorterDuff.Mode.SRC_IN)
     }
 }
 

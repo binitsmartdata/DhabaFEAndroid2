@@ -1,7 +1,11 @@
 package com.transport.mall.ui.authentication.login
 
 import android.app.Activity
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import androidx.lifecycle.Observer
+import com.google.android.material.textfield.TextInputLayout
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentLoginBinding
 import com.transport.mall.repository.networkoperator.ApiResult
@@ -118,6 +122,43 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 "",
                 true
             )
+        }
+
+        applyHintPositionListener(binding.etEmail, binding.emailTil)
+        applyHintPositionListener(binding.edPwd, binding.passwordTil)
+    }
+
+    private fun applyHintPositionListener(editText: EditText, til: TextInputLayout) {
+        val hint = til.hint
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0.toString().toString().isNotEmpty()) {
+                    til.hint = ""
+                    editText.y = -4f
+                } else {
+                    til.hint = hint
+                    editText.y = 8f
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })
+
+        editText.y = -4f
+        editText.setOnFocusChangeListener { view, isFocused ->
+            if (isFocused) {
+                view.y = 8f
+            } else {
+                if (editText.text?.trim()?.isEmpty()!!) {
+                    editText.y = -4f
+                }
+            }
         }
     }
 }

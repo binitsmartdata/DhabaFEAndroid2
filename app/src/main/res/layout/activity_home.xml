@@ -128,6 +128,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:overScrollMode="never"
                 app:onItemClickListener="@{click}"
                 app:recyclerLinearAdapter="@{list}" />
 
@@ -154,7 +155,7 @@
                     android:padding="@dimen/_10sdp"
                     android:text="About Us"
                     android:textColor="@color/text_privacy_policy"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:id="@+id/tvPrivacyPolicy"
                     android:layout_width="wrap_content"
@@ -164,7 +165,7 @@
                     android:padding="@dimen/_10sdp"
                     android:text="@string/privacy_policy"
                     android:textColor="@color/text_privacy_policy"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tvTermsConditions"
@@ -175,7 +176,7 @@
                     android:padding="@dimen/_10sdp"
                     android:text="@string/terms_and_conditions"
                     android:textColor="@color/text_privacy_policy"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 

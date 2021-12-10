@@ -51,9 +51,9 @@
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:padding="2dp" />
+                app:isHighlighted="@{data.selected}" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/tvMenuTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 android:orientation="vertical"
                 android:text="@{data.title}"
                 android:textColor="@{data.selected ? context.getColor(R.color.colorPrimary) : context.getColor(R.color.text_gray)}"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 app:isBold="@{data.selected}"
                 tools:text="Dhaba List" />
 
