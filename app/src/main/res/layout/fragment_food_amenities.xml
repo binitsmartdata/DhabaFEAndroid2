@@ -139,50 +139,56 @@
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <RadioGroup
-                        android:id="@+id/rgFoodAt100"
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:orientation="horizontal">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbFoodUnder100"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgFoodAt100"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:tag="1"
-                            android:text="@string/under_100" />
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rbFood81_150"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:tag="2"
-                            android:text="@string/_81_150" />
+                            <RadioButton
+                                android:id="@+id/rbFoodUnder100"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:paddingVertical="@dimen/_5sdp"
+                                android:tag="1"
+                                android:text="@string/under_100" />
 
-                        <RadioButton
-                            android:id="@+id/rbFoodAt151To200"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:tag="3"
-                            android:text="@string/_151_200" />
+                            <RadioButton
+                                android:id="@+id/rbFood81_150"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:paddingVertical="@dimen/_5sdp"
+                                android:tag="2"
+                                android:text="@string/_81_150" />
 
-                        <RadioButton
-                            android:id="@+id/rbFoodAt201To300"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:tag="4"
-                            android:text="@string/_201_300" />
+                            <RadioButton
+                                android:id="@+id/rbFoodAt151To200"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:paddingVertical="@dimen/_5sdp"
+                                android:tag="3"
+                                android:text="@string/_151_200" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbFoodAt201To300"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:paddingVertical="@dimen/_5sdp"
+                                android:tag="4"
+                                android:text="@string/_201_300" />
+
+                        </RadioGroup>
+                    </HorizontalScrollView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -242,40 +248,46 @@
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <RadioGroup
-                        android:id="@+id/rgFoodType"
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbVeg"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgFoodType"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/veg" />
+                            android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rbNonVeg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/non_veg" />
+                            <RadioButton
+                                android:id="@+id/rbVeg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="1"
+                                android:text="@string/veg" />
 
-                        <RadioButton
-                            android:id="@+id/rbBothFood"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="3"
-                            android:text="@string/both" />
+                            <RadioButton
+                                android:id="@+id/rbNonVeg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="2"
+                                android:text="@string/non_veg" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbBothFood"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="3"
+                                android:text="@string/both" />
+
+                        </RadioGroup>
+                    </HorizontalScrollView>
                 </LinearLayout>
 
                 <LinearLayout

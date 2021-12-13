@@ -81,7 +81,8 @@ interface ApiService {
         @Query("searchState") searchState: String?,
         @Query("searchHighway") searchHighway: String?,
         @Query("searchPincode") searchPincode: String?,
-        @Query("search") search: String?
+        @Query("search") search: String?,
+        @Query("role") role: String?
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModelMain>>>>
 
     //limit=10&page=1
@@ -95,7 +96,8 @@ interface ApiService {
         @Query("searchState") searchState: String?,
         @Query("searchHighway") searchHighway: String?,
         @Query("searchPincode") searchPincode: String?,
-        @Query("search") search: String?
+        @Query("search") search: String?,
+        @Query("role") role: String?
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<DhabaModelMain>>>>
 
     @FormUrlEncoded

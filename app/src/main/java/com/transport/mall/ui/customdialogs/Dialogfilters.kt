@@ -134,8 +134,12 @@ class Dialogfilters constructor(
         }
 
         binding.btnContinue.setOnClickListener {
-            callBack.onResponse(binding.filterModel!!)
-            dismiss()
+            if (binding.filterModel!!.isHaveAnyFilter()) {
+                callBack.onResponse(binding.filterModel!!)
+                dismiss()
+            } else {
+                GlobalUtils.showToastInCenter(context,context.getString(R.string.filters_validation))
+            }
         }
         binding.btnReset.setOnClickListener {
             callBack.onResponse(FiltersModel())

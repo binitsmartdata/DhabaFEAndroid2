@@ -507,4 +507,19 @@
     <string name="view_photo">ਫੋਟੋ ਵੇਖੋ</string>
     <string name="unable_to_get_location">ਮੌਜੂਦਾ ਸਥਾਨ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ.</string>
     <string name="view_list">ਦ੍ਰਿਸ਼ ਦੀ ਸੂਚੀ ਵੇਖੋ</string>
+    <string name="basic_details">ਮੂਲ ਵੇਰਵੇ</string>
+    <string name="select_state">ਰਾਜ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="select_city">ਸ਼ਹਿਰ ਦੀ ਚੋਣ ਕਰੋ</string>
+    <string name="fetch_location_profile">ਸਥਾਨ ਪ੍ਰਾਪਤ ਕਰੋ</string>
+    <string name="voter_id_">ਵੋਟਰ ਆਈਡੀ</string>
+    <string name="aadhar_card_number_">ਆਧਾਰ ਕਾਰਡ ਨੰਬਰ</string>
+    <string name="today">ਅੱਜ</string>
+    <string name="are_you_sure_you_want_to_save_as_draft">ਕੀ ਤੁਹਾਨੂੰ ਯਕੀਨ ਹੈ ਕਿ ਤੁਸੀਂ ਡਰਾਫਟ ਦੇ ਤੌਰ ਤੇ ਬਚਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="profile_updated_">ਪਰੋਫਾਈਲ ਨੂੰ ਅਪਡੇਟ ਕੀਤਾ ਗਿਆ</string>
+    <string name="thanks_for_calling">ਤੁਹਾਡੀ ਬੇਨਤੀ ਲਈ ਧੰਨਵਾਦ. ਸਾਡੀ ਟੀਮ ਤੁਹਾਡੇ ਨਾਲ ਜਲਦੀ ਸੰਪਰਕ ਕਰੇਗੀ</string>
+    <string name="are_you_sure_you_want_to_logout">ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਲਾਗਆਉਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="please_fill_the_form_below">ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦਿੱਤੇ ਫਾਰਮ ਨੂੰ ਭਰੋ</string>
+    <string name="are_you_sure_to_exit">ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਹੁਣ ਬਾਹਰ ਆਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+    <string name="no_dhaba_for_filters">ਲਾਗੂ ਕੀਤੇ ਫਿਲਟਰਾਂ ਲਈ ਕੋਈ ਢਾਬਾ ਨਹੀਂ ਮਿਲਿਆ</string>
+    <string name="filters_validation">ਕਿਰਪਾ ਕਰਕੇ ਲਾਗੂ ਕਰਨ ਲਈ ਕੁਝ ਫਿਲਟਰ ਚੁਣੋ।</string>
 </resources>

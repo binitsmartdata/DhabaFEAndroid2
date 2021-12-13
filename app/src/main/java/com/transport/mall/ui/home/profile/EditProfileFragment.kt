@@ -137,7 +137,11 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, ProfileVM>(
 
                         SharedPrefsHelper.getInstance(getmContext()).setUserData(it.data!!)
 //                        showToastInCenter(getString(R.string.profile_updated))
-                        DialogProfileUpdate(getmContext()).show()
+                        var dialog = DialogProfileUpdate(getmContext())
+                        dialog.show()
+                        dialog.setOnDismissListener {
+                            goToHomeScreen()
+                        }
 
                         //NOTIFY THAT USER MODEL IS UPDATED
                         RxBus.publish(it.data!!)

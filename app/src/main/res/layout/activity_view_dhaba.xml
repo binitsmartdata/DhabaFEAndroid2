@@ -21,6 +21,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -102,11 +103,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_regular"
-                        android:text="@{dhabaModelMain.dhabaModel.address}"
+                        android:text="@{dhabaModelMain.dhabaModel.landmark}"
                         android:textColor="@color/grey_view_dhaba"
                         android:textSize="14sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvOpen24_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"

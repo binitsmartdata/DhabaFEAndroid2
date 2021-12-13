@@ -8,6 +8,7 @@ import com.transport.mall.model.FoodAmenitiesModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
+import com.transport.mall.utils.common.GlobalUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
@@ -38,7 +39,7 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.service_id),
                         RequestBody.create(MultipartBody.FORM, model.module_id),
                         RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                        RequestBody.create(MultipartBody.FORM, model.foodAt100),
+                        RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.foodAt100, "")),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                         RequestBody.create(MultipartBody.FORM, model.food),
@@ -66,7 +67,7 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, model.service_id),
                         RequestBody.create(MultipartBody.FORM, model.module_id),
                         RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                        RequestBody.create(MultipartBody.FORM, model.foodAt100),
+                        RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.foodAt100, "")),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                         RequestBody.create(MultipartBody.FORM, model.food),

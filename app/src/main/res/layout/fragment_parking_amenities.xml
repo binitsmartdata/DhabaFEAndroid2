@@ -59,6 +59,7 @@
                     <RadioGroup
                         android:id="@+id/rgParkingYesNo"
                         android:layout_width="match_parent"
+                        android:checkedButton="@id/rbParkingNo"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -82,32 +83,38 @@
 
                     </RadioGroup>
 
-                    <RadioGroup
-                        android:id="@+id/rgParkingStatus"
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="@{rbParkingYes.checked ? View.VISIBLE : View.GONE}">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbStatusOwned"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgParkingStatus"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/owned" />
+                            android:orientation="horizontal"
+                            android:visibility="@{rbParkingYes.checked ? View.VISIBLE : View.GONE}">
 
-                        <RadioButton
-                            android:id="@+id/rbStatusThirdParty"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/third_party" />
+                            <RadioButton
+                                android:id="@+id/rbStatusOwned"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="1"
+                                android:text="@string/owned" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbStatusThirdParty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="2"
+                                android:text="@string/third_party" />
+
+                        </RadioGroup>
+                    </HorizontalScrollView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,77 +131,88 @@
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <RadioGroup
-                        android:id="@+id/rgConcreteParking"
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbConcreteFensed"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgConcreteParking"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/fully_fenced" />
+                            android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rbConcreteOpen"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/open" />
+                            <RadioButton
+                                android:id="@+id/rbConcreteFensed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="1"
+                                android:text="@string/fully_fenced" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbConcreteOpen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="2"
+                                android:text="@string/open" />
 
-                    <RadioGroup
-                        android:id="@+id/rgConcreteSpace"
+                        </RadioGroup>
+                    </HorizontalScrollView>
+
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="@{(rbConcreteFensed.checked || rbConcreteOpen.checked) ? View.VISIBLE : View.GONE}">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbConcreteSpace1"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgConcreteSpace"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="1"
-                            android:text="@string/_1_20" />
+                            android:orientation="horizontal"
+                            android:visibility="@{(rbConcreteFensed.checked || rbConcreteOpen.checked) ? View.VISIBLE : View.GONE}">
 
-                        <RadioButton
-                            android:id="@+id/rbConcreteSpace2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="2"
-                            android:text="@string/twenty_to_fifty" />
+                            <RadioButton
+                                android:id="@+id/rbConcreteSpace1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="1"
+                                android:text="@string/_1_20" />
 
-                        <RadioButton
-                            android:id="@+id/rbConcreteSpace3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="3"
-                            android:text="@string/_50_100" />
+                            <RadioButton
+                                android:id="@+id/rbConcreteSpace2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="2"
+                                android:text="@string/twenty_to_fifty" />
 
-                        <RadioButton
-                            android:id="@+id/rbConcreteSpace4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="4"
-                            android:text="@string/above_100" />
+                            <RadioButton
+                                android:id="@+id/rbConcreteSpace3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="3"
+                                android:text="@string/_50_100" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbConcreteSpace4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="4"
+                                android:text="@string/above_100" />
 
+                        </RadioGroup>
+                    </HorizontalScrollView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -211,77 +229,88 @@
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <RadioGroup
-                        android:id="@+id/rgFlatHardParking"
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbFlatHardFensed"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgFlatHardParking"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/fully_fenced" />
+                            android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rbFlatHardOpen"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/open" />
+                            <RadioButton
+                                android:id="@+id/rbFlatHardFensed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="1"
+                                android:text="@string/fully_fenced" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbFlatHardOpen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="2"
+                                android:text="@string/open" />
 
-                    <RadioGroup
-                        android:id="@+id/rgFlatSpace"
+                        </RadioGroup>
+                    </HorizontalScrollView>
+
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="@{(rbFlatHardFensed.checked || rbFlatHardOpen.checked) ? View.VISIBLE : View.GONE}">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbFlatSpace1"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgFlatSpace"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="1"
-                            android:text="@string/_1_20" />
+                            android:orientation="horizontal"
+                            android:visibility="@{(rbFlatHardFensed.checked || rbFlatHardOpen.checked) ? View.VISIBLE : View.GONE}">
 
-                        <RadioButton
-                            android:id="@+id/rbFlatSpace2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="2"
-                            android:text="@string/twenty_to_fifty" />
+                            <RadioButton
+                                android:id="@+id/rbFlatSpace1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="1"
+                                android:text="@string/_1_20" />
 
-                        <RadioButton
-                            android:id="@+id/rbFlatSpace3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="3"
-                            android:text="@string/_50_100" />
+                            <RadioButton
+                                android:id="@+id/rbFlatSpace2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="2"
+                                android:text="@string/twenty_to_fifty" />
 
-                        <RadioButton
-                            android:id="@+id/rbFlatSpace4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="4"
-                            android:text="@string/above_100" />
+                            <RadioButton
+                                android:id="@+id/rbFlatSpace3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="3"
+                                android:text="@string/_50_100" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbFlatSpace4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="4"
+                                android:text="@string/above_100" />
 
+                        </RadioGroup>
+                    </HorizontalScrollView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -298,77 +327,88 @@
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <RadioGroup
-                        android:id="@+id/rgKachaFlatParking"
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rbKachaFlatFensed"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgKachaFlatParking"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="1"
-                            android:text="@string/fully_fenced" />
+                            android:orientation="horizontal">
 
-                        <RadioButton
-                            android:id="@+id/rbKachaFlatOpen"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_10sdp"
-                            android:tag="2"
-                            android:text="@string/open" />
+                            <RadioButton
+                                android:id="@+id/rbKachaFlatFensed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="1"
+                                android:text="@string/fully_fenced" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rbKachaFlatOpen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_10sdp"
+                                android:tag="2"
+                                android:text="@string/open" />
 
-                    <RadioGroup
-                        android:id="@+id/rgSpace"
+                        </RadioGroup>
+                    </HorizontalScrollView>
+
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="@{(rbKachaFlatFensed.checked || rbKachaFlatOpen.checked) ? View.VISIBLE : View.GONE}">
+                        android:scrollbars="none"
+                        android:layout_height="wrap_content">
 
-                        <RadioButton
-                            android:id="@+id/rgOnetotwenty"
-                            android:layout_width="wrap_content"
+                        <RadioGroup
+                            android:id="@+id/rgSpace"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="1"
-                            android:text="@string/_1_20" />
+                            android:orientation="horizontal"
+                            android:visibility="@{(rbKachaFlatFensed.checked || rbKachaFlatOpen.checked) ? View.VISIBLE : View.GONE}">
 
-                        <RadioButton
-                            android:id="@+id/rgTwentyToFifty"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="2"
-                            android:text="@string/twenty_to_fifty" />
+                            <RadioButton
+                                android:id="@+id/rgOnetotwenty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="1"
+                                android:text="@string/_1_20" />
 
-                        <RadioButton
-                            android:id="@+id/rgFiftyToHundred"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="3"
-                            android:text="@string/_50_100" />
+                            <RadioButton
+                                android:id="@+id/rgTwentyToFifty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="2"
+                                android:text="@string/twenty_to_fifty" />
 
-                        <RadioButton
-                            android:id="@+id/rgAbove100"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="@{!viewOnly}"
-                            android:padding="@dimen/_3sdp"
-                            android:tag="4"
-                            android:text="@string/above_100" />
+                            <RadioButton
+                                android:id="@+id/rgFiftyToHundred"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="3"
+                                android:text="@string/_50_100" />
 
-                    </RadioGroup>
+                            <RadioButton
+                                android:id="@+id/rgAbove100"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="@{!viewOnly}"
+                                android:padding="@dimen/_3sdp"
+                                android:tag="4"
+                                android:text="@string/above_100" />
 
+                        </RadioGroup>
+                    </HorizontalScrollView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -378,10 +418,10 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/grey_fill_bg"
                     android:clickable="@{!viewOnly}"
-                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="20dp"
+                    android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}">
 
                     <View
                         android:id="@+id/viewRestrictor"
@@ -422,8 +462,8 @@
                     android:background="@drawable/primary_color_btn_selector"
                     android:text="@{isUpdate ? context.getString(R.string.update) : context.getString(R.string.save)}"
                     android:textAllCaps="false"
-                    android:textSize="18sp"
                     android:textColor="@color/white"
+                    android:textSize="18sp"
                     android:visibility="@{viewOnly ? View.GONE : View.VISIBLE}" />
 
             </LinearLayout>

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.DhabaModel
@@ -104,13 +105,16 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
             }
             ApiResult.Status.ERROR -> {
                 progressObserver.value = false
-                callBack.onResponse(
-                    ApiResponseModel<BankDetailsModel>(
-                        0,
-                        it.message!!,
-                        null
+                try {
+                    callBack.onResponse(
+                        Gson().fromJson(
+                            it.error?.string(),
+                            ApiResponseModel::class.java
+                        ) as ApiResponseModel<BankDetailsModel>?
                     )
-                )
+                } catch (e: Exception) {
+                    callBack.onResponse(ApiResponseModel(0, it.message!!, null))
+                }
             }
             ApiResult.Status.SUCCESS -> {
                 progressObserver.value = false

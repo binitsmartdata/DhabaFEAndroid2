@@ -15,7 +15,6 @@ import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
-import java.util.*
 
 class DhabaListAdapter(
     val context: Context,
@@ -74,7 +73,8 @@ class DhabaListAdapter(
 
         myViewHolderG?.binding?.ivLocation?.setOnClickListener {
 //            val uri: String = java.lang.String.format(Locale.ENGLISH, "geo:%f,%f", dataList[position].dhabaModel!!.latitude, dataList[position].dhabaModel!!.longitude)
-            val geoUri = "http://maps.google.com/maps?q=loc:" + dataList[position].dhabaModel!!.latitude.toString() + "," + dataList[position].dhabaModel!!.longitude.toString() + " (" + dataList[position].dhabaModel!!.name + ")"
+            val geoUri =
+                "http://maps.google.com/maps?q=loc:" + dataList[position].dhabaModel!!.latitude.toString() + "," + dataList[position].dhabaModel!!.longitude.toString() + " (" + dataList[position].dhabaModel!!.name + ")"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
             context.startActivity(intent)
         }
@@ -110,7 +110,7 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivEdit?.visibility =
                     if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()
                         && dataList[position].dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
-                    ) View.VISIBLE else View.GONE
+                    ) View.VISIBLE else if (SharedPrefsHelper.getInstance(context).getUserData().isOwner()) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }

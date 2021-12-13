@@ -76,13 +76,13 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
         // FOOD AMENITIES PHOTOS
         viewModel.mDhabaModelMain.foodAmenitiesModel?.let {
-            if (it.images !=null && it.images.isNotEmpty()) {
+            if (it.images != null && it.images.isNotEmpty()) {
                 imagesList.addAll(it.images)
             }
         }
         // PARKING AMENITIES PHOTOS
         viewModel.mDhabaModelMain.parkingAmenitiesModel?.let {
-            if (it.images !=null && it.images.isNotEmpty()) {
+            if (it.images != null && it.images.isNotEmpty()) {
                 imagesList.addAll(it.images)
             }
         }
@@ -96,7 +96,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         }
         // WASHROOM AMENITIES PHOTOS
         viewModel.mDhabaModelMain.washroomAmenitiesModel?.let {
-            if (it.images !=null && it.images.isNotEmpty()) {
+            if (it.images != null && it.images.isNotEmpty()) {
                 imagesList.addAll(it.images)
             }
         }

@@ -1,7 +1,9 @@
 package com.transport.mall.ui.customdialogs
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.Gravity

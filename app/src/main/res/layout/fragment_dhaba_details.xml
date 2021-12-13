@@ -511,7 +511,7 @@
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_16sdp"
                         android:fontFamily="@font/opensans_semibold"
-                        android:text="Open 24x7"
+                        android:text="@string/open_24_x_7"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="parent"

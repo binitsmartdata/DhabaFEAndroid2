@@ -138,8 +138,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_logo_splash"
-                android:transitionName="appLogo" />
+                android:src="@drawable/ic_logo_splash" />
 
             <LinearLayout
                 android:layout_width="match_parent"

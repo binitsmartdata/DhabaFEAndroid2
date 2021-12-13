@@ -602,5 +602,7 @@
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="please_fill_the_form_below">Please fill the form below</string>
     <string name="are_you_sure_to_exit">Are you sure you want exit now?</string>
+    <string name="no_dhaba_for_filters">No Dhaba found for the applied filters</string>
+    <string name="filters_validation">Please select some filters to apply.</string>
 
 </resources>

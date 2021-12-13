@@ -11,6 +11,7 @@ import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
@@ -59,7 +60,9 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                             GlobalUtils.getNullifEmpty(filters.states),
                             GlobalUtils.getNullifEmpty(filters.highway),
                             GlobalUtils.getNullifEmpty(filters.pincode),
-                            GlobalUtils.getNullifEmpty(search)
+                            GlobalUtils.getNullifEmpty(search),
+//                            SharedPrefsHelper.getInstance(app?.applicationContext!!).getUserData().role
+                            null
                         )
                     } else {
                         getApiService()?.getAllDhabaList(
@@ -71,7 +74,8 @@ class DhabaListVM(application: Application) : BaseVM(application) {
                             GlobalUtils.getNullifEmpty(filters.states),
                             GlobalUtils.getNullifEmpty(filters.highway),
                             GlobalUtils.getNullifEmpty(filters.pincode),
-                            GlobalUtils.getNullifEmpty(search)
+                            GlobalUtils.getNullifEmpty(search),
+                            SharedPrefsHelper.getInstance(app?.applicationContext!!).getUserData().role
                         )
                     }
                 ).collect {

@@ -11,13 +11,13 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.util.Pair
-import android.view.View
 import android.view.Window
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivitySplashBinding
 import com.transport.mall.ui.authentication.AuthenticationActivity
+import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.AppSignatureHelper
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
@@ -81,21 +81,26 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
 
     private fun startAuthActivity() {
         if (SharedPrefsHelper.getInstance(this).getUserData()._id.isNotEmpty()) {
-            goToHomeScreen()
+//            goToHomeScreen()
+            openActivityWithLogoAnimation(HomeActivity::class.java)
         } else {
-            val intent = Intent(this, AuthenticationActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
-            val options = ActivityOptions.makeSceneTransitionAnimation(
-                this,
-                Pair(binding.ivSplashLogo, "appLogo")
-            )
-
-            startActivity(intent, options.toBundle())
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                finish()
-            }, 1000)
+            openActivityWithLogoAnimation(AuthenticationActivity::class.java)
         }
+    }
+
+    private fun openActivityWithLogoAnimation(target: Class<*>) {
+        val intent = Intent(this, target)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+            this,
+            Pair(binding.ivSplashLogo, "appLogo")
+        )
+
+        startActivity(intent, options.toBundle())
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            finish()
+        }, 1500)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

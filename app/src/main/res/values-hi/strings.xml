@@ -514,4 +514,19 @@
     <string name="view_photo">फ़ोटो देखें</string>
     <string name="unable_to_get_location">वर्तमान स्थान प्राप्त करने में असमर्थ।</string>
     <string name="view_list">सूची देखें</string>
+    <string name="basic_details">मूल विवरण</string>
+    <string name="select_state">राज्य चुनें</string>
+    <string name="select_city">शहर चुनें</string>
+    <string name="fetch_location_profile">स्थान प्राप्त करना</string>
+    <string name="voter_id_">मतदाता आईडी</string>
+    <string name="aadhar_card_number_">आधार कार्ड नंबर</string>
+    <string name="today">आज</string>
+    <string name="are_you_sure_you_want_to_save_as_draft">क्या आप वाकई ड्राफ्ट के रूप में सहेजना चाहते हैं?</string>
+    <string name="profile_updated_">प्रोफ़ाइल अपडेट</string>
+    <string name="thanks_for_calling">आपके अनुरोध के लिए आपको धन्यवाद। हमारी टीम जल्द ही आपसे संपर्क करेगी</string>
+    <string name="are_you_sure_you_want_to_logout">क्या आप लॉग आउट करना चाहते हैं?</string>
+    <string name="please_fill_the_form_below">कृपया नीचे दिए गए फॉर्म को भरें</string>
+    <string name="are_you_sure_to_exit">क्या आप वाकई बाहर निकलना चाहते हैं?</string>
+    <string name="no_dhaba_for_filters">लागू फ़िल्टर के लिए कोई ढाबा नहीं मिला</string>
+    <string name="filters_validation">कृपया लागू करने के लिए कुछ फ़िल्टर चुनें।</string>
 </resources>

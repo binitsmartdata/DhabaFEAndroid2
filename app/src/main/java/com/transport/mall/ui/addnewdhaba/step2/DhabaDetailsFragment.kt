@@ -153,6 +153,8 @@ class DhabaDetailsFragment :
                 }
             }
 
+            // we are saving a space while saving dhaba address, because server side validation cannot be removed, so this is trick to not show that space alone while viewing dhaba
+            it.address = it.address.trim()
         }
     }
 
@@ -416,7 +418,8 @@ class DhabaDetailsFragment :
     private fun showMessageAndGoNext() {
         if (mListener?.isUpdate()!!) {
             showToastInCenter(getString(R.string.dhaba_updated_successfully))
-            activity?.finish()
+            mListener?.showNextScreen()
+//            activity?.finish()
         } else {
             showToastInCenter(getString(R.string.dhaba_created_successfully))
             mListener?.showNextScreen()

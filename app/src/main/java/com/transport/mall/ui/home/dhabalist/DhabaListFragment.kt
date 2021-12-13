@@ -245,6 +245,9 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
             } else {
                 binding.llNoData.visibility = View.VISIBLE
                 binding.recyclerView.visibility = View.GONE
+                if (filterModel!=null && filterModel.isHaveAnyFilter()){
+                    binding.tvNoDhaba.text = getString(R.string.no_dhaba_for_filters)
+                }
             }
         }
     }

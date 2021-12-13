@@ -403,7 +403,8 @@ class OwnerDetailsFragment :
             } else {
                 if (mListener?.isUpdate()!!) {
                     showToastInCenter(getString(R.string.updated_successfully))
-                    activity?.finish()
+                    mListener?.showNextScreen()
+//                    activity?.finish()
                 } else {
                     showToastInCenter(getString(R.string.owner_saved))
                     mListener?.showNextScreen()
