@@ -235,6 +235,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
         isDraft: Boolean,
         dhabaModel: DhabaModel,
         status: String?,
+        submitForApproval: Boolean,
         progressObserver: MutableLiveData<Boolean>,
         callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
     ) {
@@ -259,7 +260,8 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
                         /* approval_by  */
                         SharedPrefsHelper.getInstance(context).getUserData().role.toString(),
                         /* isUpdated    */
-                        /*if (isDraft) "false" else (if (dhabaModel.status.equals(DhabaModel.STATUS_ACTIVE)) */"true"/* else "false")*/
+                        "true",
+                        if (submitForApproval) submitForApproval.toString() else null
                     )
                 ).collect {
                     when (it.status) {

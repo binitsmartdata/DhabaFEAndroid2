@@ -208,10 +208,12 @@ class DhabaDetailsFragment :
         }
 
         binding.btnNext.setOnClickListener {
+            GlobalUtils.disableTemporarily(it)
             viewModel.dhabaModel.isDraft = false.toString()
             saveDetails(false)
         }
         binding.btnSaveDraft.setOnClickListener {
+            GlobalUtils.disableTemporarily(it)
             ConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_save_as_draft), {
                 if (it) {
                     viewModel.dhabaModel.isDraft = true.toString()
@@ -432,6 +434,7 @@ class DhabaDetailsFragment :
             isDraft,
             viewModel.dhabaModel,
             null,
+            false,
             viewModel.progressObserver,
             GenericCallBack {
                 if (it.data != null) {

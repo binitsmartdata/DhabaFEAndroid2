@@ -75,6 +75,7 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
                 deletedDhaba.isDraft.toBoolean(),
                 deletedDhaba,
                 DhabaModel.STATUS_INACTIVE,
+                false,
                 viewModel.dialogProgressObserver,
                 GenericCallBack {
                     onRefresh()
@@ -114,7 +115,8 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
         } else {
             // UPDATE DHABA STATUS TO IN PROGRESS(IN REVIEW)
             viewModel.updateDhabaStatus(
-                activity as Context, false, dhabaModelMain[position].dhabaModel!!, DhabaModel.STATUS_INPROGRESS, viewModel.dialogProgressObserver, GenericCallBack {
+                activity as Context, false, dhabaModelMain[position].dhabaModel!!, DhabaModel.STATUS_INPROGRESS,
+                true, viewModel.dialogProgressObserver, GenericCallBack {
                     it.data?.let {
                         GlobalUtils.showToastInCenter(getmContext(), getString(R.string.sent_for_spproval))
                         dhabaModelMain[position].dhabaModel = it
@@ -245,7 +247,7 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
             } else {
                 binding.llNoData.visibility = View.VISIBLE
                 binding.recyclerView.visibility = View.GONE
-                if (filterModel!=null && filterModel.isHaveAnyFilter()){
+                if (filterModel != null && filterModel.isHaveAnyFilter()) {
                     binding.tvNoDhaba.text = getString(R.string.no_dhaba_for_filters)
                 }
             }

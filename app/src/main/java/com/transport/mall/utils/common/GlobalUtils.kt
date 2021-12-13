@@ -23,6 +23,8 @@ import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Patterns
@@ -793,5 +795,10 @@ object GlobalUtils {
             callBack.onResponse(true)
         }
         dialog.show()
+    }
+
+    fun disableTemporarily(view: View) {
+        view.isEnabled = false
+        Handler(Looper.getMainLooper()).postDelayed({ view.isEnabled = true }, 1000)
     }
 }

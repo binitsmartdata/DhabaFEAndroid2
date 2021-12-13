@@ -110,7 +110,7 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivEdit?.visibility =
                     if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()
                         && dataList[position].dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
-                    ) View.VISIBLE else if (SharedPrefsHelper.getInstance(context).getUserData().isOwner()) View.VISIBLE else View.GONE
+                    ) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }

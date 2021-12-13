@@ -219,6 +219,7 @@ class OwnerDetailsFragment :
             }
         }
         binding.btnNext.setOnClickListener {
+            GlobalUtils.disableTemporarily(it)
             /* if (mListener?.getDhabaModelMain()?.ownerModel != null && !mListener?.isUpdate()!!) {
                  mListener?.showNextScreen()
              } else {*/
@@ -226,6 +227,7 @@ class OwnerDetailsFragment :
 //            }
         }
         binding.btnSaveDraft.setOnClickListener {
+            GlobalUtils.disableTemporarily(it)
             if (mListener?.getDhabaModelMain()?.ownerModel != null) {
                 mListener?.getDhabaModelMain()?.draftedAtScreen =
                     DhabaModelMain.DraftScreen.OwnerDetailsFragment.toString()

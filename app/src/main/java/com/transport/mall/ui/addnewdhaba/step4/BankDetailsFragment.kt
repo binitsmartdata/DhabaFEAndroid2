@@ -128,10 +128,12 @@ class BankDetailsFragment :
         })
 
         binding.btnNext.setOnClickListener {
+            GlobalUtils.disableTemporarily(it)
             viewModel.dhabaModel.isDraft = false.toString()
             saveDetails(false)
         }
         binding.btnSaveDraft.setOnClickListener {
+            GlobalUtils.disableTemporarily(it)
             ConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_save_as_draft), {
                 if (it) {
                     viewModel.dhabaModel.isDraft = true.toString()
@@ -253,6 +255,7 @@ class BankDetailsFragment :
                 isDraft,
                 viewModel.dhabaModel,
                 if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
+                if (isDraft) false else true,
                 viewModel.progressObserver,
                 GenericCallBack {
                     if (it.data != null) {

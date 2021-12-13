@@ -252,6 +252,7 @@ class AmenitiesFragment :
             isDraft,
             mListener?.getDhabaModelMain()?.dhabaModel!!,
             if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
+            false,
             progressObserver,
             GenericCallBack {
                 if (it.data != null) {
