@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.databinding.FragmentDhabaSuccessBinding
 import com.transport.mall.model.UserModel
+import com.transport.mall.ui.viewdhaba.ViewDhabaActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
@@ -58,7 +59,7 @@ class DhabaSuccessMessageFragment(val id: String) : BaseFragment<FragmentDhabaSu
                 dialogProgressObserver.value = false
                 if (it.data != null) {
                     context?.let { context ->
-                        AddDhabaActivity.startForUpdate(context, it.data!!)
+                        ViewDhabaActivity.start(context, it.data!!)
                         activity?.finish()
                     }
                 } else {
