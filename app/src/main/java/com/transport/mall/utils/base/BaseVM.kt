@@ -244,6 +244,10 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             try {
                 executeApi(
                     getApiService()?.updateDhabaStatus(
+                        /*token*/
+                        SharedPrefsHelper.getInstance(context).getUserData().accessToken,
+                        /*user_id*/
+                        SharedPrefsHelper.getInstance(context).getUserData()._id,
                         /* _id          */ dhabaModel._id,
                         /* blockDay     */
                         dhabaModel.blockDay.toString(),

@@ -780,7 +780,7 @@ object GlobalUtils {
         return !currentVersion.isLowerThan(lastSupportedVersion)
     }
 
-    fun showCustomConfirmationDialog(context: Context, messageString: String, callBack: GenericCallBack<Boolean>) {
+    fun showCustomConfirmationDialogYesNo(context: Context, messageString: String, callBack: GenericCallBack<Boolean>) {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.custome_confirmation_dialog_box)
@@ -790,8 +790,35 @@ object GlobalUtils {
         message.text = messageString
         val btn_no_exit = dialog.findViewById<TextView>(R.id.btn_no_exit)
         val btn_yes_exit = dialog.findViewById<Button>(R.id.btn_yes_exit)
-        btn_no_exit.setOnClickListener { v: View? -> dialog.dismiss() }
+        btn_no_exit.setOnClickListener { v: View? ->
+            callBack.onResponse(false)
+            dialog.dismiss()
+        }
         btn_yes_exit.setOnClickListener { v: View? ->
+            dialog.dismiss()
+            callBack.onResponse(true)
+        }
+        dialog.show()
+    }
+
+    fun showCustomConfirmationDialog(context: Context, messageString: String, positiveBtnText: String, negativeBtnText: String, callBack: GenericCallBack<Boolean>) {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.custome_confirmation_dialog_box)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCancelable(false)
+        val message = dialog.findViewById<TextView>(R.id.message)
+        message.text = messageString
+        val btn_no_exit = dialog.findViewById<TextView>(R.id.btn_no_exit)
+        val btn_yes_exit = dialog.findViewById<Button>(R.id.btn_yes_exit)
+        btn_no_exit.text = negativeBtnText
+        btn_yes_exit.text = positiveBtnText
+        btn_no_exit.setOnClickListener { v: View? ->
+            callBack.onResponse(false)
+            dialog.dismiss()
+        }
+        btn_yes_exit.setOnClickListener { v: View? ->
+            dialog.dismiss()
             callBack.onResponse(true)
         }
         dialog.show()

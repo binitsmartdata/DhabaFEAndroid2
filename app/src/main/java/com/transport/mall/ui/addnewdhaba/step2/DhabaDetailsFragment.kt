@@ -393,11 +393,11 @@ class DhabaDetailsFragment :
                             showToastInCenter(getString(R.string.error_saving_timing))
                         }
                         // UPDATING DHABA STATUS TO ISDRAFT
-                        updateDhabaStatus(isDraft)
+                        updateDhabaStatus(isDraft, false)
                     })
                 } else {
                     // UPDATING DHABA STATUS TO ISDRAFT
-                    updateDhabaStatus(isDraft)
+                    updateDhabaStatus(isDraft, false)
                 }
             } else {
                 // only owner or manager have option to manage timings
@@ -406,10 +406,18 @@ class DhabaDetailsFragment :
                         if (!it) {
                             showToastInCenter(getString(R.string.error_saving_timing))
                         }
-                        showMessageAndGoNext()
+//                        if (mListener?.isUpdate()!!) {
+                        updateDhabaStatus(true, true)
+//                        } else {
+//                        showMessageAndGoNext()
+//                        }
                     })
                 } else {
-                    showMessageAndGoNext()
+//                    if (mListener?.isUpdate()!!) {
+                    updateDhabaStatus(true, true)
+//                    } else {
+//                    showMessageAndGoNext()
+//                    }
                 }
             }
         } else {
@@ -428,22 +436,26 @@ class DhabaDetailsFragment :
         }
     }
 
-    private fun updateDhabaStatus(isDraft: Boolean) {
+    private fun updateDhabaStatus(isDraft: Boolean, goNext: Boolean) {
         viewModel.updateDhabaStatus(
             activity as Context,
             isDraft,
             viewModel.dhabaModel,
-            null,
-            false,
+            if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
+            !isDraft,
             viewModel.progressObserver,
             GenericCallBack {
                 if (it.data != null) {
-                    mListener?.getDhabaModelMain()?.dhabaModel = it.data
+                    if (!goNext) {
+                        mListener?.getDhabaModelMain()?.dhabaModel = it.data
 
-                    mListener?.getDhabaModelMain()?.draftedAtScreen =
-                        DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
-                    mListener?.saveAsDraft()
-                    activity?.finish()
+                        mListener?.getDhabaModelMain()?.draftedAtScreen =
+                            DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
+                        mListener?.saveAsDraft()
+                        activity?.finish()
+                    } else {
+                        showMessageAndGoNext()
+                    }
                 } else {
                     showToastInCenter(it.message)
                 }

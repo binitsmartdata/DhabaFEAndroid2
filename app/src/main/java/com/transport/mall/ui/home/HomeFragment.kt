@@ -48,12 +48,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
         )
 
         if (userModel?.isOwner()!! || userModel?.isManager()!!) {
-            adapter.addFrag(DhabaListFragment(null), getString(R.string.pending))
+            adapter.addFrag(DhabaListFragment.newInstance(null), getString(R.string.pending))
         } else {
-            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_PENDING), getString(R.string.pending))
-            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_review))
-            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_ACTIVE), getString(R.string.active))
-            adapter.addFrag(DhabaListFragment(DhabaModel.STATUS_INACTIVE), getString(R.string.inactive))
+            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_PENDING), getString(R.string.pending))
+            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_review))
+            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_ACTIVE), getString(R.string.active))
+            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_INACTIVE), getString(R.string.inactive))
         }
 
         // set adapter on viewpager

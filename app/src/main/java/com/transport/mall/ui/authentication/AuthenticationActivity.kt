@@ -10,6 +10,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAuthenticationBinding
+import com.transport.mall.ui.authentication.login.LoginFragment
 import com.transport.mall.ui.authentication.pre_login.languageselection.LanguageSelectionFragment
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.base.BaseVM
@@ -38,40 +39,15 @@ class AuthenticationActivity : BaseActivity<ActivityAuthenticationBinding, BaseV
 //        } else {
         openFragmentReplaceNoAnim(
             R.id.authContainer,
-            LanguageSelectionFragment(),
-            "LANGUAGE",
+            LoginFragment(),
+            "LOGIN",
             true
         )
 //        }
     }
 
     override fun initListeners() {
-        /*if (resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK === Configuration.SCREENLAYOUT_SIZE_SMALL) {
-            binding.frameMain.setBackgroundResource(R.drawable.bg_gradient)
-            binding.ivDotLines.visibility = View.VISIBLE
-        } else {
-            binding.frameMain.setBackgroundResource(R.drawable.bg_splash)
-            binding.ivDotLines.visibility = View.GONE
-        }*/
 
-        //Determine density
-        val metrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(metrics)
-        val density: Int = metrics.densityDpi
-
-        if (density == DisplayMetrics.DENSITY_HIGH) {
-            binding.frameMain.setBackgroundResource(R.drawable.bg_gradient)
-            binding.ivDotLines.visibility = View.VISIBLE
-        } else if (density == DisplayMetrics.DENSITY_MEDIUM) {
-            binding.frameMain.setBackgroundResource(R.drawable.bg_gradient)
-            binding.ivDotLines.visibility = View.VISIBLE
-        } else if (density == DisplayMetrics.DENSITY_LOW) {
-            binding.frameMain.setBackgroundResource(R.drawable.bg_splash)
-            binding.ivDotLines.visibility = View.GONE
-        } else {
-            binding.frameMain.setBackgroundResource(R.drawable.bg_splash)
-            binding.ivDotLines.visibility = View.GONE
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -255,7 +255,6 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.approval_by)
         }
 
-
     var isDraft: String = ""
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {

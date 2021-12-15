@@ -35,7 +35,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
             mListener?.openProfileScreen()
         }
         binding.llLogout.setOnClickListener {
-            GlobalUtils.showCustomConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_logout), {
+            GlobalUtils.showCustomConfirmationDialogYesNo(getmContext(), getString(R.string.are_you_sure_you_want_to_logout), {
                 if (it) {
                     SharedPrefsHelper.getInstance(activity as Context).clearData()
                     mListener?.startOver()

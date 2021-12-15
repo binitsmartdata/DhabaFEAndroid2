@@ -1,6 +1,7 @@
 package com.transport.mall.ui.home.dhabalist
 
 import android.content.Context
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
@@ -30,7 +31,7 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), SwipeRefreshLayout.OnRefreshListener {
+class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), SwipeRefreshLayout.OnRefreshListener {
     override val layoutId: Int
         get() = R.layout.fragment_dhaba_list
     override var viewModel: DhabaListVM
@@ -43,6 +44,7 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
     private val dhabaList = ArrayList<DhabaModelMain>()
     var dhabaListAdapter: DhabaListAdapter? = null
 
+    var status: String? = null
     val limit = "10"
     var page = 1
 
@@ -52,9 +54,22 @@ class DhabaListFragment(val status: String?) : BaseFragment<FragmentDhabaListBin
     init {
     }
 
+    companion object {
+        val ARG_STATUS = "status"
+        fun newInstance(status: String?): DhabaListFragment {
+            val args = Bundle()
+            val fragment = DhabaListFragment()
+            args.putString(ARG_STATUS, status);
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun bindData() {
         binding.lifecycleOwner = this
         binding.user = SharedPrefsHelper.getInstance(getmContext()).getUserData()
+        status = if (arguments?.containsKey(ARG_STATUS)!!) arguments?.getString(ARG_STATUS) else null
+
         binding.status = when (status) {
             DhabaModel.STATUS_PENDING -> getString(R.string.pending_dhabas)
             DhabaModel.STATUS_INPROGRESS -> getString(R.string.in_review_dhabas)

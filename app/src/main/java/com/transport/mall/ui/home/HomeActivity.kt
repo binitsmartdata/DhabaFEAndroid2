@@ -380,7 +380,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     override fun onBackPressed() {
         val fragments = supportFragmentManager.backStackEntryCount
         if (fragments == 1) {
-            GlobalUtils.showCustomConfirmationDialog(this, getString(R.string.are_you_sure_to_exit), {
+            GlobalUtils.showCustomConfirmationDialogYesNo(this, getString(R.string.are_you_sure_to_exit), {
                 if (it) {
                     finish()
                 }

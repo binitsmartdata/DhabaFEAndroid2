@@ -126,6 +126,8 @@ interface ApiService {
     @FormUrlEncoded
     @POST("dhaba/updateDhabaStatus")
     suspend fun updateDhabaStatus(
+        @Header("Authorization") token: String,
+        @Field("user_id") user_id: String,
         @Field("_id") _id: String,
         @Field("blockDay") blockDay: String,
         @Field("blockMonth") blockMonth: String,

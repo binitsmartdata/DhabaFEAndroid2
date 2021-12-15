@@ -55,20 +55,29 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, BaseVM>() {
             it?.let {
                 if (GlobalUtils.getNonNullString(it.lastSupportedVersion, "").isNotEmpty()) {
                     if (!GlobalUtils.isCurrentVersionSupported(this@SplashActivity, it.lastSupportedVersion!!)) {
-                        GlobalUtils.showInfoDialog(this@SplashActivity, getString(R.string.force_update_message) + " " + getString(R.string.appName), false, GenericCallBack { isOk ->
-                            it.reLoginRequired?.let {
-                                if (it) {
-                                    SharedPrefsHelper.getInstance(this@SplashActivity).clearData()
-                                }
-                            }
+                        GlobalUtils.showCustomConfirmationDialog(
+                            this@SplashActivity,
+                            getString(R.string.force_update_message),
+                            getString(R.string.update),
+                            getString(R.string.cancel),
+                            GenericCallBack { isYes ->
+                                if (isYes) {
+                                    it.reLoginRequired?.let {
+                                        if (it) {
+                                            SharedPrefsHelper.getInstance(this@SplashActivity).clearData()
+                                        }
+                                    }
 
-                            try {
+                                    try {
 //                                finish()
-                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
-                            } catch (e: ActivityNotFoundException) {
-                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
-                            }
-                        })
+                                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+                                    } catch (e: ActivityNotFoundException) {
+                                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+                                    }
+                                } else {
+                                    finish()
+                                }
+                            })
                     } else {
                         Handler().postDelayed(Runnable { startAuthActivity() }, 1000)
                     }
