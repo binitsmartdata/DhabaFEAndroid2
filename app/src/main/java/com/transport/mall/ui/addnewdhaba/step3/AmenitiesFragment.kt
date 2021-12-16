@@ -50,6 +50,10 @@ class AmenitiesFragment :
         binding.userModel = userModel
 
         fetchAmenitiesData()
+
+        if (isExecutiveReviewingOwnerDhaba()) {
+            binding.btnSaveDraft.visibility = View.INVISIBLE
+        }
     }
 
     private fun fetchAmenitiesData() {
@@ -322,5 +326,13 @@ class AmenitiesFragment :
 
     fun youAreInFocus() {
 
+    }
+
+    fun isExecutiveReviewingOwnerDhaba(): Boolean {
+        if (mListener?.isUpdate()!! && SharedPrefsHelper.getInstance(getmContext()).getUserData().isExecutive()) {
+            return mListener?.getDhabaModelMain()?.dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
+        } else {
+            return false
+        }
     }
 }

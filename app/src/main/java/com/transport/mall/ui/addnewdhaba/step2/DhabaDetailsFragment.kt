@@ -92,6 +92,10 @@ class DhabaDetailsFragment :
         //SETTING EXISTING DATA ON SCREEN
         showDataIfHas()
         setupOpeningTimeView()
+
+        if (isExecutiveReviewingOwnerDhaba()) {
+            binding.btnSaveDraft.visibility = View.INVISIBLE
+        }
     }
 
     private fun showDataIfHas() {
@@ -406,18 +410,18 @@ class DhabaDetailsFragment :
                         if (!it) {
                             showToastInCenter(getString(R.string.error_saving_timing))
                         }
-//                        if (mListener?.isUpdate()!!) {
-                        updateDhabaStatus(true, true)
-//                        } else {
-//                        showMessageAndGoNext()
-//                        }
+                        if (isExecutiveReviewingOwnerDhaba()) {
+                            showMessageAndGoNext()
+                        } else {
+                            updateDhabaStatus(true, true)
+                        }
                     })
                 } else {
-//                    if (mListener?.isUpdate()!!) {
-                    updateDhabaStatus(true, true)
-//                    } else {
-//                    showMessageAndGoNext()
-//                    }
+                    if (isExecutiveReviewingOwnerDhaba()) {
+                        showMessageAndGoNext()
+                    } else {
+                        updateDhabaStatus(true, true)
+                    }
                 }
             }
         } else {
@@ -732,5 +736,13 @@ class DhabaDetailsFragment :
 
     fun youAreInFocus() {
         mListener?.getDhabaModelMain()?.ownerModel?.let { viewModel.dhabaModel.owner_id = it._id }
+    }
+
+    fun isExecutiveReviewingOwnerDhaba(): Boolean {
+        if (mListener?.isUpdate()!! && SharedPrefsHelper.getInstance(getmContext()).getUserData().isExecutive()) {
+            return mListener?.getDhabaModelMain()?.dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
+        } else {
+            return false
+        }
     }
 }
