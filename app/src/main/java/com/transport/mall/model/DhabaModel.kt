@@ -182,13 +182,6 @@ class DhabaModel : Serializable, BaseObservable() {
             field = updatedBy
             notifyPropertyChanged(BR.updatedBy)
         }
-/*
-    var isDeleted: String = "false"
-        @Bindable get() = field
-        set(isDeleted) {
-            field = isDeleted
-            notifyPropertyChanged(BR.isDeleted)
-        }*/
 
     @SerializedName("isActive")
     var active: String? = "true"
@@ -260,6 +253,8 @@ class DhabaModel : Serializable, BaseObservable() {
             field = draft_by
             notifyPropertyChanged(BR.draft_by)
         }
+
+    var dhabaObj: DhabaModel? = null
 
     var isDraft: String = ""
 

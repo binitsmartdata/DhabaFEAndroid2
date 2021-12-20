@@ -2,6 +2,7 @@ package com.transport.mall.ui.viewdhaba
 
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityViewDhabaBinding
@@ -10,6 +11,8 @@ import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -51,6 +54,30 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         setupDhabaCategoryView()
 
         assembleImagesAndShow()
+
+        showDhabaTiming()
+    }
+
+    private fun showDhabaTiming() {
+        if (!viewModel.mDhabaModelMain.dhabaModel?.open247!!) {
+            viewModel.mDhabaModelMain.dhabaTiming?.let {
+                for (timing in it) {
+                    val today = SimpleDateFormat("EEE").format(Date())
+                    if (timing.day.substring(0, 3).equals(today, true)) {
+                        if (timing.isEnabled) {
+                            binding.tvOpen247.setText(getString(R.string.open_) + " " + timing.opening + " " + getString(R.string.to) + " " + timing.closing)
+                            binding.tvOpen247.visibility = View.VISIBLE
+                        } else {
+                            binding.tvOpen247.visibility = View.GONE
+                        }
+                        break
+                    }
+                }
+            }
+        } else {
+            binding.tvOpen247.setText(getString(R.string.open_24_x_7))
+            binding.tvOpen247.visibility = View.VISIBLE
+        }
     }
 
     private fun assembleImagesAndShow() {

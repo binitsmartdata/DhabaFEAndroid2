@@ -19,6 +19,7 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 class DhabaListAdapter(
     val context: Context,
     val dataList: List<DhabaModelMain>,
+    val selectedTab: String?,
     private val deletionCallBack: GenericCallBack<DhabaModel>,
     private val editCallBack: GenericCallBack<Int>,
     private val viewCallBack: GenericCallBack<Int>,
@@ -34,17 +35,17 @@ class DhabaListAdapter(
 
     override fun bindData(position: Int, myViewHolderG: MyViewHolderG?) {
         myViewHolderG?.binding?.context = context
-        myViewHolderG?.binding?.isInProgress = dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_INPROGRESS)
-        myViewHolderG?.binding?.model = dataList[position].dhabaModel
+        myViewHolderG?.binding?.isInProgress = getDhabaModelAsPerTab(position)?.status.equals(DhabaModel.STATUS_INPROGRESS)
+        myViewHolderG?.binding?.model = getDhabaModelAsPerTab(position)
         myViewHolderG?.binding?.owner = dataList[position].ownerModel
         myViewHolderG?.binding?.manager = dataList[position].manager
         myViewHolderG?.binding?.user = userModel
 
         manageIconsVisibility(myViewHolderG, position)
 
-        if (dataList[position].dhabaModel?.dhabaCategory.equals(dataList[position].dhabaModel?.CATEGORY_GOLD, true)) {
+        if (getDhabaModelAsPerTab(position)?.dhabaCategory.equals(getDhabaModelAsPerTab(position)?.CATEGORY_GOLD, true)) {
             myViewHolderG?.binding?.tvCategory?.setBackgroundResource(R.drawable.ic_gold_hotel_type)
-        } else if (dataList[position].dhabaModel?.dhabaCategory.equals(dataList[position].dhabaModel?.CATEGORY_BRONZE, true)) {
+        } else if (getDhabaModelAsPerTab(position)?.dhabaCategory.equals(getDhabaModelAsPerTab(position)?.CATEGORY_BRONZE, true)) {
             myViewHolderG?.binding?.tvCategory?.setBackgroundResource(R.drawable.ic_bronze_hotel_type)
         } else {
             myViewHolderG?.binding?.tvCategory?.setBackgroundResource(R.drawable.ic_silver_hotel_type)
@@ -58,7 +59,7 @@ class DhabaListAdapter(
         myViewHolderG?.binding?.ivDelete?.setOnClickListener {
             GlobalUtils.showConfirmationDialogYesNo(context, context.getString(R.string.deletion_confirmation), GenericCallBack {
                 if (it) {
-                    deletionCallBack.onResponse(dataList[position].dhabaModel)
+                    deletionCallBack.onResponse(getDhabaModelAsPerTab(position))
                 }
             })
         }
@@ -72,19 +73,21 @@ class DhabaListAdapter(
         }
 
         myViewHolderG?.binding?.ivLocation?.setOnClickListener {
-//            val uri: String = java.lang.String.format(Locale.ENGLISH, "geo:%f,%f", dataList[position].dhabaModel!!.latitude, dataList[position].dhabaModel!!.longitude)
+//            val uri: String = java.lang.String.format(Locale.ENGLISH, "geo:%f,%f", getDhabaModelAsPerTab(position)!!.latitude, getDhabaModelAsPerTab(position)!!.longitude)
             val geoUri =
-                "http://maps.google.com/maps?q=loc:" + dataList[position].dhabaModel!!.latitude.toString() + "," + dataList[position].dhabaModel!!.longitude.toString() + " (" + dataList[position].dhabaModel!!.name + ")"
+                "http://maps.google.com/maps?q=loc:" + getDhabaModelAsPerTab(position)!!.latitude.toString() + "," + getDhabaModelAsPerTab(position)!!.longitude.toString() + " (" + getDhabaModelAsPerTab(
+                    position
+                )!!.name + ")"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
             context.startActivity(intent)
         }
         myViewHolderG?.binding?.llAssignMgr?.setOnClickListener {
             if (dataList[position].manager == null) {
-                DailogAddManager(context, dataList[position].ownerModel!!, dataList[position].dhabaModel!!, GenericCallBack {
+                DailogAddManager(context, dataList[position].ownerModel!!, getDhabaModelAsPerTab(position)!!, GenericCallBack {
                     if (it != null) {
                         dataList[position].manager = it
                         notifyDataSetChanged()
-                        RxBus.publish(dataList[position].dhabaModel!!)
+                        RxBus.publish(getDhabaModelAsPerTab(position)!!)
                     }
                 }).show()
             }
@@ -95,19 +98,23 @@ class DhabaListAdapter(
     }
 
     private fun manageIconsVisibility(myViewHolderG: MyViewHolderG?, position: Int) {
-        val latitude = GlobalUtils.getNonNullString(dataList[position].dhabaModel?.latitude, "0")
-        val longitude = GlobalUtils.getNonNullString(dataList[position].dhabaModel?.longitude, "0")
+        val latitude = GlobalUtils.getNonNullString(getDhabaModelAsPerTab(position)?.latitude, "0")
+        val longitude = GlobalUtils.getNonNullString(getDhabaModelAsPerTab(position)?.longitude, "0")
 
         var dhabaStatus = ""
         //  ANALYSING THE CORRECT STATUS OF DHABA
-        if (dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_PENDING)) {
-            if (dataList[position].dhabaModel?.draft_by.equals(SharedPrefsHelper.getInstance(context).getUserData()._id)) {
-                dhabaStatus = DhabaModel.STATUS_PENDING
-            } else {
-                dhabaStatus = DhabaModel.STATUS_INPROGRESS
-            }
+        if (selectedTab != null && selectedTab.equals(DhabaModel.STATUS_ACTIVE)) {
+            dhabaStatus = DhabaModel.STATUS_ACTIVE
         } else {
-            dhabaStatus = dataList[position].dhabaModel?.status.toString()
+            if (getDhabaModelAsPerTab(position)?.status.equals(DhabaModel.STATUS_PENDING)) {
+                if (getDhabaModelAsPerTab(position)?.draft_by.equals(SharedPrefsHelper.getInstance(context).getUserData()._id)) {
+                    dhabaStatus = DhabaModel.STATUS_PENDING
+                } else {
+                    dhabaStatus = DhabaModel.STATUS_INPROGRESS
+                }
+            } else {
+                dhabaStatus = getDhabaModelAsPerTab(position)?.status.toString()
+            }
         }
         myViewHolderG?.binding?.dhabaStatus = dhabaStatus
         //-----------------
@@ -123,14 +130,22 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility =
                     if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()
-                        && dataList[position].dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
+                        && getDhabaModelAsPerTab(position)?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
                     ) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
             DhabaModel.STATUS_ACTIVE -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
-                myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                // IF THE DHABA WAS ACTIVE BUT ITS DRAFTED BY ANOTHER PERSON. HIDE EDIT ICON
+                if (selectedTab.equals(DhabaModel.STATUS_ACTIVE)) {
+                    myViewHolderG?.binding?.ivEdit?.visibility =
+                        if (dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_PENDING) && !dataList[position].dhabaModel?.draft_by.equals(userModel._id)) View.GONE
+                        else View.VISIBLE
+                } else {
+                    myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                }
+                //------------------------
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
@@ -140,6 +155,17 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
+        }
+    }
+
+    fun getDhabaModelAsPerTab(position: Int): DhabaModel? {
+        if (selectedTab.equals(DhabaModel.STATUS_ACTIVE)
+            && dataList[position].dhabaModel?.dhabaObj != null
+            && GlobalUtils.getNonNullString(dataList[position].dhabaModel?.dhabaObj?.name, "").isNotEmpty()
+        ) {
+            return dataList[position].dhabaModel?.dhabaObj
+        } else {
+            return dataList[position].dhabaModel
         }
     }
 

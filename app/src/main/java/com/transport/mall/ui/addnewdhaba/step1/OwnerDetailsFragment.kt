@@ -117,6 +117,15 @@ class OwnerDetailsFragment :
                 showExistingUserDetails(loggedInUser)
             }
         }
+
+        // DISABLE PHONE NUMBER VIEW IF SO THAT EXECUTIVE CANNOT CHANGE IT FOR OWNER'S PROFILE
+        if (SharedPrefsHelper.getInstance(getmContext()).getUserData().isExecutive()) {
+            if (viewModel.ownerModel.mobile.trim()?.isNotEmpty()!!) {
+                if (mListener?.isUpdate()!! || isSearched) {
+                    binding.edPhoneNumber.isEnabled = false
+                }
+            }
+        }
     }
 
     override fun initListeners() {

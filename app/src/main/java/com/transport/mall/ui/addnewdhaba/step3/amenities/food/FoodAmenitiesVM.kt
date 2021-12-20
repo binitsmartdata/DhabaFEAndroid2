@@ -42,7 +42,7 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.foodAt100, "")),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
-                        RequestBody.create(MultipartBody.FORM, model.food),
+                        RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.food, "")),
                         RequestBody.create(MultipartBody.FORM, model.foodLisence),
                         getMultipartImageFile(model.foodLisenceFile, "foodLisenceFile"),
                         getMultipartImagesList(model.images, "images")
@@ -70,7 +70,7 @@ class FoodAmenitiesVM(application: Application) : BaseVM(application) {
                         RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.foodAt100, "")),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
                         RequestBody.create(MultipartBody.FORM, model.roCleanWater),
-                        RequestBody.create(MultipartBody.FORM, model.food),
+                        RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.food, "")),
                         RequestBody.create(MultipartBody.FORM, model.foodLisence),
                         getMultipartImageFile(model.foodLisenceFile, "foodLisenceFile"),
                         getMultipartImagesList(model.images, "images")

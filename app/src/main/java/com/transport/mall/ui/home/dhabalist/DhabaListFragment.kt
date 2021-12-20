@@ -84,7 +84,7 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
     }
 
     private fun initDhabaListAdapter(dhabaList: ArrayList<DhabaModelMain>) {
-        dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList, { deletedDhaba -> // dhaba deletion listener
+        dhabaListAdapter = DhabaListAdapter(activity as Context, dhabaList, status, { deletedDhaba -> // dhaba deletion listener
             viewModel.updateDhabaStatus(
                 activity as Context,
                 deletedDhaba.isDraft.toBoolean(),

@@ -115,8 +115,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:text="@string/open_24_x_7"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:visibility="@{dhabaModelMain.dhabaModel.open247 ? View.VISIBLE : View.GONE}" />
+                        android:textSize="14sp"/>
 
                     <View
                         android:layout_width="match_parent"
