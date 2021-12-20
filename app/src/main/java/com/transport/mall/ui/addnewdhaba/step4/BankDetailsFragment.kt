@@ -15,10 +15,7 @@ import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentBankDetailsBinding
-import com.transport.mall.model.BankDetailsModel
-import com.transport.mall.model.BankNamesModel
-import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.model.*
 import com.transport.mall.ui.customdialogs.ConfirmationDialog
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.home.CommonActivity
@@ -70,6 +67,10 @@ class BankDetailsFragment :
             }
         })
 */
+
+        if (isExecutiveReviewingOwnerDhaba()) {
+            binding.btnSaveDraft.visibility = View.INVISIBLE
+        }
     }
 
     private fun showDataIfHas() {
@@ -326,5 +327,13 @@ class BankDetailsFragment :
         }*/
         mListener?.getDhabaModelMain()?.ownerModel?.let { viewModel.bankModel.user_id = it._id }
         mListener?.getDhabaModelMain()?.dhabaModel?.let { viewModel.dhabaModel = it }
+    }
+
+    fun isExecutiveReviewingOwnerDhaba(): Boolean {
+        if (mListener?.isUpdate()!! && SharedPrefsHelper.getInstance(getmContext()).getUserData().isExecutive()) {
+            return mListener?.getDhabaModelMain()?.dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
+        } else {
+            return false
+        }
     }
 }
