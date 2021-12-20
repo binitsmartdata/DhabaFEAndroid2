@@ -40,6 +40,10 @@
             type="com.transport.mall.model.UserModel" />
 
         <variable
+            name="dhabaStatus"
+            type="String" />
+
+        <variable
             name="callback"
             type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
 
@@ -72,16 +76,17 @@
                     android:scaleType="centerCrop" />
 
                 <TextView
+                    android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/opensans_semibold"
                     android:paddingHorizontal="@dimen/_7sdp"
                     android:paddingVertical="@dimen/_3sdp"
-                    android:text="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? `Draft` : model.status.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS) ? `In Review` :model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? `Active` : `Inactive`}"
-                    android:textColor="@{(model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) || model.status.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? context.getColor(R.color.gold) :model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
+                    android:text="@{dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? `Draft` : dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS) ? `In Review` :dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? `Active` : `Inactive`}"
+                    android:textColor="@{(dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) || dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? context.getColor(R.color.gold) :dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
                     android:textSize="13sp"
-                    app:backgroundResource="@{(model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) || model.status.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? R.drawable.bg_pending_dhaba_status : model.status.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? R.drawable.bg_active_dhaba_status :  R.drawable.bg_inactive_dhaba_status}" />
+                    app:backgroundResource="@{(dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) || dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? R.drawable.bg_pending_dhaba_status : dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? R.drawable.bg_active_dhaba_status :  R.drawable.bg_inactive_dhaba_status}" />
 
 <!--            this is for showing status    android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"-->
 
