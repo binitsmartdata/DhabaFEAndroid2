@@ -98,7 +98,21 @@ class DhabaListAdapter(
         val latitude = GlobalUtils.getNonNullString(dataList[position].dhabaModel?.latitude, "0")
         val longitude = GlobalUtils.getNonNullString(dataList[position].dhabaModel?.longitude, "0")
 
-        when (dataList[position].dhabaModel?.status) {
+        var dhabaStatus = ""
+        //  ANALYSING THE CORRECT STATUS OF DHABA
+        if (dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_PENDING)) {
+            if (dataList[position].dhabaModel?.draft_by.equals(SharedPrefsHelper.getInstance(context).getUserData()._id)) {
+                dhabaStatus = DhabaModel.STATUS_PENDING
+            } else {
+                dhabaStatus = DhabaModel.STATUS_INPROGRESS
+            }
+        } else {
+            dhabaStatus = dataList[position].dhabaModel?.status.toString()
+        }
+        myViewHolderG?.binding?.dhabaStatus = dhabaStatus
+        //-----------------
+
+        when (dhabaStatus) {
             DhabaModel.STATUS_PENDING -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
                 myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE

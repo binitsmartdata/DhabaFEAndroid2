@@ -254,6 +254,12 @@ class DhabaModel : Serializable, BaseObservable() {
             field = approval_by
             notifyPropertyChanged(BR.approval_by)
         }
+    var draft_by: String = ""
+        @Bindable get() = field
+        set(draft_by) {
+            field = draft_by
+            notifyPropertyChanged(BR.draft_by)
+        }
 
     var isDraft: String = ""
 
