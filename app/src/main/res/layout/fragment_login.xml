@@ -143,10 +143,11 @@
                     <LinearLayout
                         android:id="@+id/editlayout"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_46sdp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/dark_bg_new_theme"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_8sdp"
                         android:visibility="@{isOwnerLogin ? View.VISIBLE : View.GONE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

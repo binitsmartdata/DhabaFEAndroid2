@@ -280,4 +280,10 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
         super.onResume()
         Handler(Looper.getMainLooper()).postDelayed(Runnable { GlobalUtils.hideKeyboard(getmContext(), binding.edSearch) }, 100)
     }
+
+    fun onFocused() {
+        if (!binding.swipeRefreshLayout?.isRefreshing) {
+            onRefresh()
+        }
+    }
 }

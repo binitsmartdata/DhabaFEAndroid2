@@ -51,9 +51,9 @@ class AmenitiesFragment :
 
         fetchAmenitiesData()
 
-        if (isExecutiveReviewingOwnerDhaba()) {
+        /*if (isExecutiveReviewingOwnerDhaba()) {
             binding.btnSaveDraft.visibility = View.INVISIBLE
-        }
+        }*/
     }
 
     private fun fetchAmenitiesData() {

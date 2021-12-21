@@ -103,8 +103,8 @@ class DhabaListAdapter(
 
         var dhabaStatus = ""
         //  ANALYSING THE CORRECT STATUS OF DHABA
-        if (selectedTab != null && selectedTab.equals(DhabaModel.STATUS_ACTIVE)) {
-            dhabaStatus = DhabaModel.STATUS_ACTIVE
+        if (selectedTab != null) {
+            dhabaStatus = selectedTab
         } else {
             if (getDhabaModelAsPerTab(position)?.status.equals(DhabaModel.STATUS_PENDING)) {
                 if (getDhabaModelAsPerTab(position)?.draft_by.equals(SharedPrefsHelper.getInstance(context).getUserData()._id)) {

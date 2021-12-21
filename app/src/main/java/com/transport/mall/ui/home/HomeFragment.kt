@@ -4,6 +4,7 @@ import android.app.Activity
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.viewpager.widget.ViewPager
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentHomeBinding
@@ -47,17 +48,44 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeVM>() {
             childFragmentManager
         )
 
+        val fragment1 = DhabaListFragment.newInstance(DhabaModel.STATUS_PENDING)
+        val fragment2 = DhabaListFragment.newInstance(DhabaModel.STATUS_INPROGRESS)
+        val fragment3 = DhabaListFragment.newInstance(DhabaModel.STATUS_ACTIVE)
+        val fragment4 = DhabaListFragment.newInstance(DhabaModel.STATUS_INACTIVE)
+
         if (userModel?.isOwner()!! || userModel?.isManager()!!) {
             adapter.addFrag(DhabaListFragment.newInstance(null), getString(R.string.pending))
         } else {
-            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_PENDING), getString(R.string.pending))
-            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_INPROGRESS), getString(R.string.in_review))
-            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_ACTIVE), getString(R.string.active))
-            adapter.addFrag(DhabaListFragment.newInstance(DhabaModel.STATUS_INACTIVE), getString(R.string.inactive))
+            adapter.addFrag(fragment1, getString(R.string.pending))
+            adapter.addFrag(fragment2, getString(R.string.in_review))
+            adapter.addFrag(fragment3, getString(R.string.active))
+            adapter.addFrag(fragment4, getString(R.string.inactive))
         }
 
         // set adapter on viewpager
         binding.viewPager.adapter = adapter
+        if (!userModel?.isOwner()!! && !userModel?.isManager()!!) {
+            binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(state: Int) {
+                }
+
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    when (position) {
+                        0 -> fragment1.onFocused()
+                        1 -> fragment2.onFocused()
+                        2 -> fragment3.onFocused()
+                        3 -> fragment4.onFocused()
+                    }
+                }
+
+                override fun onPageSelected(position: Int) {
+                }
+            })
+        }
     }
 
     override fun initListeners() {

@@ -86,7 +86,7 @@
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            android:visibility="@{dhabaModelMain.dhabaModel.dhabaCategory.isEmpty() ? View.GONE : View.VISIBLE}" />
+                            android:visibility="@{dhabaModelMain.dhabaModel.dhabaCategory.isEmpty() ? View.GONE : View.GONE}" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 

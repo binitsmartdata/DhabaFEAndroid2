@@ -93,9 +93,9 @@ class DhabaDetailsFragment :
         showDataIfHas()
         setupOpeningTimeView()
 
-        if (isExecutiveReviewingOwnerDhaba()) {
+        /*if (isExecutiveReviewingOwnerDhaba()) {
             binding.btnSaveDraft.visibility = View.INVISIBLE
-        }
+        }*/
     }
 
     private fun showDataIfHas() {
@@ -410,18 +410,18 @@ class DhabaDetailsFragment :
                         if (!it) {
                             showToastInCenter(getString(R.string.error_saving_timing))
                         }
-                        if (isExecutiveReviewingOwnerDhaba()) {
-                            showMessageAndGoNext()
-                        } else {
+//                        if (isExecutiveReviewingOwnerDhaba()) {
+//                            showMessageAndGoNext()
+//                        } else {
                             updateDhabaStatus(true, true)
-                        }
+//                        }
                     })
                 } else {
-                    if (isExecutiveReviewingOwnerDhaba()) {
-                        showMessageAndGoNext()
-                    } else {
+//                    if (isExecutiveReviewingOwnerDhaba()) {
+//                        showMessageAndGoNext()
+//                    } else {
                         updateDhabaStatus(true, true)
-                    }
+//                    }
                 }
             }
         } else {

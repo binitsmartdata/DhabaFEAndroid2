@@ -4,7 +4,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_splash"
+        android:background="@drawable/bg_gradient"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -16,6 +16,15 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_logo_splash_white"
             android:transitionName="appLogo" />
+
+        <ImageView
+            android:id="@+id/ivDotLines"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="-70dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_mask" />
 
     </FrameLayout>
 
