@@ -88,7 +88,7 @@
                     android:textSize="13sp"
                     app:backgroundResource="@{(dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) || dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? R.drawable.bg_pending_dhaba_status : dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? R.drawable.bg_active_dhaba_status :  R.drawable.bg_inactive_dhaba_status}" />
 
-<!--            this is for showing status    android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"-->
+                <!--            this is for showing status    android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"-->
 
             </LinearLayout>
 
@@ -132,8 +132,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_regular"
                     android:orientation="vertical"
-                    android:text="@{model.address}"
+                    android:text="@{model.address.trim().isEmpty() ? `` : model.address.trim().replace(`false`,``)}"
                     android:textColor="@color/black"
+                    android:visibility="@{model.address.trim().isEmpty() ? View.GONE : View.VISIBLE}"
                     android:textSize="13sp" />
 
                 <LinearLayout
@@ -147,9 +148,10 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
-                        android:text="@{model.highway}"
+                        android:text="@{model.highway.trim().isEmpty() ? `` : model.highway.replace(`false`,``)}"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:visibility="@{model.highway.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
@@ -166,9 +168,10 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
-                        android:text="@{model.city}"
+                        android:text="@{model.city.trim().isEmpty() ? `` : model.city.replace(`false`,``)}"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:visibility="@{model.city.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -244,9 +247,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
             android:paddingEnd="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
             android:visibility="@{user.isExecutive() ? View.VISIBLE : View.GONE}">
 
             <LinearLayout
@@ -398,9 +401,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:visibility="gone"
                 android:gravity="right|center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tvVerified"

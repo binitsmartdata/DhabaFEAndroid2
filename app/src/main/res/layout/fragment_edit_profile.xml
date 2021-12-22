@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,198 +12,205 @@
 
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="@dimen/_2sdp">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/openSemiBoldTextStyle"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4sdp"
-                android:padding="@dimen/_13sdp"
-                android:text="@string/edit_profile"
-                android:textColor="#100F0F"
-                android:textSize="@dimen/_16ssp" />
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="@dimen/_2sdp">
 
-        </androidx.cardview.widget.CardView>
+                <TextView
+                    style="@style/openSemiBoldTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:padding="@dimen/_13sdp"
+                    android:text="@string/edit_profile"
+                    android:textColor="#100F0F"
+                    android:textSize="@dimen/_16ssp" />
 
-
-        <FrameLayout
-            android:id="@+id/frameImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_40sdp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/ivProfileImg"
-                loadProfileImage="@{userModel.ownerPic}"
-                placeholder="@{R.drawable.ic_user_placeholder}"
-                android:layout_width="90dp"
-                android:layout_height="90dp" />
-
-            <ImageView
-                android:id="@+id/ivEditPhoto"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="right|bottom"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:background="@drawable/red_circle"
-                android:onClick="@{()->ivProfileImg.performClick()}"
-                android:padding="5dp"
-                android:src="@drawable/camera"
-                app:tint="@color/white" />
-
-        </FrameLayout>
+            </androidx.cardview.widget.CardView>
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_10sdp"
-            android:layout_weight="1"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_3sdp"
-            app:cardElevation="@dimen/_2sdp">
+            <FrameLayout
+                android:id="@+id/frameImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_40sdp">
 
-            <LinearLayout
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivProfileImg"
+                    loadProfileImage="@{userModel.ownerPic}"
+                    placeholder="@{R.drawable.ic_user_placeholder}"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp" />
+
+                <ImageView
+                    android:id="@+id/ivEditPhoto"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/red_circle"
+                    android:onClick="@{()->ivProfileImg.performClick()}"
+                    android:padding="5dp"
+                    android:src="@drawable/camera"
+                    app:tint="@color/white" />
+
+            </FrameLayout>
+
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilName"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/name"
-                    app:boxStrokeColor="@color/input_selector"
-                    app:boxStrokeWidth="0.6dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="text"
-                        android:text="@={userModel.ownerName}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilEmail"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/email"
-                    app:boxStrokeColor="@color/input_selector"
-                    app:boxStrokeWidth="0.6dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:inputType="textEmailAddress"
-                        android:text="@={userModel.email}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_3sdp"
+                app:cardElevation="@dimen/_2sdp">
 
                 <LinearLayout
-                    android:id="@+id/editlayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="23dp"
-                    android:background="@drawable/grey_dark_stroke"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingVertical="@dimen/_2sdp">
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
 
-                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                        android:id="@+id/ccpCountryCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:gravity="center"
-                        app:ccp_defaultCode="91"
-                        android:visibility="gone"
-                        app:ccp_hideNameCode="true"
-                        app:ccp_hidePhoneCode="true"
-                        app:ccp_textSize="16sp" />
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:src="@drawable/flag_india" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:fontFamily="@font/opensans_regular"
-                        android:padding="@dimen/_5sdp"
-                        android:text="IN +91"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-                    <View
-                        android:layout_width="0.5dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_2sdp"
-                        android:background="@color/grey_stroke" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edPhoneNumber"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilName"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/enter_mobile_number_mandatory"
-                        android:inputType="phone"
-                        android:maxLength="10"
-                        android:padding="@dimen/_10sdp"
-                        android:paddingVertical="@dimen/_2sdp"
-                        android:text="@={userModel.mobile}"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/grey"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:hint="@string/name"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.6dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:inputType="text"
+                            android:text="@={userModel.ownerName}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilEmail"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:hint="@string/email"
+                        app:boxStrokeColor="@color/input_selector"
+                        app:boxStrokeWidth="0.6dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:inputType="textEmailAddress"
+                            android:text="@={userModel.email}"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/editlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:background="@drawable/grey_dark_stroke"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="@dimen/_2sdp">
+
+                        <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                            android:id="@+id/ccpCountryCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            app:ccp_defaultCode="91"
+                            app:ccp_hideNameCode="true"
+                            app:ccp_hidePhoneCode="true"
+                            app:ccp_textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:src="@drawable/flag_india" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/opensans_regular"
+                            android:padding="@dimen/_5sdp"
+                            android:text="IN +91"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:background="@color/grey_stroke" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/enter_mobile_number_mandatory"
+                            android:inputType="phone"
+                            android:maxLength="10"
+                            android:padding="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_2sdp"
+                            android:text="@={userModel.mobile}"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/grey"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnUpdateProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_32sdp"
+                        android:background="@drawable/primary_color_btn_selector"
+                        android:fontFamily="@font/opensans_bold"
+                        android:text="@string/update"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
                 </LinearLayout>
-
-                <View
-                    android:id="@+id/viewEmpty"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnUpdateProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_32sdp"
-                    android:background="@drawable/primary_color_btn_selector"
-                    android:fontFamily="@font/opensans_bold"
-                    android:text="@string/update"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 </layout>

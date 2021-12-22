@@ -201,6 +201,7 @@
                                 android:hint="@string/enter_mobile_number_mandatory"
                                 android:inputType="phone"
                                 android:maxLength="10"
+                                android:enabled="false"
                                 android:padding="@dimen/_10sdp"
                                 android:paddingVertical="@dimen/_2sdp"
                                 android:text="@={userModel.mobile}"
