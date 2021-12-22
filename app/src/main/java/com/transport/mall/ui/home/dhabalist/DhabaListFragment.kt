@@ -32,6 +32,7 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
  * Created by Parambir Singh on 2020-01-24.
  */
 class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(), SwipeRefreshLayout.OnRefreshListener {
+    private var isLoadingData: Boolean = false
     override val layoutId: Int
         get() = R.layout.fragment_dhaba_list
     override var viewModel: DhabaListVM
@@ -107,7 +108,11 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
             sendForApproval(dhabaList, sendForApprovalPosition)
         })
         dhabaListAdapter?.setOnLoadMoreListener {
-            page++
+            if (!isLoadingData) {
+                page++
+            } else {
+                page = 1
+            }
             refreshDhabaList()
         }
         binding.recyclerView.layoutManager =
@@ -223,6 +228,7 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
     }
 
     private fun refreshDhabaList() {
+        isLoadingData = true
         viewModel.getAllDhabaList(
             SharedPrefsHelper.getInstance(getmContext()).getUserData().accessToken,
             limit,
@@ -231,6 +237,7 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
             binding.edSearch.text.toString(),
             status,
             GenericCallBack {
+                isLoadingData = false
                 dhabaListAdapter?.removeLoadingView(dhabaList.size)
                 if (it != null && it.isNotEmpty()) {
                     if (page == 1) {
@@ -282,7 +289,7 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
     }
 
     fun onFocused() {
-        if (!binding.swipeRefreshLayout?.isRefreshing) {
+        if (!isLoadingData) {
             onRefresh()
         }
     }

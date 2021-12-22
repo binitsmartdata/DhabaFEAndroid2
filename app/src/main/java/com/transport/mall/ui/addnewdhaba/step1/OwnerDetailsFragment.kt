@@ -403,6 +403,8 @@ class OwnerDetailsFragment :
             if (binding.userModel!!.isOwner() && binding.userModel!!._id.equals(mListener?.getDhabaModelMain()?.ownerModel?._id)) {
                 binding.userModel!!.populateData(it.data)
                 SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                //NOTIFY THAT USER MODEL IS UPDATED
+                RxBus.publish(it.data!!)
             }
             //---------
 

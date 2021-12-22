@@ -6,15 +6,20 @@ import android.graphics.PorterDuff
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.ActivityHomeBinding
-import com.transport.mall.model.*
+import com.transport.mall.model.SideMenu
+import com.transport.mall.model.TermsConditionsModel
+import com.transport.mall.model.Toolbar
+import com.transport.mall.model.UserModel
 import com.transport.mall.repository.commonprocesses.CityStateHighwayBanksFetcher
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
@@ -85,7 +90,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
                 Log.e("CITY STATE BANKS HWAYS", "FAILED FOR $failedThings")
             }
         })
-
     }
 
     private fun setUserData() {

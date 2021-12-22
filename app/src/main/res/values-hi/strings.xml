@@ -533,4 +533,5 @@
     <string name="to">से</string>
     <string name="unable_to_get_current_location">वर्तमान स्थान प्राप्त करने में असमर्थ।</string>
     <string name="location_permission_confirmation">कृपया स्थान अनुमति को वर्तमान स्थान तक पहुंचने की अनुमति दें।</string>
+    <string name="update_and_next">अद्यतन और अगला</string>
 </resources>

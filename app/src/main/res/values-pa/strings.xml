@@ -526,4 +526,5 @@
     <string name="to">ਤੋਂ</string>
     <string name="unable_to_get_current_location">ਮੌਜੂਦਾ ਟਿਕਾਣਾ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ।</string>
     <string name="location_permission_confirmation">ਕਿਰਪਾ ਕਰਕੇ ਮੌਜੂਦਾ ਟਿਕਾਣੇ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਲਈ ਟਿਕਾਣਾ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
+    <string name="update_and_next">ਅੱਪਡੇਟ ਅਤੇ ਅੱਗੇ</string>
 </resources>

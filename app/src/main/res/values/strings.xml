@@ -608,5 +608,6 @@
     <string name="to">to</string>
     <string name="unable_to_get_current_location">Unable to get current location.</string>
     <string name="location_permission_confirmation">Please allow location permission to access current location.</string>
+    <string name="update_and_next">Update &amp; Next</string>
 
 </resources>
