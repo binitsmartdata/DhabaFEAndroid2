@@ -522,4 +522,8 @@
     <string name="are_you_sure_to_exit">ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਹੁਣ ਬਾਹਰ ਆਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="no_dhaba_for_filters">ਲਾਗੂ ਕੀਤੇ ਫਿਲਟਰਾਂ ਲਈ ਕੋਈ ਢਾਬਾ ਨਹੀਂ ਮਿਲਿਆ</string>
     <string name="filters_validation">ਕਿਰਪਾ ਕਰਕੇ ਲਾਗੂ ਕਰਨ ਲਈ ਕੁਝ ਫਿਲਟਰ ਚੁਣੋ।</string>
+    <string name="open_">ਖੁੱਲ੍ਹਿਆ</string>
+    <string name="to">ਤੋਂ</string>
+    <string name="unable_to_get_current_location">ਮੌਜੂਦਾ ਟਿਕਾਣਾ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ।</string>
+    <string name="location_permission_confirmation">ਕਿਰਪਾ ਕਰਕੇ ਮੌਜੂਦਾ ਟਿਕਾਣੇ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਲਈ ਟਿਕਾਣਾ ਇਜਾਜ਼ਤ ਦਿਓ।</string>
 </resources>

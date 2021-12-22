@@ -43,8 +43,6 @@ import com.transport.mall.utils.getCurrentLocation
 import com.transport.mall.utils.xloadImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 /**
@@ -413,14 +411,14 @@ class DhabaDetailsFragment :
 //                        if (isExecutiveReviewingOwnerDhaba()) {
 //                            showMessageAndGoNext()
 //                        } else {
-                            updateDhabaStatus(true, true)
+                        updateDhabaStatus(true, true)
 //                        }
                     })
                 } else {
 //                    if (isExecutiveReviewingOwnerDhaba()) {
 //                        showMessageAndGoNext()
 //                    } else {
-                        updateDhabaStatus(true, true)
+                    updateDhabaStatus(true, true)
 //                    }
                 }
             }

@@ -326,7 +326,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMyLocationEnabled(true);
+        try {
+            mMap.setMyLocationEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //enable location button
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setCompassEnabled(false);

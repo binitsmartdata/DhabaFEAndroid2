@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
+import com.transport.mall.R
 import com.transport.mall.utils.common.GenericCallBack
 
 fun Snackbar.withColor(@ColorInt colorInt: Int): Snackbar {
@@ -122,7 +123,7 @@ fun Fragment.getCurrentLocation(callBack: GenericCallBack<LatLng>) {
     }
     fusedLocationProviderClient.lastLocation.addOnFailureListener {
         Log.e("LAST LOCATIONS ::", "$it")
-        Toast.makeText(activity, "Unable to get last location ", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, getString(R.string.unable_to_get_current_location), Toast.LENGTH_SHORT).show()
         callBack.onResponse(null)
     }
 

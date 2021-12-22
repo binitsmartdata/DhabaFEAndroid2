@@ -529,4 +529,8 @@
     <string name="are_you_sure_to_exit">क्या आप वाकई बाहर निकलना चाहते हैं?</string>
     <string name="no_dhaba_for_filters">लागू फ़िल्टर के लिए कोई ढाबा नहीं मिला</string>
     <string name="filters_validation">कृपया लागू करने के लिए कुछ फ़िल्टर चुनें।</string>
+    <string name="open_">खुला</string>
+    <string name="to">से</string>
+    <string name="unable_to_get_current_location">वर्तमान स्थान प्राप्त करने में असमर्थ।</string>
+    <string name="location_permission_confirmation">कृपया स्थान अनुमति को वर्तमान स्थान तक पहुंचने की अनुमति दें।</string>
 </resources>
