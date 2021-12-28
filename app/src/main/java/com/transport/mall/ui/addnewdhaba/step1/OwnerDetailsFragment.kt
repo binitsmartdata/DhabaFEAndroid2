@@ -110,7 +110,8 @@ class OwnerDetailsFragment :
             binding.ccpCountryCode.setCountryForPhoneCode(91)
             binding.ccpCountryCodeAlt.setCountryForPhoneCode(91)
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
-            viewModel.ownerModel.alternativeMobilePrefix = binding.ccpCountryCodeAlt.selectedCountryCode
+            viewModel.ownerModel.alternativeMobilePrefix =
+                binding.ccpCountryCodeAlt.selectedCountryCode
 
             val loggedInUser = SharedPrefsHelper.getInstance(getmContext()).getUserData()
             if (loggedInUser.isOwner() || loggedInUser.isManager()) {
@@ -175,7 +176,10 @@ class OwnerDetailsFragment :
                     DialogInterface.OnClickListener { dialogInterface, i ->
                         when (i) {
                             0 -> {
-                                ImagePagerActivity.startForSingle(getmContext(), viewModel.ownerModel.ownerPic)
+                                ImagePagerActivity.startForSingle(
+                                    getmContext(),
+                                    viewModel.ownerModel.ownerPic
+                                )
                             }
                             1 -> {
                                 openOwnerImgPicker()
@@ -197,7 +201,10 @@ class OwnerDetailsFragment :
                     DialogInterface.OnClickListener { dialogInterface, i ->
                         when (i) {
                             0 -> {
-                                ImagePagerActivity.startForSingle(getmContext(), viewModel.ownerModel.idproofFront)
+                                ImagePagerActivity.startForSingle(
+                                    getmContext(),
+                                    viewModel.ownerModel.idproofFront
+                                )
                             }
                             1 -> {
                                 launchFrontImgPicker()
@@ -218,7 +225,10 @@ class OwnerDetailsFragment :
                     DialogInterface.OnClickListener { dialogInterface, i ->
                         when (i) {
                             0 -> {
-                                ImagePagerActivity.startForSingle(getmContext(), viewModel.ownerModel.idproofBack)
+                                ImagePagerActivity.startForSingle(
+                                    getmContext(),
+                                    viewModel.ownerModel.idproofBack
+                                )
                             }
                             1 -> {
                                 launchBackImgPicker()
@@ -254,9 +264,13 @@ class OwnerDetailsFragment :
             android.R.layout.simple_list_item_1, menuArray2
         )
         binding.edSelectDesignation.setOnClickListener {
-            DialogDropdownOptions(getmContext(), getString(R.string.alternative_contact_designation), designationAdapter, {
-                viewModel.ownerModel.alternateDesignation = menuArray2[it]
-            }).show()
+            DialogDropdownOptions(
+                getmContext(),
+                getString(R.string.alternative_contact_designation),
+                designationAdapter,
+                {
+                    viewModel.ownerModel.alternateDesignation = menuArray2[it]
+                }).show()
         }
 
         binding.ivDeleteFront.setOnClickListener {
@@ -271,7 +285,8 @@ class OwnerDetailsFragment :
                     //UPDATE OWNER'S DETAILS IN USER'S DATA BECAUSE OWNER IS THE SAME USER WHO HAS LOGGED IN
                     if (binding.userModel!!.isOwner() && binding.userModel!!._id.equals(mListener?.getDhabaModelMain()?.ownerModel?._id)) {
                         binding.userModel!!.idproofFront = ""
-                        SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                        SharedPrefsHelper.getInstance(getmContext())
+                            .setUserData(binding.userModel!!)
                     }
                     //---------
                 } else {
@@ -291,7 +306,8 @@ class OwnerDetailsFragment :
                     //UPDATE OWNER'S DETAILS IN USER'S DATA BECAUSE OWNER IS THE SAME USER WHO HAS LOGGED IN
                     if (binding.userModel!!.isOwner() && binding.userModel!!._id.equals(mListener?.getDhabaModelMain()?.ownerModel?._id)) {
                         binding.userModel!!.idproofBack = ""
-                        SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                        SharedPrefsHelper.getInstance(getmContext())
+                            .setUserData(binding.userModel!!)
                     }
                     //---------
                 } else {
@@ -379,14 +395,21 @@ class OwnerDetailsFragment :
             getmContext(),
             GenericCallBackTwoParams { hasEverything, message ->
                 if (hasEverything) {
-                    if (viewModel.ownerModel._id.isNotEmpty()) {
-                        viewModel.updateOwner(GenericCallBack {
-                            handleData(it, isDraft)
-                        })
+                    if (isDraft) {
+                        // IT WILL ONLY EXECUTE API IF DRAFT BUTTON IS CLICKED
+                        if (viewModel.ownerModel._id.isNotEmpty()) {
+                            viewModel.updateOwner(GenericCallBack {
+                                handleData(it, isDraft)
+                            })
+                        } else {
+                            viewModel.addDhabaOwner(GenericCallBack {
+                                handleData(it, isDraft)
+                            })
+                        }
                     } else {
-                        viewModel.addDhabaOwner(GenericCallBack {
-                            handleData(it, isDraft)
-                        })
+                        // WHEN NEXT BUTTON IS CLICKED, JUST PUT DATA IN THE MAIN MODEL AND GO TO NEXT SCREEN
+                        mListener?.getDhabaModelMain()?.ownerModel = viewModel.ownerModel
+                        mListener?.showNextScreen()
                     }
                 } else {
                     showToastInCenter(message)

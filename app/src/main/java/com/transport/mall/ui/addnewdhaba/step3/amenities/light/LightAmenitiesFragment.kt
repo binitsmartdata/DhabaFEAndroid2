@@ -108,7 +108,10 @@ class LightAmenitiesFragment :
                         DialogInterface.OnClickListener { dialogInterface, i ->
                             when (i) {
                                 0 -> {
-                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.model.towerLightImage)
+                                    ImagePagerActivity.startForSingle(
+                                        getmContext(),
+                                        viewModel.model.towerLightImage
+                                    )
                                 }
                                 1 -> {
                                     launchToweImgPicker()
@@ -147,7 +150,10 @@ class LightAmenitiesFragment :
                         DialogInterface.OnClickListener { dialogInterface, i ->
                             when (i) {
                                 0 -> {
-                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.model.bulbLightImage)
+                                    ImagePagerActivity.startForSingle(
+                                        getmContext(),
+                                        viewModel.model.bulbLightImage
+                                    )
                                 }
                                 1 -> {
                                     launchBulbImgPicker()
@@ -193,7 +199,7 @@ class LightAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (viewModel.model._id.isNotEmpty()) {
+                        /*if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updateLightAmenities(GenericCallBack {
                                 handleData(it)
                             })
@@ -201,7 +207,11 @@ class LightAmenitiesFragment :
                             viewModel.addLightAmenities(GenericCallBack {
                                 handleData(it)
                             })
-                        }
+                        }*/
+                        val intent = Intent()
+                        intent.putExtra("data", viewModel.model)
+                        activity?.setResult(Activity.RESULT_OK, intent)
+                        activity?.finish()
                     } else {
                         showToastInCenter(message)
                     }

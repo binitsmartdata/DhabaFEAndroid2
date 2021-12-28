@@ -306,7 +306,7 @@ class OtherAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (viewModel.model._id.isNotEmpty()) {
+                        /*if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updateOtherAmenities(GenericCallBack {
                                 handleData(it)
                             })
@@ -314,7 +314,11 @@ class OtherAmenitiesFragment :
                             viewModel.addOtherAmenities(GenericCallBack {
                                 handleData(it)
                             })
-                        }
+                        }*/
+                        val intent = Intent()
+                        intent.putExtra("data", viewModel.model)
+                        activity?.setResult(Activity.RESULT_OK, intent)
+                        activity?.finish()
                     } else {
                         showToastInCenter(message)
                     }

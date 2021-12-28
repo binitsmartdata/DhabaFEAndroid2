@@ -255,7 +255,7 @@ class SecurityAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (viewModel.model._id.isNotEmpty()) {
+                        /*if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updateSecurityAmenities(GenericCallBack {
                                 handleData(it)
                             })
@@ -263,7 +263,11 @@ class SecurityAmenitiesFragment :
                             viewModel.addSecurityAmenities(GenericCallBack {
                                 handleData(it)
                             })
-                        }
+                        }*/
+                        val intent = Intent()
+                        intent.putExtra("data", viewModel.model)
+                        activity?.setResult(Activity.RESULT_OK, intent)
+                        activity?.finish()
                     } else {
                         showToastInCenter(message)
                     }

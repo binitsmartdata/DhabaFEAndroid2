@@ -142,16 +142,17 @@ class DhabaDetailsFragment :
 
             it.state.let {
                 if (it.isNotEmpty()) {
-                    AppDatabase.getInstance(getmContext())?.statesDao()?.getByName(it)?.observe(this, {
-                        if (it.isNotEmpty()) {
-                            //GET LIST OF CITIES UNDER SELECTED STATE
-                            AppDatabase.getInstance(getmContext())?.cityDao()
-                                ?.getAllByState(it.get(0).stateCode!!)
-                                ?.observe(viewLifecycleOwner, Observer {
-                                    it?.let { setCitiesAdapter(it as ArrayList<CityModel>) }
-                                })
-                        }
-                    })
+                    AppDatabase.getInstance(getmContext())?.statesDao()?.getByName(it)
+                        ?.observe(this, {
+                            if (it.isNotEmpty()) {
+                                //GET LIST OF CITIES UNDER SELECTED STATE
+                                AppDatabase.getInstance(getmContext())?.cityDao()
+                                    ?.getAllByState(it.get(0).stateCode!!)
+                                    ?.observe(viewLifecycleOwner, Observer {
+                                        it?.let { setCitiesAdapter(it as ArrayList<CityModel>) }
+                                    })
+                            }
+                        })
                 }
             }
 
@@ -204,9 +205,13 @@ class DhabaDetailsFragment :
             android.R.layout.simple_list_item_1, menuArray
         )
         binding.edPropertyStatus.setOnClickListener {
-            DialogDropdownOptions(getmContext(), getString(R.string.property_status), designationAdapter, {
-                viewModel.dhabaModel.propertyStatus = menuArray[it]
-            }).show()
+            DialogDropdownOptions(
+                getmContext(),
+                getString(R.string.property_status),
+                designationAdapter,
+                {
+                    viewModel.dhabaModel.propertyStatus = menuArray[it]
+                }).show()
         }
 
         binding.btnNext.setOnClickListener {
@@ -216,19 +221,22 @@ class DhabaDetailsFragment :
         }
         binding.btnSaveDraft.setOnClickListener {
             GlobalUtils.disableTemporarily(it)
-            ConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_save_as_draft), {
-                if (it) {
-                    viewModel.dhabaModel.isDraft = true.toString()
+            ConfirmationDialog(
+                getmContext(),
+                getString(R.string.are_you_sure_you_want_to_save_as_draft),
+                {
+                    if (it) {
+                        viewModel.dhabaModel.isDraft = true.toString()
 //            if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
 //                mListener?.getDhabaModelMain()?.draftedAtScreen =
 //                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
 //                mListener?.saveAsDraft()
 //                activity?.finish()
 //            } else {
-                    saveDetails(true)
+                        saveDetails(true)
 //            }
-                }
-            }).show()
+                    }
+                }).show()
         }
 
         binding.rgTiming.setOnCheckedChangeListener { radioGroup, i ->
@@ -255,7 +263,10 @@ class DhabaDetailsFragment :
                         DialogInterface.OnClickListener { dialogInterface, i ->
                             when (i) {
                                 0 -> {
-                                    ImagePagerActivity.startForSingle(getmContext(), viewModel.dhabaModel.images)
+                                    ImagePagerActivity.startForSingle(
+                                        getmContext(),
+                                        viewModel.dhabaModel.images
+                                    )
                                 }
                                 1 -> {
                                     launchHoardingImgPicker()
@@ -324,8 +335,10 @@ class DhabaDetailsFragment :
             }
         }
 
-        binding.timingRV.layoutManager = LinearLayoutManager(getmContext(), LinearLayoutManager.VERTICAL, false)
-        binding.timingRV.adapter = TimingListAdapter(getmContext(), dhabaTimingModelParent.timingArray!!)
+        binding.timingRV.layoutManager =
+            LinearLayoutManager(getmContext(), LinearLayoutManager.VERTICAL, false)
+        binding.timingRV.adapter =
+            TimingListAdapter(getmContext(), dhabaTimingModelParent.timingArray!!)
         binding.timingRV.setHasFixedSize(true)
     }
 
@@ -347,14 +360,24 @@ class DhabaDetailsFragment :
                         if (status) {
                             // only owner or manager have option to manage timings
                             if (userModel.isOwner() || userModel.isManager()) {
-                                val validationMsg = dhabaTimingModelParent.validationMsg(getmContext())
+                                val validationMsg =
+                                    dhabaTimingModelParent.validationMsg(getmContext())
                                 if (validationMsg.trim().isNotEmpty()) {
                                     showToastInCenter(validationMsg)
                                 } else {
-                                    proceed(isDraft)
+//                                    proceed(isDraft)
+
+                                    // WHEN NEXT BUTTON IS CLICKED, JUST PUT DATA IN THE MAIN MODEL AND GO TO NEXT SCREEN
+                                    mListener?.getDhabaModelMain()?.dhabaModel =
+                                        viewModel.dhabaModel
+                                    mListener?.showNextScreen()
                                 }
                             } else {
-                                proceed(isDraft)
+//                                proceed(isDraft)
+
+                                // WHEN NEXT BUTTON IS CLICKED, JUST PUT DATA IN THE MAIN MODEL AND GO TO NEXT SCREEN
+                                mListener?.getDhabaModelMain()?.dhabaModel = viewModel.dhabaModel
+                                mListener?.showNextScreen()
                             }
                         } else {
                             showToastInCenter(message)
@@ -690,9 +713,13 @@ class DhabaDetailsFragment :
         binding.recyclerViewDhabaPics.layoutManager =
             GridLayoutManager(activity, columns, GridLayoutManager.VERTICAL, false)
 
-        val adapter = ImageGalleryAdapter(activity as Context, mListener?.viewOnly(), imageList, GenericCallBack {
-            viewModel.dhabaModel.imageList = imageList
-        })
+        val adapter = ImageGalleryAdapter(
+            activity as Context,
+            mListener?.viewOnly(),
+            imageList,
+            GenericCallBack {
+                viewModel.dhabaModel.imageList = imageList
+            })
         adapter.setDeletionListener(GenericCallBack {
             viewModel.delDhabaImg(it, GenericCallBack {
                 if (it) {
@@ -737,7 +764,9 @@ class DhabaDetailsFragment :
     }
 
     fun isExecutiveReviewingOwnerDhaba(): Boolean {
-        if (mListener?.isUpdate()!! && SharedPrefsHelper.getInstance(getmContext()).getUserData().isExecutive()) {
+        if (mListener?.isUpdate()!! && SharedPrefsHelper.getInstance(getmContext()).getUserData()
+                .isExecutive()
+        ) {
             return mListener?.getDhabaModelMain()?.dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
         } else {
             return false

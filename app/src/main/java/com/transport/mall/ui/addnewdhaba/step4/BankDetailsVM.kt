@@ -8,6 +8,7 @@ import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.UserModel
 import com.transport.mall.model.UserModelMain
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
@@ -26,6 +27,17 @@ import okhttp3.RequestBody
 class BankDetailsVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
+
+    var progressObserverOwner: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverDhaba: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverDhabaTiming: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverFood: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverParking: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverSleeping: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverWashroom: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverSecurity: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverLight: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverOther: MutableLiveData<Boolean> = MutableLiveData()
 
     var bankModel = BankDetailsModel()
     var dhabaModel = DhabaModel()
@@ -122,27 +134,4 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
             }
         }
     }
-
-/*
-    fun getUserByRole(callBack: GenericCallBack<ApiResponseModel<UserModelMain>>) {
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                executeApi(getApiService()?.getUserByRole()).collect {
-                    when (it.status) {
-                        ApiResult.Status.ERROR -> {
-                            callBack.onResponse(
-                                ApiResponseModel(0, it.message!!, null)
-                            )
-                        }
-                        ApiResult.Status.SUCCESS -> {
-                            callBack.onResponse(it.data!!)
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-*/
 }

@@ -16,6 +16,7 @@ import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.FragmentBankDetailsBinding
 import com.transport.mall.model.*
+import com.transport.mall.ui.addnewdhaba.step4.*
 import com.transport.mall.ui.customdialogs.ConfirmationDialog
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
 import com.transport.mall.ui.home.CommonActivity
@@ -135,19 +136,22 @@ class BankDetailsFragment :
         }
         binding.btnSaveDraft.setOnClickListener {
             GlobalUtils.disableTemporarily(it)
-            ConfirmationDialog(getmContext(), getString(R.string.are_you_sure_you_want_to_save_as_draft), {
-                if (it) {
-                    viewModel.dhabaModel.isDraft = true.toString()
-                    /*if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
-                        mListener?.getDhabaModelMain()?.draftedAtScreen =
-                            DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
-                        mListener?.saveAsDraft()
-                        activity?.finish()
-                    } else {*/
-                    saveDetails(true)
+            ConfirmationDialog(
+                getmContext(),
+                getString(R.string.are_you_sure_you_want_to_save_as_draft),
+                {
+                    if (it) {
+                        viewModel.dhabaModel.isDraft = true.toString()
+                        /*if (mListener?.getDhabaModelMain()?.bankDetailsModel != null) {
+                            mListener?.getDhabaModelMain()?.draftedAtScreen =
+                                DhabaModelMain.DraftScreen.BankDetailsFragment.toString()
+                            mListener?.saveAsDraft()
+                            activity?.finish()
+                        } else {*/
+                        saveDetails(true)
 //            }
-                }
-            }).show()
+                    }
+                }).show()
         }
 
         binding.llPanPhoto.setOnClickListener {
@@ -208,7 +212,8 @@ class BankDetailsFragment :
                     dhabaMissingParams = it.getMissingParameters(getmContext())?.trim()!!
                 }
                 if (ownerMissingParams.isNotEmpty() || dhabaMissingParams.isNotEmpty()) {
-                    GlobalUtils.showInfoDialog(getmContext(), getString(R.string.details_missing_validation),
+                    GlobalUtils.showInfoDialog(getmContext(),
+                        getString(R.string.details_missing_validation),
                         ownerMissingParams + "\n" + dhabaMissingParams,
                         GenericCallBack {
                             if (ownerMissingParams.isNotEmpty()) {
@@ -235,6 +240,281 @@ class BankDetailsFragment :
     }
 
     private fun proceed(isDraft: Boolean) {
+        saveOwnerDetails(GenericCallBack {
+            if (it) {
+                saveDhabaDetails(GenericCallBack {
+                    if (it) {
+                        saveFoodAmenities(GenericCallBack {
+                            if (it) {
+                                saveParkingAmenities(GenericCallBack {
+                                    if (it) {
+                                        saveSleepingAmenities(GenericCallBack {
+                                            if (it) {
+                                                saveWashroomAmenities(GenericCallBack {
+                                                    if (it) {
+                                                        saveSecurityAmenities(GenericCallBack {
+                                                            if (it) {
+                                                                saveLightAmenities(GenericCallBack {
+                                                                    if (it) {
+                                                                        saveOtherAmenities(
+                                                                            GenericCallBack {
+                                                                                saveBankDetails(
+                                                                                    isDraft
+                                                                                )
+                                                                            })
+                                                                    }
+                                                                })
+                                                            }
+                                                        })
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
+
+    private fun saveFoodAmenities(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateFoodAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addFoodAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+
+            }
+        } ?: kotlin.run {
+            callBack.onResponse(true)
+        }
+    }
+
+    private fun saveParkingAmenities(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateParkingAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addParkingAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
+        } ?: kotlin.run {
+            callBack.onResponse(true)
+        }
+    }
+
+    private fun saveSleepingAmenities(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateSleepingAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addSleepingAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
+        } ?: kotlin.run {
+            callBack.onResponse(true)
+        }
+    }
+
+    private fun saveWashroomAmenities(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updatewashroomAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addWashroomAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
+        } ?: kotlin.run {
+            callBack.onResponse(true)
+        }
+    }
+
+    private fun saveSecurityAmenities(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.securityAmenitiesModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateSecurityAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addSecurityAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
+        } ?: kotlin.run {
+            callBack.onResponse(true)
+        }
+    }
+
+    private fun saveLightAmenities(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.lightAmenitiesModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateLightAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addLightAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
+        } ?: kotlin.run {
+            callBack.onResponse(true)
+        }
+    }
+
+    private fun saveOtherAmenities(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateOtherAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addOtherAmenities(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
+        } ?: kotlin.run {
+            callBack.onResponse(true)
+        }
+    }
+
+    private fun saveDhabaDetails(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.dhabaModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateDhaba(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addDhaba(it, GenericCallBack {
+                    if (it.data != null) {
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+
+            }
+        }
+    }
+
+    private fun saveOwnerDetails(callBack: GenericCallBack<Boolean>) {
+        mListener?.getDhabaModelMain()?.ownerModel?.let {
+            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
+                viewModel.updateOwner(it, GenericCallBack {
+                    if (it.data != null) {
+                        mListener?.getDhabaModelMain()?.dhabaModel?.owner_id = it?.data?._id!!
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            } else {
+                viewModel.addDhabaOwner(it, GenericCallBack {
+                    if (it.data != null) {
+                        mListener?.getDhabaModelMain()?.dhabaModel?.owner_id = it?.data?._id!!
+                        callBack.onResponse(true)
+                    } else {
+                        callBack.onResponse(false)
+                        showToastInCenter(it.message)
+                    }
+                })
+            }
+        }
+    }
+
+    private fun saveBankDetails(isDraft: Boolean) {
         if (viewModel.bankModel._id.isNotEmpty()) {
             viewModel.updateBankDetail(GenericCallBack {
                 handleData(it, isDraft)
@@ -267,11 +547,7 @@ class BankDetailsFragment :
                             mListener?.saveAsDraft()
                             activity?.finish()
                         } else {
-//                            if (mListener?.isUpdate()!!) {
-//                                showToastInCenter(getString(R.string.updated_successfully))
-//                            } else {
                             showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
-//                            }
                         }
                     } else {
                         showToastInCenter(it.message)
@@ -283,7 +559,11 @@ class BankDetailsFragment :
     }
 
     fun showSuccessDialog(dhabaId: String) {
-        CommonActivity.showDhabaSuccessMessage(getmContext(), CommonActivity.TYPE_DHABA_SUCCESS, dhabaId)
+        CommonActivity.showDhabaSuccessMessage(
+            getmContext(),
+            CommonActivity.TYPE_DHABA_SUCCESS,
+            dhabaId
+        )
         activity?.finish()
     }
 
@@ -330,7 +610,9 @@ class BankDetailsFragment :
     }
 
     fun isExecutiveReviewingOwnerDhaba(): Boolean {
-        if (mListener?.isUpdate()!! && SharedPrefsHelper.getInstance(getmContext()).getUserData().isExecutive()) {
+        if (mListener?.isUpdate()!! && SharedPrefsHelper.getInstance(getmContext()).getUserData()
+                .isExecutive()
+        ) {
             return mListener?.getDhabaModelMain()?.dhabaModel?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
         } else {
             return false

@@ -216,7 +216,7 @@ class SleepingAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (viewModel.model._id.isNotEmpty()) {
+                        /*if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updateSleepingAmenities(GenericCallBack {
                                 handleResponse(it)
                             })
@@ -224,7 +224,11 @@ class SleepingAmenitiesFragment :
                             viewModel.addSleepingAmenities(GenericCallBack {
                                 handleResponse(it)
                             })
-                        }
+                        }*/
+                        val intent = Intent()
+                        intent.putExtra("data", viewModel.model)
+                        activity?.setResult(Activity.RESULT_OK, intent)
+                        activity?.finish()
                     } else {
                         showToastInCenter(message)
                     }

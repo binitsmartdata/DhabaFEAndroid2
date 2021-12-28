@@ -151,7 +151,7 @@ class WashroomAmenitiesFragment :
                 getmContext(),
                 GenericCallBackTwoParams { allOk, message ->
                     if (allOk) {
-                        if (viewModel.model._id.isNotEmpty()) {
+                        /*if (viewModel.model._id.isNotEmpty()) {
                             viewModel.updatewashroomAmenities(GenericCallBack {
                                 handleData(it)
                             })
@@ -159,7 +159,11 @@ class WashroomAmenitiesFragment :
                             viewModel.addWashroomAmenities(GenericCallBack {
                                 handleData(it)
                             })
-                        }
+                        }*/
+                        val intent = Intent()
+                        intent.putExtra("data", viewModel.model)
+                        activity?.setResult(Activity.RESULT_OK, intent)
+                        activity?.finish()
                     } else {
                         showToastInCenter(message)
                     }
