@@ -19,6 +19,7 @@ import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.step4.*
 import com.transport.mall.ui.customdialogs.ConfirmationDialog
 import com.transport.mall.ui.customdialogs.DialogDropdownOptions
+import com.transport.mall.ui.customdialogs.DialogSubmitforApproval
 import com.transport.mall.ui.home.CommonActivity
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
@@ -240,6 +241,22 @@ class BankDetailsFragment :
     }
 
     private fun proceed(isDraft: Boolean) {
+        DialogSubmitforApproval(
+            getmContext(),
+            viewModel,
+            mListener?.getDhabaModelMain()!!,
+            viewModel.progressObserverOwner,
+            viewModel.progressObserverDhaba,
+            viewModel.progressObserverFood,
+            viewModel.progressObserverParking,
+            viewModel.progressObserverSleeping,
+            viewModel.progressObserverWashroom,
+            viewModel.progressObserverSecurity,
+            viewModel.progressObserverLight,
+            viewModel.progressObserverOther,
+            viewModel.progressObserverBank
+        ).show()
+
         saveOwnerDetails(GenericCallBack {
             if (it) {
                 saveDhabaDetails(GenericCallBack {
@@ -282,6 +299,7 @@ class BankDetailsFragment :
 
     private fun saveFoodAmenities(callBack: GenericCallBack<Boolean>) {
         mListener?.getDhabaModelMain()?.foodAmenitiesModel?.let {
+            it.dhaba_id = mListener?.getDhabaModelMain()?.dhabaModel?._id + ""
             if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
                 viewModel.updateFoodAmenities(it, GenericCallBack {
                     if (it.data != null) {
@@ -309,6 +327,7 @@ class BankDetailsFragment :
 
     private fun saveParkingAmenities(callBack: GenericCallBack<Boolean>) {
         mListener?.getDhabaModelMain()?.parkingAmenitiesModel?.let {
+            it.dhaba_id = mListener?.getDhabaModelMain()?.dhabaModel?._id + ""
             if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
                 viewModel.updateParkingAmenities(it, GenericCallBack {
                     if (it.data != null) {
@@ -335,6 +354,7 @@ class BankDetailsFragment :
 
     private fun saveSleepingAmenities(callBack: GenericCallBack<Boolean>) {
         mListener?.getDhabaModelMain()?.sleepingAmenitiesModel?.let {
+            it.dhaba_id = mListener?.getDhabaModelMain()?.dhabaModel?._id + ""
             if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
                 viewModel.updateSleepingAmenities(it, GenericCallBack {
                     if (it.data != null) {
@@ -361,6 +381,7 @@ class BankDetailsFragment :
 
     private fun saveWashroomAmenities(callBack: GenericCallBack<Boolean>) {
         mListener?.getDhabaModelMain()?.washroomAmenitiesModel?.let {
+            it.dhaba_id = mListener?.getDhabaModelMain()?.dhabaModel?._id + ""
             if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
                 viewModel.updatewashroomAmenities(it, GenericCallBack {
                     if (it.data != null) {
@@ -387,6 +408,7 @@ class BankDetailsFragment :
 
     private fun saveSecurityAmenities(callBack: GenericCallBack<Boolean>) {
         mListener?.getDhabaModelMain()?.securityAmenitiesModel?.let {
+            it.dhaba_id = mListener?.getDhabaModelMain()?.dhabaModel?._id + ""
             if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
                 viewModel.updateSecurityAmenities(it, GenericCallBack {
                     if (it.data != null) {
@@ -413,6 +435,7 @@ class BankDetailsFragment :
 
     private fun saveLightAmenities(callBack: GenericCallBack<Boolean>) {
         mListener?.getDhabaModelMain()?.lightAmenitiesModel?.let {
+            it.dhaba_id = mListener?.getDhabaModelMain()?.dhabaModel?._id + ""
             if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
                 viewModel.updateLightAmenities(it, GenericCallBack {
                     if (it.data != null) {
@@ -439,6 +462,7 @@ class BankDetailsFragment :
 
     private fun saveOtherAmenities(callBack: GenericCallBack<Boolean>) {
         mListener?.getDhabaModelMain()?.otherAmenitiesModel?.let {
+            it.dhaba_id = mListener?.getDhabaModelMain()?.dhabaModel?._id + ""
             if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
                 viewModel.updateOtherAmenities(it, GenericCallBack {
                     if (it.data != null) {
@@ -464,10 +488,11 @@ class BankDetailsFragment :
     }
 
     private fun saveDhabaDetails(callBack: GenericCallBack<Boolean>) {
-        mListener?.getDhabaModelMain()?.dhabaModel?.let {
-            if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
-                viewModel.updateDhaba(it, GenericCallBack {
+        mListener?.getDhabaModelMain()?.dhabaModel?.let { dhaba ->
+            if (GlobalUtils.getNonNullString(dhaba._id, "").isNotEmpty()) {
+                viewModel.updateDhaba(dhaba, GenericCallBack {
                     if (it.data != null) {
+                        dhaba._id = it.data?._id!!
                         callBack.onResponse(true)
                     } else {
                         callBack.onResponse(false)
@@ -475,7 +500,7 @@ class BankDetailsFragment :
                     }
                 })
             } else {
-                viewModel.addDhaba(it, GenericCallBack {
+                viewModel.addDhaba(dhaba, GenericCallBack {
                     if (it.data != null) {
                         callBack.onResponse(true)
                     } else {
@@ -494,6 +519,7 @@ class BankDetailsFragment :
                 viewModel.updateOwner(it, GenericCallBack {
                     if (it.data != null) {
                         mListener?.getDhabaModelMain()?.dhabaModel?.owner_id = it?.data?._id!!
+                        viewModel.bankModel.user_id = it?.data?._id!!
                         callBack.onResponse(true)
                     } else {
                         callBack.onResponse(false)
@@ -504,6 +530,7 @@ class BankDetailsFragment :
                 viewModel.addDhabaOwner(it, GenericCallBack {
                     if (it.data != null) {
                         mListener?.getDhabaModelMain()?.dhabaModel?.owner_id = it?.data?._id!!
+                        viewModel.bankModel.user_id = it?.data?._id!!
                         callBack.onResponse(true)
                     } else {
                         callBack.onResponse(false)

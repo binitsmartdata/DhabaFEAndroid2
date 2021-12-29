@@ -22,7 +22,7 @@ fun BankDetailsVM.addDhabaOwner(
     ownerModel: UserModel,
     callBack: GenericCallBack<ApiResponseModel<UserModel>>
 ) {
-    progressObserverOwner.value = true
+    progressObserverOwner = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -46,10 +46,10 @@ fun BankDetailsVM.addDhabaOwner(
                     getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
                 )
             ).collect {
-                handleOwnerApiResponse(it, callBack, progressObserverOwner)
+                handleOwnerApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverOwner.value = false
+            progressObserverOwner = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -82,9 +82,10 @@ fun BankDetailsVM.updateOwner(
                     getMultipartImageFile(ownerModel.idproofBack, "idproofBack")
                 )
             ).collect {
-                handleOwnerApiResponse(it, callBack, progressObserverOwner)
+                handleOwnerApiResponse(it, callBack)
             }
         } catch (e: Exception) {
+            progressObserverOwner = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -92,15 +93,14 @@ fun BankDetailsVM.updateOwner(
 
 private fun BankDetailsVM.handleOwnerApiResponse(
     it: ApiResult<ApiResponseModel<UserModel>>,
-    callBack: GenericCallBack<ApiResponseModel<UserModel>>,
-    observer: MutableLiveData<Boolean>
+    callBack: GenericCallBack<ApiResponseModel<UserModel>>
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            observer.value = true
+            progressObserverOwner = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            observer.value = false
+            progressObserverOwner = Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -113,7 +113,7 @@ private fun BankDetailsVM.handleOwnerApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            observer.value = false
+            progressObserverOwner = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -124,7 +124,7 @@ fun BankDetailsVM.addDhaba(
     dhabaModel: DhabaModel,
     callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
 ) {
-    progressObserverDhaba.value = true
+    progressObserverDhaba = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -184,10 +184,10 @@ fun BankDetailsVM.addDhaba(
                     )
                 )
             ).collect {
-                handleDhabaApiResponse(it, callBack, progressObserverDhaba)
+                handleDhabaApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverDhaba.value = false
+            progressObserverDhaba = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -197,7 +197,7 @@ fun BankDetailsVM.updateDhaba(
     dhabaModel: DhabaModel,
     callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
 ) {
-    progressObserverDhaba.value = true
+    progressObserverDhaba = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -259,10 +259,10 @@ fun BankDetailsVM.updateDhaba(
                     )
                 )
             ).collect {
-                handleDhabaApiResponse(it, callBack, progressObserverDhaba)
+                handleDhabaApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverDhaba.value = false
+            progressObserverDhaba = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -270,15 +270,14 @@ fun BankDetailsVM.updateDhaba(
 
 private fun BankDetailsVM.handleDhabaApiResponse(
     it: ApiResult<ApiResponseModel<DhabaModel>>,
-    callBack: GenericCallBack<ApiResponseModel<DhabaModel>>,
-    observer: MutableLiveData<Boolean>
+    callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            observer.value = true
+            progressObserverDhaba = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            observer.value = false
+            progressObserverDhaba = Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -291,7 +290,7 @@ private fun BankDetailsVM.handleDhabaApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            observer.value = false
+            progressObserverDhaba = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -301,7 +300,7 @@ fun BankDetailsVM.addDhabaTimeing(
     model: DhabaTimingModelParent,
     callBack: GenericCallBack<Boolean>
 ) {
-    progressObserverDhabaTiming.value = true
+    progressObserverDhabaTiming = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -309,20 +308,20 @@ fun BankDetailsVM.addDhabaTimeing(
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        progressObserverDhabaTiming.value = true
+                        progressObserverDhabaTiming = Status_LOADING
                     }
                     ApiResult.Status.ERROR -> {
-                        progressObserverDhabaTiming.value = false
+                        progressObserverDhabaTiming = Status_ERROR
                         callBack.onResponse(false)
                     }
                     ApiResult.Status.SUCCESS -> {
-                        progressObserverDhabaTiming.value = false
+                        progressObserverDhabaTiming = Status_SUCCESS
                         callBack.onResponse(true)
                     }
                 }
             }
         } catch (e: Exception) {
-            progressObserverDhabaTiming.value = false
+            progressObserverDhabaTiming = Status_ERROR
 //                showToastInCenter(app!!, getCorrectErrorMessage(e))
             callBack.onResponse(false)
         }
@@ -334,7 +333,7 @@ fun BankDetailsVM.addFoodAmenities(
     model: FoodAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<FoodAmenitiesModel>>
 ) {
-    progressObserverFood.value = true
+    progressObserverFood = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -360,7 +359,7 @@ fun BankDetailsVM.addFoodAmenities(
                 handleFoodApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverFood.value = false
+            progressObserverFood = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -370,7 +369,7 @@ fun BankDetailsVM.updateFoodAmenities(
     model: FoodAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<FoodAmenitiesModel>>
 ) {
-    progressObserverFood.value = true
+    progressObserverFood = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -397,7 +396,7 @@ fun BankDetailsVM.updateFoodAmenities(
                 handleFoodApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverFood.value = false
+            progressObserverFood = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -409,10 +408,10 @@ private fun BankDetailsVM.handleFoodApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            progressObserverFood.value = true
+            progressObserverFood = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            progressObserverFood.value = false
+            progressObserverFood = Status_ERROR
             callBack.onResponse(
                 ApiResponseModel(
                     0,
@@ -422,7 +421,7 @@ private fun BankDetailsVM.handleFoodApiResponse(
             )
         }
         ApiResult.Status.SUCCESS -> {
-            progressObserverFood.value = false
+            progressObserverFood = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -433,7 +432,7 @@ fun BankDetailsVM.addParkingAmenities(
     model: ParkingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<ParkingAmenitiesModel>>
 ) {
-    progressObserverParking.value = true
+    progressObserverParking = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -455,7 +454,7 @@ fun BankDetailsVM.addParkingAmenities(
                 handleParkingApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverParking.value = false
+            progressObserverParking = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -465,7 +464,7 @@ fun BankDetailsVM.updateParkingAmenities(
     model: ParkingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<ParkingAmenitiesModel>>
 ) {
-    progressObserverParking.value = true
+    progressObserverParking = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -488,7 +487,7 @@ fun BankDetailsVM.updateParkingAmenities(
                 handleParkingApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverParking.value = false
+            progressObserverParking = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -500,11 +499,10 @@ private fun BankDetailsVM.handleParkingApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            progressObserverParking.value =
-                true
+            progressObserverParking = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            progressObserverParking.value = false
+            progressObserverParking = Status_ERROR
             callBack.onResponse(
                 ApiResponseModel(
                     0,
@@ -514,7 +512,7 @@ private fun BankDetailsVM.handleParkingApiResponse(
             )
         }
         ApiResult.Status.SUCCESS -> {
-            progressObserverParking.value = false
+            progressObserverParking = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -525,7 +523,7 @@ fun BankDetailsVM.addSleepingAmenities(
     model: SleepingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>
 ) {
-    progressObserverSleeping.value = true
+    progressObserverSleeping = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -545,11 +543,10 @@ fun BankDetailsVM.addSleepingAmenities(
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        progressObserverSleeping.value =
-                            true
+                        progressObserverSleeping = Status_LOADING
                     }
                     ApiResult.Status.ERROR -> {
-                        progressObserverSleeping.value = false
+                        progressObserverSleeping = Status_ERROR
                         callBack.onResponse(
                             ApiResponseModel(
                                 0,
@@ -559,13 +556,13 @@ fun BankDetailsVM.addSleepingAmenities(
                         )
                     }
                     ApiResult.Status.SUCCESS -> {
-                        progressObserverSleeping.value = false
+                        progressObserverSleeping = Status_SUCCESS
                         callBack.onResponse(it.data)
                     }
                 }
             }
         } catch (e: Exception) {
-            progressObserverSleeping.value = false
+            progressObserverSleeping = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -575,7 +572,7 @@ fun BankDetailsVM.updateSleepingAmenities(
     model: SleepingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>
 ) {
-    progressObserverSleeping.value = true
+    progressObserverSleeping = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -596,11 +593,10 @@ fun BankDetailsVM.updateSleepingAmenities(
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        progressObserverSleeping.value =
-                            true
+                        progressObserverSleeping = Status_LOADING
                     }
                     ApiResult.Status.ERROR -> {
-                        progressObserverSleeping.value = false
+                        progressObserverSleeping = Status_ERROR
                         callBack.onResponse(
                             ApiResponseModel(
                                 0,
@@ -610,13 +606,13 @@ fun BankDetailsVM.updateSleepingAmenities(
                         )
                     }
                     ApiResult.Status.SUCCESS -> {
-                        progressObserverSleeping.value = false
+                        progressObserverSleeping = Status_SUCCESS
                         callBack.onResponse(it.data)
                     }
                 }
             }
         } catch (e: Exception) {
-            progressObserverSleeping.value = false
+            progressObserverSleeping = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -627,7 +623,7 @@ fun BankDetailsVM.addWashroomAmenities(
     model: WashroomAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<WashroomAmenitiesModel>>
 ) {
-    progressObserverWashroom.value = true
+    progressObserverWashroom = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -644,7 +640,7 @@ fun BankDetailsVM.addWashroomAmenities(
                 handleWashroomApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverWashroom.value = false
+            progressObserverWashroom = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -654,7 +650,7 @@ fun BankDetailsVM.updatewashroomAmenities(
     model: WashroomAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<WashroomAmenitiesModel>>
 ) {
-    progressObserverWashroom.value = true
+    progressObserverWashroom = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -672,7 +668,7 @@ fun BankDetailsVM.updatewashroomAmenities(
                 handleWashroomApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverWashroom.value = false
+            progressObserverWashroom = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -684,11 +680,10 @@ private fun BankDetailsVM.handleWashroomApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            progressObserverWashroom.value =
-                true
+            progressObserverWashroom = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            progressObserverWashroom.value = false
+            progressObserverWashroom = Status_ERROR
             callBack.onResponse(
                 ApiResponseModel(
                     0,
@@ -699,7 +694,7 @@ private fun BankDetailsVM.handleWashroomApiResponse(
         }
         ApiResult.Status.SUCCESS -> {
             //                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-            progressObserverWashroom.value = false
+            progressObserverWashroom = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -710,7 +705,7 @@ fun BankDetailsVM.addSecurityAmenities(
     model: SecurityAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SecurityAmenitiesModel>>
 ) {
-    progressObserverSecurity.value = true
+    progressObserverSecurity = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -740,7 +735,7 @@ fun BankDetailsVM.addSecurityAmenities(
                 handleSecurityApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverSecurity.value = false
+            progressObserverSecurity = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -750,7 +745,7 @@ fun BankDetailsVM.updateSecurityAmenities(
     model: SecurityAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SecurityAmenitiesModel>>
 ) {
-    progressObserverSecurity.value = true
+    progressObserverSecurity = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -781,7 +776,7 @@ fun BankDetailsVM.updateSecurityAmenities(
                 handleSecurityApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverSecurity.value = false
+            progressObserverSecurity = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -793,10 +788,10 @@ private fun BankDetailsVM.handleSecurityApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            progressObserverSecurity.value = true
+            progressObserverSecurity = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            progressObserverSecurity.value = false
+            progressObserverSecurity = Status_ERROR
             callBack.onResponse(
                 ApiResponseModel(
                     0,
@@ -806,7 +801,7 @@ private fun BankDetailsVM.handleSecurityApiResponse(
             )
         }
         ApiResult.Status.SUCCESS -> {
-            progressObserverSecurity.value = false
+            progressObserverSecurity = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -816,7 +811,7 @@ fun BankDetailsVM.addLightAmenities(
     model: LightAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<LightAmenitiesModel>>
 ) {
-    progressObserverLight.value = true
+    progressObserverLight = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -837,7 +832,7 @@ fun BankDetailsVM.addLightAmenities(
                 handleLightAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverLight.value = false
+            progressObserverLight = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -847,7 +842,7 @@ fun BankDetailsVM.updateLightAmenities(
     model: LightAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<LightAmenitiesModel>>
 ) {
-    progressObserverLight.value = true
+    progressObserverLight = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -869,7 +864,7 @@ fun BankDetailsVM.updateLightAmenities(
                 handleLightAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverLight.value = false
+            progressObserverLight = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -881,10 +876,10 @@ private fun BankDetailsVM.handleLightAmenitiesApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            progressObserverLight.value = true
+            progressObserverLight = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            progressObserverLight.value = false
+            progressObserverLight = Status_ERROR
             callBack.onResponse(
                 ApiResponseModel(
                     0,
@@ -894,7 +889,7 @@ private fun BankDetailsVM.handleLightAmenitiesApiResponse(
             )
         }
         ApiResult.Status.SUCCESS -> {
-            progressObserverLight.value = false
+            progressObserverLight = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -905,7 +900,7 @@ fun BankDetailsVM.addOtherAmenities(
     model: OtherAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>
 ) {
-    progressObserverOther.value = true
+    progressObserverOther = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -930,7 +925,7 @@ fun BankDetailsVM.addOtherAmenities(
                 handleOtherAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverOther.value = false
+            progressObserverOther = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -940,7 +935,7 @@ fun BankDetailsVM.updateOtherAmenities(
     model: OtherAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>
 ) {
-    progressObserverOther.value = true
+    progressObserverOther = Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -966,7 +961,7 @@ fun BankDetailsVM.updateOtherAmenities(
                 handleOtherAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            progressObserverOther.value = false
+            progressObserverOther = Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -978,10 +973,10 @@ private fun BankDetailsVM.handleOtherAmenitiesApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            progressObserverOther.value = true
+            progressObserverOther = Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            progressObserverOther.value = false
+            progressObserverOther = Status_ERROR
             callBack.onResponse(
                 ApiResponseModel(
                     0,
@@ -992,7 +987,7 @@ private fun BankDetailsVM.handleOtherAmenitiesApiResponse(
         }
         ApiResult.Status.SUCCESS -> {
             //                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-            progressObserverOther.value = false
+            progressObserverOther = Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }

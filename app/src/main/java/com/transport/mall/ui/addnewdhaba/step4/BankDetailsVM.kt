@@ -28,16 +28,22 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
 
-    var progressObserverOwner: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverDhaba: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverDhabaTiming: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverFood: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverParking: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverSleeping: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverWashroom: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverSecurity: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverLight: MutableLiveData<Boolean> = MutableLiveData()
-    var progressObserverOther: MutableLiveData<Boolean> = MutableLiveData()
+
+    val Status_SUCCESS = 1
+    val Status_ERROR = -1
+    val Status_LOADING = 0
+
+    var progressObserverOwner = Status_LOADING
+    var progressObserverDhaba = Status_LOADING
+    var progressObserverDhabaTiming = Status_LOADING
+    var progressObserverFood = Status_LOADING
+    var progressObserverParking = Status_LOADING
+    var progressObserverSleeping = Status_LOADING
+    var progressObserverWashroom = Status_LOADING
+    var progressObserverSecurity = Status_LOADING
+    var progressObserverLight = Status_LOADING
+    var progressObserverOther = Status_LOADING
+    var progressObserverBank = Status_LOADING
 
     var bankModel = BankDetailsModel()
     var dhabaModel = DhabaModel()

@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+
+        <variable
+            name="viewModel"
+            type="com.transport.mall.ui.addnewdhaba.step1.BankDetailsVM" />
+
+        <variable
+            name="dhabaModelMain"
+            type="com.transport.mall.model.DhabaModelMain" />
+
+        <variable
+            name="ownerLoader"
+            type="Integer" />
+
+        <variable
+            name="dhabaLoader"
+            type="Integer" />
+
+        <variable
+            name="foodLoader"
+            type="Integer" />
+
+        <variable
+            name="parkingLoader"
+            type="Integer" />
+
+        <variable
+            name="sleepingLoader"
+            type="Integer" />
+
+        <variable
+            name="washroomLoader"
+            type="Integer" />
+
+        <variable
+            name="securityLoader"
+            type="Integer" />
+
+        <variable
+            name="lightLoader"
+            type="Integer" />
+
+        <variable
+            name="otherLoader"
+            type="Integer" />
+
+        <variable
+            name="bankLoader"
+            type="Integer" />
+
+    </data>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="#19000000"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="@dimen/_15sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/saving_details"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.ownerModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbar"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{ownerLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickOwner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{ownerLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvOwner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="Owner Details"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.dhabaModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarDhaba"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{dhabaLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickDhaba"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{dhabaLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvDhaba"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/dhaba_details"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.foodAmenitiesModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarFood"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{foodLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickFood"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{foodLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvFoodAmens"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/food"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.parkingAmenitiesModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarParking"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{parkingLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickParking"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{parkingLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvParkingAmens"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/parking"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.sleepingAmenitiesModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarSleeping"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{sleepingLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickSleeping"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{sleepingLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvSleepingAmen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/sleeping"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.washroomAmenitiesModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarWashroom"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{washroomLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickWashroom"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{washroomLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvWashroomAmen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/washroom_cleaning"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.securityAmenitiesModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarSecurity"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{securityLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickSecurity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{securityLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvSecurityAmen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/security"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.lightAmenitiesModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarLight"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{lightLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickLight"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{lightLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvLight"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/light"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.otherAmenitiesModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarOtherAmen"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{otherLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickOtherAmen"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{otherLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvOtherAmen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/other"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="@{dhabaModelMain.bankDetailsModel!=null ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_margin="10dp">
+
+                        <ProgressBar
+                            android:id="@+id/progressbarBank"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:indeterminate="true"
+                            android:theme="@style/AppProgressBarStyle"
+                            android:visibility="@{bankLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:id="@+id/tvTickBank"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_tick_red"
+                            android:visibility="@{bankLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvBank"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="Bank Details"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</layout>
