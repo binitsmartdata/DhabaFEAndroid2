@@ -107,6 +107,11 @@ class OwnerDetailsFragment :
 //                }
             }
         } ?: kotlin.run {
+            // ASSIGNING SAME OBJECT TO THE VIEWMODEL AND MAIN DHABA OBJECT SO THAT IF ANYTHING GETS CHANGED IT SHOULD BE UPDATED IN MAIN OBJECT TOO
+            mListener?.getDhabaModelMain()?.ownerModel = UserModel()
+            viewModel.ownerModel = mListener?.getDhabaModelMain()?.ownerModel!!
+            //--------------
+
             binding.ccpCountryCode.setCountryForPhoneCode(91)
             binding.ccpCountryCodeAlt.setCountryForPhoneCode(91)
             viewModel.ownerModel.mobilePrefix = binding.ccpCountryCode.selectedCountryCode
@@ -354,7 +359,11 @@ class OwnerDetailsFragment :
     }
 
     private fun showExistingUserDetails(it: UserModel?) {
-        mListener?.getDhabaModelMain()?.ownerModel = it
+        mListener?.getDhabaModelMain()?.ownerModel?.let { ownerModel ->
+            ownerModel.populateData(it)
+        } ?: kotlin.run {
+            mListener?.getDhabaModelMain()?.ownerModel = it
+        }
         viewModel.ownerModel.populateData(it)
         setDataIfHas(true)
     }

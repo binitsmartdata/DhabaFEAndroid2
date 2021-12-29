@@ -85,14 +85,6 @@ class AddDhabaActivity : BaseActivity<ActivityNewDhabaBinding, AddDhabaVM>(),
             }
         }
 
-        viewModel.progressObserver.observe(this, Observer {
-            if (it) {
-                showProgressDialog()
-            } else {
-                hideProgressDialog()
-            }
-        })
-
         if (!isAllGranted(
                 Permission.CAMERA,
                 Permission.WRITE_EXTERNAL_STORAGE,

@@ -20,44 +20,8 @@
             type="com.transport.mall.model.DhabaModelMain" />
 
         <variable
-            name="ownerLoader"
-            type="Integer" />
-
-        <variable
-            name="dhabaLoader"
-            type="Integer" />
-
-        <variable
-            name="foodLoader"
-            type="Integer" />
-
-        <variable
-            name="parkingLoader"
-            type="Integer" />
-
-        <variable
-            name="sleepingLoader"
-            type="Integer" />
-
-        <variable
-            name="washroomLoader"
-            type="Integer" />
-
-        <variable
-            name="securityLoader"
-            type="Integer" />
-
-        <variable
-            name="lightLoader"
-            type="Integer" />
-
-        <variable
-            name="otherLoader"
-            type="Integer" />
-
-        <variable
-            name="bankLoader"
-            type="Integer" />
+            name="observer"
+            type="com.transport.mall.model.SubmitForApprovalObservers" />
 
     </data>
 
@@ -114,14 +78,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{ownerLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverOwner==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickOwner"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{ownerLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverOwner==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -153,14 +117,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{dhabaLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverDhaba==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickDhaba"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{dhabaLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverDhaba==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -192,14 +156,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{foodLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverFood==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickFood"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{foodLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverFood==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -231,14 +195,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{parkingLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverParking==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickParking"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{parkingLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverParking==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -270,14 +234,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{sleepingLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverSleeping==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickSleeping"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{sleepingLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverSleeping==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -309,14 +273,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{washroomLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverWashroom==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickWashroom"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{washroomLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverWashroom==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -348,14 +312,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{securityLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverSecurity==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickSecurity"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{securityLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverSecurity==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -387,14 +351,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{lightLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverLight==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickLight"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{lightLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverLight==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -426,14 +390,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{otherLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverOther==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickOtherAmen"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{otherLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverOther==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -465,14 +429,14 @@
                             android:layout_height="@dimen/_15sdp"
                             android:indeterminate="true"
                             android:theme="@style/AppProgressBarStyle"
-                            android:visibility="@{bankLoader==viewModel.Status_LOADING ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverBank==observer.Companion.Status_LOADING ? View.VISIBLE : View.GONE }" />
 
                         <ImageView
                             android:id="@+id/tvTickBank"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
-                            android:visibility="@{bankLoader==viewModel.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+                            android:visibility="@{observer.progressObserverBank==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView

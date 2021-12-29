@@ -158,6 +158,11 @@ class DhabaDetailsFragment :
 
             // we are saving a space while saving dhaba address, because server side validation cannot be removed, so this is trick to not show that space alone while viewing dhaba
             it.address = it.address.trim()
+        } ?: kotlin.run {
+            // ASSIGNING SAME OBJECT TO THE VIEWMODEL AND MAIN DHABA OBJECT SO THAT IF ANYTHING GETS CHANGED IT SHOULD BE UPDATED IN MAIN OBJECT TOO
+            mListener?.getDhabaModelMain()?.dhabaModel = DhabaModel()
+            viewModel.dhabaModel = mListener?.getDhabaModelMain()?.dhabaModel!!
+            //--------------
         }
     }
 

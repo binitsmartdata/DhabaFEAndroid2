@@ -8,10 +8,8 @@ import com.google.gson.Gson
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.DhabaModel
-import com.transport.mall.model.UserModel
-import com.transport.mall.model.UserModelMain
 import com.transport.mall.repository.networkoperator.ApiResult
-import com.transport.mall.utils.base.BaseVM
+import com.transport.mall.ui.addnewdhaba.AddDhabaVM
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import kotlinx.coroutines.Dispatchers
@@ -24,30 +22,9 @@ import okhttp3.RequestBody
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class BankDetailsVM(application: Application) : BaseVM(application) {
-    var app: Application? = null
-    var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
-
-
-    val Status_SUCCESS = 1
-    val Status_ERROR = -1
-    val Status_LOADING = 0
-
-    var progressObserverOwner = Status_LOADING
-    var progressObserverDhaba = Status_LOADING
-    var progressObserverDhabaTiming = Status_LOADING
-    var progressObserverFood = Status_LOADING
-    var progressObserverParking = Status_LOADING
-    var progressObserverSleeping = Status_LOADING
-    var progressObserverWashroom = Status_LOADING
-    var progressObserverSecurity = Status_LOADING
-    var progressObserverLight = Status_LOADING
-    var progressObserverOther = Status_LOADING
-    var progressObserverBank = Status_LOADING
-
+class BankDetailsVM(application: Application) : AddDhabaVM(application) {
     var bankModel = BankDetailsModel()
     var dhabaModel = DhabaModel()
-
     var blockingMonths: ObservableField<String> = ObservableField()
 
     init {
@@ -62,82 +39,4 @@ class BankDetailsVM(application: Application) : BaseVM(application) {
         })
     }
 
-    fun addBankDetail(callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>) {
-        progressObserver.value = true
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                executeApi(
-                    getApiService()?.addBankDetail(
-                        RequestBody.create(MultipartBody.FORM, bankModel.user_id),
-                        RequestBody.create(MultipartBody.FORM, bankModel.bankName),
-                        RequestBody.create(MultipartBody.FORM, bankModel.gstNumber),
-                        RequestBody.create(MultipartBody.FORM, bankModel.accountNumber),
-                        RequestBody.create(MultipartBody.FORM, bankModel.ifscCode),
-                        RequestBody.create(MultipartBody.FORM, bankModel.accountName),
-                        RequestBody.create(MultipartBody.FORM, bankModel.panNumber),
-                        getMultipartImageFile(bankModel.panPhoto, "panPhoto")
-                    )
-                ).collect {
-                    handleResponse(it, callBack)
-                }
-            } catch (e: Exception) {
-                progressObserver.value = false
-                showToastInCenter(app!!, getCorrectErrorMessage(e))
-            }
-        }
-    }
-
-    fun updateBankDetail(callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>) {
-        progressObserver.value = true
-        GlobalScope.launch(Dispatchers.Main) {
-            try {
-                executeApi(
-                    getApiService()?.updateBankDetail(
-                        RequestBody.create(MultipartBody.FORM, bankModel._id),
-                        RequestBody.create(MultipartBody.FORM, bankModel.user_id),
-                        RequestBody.create(MultipartBody.FORM, bankModel.bankName),
-                        RequestBody.create(MultipartBody.FORM, bankModel.gstNumber),
-                        RequestBody.create(MultipartBody.FORM, bankModel.accountNumber),
-                        RequestBody.create(MultipartBody.FORM, bankModel.ifscCode),
-                        RequestBody.create(MultipartBody.FORM, bankModel.accountName),
-                        RequestBody.create(MultipartBody.FORM, bankModel.panNumber),
-                        getMultipartImageFile(bankModel.panPhoto, "panPhoto")
-                    )
-                ).collect {
-                    handleResponse(it, callBack)
-                }
-            } catch (e: Exception) {
-                progressObserver.value = false
-                showToastInCenter(app!!, getCorrectErrorMessage(e))
-            }
-        }
-    }
-
-    private fun handleResponse(
-        it: ApiResult<ApiResponseModel<BankDetailsModel>>,
-        callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>
-    ) {
-        when (it.status) {
-            ApiResult.Status.LOADING -> {
-                progressObserver.value = true
-            }
-            ApiResult.Status.ERROR -> {
-                progressObserver.value = false
-                try {
-                    callBack.onResponse(
-                        Gson().fromJson(
-                            it.error?.string(),
-                            ApiResponseModel::class.java
-                        ) as ApiResponseModel<BankDetailsModel>?
-                    )
-                } catch (e: Exception) {
-                    callBack.onResponse(ApiResponseModel(0, it.message!!, null))
-                }
-            }
-            ApiResult.Status.SUCCESS -> {
-                progressObserver.value = false
-                callBack.onResponse(it.data!!)
-            }
-        }
-    }
 }
