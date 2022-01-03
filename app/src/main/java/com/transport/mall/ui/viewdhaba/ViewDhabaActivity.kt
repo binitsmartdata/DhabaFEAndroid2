@@ -88,7 +88,14 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
             binding.timingRV.setHasFixedSize(true)
 
             binding.viewTimings = false
-            binding.flTimingArrow.setOnClickListener { binding.viewTimings = !binding.viewTimings!! }
+            binding.flTimingArrow.setOnClickListener {
+                binding.viewTimings = !binding.viewTimings!!
+                if (binding.viewTimings!!) {
+                    binding.ivTimingArrow.rotation = 0f
+                } else {
+                    binding.ivTimingArrow.rotation = 180f
+                }
+            }
         } else {
             binding.flTimingArrow.visibility = View.GONE
         }
