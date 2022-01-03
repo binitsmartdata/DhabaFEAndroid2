@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class TimingListAdapter(
-    val context: Context, val dataList: List<DhabaTimingModel>
+    val context: Context, val dataList: List<DhabaTimingModel>,val viewOnly: Boolean
 ) : InfiniteAdapter<RowTimingListBinding>() {
 
     init {
@@ -21,17 +21,19 @@ class TimingListAdapter(
         myViewHolderG?.binding?.context = context
         myViewHolderG?.binding?.model = dataList.get(position)
 
-        myViewHolderG?.binding?.tvStartTime?.setOnClickListener {
-            setOpeningPickerListener(position)
-        }
+        if (!viewOnly) {
+            myViewHolderG?.binding?.tvStartTime?.setOnClickListener {
+                setOpeningPickerListener(position)
+            }
 
-        myViewHolderG?.binding?.tvEndTime?.setOnClickListener {
-            setClosingPickerListener(position)
-        }
+            myViewHolderG?.binding?.tvEndTime?.setOnClickListener {
+                setClosingPickerListener(position)
+            }
 
-        myViewHolderG?.binding?.flChecked?.setOnClickListener {
-            dataList.get(position).isEnabled = !dataList.get(position).isEnabled
-            notifyDataSetChanged()
+            myViewHolderG?.binding?.flChecked?.setOnClickListener {
+                dataList.get(position).isEnabled = !dataList.get(position).isEnabled
+                notifyDataSetChanged()
+            }
         }
 
         myViewHolderG?.binding?.executePendingBindings()

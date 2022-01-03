@@ -17,7 +17,6 @@ import com.essam.simpleplacepicker.utils.SimplePlacePicker
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
-import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.AppDatabase
 import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
@@ -349,7 +348,7 @@ class DhabaDetailsFragment :
         binding.timingRV.layoutManager =
             LinearLayoutManager(getmContext(), LinearLayoutManager.VERTICAL, false)
         binding.timingRV.adapter =
-            TimingListAdapter(getmContext(), dhabaTimingModelParent.timingArray!!)
+            TimingListAdapter(getmContext(), dhabaTimingModelParent.timingArray!!, false)
         binding.timingRV.setHasFixedSize(true)
     }
 

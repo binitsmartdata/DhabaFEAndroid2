@@ -9,6 +9,7 @@ import com.transport.mall.databinding.ActivityViewDhabaBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
+import com.transport.mall.ui.customdialogs.TimingListAdapter
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import java.text.SimpleDateFormat
@@ -77,6 +78,19 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         } else {
             binding.tvOpen247.setText(getString(R.string.open_24_x_7))
             binding.tvOpen247.visibility = View.VISIBLE
+        }
+
+        if (viewModel.mDhabaModelMain.dhabaTiming != null && viewModel.mDhabaModelMain.dhabaTiming!!.isNotEmpty()) {
+            binding.timingRV.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            binding.timingRV.adapter =
+                TimingListAdapter(this, viewModel.mDhabaModelMain.dhabaTiming!!, true)
+            binding.timingRV.setHasFixedSize(true)
+
+            binding.viewTimings = false
+            binding.flTimingArrow.setOnClickListener { binding.viewTimings = !binding.viewTimings!! }
+        } else {
+            binding.flTimingArrow.visibility = View.GONE
         }
     }
 

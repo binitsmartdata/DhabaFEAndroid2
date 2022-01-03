@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -17,12 +18,16 @@
             name="dhabaModelMain"
             type="com.transport.mall.model.DhabaModelMain" />
 
+        <variable
+            name="viewTimings"
+            type="Boolean" />
+
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivHoardingPic"
@@ -54,13 +59,16 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp"
                     android:background="@drawable/white_round_corners_wide"
-                    android:orientation="vertical"
-                    android:padding="@dimen/_15sdp">
+                    android:orientation="vertical">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
@@ -95,27 +103,145 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:scrollbars="horizontal" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{dhabaModelMain.dhabaModel.landmark}"
                         android:textColor="@color/grey_view_dhaba"
                         android:textSize="14sp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvOpen24_7"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/llTimingTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/open_24_x_7"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"/>
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rgTiming">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvOpen24_7"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/open_24_x_7"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <FrameLayout
+                            android:id="@+id/flTimingArrow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.2">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivTimingArrow"
+                                android:layout_width="@dimen/_25sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:layout_gravity="center"
+                                android:padding="@dimen/_3sdp"
+                                android:rotation="180"
+                                android:src="@drawable/ic_timing_dropdown" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_time_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="@{viewTimings ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llTimingTitle">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_4sdp"
+                            android:layout_weight="0.6"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="@string/day"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <View
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="@string/start_time"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_4sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:text="@string/end_time"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <ImageView
+                            android:id="@+id/ivEditTiming"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/red_circle"
+                            android:padding="@dimen/_5sdp"
+                            android:src="@drawable/ic_edit_white"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:background="@drawable/btn_primary_round_corners"
+                            android:fontFamily="@font/opensans_regular"
+                            android:gravity="center"
+                            android:hint="@string/not_available"
+                            android:paddingVertical="@dimen/_2sdp"
+                            android:text="@string/today"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:visibility="invisible" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/timingRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewTimings ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ll_time_title" />
+
 
                     <View
                         android:layout_width="match_parent"
@@ -126,6 +252,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_bold"
                         android:text="@string/information"
@@ -136,6 +263,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{dhabaModelMain.dhabaModel.address}"
@@ -146,6 +274,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Landmark : `+ dhabaModelMain.dhabaModel.landmark}"
@@ -156,6 +285,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Area : `+ dhabaModelMain.dhabaModel.area}"
@@ -166,6 +296,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:text="@{`Highway : `+ dhabaModelMain.dhabaModel.highway}"
@@ -183,6 +314,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/opensans_bold"
                         android:text="@string/amenities"
@@ -194,6 +326,7 @@
                         android:id="@+id/llFoodAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
                         android:clickable="true"
@@ -221,6 +354,7 @@
                         android:id="@+id/llParkingAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
                         android:clickable="true"
@@ -248,6 +382,7 @@
                         android:id="@+id/llSleepingAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
                         android:clickable="true"
@@ -275,6 +410,7 @@
                         android:id="@+id/llWashroomAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
                         android:clickable="true"
@@ -302,6 +438,7 @@
                         android:id="@+id/llSecurityAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
                         android:clickable="true"
@@ -329,6 +466,7 @@
                         android:id="@+id/llLightAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
                         android:clickable="true"
@@ -356,6 +494,7 @@
                         android:id="@+id/llOtherAmenities"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/default_btn_selector"
                         android:clickable="true"
@@ -388,6 +527,7 @@
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -425,6 +565,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_5sdp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
