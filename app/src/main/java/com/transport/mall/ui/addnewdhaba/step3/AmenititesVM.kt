@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.model.AmenityModel
 import com.transport.mall.repository.networkoperator.ApiResult
+import com.transport.mall.ui.addnewdhaba.AddDhabaVM
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GenericCallBack
 import kotlinx.coroutines.Dispatchers
@@ -15,9 +16,7 @@ import kotlinx.coroutines.launch
 /**
  * Created by Parambir Singh on 2019-12-06.
  */
-class AmenititesVM(application: Application) : BaseVM(application) {
-    var app: Application? = null
-    var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
+class AmenititesVM(application: Application) : AddDhabaVM(application) {
 
     init {
         app = application

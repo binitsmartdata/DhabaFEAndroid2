@@ -23,10 +23,8 @@ import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.databinding.FragmentDhabaDetailsBinding
 import com.transport.mall.model.*
 import com.transport.mall.ui.addnewdhaba.step3.amenities.ImageGalleryAdapter
-import com.transport.mall.ui.customdialogs.ConfirmationDialog
-import com.transport.mall.ui.customdialogs.DialogDropdownOptions
-import com.transport.mall.ui.customdialogs.DialogHighwaySelection
-import com.transport.mall.ui.customdialogs.TimingListAdapter
+import com.transport.mall.ui.addnewdhaba.step4.*
+import com.transport.mall.ui.customdialogs.*
 import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
@@ -188,6 +186,13 @@ class DhabaDetailsFragment :
                 hideProgressDialog()
             }
         })
+        viewModel.progressObserverDraft.observe(this, Observer {
+            if (it) {
+                showProgressDialog(getString(R.string.saving_as_draft))
+            } else {
+                hideProgressDialog()
+            }
+        })
         viewModel.progressObserverUpdate.observe(this, Observer {
             if (it) {
                 showProgressDialog(getString(R.string.updating_dhaba_details))
@@ -226,22 +231,22 @@ class DhabaDetailsFragment :
         }
         binding.btnSaveDraft.setOnClickListener {
             GlobalUtils.disableTemporarily(it)
-            ConfirmationDialog(
-                getmContext(),
-                getString(R.string.are_you_sure_you_want_to_save_as_draft),
-                {
-                    if (it) {
-                        viewModel.dhabaModel.isDraft = true.toString()
-//            if (mListener?.getDhabaModelMain()?.dhabaModel != null) {
-//                mListener?.getDhabaModelMain()?.draftedAtScreen =
-//                    DhabaModelMain.DraftScreen.DhabaDetailsFragment.toString()
-//                mListener?.saveAsDraft()
-//                activity?.finish()
-//            } else {
-                        saveDetails(true)
-//            }
-                    }
-                }).show()
+            if (mListener?.getDhabaModelMain()?.ownerModel == null || GlobalUtils.getNonNullString(mListener?.getDhabaModelMain()?.ownerModel?.ownerName, "").isEmpty()) {
+                showToastInCenter(getString(R.string.enter_owner_name))
+                mListener?.showOwnerScreen()
+            } else if (mListener?.getDhabaModelMain()?.dhabaModel == null || GlobalUtils.getNonNullString(mListener?.getDhabaModelMain()?.dhabaModel?.name, "").isEmpty()) {
+                showToastInCenter(getString(R.string.enter_dhaba_name))
+            } else {
+                ConfirmationDialog(
+                    getmContext(),
+                    getString(R.string.are_you_sure_you_want_to_save_as_draft),
+                    GenericCallBack {
+                        if (it) {
+                            viewModel.dhabaModel.isDraft = true.toString()
+                            saveDetails(true)
+                        }
+                    }).show()
+            }
         }
 
         binding.rgTiming.setOnCheckedChangeListener { radioGroup, i ->
@@ -338,6 +343,7 @@ class DhabaDetailsFragment :
             binding.timingRV.adapter?.let {
                 it.notifyDataSetChanged()
             }
+            mListener?.getDhabaModelMain()?.dhabaTiming = dhabaTimingModelParent.timingArray
         }
 
         binding.timingRV.layoutManager =
@@ -353,11 +359,8 @@ class DhabaDetailsFragment :
             mListener?.showOwnerScreen()
         } else {
             if (isDraft) {
-                if (viewModel.dhabaModel.name.trim().isNotEmpty()) {
-                    proceed(isDraft)
-                } else {
-                    showToastInCenter(getString(R.string.enter_dhaba_name))
-                }
+//                proceed(isDraft)
+                proceedDrafting(isDraft)
             } else {
                 viewModel.dhabaModel.hasEverything(
                     getmContext(),
@@ -373,8 +376,8 @@ class DhabaDetailsFragment :
 //                                    proceed(isDraft)
 
                                     // WHEN NEXT BUTTON IS CLICKED, JUST PUT DATA IN THE MAIN MODEL AND GO TO NEXT SCREEN
-                                    mListener?.getDhabaModelMain()?.dhabaModel =
-                                        viewModel.dhabaModel
+//                                    mListener?.getDhabaModelMain()?.dhabaModel =
+//                                        viewModel.dhabaModel
                                     mListener?.showNextScreen()
                                 }
                             } else {
@@ -392,7 +395,7 @@ class DhabaDetailsFragment :
         }
     }
 
-    private fun proceed(isDraft: Boolean) {
+    /*private fun proceed(isDraft: Boolean) {
         if (viewModel.dhabaModel._id.isNotEmpty()) {
             viewModel.updateDhaba(isDraft,
                 GenericCallBack { response ->
@@ -406,8 +409,85 @@ class DhabaDetailsFragment :
                 }
             )
         }
+    }*/
+
+    private fun proceedDrafting(isDraft: Boolean) {
+        DialogSubmitforApproval(
+            getmContext(),
+            mListener?.getDhabaModelMain()!!,
+            viewModel.submitForApprovalObservers
+        ).show()
+
+        viewModel.saveOwnerDetails(mListener?.getDhabaModelMain()?.ownerModel!!, GenericCallBack {
+            if (it != null) {
+                // Assigning Ids to respective models
+                mListener?.getDhabaModelMain()?.dhabaModel?.owner_id = it._id
+                mListener?.getDhabaModelMain()?.bankDetailsModel?.user_id = it._id
+
+                //UPDATE OWNER'S DETAILS IN USER'S DATA BECAUSE OWNER IS THE SAME USER WHO HAS LOGGED IN
+                if (binding.userModel!!.isOwner() && binding.userModel!!._id.equals(mListener?.getDhabaModelMain()?.ownerModel?._id)) {
+                    binding.userModel!!.populateData(it)
+                    SharedPrefsHelper.getInstance(getmContext()).setUserData(binding.userModel!!)
+                    //NOTIFY THAT USER MODEL IS UPDATED
+                    RxBus.publish(it)
+                }
+                //---------
+
+                viewModel.saveDhabaDetails(mListener?.getDhabaModelMain()?.dhabaModel, GenericCallBack {
+                    if (it != null) {
+                        mListener?.getDhabaModelMain()?.dhabaModel?._id = it._id
+
+                        val timingParentModel = DhabaTimingModelParent(it._id, mListener?.getDhabaModelMain()?.dhabaTiming)
+                        viewModel.addDhabaTimeing(timingParentModel, GenericCallBack {
+                            if (it) {
+                                viewModel.saveFoodAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                    if (it) {
+                                        viewModel.saveParkingAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                            if (it) {
+                                                viewModel.saveSleepingAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                    if (it) {
+                                                        viewModel.saveWashroomAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                            if (it) {
+                                                                viewModel.saveSecurityAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                                    if (it) {
+                                                                        viewModel.saveLightAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                                            if (it) {
+                                                                                viewModel.saveOtherAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                                                    if (it) {
+                                                                                        viewModel.saveBankDetails(mListener?.getDhabaModelMain()!!.bankDetailsModel, GenericCallBack {
+                                                                                            if (it != null) {
+                                                                                                mListener?.getDhabaModelMain()?.dhabaModel?.let {
+                                                                                                    // UPDATING DHABA STATUS TO ISDRAFT
+                                                                                                    updateDhabaStatus(isDraft, !isDraft)
+                                                                                                } ?: kotlin.run {
+                                                                                                    showToastInCenter(getString(R.string.enter_dhaba_details_first))
+                                                                                                    mListener?.showDhabaScreen()
+                                                                                                }
+                                                                                            }
+                                                                                        })
+                                                                                    }
+                                                                                })
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                })
+                                                            }
+                                                        })
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
     }
 
+/*
     private fun handleResponse(response: ApiResponseModel<DhabaModel>, isDraft: Boolean) {
         if (response.data != null) {
             mListener?.getDhabaModelMain()?.dhabaModel = response.data
@@ -436,24 +516,17 @@ class DhabaDetailsFragment :
                         if (!it) {
                             showToastInCenter(getString(R.string.error_saving_timing))
                         }
-//                        if (isExecutiveReviewingOwnerDhaba()) {
-//                            showMessageAndGoNext()
-//                        } else {
                         updateDhabaStatus(true, true)
-//                        }
                     })
                 } else {
-//                    if (isExecutiveReviewingOwnerDhaba()) {
-//                        showMessageAndGoNext()
-//                    } else {
                     updateDhabaStatus(true, true)
-//                    }
                 }
             }
         } else {
             showToastInCenter(response.message)
         }
     }
+*/
 
     private fun showMessageAndGoNext() {
         if (mListener?.isUpdate()!!) {
@@ -473,7 +546,7 @@ class DhabaDetailsFragment :
             viewModel.dhabaModel,
             if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
             !isDraft,
-            viewModel.progressObserver,
+            viewModel.progressObserverDraft,
             GenericCallBack {
                 if (it.data != null) {
                     if (!goNext) {

@@ -610,5 +610,6 @@
     <string name="location_permission_confirmation">Please allow location permission to access current location.</string>
     <string name="update_and_next">Update &amp; Next</string>
     <string name="saving_details">Saving Details</string>
+    <string name="saving_as_draft">Saving as draft</string>
 
 </resources>

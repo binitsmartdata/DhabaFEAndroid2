@@ -13,6 +13,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.callback.AddDhabaListener
 import com.transport.mall.database.AppDatabase
+import com.transport.mall.database.DhabaTimingModelParent
 import com.transport.mall.databinding.FragmentBankDetailsBinding
 import com.transport.mall.model.BankDetailsModel
 import com.transport.mall.model.BankNamesModel
@@ -245,7 +246,6 @@ class BankDetailsFragment :
     private fun proceed(isDraft: Boolean) {
         DialogSubmitforApproval(
             getmContext(),
-            viewModel,
             mListener?.getDhabaModelMain()!!,
             viewModel.submitForApprovalObservers
         ).show()
@@ -270,22 +270,27 @@ class BankDetailsFragment :
                         mListener?.getDhabaModelMain()?.dhabaModel?._id = it._id
                         viewModel.dhabaModel = it
 
-                        viewModel.saveFoodAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                        val timingParentModel = DhabaTimingModelParent(it._id, mListener?.getDhabaModelMain()?.dhabaTiming)
+                        viewModel.addDhabaTimeing(timingParentModel, GenericCallBack {
                             if (it) {
-                                viewModel.saveParkingAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                viewModel.saveFoodAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
                                     if (it) {
-                                        viewModel.saveSleepingAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                        viewModel.saveParkingAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
                                             if (it) {
-                                                viewModel.saveWashroomAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                viewModel.saveSleepingAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
                                                     if (it) {
-                                                        viewModel.saveSecurityAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                        viewModel.saveWashroomAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
                                                             if (it) {
-                                                                viewModel.saveLightAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                                viewModel.saveSecurityAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
                                                                     if (it) {
-                                                                        viewModel.saveOtherAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                                        viewModel.saveLightAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
                                                                             if (it) {
-                                                                                viewModel.saveBankDetails(viewModel.bankModel, GenericCallBack {
-                                                                                    handleData(it, isDraft)
+                                                                                viewModel.saveOtherAmenities(mListener?.getDhabaModelMain()!!, GenericCallBack {
+                                                                                    if (it) {
+                                                                                        viewModel.saveBankDetails(viewModel.bankModel, GenericCallBack {
+                                                                                            handleData(it, isDraft)
+                                                                                        })
+                                                                                    }
                                                                                 })
                                                                             }
                                                                         })

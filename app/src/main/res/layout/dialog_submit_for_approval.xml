@@ -12,10 +12,6 @@
             type="android.content.Context" />
 
         <variable
-            name="viewModel"
-            type="com.transport.mall.ui.addnewdhaba.step1.BankDetailsVM" />
-
-        <variable
             name="dhabaModelMain"
             type="com.transport.mall.model.DhabaModelMain" />
 

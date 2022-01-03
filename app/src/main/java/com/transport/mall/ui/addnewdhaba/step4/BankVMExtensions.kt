@@ -299,7 +299,7 @@ fun AddDhabaVM.addDhabaTimeing(
     model: DhabaTimingModelParent,
     callBack: GenericCallBack<Boolean>
 ) {
-    submitForApprovalObservers.progressObserverDhabaTiming = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -307,20 +307,20 @@ fun AddDhabaVM.addDhabaTimeing(
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        submitForApprovalObservers.progressObserverDhabaTiming = SubmitForApprovalObservers.Companion.Status_LOADING
+                        submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_LOADING
                     }
                     ApiResult.Status.ERROR -> {
-                        submitForApprovalObservers.progressObserverDhabaTiming = SubmitForApprovalObservers.Companion.Status_ERROR
+                        submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_ERROR
                         callBack.onResponse(false)
                     }
                     ApiResult.Status.SUCCESS -> {
-                        submitForApprovalObservers.progressObserverDhabaTiming = SubmitForApprovalObservers.Companion.Status_SUCCESS
+                        submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_SUCCESS
                         callBack.onResponse(true)
                     }
                 }
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverDhabaTiming = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_ERROR
 //                showToastInCenter(app!!, getCorrectErrorMessage(e))
             callBack.onResponse(false)
         }
@@ -1324,21 +1324,25 @@ fun AddDhabaVM.saveOtherAmenities(dhabaModelMain: DhabaModelMain, callBack: Gene
     }
 }
 
-fun AddDhabaVM.saveBankDetails(bankDetailsModel: BankDetailsModel, callBack: GenericCallBack<BankDetailsModel?>) {
-    if (bankDetailsModel._id.isNotEmpty()) {
-        updateBankDetail(bankDetailsModel, GenericCallBack {
-            callBack.onResponse(it.data)
-            if (it.data == null) {
-                showToastInCenter(app, it.message)
-            }
-        })
-    } else {
-        addBankDetail(bankDetailsModel, GenericCallBack {
-            callBack.onResponse(it.data)
-            if (it.data == null) {
-                showToastInCenter(app, it.message)
-            }
-        })
+fun AddDhabaVM.saveBankDetails(bankDetailsModel: BankDetailsModel?, callBack: GenericCallBack<BankDetailsModel?>) {
+    bankDetailsModel?.let {
+        if (it._id.isNotEmpty()) {
+            updateBankDetail(it, GenericCallBack {
+                callBack.onResponse(it.data)
+                if (it.data == null) {
+                    showToastInCenter(app, it.message)
+                }
+            })
+        } else {
+            addBankDetail(it, GenericCallBack {
+                callBack.onResponse(it.data)
+                if (it.data == null) {
+                    showToastInCenter(app, it.message)
+                }
+            })
+        }
+    } ?: kotlin.run {
+        callBack.onResponse(null)
     }
 }
 

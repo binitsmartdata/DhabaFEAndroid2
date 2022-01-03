@@ -23,7 +23,6 @@ import com.transport.mall.utils.common.GenericCallBack
 
 class DialogSubmitforApproval constructor(
     context: Context,
-    viewModel: BankDetailsVM,
     dhabaModelMain: DhabaModelMain,
     progressObserver: SubmitForApprovalObservers
 ) : Dialog(context) {
@@ -42,7 +41,6 @@ class DialogSubmitforApproval constructor(
 //        window!!.setGravity(Gravity.BOTTOM)
         binding.context = context
 
-        binding.viewModel = viewModel
         binding.dhabaModelMain = dhabaModelMain
         binding.observer = progressObserver
     }
