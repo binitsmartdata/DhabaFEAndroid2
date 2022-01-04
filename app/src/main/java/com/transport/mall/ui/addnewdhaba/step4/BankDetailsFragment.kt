@@ -130,7 +130,7 @@ class BankDetailsFragment :
 //                activity?.findViewById<RadioButton>(i)?.getTag().toString()
         }
 
-        viewModel.progressObserver.observe(this, Observer {
+        viewModel.progressObserverSubmit.observe(this, Observer {
             if (it) {
                 showProgressDialog()
             } else {
@@ -323,7 +323,7 @@ class BankDetailsFragment :
                 viewModel.dhabaModel,
                 if (isDraft) DhabaModel.STATUS_PENDING else DhabaModel.STATUS_INPROGRESS,
                 !isDraft,
-                viewModel.progressObserver,
+                viewModel.progressObserverSubmit,
                 GenericCallBack {
                     if (it.data != null) {
                         mListener?.getDhabaModelMain()?.dhabaModel = it.data

@@ -35,6 +35,7 @@ class DialogSubmitforApproval constructor(
             LayoutInflater.from(context), R.layout.dialog_submit_for_approval, null, false
         )
         setContentView(binding.root)
+        setCancelable(false)
         window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 //        window!!.getAttributes().windowAnimations = R.style.DialogAnimationBottom
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

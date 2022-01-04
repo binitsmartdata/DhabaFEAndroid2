@@ -23,6 +23,7 @@ import okhttp3.RequestBody
  * Created by Parambir Singh on 2019-12-06.
  */
 class BankDetailsVM(application: Application) : AddDhabaVM(application) {
+    var progressObserverSubmit: MutableLiveData<Boolean> = MutableLiveData()
     var bankModel = BankDetailsModel()
     var dhabaModel = DhabaModel()
     var blockingMonths: ObservableField<String> = ObservableField()
