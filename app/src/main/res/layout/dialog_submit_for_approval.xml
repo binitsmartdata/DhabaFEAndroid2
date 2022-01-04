@@ -412,7 +412,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:visibility="@{dhabaModelMain.bankDetailsModel!=null ? View.VISIBLE : View.GONE}">
+                    android:visibility="@{(dhabaModelMain.bankDetailsModel!=null &amp;&amp; !dhabaModelMain.bankDetailsModel.bankName.empty &amp;&amp; !dhabaModelMain.bankDetailsModel.accountNumber.empty) ? View.VISIBLE : View.GONE}">
 
                     <FrameLayout
                         android:layout_width="@dimen/_15sdp"

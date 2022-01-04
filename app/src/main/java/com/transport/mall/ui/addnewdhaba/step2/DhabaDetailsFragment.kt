@@ -178,6 +178,7 @@ class DhabaDetailsFragment :
                 hideProgressDialog()
             }
         })
+/*
         viewModel.progressObserver.observe(this, Observer {
             if (it) {
                 showProgressDialog(getString(R.string.saving_dhaba_details))
@@ -185,6 +186,7 @@ class DhabaDetailsFragment :
                 hideProgressDialog()
             }
         })
+*/
         viewModel.progressObserverDraft.observe(this, Observer {
             if (it) {
                 showProgressDialog(getString(R.string.saving_as_draft))
