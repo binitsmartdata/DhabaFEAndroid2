@@ -82,6 +82,12 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverOwner==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverOwner==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
                     </FrameLayout>
 
                     <TextView
@@ -121,6 +127,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverDhaba==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverDhaba==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -160,6 +173,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverFood==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverFood==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -199,6 +219,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverParking==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverParking==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -238,6 +265,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverSleeping==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverSleeping==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -277,6 +311,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverWashroom==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverWashroom==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -316,6 +357,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverSecurity==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverSecurity==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -355,6 +403,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverLight==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverLight==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -394,6 +449,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverOther==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverOther==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView
@@ -433,6 +495,13 @@
                             android:layout_height="match_parent"
                             android:src="@drawable/ic_tick_red"
                             android:visibility="@{observer.progressObserverBank==observer.Companion.Status_SUCCESS ? View.VISIBLE : View.GONE }" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_error"
+                            android:visibility="@{observer.progressObserverBank==observer.Companion.Status_ERROR ? View.VISIBLE : View.GONE }" />
+
                     </FrameLayout>
 
                     <TextView

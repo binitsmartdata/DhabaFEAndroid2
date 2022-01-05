@@ -21,7 +21,8 @@ fun AddDhabaVM.addDhabaOwner(
     ownerModel: UserModel,
     callBack: GenericCallBack<ApiResponseModel<UserModel>>
 ) {
-    submitForApprovalObservers.progressObserverOwner = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverOwner =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -48,7 +49,8 @@ fun AddDhabaVM.addDhabaOwner(
                 handleOwnerApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverOwner = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverOwner =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -84,7 +86,8 @@ fun AddDhabaVM.updateOwner(
                 handleOwnerApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverOwner = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverOwner =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -96,10 +99,12 @@ private fun AddDhabaVM.handleOwnerApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverOwner = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverOwner =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverOwner = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverOwner =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -112,7 +117,8 @@ private fun AddDhabaVM.handleOwnerApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            submitForApprovalObservers.progressObserverOwner = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverOwner =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -123,7 +129,8 @@ fun AddDhabaVM.addDhaba(
     dhabaModel: DhabaModel,
     callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
 ) {
-    submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverDhaba =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -186,7 +193,8 @@ fun AddDhabaVM.addDhaba(
                 handleDhabaApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverDhaba =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -196,7 +204,8 @@ fun AddDhabaVM.updateDhaba(
     dhabaModel: DhabaModel,
     callBack: GenericCallBack<ApiResponseModel<DhabaModel>>
 ) {
-    submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverDhaba =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -261,7 +270,8 @@ fun AddDhabaVM.updateDhaba(
                 handleDhabaApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverDhaba =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -273,10 +283,12 @@ private fun AddDhabaVM.handleDhabaApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverDhaba =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverDhaba =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -289,7 +301,8 @@ private fun AddDhabaVM.handleDhabaApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverDhaba =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -299,7 +312,8 @@ fun AddDhabaVM.addDhabaTimeing(
     model: DhabaTimingModelParent,
     callBack: GenericCallBack<Boolean>
 ) {
-    submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverDhaba =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -307,20 +321,24 @@ fun AddDhabaVM.addDhabaTimeing(
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_LOADING
+                        submitForApprovalObservers.progressObserverDhaba =
+                            SubmitForApprovalObservers.Companion.Status_LOADING
                     }
                     ApiResult.Status.ERROR -> {
-                        submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_ERROR
+                        submitForApprovalObservers.progressObserverDhaba =
+                            SubmitForApprovalObservers.Companion.Status_ERROR
                         callBack.onResponse(false)
                     }
                     ApiResult.Status.SUCCESS -> {
-                        submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_SUCCESS
+                        submitForApprovalObservers.progressObserverDhaba =
+                            SubmitForApprovalObservers.Companion.Status_SUCCESS
                         callBack.onResponse(true)
                     }
                 }
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverDhaba = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverDhaba =
+                SubmitForApprovalObservers.Companion.Status_ERROR
 //                showToastInCenter(app!!, getCorrectErrorMessage(e))
             callBack.onResponse(false)
         }
@@ -332,7 +350,8 @@ fun AddDhabaVM.addFoodAmenities(
     model: FoodAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<FoodAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverFood = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverFood =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -358,7 +377,8 @@ fun AddDhabaVM.addFoodAmenities(
                 handleFoodApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverFood = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverFood =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -368,7 +388,8 @@ fun AddDhabaVM.updateFoodAmenities(
     model: FoodAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<FoodAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverFood = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverFood =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -395,7 +416,8 @@ fun AddDhabaVM.updateFoodAmenities(
                 handleFoodApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverFood = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverFood =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -407,10 +429,12 @@ private fun AddDhabaVM.handleFoodApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverFood = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverFood =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverFood = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverFood =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -423,7 +447,8 @@ private fun AddDhabaVM.handleFoodApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            submitForApprovalObservers.progressObserverFood = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverFood =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -434,7 +459,8 @@ fun AddDhabaVM.addParkingAmenities(
     model: ParkingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<ParkingAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverParking = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverParking =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -456,7 +482,8 @@ fun AddDhabaVM.addParkingAmenities(
                 handleParkingApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverParking = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverParking =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -466,7 +493,8 @@ fun AddDhabaVM.updateParkingAmenities(
     model: ParkingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<ParkingAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverParking = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverParking =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -489,7 +517,8 @@ fun AddDhabaVM.updateParkingAmenities(
                 handleParkingApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverParking = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverParking =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -501,10 +530,12 @@ private fun AddDhabaVM.handleParkingApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverParking = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverParking =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverParking = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverParking =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -517,7 +548,8 @@ private fun AddDhabaVM.handleParkingApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            submitForApprovalObservers.progressObserverParking = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverParking =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -528,7 +560,8 @@ fun AddDhabaVM.addSleepingAmenities(
     model: SleepingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverSleeping =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -540,18 +573,29 @@ fun AddDhabaVM.addSleepingAmenities(
                     RequestBody.create(MultipartBody.FORM, model.noOfBeds),
                     RequestBody.create(MultipartBody.FORM, model.fan),
                     RequestBody.create(MultipartBody.FORM, model.cooler),
-                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.enclosed, "")),
-                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.open, "")),
-                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.hotWater, "")),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.enclosed, "")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.open, "")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.hotWater, "")
+                    ),
                     getMultipartImageFile(model.images, "images")
                 )
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_LOADING
+                        submitForApprovalObservers.progressObserverSleeping =
+                            SubmitForApprovalObservers.Companion.Status_LOADING
                     }
                     ApiResult.Status.ERROR -> {
-                        submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_ERROR
+                        submitForApprovalObservers.progressObserverSleeping =
+                            SubmitForApprovalObservers.Companion.Status_ERROR
                         try {
                             callBack.onResponse(
                                 Gson().fromJson(
@@ -564,13 +608,15 @@ fun AddDhabaVM.addSleepingAmenities(
                         }
                     }
                     ApiResult.Status.SUCCESS -> {
-                        submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_SUCCESS
+                        submitForApprovalObservers.progressObserverSleeping =
+                            SubmitForApprovalObservers.Companion.Status_SUCCESS
                         callBack.onResponse(it.data)
                     }
                 }
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverSleeping =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -580,7 +626,8 @@ fun AddDhabaVM.updateSleepingAmenities(
     model: SleepingAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SleepingAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverSleeping =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -593,18 +640,29 @@ fun AddDhabaVM.updateSleepingAmenities(
                     RequestBody.create(MultipartBody.FORM, model.noOfBeds),
                     RequestBody.create(MultipartBody.FORM, model.fan),
                     RequestBody.create(MultipartBody.FORM, model.cooler),
-                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.enclosed, "")),
-                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.open, "")),
-                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(model.hotWater, "")),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.enclosed, "")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.open, "")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.hotWater, "")
+                    ),
                     getMultipartImageFile(model.images, "images")
                 )
             ).collect {
                 when (it.status) {
                     ApiResult.Status.LOADING -> {
-                        submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_LOADING
+                        submitForApprovalObservers.progressObserverSleeping =
+                            SubmitForApprovalObservers.Companion.Status_LOADING
                     }
                     ApiResult.Status.ERROR -> {
-                        submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_ERROR
+                        submitForApprovalObservers.progressObserverSleeping =
+                            SubmitForApprovalObservers.Companion.Status_ERROR
                         try {
                             callBack.onResponse(
                                 Gson().fromJson(
@@ -617,13 +675,15 @@ fun AddDhabaVM.updateSleepingAmenities(
                         }
                     }
                     ApiResult.Status.SUCCESS -> {
-                        submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_SUCCESS
+                        submitForApprovalObservers.progressObserverSleeping =
+                            SubmitForApprovalObservers.Companion.Status_SUCCESS
                         callBack.onResponse(it.data)
                     }
                 }
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverSleeping = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverSleeping =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -634,7 +694,8 @@ fun AddDhabaVM.addWashroomAmenities(
     model: WashroomAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<WashroomAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverWashroom = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverWashroom =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -651,7 +712,8 @@ fun AddDhabaVM.addWashroomAmenities(
                 handleWashroomApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverWashroom = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverWashroom =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -661,7 +723,8 @@ fun AddDhabaVM.updatewashroomAmenities(
     model: WashroomAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<WashroomAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverWashroom = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverWashroom =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -679,7 +742,8 @@ fun AddDhabaVM.updatewashroomAmenities(
                 handleWashroomApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverWashroom = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverWashroom =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -691,10 +755,12 @@ private fun AddDhabaVM.handleWashroomApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverWashroom = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverWashroom =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverWashroom = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverWashroom =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -708,7 +774,8 @@ private fun AddDhabaVM.handleWashroomApiResponse(
         }
         ApiResult.Status.SUCCESS -> {
             //                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-            submitForApprovalObservers.progressObserverWashroom = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverWashroom =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -719,7 +786,8 @@ fun AddDhabaVM.addSecurityAmenities(
     model: SecurityAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SecurityAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverSecurity = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverSecurity =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -727,11 +795,20 @@ fun AddDhabaVM.addSecurityAmenities(
                     RequestBody.create(MultipartBody.FORM, model.service_id),
                     RequestBody.create(MultipartBody.FORM, model.module_id),
                     RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.dayGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.nightGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.policVerification.toString()),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.dayGuard.toString(), "0")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.nightGuard.toString(), "0")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.policVerification.toString(), "")
+                    ),
                     getMultipartImageFile(
-                        model.verificationImg,
+                        GlobalUtils.getNonNullString(model.verificationImg, ""),
                         "verificationImg"
                     ),
                     RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
@@ -749,7 +826,8 @@ fun AddDhabaVM.addSecurityAmenities(
                 handleSecurityApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverSecurity = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverSecurity =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -759,7 +837,8 @@ fun AddDhabaVM.updateSecurityAmenities(
     model: SecurityAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<SecurityAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverSecurity = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverSecurity =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -768,11 +847,20 @@ fun AddDhabaVM.updateSecurityAmenities(
                     RequestBody.create(MultipartBody.FORM, model.service_id),
                     RequestBody.create(MultipartBody.FORM, model.module_id),
                     RequestBody.create(MultipartBody.FORM, model.dhaba_id),
-                    RequestBody.create(MultipartBody.FORM, model.dayGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.nightGuard.toString()),
-                    RequestBody.create(MultipartBody.FORM, model.policVerification.toString()),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.dayGuard.toString(), "0")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.nightGuard.toString(), "0")
+                    ),
+                    RequestBody.create(
+                        MultipartBody.FORM,
+                        GlobalUtils.getNonNullString(model.policVerification.toString(), "")
+                    ),
                     getMultipartImageFile(
-                        model.verificationImg,
+                        GlobalUtils.getNonNullString(model.verificationImg, ""),
                         "verificationImg"
                     ),
                     RequestBody.create(MultipartBody.FORM, model.indoorCamera.toString()),
@@ -790,7 +878,8 @@ fun AddDhabaVM.updateSecurityAmenities(
                 handleSecurityApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverSecurity = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverSecurity =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -802,10 +891,12 @@ private fun AddDhabaVM.handleSecurityApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverSecurity = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverSecurity =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverSecurity = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverSecurity =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -818,7 +909,8 @@ private fun AddDhabaVM.handleSecurityApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            submitForApprovalObservers.progressObserverSecurity = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverSecurity =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -828,7 +920,8 @@ fun AddDhabaVM.addLightAmenities(
     model: LightAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<LightAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverLight = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverLight =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -849,7 +942,8 @@ fun AddDhabaVM.addLightAmenities(
                 handleLightAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverLight = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverLight =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -859,7 +953,8 @@ fun AddDhabaVM.updateLightAmenities(
     model: LightAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<LightAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverLight = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverLight =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -881,7 +976,8 @@ fun AddDhabaVM.updateLightAmenities(
                 handleLightAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverLight = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverLight =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -893,10 +989,12 @@ private fun AddDhabaVM.handleLightAmenitiesApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverLight = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverLight =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverLight = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverLight =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -909,7 +1007,8 @@ private fun AddDhabaVM.handleLightAmenitiesApiResponse(
             }
         }
         ApiResult.Status.SUCCESS -> {
-            submitForApprovalObservers.progressObserverLight = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverLight =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
@@ -920,7 +1019,8 @@ fun AddDhabaVM.addOtherAmenities(
     model: OtherAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverOther = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverOther =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -945,7 +1045,8 @@ fun AddDhabaVM.addOtherAmenities(
                 handleOtherAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverOther = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverOther =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -955,7 +1056,8 @@ fun AddDhabaVM.updateOtherAmenities(
     model: OtherAmenitiesModel,
     callBack: GenericCallBack<ApiResponseModel<OtherAmenitiesModel>>
 ) {
-    submitForApprovalObservers.progressObserverOther = SubmitForApprovalObservers.Companion.Status_LOADING
+    submitForApprovalObservers.progressObserverOther =
+        SubmitForApprovalObservers.Companion.Status_LOADING
     GlobalScope.launch(Dispatchers.Main) {
         try {
             executeApi(
@@ -981,7 +1083,8 @@ fun AddDhabaVM.updateOtherAmenities(
                 handleOtherAmenitiesApiResponse(it, callBack)
             }
         } catch (e: Exception) {
-            submitForApprovalObservers.progressObserverOther = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverOther =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             showToastInCenter(app!!, getCorrectErrorMessage(e))
         }
     }
@@ -993,10 +1096,12 @@ private fun AddDhabaVM.handleOtherAmenitiesApiResponse(
 ) {
     when (it.status) {
         ApiResult.Status.LOADING -> {
-            submitForApprovalObservers.progressObserverOther = SubmitForApprovalObservers.Companion.Status_LOADING
+            submitForApprovalObservers.progressObserverOther =
+                SubmitForApprovalObservers.Companion.Status_LOADING
         }
         ApiResult.Status.ERROR -> {
-            submitForApprovalObservers.progressObserverOther = SubmitForApprovalObservers.Companion.Status_ERROR
+            submitForApprovalObservers.progressObserverOther =
+                SubmitForApprovalObservers.Companion.Status_ERROR
             try {
                 callBack.onResponse(
                     Gson().fromJson(
@@ -1010,14 +1115,18 @@ private fun AddDhabaVM.handleOtherAmenitiesApiResponse(
         }
         ApiResult.Status.SUCCESS -> {
             //                        AppDatabase.getInstance(app!!)?.cityDao()?.insertAll(it.data?.data?.data as List<CityModel>)
-            submitForApprovalObservers.progressObserverOther = SubmitForApprovalObservers.Companion.Status_SUCCESS
+            submitForApprovalObservers.progressObserverOther =
+                SubmitForApprovalObservers.Companion.Status_SUCCESS
             callBack.onResponse(it.data)
         }
     }
 }
 
 
-fun AddDhabaVM.addBankDetail(bankModel: BankDetailsModel, callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>) {
+fun AddDhabaVM.addBankDetail(
+    bankModel: BankDetailsModel,
+    callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>
+) {
     progressObserver.value = true
     GlobalScope.launch(Dispatchers.Main) {
         try {
@@ -1042,7 +1151,10 @@ fun AddDhabaVM.addBankDetail(bankModel: BankDetailsModel, callBack: GenericCallB
     }
 }
 
-fun AddDhabaVM.updateBankDetail(bankModel: BankDetailsModel, callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>) {
+fun AddDhabaVM.updateBankDetail(
+    bankModel: BankDetailsModel,
+    callBack: GenericCallBack<ApiResponseModel<BankDetailsModel>>
+) {
     progressObserver.value = true
     GlobalScope.launch(Dispatchers.Main) {
         try {
@@ -1135,7 +1247,10 @@ fun AddDhabaVM.saveDhabaDetails(dhabaModel: DhabaModel?, callBack: GenericCallBa
     }
 }
 
-fun AddDhabaVM.saveFoodAmenities(dhabaModelMain: DhabaModelMain, callBack: GenericCallBack<Boolean>) {
+fun AddDhabaVM.saveFoodAmenities(
+    dhabaModelMain: DhabaModelMain,
+    callBack: GenericCallBack<Boolean>
+) {
     dhabaModelMain.foodAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
@@ -1162,7 +1277,10 @@ fun AddDhabaVM.saveFoodAmenities(dhabaModelMain: DhabaModelMain, callBack: Gener
     }
 }
 
-fun AddDhabaVM.saveParkingAmenities(dhabaModelMain: DhabaModelMain, callBack: GenericCallBack<Boolean>) {
+fun AddDhabaVM.saveParkingAmenities(
+    dhabaModelMain: DhabaModelMain,
+    callBack: GenericCallBack<Boolean>
+) {
     dhabaModelMain.parkingAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
@@ -1189,7 +1307,10 @@ fun AddDhabaVM.saveParkingAmenities(dhabaModelMain: DhabaModelMain, callBack: Ge
     }
 }
 
-fun AddDhabaVM.saveSleepingAmenities(dhabaModelMain: DhabaModelMain, callBack: GenericCallBack<Boolean>) {
+fun AddDhabaVM.saveSleepingAmenities(
+    dhabaModelMain: DhabaModelMain,
+    callBack: GenericCallBack<Boolean>
+) {
     dhabaModelMain.sleepingAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
@@ -1216,7 +1337,10 @@ fun AddDhabaVM.saveSleepingAmenities(dhabaModelMain: DhabaModelMain, callBack: G
     }
 }
 
-fun AddDhabaVM.saveWashroomAmenities(dhabaModelMain: DhabaModelMain, callBack: GenericCallBack<Boolean>) {
+fun AddDhabaVM.saveWashroomAmenities(
+    dhabaModelMain: DhabaModelMain,
+    callBack: GenericCallBack<Boolean>
+) {
     dhabaModelMain.washroomAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
@@ -1243,7 +1367,10 @@ fun AddDhabaVM.saveWashroomAmenities(dhabaModelMain: DhabaModelMain, callBack: G
     }
 }
 
-fun AddDhabaVM.saveSecurityAmenities(dhabaModelMain: DhabaModelMain, callBack: GenericCallBack<Boolean>) {
+fun AddDhabaVM.saveSecurityAmenities(
+    dhabaModelMain: DhabaModelMain,
+    callBack: GenericCallBack<Boolean>
+) {
     dhabaModelMain.securityAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
@@ -1270,7 +1397,10 @@ fun AddDhabaVM.saveSecurityAmenities(dhabaModelMain: DhabaModelMain, callBack: G
     }
 }
 
-fun AddDhabaVM.saveLightAmenities(dhabaModelMain: DhabaModelMain, callBack: GenericCallBack<Boolean>) {
+fun AddDhabaVM.saveLightAmenities(
+    dhabaModelMain: DhabaModelMain,
+    callBack: GenericCallBack<Boolean>
+) {
     dhabaModelMain.lightAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
@@ -1297,7 +1427,10 @@ fun AddDhabaVM.saveLightAmenities(dhabaModelMain: DhabaModelMain, callBack: Gene
     }
 }
 
-fun AddDhabaVM.saveOtherAmenities(dhabaModelMain: DhabaModelMain, callBack: GenericCallBack<Boolean>) {
+fun AddDhabaVM.saveOtherAmenities(
+    dhabaModelMain: DhabaModelMain,
+    callBack: GenericCallBack<Boolean>
+) {
     dhabaModelMain.otherAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
@@ -1324,7 +1457,10 @@ fun AddDhabaVM.saveOtherAmenities(dhabaModelMain: DhabaModelMain, callBack: Gene
     }
 }
 
-fun AddDhabaVM.saveBankDetails(bankDetailsModel: BankDetailsModel?, callBack: GenericCallBack<BankDetailsModel?>) {
+fun AddDhabaVM.saveBankDetails(
+    bankDetailsModel: BankDetailsModel?,
+    callBack: GenericCallBack<BankDetailsModel?>
+) {
     bankDetailsModel?.let {
         if (it._id.isNotEmpty()) {
             updateBankDetail(it, GenericCallBack {
