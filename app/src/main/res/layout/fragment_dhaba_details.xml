@@ -499,7 +499,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:animateLayoutChanges="true"
-                    android:visibility="@{(userModel.isOwner() || userModel.isManager()) ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{(userModel.isOwner() || userModel.isManager()) ? View.VISIBLE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pinCodeTil">

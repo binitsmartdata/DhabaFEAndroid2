@@ -67,9 +67,10 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
                     if (timing.day.substring(0, 3).equals(today, true)) {
                         if (timing.isEnabled) {
                             binding.tvOpen247.setText(getString(R.string.open_) + " " + timing.opening + " " + getString(R.string.to) + " " + timing.closing)
-                            binding.tvOpen247.visibility = View.VISIBLE
+//                            binding.tvOpen247.visibility = View.VISIBLE
                         } else {
-                            binding.tvOpen247.visibility = View.GONE
+                            binding.tvOpen247.setText(getString(R.string.dhaba_timings))
+//                            binding.tvOpen247.visibility = View.VISIBLE
                         }
                         break
                     }
@@ -77,7 +78,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
             }
         } else {
             binding.tvOpen247.setText(getString(R.string.open_24_x_7))
-            binding.tvOpen247.visibility = View.VISIBLE
+//            binding.tvOpen247.visibility = View.VISIBLE
         }
 
         if (viewModel.mDhabaModelMain.dhabaTiming != null && viewModel.mDhabaModelMain.dhabaTiming!!.isNotEmpty()) {
