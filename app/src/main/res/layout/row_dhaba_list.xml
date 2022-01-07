@@ -69,7 +69,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    loadImage="@{model.images}"
+                    loadImage="@{model.getPrimaryImage()}"
                     placeholder="@{R.drawable.placeholder}"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_75sdp"

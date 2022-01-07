@@ -14,6 +14,7 @@ import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -66,7 +67,11 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
                     val today = SimpleDateFormat("EEE").format(Date())
                     if (timing.day.substring(0, 3).equals(today, true)) {
                         if (timing.isEnabled) {
-                            binding.tvOpen247.setText(getString(R.string.open_) + " " + timing.opening + " " + getString(R.string.to) + " " + timing.closing)
+                            binding.tvOpen247.setText(
+                                getString(R.string.open_) + " " + timing.opening + " " + getString(
+                                    R.string.to
+                                ) + " " + timing.closing
+                            )
 //                            binding.tvOpen247.visibility = View.VISIBLE
                         } else {
                             binding.tvOpen247.setText(getString(R.string.dhaba_timings))
@@ -178,14 +183,38 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
             }
         }
 
-        binding.recyclerViewImages.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        // GETTING PRIMARY IMAGES AT THE STARTING OF THE GALLERY
+        var primaryList = ArrayList<PhotosModel>()
+        var secondaryList = ArrayList<PhotosModel>()
+        imagesList.forEach {
+            if (it.isActive && it.isPrimary) {
+                primaryList.add(it)
+            } else if (it.isActive) {
+                secondaryList.add(it)
+            }
+        }
+        imagesList.clear()
+        imagesList.addAll(primaryList)
+        imagesList.addAll(secondaryList)
+        //---------------
+
+        binding.recyclerViewImages.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerViewImages.adapter = ImageGalleryAdapter(this, imagesList)
     }
 
     private fun setupDhabaCategoryView() {
-        if (viewModel.mDhabaModelMain.dhabaModel?.dhabaCategory.equals(viewModel.mDhabaModelMain.dhabaModel?.CATEGORY_GOLD, true)) {
+        if (viewModel.mDhabaModelMain.dhabaModel?.dhabaCategory.equals(
+                viewModel.mDhabaModelMain.dhabaModel?.CATEGORY_GOLD,
+                true
+            )
+        ) {
             binding.tvCategory.setBackgroundResource(R.drawable.ic_gold_hotel_type)
-        } else if (viewModel.mDhabaModelMain.dhabaModel?.dhabaCategory.equals(viewModel.mDhabaModelMain.dhabaModel?.CATEGORY_BRONZE, true)) {
+        } else if (viewModel.mDhabaModelMain.dhabaModel?.dhabaCategory.equals(
+                viewModel.mDhabaModelMain.dhabaModel?.CATEGORY_BRONZE,
+                true
+            )
+        ) {
             binding.tvCategory.setBackgroundResource(R.drawable.ic_bronze_hotel_type)
         } else {
             binding.tvCategory.setBackgroundResource(R.drawable.ic_silver_hotel_type)
@@ -200,25 +229,67 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
             ImagePagerActivity.startForSingle(this, viewModel.mDhabaModelMain.dhabaModel?.images!!)
         }
         binding.llFoodAmenities.setOnClickListener {
-            AmenitiesActivity.start(this, AmenitiesActivity.FOOD, viewModel.mDhabaModelMain, true, true)
+            AmenitiesActivity.start(
+                this,
+                AmenitiesActivity.FOOD,
+                viewModel.mDhabaModelMain,
+                true,
+                true
+            )
         }
         binding.llParkingAmenities.setOnClickListener {
-            AmenitiesActivity.start(this, AmenitiesActivity.PARKING, viewModel.mDhabaModelMain, true, true)
+            AmenitiesActivity.start(
+                this,
+                AmenitiesActivity.PARKING,
+                viewModel.mDhabaModelMain,
+                true,
+                true
+            )
         }
         binding.llSleepingAmenities.setOnClickListener {
-            AmenitiesActivity.start(this, AmenitiesActivity.SLEEPING, viewModel.mDhabaModelMain, true, true)
+            AmenitiesActivity.start(
+                this,
+                AmenitiesActivity.SLEEPING,
+                viewModel.mDhabaModelMain,
+                true,
+                true
+            )
         }
         binding.llWashroomAmenities.setOnClickListener {
-            AmenitiesActivity.start(this, AmenitiesActivity.WASHROOM, viewModel.mDhabaModelMain, true, true)
+            AmenitiesActivity.start(
+                this,
+                AmenitiesActivity.WASHROOM,
+                viewModel.mDhabaModelMain,
+                true,
+                true
+            )
         }
         binding.llSecurityAmenities.setOnClickListener {
-            AmenitiesActivity.start(this, AmenitiesActivity.SECURITY, viewModel.mDhabaModelMain, true, true)
+            AmenitiesActivity.start(
+                this,
+                AmenitiesActivity.SECURITY,
+                viewModel.mDhabaModelMain,
+                true,
+                true
+            )
         }
         binding.llLightAmenities.setOnClickListener {
-            AmenitiesActivity.start(this, AmenitiesActivity.LIGHT, viewModel.mDhabaModelMain, true, true)
+            AmenitiesActivity.start(
+                this,
+                AmenitiesActivity.LIGHT,
+                viewModel.mDhabaModelMain,
+                true,
+                true
+            )
         }
         binding.llOtherAmenities.setOnClickListener {
-            AmenitiesActivity.start(this, AmenitiesActivity.OTHER, viewModel.mDhabaModelMain, true, true)
+            AmenitiesActivity.start(
+                this,
+                AmenitiesActivity.OTHER,
+                viewModel.mDhabaModelMain,
+                true,
+                true
+            )
         }
     }
 

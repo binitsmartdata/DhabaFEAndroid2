@@ -9,4 +9,7 @@ import java.io.Serializable
 data class PhotosModel(
     val _id: String,
     val path: String
-) : Serializable
+) : Serializable {
+    var isActive: Boolean = true
+    var isPrimary: Boolean = false
+}

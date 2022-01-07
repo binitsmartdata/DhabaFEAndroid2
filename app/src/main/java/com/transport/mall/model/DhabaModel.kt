@@ -343,6 +343,18 @@ class DhabaModel : Serializable, BaseObservable() {
         return missingParams
     }
 
+    fun getPrimaryImage(): String {
+        if (imageList != null && imageList.isNotEmpty()) {
+            imageList.forEach {
+                if (it.isActive && it.isPrimary) {
+                    return it.path
+                }
+            }
+            return images
+        } else {
+            return images
+        }
+    }
 
     companion object {
         public val STATUS_PENDING = "Pending"
