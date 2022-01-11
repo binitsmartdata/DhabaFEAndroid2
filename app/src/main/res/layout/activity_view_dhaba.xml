@@ -525,13 +525,15 @@
                         android:background="@color/grey_light" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/llReviews"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/default_btn_selector"
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="0dp"

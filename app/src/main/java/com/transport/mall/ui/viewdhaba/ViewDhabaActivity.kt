@@ -10,6 +10,7 @@ import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.customdialogs.TimingListAdapter
+import com.transport.mall.ui.reviews.ReviewListActivity
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import java.text.SimpleDateFormat
@@ -58,6 +59,10 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         assembleImagesAndShow()
 
         showDhabaTiming()
+
+        binding.llReviews.setOnClickListener {
+            ReviewListActivity.start(this)
+        }
     }
 
     private fun showDhabaTiming() {

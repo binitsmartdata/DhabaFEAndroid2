@@ -58,8 +58,8 @@
         <activity
             android:name="com.transport.mall.ui.viewdhaba.ViewDhabaActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity"
             android:screenOrientation="portrait" />
@@ -72,6 +72,13 @@
         <activity
             android:name=".utils.common.WebViewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.reviews.AddReviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".ui.reviews.ReviewListActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

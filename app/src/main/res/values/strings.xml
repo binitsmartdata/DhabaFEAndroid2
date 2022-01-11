@@ -612,5 +612,9 @@
     <string name="saving_details">Saving Details</string>
     <string name="saving_as_draft">Saving as draft</string>
     <string name="dhaba_timings">Dhaba Timings</string>
+    <string name="add_review">Add Review</string>
+    <string name="your_review">Your Review</string>
+    <string name="upload_images">Upload Images</string>
+    <string name="submit_review">Submit Review</string>
 
 </resources>
