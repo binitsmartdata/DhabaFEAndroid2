@@ -60,10 +60,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:animateLayoutChanges="true"
-                    android:paddingTop="@dimen/_15sdp"
-                    android:paddingBottom="@dimen/_15sdp"
                     android:background="@drawable/white_round_corners_wide"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -528,11 +528,10 @@
                         android:id="@+id/llReviews"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/default_btn_selector"
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/default_btn_selector"
                         android:gravity="center_vertical"
-                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -554,6 +553,7 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <TextView
+                        android:id="@+id/tvNoReviews"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
@@ -564,11 +564,30 @@
                         android:textColor="@color/grey"
                         android:visibility="gone" />
 
+                    <ProgressBar
+                        android:id="@+id/progressBarReviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:visibility="gone" />
+
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_5sdp" />
+
+                    <TextView
+                        android:id="@+id/tvViewAllReviews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/default_btn_selector"
+                        android:padding="@dimen/_15sdp"
+                        android:visibility="gone"
+                        android:text="@string/view_all_reviews"
+                        android:textColor="@color/colorPrimary" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>

@@ -135,3 +135,4 @@ fun Fragment.getCurrentLocation(callBack: GenericCallBack<LatLng>) {
 }
 
 
+

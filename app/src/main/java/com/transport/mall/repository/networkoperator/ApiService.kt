@@ -9,6 +9,7 @@ import com.transport.mall.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -652,6 +653,24 @@ interface ApiService {
 
     @POST("getAllAmenitiesData/find")
     suspend fun getAllAmenities(): Response<ApiResponseModel<InternalDataListModel<ArrayList<AmenityModel>>>>
+
+    @FormUrlEncoded
+    @POST("review/addReview")
+    suspend fun addReview(
+        @Field("dhaba_id") dhaba_id: String,
+        @Field("user_id") user_id: String,
+        @Field("review") review: String,
+        @Field("rating") rating: String
+    ): Response<ApiResponseModel<ReviewModel>>
+
+
+    @GET("review/getReviewByDhabaId/{id}")
+    suspend fun getDhabaReviewsById(
+        @Path("id") id: String,
+        @Query("count") count: String?,
+        @Query("page") page: String?,
+        @Query("sort") sort: String?//ASC, DESC
+    ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<ReviewModel>>>>?
 
 }
 

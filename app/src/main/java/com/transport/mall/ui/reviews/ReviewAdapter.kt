@@ -2,39 +2,40 @@ package com.transport.mall.ui.reviews
 
 import android.content.Context
 import com.transport.mall.R
-import com.transport.mall.databinding.RowDhabaListBinding
+import com.transport.mall.databinding.ReviewAdapterBinding
+import com.transport.mall.model.ReviewModel
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 
-class ReviewAdapter(val context: Context, private val natigateCallBack: GenericCallBack<Int>) :
-    InfiniteAdapter<RowDhabaListBinding>() {
+class ReviewAdapter(
+    val context: Context,
+    val dataList: ArrayList<ReviewModel>,
+    private val replyCallBack: GenericCallBack<Int>,
+    val isPreviewMode: Boolean
+) : InfiniteAdapter<ReviewAdapterBinding>() {
 
     init {
         setShouldLoadMore(false)
     }
 
     override fun bindData(position: Int, myViewHolderG: MyViewHolderG?) {
-        myViewHolderG?.binding?.context = context
-        /* myViewHolderG?.binding?.isInProgress = dataList[position].dhabaModel?.status.equals(
-             DhabaModel.STATUS_INPROGRESS)
-         myViewHolderG?.binding?.model = dataList[position].dhabaModel
-         myViewHolderG?.binding?.owner = dataList[position].ownerModel
-         myViewHolderG?.binding?.manager = dataList[position].manager*/
-
-
-
+        myViewHolderG?.binding?.review = dataList.get(position)
         setButtonsClicks(myViewHolderG, position)
         myViewHolderG?.binding?.executePendingBindings()
     }
 
     private fun setButtonsClicks(myViewHolderG: MyViewHolderG?, position: Int) {
-        myViewHolderG?.binding?.parentItem?.setOnClickListener {
-            natigateCallBack.onResponse(position)
+        myViewHolderG?.binding?.tvReply?.setOnClickListener {
+            replyCallBack.onResponse(position)
         }
     }
 
     override fun getCount(): Int {
-        return 10
+        if (isPreviewMode) {
+            return if (dataList.size >= 2) 2 else dataList.size
+        } else {
+            return dataList.size
+        }
     }
 
     override fun getInflateLayout(type: Int): Int {

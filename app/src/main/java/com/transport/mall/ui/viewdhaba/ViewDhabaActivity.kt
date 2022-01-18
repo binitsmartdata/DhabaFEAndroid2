@@ -10,8 +10,11 @@ import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.customdialogs.TimingListAdapter
+import com.transport.mall.ui.reviews.AddReviewActivity
+import com.transport.mall.ui.reviews.ReviewAdapter
 import com.transport.mall.ui.reviews.ReviewListActivity
 import com.transport.mall.utils.base.BaseActivity
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.fullimageview.ImagePagerActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,6 +55,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         mIsUpdate = intent.hasExtra("data")
         viewModel.mDhabaModelMain = intent.getSerializableExtra("data") as DhabaModelMain
         binding.dhabaModelMain = viewModel.mDhabaModelMain
+        viewModel.dhabaId = viewModel.mDhabaModelMain.dhabaModel?._id!!
 
         // SETUP GOLD, BRONZE, SILVER DHABA CATEGORY
         setupDhabaCategoryView()
@@ -61,7 +65,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         showDhabaTiming()
 
         binding.llReviews.setOnClickListener {
-            ReviewListActivity.start(this)
+            ReviewListActivity.start(this, viewModel.mDhabaModelMain.dhabaModel!!)
         }
     }
 
@@ -296,7 +300,57 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
                 true
             )
         }
+        binding.tvViewAllReviews.setOnClickListener {
+            ReviewListActivity.start(this, viewModel.mDhabaModelMain.dhabaModel!!)
+        }
+
+        getReviews()
     }
+
+    private fun getReviews() {
+        binding.progressBarReviews.visibility = View.VISIBLE
+        viewModel.getDhabaReviewsById(GenericCallBack {
+            binding.progressBarReviews.visibility = View.GONE
+            it?.let {
+                if (it.data != null && it.data?.data!!.isNotEmpty()) {
+                    if (viewModel.page == 1) {
+                        viewModel.reviewList.clear()
+                        viewModel.reviewList = it.data?.data!!
+                        setAdapter()
+                    }
+                }
+            }
+            refreshViewsVisibility()
+        })
+    }
+
+    private fun refreshViewsVisibility() {
+        if (viewModel.reviewList.isNotEmpty()) {
+            binding.recyclerview.visibility = View.VISIBLE
+            binding.tvViewAllReviews.visibility = View.VISIBLE
+            binding.tvNoReviews.visibility = View.GONE
+        } else {
+            binding.recyclerview.visibility = View.GONE
+            binding.tvViewAllReviews.visibility = View.GONE
+            binding.tvNoReviews.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setAdapter() {
+        val reviewAdapter =
+            ReviewAdapter(applicationContext, viewModel.reviewList, GenericCallBack {
+                AddReviewActivity.start(this, viewModel.dhabaId, viewModel.reviewList[it])
+            }, true)
+        binding.recyclerview.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerview.adapter = reviewAdapter
+
+        reviewAdapter.setOnLoadMoreListener {
+            viewModel.page += 1
+            getReviews()
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

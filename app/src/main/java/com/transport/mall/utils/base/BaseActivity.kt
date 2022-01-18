@@ -93,6 +93,18 @@ abstract class BaseActivity<myBinding : ViewDataBinding, V : ViewModel> : AppCom
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    open fun setStatusBarTransparent(activity: Activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window: Window = activity.getWindow()
+            val background: Drawable = ContextCompat.getDrawable(this,R.drawable.transparent_btn_selector)!!
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent))
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent))
+            window.setBackgroundDrawable(background)
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         refreshLanguagePreference()

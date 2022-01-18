@@ -29,6 +29,10 @@ import com.transport.mall.callback.PermissionCallback
 import com.transport.mall.utils.base.BaseActivity
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.io.File
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -116,7 +120,13 @@ fun loadImageRoundCorners(view: ImageView?, image: String?, placeHolder: Int) {
                 .load(it)
                 .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.grey_placeholder)
                 .placeholder(placeHolder)
-                .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
+                .transform(
+                    RoundedCornersTransformation(
+                        50,
+                        50,
+                        RoundedCornersTransformation.CornerType.ALL
+                    )
+                )
                 .into(view)
         } else {
             val file = File(it)
@@ -124,7 +134,13 @@ fun loadImageRoundCorners(view: ImageView?, image: String?, placeHolder: Int) {
                 .load(file)
                 .error(placeHolder)
                 .placeholder(placeHolder)
-                .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
+                .transform(
+                    RoundedCornersTransformation(
+                        50,
+                        50,
+                        RoundedCornersTransformation.CornerType.ALL
+                    )
+                )
                 .into(view)
         }
     } ?: run {
@@ -132,7 +148,13 @@ fun loadImageRoundCorners(view: ImageView?, image: String?, placeHolder: Int) {
             .load(R.drawable.ic_image_placeholder)
             .error(if (placeHolder == R.drawable.ic_profile_pic_placeholder) placeHolder else R.drawable.grey_placeholder)
             .placeholder(R.drawable.ic_image_placeholder)
-            .transform(RoundedCornersTransformation(50, 50, RoundedCornersTransformation.CornerType.ALL))
+            .transform(
+                RoundedCornersTransformation(
+                    50,
+                    50,
+                    RoundedCornersTransformation.CornerType.ALL
+                )
+            )
             .into(view)
     }
 }
@@ -237,12 +259,92 @@ fun setBold(view: TextView, isBold: Boolean) {
 @BindingAdapter("isHighlighted")
 fun isHighlighted(view: ImageView, isHighlighted: Boolean) {
     if (isHighlighted) {
-        view.setColorFilter(ContextCompat.getColor(view.context, R.color.colorPrimary), PorterDuff.Mode.SRC_IN)
+        view.setColorFilter(
+            ContextCompat.getColor(view.context, R.color.colorPrimary),
+            PorterDuff.Mode.SRC_IN
+        )
     } else {
-        view.setColorFilter(ContextCompat.getColor(view.context, R.color.text_gray), PorterDuff.Mode.SRC_IN)
+        view.setColorFilter(
+            ContextCompat.getColor(view.context, R.color.text_gray),
+            PorterDuff.Mode.SRC_IN
+        )
     }
 }
 
+@BindingAdapter("timeAgo")
+fun timeAgo(view: TextView, dataDate: String?) {
+    dataDate?.let {
+        var convertTime = ""
+        val suffix = "ago"
+        try {
+            val inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            //            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+            val dateFormat = SimpleDateFormat(inputPattern, Locale.getDefault())
+            dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+            val pasTime = dateFormat.parse(dataDate)
+            val nowTime = Date()
+            val dateDiff = nowTime.time - pasTime.time
+            val second = TimeUnit.MILLISECONDS.toSeconds(dateDiff)
+            val minute = TimeUnit.MILLISECONDS.toMinutes(dateDiff)
+            val hour = TimeUnit.MILLISECONDS.toHours(dateDiff)
+            val day = TimeUnit.MILLISECONDS.toDays(dateDiff)
+
+
+            convertTime = if (second < 60) {
+                if (second == 1L) {
+                    "$second second $suffix"
+                } else {
+                    "$second seconds $suffix"
+                }
+            } else if (minute < 60) {
+                if (minute == 1L) {
+                    "$minute minute $suffix"
+                } else {
+                    "$minute minutes $suffix"
+                }
+            } else if (hour < 24) {
+                if (hour == 1L) {
+                    "$hour hour $suffix"
+                } else {
+                    "$hour hours $suffix"
+                }
+            } else if (day >= 7) {
+                if (day >= 365) {
+                    val tempYear = day / 365
+                    if (tempYear == 1L) {
+                        "$tempYear year $suffix"
+                    } else {
+                        "$tempYear years $suffix"
+                    }
+                } else if (day >= 30) {
+                    val tempMonth = day / 30
+                    if (tempMonth == 1L) {
+                        (day / 30).toString() + " month " + suffix
+                    } else {
+                        (day / 30).toString() + " months " + suffix
+                    }
+                } else {
+                    val tempWeek = day / 7
+                    if (tempWeek == 1L) {
+                        (day / 7).toString() + " week " + suffix
+                    } else {
+                        (day / 7).toString() + " weeks " + suffix
+                    }
+                }
+            } else {
+                if (day == 1L) {
+                    "$day day $suffix"
+                } else {
+                    "$day days $suffix"
+                }
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            Log.e("TimeAgo", e.message + "")
+        }
+        view.text = convertTime
+    } ?: run { view.text = dataDate }
+}
 
 
 

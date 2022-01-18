@@ -1,217 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.transport.mall.ui.viewdhaba.ViewDhabaVM" />
+
+        <variable
+            name="reviewModel"
+            type="com.transport.mall.model.ReviewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:fillViewport="true">
+        android:animateLayoutChanges="true"
+        android:background="#99000000"
+        android:orientation="vertical"
+        android:weightSum="2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:weightSum="2">
+                android:padding="@dimen/_10sdp"
+                android:text="@string/add_reply"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:theme="@style/openBoldTextStyle" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight=".5"
-                    android:background="#99000000" />
+            <include
+                layout="@layout/review_adapter"
+                app:hideReplyButtons="@{true}"
+                app:review="@{reviewModel}" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1.5"
-                    android:background="@color/white"
-                    android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="horizontal">
 
+                <RatingBar
+                    android:id="@+id/rb_rating"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="false"
+                    android:max="5"
+                    android:numStars="5"
+                    android:progressDrawable="@drawable/ratingbar_full"
+                    android:rating="0"
+                    android:stepSize="0.5" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/_10sdp"
-                        android:text="@string/add_review"
-                        android:textColor="@color/black"
-                        android:textSize="17sp"
-                        android:theme="@style/openBoldTextStyle" />
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_10sdp"
-                        android:orientation="horizontal">
-
-                        <RatingBar
-                            android:id="@+id/rb_rating"
-                            style="?android:attr/ratingBarStyleIndicator"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:isIndicator="false"
-                            android:max="5"
-                            android:numStars="5"
-                            android:progressDrawable="@drawable/ratingbar_full"
-                            android:rating="0"
-                            android:stepSize="0.5" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvRating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="@dimen/_15sdp"
-                            android:orientation="vertical"
-                            android:text="0"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_15ssp"
-                            android:theme="@style/openRegularTextStyle" />
-                    </LinearLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:orientation="vertical"
+                    android:text="@{rbRating.rating+``}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15ssp"
+                    android:theme="@style/openRegularTextStyle" />
+            </LinearLayout>
 
 
-                    <EditText
-                        android:id="@+id/edSearch"
-                        style="@style/openRegularTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_100sdp"
-                        android:layout_margin="@dimen/_10sdp"
-                        android:background="@drawable/grey_stroke"
-                        android:drawablePadding="5dp"
-                        android:gravity="top"
-                        android:hint="@string/your_review"
-                        android:padding="@dimen/_5sdp"
-                        android:singleLine="true"
-                        android:textColorHint="@color/black"
-                        android:textSize="@dimen/_13ssp" />
+            <EditText
+                android:id="@+id/edSearch"
+                style="@style/openRegularTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/grey_stroke"
+                android:drawablePadding="5dp"
+                android:gravity="top"
+                android:hint="@string/your_reply"
+                android:maxLines="6"
+                android:padding="@dimen/_5sdp"
+                android:text="@={viewModel.reviewModel.review}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="@dimen/_13ssp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_90sdp"
-                        android:layout_margin="@dimen/_10sdp"
-                        android:background="@drawable/dottted_square"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="visible">
+            <LinearLayout
+                android:id="@+id/llUploadImg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/dottted_square"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                        <ImageView
-                            android:layout_width="@dimen/_40sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:gravity="center"
-                            android:src="@drawable/ic_download" />
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_download" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/openRegularTextStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/_5sdp"
-                            android:text="@string/upload_images"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/_12ssp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_80sdp"
-                        android:orientation="horizontal"
-                        android:padding="@dimen/_5sdp"
-                        android:visibility="visible"
-                        android:weightSum="3">
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="@dimen/_8sdp" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentEnd="true"
-                                android:src="@drawable/ic_bin_pink" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="@dimen/_8sdp" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentEnd="true"
-                                android:src="@drawable/ic_bin_pink" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="@dimen/_8sdp" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentEnd="true"
-                                android:src="@drawable/ic_bin_pink" />
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/addReview"
-                        style="@style/openRegularTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_margin="@dimen/_10sdp"
-                        android:background="@drawable/primary_color_btn_selector_small_corners"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:text="@string/submit_review"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14ssp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_100sdp" />
-                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/openRegularTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/upload_images"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/_12ssp" />
 
 
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/addReview"
+                style="@style/openRegularTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/primary_color_btn_selector_small_corners"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/submit_review"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+
+    </FrameLayout>
+
 </layout>
