@@ -107,7 +107,7 @@
                     android:fontFamily="@font/opensans_bold"
                     android:onClick="@{() -> callback.onItemClick(tvMenuTitle, position)}"
                     android:orientation="vertical"
-                    android:text="@{model.name}"
+                    android:text="@{model.getUniqueId() + model.name}"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     tools:text="Pehalwan Dhaba" />
@@ -124,7 +124,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="13sp"
-                    android:visibility="@{(model.dhabaCategory.isEmpty() || isInProgress)? View.GONE : View.GONE}" />
+                    android:visibility="@{(model.dhabaCategory.isEmpty() || isInProgress)? View.GONE : View.VISIBLE}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAddress"
@@ -134,8 +134,8 @@
                     android:orientation="vertical"
                     android:text="@{model.address.trim().isEmpty() ? `` : model.address.trim().replace(`false`,``)}"
                     android:textColor="@color/black"
-                    android:visibility="@{model.address.trim().isEmpty() ? View.GONE : View.VISIBLE}"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="@{model.address.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -179,14 +179,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:visibility="gone">
+                    android:visibility="@{model.overall_rating > 0 ? View.VISIBLE : View.GONE}">
 
                     <RatingBar
                         android:id="@+id/ratingBar"
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:rating="4.2" />
+                        android:rating="@{model.overall_rating}"
+                        android:theme="@style/RatingBar" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvRating"
@@ -195,7 +196,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_regular"
                         android:orientation="vertical"
-                        android:text="4.0"
+                        android:text="@{ratingBar.rating+``}"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 

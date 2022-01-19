@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/opensans_semibold"
-                android:text="@{dhaba.name}"
+                android:text="@{dhaba.getUniqueId() + dhaba.name}"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 

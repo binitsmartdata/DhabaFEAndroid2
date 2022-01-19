@@ -25,6 +25,23 @@ class DhabaModel : Serializable, BaseObservable() {
             field = _id
             notifyPropertyChanged(BR._id)
         }
+    var dhabaUniqueId: String = ""
+        @Bindable get() = field
+        set(dhabaUniqueId) {
+            field = dhabaUniqueId
+            notifyPropertyChanged(BR.dhabaUniqueId)
+        }
+
+    fun getUniqueId(): String {
+        return if (dhabaUniqueId.trim().isNotEmpty()) (dhabaUniqueId + " ") else ""
+    }
+
+    var overall_rating: Float = 0f
+        @Bindable get() = field
+        set(overall_rating) {
+            field = overall_rating
+            notifyPropertyChanged(BR.overall_rating)
+        }
 
     var status: String = ""
         @Bindable get() = field

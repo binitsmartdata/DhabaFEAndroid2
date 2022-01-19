@@ -84,6 +84,10 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
         viewModel.getDhabaReviewsById({
             it?.let {
                 if (it.data != null && it.data?.data!!.isNotEmpty()) {
+
+                    binding.tvReviewCount.text =
+                        getString(R.string.reviews) + "(" + it.data?.count!! + ")"
+
                     if (viewModel.page == 1) {
                         viewModel.reviewList.clear()
                         viewModel.reviewList = it.data?.data!!

@@ -303,7 +303,10 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         binding.tvViewAllReviews.setOnClickListener {
             ReviewListActivity.start(this, viewModel.mDhabaModelMain.dhabaModel!!)
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         getReviews()
     }
 
@@ -344,11 +347,6 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         binding.recyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.adapter = reviewAdapter
-
-        reviewAdapter.setOnLoadMoreListener {
-            viewModel.page += 1
-            getReviews()
-        }
     }
 
 

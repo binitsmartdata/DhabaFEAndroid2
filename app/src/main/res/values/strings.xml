@@ -617,9 +617,9 @@
     <string name="upload_images">Upload Images</string>
     <string name="submit_review">Submit</string>
     <string name="rating_validation">Rating cannot be zero</string>
-    <string name="review_validation">Please enter review</string>
+    <string name="review_validation">Please enter your reply</string>
     <string name="loading">Loading..</string>
-    <string name="view_all_reviews">View All Reviews</string>
+    <string name="view_all_reviews">Load More Reviews</string>
     <string name="add_reply">Add Reply</string>
     <string name="your_reply">Your Reply</string>
 

@@ -663,6 +663,15 @@ interface ApiService {
         @Field("rating") rating: String
     ): Response<ApiResponseModel<ReviewModel>>
 
+    @FormUrlEncoded
+    @POST("review/addComment")
+    suspend fun addReviewReply(
+        @Field("review_id") review_id: String,
+        @Field("owner_id") owner_id: String,
+        @Field("dhaba_id") dhaba_id: String,
+        @Field("comment") comment: String
+    ): Response<ApiResponseModel<ReviewModel>>
+
 
     @GET("review/getReviewByDhabaId/{id}")
     suspend fun getDhabaReviewsById(

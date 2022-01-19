@@ -72,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:text="@{dhabaModel.name}"
+                        android:text="@{dhabaModel.getUniqueId() + dhabaModel.name}"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:theme="@style/openBoldTextStyle" />
@@ -92,7 +92,8 @@
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="@{dhabaModel.dhabaCategory.toUpperCase().trim().empty ? View.GONE : View.VISIBLE}" />
 
                 </LinearLayout>
 
@@ -126,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="24 Reviews"
+                    android:text="@string/reviews"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:theme="@style/openBoldTextStyle" />
@@ -148,7 +149,8 @@
                     android:text="@string/add_review"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 

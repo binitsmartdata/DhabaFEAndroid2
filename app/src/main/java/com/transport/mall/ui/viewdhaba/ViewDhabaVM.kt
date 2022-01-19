@@ -2,7 +2,6 @@ package com.transport.mall.ui.viewdhaba
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.InternalDocsListModel
@@ -16,9 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Created by Parambir Singh on 2019-12-06.
@@ -40,7 +36,7 @@ class ViewDhabaVM(application: Application) : BaseVM(application) {
         app = application
     }
 
-    fun addReview(callBack: GenericCallBack<Boolean>) {
+    fun addReview(review_id: String, comment: String, callBack: GenericCallBack<Boolean>) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
@@ -50,6 +46,44 @@ class ViewDhabaVM(application: Application) : BaseVM(application) {
                         SharedPrefsHelper.getInstance(app as Context).getUserData()._id,
                         reviewModel.review,
                         reviewModel.rating.toString()
+                    )
+                ).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            callBack.onResponse(false)
+                            progressObserver.value = false
+                            showToastInCenter(app as Context, it.message.toString())
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            if (it.data?.status != 200) {
+                                showToastInCenter(app as Context, it.data?.message.toString())
+                            }
+                            callBack.onResponse(true)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                callBack.onResponse(false)
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+
+    fun addReviewReply(review_id: String, comment: String, callBack: GenericCallBack<Boolean>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(
+                    getApiService()?.addReviewReply(
+                        review_id,
+                        SharedPrefsHelper.getInstance(app as Context).getUserData()._id,
+                        dhabaId,
+                        comment
                     )
                 ).collect {
                     when (it.status) {

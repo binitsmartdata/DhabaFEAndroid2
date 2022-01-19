@@ -6,6 +6,7 @@ import com.transport.mall.databinding.ReviewAdapterBinding
 import com.transport.mall.model.ReviewModel
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 class ReviewAdapter(
     val context: Context,
@@ -20,6 +21,7 @@ class ReviewAdapter(
 
     override fun bindData(position: Int, myViewHolderG: MyViewHolderG?) {
         myViewHolderG?.binding?.review = dataList.get(position)
+        myViewHolderG?.binding?.loggedInUser = SharedPrefsHelper.getInstance(context).getUserData()
         setButtonsClicks(myViewHolderG, position)
         myViewHolderG?.binding?.executePendingBindings()
     }

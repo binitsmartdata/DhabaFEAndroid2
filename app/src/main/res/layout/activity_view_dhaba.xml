@@ -77,7 +77,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/opensans_bold"
-                            android:text="@{dhabaModelMain.dhabaModel.name}"
+                            android:text="@{dhabaModelMain.dhabaModel.getUniqueId() + dhabaModelMain.dhabaModel.name}"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
@@ -94,7 +94,7 @@
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="14sp"
-                            android:visibility="@{dhabaModelMain.dhabaModel.dhabaCategory.isEmpty() ? View.GONE : View.GONE}" />
+                            android:visibility="@{dhabaModelMain.dhabaModel.dhabaCategory.isEmpty() ? View.GONE : View.VISIBLE}" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -548,7 +548,7 @@
                             style="?android:attr/ratingBarStyleSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:rating="0" />
+                            android:rating="@{dhabaModelMain.dhabaModel.overall_rating}" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -576,7 +576,6 @@
                         android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_5sdp" />
 
                     <TextView
@@ -584,10 +583,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/default_btn_selector"
+                        android:fontFamily="@font/opensans_semibold"
                         android:padding="@dimen/_15sdp"
-                        android:visibility="gone"
                         android:text="@string/view_all_reviews"
-                        android:textColor="@color/colorPrimary" />
+                        android:textColor="@color/colorPrimary"
+                        android:visibility="gone" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>

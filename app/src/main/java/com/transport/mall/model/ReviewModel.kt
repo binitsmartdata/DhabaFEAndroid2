@@ -10,6 +10,14 @@ import com.transport.mall.utils.common.GlobalUtils
 import java.io.Serializable
 
 class ReviewModel : Serializable, BaseObservable() {
+    @SerializedName(value = "_id")
+    var _id: String = ""
+        @Bindable get() = field
+        set(_id) {
+            field = _id
+            notifyPropertyChanged(BR._id)
+        }
+
     @SerializedName(value = "dhaba_id")
     var dhaba_id: String = ""
         @Bindable get() = field
@@ -67,14 +75,22 @@ class ReviewModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.updatedAt)
         }
 
+    @SerializedName(value = "comment")
+    var comment: String = ""
+        @Bindable get() = field
+        set(comment) {
+            field = comment
+            notifyPropertyChanged(BR.comment)
+        }
+
     @SerializedName("imageList")
     var imagesList = ArrayList<PhotosModel>()
 
     fun hasEverything(context: Context): Boolean {
-        if (rating.toFloat() < 1) {
+        /*if (rating.toFloat() < 1) {
             GlobalUtils.showToastInCenter(context, context.getString(R.string.rating_validation))
             return false
-        } else if (GlobalUtils.getNonNullString(review, "").trim().isEmpty()) {
+        } else */if (GlobalUtils.getNonNullString(review, "").trim().isEmpty()) {
             GlobalUtils.showToastInCenter(context, context.getString(R.string.review_validation))
             return false
         } else {

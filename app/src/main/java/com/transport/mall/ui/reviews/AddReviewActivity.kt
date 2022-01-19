@@ -81,11 +81,14 @@ class AddReviewActivity : BaseActivity<ActivityAddReviewBinding, ViewDhabaVM>() 
         binding.addReview.setOnClickListener {
             viewModel.reviewModel.rating = binding.rbRating.rating
             if (viewModel.reviewModel.hasEverything(this)) {
-                viewModel.addReview({
-                    if (it) {
-                        finish()
-                    }
-                })
+                viewModel.addReviewReply(
+                    binding.reviewModel?._id.toString(),
+                    binding.edSearch.text.toString(),
+                    {
+                        if (it) {
+                            finish()
+                        }
+                    })
             }
         }
     }
