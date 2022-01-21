@@ -81,7 +81,7 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
     }
 
     private fun getReviews() {
-        viewModel.getDhabaReviewsById({
+        viewModel.getDhabaReviewsById {
             it?.let {
                 if (it.data != null && it.data?.data!!.isNotEmpty()) {
 
@@ -109,7 +109,7 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
                 }
                 refreshViewsVisibility()
             }
-        })
+        }
     }
 
     override fun initListeners() {
