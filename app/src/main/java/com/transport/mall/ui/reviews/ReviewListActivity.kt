@@ -57,7 +57,7 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
     }
 
     private fun setAdapter() {
-        reviewAdapter = ReviewAdapter(applicationContext, viewModel.reviewList, GenericCallBack {
+        reviewAdapter = ReviewAdapter(this, viewModel.reviewList, GenericCallBack {
             AddReviewActivity.start(this, viewModel.dhabaId, viewModel.reviewList[it])
         }, false)
         binding.recyclerview.layoutManager =

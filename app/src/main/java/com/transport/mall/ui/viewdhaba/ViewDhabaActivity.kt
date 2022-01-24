@@ -307,6 +307,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
     override fun onResume() {
         super.onResume()
+        viewModel.count = 2
         getReviews()
     }
 
@@ -341,7 +342,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
     private fun setAdapter() {
         val reviewAdapter =
-            ReviewAdapter(applicationContext, viewModel.reviewList, GenericCallBack {
+            ReviewAdapter(this, viewModel.reviewList, GenericCallBack {
                 AddReviewActivity.start(this, viewModel.dhabaId, viewModel.reviewList[it])
             }, true)
         binding.recyclerview.layoutManager =

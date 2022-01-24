@@ -4,6 +4,7 @@ import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.ReviewAdapterBinding
 import com.transport.mall.model.ReviewModel
+import com.transport.mall.ui.customdialogs.DailogReportReview
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -29,6 +30,14 @@ class ReviewAdapter(
     private fun setButtonsClicks(myViewHolderG: MyViewHolderG?, position: Int) {
         myViewHolderG?.binding?.tvReply?.setOnClickListener {
             replyCallBack.onResponse(position)
+        }
+        myViewHolderG?.binding?.tvReport?.setOnClickListener {
+            DailogReportReview(
+                context,
+                SharedPrefsHelper.getInstance(context).getUserData(),
+                dataList.get(position), {
+
+                }).show()
         }
     }
 

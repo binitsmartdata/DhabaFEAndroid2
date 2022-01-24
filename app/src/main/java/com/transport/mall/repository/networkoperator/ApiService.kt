@@ -681,5 +681,14 @@ interface ApiService {
         @Query("sort") sort: String?//ASC, DESC
     ): Response<ApiResponseModel<InternalDocsListModel<ArrayList<ReviewModel>>>>?
 
+    @FormUrlEncoded
+    @PUT("review/report")
+    suspend fun reportReview(
+        @Header("Authorization") token: String,
+        @Field("_id") _id: String,
+        @Field("reported") reported: Boolean,
+        @Field("reportComment") reportComment: String
+    ): Response<ApiResponseModel<ReviewModel>>
+
 }
 
