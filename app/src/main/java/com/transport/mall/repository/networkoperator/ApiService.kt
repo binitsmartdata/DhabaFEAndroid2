@@ -685,6 +685,7 @@ interface ApiService {
     @PUT("review/report")
     suspend fun reportReview(
         @Header("Authorization") token: String,
+        @Header("user_id") user_id: String,
         @Field("_id") _id: String,
         @Field("reported") reported: Boolean,
         @Field("reportComment") reportComment: String

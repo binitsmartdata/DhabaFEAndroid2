@@ -73,6 +73,7 @@ class DailogReportReview constructor(
                     executeApi(
                         getApiService()?.reportReview(
                             SharedPrefsHelper.getInstance(context).getUserData().accessToken,
+                            SharedPrefsHelper.getInstance(context).getUserData()._id,
                             review._id,
                             true,
                             binding.edDescription.text.toString()
