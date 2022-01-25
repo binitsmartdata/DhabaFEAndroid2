@@ -1,15 +1,11 @@
 package com.transport.mall.repository.networkoperator
 
 
-import com.transport.mall.database.ApiResponseModel
-import com.transport.mall.database.DhabaTimingModelParent
-import com.transport.mall.database.InternalDataListModel
-import com.transport.mall.database.InternalDocsListModel
+import com.transport.mall.database.*
 import com.transport.mall.model.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -672,6 +668,8 @@ interface ApiService {
         @Field("comment") comment: String
     ): Response<ApiResponseModel<ReviewModel>>
 
+    @GET("getAllReasons/find")
+    suspend fun getAllReasons(@Header("Authorization") token: String): Response<ApiResponseModel<InternalItemsListModel<ArrayList<ReportReasonModel>>>>
 
     @GET("review/getReviewByDhabaId/{id}")
     suspend fun getDhabaReviewsById(
@@ -687,6 +685,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Header("user_id") user_id: String,
         @Field("_id") _id: String,
+        @Field("reasonsId") reasonsId: String,
         @Field("reported") reported: Boolean,
         @Field("reportComment") reportComment: String
     ): Response<ApiResponseModel<ReviewModel>>

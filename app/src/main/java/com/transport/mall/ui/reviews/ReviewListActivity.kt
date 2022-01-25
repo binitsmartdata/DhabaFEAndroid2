@@ -8,6 +8,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityReviewListBinding
 import com.transport.mall.model.DhabaModel
+import com.transport.mall.model.ReportReasonModel
 import com.transport.mall.ui.viewdhaba.ViewDhabaVM
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.common.GenericCallBack
@@ -15,8 +16,6 @@ import com.transport.mall.utils.common.GlobalUtils
 
 class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(),
     SwipeRefreshLayout.OnRefreshListener {
-
-
     override val binding: ActivityReviewListBinding
         get() = setUpBinding()
     override val layoutId: Int
@@ -31,6 +30,7 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
         get() = this
 
     lateinit var reviewAdapter: ReviewAdapter
+    var reportReasons: ArrayList<ReportReasonModel> = ArrayList()
 
     companion object {
         @JvmStatic
@@ -48,6 +48,15 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
         binding.dhabaModel = intent.getSerializableExtra("dhabaModel") as DhabaModel
 
         setAdapter()
+        getAllReasons()
+    }
+
+    private fun getAllReasons() {
+        viewModel.getAllReasons() {
+            it?.let {
+                reportReasons = it
+            }
+        }
     }
 
     override fun onResume() {
@@ -59,7 +68,7 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
     private fun setAdapter() {
         reviewAdapter = ReviewAdapter(this, viewModel.reviewList, GenericCallBack {
             AddReviewActivity.start(this, viewModel.dhabaId, viewModel.reviewList[it])
-        }, false)
+        }, reportReasons, false)
         binding.recyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.adapter = reviewAdapter

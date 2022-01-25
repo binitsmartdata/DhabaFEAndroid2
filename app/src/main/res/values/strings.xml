@@ -634,6 +634,7 @@
     <string name="description">Description</string>
     <string name="reason">Reason</string>
     <string name="select_reason">Select Reason</string>
+    <string name="please_select_reason">Please select Reason</string>
     <string name="report_submitted">Report submitted successfully.</string>
     <string name="report">Report</string>
 

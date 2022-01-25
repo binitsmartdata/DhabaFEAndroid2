@@ -8,6 +8,7 @@ import com.transport.mall.R
 import com.transport.mall.databinding.ActivityViewDhabaBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
+import com.transport.mall.model.ReportReasonModel
 import com.transport.mall.ui.addnewdhaba.step3.amenities.AmenitiesActivity
 import com.transport.mall.ui.customdialogs.TimingListAdapter
 import com.transport.mall.ui.reviews.AddReviewActivity
@@ -39,6 +40,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         get() = this
 
     var mIsUpdate = false
+    var reportReasons: ArrayList<ReportReasonModel> = ArrayList()
 
     companion object {
         fun start(context: Context, dhabaModelMain: DhabaModelMain) {
@@ -66,6 +68,12 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
         binding.llReviews.setOnClickListener {
             ReviewListActivity.start(this, viewModel.mDhabaModelMain.dhabaModel!!)
+        }
+
+        viewModel.getAllReasons() {
+            it?.let {
+                reportReasons = it
+            }
         }
     }
 
@@ -344,7 +352,7 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         val reviewAdapter =
             ReviewAdapter(this, viewModel.reviewList, GenericCallBack {
                 AddReviewActivity.start(this, viewModel.dhabaId, viewModel.reviewList[it])
-            }, true)
+            }, reportReasons, true)
         binding.recyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.adapter = reviewAdapter

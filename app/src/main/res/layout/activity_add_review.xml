@@ -43,7 +43,6 @@
 
             <include
                 layout="@layout/review_adapter"
-                app:hideReplyButtons="@{true}"
                 app:review="@{reviewModel}" />
 
             <LinearLayout

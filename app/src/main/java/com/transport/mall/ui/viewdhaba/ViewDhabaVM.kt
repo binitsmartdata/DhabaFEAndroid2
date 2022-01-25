@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.transport.mall.database.ApiResponseModel
 import com.transport.mall.database.InternalDocsListModel
 import com.transport.mall.model.DhabaModelMain
+import com.transport.mall.model.ReportReasonModel
 import com.transport.mall.model.ReviewModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.utils.base.BaseVM
@@ -139,6 +140,37 @@ class ViewDhabaVM(application: Application) : BaseVM(application) {
                                 showToastInCenter(app as Context, it.data?.message.toString())
                             }
                             callBack.onResponse(it.data)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                callBack.onResponse(null)
+                progressObserver.value = false
+                showToastInCenter(app!!, getCorrectErrorMessage(e))
+            }
+        }
+    }
+
+    fun getAllReasons(callBack: GenericCallBack<ArrayList<ReportReasonModel>>) {
+        progressObserver.value = true
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                executeApi(getApiService()?.getAllReasons(SharedPrefsHelper.getInstance(app?.applicationContext!!).getUserData().accessToken)).collect {
+                    when (it.status) {
+                        ApiResult.Status.LOADING -> {
+                            progressObserver.value = true
+                        }
+                        ApiResult.Status.ERROR -> {
+                            callBack.onResponse(null)
+                            progressObserver.value = false
+                            showToastInCenter(app as Context, it.message.toString())
+                        }
+                        ApiResult.Status.SUCCESS -> {
+                            progressObserver.value = false
+                            if (it.data?.status != 200) {
+                                showToastInCenter(app as Context, it.data?.message.toString())
+                            }
+                            callBack.onResponse(it.data?.data?.data)
                         }
                     }
                 }

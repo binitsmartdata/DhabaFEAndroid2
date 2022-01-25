@@ -14,9 +14,6 @@
             name="review"
             type="com.transport.mall.model.ReviewModel" />
 
-        <variable
-            name="hideReplyButtons"
-            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -148,7 +145,6 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="right"
                 android:orientation="horizontal"
-                android:visibility="@{(hideReplyButtons || !review.comment.trim().empty)? View.GONE : View.VISIBLE}"
                 android:weightSum="3">
 
                 <TextView
@@ -184,7 +180,7 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:background="@color/grey_divider_theme"
-                    android:visibility="@{!loggedInUser.isExecutive() ? View.VISIBLE : View.GONE}" />
+                    android:visibility="@{(loggedInUser.isExecutive() || !review.comment.trim().empty) ?  View.GONE : View.VISIBLE}" />
 
                 <TextView
                     android:id="@+id/tvReply"
@@ -197,7 +193,7 @@
                     android:padding="@dimen/_5sdp"
                     android:text="Reply"
                     android:textColor="@color/colorPrimary"
-                    android:visibility="@{!loggedInUser.isExecutive() ? View.VISIBLE : View.GONE}" />
+                    android:visibility="@{(loggedInUser.isExecutive() || !review.comment.trim().empty) ?  View.GONE : View.VISIBLE}" />
 
             </LinearLayout>
 

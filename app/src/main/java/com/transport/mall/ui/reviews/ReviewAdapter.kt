@@ -3,6 +3,7 @@ package com.transport.mall.ui.reviews
 import android.content.Context
 import com.transport.mall.R
 import com.transport.mall.databinding.ReviewAdapterBinding
+import com.transport.mall.model.ReportReasonModel
 import com.transport.mall.model.ReviewModel
 import com.transport.mall.ui.customdialogs.DailogReportReview
 import com.transport.mall.utils.common.GenericCallBack
@@ -13,6 +14,7 @@ class ReviewAdapter(
     val context: Context,
     val dataList: ArrayList<ReviewModel>,
     private val replyCallBack: GenericCallBack<Int>,
+    val reportReasons: ArrayList<ReportReasonModel>,
     val isPreviewMode: Boolean
 ) : InfiniteAdapter<ReviewAdapterBinding>() {
 
@@ -35,7 +37,7 @@ class ReviewAdapter(
             DailogReportReview(
                 context,
                 SharedPrefsHelper.getInstance(context).getUserData(),
-                dataList.get(position), {
+                dataList.get(position), reportReasons,{
 
                 }).show()
         }
