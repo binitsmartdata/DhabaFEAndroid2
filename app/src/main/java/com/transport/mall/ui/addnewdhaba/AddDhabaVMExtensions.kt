@@ -1210,38 +1210,38 @@ private fun AddDhabaVM.handleBankApiResponse(
 
 fun AddDhabaVM.saveOwnerDetails(it: UserModel, callBack: GenericCallBack<UserModel?>) {
     if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
-        updateOwner(it, GenericCallBack {
+        updateOwner(it) {
             callBack.onResponse(it.data)
             if (it.data == null) {
                 showToastInCenter(app, it.message)
             }
-        })
+        }
     } else {
-        addDhabaOwner(it, GenericCallBack {
+        addDhabaOwner(it) {
             callBack.onResponse(it.data)
             if (it.data == null) {
                 showToastInCenter(app, it.message)
             }
-        })
+        }
     }
 }
 
 fun AddDhabaVM.saveDhabaDetails(dhabaModel: DhabaModel?, callBack: GenericCallBack<DhabaModel?>) {
     dhabaModel?.let { dhaba ->
         if (GlobalUtils.getNonNullString(dhaba._id, "").isNotEmpty()) {
-            updateDhaba(dhaba, GenericCallBack {
+            updateDhaba(dhaba) {
                 callBack.onResponse(it.data)
                 if (it.data == null) {
                     showToastInCenter(app, it.message)
                 }
-            })
+            }
         } else {
-            addDhaba(dhaba, GenericCallBack {
+            addDhaba(dhaba) {
                 callBack.onResponse(it.data)
                 if (it.data == null) {
                     showToastInCenter(app, it.message)
                 }
-            })
+            }
 
         }
     }
@@ -1254,23 +1254,23 @@ fun AddDhabaVM.saveFoodAmenities(
     dhabaModelMain.foodAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
-            updateFoodAmenities(it, GenericCallBack {
+            updateFoodAmenities(it) {
                 if (it.data != null) {
                     callBack.onResponse(true)
                 } else {
                     callBack.onResponse(false)
                     showToastInCenter(app, it.message)
                 }
-            })
+            }
         } else {
-            addFoodAmenities(it, GenericCallBack {
+            addFoodAmenities(it) {
                 if (it.data != null) {
                     callBack.onResponse(true)
                 } else {
                     callBack.onResponse(false)
                     showToastInCenter(app, it.message)
                 }
-            })
+            }
         }
     } ?: kotlin.run {
         callBack.onResponse(true)
@@ -1284,23 +1284,23 @@ fun AddDhabaVM.saveParkingAmenities(
     dhabaModelMain.parkingAmenitiesModel?.let {
         it.dhaba_id = dhabaModelMain.dhabaModel?._id + ""
         if (GlobalUtils.getNonNullString(it._id, "").isNotEmpty()) {
-            updateParkingAmenities(it, GenericCallBack {
+            updateParkingAmenities(it) {
                 if (it.data != null) {
                     callBack.onResponse(true)
                 } else {
                     callBack.onResponse(false)
                     showToastInCenter(app, it.message)
                 }
-            })
+            }
         } else {
-            addParkingAmenities(it, GenericCallBack {
+            addParkingAmenities(it) {
                 if (it.data != null) {
                     callBack.onResponse(true)
                 } else {
                     callBack.onResponse(false)
                     showToastInCenter(app, it.message)
                 }
-            })
+            }
         }
     } ?: kotlin.run {
         callBack.onResponse(true)

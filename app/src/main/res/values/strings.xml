@@ -630,12 +630,17 @@
     <string name="view_all_reviews">Load More Reviews</string>
     <string name="add_reply">Add Reply</string>
     <string name="your_reply">Your Reply</string>
-    <string name="report_comment">Report Comment</string>
+    <string name="report_comment">Report Review</string>
     <string name="description">Description</string>
     <string name="reason">Reason</string>
     <string name="select_reason">Select Reason</string>
     <string name="please_select_reason">Please select Reason</string>
     <string name="report_submitted">Report submitted successfully.</string>
     <string name="report">Report</string>
+    <string name="report_status">Report Status</string>
+    <string name="view_replies">View Replies</string>
+    <string name="enter_description">Please enter a description.</string>
+    <string name="review_report_reasons">Review Report Reasons</string>
+    <string name="reply">Reply</string>
 
 </resources>

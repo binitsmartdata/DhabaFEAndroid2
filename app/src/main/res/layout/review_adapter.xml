@@ -14,6 +14,10 @@
             name="review"
             type="com.transport.mall.model.ReviewModel" />
 
+        <variable
+            name="showButtons"
+            type="Boolean" />
+
     </data>
 
     <LinearLayout
@@ -37,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_2sdp"
             android:layout_marginRight="@dimen/_10sdp"
+            android:animateLayoutChanges="true"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -145,24 +150,26 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="right"
                 android:orientation="horizontal"
+                android:visibility="@{showButtons ? View.VISIBLE : View.GONE}"
                 android:weightSum="3">
 
                 <TextView
+                    android:id="@+id/tvViewReply"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/default_btn_selector"
                     android:fontFamily="@font/opensans_semibold"
                     android:padding="@dimen/_5sdp"
-                    android:text="View Replies"
+                    android:text="@string/view_replies"
                     android:textColor="@color/colorPrimary"
-                    android:visibility="gone" />
+                    android:visibility="@{review.comment.trim().empty ? View.GONE : View.VISIBLE}" />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:background="@color/grey_divider_theme"
-                    android:visibility="gone" />
+                    android:visibility="@{review.comment.trim().empty ? View.GONE : View.VISIBLE}" />
 
                 <TextView
                     android:id="@+id/tvReport"
@@ -173,7 +180,7 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:gravity="center"
                     android:padding="@dimen/_5sdp"
-                    android:text="Report"
+                    android:text="@{review.reported ? @string/report_status : @string/report}"
                     android:textColor="@color/colorPrimary" />
 
                 <View
@@ -189,22 +196,23 @@
                     android:layout_weight="1"
                     android:background="@drawable/default_btn_selector"
                     android:fontFamily="@font/opensans_semibold"
-                    android:gravity="right"
+                    android:gravity="center"
                     android:padding="@dimen/_5sdp"
-                    android:text="Reply"
+                    android:text="@string/reply"
                     android:textColor="@color/colorPrimary"
                     android:visibility="@{(loggedInUser.isExecutive() || !review.comment.trim().empty) ?  View.GONE : View.VISIBLE}" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llReply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:background="@drawable/grey_roundcorners_fofofo"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp"
-                android:visibility="@{review.comment.trim().empty ? View.GONE : View.VISIBLE}">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"

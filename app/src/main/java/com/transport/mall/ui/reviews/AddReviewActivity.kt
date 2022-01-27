@@ -8,22 +8,20 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.transport.mall.model.PhotosModel
-import com.transport.mall.ui.viewdhaba.ImageGalleryAdapter
-import com.transport.mall.ui.viewdhaba.ViewDhabaVM
-import com.transport.mall.utils.base.BaseActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.transport.mall.R
 import com.transport.mall.databinding.ActivityAddReviewBinding
+import com.transport.mall.model.PhotosModel
 import com.transport.mall.model.ReviewModel
+import com.transport.mall.ui.viewdhaba.ImageGalleryAdapter
+import com.transport.mall.ui.viewdhaba.ViewDhabaVM
+import com.transport.mall.utils.base.BaseActivityTransparent
 import com.transport.mall.utils.common.GlobalUtils
 
 
-class AddReviewActivity : BaseActivity<ActivityAddReviewBinding, ViewDhabaVM>() {
-
-
+class AddReviewActivity : BaseActivityTransparent<ActivityAddReviewBinding, ViewDhabaVM>() {
     override val binding: ActivityAddReviewBinding
         get() = setUpBinding()
     override val layoutId: Int
@@ -61,6 +59,8 @@ class AddReviewActivity : BaseActivity<ActivityAddReviewBinding, ViewDhabaVM>() 
             }
         })
 
+        binding.flMain.setOnClickListener { finish() }
+
         binding.llUploadImg.setOnClickListener {
             GlobalUtils.showOptionsDialog(
                 this,
@@ -94,7 +94,6 @@ class AddReviewActivity : BaseActivity<ActivityAddReviewBinding, ViewDhabaVM>() 
     }
 
     override fun bindData() {
-        setStatusBarTransparent(this)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         if (intent.hasExtra("reviewModel")) {

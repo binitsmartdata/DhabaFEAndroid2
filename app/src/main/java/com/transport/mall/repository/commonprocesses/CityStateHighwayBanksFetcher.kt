@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class CityStateHighwayBanksFetcher {
     companion object {
         var context: Context? = null
-        var totalApiCount = 4
+        var totalApiCount = 5
         var totalCompletedCount = 0
         var totalSuccessCount = 0
 
@@ -25,18 +25,21 @@ class CityStateHighwayBanksFetcher {
         public fun getAllData(context: Context, callBack: CallBack) {
             this.context = context
 
-            getCities({
+            getCities {
                 handleResult(it, context.getString(R.string.cities), callBack)
-            })
-            getStatesList({
+            }
+            getStatesList {
                 handleResult(it, context.getString(R.string.states), callBack)
-            })
-            getAllHighway({
+            }
+            getAllHighway {
                 handleResult(it, context.getString(R.string.highways), callBack)
-            })
-            getAllBankList({
+            }
+            getAllBankList {
                 handleResult(it, context.getString(R.string.banks), callBack)
-            })
+            }
+            getAllReportReasons {
+                handleResult(it, context.getString(R.string.review_report_reasons), callBack)
+            }
         }
 
         private fun handleResult(it: Boolean, title: String, callBack: CallBack) {
@@ -185,6 +188,35 @@ class CityStateHighwayBanksFetcher {
                 } catch (e: Exception) {
                     callBack.onResponse(false)
                     Log.e("GET HIGHWAYS : ", e.toString())
+//                    showToastInCenter(context, getCorrectErrorMessage(e))
+                }
+            }
+        }
+
+        fun getAllReportReasons(callBack: GenericCallBack<Boolean>) {
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    ApiUtils.getInstance().executeApi(ApiUtils.getInstance().getApiService()?.getAllReasons(SharedPrefsHelper.getInstance(context!!).getUserData().accessToken)).collect {
+                        when (it.status) {
+                            ApiResult.Status.LOADING -> {
+                            }
+                            ApiResult.Status.ERROR -> {
+                                callBack.onResponse(false)
+                            }
+                            ApiResult.Status.SUCCESS -> {
+                                it.data?.data?.let {
+                                    callBack.onResponse(true)
+                                    AppDatabase.getInstance(context!!)?.reportReasonDao()
+                                        ?.deleteAll()
+                                    AppDatabase.getInstance(context!!)?.reportReasonDao()
+                                        ?.insertAll(it.data)
+                                }
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    callBack.onResponse(false)
+                    Log.e("GET REport Resons : ", e.toString())
 //                    showToastInCenter(context, getCorrectErrorMessage(e))
                 }
             }

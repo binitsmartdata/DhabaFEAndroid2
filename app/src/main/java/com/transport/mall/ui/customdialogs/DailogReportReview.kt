@@ -72,7 +72,9 @@ class DailogReportReview constructor(
         binding.btnAssign.setOnClickListener {
             if (binding.edPropertyStatus.text.toString().trim().isEmpty()) {
                 GlobalUtils.showToastInCenter(context, context.getString(R.string.please_select_reason))
-            } else {
+            } else  if (binding.edDescription.text.toString().trim().isEmpty()) {
+                GlobalUtils.showToastInCenter(context, context.getString(R.string.enter_description))
+            } else{
                 GlobalUtils.showProgressDialog(context)
                 GlobalScope.launch(Dispatchers.Main) {
                     try {

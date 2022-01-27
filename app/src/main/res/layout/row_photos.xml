@@ -34,14 +34,16 @@
             android:id="@+id/containerLayout"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginRight="@dimen/_2sdp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:elevation="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_10sdp">
+                app:cardCornerRadius="@dimen/_5sdp">
 
                 <ImageView
                     loadImage="@{data.path}"
@@ -58,7 +60,7 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_gravity="right|top"
-            android:padding="@dimen/_3sdp"
+            android:padding="@dimen/_2sdp"
             android:src="@drawable/ic_close_image" />
     </FrameLayout>
 </layout>

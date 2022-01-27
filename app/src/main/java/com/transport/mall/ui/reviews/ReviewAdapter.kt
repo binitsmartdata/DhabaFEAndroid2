@@ -1,11 +1,13 @@
 package com.transport.mall.ui.reviews
 
 import android.content.Context
+import android.view.View
 import com.transport.mall.R
 import com.transport.mall.databinding.ReviewAdapterBinding
 import com.transport.mall.model.ReportReasonModel
 import com.transport.mall.model.ReviewModel
 import com.transport.mall.ui.customdialogs.DailogReportReview
+import com.transport.mall.ui.customdialogs.DialogReportStatus
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
@@ -24,6 +26,7 @@ class ReviewAdapter(
 
     override fun bindData(position: Int, myViewHolderG: MyViewHolderG?) {
         myViewHolderG?.binding?.review = dataList.get(position)
+        myViewHolderG?.binding?.showButtons = true
         myViewHolderG?.binding?.loggedInUser = SharedPrefsHelper.getInstance(context).getUserData()
         setButtonsClicks(myViewHolderG, position)
         myViewHolderG?.binding?.executePendingBindings()
@@ -34,12 +37,19 @@ class ReviewAdapter(
             replyCallBack.onResponse(position)
         }
         myViewHolderG?.binding?.tvReport?.setOnClickListener {
-            DailogReportReview(
-                context,
-                SharedPrefsHelper.getInstance(context).getUserData(),
-                dataList.get(position), reportReasons,{
+            if (dataList[position].reported) {
+                DialogReportStatus(context, dataList.get(position).status).show()
+            } else {
+                DailogReportReview(
+                    context,
+                    SharedPrefsHelper.getInstance(context).getUserData(),
+                    dataList.get(position), reportReasons, {
 
-                }).show()
+                    }).show()
+            }
+        }
+        myViewHolderG?.binding?.tvViewReply?.setOnClickListener {
+            myViewHolderG.binding.llReply.visibility = View.VISIBLE
         }
     }
 

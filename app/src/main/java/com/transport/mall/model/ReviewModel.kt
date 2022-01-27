@@ -59,6 +59,13 @@ class ReviewModel : Serializable, BaseObservable() {
     @SerializedName(value = "isActive")
     var isActive: Boolean = false
 
+    @SerializedName(value = "reported")
+    var reported: Boolean = false
+
+    //'Resolved','Declined', 'InReview'
+    @SerializedName(value = "status")
+    var status: String = "InReview"
+
     @SerializedName(value = "createdAt")
     var createdAt: String = ""
         @Bindable get() = field

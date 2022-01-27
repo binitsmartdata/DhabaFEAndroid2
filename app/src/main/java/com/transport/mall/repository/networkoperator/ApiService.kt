@@ -668,7 +668,7 @@ interface ApiService {
         @Field("comment") comment: String
     ): Response<ApiResponseModel<ReviewModel>>
 
-    @GET("getAllReasons/find")
+    @GET("reasons/getAllReasons/find")
     suspend fun getAllReasons(@Header("Authorization") token: String): Response<ApiResponseModel<InternalItemsListModel<ArrayList<ReportReasonModel>>>>
 
     @GET("review/getReviewByDhabaId/{id}")
@@ -683,7 +683,7 @@ interface ApiService {
     @PUT("review/report")
     suspend fun reportReview(
         @Header("Authorization") token: String,
-        @Header("user_id") user_id: String,
+        @Field("user_id") user_id: String,
         @Field("_id") _id: String,
         @Field("reasonsId") reasonsId: String,
         @Field("reported") reported: Boolean,

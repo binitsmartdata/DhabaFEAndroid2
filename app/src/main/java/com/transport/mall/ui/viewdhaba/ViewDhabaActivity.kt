@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.transport.mall.R
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.ActivityViewDhabaBinding
 import com.transport.mall.model.DhabaModelMain
 import com.transport.mall.model.PhotosModel
@@ -68,12 +69,6 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
 
         binding.llReviews.setOnClickListener {
             ReviewListActivity.start(this, viewModel.mDhabaModelMain.dhabaModel!!)
-        }
-
-        viewModel.getAllReasons() {
-            it?.let {
-                reportReasons = it
-            }
         }
     }
 
@@ -317,6 +312,10 @@ class ViewDhabaActivity : BaseActivity<ActivityViewDhabaBinding, ViewDhabaVM>() 
         super.onResume()
         viewModel.count = 2
         getReviews()
+
+        AppDatabase.getInstance(context)?.reportReasonDao()?.getAll()?.observe(this, {
+            reportReasons = it as ArrayList<ReportReasonModel>
+        })
     }
 
     private fun getReviews() {

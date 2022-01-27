@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.transport.mall.R
+import com.transport.mall.database.AppDatabase
 import com.transport.mall.databinding.ActivityReviewListBinding
 import com.transport.mall.model.DhabaModel
 import com.transport.mall.model.ReportReasonModel
@@ -48,21 +49,19 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
         binding.dhabaModel = intent.getSerializableExtra("dhabaModel") as DhabaModel
 
         setAdapter()
-        getAllReasons()
     }
 
     private fun getAllReasons() {
-        viewModel.getAllReasons() {
-            it?.let {
-                reportReasons = it
-            }
-        }
+        AppDatabase.getInstance(context)?.reportReasonDao()?.getAll()?.observe(this, {
+            reportReasons = it as ArrayList<ReportReasonModel>
+        })
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.page = 1
         getReviews()
+        getAllReasons()
     }
 
     private fun setAdapter() {

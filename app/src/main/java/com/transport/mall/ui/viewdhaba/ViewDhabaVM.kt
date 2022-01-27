@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 class ViewDhabaVM(application: Application) : BaseVM(application) {
     var app: Application? = null
     var progressObserver: MutableLiveData<Boolean> = MutableLiveData()
+    var progressObserverReasons: MutableLiveData<Boolean> = MutableLiveData()
 
     var mDhabaModelMain = DhabaModelMain()
 
@@ -152,21 +153,21 @@ class ViewDhabaVM(application: Application) : BaseVM(application) {
     }
 
     fun getAllReasons(callBack: GenericCallBack<ArrayList<ReportReasonModel>>) {
-        progressObserver.value = true
+        progressObserverReasons.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 executeApi(getApiService()?.getAllReasons(SharedPrefsHelper.getInstance(app?.applicationContext!!).getUserData().accessToken)).collect {
                     when (it.status) {
                         ApiResult.Status.LOADING -> {
-                            progressObserver.value = true
+                            progressObserverReasons.value = true
                         }
                         ApiResult.Status.ERROR -> {
                             callBack.onResponse(null)
-                            progressObserver.value = false
+                            progressObserverReasons.value = false
                             showToastInCenter(app as Context, it.message.toString())
                         }
                         ApiResult.Status.SUCCESS -> {
-                            progressObserver.value = false
+                            progressObserverReasons.value = false
                             if (it.data?.status != 200) {
                                 showToastInCenter(app as Context, it.data?.message.toString())
                             }
@@ -176,7 +177,7 @@ class ViewDhabaVM(application: Application) : BaseVM(application) {
                 }
             } catch (e: Exception) {
                 callBack.onResponse(null)
-                progressObserver.value = false
+                progressObserverReasons.value = false
                 showToastInCenter(app!!, getCorrectErrorMessage(e))
             }
         }
