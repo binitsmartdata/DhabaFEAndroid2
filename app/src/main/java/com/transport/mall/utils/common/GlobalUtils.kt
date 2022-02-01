@@ -37,6 +37,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import com.essam.simpleplacepicker.MapActivity
 import com.essam.simpleplacepicker.utils.SimplePlacePicker
@@ -54,6 +55,7 @@ import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 object GlobalUtils {
@@ -187,7 +189,12 @@ object GlobalUtils {
     }
 
     @JvmStatic
-    fun showInfoDialog(context: Context, message: String?, cancelable: Boolean, callBack: GenericCallBack<Boolean?>) {
+    fun showInfoDialog(
+        context: Context,
+        message: String?,
+        cancelable: Boolean,
+        callBack: GenericCallBack<Boolean?>
+    ) {
         val dialog = AlertDialog.Builder(context)
         dialog.setTitle(context.getString(R.string.appName))
         dialog.setMessage(message)
@@ -206,7 +213,12 @@ object GlobalUtils {
     }
 
     @JvmStatic
-    fun showInfoDialog(context: Context, title: String?, message: String?, callBack: GenericCallBack<Boolean?>) {
+    fun showInfoDialog(
+        context: Context,
+        title: String?,
+        message: String?,
+        callBack: GenericCallBack<Boolean?>
+    ) {
         val dialog = AlertDialog.Builder(context)
         dialog.setTitle(title)
         dialog.setMessage(message)
@@ -685,20 +697,23 @@ object GlobalUtils {
             } catch (e: Exception) {
                 Log.e("FETCH ADDRESS::::", e.toString())
                 hideProgressDialog()
-                showInfoDialog(context, context.getString(R.string.cant_fetch_location_address), GenericCallBack {
-                    callBack.onResponse(
-                        LocationAddressModel(
-                            address,
-                            city,
-                            state,
-                            country,
-                            postalCode,
-                            knownName,
-                            latitude,
-                            longitude
+                showInfoDialog(
+                    context,
+                    context.getString(R.string.cant_fetch_location_address),
+                    GenericCallBack {
+                        callBack.onResponse(
+                            LocationAddressModel(
+                                address,
+                                city,
+                                state,
+                                country,
+                                postalCode,
+                                knownName,
+                                latitude,
+                                longitude
+                            )
                         )
-                    )
-                })
+                    })
             }
         }
     }
@@ -780,7 +795,11 @@ object GlobalUtils {
         return !currentVersion.isLowerThan(lastSupportedVersion)
     }
 
-    fun showCustomConfirmationDialogYesNo(context: Context, messageString: String, callBack: GenericCallBack<Boolean>) {
+    fun showCustomConfirmationDialogYesNo(
+        context: Context,
+        messageString: String,
+        callBack: GenericCallBack<Boolean>
+    ) {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.custome_confirmation_dialog_box)
@@ -801,7 +820,13 @@ object GlobalUtils {
         dialog.show()
     }
 
-    fun showCustomConfirmationDialog(context: Context, messageString: String, positiveBtnText: String, negativeBtnText: String, callBack: GenericCallBack<Boolean>) {
+    fun showCustomConfirmationDialog(
+        context: Context,
+        messageString: String,
+        positiveBtnText: String,
+        negativeBtnText: String,
+        callBack: GenericCallBack<Boolean>
+    ) {
         val dialog = Dialog(context)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.custome_confirmation_dialog_box)
@@ -827,5 +852,111 @@ object GlobalUtils {
     fun disableTemporarily(view: View) {
         view.isEnabled = false
         Handler(Looper.getMainLooper()).postDelayed({ view.isEnabled = true }, 1000)
+    }
+
+    fun getTimeAgo(dataDate: String?): String {
+        dataDate?.let {
+            var convertTime = ""
+            val suffix = "ago"
+            try {
+                val inputPattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                //            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+                val dateFormat = SimpleDateFormat(inputPattern, Locale.getDefault())
+                dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+                val pasTime = dateFormat.parse(dataDate)
+                val nowTime = Date()
+                val dateDiff = nowTime.time - pasTime.time
+                val second = TimeUnit.MILLISECONDS.toSeconds(dateDiff)
+                val minute = TimeUnit.MILLISECONDS.toMinutes(dateDiff)
+                val hour = TimeUnit.MILLISECONDS.toHours(dateDiff)
+                val day = TimeUnit.MILLISECONDS.toDays(dateDiff)
+
+
+                convertTime = if (second < 60) {
+                    if (second == 1L) {
+                        "$second second $suffix"
+                    } else {
+                        "$second seconds $suffix"
+                    }
+                } else if (minute < 60) {
+                    if (minute == 1L) {
+                        "$minute minute $suffix"
+                    } else {
+                        "$minute minutes $suffix"
+                    }
+                } else if (hour < 24) {
+                    if (hour == 1L) {
+                        "$hour hour $suffix"
+                    } else {
+                        "$hour hours $suffix"
+                    }
+                } else if (day >= 7) {
+                    if (day >= 365) {
+                        val tempYear = day / 365
+                        if (tempYear == 1L) {
+                            "$tempYear year $suffix"
+                        } else {
+                            "$tempYear years $suffix"
+                        }
+                    } else if (day >= 30) {
+                        val tempMonth = day / 30
+                        if (tempMonth == 1L) {
+                            (day / 30).toString() + " month " + suffix
+                        } else {
+                            (day / 30).toString() + " months " + suffix
+                        }
+                    } else {
+                        val tempWeek = day / 7
+                        if (tempWeek == 1L) {
+                            (day / 7).toString() + " week " + suffix
+                        } else {
+                            (day / 7).toString() + " weeks " + suffix
+                        }
+                    }
+                } else {
+                    if (day == 1L) {
+                        "$day day $suffix"
+                    } else {
+                        "$day days $suffix"
+                    }
+                }
+            } catch (e: ParseException) {
+                e.printStackTrace()
+                Log.e("TimeAgo", e.message + "")
+            }
+            return convertTime
+        } ?: run { return dataDate.toString() }
+    }
+
+    @JvmStatic
+    fun getWidthScreenResolution(context: Context): Int {
+        var width = 0
+        try {
+            val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val display = wm.defaultDisplay
+            val metrics = DisplayMetrics()
+            display.getMetrics(metrics)
+            width = metrics.widthPixels
+            val height = metrics.heightPixels
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return width
+    }
+
+    @JvmStatic
+    fun getHeightScreenResolution(context: Context): Int {
+        var height = 0
+        try {
+            val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val display = wm.defaultDisplay
+            val metrics = DisplayMetrics()
+            display.getMetrics(metrics)
+            val width = metrics.widthPixels
+            height = metrics.heightPixels
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return height
     }
 }

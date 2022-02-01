@@ -9,7 +9,7 @@ import com.transport.mall.model.*
 /**
  * Created by parambir.singh on 1/09/21.
  */
-@Database(entities = [CityModel::class, StateModel::class, HighwayModel::class, BankNamesModel::class, ReportReasonModel::class], version = 2)
+@Database(entities = [CityModel::class, StateModel::class, HighwayModel::class, BankNamesModel::class, ReportReasonModel::class, ChatMessagesListModel::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun cityDao(): CityDao
@@ -17,6 +17,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun highwayDao(): HighwayDao
     abstract fun bankDao(): BanksDao
     abstract fun reportReasonDao(): ReportReasonsDao
+    abstract fun chatDao(): ChatDao
 
     companion object {
         @Volatile

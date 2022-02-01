@@ -79,6 +79,10 @@
         <activity
             android:name=".ui.reviews.ReviewListActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.home.helpline.chat.ChatActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -6,10 +6,8 @@ import android.graphics.PorterDuff
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -28,6 +26,7 @@ import com.transport.mall.ui.home.helpline.EditProfileFragment
 import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
 import com.transport.mall.ui.home.profile.owner.OwnerEditProfileFragment
+import com.transport.mall.ui.home.settings.NotificationSettings
 import com.transport.mall.ui.home.settings.SettingsFragment
 import com.transport.mall.ui.home.sidemenu.SideMenuAdapter
 import com.transport.mall.utils.RxBus
@@ -74,22 +73,26 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 
     override fun bindData() {
         setUpToolbar()
-        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager()) {
+        if (SharedPrefsHelper.getInstance(this).getUserData()
+                .isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager()
+        ) {
             setUpSideMenuOwner()
         } else/* if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive())*/ {
             setUpSideMenuExecutive()
         }
         setUserData()
 
-        CityStateHighwayBanksFetcher.getAllData(this, object : CityStateHighwayBanksFetcher.CallBack {
-            override fun onAllSucceed() {
-                Log.e("CITY STATE BANKS HWAYS", "FETCHED SUCCESSFULLY")
-            }
+        CityStateHighwayBanksFetcher.getAllData(
+            this,
+            object : CityStateHighwayBanksFetcher.CallBack {
+                override fun onAllSucceed() {
+                    Log.e("CITY STATE BANKS HWAYS", "FETCHED SUCCESSFULLY")
+                }
 
-            override fun completedWithSomeErrors(failedThings: String) {
-                Log.e("CITY STATE BANKS HWAYS", "FAILED FOR $failedThings")
-            }
-        })
+                override fun completedWithSomeErrors(failedThings: String) {
+                    Log.e("CITY STATE BANKS HWAYS", "FAILED FOR $failedThings")
+                }
+            })
     }
 
     private fun setUserData() {
@@ -136,7 +139,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         setupDrawerToggle()
         binding.toolbarModel = toolbar
 
-        binding.toolbar.getNavigationIcon()?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
+        binding.toolbar.getNavigationIcon()
+            ?.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP)
     }
 
     /**
@@ -320,14 +324,27 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     }
 
     override fun openNotificationFragment() {
-        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager())
+        if (SharedPrefsHelper.getInstance(this).getUserData()
+                .isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager()
+        )
             displayViewOwner(1)
         else
             displayViewExecutive(2)
     }
 
+    override fun openNotificationSettings() {
+        openFragmentReplace(
+            binding.dashboardContainer.id,
+            NotificationSettings.getInstance(),
+            NotificationSettings.TAG,
+            true
+        )
+    }
+
     fun displayView(position: Int) {
-        if (SharedPrefsHelper.getInstance(this).getUserData().isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager()) {
+        if (SharedPrefsHelper.getInstance(this).getUserData()
+                .isOwner() || SharedPrefsHelper.getInstance(this).getUserData().isManager()
+        ) {
             displayViewOwner(position)
         } else /*if (SharedPrefsHelper.getInstance(this).getUserData().isExecutive())*/ {
             displayViewExecutive(position)
@@ -354,26 +371,31 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
         refreshSideMenu()
     }
 
-    fun getTermsAndConditions(slug: String, progressObserver: MutableLiveData<Boolean>, callBack: GenericCallBack<TermsConditionsModel>) {
+    fun getTermsAndConditions(
+        slug: String,
+        progressObserver: MutableLiveData<Boolean>,
+        callBack: GenericCallBack<TermsConditionsModel>
+    ) {
         progressObserver.value = true
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                viewModel.executeApi(viewModel.getApiService()?.getTermsAndConditions(slug)).collect {
-                    when (it.status) {
-                        ApiResult.Status.LOADING -> {
-                            progressObserver.value = true
-                        }
-                        ApiResult.Status.ERROR -> {
-                            progressObserver.value = false
-                        }
-                        ApiResult.Status.SUCCESS -> {
-                            progressObserver.value = false
-                            it.data?.data?.data?.let {
-                                callBack.onResponse(it)
+                viewModel.executeApi(viewModel.getApiService()?.getTermsAndConditions(slug))
+                    .collect {
+                        when (it.status) {
+                            ApiResult.Status.LOADING -> {
+                                progressObserver.value = true
+                            }
+                            ApiResult.Status.ERROR -> {
+                                progressObserver.value = false
+                            }
+                            ApiResult.Status.SUCCESS -> {
+                                progressObserver.value = false
+                                it.data?.data?.data?.let {
+                                    callBack.onResponse(it)
+                                }
                             }
                         }
                     }
-                }
             } catch (e: Exception) {
                 progressObserver.value = false
                 showToastInCenter(viewModel.getCorrectErrorMessage(e))
@@ -384,11 +406,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
     override fun onBackPressed() {
         val fragments = supportFragmentManager.backStackEntryCount
         if (fragments == 1) {
-            GlobalUtils.showCustomConfirmationDialogYesNo(this, getString(R.string.are_you_sure_to_exit), {
-                if (it) {
-                    finish()
-                }
-            })
+            GlobalUtils.showCustomConfirmationDialogYesNo(
+                this,
+                getString(R.string.are_you_sure_to_exit),
+                {
+                    if (it) {
+                        finish()
+                    }
+                })
         } else if (supportFragmentManager.backStackEntryCount > 1) {
             supportFragmentManager.popBackStack()
         } else {

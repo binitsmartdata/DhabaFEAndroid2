@@ -6,9 +6,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
+import com.transport.mall.databinding.FragmentNotificationSettingsBinding
 import com.transport.mall.databinding.FragmentSettingsBinding
 import com.transport.mall.ui.customdialogs.DialogLanguageSelection
-import com.transport.mall.ui.home.HomeActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 import com.transport.mall.utils.common.GlobalUtils
@@ -17,48 +17,36 @@ import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 /**
  * Created by Parambir Singh on 2020-01-24.
  */
-class SettingsFragment : BaseFragment<FragmentSettingsBinding, BaseVM>() {
+class NotificationSettings : BaseFragment<FragmentNotificationSettingsBinding, BaseVM>() {
     override val layoutId: Int
-        get() = R.layout.fragment_settings
+        get() = R.layout.fragment_notification_settings
     override var viewModel: BaseVM
         get() = setUpVM(this, BaseVM(baseActivity.application))
         set(value) {}
-    override var binding: FragmentSettingsBinding
+    override var binding: FragmentNotificationSettingsBinding
         get() = setUpBinding()
         set(value) {}
 
     var mListener: CommonActivityListener? = null
 
+    companion object {
+        val TAG = "NotificationSettings"
+        var fragmentObj: NotificationSettings? = null
+
+        fun getInstance(): NotificationSettings {
+            fragmentObj?.let {
+                return it
+            } ?: kotlin.run {
+                fragmentObj = NotificationSettings()
+                return fragmentObj!!
+            }
+        }
+    }
+
     override fun bindData() {
         mListener = activity as CommonActivityListener
         setHasOptionsMenu(true)
-        binding.profileLayout.setOnClickListener {
-            mListener?.openProfileScreen()
-        }
-        binding.llLogout.setOnClickListener {
-            GlobalUtils.showCustomConfirmationDialogYesNo(getmContext(), getString(R.string.are_you_sure_you_want_to_logout), {
-                if (it) {
-                    SharedPrefsHelper.getInstance(activity as Context).clearData()
-                    mListener?.startOver()
-                }
-            })
-        }
-        binding.llLanguage.setOnClickListener {
-            if (activity != null) {
-                DialogLanguageSelection(getmContext(), this).show()
-            }
-        }
-        binding.notificationLayout.setOnClickListener {
-            mListener?.openNotificationSettings()
-        }
 
-        val selectedLanguage = SharedPrefsHelper.getInstance(getmContext()).getSelectedLanguage()
-        if (selectedLanguage.equals("hi"))
-            binding.languageText.text = getString(R.string.hindi)
-        else if (selectedLanguage.equals("pa"))
-            binding.languageText.text = getString(R.string.punjabi)
-        else
-            binding.languageText.text = getString(R.string.english)
     }
 
     override fun initListeners() {

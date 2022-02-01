@@ -77,8 +77,47 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"
-                    android:visibility="gone"
-                    android:background="@color/viewColor" />
+                    android:background="@color/viewColor"/>
+
+                <LinearLayout
+                    android:id="@+id/notificationLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_notification"
+                        app:tint="@color/text_gray" />
+
+                    <TextView
+                        style="@style/openRegularTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:padding="@dimen/_8sdp"
+                        android:text="@string/notification"
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_arrow_settings" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/viewColor"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/llLanguage"
@@ -86,9 +125,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:padding="10dp"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <ImageView
