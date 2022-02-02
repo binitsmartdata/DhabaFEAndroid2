@@ -52,6 +52,7 @@ class DhabaListAdapter(
         }
 
         setButtonsClicks(myViewHolderG, position)
+
         myViewHolderG?.binding?.executePendingBindings()
     }
 
@@ -158,7 +159,7 @@ class DhabaListAdapter(
         }
 
         // hide edit icon if dhaba is not active
-        if (GlobalUtils.getNonNullString(getDhabaModelAsPerTab(position)?.active, "true").toBoolean()) {
+        if (getDhabaModelAsPerTab(position)?.isActiveDhaba()!!) {
             myViewHolderG?.binding?.ivEdit?.visibility = myViewHolderG?.binding?.ivEdit?.visibility!!
         } else {
             myViewHolderG?.binding?.ivEdit?.visibility = View.GONE

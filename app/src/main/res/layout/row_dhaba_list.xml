@@ -49,411 +49,423 @@
 
     </data>
 
-    <LinearLayout
-        android:id="@+id/parentItem"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="@dimen/_10sdp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/dhabaContainer"
+            android:id="@+id/parentItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/dhabaContainer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    loadImage="@{model.getPrimaryImage()}"
-                    placeholder="@{R.drawable.placeholder}"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_75sdp"
-                    android:scaleType="centerCrop" />
-
-                <TextView
-                    android:id="@+id/tvStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_semibold"
-                    android:paddingHorizontal="@dimen/_7sdp"
-                    android:paddingVertical="@dimen/_3sdp"
-                    android:text="@{dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? `Draft` : dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS) ? `In Review` :dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? `Active` : `Inactive`}"
-                    android:textColor="@{(dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) || dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? context.getColor(R.color.gold) :dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
-                    android:textSize="13sp"
-                    app:backgroundResource="@{(dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) || dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? R.drawable.bg_pending_dhaba_status : dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? R.drawable.bg_active_dhaba_status :  R.drawable.bg_inactive_dhaba_status}" />
-
-                <!--            this is for showing status    android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"-->
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_10sdp"
-                android:paddingRight="@dimen/_5sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvMenuTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_bold"
-                    android:onClick="@{() -> callback.onItemClick(tvMenuTitle, position)}"
-                    android:orientation="vertical"
-                    android:text="@{model.getUniqueId() + model.name}"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    tools:text="Pehalwan Dhaba" />
-
-                <TextView
-                    android:id="@+id/tvCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_gold_hotel_type"
-                    android:fontFamily="@font/opensans_regular"
-                    android:paddingHorizontal="@dimen/_15sdp"
-                    android:paddingVertical="@dimen/_2sdp"
-                    android:text="@{model.dhabaCategory}"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    android:visibility="@{(model.dhabaCategory.isEmpty() || isInProgress)? View.GONE : View.VISIBLE}" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/opensans_regular"
-                    android:orientation="vertical"
-                    android:text="@{model.address.trim().isEmpty() ? `` : model.address.trim().replace(`false`,``)}"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:visibility="@{model.address.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvHighway"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:orientation="vertical"
-                        android:text="@{model.highway.trim().isEmpty() ? `` : model.highway.replace(`false`,``)}"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        android:visibility="@{model.highway.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:orientation="vertical"
-                        android:text="@{model.city.trim().isEmpty() || model.highway.trim().isEmpty() ? `` : `, `}"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvCity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:orientation="vertical"
-                        android:text="@{model.city.trim().isEmpty() ? `` : model.city.replace(`false`,``)}"
-                        android:textColor="@color/black"
-                        android:textSize="13sp"
-                        android:visibility="@{model.city.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="@{model.overall_rating > 0 ? View.VISIBLE : View.GONE}">
-
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:rating="@{model.overall_rating}"
-                        android:theme="@style/RatingBar" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tvRating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:fontFamily="@font/opensans_regular"
-                        android:orientation="vertical"
-                        android:text="@{ratingBar.rating+``}"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivEdit"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_edit" />
-
-                <ImageView
-                    android:id="@+id/ivDelete"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_7sdp"
-                    android:src="@drawable/ic_delete" />
-
-                <ImageView
-                    android:id="@+id/ivLocation"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_location_listing" />
-
-                <ImageView
-                    android:id="@+id/ivView"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:background="@drawable/default_btn_selector"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_eye" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal"
-            android:paddingEnd="@dimen/_10sdp"
-            android:visibility="@{user.isExecutive() ? View.VISIBLE : View.GONE}">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical">
-
-                <com.transport.mall.utils.custom.CircleImageView
-                    loadImage="@{owner.ownerPic}"
-                    placeholder="@{R.drawable.ic_profile_pic_placeholder}"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginEnd="@dimen/_5sdp" />
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/owner"
-                        android:textColor="@color/grey"
-                        android:textSize="11sp" />
+                    <ImageView
+                        loadImage="@{model.getPrimaryImage()}"
+                        placeholder="@{R.drawable.placeholder}"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_75sdp"
+                        android:scaleType="centerCrop" />
 
                     <TextView
+                        android:id="@+id/tvStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/opensans_semibold"
-                        android:text="@{owner.ownerName}"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:paddingHorizontal="@dimen/_7sdp"
+                        android:paddingVertical="@dimen/_3sdp"
+                        android:text="@{dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? `Draft` : dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS) ? `In Review` :dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? `Active` : `Inactive`}"
+                        android:textColor="@{(dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) || dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? context.getColor(R.color.gold) :dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? context.getColor(R.color.greenText) : context.getColor(R.color.colorRed)}"
+                        android:textSize="13sp"
+                        app:backgroundResource="@{(dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_PENDING) || dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_INPROGRESS)) ? R.drawable.bg_pending_dhaba_status : dhabaStatus.equalsIgnoreCase(model.Companion.STATUS_ACTIVE)? R.drawable.bg_active_dhaba_status :  R.drawable.bg_inactive_dhaba_status}" />
+
+                    <!--            this is for showing status    android:visibility="@{(user.isOwner() || user.isManager()) ? View.VISIBLE : View.GONE}"-->
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_5sdp">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvMenuTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
+                        android:onClick="@{() -> callback.onItemClick(tvMenuTitle, position)}"
+                        android:orientation="vertical"
+                        android:text="@{model.getUniqueId() + model.name}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        tools:text="Pehalwan Dhaba" />
 
-                <com.transport.mall.utils.custom.CircleImageView
-                    loadImage="@{user.ownerPic}"
-                    placeholder="@{R.drawable.ic_profile_pic_placeholder}"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:src="@drawable/ic_profile_pic_placeholder" />
+                    <TextView
+                        android:id="@+id/tvCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_gold_hotel_type"
+                        android:fontFamily="@font/opensans_regular"
+                        android:paddingHorizontal="@dimen/_15sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:text="@{model.dhabaCategory}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:visibility="@{(model.dhabaCategory.isEmpty() || isInProgress)? View.GONE : View.VISIBLE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:orientation="vertical"
+                        android:text="@{model.address.trim().isEmpty() ? `` : model.address.trim().replace(`false`,``)}"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:visibility="@{model.address.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvHighway"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:orientation="vertical"
+                            android:text="@{model.highway.trim().isEmpty() ? `` : model.highway.replace(`false`,``)}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:visibility="@{model.highway.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:orientation="vertical"
+                            android:text="@{model.city.trim().isEmpty() || model.highway.trim().isEmpty() ? `` : `, `}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:orientation="vertical"
+                            android:text="@{model.city.trim().isEmpty() ? `` : model.city.replace(`false`,``)}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:visibility="@{model.city.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="@{model.overall_rating > 0 ? View.VISIBLE : View.GONE}">
+
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:rating="@{model.overall_rating}"
+                            android:theme="@style/RatingBar" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:fontFamily="@font/opensans_regular"
+                            android:orientation="vertical"
+                            android:text="@{ratingBar.rating+``}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/assigned_to"
-                        android:textColor="@color/grey"
-                        android:textSize="11sp" />
+                    <ImageView
+                        android:id="@+id/ivEdit"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:background="@drawable/default_btn_selector"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_edit" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="@{user.ownerName}"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
+                    <ImageView
+                        android:id="@+id/ivDelete"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:background="@drawable/default_btn_selector"
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/ic_delete" />
+
+                    <ImageView
+                        android:id="@+id/ivLocation"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:background="@drawable/default_btn_selector"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_location_listing" />
+
+                    <ImageView
+                        android:id="@+id/ivView"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:background="@drawable/default_btn_selector"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_eye" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal"
-            android:paddingRight="@dimen/_10sdp"
-            android:visibility="@{((user.isOwner() || user.isManager()) &amp;&amp; (!model.status.equalsIgnoreCase(model.Companion.STATUS_INACTIVE))) ? View.VISIBLE : View.GONE}">
-
             <LinearLayout
-                android:id="@+id/llAssignMgr"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/default_btn_selector"
-                android:gravity="center_vertical">
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/_10sdp"
+                android:visibility="@{(user.isExecutive() &amp;&amp; model.isActiveDhaba()) ? View.VISIBLE : View.GONE}">
 
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
 
                     <com.transport.mall.utils.custom.CircleImageView
-                        loadImage="@{manager.ownerPic}"
+                        loadImage="@{owner.ownerPic}"
+                        placeholder="@{R.drawable.ic_profile_pic_placeholder}"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginEnd="@dimen/_5sdp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/owner"
+                            android:textColor="@color/grey"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_semibold"
+                            android:text="@{owner.ownerName}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <com.transport.mall.utils.custom.CircleImageView
+                        loadImage="@{user.ownerPic}"
                         placeholder="@{R.drawable.ic_profile_pic_placeholder}"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
-                        android:visibility="@{manager!=null ? View.VISIBLE : View.GONE}" />
+                        android:src="@drawable/ic_profile_pic_placeholder" />
 
-                    <com.transport.mall.utils.custom.CircleImageView
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:padding="@dimen/_5sdp"
-                        android:src="@drawable/ic_add_red"
-                        android:visibility="@{manager==null ? View.VISIBLE : View.GONE}" />
-
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_regular"
-                        android:text="@string/manager"
-                        android:textColor="@color/grey"
-                        android:textSize="11sp"
-                        android:visibility="@{manager==null ? View.GONE : View.VISIBLE}" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:text="@{manager==null ? context.getString(R.string.assign_manager) : manager.ownerName}"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/assigned_to"
+                            android:textColor="@color/grey"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_semibold"
+                            android:text="@{user.ownerName}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:gravity="right|center_vertical"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:paddingRight="@dimen/_10sdp"
+                android:visibility="@{((user.isOwner() || user.isManager()) &amp;&amp; (!model.status.equalsIgnoreCase(model.Companion.STATUS_INACTIVE)) &amp;&amp; model.isActiveDhaba()) ? View.VISIBLE : View.GONE}">
 
-                <TextView
-                    android:id="@+id/tvVerified"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/llAssignMgr"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_verified"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:fontFamily="@font/opensans_regular"
-                    android:text="@string/verified"
-                    android:textColor="@color/black"
-                    android:textSize="11sp"
-                    android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
+                    android:layout_weight="1"
+                    android:background="@drawable/default_btn_selector"
+                    android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/tvPayNow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:background="@drawable/primary_color_btn_selector"
-                    android:fontFamily="@font/opensans_regular"
-                    android:paddingHorizontal="@dimen/_7sdp"
-                    android:paddingVertical="@dimen/_2sdp"
-                    android:text="@string/pay_now"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"
-                    android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tvSendForApproval"
-                    android:layout_width="wrap_content"
+                        <com.transport.mall.utils.custom.CircleImageView
+                            loadImage="@{manager.ownerPic}"
+                            placeholder="@{R.drawable.ic_profile_pic_placeholder}"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:visibility="@{manager!=null ? View.VISIBLE : View.GONE}" />
+
+                        <com.transport.mall.utils.custom.CircleImageView
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:src="@drawable/ic_add_red"
+                            android:visibility="@{manager==null ? View.VISIBLE : View.GONE}" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:text="@string/manager"
+                            android:textColor="@color/grey"
+                            android:textSize="11sp"
+                            android:visibility="@{manager==null ? View.GONE : View.VISIBLE}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_semibold"
+                            android:text="@{manager==null ? context.getString(R.string.assign_manager) : manager.ownerName}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/stroke_btn_selector"
-                    android:fontFamily="@font/opensans_regular"
-                    android:paddingHorizontal="@dimen/_7sdp"
-                    android:paddingVertical="@dimen/_2sdp"
-                    android:text="@string/send_for_approval"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:visibility="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? View.VISIBLE : View.GONE}" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvVerified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_verified"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@string/verified"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/tvPayNow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@drawable/primary_color_btn_selector"
+                        android:fontFamily="@font/opensans_regular"
+                        android:paddingHorizontal="@dimen/_7sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:text="@string/pay_now"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:visibility="@{model.verified.equalsIgnoreCase(`true`) ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/tvSendForApproval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/stroke_btn_selector"
+                        android:fontFamily="@font/opensans_regular"
+                        android:paddingHorizontal="@dimen/_7sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:text="@string/send_for_approval"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:visibility="@{model.status.equalsIgnoreCase(model.Companion.STATUS_PENDING) ? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:background="@color/divider_dcdcdc" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:background="@color/divider_dcdcdc" />
+            android:layout_height="match_parent"
+            android:background="@color/white_transparent"
+            android:visibility="@{model.isActiveDhaba() ? View.GONE : View.VISIBLE}" />
 
-    </LinearLayout>
+    </FrameLayout>
 </layout>
