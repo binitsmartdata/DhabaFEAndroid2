@@ -122,7 +122,11 @@ class DhabaListAdapter(
         when (dhabaStatus) {
             DhabaModel.STATUS_PENDING -> {
                 myViewHolderG?.binding?.ivDelete?.visibility = View.GONE
-                myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                if (getDhabaModelAsPerTab(position)?.active.toBoolean()) {
+                    myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                } else {
+                    myViewHolderG?.binding?.ivEdit?.visibility = View.GONE
+                }
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
@@ -131,6 +135,7 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivEdit?.visibility =
                     if (SharedPrefsHelper.getInstance(context).getUserData().isExecutive()
                         && getDhabaModelAsPerTab(position)?.approval_for.equals(UserModel.ROLE_EXECUTIVE)
+                        && getDhabaModelAsPerTab(position)?.active.toBoolean()
                     ) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
@@ -141,9 +146,12 @@ class DhabaListAdapter(
                 if (selectedTab.equals(DhabaModel.STATUS_ACTIVE)) {
                     myViewHolderG?.binding?.ivEdit?.visibility =
                         if (dataList[position].dhabaModel?.status.equals(DhabaModel.STATUS_PENDING) && !dataList[position].dhabaModel?.draft_by.equals(userModel._id)) View.GONE
-                        else View.VISIBLE
+                        else if (getDhabaModelAsPerTab(position)?.active.toBoolean()) View.VISIBLE else View.GONE
                 } else {
-                    myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                    if (getDhabaModelAsPerTab(position)?.active.toBoolean())
+                        myViewHolderG?.binding?.ivEdit?.visibility = View.VISIBLE
+                    else
+                        myViewHolderG?.binding?.ivEdit?.visibility = View.GONE
                 }
                 //------------------------
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
