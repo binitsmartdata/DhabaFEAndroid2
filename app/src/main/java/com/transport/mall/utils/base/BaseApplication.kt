@@ -5,10 +5,13 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.google.android.gms.analytics.GoogleAnalytics
+import com.google.android.gms.analytics.Tracker
+import com.transport.mall.R
 import com.transport.mall.repository.networkcheck.ConnectivityReceiver
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
 
 class BaseApplication : Application(), LifecycleObserver,
     ConnectivityReceiver.ConnectivityReceiverListener {
@@ -58,5 +61,22 @@ class BaseApplication : Application(), LifecycleObserver,
          val jobScheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
          jobScheduler.schedule(myJob)*/
     }
+
+    private var sAnalytics: GoogleAnalytics? = null
+    private var sTracker: Tracker? = null
+
+    @get:Synchronized
+    val defaultTracker: Tracker?
+        get() {
+            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+            if (sTracker == null) {
+                sTracker = sAnalytics?.newTracker(R.xml.global_tracker)
+            }
+            try {
+                sTracker?.setClientId(SharedPrefsHelper.getInstance(this).getUserData()._id)
+            } catch (ignored: Exception) {
+            }
+            return sTracker
+        }
 
 }

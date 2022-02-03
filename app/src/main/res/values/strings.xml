@@ -647,5 +647,16 @@
     <string name="retry">Retry</string>
     <string name="no_chat_data">No Chat Data</string>
     <string name="type_a_message">Type a message</string>
+    <string name="document">Document</string>
+    <string name="audio">Audio</string>
+    <string name="video">Video</string>
+    <string name="contact">Contact</string>
+    <string name="location">Location</string>
+    <string name="cancel_task">Cancel Task</string>
+    <string name="share_chat">Share Chat</string>
+    <string name="chat_today">Today</string>
+    <string name="chat_yesterday">Yesterday</string>
+    <string name="clear_history">Clear History</string>
+    <string name="intenet_connectivity">Please check your internet connection</string>
 
 </resources>

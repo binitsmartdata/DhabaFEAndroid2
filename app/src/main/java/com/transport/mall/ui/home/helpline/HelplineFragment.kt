@@ -7,6 +7,7 @@ import com.transport.mall.R
 import com.transport.mall.callback.CommonActivityListener
 import com.transport.mall.databinding.FragmentHelplineBinding
 import com.transport.mall.ui.home.CommonActivity
+import com.transport.mall.ui.home.helpline.chat.ChatActivity
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.base.BaseVM
 
@@ -30,6 +31,9 @@ class HelplineFragment : BaseFragment<FragmentHelplineBinding, BaseVM>() {
         mListener = activity as CommonActivityListener
         binding.callCardView.setOnClickListener {
             CommonActivity.start(getmContext(), CommonActivity.TYPE_REQUEST_FOR_CALL, "")
+        }
+        binding.cardChat.setOnClickListener {
+            ChatActivity.start(getmContext())
         }
     }
 

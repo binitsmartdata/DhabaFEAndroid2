@@ -13,6 +13,7 @@ class SharedPrefsHelper {
     private val SELECTED_LANGUAGE = "selectedLanguage"
     private val mUserData = "userData"
     private val draftDhaba = "draftDhaba"
+    private val ROOM_ID = "roomId"
 
     var context: Context? = null
 
@@ -36,6 +37,15 @@ class SharedPrefsHelper {
     fun setSelectedLanguage(language: String) {
         editor?.putString(SELECTED_LANGUAGE, language)
         editor?.apply()
+    }
+
+    fun setRoomId(roomId: String) {
+        editor?.putString(ROOM_ID, roomId)
+        editor?.apply()
+    }
+
+    fun getRoomId(): String {
+        return prefs?.getString(ROOM_ID, "")!!
     }
 
     fun setUserData(userData: UserModel) {

@@ -2,20 +2,17 @@ package com.smartdata.transportmall.api
 
 import android.content.Context
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import retrofit2.Retrofit
-import com.smartdata.transportmall.api.ApiClient
-import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.OkHttpClient
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.smartdata.transportmall.BuildConfig
-import retrofit2.converter.gson.GsonConverterFactory
-import com.smartdata.transportmall.api.ApiServices
-import com.smartdata.transportmall.interfaces.Const
-import com.smartdata.transportmall.retrofit.App
+import com.transport.mall.BuildConfig
+import com.transport.mall.repository.transporttv.ApiServices
+import com.transport.mall.ui.home.helpline.chat.Const
+import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import okhttp3.Request
-import timber.log.Timber
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
@@ -46,11 +43,11 @@ object ApiClient {
                             .setCustomKey("request", res.request.toString())
                         FirebaseCrashlytics.getInstance()
                             .setCustomKey("request_url", res.request.url.toString())
-                        App.getUser?.let {
+                        SharedPrefsHelper.getInstance(mContext).getUserData().let {
                             FirebaseCrashlytics.getInstance()
-                                .setCustomKey("userId", it?.id ?: "")
+                                .setCustomKey("userId", it?._id ?: "")
                             FirebaseCrashlytics.getInstance()
-                                .setCustomKey("fname", it?.fnameEn ?: "")
+                                .setCustomKey("fname", it?.ownerName ?: "")
                         }
                         FirebaseCrashlytics.getInstance().log("Api exceptions")
                         body.string().let {
@@ -128,10 +125,5 @@ object ApiClient {
     @JvmStatic
     fun getApiService(mContext: Context): ApiServices {
         return getRetrofitInstance(mContext)!!.create(ApiServices::class.java)
-    }
-
-    @JvmStatic
-    fun getDhabaApiService(mContext: Context): ApiServicesDhaba {
-        return getDhabaRetrofitInstance(mContext)!!.create(ApiServicesDhaba::class.java)
     }
 }

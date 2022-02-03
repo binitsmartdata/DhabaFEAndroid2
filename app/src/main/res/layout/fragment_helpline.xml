@@ -26,8 +26,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:visibility="gone"
-                android:background="@color/viewColor" />
+                android:background="@color/viewColor"
+                android:visibility="gone" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -46,6 +46,7 @@
                     android:textSize="@dimen/_16ssp" />
 
             </androidx.cardview.widget.CardView>
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -104,6 +105,75 @@
                                     android:layout_weight="2"
                                     android:padding="@dimen/_2sdp"
                                     android:text="@string/request_for_call"
+                                    android:textColor="#383535"
+                                    android:textSize="18sp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_arrow_right" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center"
+                        android:text="OR"
+                        android:textColor="@color/black" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardChat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/orText"
+                        android:layout_margin="16dp"
+                        android:background="@color/white"
+                        app:cardCornerRadius="@dimen/_4sdp">
+
+                        <LinearLayout
+                            android:id="@+id/llChat"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/call_image" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:paddingBottom="10dp"
+                                android:weightSum="2">
+
+                                <ImageView
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/ic_call_red" />
+
+                                <TextView
+                                    style="@style/openRegularTextStyle"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_weight="2"
+                                    android:padding="@dimen/_2sdp"
+                                    android:text="@string/chat"
                                     android:textColor="#383535"
                                     android:textSize="18sp" />
 

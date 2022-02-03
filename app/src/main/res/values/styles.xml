@@ -192,5 +192,10 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     </style>
 
+    <style name="popup" parent="ThemeOverlay.AppCompat.Light">
+        <!--        <item name="android:colorBackground">@color/white</item>-->
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:popupBackground">@android:color/transparent</item>
+    </style>
 
 </resources>

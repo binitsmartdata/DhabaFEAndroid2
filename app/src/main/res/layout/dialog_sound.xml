@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25sp"
                 android:layout_margin="8dp"
-                android:src="@drawable/icon_cross" />
+                android:src="@drawable/ic_close" />
 
         </LinearLayout>
 
@@ -43,7 +43,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_5dp"
+            android:layout_margin="@dimen/_5sdp"
             android:orientation="horizontal"
             android:background="@drawable/bg_sound_player"
             android:padding="10dp">
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11dp"
+                android:textSize="@dimen/_11sdp"
                 android:text="00;00"/>
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11dp"
+                android:textSize="@dimen/_11sdp"
                 android:text="/ 00;00"/>
 
         </LinearLayout>
