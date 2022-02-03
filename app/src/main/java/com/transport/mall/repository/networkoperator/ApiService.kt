@@ -182,6 +182,7 @@ interface ApiService {
     suspend fun addDhaba(
         @Part("owner_id") owner_id: RequestBody,
         @Part("name") name: RequestBody,
+        @Part("informations") informations: RequestBody,
         @Part("address") address: RequestBody,
         @Part("landmark") landmark: RequestBody,
         @Part("area") area: RequestBody,
@@ -213,6 +214,7 @@ interface ApiService {
         @Part("_id") _id: RequestBody,
         @Part("owner_id") owner_id: RequestBody,
         @Part("name") name: RequestBody,
+        @Part("informations") informations: RequestBody,
         @Part("address") address: RequestBody,
         @Part("landmark") landmark: RequestBody,
         @Part("area") area: RequestBody,

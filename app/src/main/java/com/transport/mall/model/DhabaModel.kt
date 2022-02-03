@@ -78,6 +78,13 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.ownerName)
         }
 
+    var informations: String = ""
+        @Bindable get() = field
+        set(informations) {
+            field = informations
+            notifyPropertyChanged(BR.informations)
+        }
+
     var address: String = ""
         @Bindable get() = field
         set(address) {
