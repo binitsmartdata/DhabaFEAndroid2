@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.Window
@@ -25,6 +26,8 @@ class DialogAddCustomer constructor(context: Context) : Dialog(context) {
         setContentView(binding.root)
         window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window!!.getAttributes().windowAnimations = R.style.DialogAnimationBottom
+        window!!.setGravity(Gravity.BOTTOM)
 
         binding.bSendInvitation.setOnClickListener {
             onButtonClick()

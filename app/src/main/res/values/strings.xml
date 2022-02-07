@@ -442,7 +442,7 @@
         <!--        <item>@string/notifications</item>-->
         <!--        <item>@string/discount_offers</item>-->
         <!--        <item>@string/my_orders</item>-->
-        <!--        <item>@string/customers</item>-->
+                <item>@string/customers</item>
         <!--        <item>@string/shops</item>-->
         <item>@string/helpline</item>
         <item>@string/settings</item>
@@ -452,7 +452,7 @@
         <!--        <item>@drawable/ic_notification_filled</item>-->
         <!--        <item>@drawable/ic_discount_offer</item>-->
         <!--        <item>@drawable/ic_my_orders</item>-->
-        <!--        <item>@drawable/ic_customers</item>-->
+                <item>@drawable/ic_customers</item>
         <!--        <item>@drawable/ic_shop</item>-->
         <item>@drawable/ic_helpline_png</item>
         <item>@drawable/ic_settings</item>
@@ -462,7 +462,7 @@
         <!--        <item>@drawable/ic_notification_hilighted</item>-->
         <!--        <item>@drawable/ic_discount_offer_highlighted</item>-->
         <!--        <item>@drawable/ic_my_orders_highlighted</item>-->
-        <!--        <item>@drawable/ic_customers_highlighted</item>-->
+                <item>@drawable/ic_customers_highlighted</item>
         <!--        <item>@drawable/ic_shop_highlighted</item>-->
         <item>@drawable/ic_helpline_png</item>
         <item>@drawable/ic_settings_png</item>

@@ -22,6 +22,7 @@ import com.transport.mall.repository.commonprocesses.CityStateHighwayBanksFetche
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.addnewdhaba.AddDhabaActivity
 import com.transport.mall.ui.authentication.pre_login.splash.SplashActivity
+import com.transport.mall.ui.home.customers.CustomersFragment
 import com.transport.mall.ui.home.helpline.EditProfileFragment
 import com.transport.mall.ui.home.helpline.HelplineFragment
 import com.transport.mall.ui.home.notifications.NotificationsFragment
@@ -286,10 +287,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, BaseVM>(),
 //            1 -> fragment = NotificationsFragment()
 //            2 -> fragment = DiscountsOffersFragment()
 //            3 -> fragment = OrdersFragment()
-//            4 -> fragment = CustomersFragment()
+            1 -> fragment = CustomersFragment()
 //            5 -> fragment = ShopsFragment()
-            1 -> fragment = HelplineFragment()
-            2 -> fragment = SettingsFragment()
+            2 -> fragment = HelplineFragment()
+            3 -> fragment = SettingsFragment()
         }
 
         fragment?.let {

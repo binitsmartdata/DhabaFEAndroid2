@@ -34,15 +34,15 @@ class CustomersFragment : BaseFragment<FragmentCustomersBinding, BaseVM>(),
 
     private fun setupCustomersList() {
         val list = ArrayList<CustomerModel>()
-//        for (i in 0..5) {
-//            list.add(
-//                CustomerModel(
-//                    "Test$i",
-//                    "12345678",
-//                    R.drawable.ic_default_avatar
-//                )
-//            )
-//        }
+        for (i in 0..5) {
+            list.add(
+                CustomerModel(
+                    "Test$i",
+                    "12345678",
+                    R.drawable.ic_default_avatar
+                )
+            )
+        }
         customersAdapter = CustomersAdapter(activity as Context, list, GenericCallBack {
         })
 
