@@ -140,17 +140,10 @@ class ChatActivity : AppCompatActivity() {
     private var currentLongitude = 0.0
     private var locationShare: Boolean = false
 
-    companion object{
-        @JvmStatic
-        fun start(context: Context) {
-            val starter = Intent(context, ChatActivity::class.java)
-            context.startActivity(starter)
-        }
-    }
-
     private var videoActivityResultLauncher = registerForActivityResult(
         StartActivityForResult()
     ) { result: ActivityResult ->
+/*
         if (result.resultCode == RESULT_OK) {
             mVideoUri = result.data?.data
 //            val videoPath = getPath(mVideoUri)
@@ -257,11 +250,13 @@ class ChatActivity : AppCompatActivity() {
         } else {
             showVideoSizeDialog()
         }
+*/
     }
 
     var audioActivityResultLauncher = registerForActivityResult(
         StartActivityForResult()
-    ) { result: ActivityResult ->
+    ) {/* result: ActivityResult ->
+
         if (result.resultCode == RESULT_OK) {
             if (result.data != null) {
                 mAudioUri = result.data?.data
@@ -283,7 +278,7 @@ class ChatActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
+        }*/
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -300,7 +295,7 @@ class ChatActivity : AppCompatActivity() {
         binding = ChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         mContext = this
-        executor = Executors.newSingleThreadExecutor()
+        /*executor = Executors.newSingleThreadExecutor()
         val db = AppDatabase.getInstance(application)
         chatDao = db?.chatDao()
         gson = Gson()
@@ -328,9 +323,9 @@ class ChatActivity : AppCompatActivity() {
             )
         }
         user_token = SharedPrefsHelper.getInstance(this).getUserData().accessToken
-        /*        Timber.e("user_id: %s", user_id);
+        *//*        Timber.e("user_id: %s", user_id);
         Timber.e("roomId: %s", roomId);
-        Timber.e("user_token: %s", user_token);*/
+        Timber.e("user_token: %s", user_token);*//*
         audioRecordingSetUp()
         setUpClickListeners()
         setUpChatRecycler()
@@ -370,13 +365,13 @@ class ChatActivity : AppCompatActivity() {
             })
             .setNotificationCancelable(true)
             .setNotificationEnabled(false)
-            .build()
+            .build()*/
 
 
     }
 
     private fun socketConnect() {
-        try {
+      /*  try {
             val options = IO.Options()
             options.forceNew = true
             options.reconnection = true
@@ -402,11 +397,12 @@ class ChatActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             Timber.e("to server")
-        }
+        }*/
     }
 
 
     private fun sendChatMessageType(msg: String, type: String) {
+/*
         try {
             if (!msg.equals("", ignoreCase = true)) {
                 val `object` = JSONObject()
@@ -451,6 +447,7 @@ class ChatActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+*/
         updateUnReadMesages()
     }
 
@@ -495,7 +492,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     @SuppressLint("BinaryOperationInTimber")
-    private fun setUpChatRecycler() {
+    private fun setUpChatRecycler() {/*
         model = ArrayList()
         adapter = ChatAdapter(mContext, model, this) { success, data, retry ->
             var chat: ChatMessagesListModel? = null
@@ -589,7 +586,7 @@ class ChatActivity : AppCompatActivity() {
             0
         (Objects.requireNonNull(binding.recyclerview.itemAnimator) as SimpleItemAnimator).removeDuration =
             0
-        binding.recyclerview.adapter = adapter
+        binding.recyclerview.adapter = adapter*/
     }
 
     private fun safeEndAnimations(rv: RecyclerView?) {
@@ -597,6 +594,7 @@ class ChatActivity : AppCompatActivity() {
         itemAnimator?.endAnimations()
     }
 
+/*
     private fun setUpScrollListener() {
         binding.recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -627,8 +625,10 @@ class ChatActivity : AppCompatActivity() {
             }
         })
     }
+*/
 
     private fun updateUnReadMesages() {
+/*
         if (unreadCount > 0) {
             try {
                 val `object` = JSONObject()
@@ -660,10 +660,11 @@ class ChatActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+*/
     }
 
     private fun sendunReadMesagesEventEarly() {
-        if (unreadCount > 0) {
+        /*if (unreadCount > 0) {
             try {
                 val `object` = JSONObject()
                 `object`.put("userId", user_id)
@@ -684,7 +685,7 @@ class ChatActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }
+        }*/
     }
 
     private fun setUpClickListeners() {
@@ -703,7 +704,7 @@ class ChatActivity : AppCompatActivity() {
             // Showing the popup menu
             popupMenu.show()
         }
-        binding.btnPdf.setOnClickListener { v: View? ->
+       /* binding.btnPdf.setOnClickListener { v: View? ->
             userChoosenTask = ""
             val result = checkMultiplePermission(mContext)
             if (result) selectImage()
@@ -712,7 +713,7 @@ class ChatActivity : AppCompatActivity() {
             val result = checkMultiplePermission(mContext)
             userChoosenTask = "Take Photo"
             if (result) cameraIntent()
-        }
+        }*/
         binding.backButton.setOnClickListener { view: View? -> onBackPressed() }
         binding.textMessage.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
@@ -726,6 +727,7 @@ class ChatActivity : AppCompatActivity() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
+/*
                 try {
                     val `object` = JSONObject()
                     `object`.put("userId", user_id)
@@ -746,6 +748,7 @@ class ChatActivity : AppCompatActivity() {
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
+*/
             }
         })
     }
@@ -829,7 +832,7 @@ class ChatActivity : AppCompatActivity() {
             }
         })
         binding.recordView.setOnBasketAnimationEndListener { Timber.d("Basket Animation Finished") }
-        binding.recordView.setRecordPermissionHandler {
+       /* binding.recordView.setRecordPermissionHandler {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 return@setRecordPermissionHandler true
             }
@@ -844,9 +847,10 @@ class ChatActivity : AppCompatActivity() {
 //        });
             val result = checkMultiplePermissionRecording(mContext)
             result
-        }
+        }*/
     }
 
+/*
     fun checkMultiplePermissionRecording(context: Context?): Boolean {
         val currentAPIVersion = Build.VERSION.SDK_INT
         return if (currentAPIVersion >= Build.VERSION_CODES.M) {
@@ -897,9 +901,10 @@ class ChatActivity : AppCompatActivity() {
             true
         }
     }
+*/
 
     private fun deleteChatData() {
-        try {
+    /*    try {
             Timber.e("roomId%s", roomId)
             GlobalUtils.showProgressDialog(mContext, getString(R.string.please_wait))
             ApiClient.getApiService(mContext).room_delet_chat(roomId, user_token)
@@ -943,9 +948,10 @@ class ChatActivity : AppCompatActivity() {
         } catch (e: Exception) {
             GlobalUtils.hideProgressDialog()
             e.printStackTrace()
-        }
+        }*/
     }
 
+/*
     private fun setMessageModel(
         msg: String,
         text: String,
@@ -976,6 +982,7 @@ class ChatActivity : AppCompatActivity() {
         }
         return listModel
     }
+*/
 
     private fun refreshData(listModel: ChatMessagesListModel) {
         adapter?.notifyItemInserted(0)
@@ -1002,6 +1009,7 @@ class ChatActivity : AppCompatActivity() {
 
     //                                if (modelNew.getUnreadCount()>0)
     //                                model.add(modelNew);
+/*
     private val chatData: Unit
         get() {
             try {
@@ -1166,7 +1174,8 @@ class ChatActivity : AppCompatActivity() {
                                     showNoChatDataMessage()
                                     showProgress(false)
                                     request = true
-                                } /*else if (jsonObject.getInt("status") == 400) {
+                                } */
+/*else if (jsonObject.getInt("status") == 400) {
                                     val error = JSONObject(response.errorBody()?.string() ?: "")
                                     val retrofitMesage = error.getString("message")
                                     Toast.makeText(
@@ -1174,7 +1183,8 @@ class ChatActivity : AppCompatActivity() {
                                         retrofitMesage ?: "something went wrong, please try again",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                } */ else {
+                                } *//*
+ else {
                                     val retrofitMesage = jsonObject.getString("message")
                                     Toast.makeText(
                                         mContext,
@@ -1200,6 +1210,7 @@ class ChatActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+*/
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -1228,6 +1239,7 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
+/*
     override fun onDestroy() {
         NetWatch.unregister(this)
         if (mSocket != null && mSocket.connected()) {
@@ -1247,8 +1259,10 @@ class ChatActivity : AppCompatActivity() {
         }
         super.onDestroy()
     }
+*/
 
     private val onNewMessageReceived = Emitter.Listener { objects ->
+/*
         try {
             updateUnReadMesages()
             var message = JSONObject()
@@ -1320,6 +1334,7 @@ class ChatActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+*/
 
     }
 
@@ -1330,6 +1345,7 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
+/*
     private val joinRoom = Emitter.Listener { objects ->
         Log.e(TAG, "joinRoom: $objects")
         runOnUiThread {
@@ -1346,6 +1362,8 @@ class ChatActivity : AppCompatActivity() {
             }
         }
     }
+*/
+/*
     private val onConnect = Emitter.Listener {
         val `object` = JSONObject()
         try {
@@ -1362,11 +1380,15 @@ class ChatActivity : AppCompatActivity() {
         }
         //            mSocket.connect();
     }
+*/
+/*
     private val onReConnect = Emitter.Listener {
         try {
-            /* runOnUiThread(() -> {
+            */
+/* runOnUiThread(() -> {
                     Toast.makeText(mContext, "ReConnecting", Toast.LENGTH_SHORT).show();
-                });*/
+                });*//*
+
             val cd = ConnectionDetector(applicationContext)
             if (cd.isConnectingToInternet) {
                 if (mSocket != null && !mSocket.connected()) {
@@ -1383,6 +1405,8 @@ class ChatActivity : AppCompatActivity() {
         }
         //            mSocket.connect();
     }
+*/
+/*
     private val onRoomDetail =
         Emitter.Listener { objects -> // Toast.makeText(mContext,"joinRoom",Toast.LENGTH_SHORT).show();
             runOnUiThread {
@@ -1405,8 +1429,10 @@ class ChatActivity : AppCompatActivity() {
                 }
             }
         }
+*/
     var handler: Handler? = null
 
+/*
     @SuppressLint("SetTextI18n")
     private val onDisplayTyping = Emitter.Listener { objects: Array<Any> ->
         runOnUiThread {
@@ -1443,6 +1469,7 @@ class ChatActivity : AppCompatActivity() {
             }
         }
     }
+*/
 
     @SuppressLint("SetTextI18n")
     private val onMESSAGE_DELIVERED = Emitter.Listener { objects: Array<Any> ->
@@ -1509,7 +1536,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     //---------image---------------
-    @SuppressLint("LogNotTimber")
+    /*@SuppressLint("LogNotTimber")
     private fun selectImage() {
         //            getString(R.string.camera),
         val items = arrayOf<CharSequence>(
@@ -1524,10 +1551,10 @@ class ChatActivity : AppCompatActivity() {
         builder.setTitle(getString(R.string.share_chat))
         builder.setItems(items) { dialog: DialogInterface, item: Int ->
             val result = checkMultiplePermission(mContext)
-            /* if (items[item] == getString(R.string.camera)) {
+            *//* if (items[item] == getString(R.string.camera)) {
                  userChoosenTask = getString(R.string.camera)
                  if (result) cameraIntent()
-             } else*/
+             } else*//*
             if (items[item] == getString(R.string.gallery)) {
                 userChoosenTask = getString(R.string.gallery)
                 if (result) galleryIntent()
@@ -1554,7 +1581,7 @@ class ChatActivity : AppCompatActivity() {
             }
         }
         builder.show()
-    }
+    }*/
 
     fun selectLocationOnMap() {
         val apiKey = getString(R.string.googleMapsApiKey)
@@ -1654,6 +1681,7 @@ class ChatActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_CAMERA)
     }
 
+/*
     @SuppressLint("Recycle")
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -1726,7 +1754,9 @@ class ChatActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+*/
 
+/*
     fun getImageUri(inContext: Context, inImage: Bitmap?): Uri {
 //        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 //        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -1740,6 +1770,7 @@ class ChatActivity : AppCompatActivity() {
             )
         return Uri.parse(path)
     }
+*/
 
     fun getRealPathFromURI(contentUri: Uri?): String {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
@@ -1799,6 +1830,7 @@ class ChatActivity : AppCompatActivity() {
         return picture_Path ?: ""
     }
 
+/*
     fun checkMultiplePermission(context: Context?): Boolean {
         Log.d(TAG, "checkMultiplePermission: ")
         val currentAPIVersion = Build.VERSION.SDK_INT
@@ -1905,8 +1937,10 @@ class ChatActivity : AppCompatActivity() {
             true
         }
     }
+*/
 
     private fun SendImageToChat(type: String, picturePath: String?, mVideoUri: Uri?) {
+/*
         try {
             var chatModel: ChatMessagesListModel? = null
             val mobileTimeStamp = System.currentTimeMillis()
@@ -1920,8 +1954,10 @@ class ChatActivity : AppCompatActivity() {
             e.printStackTrace()
             GlobalUtils.hideProgressDialog()
         }
+*/
     }
 
+/*
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -2015,7 +2051,9 @@ class ChatActivity : AppCompatActivity() {
             }
         }
     }
+*/
 
+/*
     private fun showNeverAskAgainAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage("You have previously declined this permission. You must approve this permission in Permissions in the app settings on your device.")
@@ -2034,6 +2072,7 @@ class ChatActivity : AppCompatActivity() {
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(this, R.color.black))
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(this, R.color.black))
     }
+*/
 
     //------------- record=======
     private fun stopRecording(deleteFile: Boolean) {
@@ -2168,6 +2207,12 @@ class ChatActivity : AppCompatActivity() {
         const val MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123
         const val MY_PERMISSIONS_REQUEST_AUDIO_RECORD = 124
         var user_id: String = ""
+
+        @JvmStatic
+        fun start(context: Context) {
+            val starter = Intent(context, ChatActivity::class.java)
+            context.startActivity(starter)
+        }
 
         @JvmField
         var domain = "TVHELPLINE"

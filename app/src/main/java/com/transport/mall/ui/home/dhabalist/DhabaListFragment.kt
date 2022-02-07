@@ -25,6 +25,7 @@ import com.transport.mall.utils.RxBus
 import com.transport.mall.utils.base.BaseFragment
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 
 
@@ -107,14 +108,16 @@ class DhabaListFragment : BaseFragment<FragmentDhabaListBinding, DhabaListVM>(),
         }, { sendForApprovalPosition -> // DHABA CLICKED LISTENER
             sendForApproval(dhabaList, sendForApprovalPosition)
         })
-        dhabaListAdapter?.setOnLoadMoreListener {
-            if (!isLoadingData) {
-                page++
-            } else {
-                page = 1
+        dhabaListAdapter?.setOnLoadMoreListener(object : InfiniteAdapter.OnLoadMoreListener {
+            override fun onLoadMore() {
+                if (!isLoadingData) {
+                    page++
+                } else {
+                    page = 1
+                }
+                refreshDhabaList()
             }
-            refreshDhabaList()
-        }
+        })
         binding.recyclerView.layoutManager =
             LinearLayoutManager(activity as Context, LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = dhabaListAdapter

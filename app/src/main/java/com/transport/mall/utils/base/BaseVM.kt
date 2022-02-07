@@ -29,6 +29,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.HttpException
@@ -167,7 +168,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             return null
         } else {
             val requestFile: RequestBody =
-                RequestBody.create(MediaType.parse("multipart/form-data"), File(path))
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), File(path))
             val body =
                 MultipartBody.Part.createFormData(parameterName, File(path).getName(), requestFile)
             return body
@@ -179,7 +180,7 @@ open class BaseVM(context: Application) : AndroidViewModel(context) {
             return null
         } else {
             val requestFile: RequestBody =
-                RequestBody.create(MediaType.parse("multipart/form-data"), File(path))
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), File(path))
             val body =
                 MultipartBody.Part.createFormData(parameterName, File(path).getName(), requestFile)
             return body

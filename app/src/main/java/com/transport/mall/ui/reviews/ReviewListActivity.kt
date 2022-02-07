@@ -14,6 +14,7 @@ import com.transport.mall.ui.viewdhaba.ViewDhabaVM
 import com.transport.mall.utils.base.BaseActivity
 import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
+import com.transport.mall.utils.common.infiniteadapter.InfiniteAdapter
 
 class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(),
     SwipeRefreshLayout.OnRefreshListener {
@@ -72,10 +73,12 @@ class ReviewListActivity : BaseActivity<ActivityReviewListBinding, ViewDhabaVM>(
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.adapter = reviewAdapter
 
-        reviewAdapter.setOnLoadMoreListener {
-            viewModel.page += 1
-            getReviews()
-        }
+        reviewAdapter.setOnLoadMoreListener(object : InfiniteAdapter.OnLoadMoreListener {
+            override fun onLoadMore() {
+                viewModel.page += 1
+                getReviews()
+            }
+        })
     }
 
     private fun refreshViewsVisibility() {

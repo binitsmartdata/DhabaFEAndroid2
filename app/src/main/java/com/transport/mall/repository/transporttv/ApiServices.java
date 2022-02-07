@@ -1,13 +1,12 @@
 package com.transport.mall.repository.transporttv;
 
-
-import com.smartdata.transportmall.api.DTO.DislikeWishlist;
-import com.smartdata.transportmall.api.DTO.Comment;
-import com.smartdata.transportmall.api.DTO.CommentReplies;
-import com.smartdata.transportmall.api.DTO.Favorite;
-import com.smartdata.transportmall.api.DTO.Language;
-import com.smartdata.transportmall.api.DTO.LikeWishlist;
-import com.smartdata.transportmall.interfaces.Const;
+import com.transport.mall.repository.transporttv.DTO.Comment;
+import com.transport.mall.repository.transporttv.DTO.CommentReplies;
+import com.transport.mall.repository.transporttv.DTO.DislikeWishlist;
+import com.transport.mall.repository.transporttv.DTO.Favorite;
+import com.transport.mall.repository.transporttv.DTO.Language;
+import com.transport.mall.repository.transporttv.DTO.LikeWishlist;
+import com.transport.mall.ui.home.helpline.chat.Const;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -118,8 +117,8 @@ public interface ApiServices {
     Call<ResponseBody> getMyRewardsData(@Path("id") String id, @Header("Authorization") String authHeader);
 
     /* GET_ALL_MENU*/
-    @GET(Const.GET_ALL_MENU)
-    Call<ResponseBody> getAllMenuStatus(@Header("Authorization") String authHeader);
+//    @GET(Const.GET_ALL_MENU)
+//    Call<ResponseBody> getAllMenuStatus(@Header("Authorization") String authHeader);
 
 
 }

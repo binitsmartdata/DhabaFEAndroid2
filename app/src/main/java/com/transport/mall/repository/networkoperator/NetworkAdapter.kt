@@ -38,7 +38,7 @@ class NetworkAdapter {
                 val requestBuilder = original.newBuilder()
                     .header("Content-Type", "application/json")
                 requestBuilder.header("Accept", "application/json")
-                requestBuilder.method(original.method(), original.body())
+                requestBuilder.method(original.method, original.body)
 
                 val request = requestBuilder.build()
                 chain.proceed(request)
