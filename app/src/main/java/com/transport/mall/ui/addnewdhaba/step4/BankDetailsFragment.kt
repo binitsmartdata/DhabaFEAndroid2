@@ -333,7 +333,7 @@ class BankDetailsFragment :
                             mListener?.saveAsDraft()
                             activity?.finish()
                         } else {
-                            showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?._id!!)
+                            showSuccessDialog(mListener?.getDhabaModelMain()?.dhabaModel?.dhabaUniqueId!!)
                         }
                     } else {
                         showToastInCenter(it.message)

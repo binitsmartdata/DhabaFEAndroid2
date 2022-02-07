@@ -215,6 +215,7 @@ class OtherAmenitiesFragment :
         // YES NO BUTTONS IMPLEMENTATION
         binding.rgMechYesNo.setOnCheckedChangeListener { radioGroup, i ->
             val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.mechanic = enabled
             viewModel.model.mechanicShopEnabled = enabled
             if (!enabled) {
                 binding.rgMerch277.clearCheck()
@@ -223,6 +224,7 @@ class OtherAmenitiesFragment :
         }
         binding.rgPuncture247YesNo.setOnCheckedChangeListener { radioGroup, i ->
             val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.puncture = enabled
             viewModel.model.punctureshopEnabled = enabled
             if (!enabled) {
                 binding.rgPuncture247.clearCheck()
@@ -231,6 +233,7 @@ class OtherAmenitiesFragment :
         }
         binding.rgUtilityYesNo.setOnCheckedChangeListener { radioGroup, i ->
             val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.dailyutility = enabled
             viewModel.model.dailyutilityEnabled = enabled
             if (!enabled) {
                 binding.rgUtility247.clearCheck()
@@ -239,6 +242,7 @@ class OtherAmenitiesFragment :
         }
         binding.rgBarberYesNo.setOnCheckedChangeListener { radioGroup, i ->
             val enabled = (activity?.findViewById<RadioButton>(i))?.getTag()?.toString().toBoolean()
+            viewModel.model.barberDis = enabled
             viewModel.model.barberEnabled = enabled
             if (!enabled) {
                 binding.rgBarberDay24.clearCheck()

@@ -258,9 +258,21 @@
                         android:text="@string/information"
                         android:textColor="@color/colorPrimary"
                         android:textSize="16sp"
-                        android:visibility="@{(dhabaModelMain.dhabaModel.address.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.landmark.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.area.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.highway.trim().isEmpty()) ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{dhabaModelMain.dhabaModel.informations.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+                    <!--                    android:visibility="@{(dhabaModelMain.dhabaModel.address.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.landmark.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.area.trim().isEmpty() &amp;&amp; dhabaModelMain.dhabaModel.highway.trim().isEmpty()) ? View.GONE : View.VISIBLE}"-->
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/opensans_regular"
+                        android:text="@{dhabaModelMain.dhabaModel.informations}"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:visibility="@{dhabaModelMain.dhabaModel.informations.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                    <!--<androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_15sdp"
@@ -303,7 +315,7 @@
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:visibility="@{dhabaModelMain.dhabaModel.highway.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
-
+-->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_1sdp"

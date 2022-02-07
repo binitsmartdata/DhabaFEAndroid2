@@ -494,6 +494,35 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/informationTil"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:hint="@string/information"
+                    app:boxStrokeColor="@color/input_selector"
+                    app:boxStrokeWidth="0.6dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pinCodeTil">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edInformation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="top"
+                        android:inputType="text"
+                        android:maxLines="6"
+                        android:minHeight="@dimen/_80sdp"
+                        android:text="@={viewModel.dhabaModel.informations}"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_times"
                     android:layout_width="match_parent"
@@ -502,7 +531,7 @@
                     android:visibility="@{(userModel.isOwner() || userModel.isManager()) ? View.VISIBLE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pinCodeTil">
+                    app:layout_constraintTop_toBottomOf="@+id/informationTil">
 
                     <TextView
                         android:id="@+id/tv_open_close_times"

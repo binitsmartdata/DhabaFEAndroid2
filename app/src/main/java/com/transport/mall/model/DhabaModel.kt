@@ -78,6 +78,13 @@ class DhabaModel : Serializable, BaseObservable() {
             notifyPropertyChanged(BR.ownerName)
         }
 
+    var informations: String = ""
+        @Bindable get() = field
+        set(informations) {
+            field = informations
+            notifyPropertyChanged(BR.informations)
+        }
+
     var address: String = ""
         @Bindable get() = field
         set(address) {
@@ -274,6 +281,11 @@ class DhabaModel : Serializable, BaseObservable() {
     var dhabaObj: DhabaModel? = null
 
     var isDraft: String = ""
+
+    fun isActiveDhaba(): Boolean {
+        return getNonNullString(active, "true").toBoolean()
+//        return false
+    }
 
     fun hasEverything(context: Context, callback: GenericCallBackTwoParams<Boolean, String>) {
         if (name.trim().isEmpty()) {

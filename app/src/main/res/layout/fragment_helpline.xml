@@ -125,6 +125,7 @@
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
                         android:text="OR"
+                        android:visibility="gone"
                         android:textColor="@color/black" />
 
                     <androidx.cardview.widget.CardView
@@ -133,6 +134,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/orText"
                         android:layout_margin="16dp"
+                        android:visibility="gone"
                         android:background="@color/white"
                         app:cardCornerRadius="@dimen/_4sdp">
 

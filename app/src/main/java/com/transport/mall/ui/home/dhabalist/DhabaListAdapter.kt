@@ -52,6 +52,7 @@ class DhabaListAdapter(
         }
 
         setButtonsClicks(myViewHolderG, position)
+
         myViewHolderG?.binding?.executePendingBindings()
     }
 
@@ -155,6 +156,13 @@ class DhabaListAdapter(
                 myViewHolderG?.binding?.ivLocation?.visibility = if (latitude != null && longitude != null && latitude.toDouble() != 0.0 && longitude.toDouble() != 0.0) View.VISIBLE else View.GONE
                 myViewHolderG?.binding?.ivView?.visibility = View.VISIBLE
             }
+        }
+
+        // hide edit icon if dhaba is not active
+        if (getDhabaModelAsPerTab(position)?.isActiveDhaba()!!) {
+            myViewHolderG?.binding?.ivEdit?.visibility = myViewHolderG?.binding?.ivEdit?.visibility!!
+        } else {
+            myViewHolderG?.binding?.ivEdit?.visibility = View.GONE
         }
     }
 
