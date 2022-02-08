@@ -61,28 +61,66 @@
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:id="@+id/til_customer_contact"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:hint="@string/customer_phone_number"
-                app:boxStrokeColor="@color/input_selector"
-                app:boxStrokeWidth="0.6dp"
+                android:background="@drawable/grey_dark_stroke"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_customer_name">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_customer_contact"
-                    android:layout_width="match_parent"
+                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                    android:id="@+id/ccpCountryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    app:ccp_defaultCode="91"
+                    app:ccp_hideNameCode="true"
+                    app:ccp_hidePhoneCode="true"
+                    app:ccp_textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:src="@drawable/flag_india" />
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/opensans_regular"
-                    android:inputType="phone"
+                    android:padding="@dimen/_5sdp"
+                    android:text="IN +91"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:background="@color/grey_stroke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/customer_phone_number"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/b_send_invitation"

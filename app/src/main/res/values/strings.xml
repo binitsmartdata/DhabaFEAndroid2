@@ -658,5 +658,6 @@
     <string name="chat_yesterday">Yesterday</string>
     <string name="clear_history">Clear History</string>
     <string name="intenet_connectivity">Please check your internet connection</string>
+    <string name="sending_invite">Sending Invite</string>
 
 </resources>

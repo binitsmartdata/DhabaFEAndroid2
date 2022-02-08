@@ -692,5 +692,16 @@ interface ApiService {
         @Field("reportComment") reportComment: String
     ): Response<ApiResponseModel<ReviewModel>>
 
+    @FormUrlEncoded
+    @POST("customer_invites/addCustomer_Invites")
+    suspend fun addCustomer_Invites(
+        @Field("dhaba_id") dhaba_id: String,
+        @Field("user_id") user_id: String,
+        @Field("owner_id") owner_id: String,
+        @Field("prefix") prefix: String,
+        @Field("mobile") mobile: String,
+        @Field("customer_name") customer_name: String
+    ): Response<ApiResponseModel<ReviewModel>>
+
 }
 
