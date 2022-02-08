@@ -137,7 +137,7 @@ fun AddDhabaVM.addDhaba(
                 getApiService()?.addDhaba(
                     RequestBody.create(MultipartBody.FORM, dhabaModel.owner_id),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.name),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.informations),
+                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(dhabaModel.informations,"")),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.address),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.area),
@@ -214,7 +214,7 @@ fun AddDhabaVM.updateDhaba(
                     RequestBody.create(MultipartBody.FORM, dhabaModel._id),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.owner_id),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.name),
-                    RequestBody.create(MultipartBody.FORM, dhabaModel.informations),
+                    RequestBody.create(MultipartBody.FORM, GlobalUtils.getNonNullString(dhabaModel.informations,"")),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.address + " "),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.landmark),
                     RequestBody.create(MultipartBody.FORM, dhabaModel.area),
