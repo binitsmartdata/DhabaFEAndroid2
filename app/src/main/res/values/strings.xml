@@ -659,5 +659,8 @@
     <string name="clear_history">Clear History</string>
     <string name="intenet_connectivity">Please check your internet connection</string>
     <string name="sending_invite">Sending Invite</string>
+    <string name="select_dhaba">Select Dhaba</string>
+    <string name="select_your_dhaba">Select your Dhaba</string>
+    <string name="select_a_dhaba">Please select a dhaba.</string>
 
 </resources>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.transport.mall.R" />
+
+        <import type="android.view.View" />
+
+        <import type="com.transport.mall.model.DhabaModel.Companion" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+
+        <variable
+            name="isInProgress"
+            type="Boolean" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="model"
+            type="com.transport.mall.model.DhabaModel" />
+
+        <variable
+            name="owner"
+            type="com.transport.mall.model.UserModel" />
+
+        <variable
+            name="manager"
+            type="com.transport.mall.model.UserModel" />
+
+        <variable
+            name="user"
+            type="com.transport.mall.model.UserModel" />
+
+        <variable
+            name="dhabaStatus"
+            type="String" />
+
+        <variable
+            name="callback"
+            type="com.transport.mall.utils.common.recyclerviewbase.RecyclerCallback" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/cardDhaba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/grey_dark_stroke"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+            <LinearLayout
+                android:id="@+id/dhabaContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{model != null ? View.VISIBLE : View.GONE}">
+
+                    <ImageView
+                        loadImage="@{model.getPrimaryImage()}"
+                        placeholder="@{R.drawable.placeholder}"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_75sdp"
+                        android:layout_margin="@dimen/_1sdp"
+                        android:scaleType="centerCrop" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:visibility="@{model != null ? View.VISIBLE : View.GONE}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvMenuTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_bold"
+                        android:orientation="vertical"
+                        android:text="@{model.getUniqueId() + model.name}"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        tools:text="@string/select_dhaba" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/opensans_regular"
+                        android:orientation="vertical"
+                        android:text="@{model.address.trim().isEmpty() ? `` : model.address.trim().replace(`false`,``)}"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:visibility="@{model.address.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvHighway"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:orientation="vertical"
+                            android:text="@{model.highway.trim().isEmpty() ? `` : model.highway.replace(`false`,``)}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:visibility="@{model.highway.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:orientation="vertical"
+                            android:text="@{model.city.trim().isEmpty() || model.highway.trim().isEmpty() ? `` : `, `}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/opensans_regular"
+                            android:orientation="vertical"
+                            android:text="@{model.city.trim().isEmpty() ? `` : model.city.replace(`false`,``)}"
+                            android:textColor="@color/black"
+                            android:textSize="13sp"
+                            android:visibility="@{model.city.trim().isEmpty() ? View.GONE : View.VISIBLE}" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/select_dhaba"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:visibility="@{model != null ? View.GONE : View.VISIBLE}" />
+
+                <ImageView
+                    android:id="@+id/ivArrow"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_arrow_right" />
+
+            </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </FrameLayout>
+</layout>

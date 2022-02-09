@@ -15,6 +15,8 @@ import com.transport.mall.databinding.DialogAddCustomerBinding
 import com.transport.mall.model.UserModel
 import com.transport.mall.repository.networkoperator.ApiResult
 import com.transport.mall.ui.customdialogs.BaseDialog
+import com.transport.mall.ui.customdialogs.DialogDhabaSelection
+import com.transport.mall.utils.common.GenericCallBack
 import com.transport.mall.utils.common.GlobalUtils
 import com.transport.mall.utils.common.localstorage.SharedPrefsHelper
 import kotlinx.coroutines.Dispatchers
@@ -42,9 +44,25 @@ class DialogAddCustomer constructor(context: Context) : BaseDialog(context) {
         binding.bSendInvitation.setOnClickListener {
             onButtonClick()
         }
+        binding.cardDhaba.cardDhaba.setOnClickListener {
+            openDhabaSelectionDialog()
+        }
+    }
+
+    private fun openDhabaSelectionDialog() {
+        DialogDhabaSelection(context, GenericCallBack {
+            binding.model = it.dhabaModel
+        }).show()
     }
 
     private fun onButtonClick() {
+        if (binding.model == null) {
+            GlobalUtils.showToastInCenter(context, context.getString(R.string.select_a_dhaba))
+            return
+        } else {
+            dhabaId = binding.model!!._id
+        }
+
         if (binding.etCustomerName.text?.trim().toString().isEmpty()) {
             binding.etCustomerName.error = context.getString(R.string.please_enter_customer_name)
             return

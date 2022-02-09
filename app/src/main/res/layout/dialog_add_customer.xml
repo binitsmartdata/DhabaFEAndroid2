@@ -11,17 +11,21 @@
         <variable
             name="context"
             type="android.content.Context" />
+
+        <variable
+            name="model"
+            type="com.transport.mall.model.DhabaModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/_15sdp">
+        android:background="@color/white">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="@dimen/_20sdp">
 
@@ -38,12 +42,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+            <include
+                android:id="@+id/cardDhaba"
+                layout="@layout/row_dhaba_list_for_dhaba_selecton"
+                app:model="@{model}" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_customer_name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:hint="@string/customer_name"
                 app:boxStrokeColor="@color/input_selector"
                 app:boxStrokeWidth="0.6dp"
@@ -65,6 +76,7 @@
                 android:id="@+id/til_customer_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/grey_dark_stroke"
                 android:gravity="center_vertical"
@@ -126,6 +138,7 @@
                 android:id="@+id/b_send_invitation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/primary_color_btn_selector"
                 android:fontFamily="@font/opensans_bold"
@@ -140,6 +153,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/til_customer_contact" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
 </layout>

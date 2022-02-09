@@ -250,6 +250,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llOwnername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -337,6 +338,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llManager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -465,7 +467,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white_transparent"
-            android:visibility="@{model.isActiveDhaba() ? View.GONE : View.VISIBLE}" />
+            android:visibility="@{model.isActiveDhaba() ? View.GONE : View.VISIBLE}"
+            tools:visibility="gone" />
 
     </FrameLayout>
 </layout>
