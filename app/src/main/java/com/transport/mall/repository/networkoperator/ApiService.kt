@@ -453,11 +453,12 @@ interface ApiService {
     ): Response<ApiResponseModel<*>>
 
     @FormUrlEncoded
-    @POST("user/callRequest")
+    @POST("call_request/addNewCallRequest")
     suspend fun callRequest(
         @Header("Authorization") token: String,
         @Field("mobilePrefix") mobilePrefix: String,
-        @Field("mobile") mobile: String
+        @Field("mobile") mobile: String,
+        @Field("user_id") user_id: String
     ): Response<ApiResponseModel<*>>
 
     @Multipart
